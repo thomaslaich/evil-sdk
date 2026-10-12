@@ -1,0 +1,5907 @@
+{
+  "nsmithy": "0.12.0",
+  "results": [
+    {
+      "id": "accessanalyzer",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 5,
+      "first_error": "CS0542: 'Value': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 515,
+      "seconds": 15.1
+    },
+    {
+      "id": "account",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 120,
+      "seconds": 6.3
+    },
+    {
+      "id": "account-access",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 123,
+      "seconds": 6.2
+    },
+    {
+      "id": "acm",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 474,
+      "seconds": 13.4
+    },
+    {
+      "id": "acm-pca",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 263,
+      "seconds": 10.9
+    },
+    {
+      "id": "agent-registry",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'Com.Amazonaws.Agentregistry.ValidationExceptionReason?' to 'Com.Amazonaws.Agentregistry.ValidationExceptionReason'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 97,
+      "seconds": 6.3
+    },
+    {
+      "id": "agent-registry-control",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'Com.Amazonaws.Agentregistrycontrol.ValidationExceptionReason?' to 'Com.Amazonaws.Agentregistrycontrol.ValidationExceptionReason'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 335,
+      "seconds": 10.7
+    },
+    {
+      "id": "aiops",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 95,
+      "seconds": 6.1
+    },
+    {
+      "id": "amp",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 362,
+      "seconds": 12.5
+    },
+    {
+      "id": "amplify",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 307,
+      "seconds": 9.9
+    },
+    {
+      "id": "amplifybackend",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 285,
+      "seconds": 11.6
+    },
+    {
+      "id": "amplifyuibuilder",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 3,
+      "first_error": "CS0542: 'Value': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 400,
+      "seconds": 13.5
+    },
+    {
+      "id": "api-gateway",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'DomainName': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 844,
+      "seconds": 13.2
+    },
+    {
+      "id": "apigatewaymanagementapi",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 27,
+      "seconds": 4.6
+    },
+    {
+      "id": "apigatewayv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'DomainName': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 751,
+      "seconds": 23.9
+    },
+    {
+      "id": "app-mesh",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 552,
+      "seconds": 19.3
+    },
+    {
+      "id": "appconfig",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'float?' to 'float'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 448,
+      "seconds": 16.7
+    },
+    {
+      "id": "appconfigdata",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 28,
+      "seconds": 5.4
+    },
+    {
+      "id": "appfabric",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 236,
+      "seconds": 13.4
+    },
+    {
+      "id": "appflow",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 627,
+      "seconds": 19.1
+    },
+    {
+      "id": "appintegrations",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 221,
+      "seconds": 7.2
+    },
+    {
+      "id": "application-auto-scaling",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 208,
+      "seconds": 12.9
+    },
+    {
+      "id": "application-discovery-service",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 322,
+      "seconds": 10.8
+    },
+    {
+      "id": "application-insights",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 263,
+      "seconds": 14.4
+    },
+    {
+      "id": "application-signals",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 442,
+      "seconds": 11.5
+    },
+    {
+      "id": "applicationcostprofiler",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 56,
+      "seconds": 6.8
+    },
+    {
+      "id": "apprunner",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 335,
+      "seconds": 19.1
+    },
+    {
+      "id": "appstream",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 801,
+      "seconds": 32.9
+    },
+    {
+      "id": "appsync",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 632,
+      "seconds": 29.4
+    },
+    {
+      "id": "arc-region-switch",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 380,
+      "seconds": 13.0
+    },
+    {
+      "id": "arc-zonal-shift",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 149,
+      "seconds": 8.8
+    },
+    {
+      "id": "artifact",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 181,
+      "seconds": 10.6
+    },
+    {
+      "id": "athena",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 618,
+      "seconds": 22.9
+    },
+    {
+      "id": "auditmanager",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 574,
+      "seconds": 27.4
+    },
+    {
+      "id": "auto-scaling",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 0,
+      "first_error": "CS0542: 'AdjustmentType': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 2
+      },
+      "files": 756,
+      "seconds": 14.3
+    },
+    {
+      "id": "auto-scaling-plans",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 116,
+      "seconds": 7.7
+    },
+    {
+      "id": "b2bi",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 320,
+      "seconds": 13.7
+    },
+    {
+      "id": "backup",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 939,
+      "seconds": 44.9
+    },
+    {
+      "id": "backup-gateway",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 179,
+      "seconds": 9.9
+    },
+    {
+      "id": "backupsearch",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 152,
+      "seconds": 6.5
+    },
+    {
+      "id": "batch",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 794,
+      "seconds": 24.3
+    },
+    {
+      "id": "bcm-dashboards",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 193,
+      "seconds": 8.7
+    },
+    {
+      "id": "bcm-data-exports",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 144,
+      "seconds": 8.5
+    },
+    {
+      "id": "bcm-pricing-calculator",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 450,
+      "seconds": 19.4
+    },
+    {
+      "id": "bcm-recommended-actions",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 47,
+      "seconds": 8.5
+    },
+    {
+      "id": "bedrock",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 5,
+      "warnings": 3,
+      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Bedrock.RequestMetadataMap?' to match positional parameter 'Equals'.",
+      "error_codes": {
+        "CS8866": 1,
+        "CS0102": 2,
+        "CS0542": 2
+      },
+      "files": 1474,
+      "seconds": 59.2
+    },
+    {
+      "id": "bedrock-agent",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveLong (long). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Document, Uni",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 1.8
+    },
+    {
+      "id": "bedrock-agent-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 1,
+      "first_error": "CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals'",
+      "error_codes": {
+        "CS0102": 1,
+        "CS0542": 1
+      },
+      "files": 1137,
+      "seconds": 58.1
+    },
+    {
+      "id": "bedrock-agentcore",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1197,
+      "seconds": 65.7
+    },
+    {
+      "id": "bedrock-agentcore-control",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'ModifyMemoryStrategies': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 2243,
+      "seconds": 81.6
+    },
+    {
+      "id": "bedrock-data-automation",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 415,
+      "seconds": 25.9
+    },
+    {
+      "id": "bedrock-data-automation-runtime",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 94,
+      "seconds": 6.6
+    },
+    {
+      "id": "bedrock-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 589,
+      "seconds": 14.8
+    },
+    {
+      "id": "billing",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 295,
+      "seconds": 14.0
+    },
+    {
+      "id": "billingconductor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 390,
+      "seconds": 10.9
+    },
+    {
+      "id": "braket",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 201,
+      "seconds": 9.9
+    },
+    {
+      "id": "budgets",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 294,
+      "seconds": 10.8
+    },
+    {
+      "id": "chatbot",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 300,
+      "seconds": 10.1
+    },
+    {
+      "id": "chime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 478,
+      "seconds": 17.0
+    },
+    {
+      "id": "chime-sdk-identity",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 242,
+      "seconds": 19.4
+    },
+    {
+      "id": "chime-sdk-media-pipelines",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 471,
+      "seconds": 27.0
+    },
+    {
+      "id": "chime-sdk-meetings",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 188,
+      "seconds": 17.7
+    },
+    {
+      "id": "chime-sdk-messaging",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 429,
+      "seconds": 16.4
+    },
+    {
+      "id": "chime-sdk-voice",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 736,
+      "seconds": 24.6
+    },
+    {
+      "id": "cleanrooms",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Cleanrooms' already contains a definition for 'IntermediateTableSchema'",
+      "error_codes": {
+        "CS0101": 1
+      },
+      "files": 1311,
+      "seconds": 34.3
+    },
+    {
+      "id": "cleanroomsml",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 623,
+      "seconds": 17.1
+    },
+    {
+      "id": "cloud9",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 8,
+      "warnings": 8,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 8
+      },
+      "files": 121,
+      "seconds": 10.0
+    },
+    {
+      "id": "cloudcontrol",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 102,
+      "seconds": 8.1
+    },
+    {
+      "id": "clouddirectory",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 682,
+      "seconds": 23.2
+    },
+    {
+      "id": "cloudformation",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1028,
+      "seconds": 30.5
+    },
+    {
+      "id": "cloudfront",
+      "protocols": [
+        "restXml"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Cloudfront' already contains a definition for 'ParameterDefinitionSchema'",
+      "error_codes": {
+        "CS0101": 1
+      },
+      "files": 1803,
+      "seconds": 59.7
+    },
+    {
+      "id": "cloudfront-keyvaluestore",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 56,
+      "seconds": 8.3
+    },
+    {
+      "id": "cloudhsm",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 3,
+      "warnings": 3,
+      "first_error": "CS0266: Cannot implicitly convert type 'bool?' to 'bool'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 3
+      },
+      "files": 134,
+      "seconds": 10.3
+    },
+    {
+      "id": "cloudhsm-v2",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 152,
+      "seconds": 8.1
+    },
+    {
+      "id": "cloudsearch",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 244,
+      "seconds": 9.2
+    },
+    {
+      "id": "cloudsearch-domain",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 65,
+      "seconds": 5.6
+    },
+    {
+      "id": "cloudtrail",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Cloudtrail.Operator?' to match positional parameter 'Equals'.",
+      "error_codes": {
+        "CS8866": 2
+      },
+      "files": 682,
+      "seconds": 17.8
+    },
+    {
+      "id": "cloudtrail-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 31,
+      "seconds": 7.0
+    },
+    {
+      "id": "cloudwatch",
+      "protocols": [
+        "awsJson1_0",
+        "awsQuery",
+        "rpcv2Cbor"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 581,
+      "seconds": 21.3
+    },
+    {
+      "id": "cloudwatch-events",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 495,
+      "seconds": 18.2
+    },
+    {
+      "id": "cloudwatch-logs",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Cloudwatchlogs' already contains a definition for 'DeliverySourceConfigurationSchema'",
+      "error_codes": {
+        "CS0101": 1
+      },
+      "files": 1164,
+      "seconds": 45.3
+    },
+    {
+      "id": "cloudwatchomni",
+      "protocols": [
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 627,
+      "seconds": 28.6
+    },
+    {
+      "id": "codeartifact",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 398,
+      "seconds": 15.2
+    },
+    {
+      "id": "codebuild",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 673,
+      "seconds": 25.3
+    },
+    {
+      "id": "codecatalyst",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 306,
+      "seconds": 12.9
+    },
+    {
+      "id": "codecommit",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1044,
+      "seconds": 34.9
+    },
+    {
+      "id": "codeconnections",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 247,
+      "seconds": 17.6
+    },
+    {
+      "id": "codedeploy",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 721,
+      "seconds": 31.2
+    },
+    {
+      "id": "codeguru-reviewer",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 194,
+      "seconds": 7.5
+    },
+    {
+      "id": "codeguru-security",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 165,
+      "seconds": 6.6
+    },
+    {
+      "id": "codeguruprofiler",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 215,
+      "seconds": 8.0
+    },
+    {
+      "id": "codepipeline",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 716,
+      "seconds": 18.1
+    },
+    {
+      "id": "codestar-connections",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 245,
+      "seconds": 9.3
+    },
+    {
+      "id": "codestar-notifications",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 129,
+      "seconds": 8.8
+    },
+    {
+      "id": "cognito-identity",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 197,
+      "seconds": 11.6
+    },
+    {
+      "id": "cognito-identity-provider",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1212,
+      "seconds": 49.7
+    },
+    {
+      "id": "cognito-sync",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 149,
+      "seconds": 6.8
+    },
+    {
+      "id": "comprehend",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 867,
+      "seconds": 45.0
+    },
+    {
+      "id": "comprehendmedical",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 266,
+      "seconds": 11.6
+    },
+    {
+      "id": "compute-optimizer",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 732,
+      "seconds": 15.2
+    },
+    {
+      "id": "compute-optimizer-automation",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 281,
+      "seconds": 11.6
+    },
+    {
+      "id": "config-service",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1156,
+      "seconds": 40.2
+    },
+    {
+      "id": "connect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 4361,
+      "seconds": 97.9
+    },
+    {
+      "id": "connect-contact-lens",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 57,
+      "seconds": 9.8
+    },
+    {
+      "id": "connectcampaigns",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 186,
+      "seconds": 32.6
+    },
+    {
+      "id": "connectcampaignsv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 393,
+      "seconds": 25.7
+    },
+    {
+      "id": "connectcases",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 4,
+      "first_error": "",
+      "error_codes": {},
+      "files": 481,
+      "seconds": 27.4
+    },
+    {
+      "id": "connecthealth",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 220,
+      "seconds": 25.4
+    },
+    {
+      "id": "connectparticipant",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 137,
+      "seconds": 7.5
+    },
+    {
+      "id": "controlcatalog",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 136,
+      "seconds": 6.8
+    },
+    {
+      "id": "controltower",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 298,
+      "seconds": 12.8
+    },
+    {
+      "id": "cost-and-usage-report-service",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 79,
+      "seconds": 6.6
+    },
+    {
+      "id": "cost-explorer",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 687,
+      "seconds": 17.5
+    },
+    {
+      "id": "cost-optimization-hub",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 1.8
+    },
+    {
+      "id": "customer-profiles",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 1237,
+      "seconds": 40.2
+    },
+    {
+      "id": "data-pipeline",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 171,
+      "seconds": 13.1
+    },
+    {
+      "id": "database-migration-service",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1105,
+      "seconds": 52.9
+    },
+    {
+      "id": "databrew",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 428,
+      "seconds": 27.2
+    },
+    {
+      "id": "dataexchange",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'double?' to 'double'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 389,
+      "seconds": 21.8
+    },
+    {
+      "id": "datasync",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 481,
+      "seconds": 20.8
+    },
+    {
+      "id": "datazone",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 2218,
+      "seconds": 74.9
+    },
+    {
+      "id": "dax",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 249,
+      "seconds": 12.9
+    },
+    {
+      "id": "deadline",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1377,
+      "seconds": 35.9
+    },
+    {
+      "id": "detective",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 281,
+      "seconds": 7.4
+    },
+    {
+      "id": "device-farm",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 691,
+      "seconds": 26.7
+    },
+    {
+      "id": "devops-agent",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 809,
+      "seconds": 53.9
+    },
+    {
+      "id": "devops-guru",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 14,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 2,
+        "CS1003": 6,
+        "CS1525": 1,
+        "CS1026": 2,
+        "CS1513": 1,
+        "CS1514": 1,
+        "CS1022": 1
+      },
+      "files": 519,
+      "seconds": 29.7
+    },
+    {
+      "id": "direct-connect",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 565,
+      "seconds": 26.0
+    },
+    {
+      "id": "directory-service",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 740,
+      "seconds": 35.2
+    },
+    {
+      "id": "directory-service-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 143,
+      "seconds": 11.0
+    },
+    {
+      "id": "dlm",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 186,
+      "seconds": 24.6
+    },
+    {
+      "id": "docdb",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 555,
+      "seconds": 22.9
+    },
+    {
+      "id": "docdb-elastic",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 145,
+      "seconds": 18.4
+    },
+    {
+      "id": "drs",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 636,
+      "seconds": 19.1
+    },
+    {
+      "id": "dsql",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 140,
+      "seconds": 16.2
+    },
+    {
+      "id": "dynamodb",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0261: Partial declarations of 'KeySchema' must be all classes, all record classes, all structs, all record structs, or all interfaces",
+      "error_codes": {
+        "CS0261": 1
+      },
+      "files": 874,
+      "seconds": 27.7
+    },
+    {
+      "id": "dynamodb-streams",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 84,
+      "seconds": 6.3
+    },
+    {
+      "id": "ebs",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 78,
+      "seconds": 5.2
+    },
+    {
+      "id": "ec2",
+      "protocols": [
+        "ec2Query"
+      ],
+      "stage": "compile",
+      "errors": 222,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 6,
+        "CS1003": 153,
+        "CS1001": 7,
+        "CS1525": 24,
+        "CS1026": 5,
+        "CS1513": 2,
+        "CS1056": 18,
+        "CS1514": 2,
+        "CS1022": 2,
+        "CS1012": 1,
+        "CS1002": 1,
+        "CS1040": 1
+      },
+      "files": 8521,
+      "seconds": 553.4
+    },
+    {
+      "id": "ec2-instance-connect",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 36,
+      "seconds": 5.9
+    },
+    {
+      "id": "ecr",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 178,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 4,
+        "CS1056": 14,
+        "CS1003": 120,
+        "CS1525": 23,
+        "CS1001": 4,
+        "CS1040": 2,
+        "CS1026": 4,
+        "CS1513": 2,
+        "CS1514": 2,
+        "CS1022": 2,
+        "CS0742": 1
+      },
+      "files": 658,
+      "seconds": 29.5
+    },
+    {
+      "id": "ecr-public",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 239,
+      "seconds": 12.5
+    },
+    {
+      "id": "ecs",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1305,
+      "seconds": 81.6
+    },
+    {
+      "id": "efs",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 301,
+      "seconds": 10.1
+    },
+    {
+      "id": "eks",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 898,
+      "seconds": 49.3
+    },
+    {
+      "id": "eks-auth",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 33,
+      "seconds": 7.3
+    },
+    {
+      "id": "elastic-beanstalk",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Builder': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 535,
+      "seconds": 29.4
+    },
+    {
+      "id": "elastic-load-balancing",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 295,
+      "seconds": 17.7
+    },
+    {
+      "id": "elastic-load-balancing-v2",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 649,
+      "seconds": 61.9
+    },
+    {
+      "id": "elasticache",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 891,
+      "seconds": 61.5
+    },
+    {
+      "id": "elasticsearch-service",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 611,
+      "seconds": 36.8
+    },
+    {
+      "id": "elementalinference",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 209,
+      "seconds": 18.5
+    },
+    {
+      "id": "emr",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 783,
+      "seconds": 28.5
+    },
+    {
+      "id": "emr-containers",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 269,
+      "seconds": 24.9
+    },
+    {
+      "id": "emr-serverless",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 14,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 1,
+        "CS1525": 3,
+        "CS1056": 3,
+        "CS1003": 4,
+        "CS1026": 2,
+        "CS1039": 1
+      },
+      "files": 240,
+      "seconds": 11.1
+    },
+    {
+      "id": "endusermessaging",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 249,
+      "seconds": 12.7
+    },
+    {
+      "id": "entityresolution",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 416,
+      "seconds": 16.7
+    },
+    {
+      "id": "eventbridge",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 569,
+      "seconds": 33.8
+    },
+    {
+      "id": "eventbridgev2",
+      "protocols": [
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 311,
+      "seconds": 16.1
+    },
+    {
+      "id": "evs",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 256,
+      "seconds": 12.7
+    },
+    {
+      "id": "finspace",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 387,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 2,
+        "CS1525": 4,
+        "CS1056": 19,
+        "CS1003": 136,
+        "CS1026": 27,
+        "CS1514": 1,
+        "CS1513": 5,
+        "CS1001": 62,
+        "CS1031": 36,
+        "CS1002": 20,
+        "CS8124": 25,
+        "CS1519": 43,
+        "CS1014": 6,
+        "CS1022": 1
+      },
+      "files": 460,
+      "seconds": 29.9
+    },
+    {
+      "id": "finspace-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 269,
+      "seconds": 24.7
+    },
+    {
+      "id": "firehose",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 394,
+      "seconds": 25.5
+    },
+    {
+      "id": "fis",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 386,
+      "seconds": 25.2
+    },
+    {
+      "id": "fms",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 558,
+      "seconds": 35.5
+    },
+    {
+      "id": "forecast",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 52,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 3,
+        "CS1003": 23,
+        "CS1001": 3,
+        "CS1525": 5,
+        "CS1040": 3,
+        "CS1026": 6,
+        "CS1513": 3,
+        "CS1514": 3,
+        "CS1022": 3
+      },
+      "files": 583,
+      "seconds": 40.3
+    },
+    {
+      "id": "forecastquery",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 32,
+      "seconds": 6.0
+    },
+    {
+      "id": "frauddetector",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Frauddetector' already contains a definition for 'LabelSchema'",
+      "error_codes": {
+        "CS0101": 1
+      },
+      "files": 661,
+      "seconds": 17.4
+    },
+    {
+      "id": "freetier",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 75,
+      "seconds": 10.4
+    },
+    {
+      "id": "fsx",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 374,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 3,
+        "CS1525": 16,
+        "CS1001": 62,
+        "CS1003": 96,
+        "CS1026": 30,
+        "CS1513": 6,
+        "CS1514": 2,
+        "CS1022": 2,
+        "CS1519": 51,
+        "CS1056": 9,
+        "CS1031": 45,
+        "CS1040": 1,
+        "CS1002": 19,
+        "CS8124": 26,
+        "CS1014": 6
+      },
+      "files": 814,
+      "seconds": 24.9
+    },
+    {
+      "id": "gamelift",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1124,
+      "seconds": 42.8
+    },
+    {
+      "id": "gameliftstreams",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 268,
+      "seconds": 17.9
+    },
+    {
+      "id": "geo-maps",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 79,
+      "seconds": 12.5
+    },
+    {
+      "id": "geo-places",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 345,
+      "seconds": 17.6
+    },
+    {
+      "id": "geo-routes",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 925,
+      "seconds": 44.9
+    },
+    {
+      "id": "glacier",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 273,
+      "seconds": 12.7
+    },
+    {
+      "id": "global-accelerator",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 476,
+      "seconds": 26.0
+    },
+    {
+      "id": "glue",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0102: The type 'SearchFilterOperator' already contains a definition for 'Equals'",
+      "error_codes": {
+        "CS0102": 1
+      },
+      "files": 3402,
+      "seconds": 150.8
+    },
+    {
+      "id": "grafana",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 223,
+      "seconds": 14.3
+    },
+    {
+      "id": "greengrass",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 622,
+      "seconds": 47.1
+    },
+    {
+      "id": "greengrassv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 355,
+      "seconds": 25.5
+    },
+    {
+      "id": "groundstation",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 504,
+      "seconds": 19.3
+    },
+    {
+      "id": "guardduty",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 3,
+      "warnings": 2,
+      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Guardduty.Equals?' to match positional parameter 'Equals'.",
+      "error_codes": {
+        "CS8866": 2,
+        "CS0542": 1
+      },
+      "files": 1520,
+      "seconds": 92.9
+    },
+    {
+      "id": "health",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 241,
+      "seconds": 23.0
+    },
+    {
+      "id": "healthlake",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 290,
+      "seconds": 10.3
+    },
+    {
+      "id": "iam",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1304,
+      "seconds": 65.1
+    },
+    {
+      "id": "iam-toolbox",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 43,
+      "seconds": 6.7
+    },
+    {
+      "id": "identitystore",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 214,
+      "seconds": 12.4
+    },
+    {
+      "id": "imagebuilder",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 843,
+      "seconds": 55.0
+    },
+    {
+      "id": "inspector",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 407,
+      "seconds": 44.8
+    },
+    {
+      "id": "inspector-scan",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 25,
+      "seconds": 5.5
+    },
+    {
+      "id": "inspector2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1225,
+      "seconds": 53.3
+    },
+    {
+      "id": "interconnect",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 117,
+      "seconds": 10.4
+    },
+    {
+      "id": "internetmonitor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 166,
+      "seconds": 11.3
+    },
+    {
+      "id": "invoicing",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 281,
+      "seconds": 17.5
+    },
+    {
+      "id": "iot",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 2404,
+      "seconds": 111.7
+    },
+    {
+      "id": "iot-data-plane",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 93,
+      "seconds": 7.2
+    },
+    {
+      "id": "iot-jobs-data-plane",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 65,
+      "seconds": 5.7
+    },
+    {
+      "id": "iot-managed-integrations",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 741,
+      "seconds": 26.2
+    },
+    {
+      "id": "iot-wireless",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1064,
+      "seconds": 95.4
+    },
+    {
+      "id": "iotdeviceadvisor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 128,
+      "seconds": 7.0
+    },
+    {
+      "id": "iotfleetwise",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 1.7
+    },
+    {
+      "id": "iotsecuretunneling",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 72,
+      "seconds": 7.8
+    },
+    {
+      "id": "iotsitewise",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 3.9
+    },
+    {
+      "id": "iotthingsgraph",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 295,
+      "seconds": 8.3
+    },
+    {
+      "id": "iottwinmaker",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 496,
+      "seconds": 17.4
+    },
+    {
+      "id": "ivs",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 357,
+      "seconds": 17.7
+    },
+    {
+      "id": "ivs-realtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 363,
+      "seconds": 15.7
+    },
+    {
+      "id": "ivschat",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 137,
+      "seconds": 13.5
+    },
+    {
+      "id": "kafka",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 738,
+      "seconds": 38.0
+    },
+    {
+      "id": "kafkaconnect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 249,
+      "seconds": 15.4
+    },
+    {
+      "id": "kendra",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0102: The type 'ConditionOperator' already contains a definition for 'Equals'",
+      "error_codes": {
+        "CS0102": 1
+      },
+      "files": 1008,
+      "seconds": 61.9
+    },
+    {
+      "id": "kendra-ranking",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 89,
+      "seconds": 13.2
+    },
+    {
+      "id": "keyspaces",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 199,
+      "seconds": 10.4
+    },
+    {
+      "id": "keyspacesstreams",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 86,
+      "seconds": 8.4
+    },
+    {
+      "id": "kinesis",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 431,
+      "seconds": 16.1
+    },
+    {
+      "id": "kinesis-analytics",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 280,
+      "seconds": 16.5
+    },
+    {
+      "id": "kinesis-analytics-v2",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 551,
+      "seconds": 31.3
+    },
+    {
+      "id": "kinesis-video",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 302,
+      "seconds": 20.2
+    },
+    {
+      "id": "kinesis-video-archived-media",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 108,
+      "seconds": 10.4
+    },
+    {
+      "id": "kinesis-video-media",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 23,
+      "seconds": 8.9
+    },
+    {
+      "id": "kinesis-video-signaling",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 32,
+      "seconds": 7.7
+    },
+    {
+      "id": "kinesis-video-webrtc-storage",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 20,
+      "seconds": 15.3
+    },
+    {
+      "id": "kms",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 492,
+      "seconds": 16.3
+    },
+    {
+      "id": "lakeformation",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 571,
+      "seconds": 17.8
+    },
+    {
+      "id": "lambda",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 996,
+      "seconds": 81.2
+    },
+    {
+      "id": "lambda-core",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 71,
+      "seconds": 8.5
+    },
+    {
+      "id": "lambda-microvms",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 234,
+      "seconds": 9.4
+    },
+    {
+      "id": "lambda-web",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 17,
+      "seconds": 6.9
+    },
+    {
+      "id": "launch-wizard",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 161,
+      "seconds": 10.2
+    },
+    {
+      "id": "lex-model-building-service",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 410,
+      "seconds": 16.9
+    },
+    {
+      "id": "lex-models-v2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 9,
+      "warnings": 9,
+      "first_error": "CS0102: The type 'BotLocaleFilterOperator' already contains a definition for 'Equals'",
+      "error_codes": {
+        "CS0102": 9
+      },
+      "files": 1559,
+      "seconds": 101.6
+    },
+    {
+      "id": "lex-runtime-service",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 95,
+      "seconds": 8.0
+    },
+    {
+      "id": "lex-runtime-v2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 160,
+      "seconds": 10.0
+    },
+    {
+      "id": "license-manager",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 588,
+      "seconds": 25.7
+    },
+    {
+      "id": "license-manager-linux-subscriptions",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 95,
+      "seconds": 12.1
+    },
+    {
+      "id": "license-manager-user-subscriptions",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 165,
+      "seconds": 13.3
+    },
+    {
+      "id": "lightsail",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1440,
+      "seconds": 92.6
+    },
+    {
+      "id": "location",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 586,
+      "seconds": 63.3
+    },
+    {
+      "id": "lookoutequipment",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 407,
+      "seconds": 43.5
+    },
+    {
+      "id": "m2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 359,
+      "seconds": 12.5
+    },
+    {
+      "id": "machine-learning",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 5,
+      "warnings": 5,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 5
+      },
+      "files": 238,
+      "seconds": 10.9
+    },
+    {
+      "id": "macie2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 933,
+      "seconds": 42.2
+    },
+    {
+      "id": "mailmanager",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 638,
+      "seconds": 48.3
+    },
+    {
+      "id": "managedblockchain",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 281,
+      "seconds": 17.0
+    },
+    {
+      "id": "managedblockchain-query",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 125,
+      "seconds": 19.9
+    },
+    {
+      "id": "marketplace-agreement",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 373,
+      "seconds": 10.5
+    },
+    {
+      "id": "marketplace-catalog",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 523,
+      "seconds": 25.4
+    },
+    {
+      "id": "marketplace-commerce-analytics",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 20,
+      "seconds": 7.3
+    },
+    {
+      "id": "marketplace-deployment",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 44,
+      "seconds": 7.6
+    },
+    {
+      "id": "marketplace-discovery",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 367,
+      "seconds": 17.8
+    },
+    {
+      "id": "marketplace-entitlement-service",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 25,
+      "seconds": 16.8
+    },
+    {
+      "id": "marketplace-metering",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 80,
+      "seconds": 16.9
+    },
+    {
+      "id": "marketplace-reporting",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 17,
+      "seconds": 11.6
+    },
+    {
+      "id": "mediaconnect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1042,
+      "seconds": 54.2
+    },
+    {
+      "id": "mediaconvert",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1716,
+      "seconds": 109.9
+    },
+    {
+      "id": "medialive",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 2287,
+      "seconds": 199.4
+    },
+    {
+      "id": "mediapackage",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 209,
+      "seconds": 11.2
+    },
+    {
+      "id": "mediapackage-vod",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 181,
+      "seconds": 10.6
+    },
+    {
+      "id": "mediapackagev2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 406,
+      "seconds": 22.4
+    },
+    {
+      "id": "mediastore",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 153,
+      "seconds": 10.0
+    },
+    {
+      "id": "mediastore-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 45,
+      "seconds": 9.8
+    },
+    {
+      "id": "mediatailor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 540,
+      "seconds": 41.7
+    },
+    {
+      "id": "medical-imaging",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 196,
+      "seconds": 17.5
+    },
+    {
+      "id": "memorydb",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 527,
+      "seconds": 13.2
+    },
+    {
+      "id": "mgn",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 931,
+      "seconds": 84.4
+    },
+    {
+      "id": "migration-hub",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 175,
+      "seconds": 11.0
+    },
+    {
+      "id": "migration-hub-refactor-spaces",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 194,
+      "seconds": 9.1
+    },
+    {
+      "id": "migrationhub-config",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 42,
+      "seconds": 6.5
+    },
+    {
+      "id": "migrationhuborchestrator",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 239,
+      "seconds": 10.5
+    },
+    {
+      "id": "migrationhubstrategy",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 304,
+      "seconds": 13.0
+    },
+    {
+      "id": "mpa",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 252,
+      "seconds": 15.8
+    },
+    {
+      "id": "mq",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 255,
+      "seconds": 14.6
+    },
+    {
+      "id": "mturk",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 305,
+      "seconds": 23.1
+    },
+    {
+      "id": "mwaa",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 116,
+      "seconds": 9.6
+    },
+    {
+      "id": "mwaa-serverless",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 161,
+      "seconds": 9.6
+    },
+    {
+      "id": "neptune",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 694,
+      "seconds": 41.1
+    },
+    {
+      "id": "neptune-graph",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 304,
+      "seconds": 13.5
+    },
+    {
+      "id": "neptunedata",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 397,
+      "seconds": 42.4
+    },
+    {
+      "id": "network-firewall",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 887,
+      "seconds": 68.9
+    },
+    {
+      "id": "network-security-manager",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 452,
+      "seconds": 26.7
+    },
+    {
+      "id": "networkflowmonitor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 211,
+      "seconds": 10.2
+    },
+    {
+      "id": "networkmanager",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 855,
+      "seconds": 23.9
+    },
+    {
+      "id": "networkmonitor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 102,
+      "seconds": 11.0
+    },
+    {
+      "id": "notifications",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 346,
+      "seconds": 15.5
+    },
+    {
+      "id": "notificationscontacts",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 75,
+      "seconds": 9.7
+    },
+    {
+      "id": "nova-act",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 172,
+      "seconds": 11.4
+    },
+    {
+      "id": "oam",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 123,
+      "seconds": 9.8
+    },
+    {
+      "id": "observabilityadmin",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Observabilityadmin.StringList?' to match positional parameter 'Equals'.",
+      "error_codes": {
+        "CS8866": 1
+      },
+      "files": 459,
+      "seconds": 51.4
+    },
+    {
+      "id": "odb",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 806,
+      "seconds": 31.5
+    },
+    {
+      "id": "omics",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 1.9
+    },
+    {
+      "id": "opensearch",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1136,
+      "seconds": 82.1
+    },
+    {
+      "id": "opensearchserverless",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 404,
+      "seconds": 51.5
+    },
+    {
+      "id": "organizations",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 557,
+      "seconds": 44.7
+    },
+    {
+      "id": "osis",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 216,
+      "seconds": 19.5
+    },
+    {
+      "id": "outposts",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 527,
+      "seconds": 27.5
+    },
+    {
+      "id": "partnercentral-account",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 314,
+      "seconds": 29.4
+    },
+    {
+      "id": "partnercentral-benefits",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 203,
+      "seconds": 25.2
+    },
+    {
+      "id": "partnercentral-channel",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 239,
+      "seconds": 10.2
+    },
+    {
+      "id": "partnercentral-revenue-measurement",
+      "protocols": [
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 192,
+      "seconds": 12.4
+    },
+    {
+      "id": "partnercentral-selling",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 659,
+      "seconds": 35.7
+    },
+    {
+      "id": "payment-cryptography",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 1.3
+    },
+    {
+      "id": "payment-cryptography-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 267,
+      "seconds": 14.2
+    },
+    {
+      "id": "pca-connector-ad",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 287,
+      "seconds": 28.6
+    },
+    {
+      "id": "pca-connector-scep",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 110,
+      "seconds": 13.2
+    },
+    {
+      "id": "pcs",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 277,
+      "seconds": 26.5
+    },
+    {
+      "id": "personalize",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Personalize' already contains a definition for 'DatasetSchema'",
+      "error_codes": {
+        "CS0101": 1
+      },
+      "files": 617,
+      "seconds": 20.9
+    },
+    {
+      "id": "personalize-events",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 59,
+      "seconds": 15.2
+    },
+    {
+      "id": "personalize-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 47,
+      "seconds": 13.6
+    },
+    {
+      "id": "pi",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 196,
+      "seconds": 10.2
+    },
+    {
+      "id": "pinpoint",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1200,
+      "seconds": 44.8
+    },
+    {
+      "id": "pinpoint-email",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 372,
+      "seconds": 19.3
+    },
+    {
+      "id": "pinpoint-sms-voice",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 80,
+      "seconds": 7.9
+    },
+    {
+      "id": "pinpoint-sms-voice-v2",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveLong (long). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Document, Uni",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 1.4
+    },
+    {
+      "id": "pipes",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 278,
+      "seconds": 17.3
+    },
+    {
+      "id": "polly",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 168,
+      "seconds": 15.2
+    },
+    {
+      "id": "pricing",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 67,
+      "seconds": 8.1
+    },
+    {
+      "id": "pricing-plan-manager",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 77,
+      "seconds": 8.8
+    },
+    {
+      "id": "proton",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 611,
+      "seconds": 41.0
+    },
+    {
+      "id": "qapps",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 345,
+      "seconds": 24.8
+    },
+    {
+      "id": "qbusiness",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 997,
+      "seconds": 51.0
+    },
+    {
+      "id": "qconnect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 1,
+      "first_error": "CS0102: The type 'RetrievalFilterConfiguration' already contains a definition for 'Equals'",
+      "error_codes": {
+        "CS0102": 1,
+        "CS0542": 1
+      },
+      "files": 1112,
+      "seconds": 95.1
+    },
+    {
+      "id": "quicksight",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Quicksight' already contains a definition for 'ColumnGroupSchema'",
+      "error_codes": {
+        "CS0101": 2
+      },
+      "files": 5339,
+      "seconds": 370.6
+    },
+    {
+      "id": "ram",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 333,
+      "seconds": 14.3
+    },
+    {
+      "id": "rbin",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 102,
+      "seconds": 10.8
+    },
+    {
+      "id": "rds",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1698,
+      "seconds": 100.8
+    },
+    {
+      "id": "rds-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 128,
+      "seconds": 8.5
+    },
+    {
+      "id": "redshift",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'ClusterVersion': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 1507,
+      "seconds": 122.7
+    },
+    {
+      "id": "redshift-data",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 128,
+      "seconds": 26.3
+    },
+    {
+      "id": "redshift-serverless",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 473,
+      "seconds": 40.7
+    },
+    {
+      "id": "rekognition",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 987,
+      "seconds": 70.1
+    },
+    {
+      "id": "repostspace",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 169,
+      "seconds": 20.8
+    },
+    {
+      "id": "resiliencehub",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 647,
+      "seconds": 16.8
+    },
+    {
+      "id": "resiliencehubv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 871,
+      "seconds": 25.4
+    },
+    {
+      "id": "resource-explorer-2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 256,
+      "seconds": 22.7
+    },
+    {
+      "id": "resource-groups",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 241,
+      "seconds": 31.5
+    },
+    {
+      "id": "resource-groups-tagging-api",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 119,
+      "seconds": 7.8
+    },
+    {
+      "id": "rolesanywhere",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 224,
+      "seconds": 13.4
+    },
+    {
+      "id": "route-53",
+      "protocols": [
+        "restXml"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 685,
+      "seconds": 44.1
+    },
+    {
+      "id": "route-53-domains",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
+      "error_codes": {
+        "CS0542": 1
+      },
+      "files": 278,
+      "seconds": 14.4
+    },
+    {
+      "id": "route53-recovery-cluster",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 56,
+      "seconds": 12.3
+    },
+    {
+      "id": "route53-recovery-control-config",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 189,
+      "seconds": 14.4
+    },
+    {
+      "id": "route53-recovery-readiness",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 234,
+      "seconds": 15.7
+    },
+    {
+      "id": "route53globalresolver",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 374,
+      "seconds": 15.8
+    },
+    {
+      "id": "route53profiles",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 128,
+      "seconds": 11.6
+    },
+    {
+      "id": "route53resolver",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 594,
+      "seconds": 35.0
+    },
+    {
+      "id": "rtbfabric",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 310,
+      "seconds": 26.5
+    },
+    {
+      "id": "rum",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 196,
+      "seconds": 13.9
+    },
+    {
+      "id": "s3",
+      "protocols": [
+        "restXml"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 2,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1176,
+      "seconds": 97.2
+    },
+    {
+      "id": "s3-control",
+      "protocols": [
+        "restXml"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1001,
+      "seconds": 68.3
+    },
+    {
+      "id": "s3files",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 161,
+      "seconds": 19.3
+    },
+    {
+      "id": "s3outposts",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 59,
+      "seconds": 12.5
+    },
+    {
+      "id": "s3tables",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 405,
+      "seconds": 51.2
+    },
+    {
+      "id": "s3vectors",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 191,
+      "seconds": 49.8
+    },
+    {
+      "id": "sagemaker",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 5146,
+      "seconds": 258.5
+    },
+    {
+      "id": "sagemaker-a2i-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 57,
+      "seconds": 40.4
+    },
+    {
+      "id": "sagemaker-edge",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 53,
+      "seconds": 37.6
+    },
+    {
+      "id": "sagemaker-featurestore-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 97,
+      "seconds": 8.2
+    },
+    {
+      "id": "sagemaker-geospatial",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 265,
+      "seconds": 11.6
+    },
+    {
+      "id": "sagemaker-metrics",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 42,
+      "seconds": 8.1
+    },
+    {
+      "id": "sagemaker-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 37,
+      "seconds": 7.8
+    },
+    {
+      "id": "sagemaker-runtime-http2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 27,
+      "seconds": 7.3
+    },
+    {
+      "id": "sagemakerjobruntime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 40,
+      "seconds": 7.1
+    },
+    {
+      "id": "savingsplans",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 172,
+      "seconds": 12.0
+    },
+    {
+      "id": "scheduler",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 136,
+      "seconds": 12.9
+    },
+    {
+      "id": "schemas",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 213,
+      "seconds": 10.8
+    },
+    {
+      "id": "secrets-manager",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 205,
+      "seconds": 11.4
+    },
+    {
+      "id": "security-ir",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 261,
+      "seconds": 13.7
+    },
+    {
+      "id": "securityagent",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1050,
+      "seconds": 29.0
+    },
+    {
+      "id": "securityhub",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 3099,
+      "seconds": 144.2
+    },
+    {
+      "id": "securitylake",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 273,
+      "seconds": 15.5
+    },
+    {
+      "id": "serverlessapplicationrepository",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 128,
+      "seconds": 14.2
+    },
+    {
+      "id": "service-catalog",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 794,
+      "seconds": 36.1
+    },
+    {
+      "id": "service-catalog-appregistry",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 198,
+      "seconds": 19.2
+    },
+    {
+      "id": "service-quotas",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 238,
+      "seconds": 35.3
+    },
+    {
+      "id": "servicediscovery",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 322,
+      "seconds": 26.1
+    },
+    {
+      "id": "ses",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 597,
+      "seconds": 30.5
+    },
+    {
+      "id": "sesv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1112,
+      "seconds": 57.6
+    },
+    {
+      "id": "sfn",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 445,
+      "seconds": 16.0
+    },
+    {
+      "id": "shield",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 1,
+      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 1
+      },
+      "files": 348,
+      "seconds": 14.3
+    },
+    {
+      "id": "signer",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 79,
+      "warnings": 0,
+      "first_error": "CS1010: Newline in constant",
+      "error_codes": {
+        "CS1010": 1,
+        "CS1056": 19,
+        "CS1003": 53,
+        "CS1525": 5,
+        "CS1001": 1
+      },
+      "files": 199,
+      "seconds": 29.0
+    },
+    {
+      "id": "signer-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 19,
+      "seconds": 23.1
+    },
+    {
+      "id": "signin",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 99,
+      "seconds": 23.4
+    },
+    {
+      "id": "simpledbv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 39,
+      "seconds": 22.9
+    },
+    {
+      "id": "snow-device-management",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 139,
+      "seconds": 5.6
+    },
+    {
+      "id": "snowball",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 287,
+      "seconds": 9.8
+    },
+    {
+      "id": "sns",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 350,
+      "seconds": 10.7
+    },
+    {
+      "id": "socialmessaging",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 344,
+      "seconds": 15.8
+    },
+    {
+      "id": "sqs",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 247,
+      "seconds": 15.9
+    },
+    {
+      "id": "ssm",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Ssm' already contains a definition for 'InventoryItemSchema'",
+      "error_codes": {
+        "CS0101": 1
+      },
+      "files": 2008,
+      "seconds": 95.2
+    },
+    {
+      "id": "ssm-contacts",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 335,
+      "seconds": 13.5
+    },
+    {
+      "id": "ssm-guiconnect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 39,
+      "seconds": 11.7
+    },
+    {
+      "id": "ssm-incidents",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 1,
+      "first_error": "CS0102: The type 'Condition' already contains a definition for 'Equals'",
+      "error_codes": {
+        "CS0102": 1,
+        "CS0542": 1
+      },
+      "files": 309,
+      "seconds": 12.1
+    },
+    {
+      "id": "ssm-quicksetup",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 136,
+      "seconds": 12.7
+    },
+    {
+      "id": "ssm-sap",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 293,
+      "seconds": 21.4
+    },
+    {
+      "id": "sso",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 40,
+      "seconds": 7.5
+    },
+    {
+      "id": "sso-admin",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 607,
+      "seconds": 26.0
+    },
+    {
+      "id": "sso-oidc",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 62,
+      "seconds": 7.0
+    },
+    {
+      "id": "storage-gateway",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 678,
+      "seconds": 63.8
+    },
+    {
+      "id": "sts",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 103,
+      "seconds": 12.5
+    },
+    {
+      "id": "supplychain",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 1,
+      "warnings": 0,
+      "first_error": "CS0101: The namespace 'Com.Amazonaws.Supplychain' already contains a definition for 'DataLakeDatasetSchema'",
+      "error_codes": {
+        "CS0101": 1
+      },
+      "files": 292,
+      "seconds": 16.2
+    },
+    {
+      "id": "support",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 226,
+      "seconds": 14.8
+    },
+    {
+      "id": "support-app",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 72,
+      "seconds": 9.8
+    },
+    {
+      "id": "supportauthz",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 113,
+      "seconds": 36.6
+    },
+    {
+      "id": "sustainability",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 80,
+      "seconds": 32.9
+    },
+    {
+      "id": "swf",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 465,
+      "seconds": 33.0
+    },
+    {
+      "id": "synthetics",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 280,
+      "seconds": 28.2
+    },
+    {
+      "id": "taxsettings",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 272,
+      "seconds": 20.1
+    },
+    {
+      "id": "textract",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 363,
+      "seconds": 14.4
+    },
+    {
+      "id": "timestream-influxdb",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 244,
+      "seconds": 22.4
+    },
+    {
+      "id": "timestream-query",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 235,
+      "seconds": 18.5
+    },
+    {
+      "id": "timestream-write",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 223,
+      "seconds": 17.8
+    },
+    {
+      "id": "tnb",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 303,
+      "seconds": 29.4
+    },
+    {
+      "id": "transcribe",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 436,
+      "seconds": 35.0
+    },
+    {
+      "id": "transcribe-streaming",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 223,
+      "seconds": 24.3
+    },
+    {
+      "id": "transfer",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 699,
+      "seconds": 19.7
+    },
+    {
+      "id": "translate",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 209,
+      "seconds": 13.6
+    },
+    {
+      "id": "trustedadvisor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 150,
+      "seconds": 13.5
+    },
+    {
+      "id": "uxc",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 35,
+      "seconds": 7.7
+    },
+    {
+      "id": "verifiedpermissions",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 434,
+      "seconds": 16.3
+    },
+    {
+      "id": "voice-id",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 245,
+      "seconds": 13.8
+    },
+    {
+      "id": "vpc-lattice",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 541,
+      "seconds": 26.1
+    },
+    {
+      "id": "waf",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 653,
+      "seconds": 20.2
+    },
+    {
+      "id": "waf-regional",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 679,
+      "seconds": 39.3
+    },
+    {
+      "id": "wafv2",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 881,
+      "seconds": 25.0
+    },
+    {
+      "id": "wellarchitected",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 973,
+      "seconds": 65.6
+    },
+    {
+      "id": "wickr",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 360,
+      "seconds": 26.8
+    },
+    {
+      "id": "wisdom",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 373,
+      "seconds": 57.0
+    },
+    {
+      "id": "workdocs",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 466,
+      "seconds": 18.3
+    },
+    {
+      "id": "workmail",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 680,
+      "seconds": 47.5
+    },
+    {
+      "id": "workmailmessageflow",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 24,
+      "seconds": 7.4
+    },
+    {
+      "id": "workspaces",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 975,
+      "seconds": 42.0
+    },
+    {
+      "id": "workspaces-instances",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 247,
+      "seconds": 30.7
+    },
+    {
+      "id": "workspaces-thin-client",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 158,
+      "seconds": 35.1
+    },
+    {
+      "id": "workspaces-web",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "compile",
+      "errors": 2,
+      "warnings": 2,
+      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
+      "error_codes": {
+        "CS0266": 2
+      },
+      "files": 567,
+      "seconds": 30.4
+    },
+    {
+      "id": "xray",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 478,
+      "seconds": 26.8
+    }
+  ]
+}

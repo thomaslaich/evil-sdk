@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <PackageVersion Include="NSmithy.Aws" Version="$(NSmithyVersion)" />
+    <PackageVersion Include="NSmithy.Client" Version="$(NSmithyVersion)" />
+    <PackageVersion Include="NSmithy.Protocols.AwsJson" Version="$(NSmithyVersion)" />
+    <PackageVersion Include="NSmithy.Protocols.AwsQuery" Version="$(NSmithyVersion)" />
+    <PackageVersion Include="NSmithy.Protocols.RestJson" Version="$(NSmithyVersion)" />
+    <PackageVersion Include="NSmithy.Protocols.RestXml" Version="$(NSmithyVersion)" />
+    <PackageVersion Include="NSmithy.Protocols.RpcV2Cbor" Version="$(NSmithyVersion)" />
+  </ItemGroup>
+</Project>
