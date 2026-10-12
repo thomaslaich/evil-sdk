@@ -1,51 +1,32 @@
 # Sweep report
 
-NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
+NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 
 | Stage | Services |
 | --- | --- |
-| codegen | 7 |
-| compile | 67 |
-| ok | 362 |
+| codegen | 1 |
+| compile | 28 |
+| ok | 407 |
 
 | Protocol | Compiling |
 | --- | --- |
-| awsJson1_0 | 42/51 |
-| awsJson1_1 | 81/102 |
-| awsQuery | 12/16 |
+| awsJson1_0 | 51/51 |
+| awsJson1_1 | 95/102 |
+| awsQuery | 13/16 |
 | ec2Query | 0/1 |
-| restJson1 | 221/260 |
+| restJson1 | 243/260 |
 | restXml | 3/4 |
-| rpcv2Cbor | 24/25 |
+| rpcv2Cbor | 25/25 |
 
 ## Compiler errors by code
 
 | Code | Count |
 | --- | --- |
-| CS1003 | 591 |
-| CS1001 | 139 |
-| CS1519 | 94 |
-| CS1056 | 82 |
-| CS1525 | 81 |
-| CS1031 | 81 |
-| CS1026 | 76 |
-| CS8124 | 51 |
-| CS0266 | 45 |
-| CS1002 | 40 |
-| CS0542 | 24 |
-| CS1010 | 22 |
-| CS1513 | 19 |
-| CS0102 | 16 |
-| CS1014 | 12 |
-| CS1514 | 11 |
-| CS1022 | 11 |
+| CS0542 | 21 |
+| CS0102 | 17 |
 | CS0101 | 9 |
-| CS1040 | 7 |
 | CS8866 | 6 |
 | CS0261 | 1 |
-| CS1012 | 1 |
-| CS0742 | 1 |
-| CS1039 | 1 |
 
 ## Services
 
@@ -56,8 +37,8 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | account-access | restJson1 | ok | 0 | 0 |  |
 | acm | awsJson1_1 | ok | 0 | 0 |  |
 | acm-pca | awsJson1_1 | ok | 0 | 0 |  |
-| agent-registry | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'Com.Amazonaws.Agentregistry.ValidationExceptionReason?' to 'Com.Amazonaws.Agentregistry.ValidationExceptionReason'. An e |
-| agent-registry-control | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'Com.Amazonaws.Agentregistrycontrol.ValidationExceptionReason?' to 'Com.Amazonaws.Agentregistrycontrol.ValidationExceptio |
+| agent-registry | restJson1 | ok | 0 | 0 |  |
+| agent-registry-control | restJson1 | ok | 0 | 0 |  |
 | aiops | restJson1 | ok | 0 | 0 |  |
 | amp | restJson1 | ok | 0 | 0 |  |
 | amplify | restJson1 | ok | 0 | 0 |  |
@@ -67,7 +48,7 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | apigatewaymanagementapi | restJson1 | ok | 0 | 0 |  |
 | apigatewayv2 | restJson1 | compile | 1 | 0 | CS0542: 'DomainName': member names cannot be the same as their enclosing type |
 | app-mesh | restJson1 | ok | 0 | 0 |  |
-| appconfig | restJson1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'float?' to 'float'. An explicit conversion exists (are you missing a cast?) |
+| appconfig | restJson1 | ok | 0 | 0 |  |
 | appconfigdata | restJson1 | ok | 0 | 0 |  |
 | appfabric | restJson1 | ok | 0 | 0 |  |
 | appflow | restJson1 | ok | 0 | 0 |  |
@@ -85,7 +66,7 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | artifact | restJson1 | ok | 0 | 0 |  |
 | athena | awsJson1_1 | ok | 0 | 0 |  |
 | auditmanager | restJson1 | ok | 0 | 0 |  |
-| auto-scaling | awsQuery | compile | 2 | 0 | CS0542: 'AdjustmentType': member names cannot be the same as their enclosing type |
+| auto-scaling | awsQuery | compile | 1 | 0 | CS0542: 'AdjustmentType': member names cannot be the same as their enclosing type |
 | auto-scaling-plans | awsJson1_1 | ok | 0 | 0 |  |
 | b2bi | awsJson1_0 | ok | 0 | 0 |  |
 | backup | restJson1 | ok | 0 | 0 |  |
@@ -96,18 +77,18 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | bcm-data-exports | awsJson1_1 | ok | 0 | 0 |  |
 | bcm-pricing-calculator | awsJson1_0 | ok | 0 | 0 |  |
 | bcm-recommended-actions | awsJson1_0 | ok | 0 | 0 |  |
-| bedrock | restJson1 | compile | 5 | 3 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Bedrock.RequestMetadataMap?' to match positional para |
-| bedrock-agent | restJson1 | codegen | 0 | 0 | Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveLong (long). Support |
+| bedrock | restJson1 | compile | 5 | 3 | CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals' |
+| bedrock-agent | restJson1 | compile | 1 | 0 | CS0261: Partial declarations of 'FunctionSchema' must be all classes, all record classes, all structs, all record structs, or all interfaces |
 | bedrock-agent-runtime | restJson1 | compile | 2 | 1 | CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals' |
 | bedrock-agentcore | restJson1 | ok | 0 | 0 |  |
 | bedrock-agentcore-control | restJson1 | compile | 1 | 0 | CS0542: 'ModifyMemoryStrategies': member names cannot be the same as their enclosing type |
 | bedrock-data-automation | restJson1 | ok | 0 | 0 |  |
 | bedrock-data-automation-runtime | awsJson1_1 | ok | 0 | 0 |  |
 | bedrock-runtime | restJson1 | ok | 0 | 0 |  |
-| billing | awsJson1_0 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
-| billingconductor | restJson1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| billing | awsJson1_0 | ok | 0 | 0 |  |
+| billingconductor | restJson1 | ok | 0 | 0 |  |
 | braket | restJson1 | ok | 0 | 0 |  |
-| budgets | awsJson1_1 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
+| budgets | awsJson1_1 | ok | 0 | 0 |  |
 | chatbot | restJson1 | ok | 0 | 0 |  |
 | chime | restJson1 | ok | 0 | 0 |  |
 | chime-sdk-identity | restJson1 | ok | 0 | 0 |  |
@@ -117,19 +98,19 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | chime-sdk-voice | restJson1 | ok | 0 | 0 |  |
 | cleanrooms | restJson1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Cleanrooms' already contains a definition for 'IntermediateTableSchema' |
 | cleanroomsml | restJson1 | ok | 0 | 0 |  |
-| cloud9 | awsJson1_1 | compile | 8 | 8 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| cloud9 | awsJson1_1 | ok | 0 | 0 |  |
 | cloudcontrol | awsJson1_0 | ok | 0 | 0 |  |
-| clouddirectory | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| clouddirectory | restJson1 | codegen | 0 | 0 | Projection source failed: java.util.NoSuchElementException |
 | cloudformation | awsQuery | ok | 0 | 0 |  |
 | cloudfront | restXml | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Cloudfront' already contains a definition for 'ParameterDefinitionSchema' |
 | cloudfront-keyvaluestore | restJson1 | ok | 0 | 0 |  |
-| cloudhsm | awsJson1_1 | compile | 3 | 3 | CS0266: Cannot implicitly convert type 'bool?' to 'bool'. An explicit conversion exists (are you missing a cast?) |
+| cloudhsm | awsJson1_1 | ok | 0 | 0 |  |
 | cloudhsm-v2 | awsJson1_1 | ok | 0 | 0 |  |
 | cloudsearch | awsQuery | ok | 0 | 0 |  |
 | cloudsearch-domain | restJson1 | ok | 0 | 0 |  |
-| cloudtrail | awsJson1_1 | compile | 2 | 2 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Cloudtrail.Operator?' to match positional parameter ' |
+| cloudtrail | awsJson1_1 | compile | 2 | 2 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positio |
 | cloudtrail-data | restJson1 | ok | 0 | 0 |  |
-| cloudwatch | awsJson1_0, awsQuery, rpcv2Cbor | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
+| cloudwatch | awsJson1_0, awsQuery, rpcv2Cbor | ok | 0 | 0 |  |
 | cloudwatch-events | awsJson1_1 | ok | 0 | 0 |  |
 | cloudwatch-logs | awsJson1_1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Cloudwatchlogs' already contains a definition for 'DeliverySourceConfigurationSchema' |
 | cloudwatchomni | rpcv2Cbor | ok | 0 | 0 |  |
@@ -163,13 +144,13 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | controlcatalog | restJson1 | ok | 0 | 0 |  |
 | controltower | restJson1 | ok | 0 | 0 |  |
 | cost-and-usage-report-service | awsJson1_1 | ok | 0 | 0 |  |
-| cost-explorer | awsJson1_1 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
-| cost-optimization-hub | awsJson1_0 | codegen | 0 | 0 | Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). S |
-| customer-profiles | restJson1 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
+| cost-explorer | awsJson1_1 | ok | 0 | 0 |  |
+| cost-optimization-hub | awsJson1_0 | ok | 0 | 0 |  |
+| customer-profiles | restJson1 | ok | 0 | 0 |  |
 | data-pipeline | awsJson1_1 | ok | 0 | 0 |  |
 | database-migration-service | awsJson1_1 | ok | 0 | 0 |  |
 | databrew | restJson1 | ok | 0 | 0 |  |
-| dataexchange | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'double?' to 'double'. An explicit conversion exists (are you missing a cast?) |
+| dataexchange | restJson1 | ok | 0 | 0 |  |
 | datasync | awsJson1_1 | ok | 0 | 0 |  |
 | datazone | restJson1 | ok | 0 | 0 |  |
 | dax | awsJson1_1 | ok | 0 | 0 |  |
@@ -177,21 +158,21 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | detective | restJson1 | ok | 0 | 0 |  |
 | device-farm | awsJson1_1 | ok | 0 | 0 |  |
 | devops-agent | restJson1 | ok | 0 | 0 |  |
-| devops-guru | restJson1 | compile | 14 | 0 | CS1010: Newline in constant |
+| devops-guru | restJson1 | ok | 0 | 0 |  |
 | direct-connect | awsJson1_1 | ok | 0 | 0 |  |
 | directory-service | awsJson1_1 | ok | 0 | 0 |  |
 | directory-service-data | restJson1 | ok | 0 | 0 |  |
 | dlm | restJson1 | ok | 0 | 0 |  |
 | docdb | awsQuery | ok | 0 | 0 |  |
 | docdb-elastic | restJson1 | ok | 0 | 0 |  |
-| drs | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?) |
+| drs | restJson1 | ok | 0 | 0 |  |
 | dsql | restJson1 | ok | 0 | 0 |  |
-| dynamodb | awsJson1_0 | compile | 1 | 0 | CS0261: Partial declarations of 'KeySchema' must be all classes, all record classes, all structs, all record structs, or all interfaces |
+| dynamodb | awsJson1_0 | ok | 0 | 0 |  |
 | dynamodb-streams | awsJson1_0 | ok | 0 | 0 |  |
 | ebs | restJson1 | ok | 0 | 0 |  |
-| ec2 | ec2Query | compile | 222 | 0 | CS1010: Newline in constant |
+| ec2 | ec2Query | compile | 9 | 1 | CS0102: The type 'IpamPrefixListResolverRuleConditionOperation' already contains a definition for 'Equals' |
 | ec2-instance-connect | awsJson1_1 | ok | 0 | 0 |  |
-| ecr | awsJson1_1 | compile | 178 | 0 | CS1010: Newline in constant |
+| ecr | awsJson1_1 | ok | 0 | 0 |  |
 | ecr-public | awsJson1_1 | ok | 0 | 0 |  |
 | ecs | awsJson1_1 | ok | 0 | 0 |  |
 | efs | restJson1 | ok | 0 | 0 |  |
@@ -205,22 +186,22 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | elementalinference | restJson1 | ok | 0 | 0 |  |
 | emr | awsJson1_1 | ok | 0 | 0 |  |
 | emr-containers | restJson1 | ok | 0 | 0 |  |
-| emr-serverless | restJson1 | compile | 14 | 0 | CS1010: Newline in constant |
+| emr-serverless | restJson1 | ok | 0 | 0 |  |
 | endusermessaging | restJson1 | ok | 0 | 0 |  |
 | entityresolution | restJson1 | ok | 0 | 0 |  |
 | eventbridge | awsJson1_1 | ok | 0 | 0 |  |
 | eventbridgev2 | rpcv2Cbor | ok | 0 | 0 |  |
 | evs | awsJson1_0 | ok | 0 | 0 |  |
-| finspace | restJson1 | compile | 387 | 0 | CS1010: Newline in constant |
+| finspace | restJson1 | ok | 0 | 0 |  |
 | finspace-data | restJson1 | ok | 0 | 0 |  |
 | firehose | awsJson1_1 | ok | 0 | 0 |  |
 | fis | restJson1 | ok | 0 | 0 |  |
 | fms | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
-| forecast | awsJson1_1 | compile | 52 | 0 | CS1010: Newline in constant |
+| forecast | awsJson1_1 | ok | 0 | 0 |  |
 | forecastquery | awsJson1_1 | ok | 0 | 0 |  |
 | frauddetector | awsJson1_1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Frauddetector' already contains a definition for 'LabelSchema' |
-| freetier | awsJson1_0 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
-| fsx | awsJson1_1 | compile | 374 | 0 | CS1010: Newline in constant |
+| freetier | awsJson1_0 | ok | 0 | 0 |  |
+| fsx | awsJson1_1 | ok | 0 | 0 |  |
 | gamelift | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
 | gameliftstreams | restJson1 | ok | 0 | 0 |  |
 | geo-maps | restJson1 | ok | 0 | 0 |  |
@@ -231,14 +212,14 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | glue | awsJson1_1 | compile | 1 | 1 | CS0102: The type 'SearchFilterOperator' already contains a definition for 'Equals' |
 | grafana | restJson1 | ok | 0 | 0 |  |
 | greengrass | restJson1 | ok | 0 | 0 |  |
-| greengrassv2 | restJson1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| greengrassv2 | restJson1 | ok | 0 | 0 |  |
 | groundstation | restJson1 | ok | 0 | 0 |  |
-| guardduty | restJson1 | compile | 3 | 2 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Guardduty.Equals?' to match positional parameter 'Equ |
+| guardduty | restJson1 | compile | 2 | 2 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positio |
 | health | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
 | healthlake | awsJson1_0 | ok | 0 | 0 |  |
 | iam | awsQuery | ok | 0 | 0 |  |
 | iam-toolbox | restJson1 | ok | 0 | 0 |  |
-| identitystore | awsJson1_1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| identitystore | awsJson1_1 | ok | 0 | 0 |  |
 | imagebuilder | restJson1 | ok | 0 | 0 |  |
 | inspector | awsJson1_1 | ok | 0 | 0 |  |
 | inspector-scan | restJson1 | ok | 0 | 0 |  |
@@ -252,14 +233,14 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | iot-managed-integrations | restJson1 | ok | 0 | 0 |  |
 | iot-wireless | restJson1 | ok | 0 | 0 |  |
 | iotdeviceadvisor | restJson1 | ok | 0 | 0 |  |
-| iotfleetwise | awsJson1_0 | codegen | 0 | 0 | Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). S |
+| iotfleetwise | awsJson1_0 | ok | 0 | 0 |  |
 | iotsecuretunneling | awsJson1_1 | ok | 0 | 0 |  |
-| iotsitewise | restJson1 | codegen | 0 | 0 | Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). S |
+| iotsitewise | restJson1 | ok | 0 | 0 |  |
 | iotthingsgraph | awsJson1_1 | ok | 0 | 0 |  |
-| iottwinmaker | restJson1 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
+| iottwinmaker | restJson1 | ok | 0 | 0 |  |
 | ivs | restJson1 | ok | 0 | 0 |  |
 | ivs-realtime | restJson1 | ok | 0 | 0 |  |
-| ivschat | restJson1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| ivschat | restJson1 | ok | 0 | 0 |  |
 | kafka | restJson1 | ok | 0 | 0 |  |
 | kafkaconnect | restJson1 | ok | 0 | 0 |  |
 | kendra | awsJson1_1 | compile | 1 | 1 | CS0102: The type 'ConditionOperator' already contains a definition for 'Equals' |
@@ -282,17 +263,17 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | lambda-web | restJson1 | ok | 0 | 0 |  |
 | launch-wizard | restJson1 | ok | 0 | 0 |  |
 | lex-model-building-service | restJson1 | ok | 0 | 0 |  |
-| lex-models-v2 | restJson1 | compile | 9 | 9 | CS0102: The type 'BotLocaleFilterOperator' already contains a definition for 'Equals' |
+| lex-models-v2 | restJson1 | compile | 9 | 9 | CS0102: The type 'AggregatedUtterancesFilterOperator' already contains a definition for 'Equals' |
 | lex-runtime-service | restJson1 | ok | 0 | 0 |  |
-| lex-runtime-v2 | restJson1 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
+| lex-runtime-v2 | restJson1 | ok | 0 | 0 |  |
 | license-manager | awsJson1_1 | ok | 0 | 0 |  |
 | license-manager-linux-subscriptions | restJson1 | ok | 0 | 0 |  |
 | license-manager-user-subscriptions | restJson1 | ok | 0 | 0 |  |
 | lightsail | awsJson1_1 | ok | 0 | 0 |  |
 | location | restJson1 | ok | 0 | 0 |  |
 | lookoutequipment | awsJson1_0 | ok | 0 | 0 |  |
-| m2 | restJson1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
-| machine-learning | awsJson1_1 | compile | 5 | 5 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| m2 | restJson1 | ok | 0 | 0 |  |
+| machine-learning | awsJson1_1 | ok | 0 | 0 |  |
 | macie2 | restJson1 | ok | 0 | 0 |  |
 | mailmanager | awsJson1_0, rpcv2Cbor | ok | 0 | 0 |  |
 | managedblockchain | restJson1 | ok | 0 | 0 |  |
@@ -316,10 +297,10 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | mediatailor | restJson1 | ok | 0 | 0 |  |
 | medical-imaging | restJson1 | ok | 0 | 0 |  |
 | memorydb | awsJson1_1 | ok | 0 | 0 |  |
-| mgn | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?) |
-| migration-hub | awsJson1_1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
-| migration-hub-refactor-spaces | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
-| migrationhub-config | awsJson1_1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| mgn | restJson1 | ok | 0 | 0 |  |
+| migration-hub | awsJson1_1 | ok | 0 | 0 |  |
+| migration-hub-refactor-spaces | restJson1 | ok | 0 | 0 |  |
+| migrationhub-config | awsJson1_1 | ok | 0 | 0 |  |
 | migrationhuborchestrator | restJson1 | ok | 0 | 0 |  |
 | migrationhubstrategy | restJson1 | ok | 0 | 0 |  |
 | mpa | restJson1 | ok | 0 | 0 |  |
@@ -339,9 +320,9 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | notificationscontacts | restJson1 | ok | 0 | 0 |  |
 | nova-act | restJson1 | ok | 0 | 0 |  |
 | oam | restJson1 | ok | 0 | 0 |  |
-| observabilityadmin | restJson1 | compile | 1 | 1 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Observabilityadmin.StringList?' to match positional p |
+| observabilityadmin | restJson1 | compile | 1 | 1 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positio |
 | odb | awsJson1_0 | ok | 0 | 0 |  |
-| omics | restJson1 | codegen | 0 | 0 | Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). S |
+| omics | restJson1 | ok | 0 | 0 |  |
 | opensearch | restJson1 | ok | 0 | 0 |  |
 | opensearchserverless | awsJson1_0 | ok | 0 | 0 |  |
 | organizations | awsJson1_1 | ok | 0 | 0 |  |
@@ -352,7 +333,7 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | partnercentral-channel | awsJson1_0 | ok | 0 | 0 |  |
 | partnercentral-revenue-measurement | rpcv2Cbor | ok | 0 | 0 |  |
 | partnercentral-selling | awsJson1_0 | ok | 0 | 0 |  |
-| payment-cryptography | awsJson1_0 | codegen | 0 | 0 | Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). S |
+| payment-cryptography | awsJson1_0 | ok | 0 | 0 |  |
 | payment-cryptography-data | restJson1 | ok | 0 | 0 |  |
 | pca-connector-ad | restJson1 | ok | 0 | 0 |  |
 | pca-connector-scep | restJson1 | ok | 0 | 0 |  |
@@ -364,7 +345,7 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | pinpoint | restJson1 | ok | 0 | 0 |  |
 | pinpoint-email | restJson1 | ok | 0 | 0 |  |
 | pinpoint-sms-voice | restJson1 | ok | 0 | 0 |  |
-| pinpoint-sms-voice-v2 | awsJson1_0 | codegen | 0 | 0 | Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveLong (long). Support |
+| pinpoint-sms-voice-v2 | awsJson1_0 | ok | 0 | 0 |  |
 | pipes | restJson1 | ok | 0 | 0 |  |
 | polly | restJson1 | ok | 0 | 0 |  |
 | pricing | awsJson1_1 | ok | 0 | 0 |  |
@@ -377,7 +358,7 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | ram | restJson1 | ok | 0 | 0 |  |
 | rbin | restJson1 | ok | 0 | 0 |  |
 | rds | awsQuery | ok | 0 | 0 |  |
-| rds-data | restJson1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?) |
+| rds-data | restJson1 | ok | 0 | 0 |  |
 | redshift | awsQuery | compile | 1 | 0 | CS0542: 'ClusterVersion': member names cannot be the same as their enclosing type |
 | redshift-data | awsJson1_1 | ok | 0 | 0 |  |
 | redshift-serverless | awsJson1_1 | ok | 0 | 0 |  |
@@ -390,8 +371,8 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | resource-groups-tagging-api | awsJson1_1 | ok | 0 | 0 |  |
 | rolesanywhere | restJson1 | ok | 0 | 0 |  |
 | route-53 | restXml | ok | 0 | 0 |  |
-| route-53-domains | awsJson1_1 | compile | 1 | 0 | CS0542: 'Values': member names cannot be the same as their enclosing type |
-| route53-recovery-cluster | awsJson1_0 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| route-53-domains | awsJson1_1 | ok | 0 | 0 |  |
+| route53-recovery-cluster | awsJson1_0 | ok | 0 | 0 |  |
 | route53-recovery-control-config | restJson1 | ok | 0 | 0 |  |
 | route53-recovery-readiness | restJson1 | ok | 0 | 0 |  |
 | route53globalresolver | restJson1 | ok | 0 | 0 |  |
@@ -430,8 +411,8 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | ses | awsQuery | ok | 0 | 0 |  |
 | sesv2 | restJson1 | ok | 0 | 0 |  |
 | sfn | awsJson1_0 | ok | 0 | 0 |  |
-| shield | awsJson1_1 | compile | 1 | 1 | CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?) |
-| signer | restJson1 | compile | 79 | 0 | CS1010: Newline in constant |
+| shield | awsJson1_1 | ok | 0 | 0 |  |
+| signer | restJson1 | ok | 0 | 0 |  |
 | signer-data | restJson1 | ok | 0 | 0 |  |
 | signin | restJson1 | ok | 0 | 0 |  |
 | simpledbv2 | restJson1 | ok | 0 | 0 |  |
@@ -441,7 +422,7 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | socialmessaging | restJson1 | ok | 0 | 0 |  |
 | sqs | awsJson1_0 | ok | 0 | 0 |  |
 | ssm | awsJson1_1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Ssm' already contains a definition for 'InventoryItemSchema' |
-| ssm-contacts | awsJson1_1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| ssm-contacts | awsJson1_1 | ok | 0 | 0 |  |
 | ssm-guiconnect | restJson1 | ok | 0 | 0 |  |
 | ssm-incidents | restJson1 | compile | 2 | 1 | CS0102: The type 'Condition' already contains a definition for 'Equals' |
 | ssm-quicksetup | restJson1 | ok | 0 | 0 |  |
@@ -485,5 +466,5 @@ NSmithy `0.12.0`, Smithy `1.73.0`, 436 services.
 | workspaces | awsJson1_1 | ok | 0 | 0 |  |
 | workspaces-instances | awsJson1_0, rpcv2Cbor | ok | 0 | 0 |  |
 | workspaces-thin-client | restJson1 | ok | 0 | 0 |  |
-| workspaces-web | restJson1 | compile | 2 | 2 | CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?) |
+| workspaces-web | restJson1 | ok | 0 | 0 |  |
 | xray | restJson1 | ok | 0 | 0 |  |

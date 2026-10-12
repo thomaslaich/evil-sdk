@@ -1,5 +1,5 @@
 {
-  "nsmithy": "0.12.0",
+  "nsmithy": "0.0.0-SNAPSHOT",
   "results": [
     {
       "id": "accessanalyzer",
@@ -13,8 +13,8 @@
       "error_codes": {
         "CS0542": 1
       },
-      "files": 515,
-      "seconds": 15.1
+      "files": 455,
+      "seconds": 21.6
     },
     {
       "id": "account",
@@ -26,8 +26,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 120,
-      "seconds": 6.3
+      "files": 117,
+      "seconds": 21.0
     },
     {
       "id": "account-access",
@@ -39,8 +39,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 123,
-      "seconds": 6.2
+      "files": 119,
+      "seconds": 21.4
     },
     {
       "id": "acm",
@@ -52,8 +52,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 474,
-      "seconds": 13.4
+      "files": 444,
+      "seconds": 22.5
     },
     {
       "id": "acm-pca",
@@ -65,38 +65,34 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 263,
-      "seconds": 10.9
+      "files": 252,
+      "seconds": 21.4
     },
     {
       "id": "agent-registry",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'Com.Amazonaws.Agentregistry.ValidationExceptionReason?' to 'Com.Amazonaws.Agentregistry.ValidationExceptionReason'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 97,
-      "seconds": 6.3
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 87,
+      "seconds": 30.4
     },
     {
       "id": "agent-registry-control",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'Com.Amazonaws.Agentregistrycontrol.ValidationExceptionReason?' to 'Com.Amazonaws.Agentregistrycontrol.ValidationExceptionReason'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 335,
-      "seconds": 10.7
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 311,
+      "seconds": 22.3
     },
     {
       "id": "aiops",
@@ -108,8 +104,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 95,
-      "seconds": 6.1
+      "files": 88,
+      "seconds": 20.7
     },
     {
       "id": "amp",
@@ -121,8 +117,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 362,
-      "seconds": 12.5
+      "files": 344,
+      "seconds": 15.8
     },
     {
       "id": "amplify",
@@ -134,8 +130,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 307,
-      "seconds": 9.9
+      "files": 286,
+      "seconds": 13.6
     },
     {
       "id": "amplifybackend",
@@ -147,8 +143,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 285,
-      "seconds": 11.6
+      "files": 275,
+      "seconds": 13.6
     },
     {
       "id": "amplifyuibuilder",
@@ -162,8 +158,8 @@
       "error_codes": {
         "CS0542": 1
       },
-      "files": 400,
-      "seconds": 13.5
+      "files": 356,
+      "seconds": 14.9
     },
     {
       "id": "api-gateway",
@@ -177,8 +173,8 @@
       "error_codes": {
         "CS0542": 1
       },
-      "files": 844,
-      "seconds": 13.2
+      "files": 805,
+      "seconds": 54.3
     },
     {
       "id": "apigatewaymanagementapi",
@@ -191,7 +187,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 27,
-      "seconds": 4.6
+      "seconds": 5.7
     },
     {
       "id": "apigatewayv2",
@@ -205,8 +201,8 @@
       "error_codes": {
         "CS0542": 1
       },
-      "files": 751,
-      "seconds": 23.9
+      "files": 711,
+      "seconds": 43.9
     },
     {
       "id": "app-mesh",
@@ -218,23 +214,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 552,
-      "seconds": 19.3
+      "files": 524,
+      "seconds": 51.2
     },
     {
       "id": "appconfig",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'float?' to 'float'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 448,
-      "seconds": 16.7
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 417,
+      "seconds": 15.3
     },
     {
       "id": "appconfigdata",
@@ -246,8 +240,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 28,
-      "seconds": 5.4
+      "files": 26,
+      "seconds": 7.6
     },
     {
       "id": "appfabric",
@@ -259,8 +253,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 236,
-      "seconds": 13.4
+      "files": 226,
+      "seconds": 19.7
     },
     {
       "id": "appflow",
@@ -272,8 +266,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 627,
-      "seconds": 19.1
+      "files": 581,
+      "seconds": 47.2
     },
     {
       "id": "appintegrations",
@@ -285,8 +279,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 221,
-      "seconds": 7.2
+      "files": 203,
+      "seconds": 18.3
     },
     {
       "id": "application-auto-scaling",
@@ -298,8 +292,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 208,
-      "seconds": 12.9
+      "files": 189,
+      "seconds": 7.2
     },
     {
       "id": "application-discovery-service",
@@ -311,8 +305,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 322,
-      "seconds": 10.8
+      "files": 288,
+      "seconds": 9.7
     },
     {
       "id": "application-insights",
@@ -325,8 +319,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 263,
-      "seconds": 14.4
+      "files": 249,
+      "seconds": 18.5
     },
     {
       "id": "application-signals",
@@ -338,8 +332,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 442,
-      "seconds": 11.5
+      "files": 395,
+      "seconds": 13.5
     },
     {
       "id": "applicationcostprofiler",
@@ -351,8 +345,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 56,
-      "seconds": 6.8
+      "files": 55,
+      "seconds": 6.6
     },
     {
       "id": "apprunner",
@@ -364,8 +358,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 335,
-      "seconds": 19.1
+      "files": 319,
+      "seconds": 17.2
     },
     {
       "id": "appstream",
@@ -378,8 +372,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 801,
-      "seconds": 32.9
+      "files": 746,
+      "seconds": 18.4
     },
     {
       "id": "appsync",
@@ -391,8 +385,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 632,
-      "seconds": 29.4
+      "files": 606,
+      "seconds": 31.1
     },
     {
       "id": "arc-region-switch",
@@ -405,8 +399,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 380,
-      "seconds": 13.0
+      "files": 344,
+      "seconds": 33.9
     },
     {
       "id": "arc-zonal-shift",
@@ -418,8 +412,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 149,
-      "seconds": 8.8
+      "files": 137,
+      "seconds": 17.4
     },
     {
       "id": "artifact",
@@ -431,8 +425,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 181,
-      "seconds": 10.6
+      "files": 168,
+      "seconds": 14.1
     },
     {
       "id": "athena",
@@ -444,8 +438,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 618,
-      "seconds": 22.9
+      "files": 579,
+      "seconds": 31.8
     },
     {
       "id": "auditmanager",
@@ -457,8 +451,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 574,
-      "seconds": 27.4
+      "files": 530,
+      "seconds": 18.9
     },
     {
       "id": "auto-scaling",
@@ -466,14 +460,14 @@
         "awsQuery"
       ],
       "stage": "compile",
-      "errors": 2,
+      "errors": 1,
       "warnings": 0,
       "first_error": "CS0542: 'AdjustmentType': member names cannot be the same as their enclosing type",
       "error_codes": {
-        "CS0542": 2
+        "CS0542": 1
       },
-      "files": 756,
-      "seconds": 14.3
+      "files": 678,
+      "seconds": 28.0
     },
     {
       "id": "auto-scaling-plans",
@@ -485,8 +479,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 116,
-      "seconds": 7.7
+      "files": 105,
+      "seconds": 12.5
     },
     {
       "id": "b2bi",
@@ -498,8 +492,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 320,
-      "seconds": 13.7
+      "files": 306,
+      "seconds": 21.1
     },
     {
       "id": "backup",
@@ -511,8 +505,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 939,
-      "seconds": 44.9
+      "files": 873,
+      "seconds": 54.3
     },
     {
       "id": "backup-gateway",
@@ -525,8 +519,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 179,
-      "seconds": 9.9
+      "files": 170,
+      "seconds": 7.1
     },
     {
       "id": "backupsearch",
@@ -538,8 +532,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 152,
-      "seconds": 6.5
+      "files": 138,
+      "seconds": 7.6
     },
     {
       "id": "batch",
@@ -551,8 +545,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 794,
-      "seconds": 24.3
+      "files": 707,
+      "seconds": 24.2
     },
     {
       "id": "bcm-dashboards",
@@ -564,8 +558,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 193,
-      "seconds": 8.7
+      "files": 179,
+      "seconds": 13.8
     },
     {
       "id": "bcm-data-exports",
@@ -577,8 +571,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 144,
-      "seconds": 8.5
+      "files": 133,
+      "seconds": 12.5
     },
     {
       "id": "bcm-pricing-calculator",
@@ -590,8 +584,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 450,
-      "seconds": 19.4
+      "files": 399,
+      "seconds": 20.6
     },
     {
       "id": "bcm-recommended-actions",
@@ -603,8 +597,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 47,
-      "seconds": 8.5
+      "files": 41,
+      "seconds": 7.6
     },
     {
       "id": "bedrock",
@@ -614,27 +608,29 @@
       "stage": "compile",
       "errors": 5,
       "warnings": 3,
-      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Bedrock.RequestMetadataMap?' to match positional parameter 'Equals'.",
+      "first_error": "CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals'",
       "error_codes": {
-        "CS8866": 1,
         "CS0102": 2,
-        "CS0542": 2
+        "CS0542": 2,
+        "CS8866": 1
       },
-      "files": 1474,
-      "seconds": 59.2
+      "files": 1348,
+      "seconds": 74.0
     },
     {
       "id": "bedrock-agent",
       "protocols": [
         "restJson1"
       ],
-      "stage": "codegen",
-      "errors": 0,
+      "stage": "compile",
+      "errors": 1,
       "warnings": 0,
-      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveLong (long). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Document, Uni",
-      "error_codes": {},
-      "files": 0,
-      "seconds": 1.8
+      "first_error": "CS0261: Partial declarations of 'FunctionSchema' must be all classes, all record classes, all structs, all record structs, or all interfaces",
+      "error_codes": {
+        "CS0261": 1
+      },
+      "files": 1148,
+      "seconds": 60.3
     },
     {
       "id": "bedrock-agent-runtime",
@@ -649,8 +645,8 @@
         "CS0102": 1,
         "CS0542": 1
       },
-      "files": 1137,
-      "seconds": 58.1
+      "files": 1044,
+      "seconds": 40.2
     },
     {
       "id": "bedrock-agentcore",
@@ -662,8 +658,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1197,
-      "seconds": 65.7
+      "files": 1096,
+      "seconds": 86.7
     },
     {
       "id": "bedrock-agentcore-control",
@@ -677,8 +673,8 @@
       "error_codes": {
         "CS0542": 1
       },
-      "files": 2243,
-      "seconds": 81.6
+      "files": 2085,
+      "seconds": 116.7
     },
     {
       "id": "bedrock-data-automation",
@@ -690,8 +686,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 415,
-      "seconds": 25.9
+      "files": 387,
+      "seconds": 24.0
     },
     {
       "id": "bedrock-data-automation-runtime",
@@ -703,8 +699,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 94,
-      "seconds": 6.6
+      "files": 89,
+      "seconds": 10.1
     },
     {
       "id": "bedrock-runtime",
@@ -716,38 +712,34 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 589,
-      "seconds": 14.8
+      "files": 539,
+      "seconds": 12.9
     },
     {
       "id": "billing",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 295,
-      "seconds": 14.0
+      "first_error": "",
+      "error_codes": {},
+      "files": 261,
+      "seconds": 10.9
     },
     {
       "id": "billingconductor",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 390,
-      "seconds": 10.9
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 353,
+      "seconds": 13.6
     },
     {
       "id": "braket",
@@ -759,23 +751,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 201,
-      "seconds": 9.9
+      "files": 181,
+      "seconds": 15.8
     },
     {
       "id": "budgets",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 294,
-      "seconds": 10.8
+      "first_error": "",
+      "error_codes": {},
+      "files": 272,
+      "seconds": 12.6
     },
     {
       "id": "chatbot",
@@ -787,8 +777,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 300,
-      "seconds": 10.1
+      "files": 283,
+      "seconds": 10.9
     },
     {
       "id": "chime",
@@ -800,8 +790,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 478,
-      "seconds": 17.0
+      "files": 454,
+      "seconds": 12.5
     },
     {
       "id": "chime-sdk-identity",
@@ -813,8 +803,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 242,
-      "seconds": 19.4
+      "files": 235,
+      "seconds": 11.5
     },
     {
       "id": "chime-sdk-media-pipelines",
@@ -826,8 +816,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 471,
-      "seconds": 27.0
+      "files": 448,
+      "seconds": 11.3
     },
     {
       "id": "chime-sdk-meetings",
@@ -839,8 +829,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 188,
-      "seconds": 17.7
+      "files": 180,
+      "seconds": 13.0
     },
     {
       "id": "chime-sdk-messaging",
@@ -852,8 +842,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 429,
-      "seconds": 16.4
+      "files": 405,
+      "seconds": 28.2
     },
     {
       "id": "chime-sdk-voice",
@@ -865,8 +855,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 736,
-      "seconds": 24.6
+      "files": 694,
+      "seconds": 30.3
     },
     {
       "id": "cleanrooms",
@@ -880,8 +870,8 @@
       "error_codes": {
         "CS0101": 1
       },
-      "files": 1311,
-      "seconds": 34.3
+      "files": 1210,
+      "seconds": 59.2
     },
     {
       "id": "cleanroomsml",
@@ -893,23 +883,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 623,
-      "seconds": 17.1
+      "files": 577,
+      "seconds": 26.5
     },
     {
       "id": "cloud9",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 8,
-      "warnings": 8,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 8
-      },
-      "files": 121,
-      "seconds": 10.0
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 114,
+      "seconds": 10.7
     },
     {
       "id": "cloudcontrol",
@@ -921,23 +909,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 102,
-      "seconds": 8.1
+      "files": 97,
+      "seconds": 7.8
     },
     {
       "id": "clouddirectory",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 682,
-      "seconds": 23.2
+      "stage": "codegen",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "Projection source failed: java.util.NoSuchElementException",
+      "error_codes": {},
+      "files": 0,
+      "seconds": 1.9
     },
     {
       "id": "cloudformation",
@@ -949,8 +935,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1028,
-      "seconds": 30.5
+      "files": 943,
+      "seconds": 28.1
     },
     {
       "id": "cloudfront",
@@ -964,8 +950,8 @@
       "error_codes": {
         "CS0101": 1
       },
-      "files": 1803,
-      "seconds": 59.7
+      "files": 1727,
+      "seconds": 76.6
     },
     {
       "id": "cloudfront-keyvaluestore",
@@ -977,23 +963,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 56,
-      "seconds": 8.3
+      "files": 53,
+      "seconds": 11.8
     },
     {
       "id": "cloudhsm",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 3,
-      "warnings": 3,
-      "first_error": "CS0266: Cannot implicitly convert type 'bool?' to 'bool'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 3
-      },
-      "files": 134,
-      "seconds": 10.3
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 126,
+      "seconds": 10.7
     },
     {
       "id": "cloudhsm-v2",
@@ -1005,8 +989,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 152,
-      "seconds": 8.1
+      "files": 143,
+      "seconds": 11.0
     },
     {
       "id": "cloudsearch",
@@ -1018,8 +1002,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 244,
-      "seconds": 9.2
+      "files": 234,
+      "seconds": 13.0
     },
     {
       "id": "cloudsearch-domain",
@@ -1031,8 +1015,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 65,
-      "seconds": 5.6
+      "files": 55,
+      "seconds": 6.6
     },
     {
       "id": "cloudtrail",
@@ -1042,12 +1026,12 @@
       "stage": "compile",
       "errors": 2,
       "warnings": 2,
-      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Cloudtrail.Operator?' to match positional parameter 'Equals'.",
+      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positional parameter 'Equals'.",
       "error_codes": {
         "CS8866": 2
       },
-      "files": 682,
-      "seconds": 17.8
+      "files": 637,
+      "seconds": 17.5
     },
     {
       "id": "cloudtrail-data",
@@ -1059,8 +1043,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 31,
-      "seconds": 7.0
+      "files": 28,
+      "seconds": 6.8
     },
     {
       "id": "cloudwatch",
@@ -1069,15 +1053,13 @@
         "awsQuery",
         "rpcv2Cbor"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 581,
-      "seconds": 21.3
+      "first_error": "",
+      "error_codes": {},
+      "files": 518,
+      "seconds": 27.8
     },
     {
       "id": "cloudwatch-events",
@@ -1089,8 +1071,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 495,
-      "seconds": 18.2
+      "files": 459,
+      "seconds": 31.5
     },
     {
       "id": "cloudwatch-logs",
@@ -1104,8 +1086,8 @@
       "error_codes": {
         "CS0101": 1
       },
-      "files": 1164,
-      "seconds": 45.3
+      "files": 1062,
+      "seconds": 66.0
     },
     {
       "id": "cloudwatchomni",
@@ -1117,8 +1099,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 627,
-      "seconds": 28.6
+      "files": 574,
+      "seconds": 50.2
     },
     {
       "id": "codeartifact",
@@ -1130,8 +1112,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 398,
-      "seconds": 15.2
+      "files": 373,
+      "seconds": 11.6
     },
     {
       "id": "codebuild",
@@ -1143,8 +1125,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 673,
-      "seconds": 25.3
+      "files": 617,
+      "seconds": 19.9
     },
     {
       "id": "codecatalyst",
@@ -1156,8 +1138,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 306,
-      "seconds": 12.9
+      "files": 285,
+      "seconds": 24.4
     },
     {
       "id": "codecommit",
@@ -1169,8 +1151,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1044,
-      "seconds": 34.9
+      "files": 990,
+      "seconds": 64.8
     },
     {
       "id": "codeconnections",
@@ -1183,8 +1165,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 247,
-      "seconds": 17.6
+      "files": 234,
+      "seconds": 8.9
     },
     {
       "id": "codedeploy",
@@ -1196,8 +1178,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 721,
-      "seconds": 31.2
+      "files": 680,
+      "seconds": 24.8
     },
     {
       "id": "codeguru-reviewer",
@@ -1209,8 +1191,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 194,
-      "seconds": 7.5
+      "files": 177,
+      "seconds": 9.9
     },
     {
       "id": "codeguru-security",
@@ -1222,8 +1204,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 165,
-      "seconds": 6.6
+      "files": 148,
+      "seconds": 10.1
     },
     {
       "id": "codeguruprofiler",
@@ -1235,8 +1217,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 215,
-      "seconds": 8.0
+      "files": 191,
+      "seconds": 9.0
     },
     {
       "id": "codepipeline",
@@ -1248,8 +1230,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 716,
-      "seconds": 18.1
+      "files": 656,
+      "seconds": 16.6
     },
     {
       "id": "codestar-connections",
@@ -1261,8 +1243,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 245,
-      "seconds": 9.3
+      "files": 232,
+      "seconds": 19.8
     },
     {
       "id": "codestar-notifications",
@@ -1274,8 +1256,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 129,
-      "seconds": 8.8
+      "files": 119,
+      "seconds": 10.8
     },
     {
       "id": "cognito-identity",
@@ -1287,8 +1269,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 197,
-      "seconds": 11.6
+      "files": 180,
+      "seconds": 17.4
     },
     {
       "id": "cognito-identity-provider",
@@ -1300,8 +1282,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1212,
-      "seconds": 49.7
+      "files": 1151,
+      "seconds": 43.2
     },
     {
       "id": "cognito-sync",
@@ -1313,8 +1295,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 149,
-      "seconds": 6.8
+      "files": 142,
+      "seconds": 7.4
     },
     {
       "id": "comprehend",
@@ -1326,8 +1308,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 867,
-      "seconds": 45.0
+      "files": 804,
+      "seconds": 34.2
     },
     {
       "id": "comprehendmedical",
@@ -1340,8 +1322,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 266,
-      "seconds": 11.6
+      "files": 249,
+      "seconds": 14.9
     },
     {
       "id": "compute-optimizer",
@@ -1354,8 +1336,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 732,
-      "seconds": 15.2
+      "files": 639,
+      "seconds": 30.9
     },
     {
       "id": "compute-optimizer-automation",
@@ -1368,8 +1350,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 281,
-      "seconds": 11.6
+      "files": 254,
+      "seconds": 18.3
     },
     {
       "id": "config-service",
@@ -1381,8 +1363,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1156,
-      "seconds": 40.2
+      "files": 1049,
+      "seconds": 37.9
     },
     {
       "id": "connect",
@@ -1394,8 +1376,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 4361,
-      "seconds": 97.9
+      "files": 4001,
+      "seconds": 216.4
     },
     {
       "id": "connect-contact-lens",
@@ -1407,8 +1389,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 57,
-      "seconds": 9.8
+      "files": 51,
+      "seconds": 6.9
     },
     {
       "id": "connectcampaigns",
@@ -1420,8 +1402,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 186,
-      "seconds": 32.6
+      "files": 176,
+      "seconds": 9.9
     },
     {
       "id": "connectcampaignsv2",
@@ -1433,8 +1415,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 393,
-      "seconds": 25.7
+      "files": 370,
+      "seconds": 20.4
     },
     {
       "id": "connectcases",
@@ -1446,8 +1428,8 @@
       "warnings": 4,
       "first_error": "",
       "error_codes": {},
-      "files": 481,
-      "seconds": 27.4
+      "files": 439,
+      "seconds": 24.7
     },
     {
       "id": "connecthealth",
@@ -1459,8 +1441,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 220,
-      "seconds": 25.4
+      "files": 213,
+      "seconds": 16.5
     },
     {
       "id": "connectparticipant",
@@ -1472,8 +1454,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 137,
-      "seconds": 7.5
+      "files": 130,
+      "seconds": 14.4
     },
     {
       "id": "controlcatalog",
@@ -1485,8 +1467,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 136,
-      "seconds": 6.8
+      "files": 118,
+      "seconds": 14.0
     },
     {
       "id": "controltower",
@@ -1498,8 +1480,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 298,
-      "seconds": 12.8
+      "files": 269,
+      "seconds": 18.4
     },
     {
       "id": "cost-and-usage-report-service",
@@ -1511,51 +1493,47 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 79,
-      "seconds": 6.6
+      "files": 74,
+      "seconds": 10.5
     },
     {
       "id": "cost-explorer",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 687,
-      "seconds": 17.5
+      "first_error": "",
+      "error_codes": {},
+      "files": 618,
+      "seconds": 32.2
     },
     {
       "id": "cost-optimization-hub",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "codegen",
+      "stage": "ok",
       "errors": 0,
       "warnings": 0,
-      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "first_error": "",
       "error_codes": {},
-      "files": 0,
-      "seconds": 1.8
+      "files": 242,
+      "seconds": 28.2
     },
     {
       "id": "customer-profiles",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 1237,
-      "seconds": 40.2
+      "first_error": "",
+      "error_codes": {},
+      "files": 1127,
+      "seconds": 63.1
     },
     {
       "id": "data-pipeline",
@@ -1567,8 +1545,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 171,
-      "seconds": 13.1
+      "files": 156,
+      "seconds": 13.7
     },
     {
       "id": "database-migration-service",
@@ -1580,8 +1558,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1105,
-      "seconds": 52.9
+      "files": 1033,
+      "seconds": 64.1
     },
     {
       "id": "databrew",
@@ -1593,23 +1571,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 428,
-      "seconds": 27.2
+      "files": 396,
+      "seconds": 32.5
     },
     {
       "id": "dataexchange",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'double?' to 'double'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 389,
-      "seconds": 21.8
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 363,
+      "seconds": 30.8
     },
     {
       "id": "datasync",
@@ -1621,8 +1597,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 481,
-      "seconds": 20.8
+      "files": 462,
+      "seconds": 19.7
     },
     {
       "id": "datazone",
@@ -1634,8 +1610,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 2218,
-      "seconds": 74.9
+      "files": 2054,
+      "seconds": 87.2
     },
     {
       "id": "dax",
@@ -1647,8 +1623,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 249,
-      "seconds": 12.9
+      "files": 229,
+      "seconds": 8.0
     },
     {
       "id": "deadline",
@@ -1660,8 +1636,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1377,
-      "seconds": 35.9
+      "files": 1254,
+      "seconds": 76.5
     },
     {
       "id": "detective",
@@ -1673,8 +1649,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 281,
-      "seconds": 7.4
+      "files": 260,
+      "seconds": 14.2
     },
     {
       "id": "device-farm",
@@ -1686,8 +1662,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 691,
-      "seconds": 26.7
+      "files": 640,
+      "seconds": 24.8
     },
     {
       "id": "devops-agent",
@@ -1699,29 +1675,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 809,
-      "seconds": 53.9
+      "files": 759,
+      "seconds": 44.5
     },
     {
       "id": "devops-guru",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 14,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
-      "error_codes": {
-        "CS1010": 2,
-        "CS1003": 6,
-        "CS1525": 1,
-        "CS1026": 2,
-        "CS1513": 1,
-        "CS1514": 1,
-        "CS1022": 1
-      },
-      "files": 519,
-      "seconds": 29.7
+      "first_error": "",
+      "error_codes": {},
+      "files": 463,
+      "seconds": 12.9
     },
     {
       "id": "direct-connect",
@@ -1733,8 +1701,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 565,
-      "seconds": 26.0
+      "files": 531,
+      "seconds": 15.7
     },
     {
       "id": "directory-service",
@@ -1746,8 +1714,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 740,
-      "seconds": 35.2
+      "files": 695,
+      "seconds": 46.8
     },
     {
       "id": "directory-service-data",
@@ -1759,8 +1727,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 143,
-      "seconds": 11.0
+      "files": 135,
+      "seconds": 10.8
     },
     {
       "id": "dlm",
@@ -1772,8 +1740,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 186,
-      "seconds": 24.6
+      "files": 158,
+      "seconds": 12.5
     },
     {
       "id": "docdb",
@@ -1785,8 +1753,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 555,
-      "seconds": 22.9
+      "files": 516,
+      "seconds": 15.0
     },
     {
       "id": "docdb-elastic",
@@ -1798,23 +1766,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 145,
-      "seconds": 18.4
+      "files": 136,
+      "seconds": 10.5
     },
     {
       "id": "drs",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 636,
-      "seconds": 19.1
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 579,
+      "seconds": 31.2
     },
     {
       "id": "dsql",
@@ -1826,23 +1792,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 140,
-      "seconds": 16.2
+      "files": 134,
+      "seconds": 8.0
     },
     {
       "id": "dynamodb",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0261: Partial declarations of 'KeySchema' must be all classes, all record classes, all structs, all record structs, or all interfaces",
-      "error_codes": {
-        "CS0261": 1
-      },
-      "files": 874,
-      "seconds": 27.7
+      "first_error": "",
+      "error_codes": {},
+      "files": 788,
+      "seconds": 24.7
     },
     {
       "id": "dynamodb-streams",
@@ -1854,8 +1818,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 84,
-      "seconds": 6.3
+      "files": 74,
+      "seconds": 10.4
     },
     {
       "id": "ebs",
@@ -1867,8 +1831,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 78,
-      "seconds": 5.2
+      "files": 75,
+      "seconds": 17.6
     },
     {
       "id": "ec2",
@@ -1876,25 +1840,15 @@
         "ec2Query"
       ],
       "stage": "compile",
-      "errors": 222,
-      "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
+      "errors": 9,
+      "warnings": 1,
+      "first_error": "CS0102: The type 'IpamPrefixListResolverRuleConditionOperation' already contains a definition for 'Equals'",
       "error_codes": {
-        "CS1010": 6,
-        "CS1003": 153,
-        "CS1001": 7,
-        "CS1525": 24,
-        "CS1026": 5,
-        "CS1513": 2,
-        "CS1056": 18,
-        "CS1514": 2,
-        "CS1022": 2,
-        "CS1012": 1,
-        "CS1002": 1,
-        "CS1040": 1
+        "CS0102": 1,
+        "CS0542": 8
       },
-      "files": 8521,
-      "seconds": 553.4
+      "files": 7736,
+      "seconds": 363.2
     },
     {
       "id": "ec2-instance-connect",
@@ -1907,32 +1861,20 @@
       "first_error": "",
       "error_codes": {},
       "files": 36,
-      "seconds": 5.9
+      "seconds": 9.7
     },
     {
       "id": "ecr",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 178,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
-      "error_codes": {
-        "CS1010": 4,
-        "CS1056": 14,
-        "CS1003": 120,
-        "CS1525": 23,
-        "CS1001": 4,
-        "CS1040": 2,
-        "CS1026": 4,
-        "CS1513": 2,
-        "CS1514": 2,
-        "CS1022": 2,
-        "CS0742": 1
-      },
-      "files": 658,
-      "seconds": 29.5
+      "first_error": "",
+      "error_codes": {},
+      "files": 606,
+      "seconds": 27.3
     },
     {
       "id": "ecr-public",
@@ -1944,8 +1886,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 239,
-      "seconds": 12.5
+      "files": 222,
+      "seconds": 16.6
     },
     {
       "id": "ecs",
@@ -1957,8 +1899,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1305,
-      "seconds": 81.6
+      "files": 1181,
+      "seconds": 29.6
     },
     {
       "id": "efs",
@@ -1970,8 +1912,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 301,
-      "seconds": 10.1
+      "files": 289,
+      "seconds": 14.1
     },
     {
       "id": "eks",
@@ -1983,8 +1925,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 898,
-      "seconds": 49.3
+      "files": 845,
+      "seconds": 36.1
     },
     {
       "id": "eks-auth",
@@ -2011,8 +1953,8 @@
       "error_codes": {
         "CS0542": 1
       },
-      "files": 535,
-      "seconds": 29.4
+      "files": 485,
+      "seconds": 21.4
     },
     {
       "id": "elastic-load-balancing",
@@ -2024,8 +1966,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 295,
-      "seconds": 17.7
+      "files": 269,
+      "seconds": 20.6
     },
     {
       "id": "elastic-load-balancing-v2",
@@ -2037,8 +1979,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 649,
-      "seconds": 61.9
+      "files": 594,
+      "seconds": 45.0
     },
     {
       "id": "elasticache",
@@ -2050,8 +1992,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 891,
-      "seconds": 61.5
+      "files": 813,
+      "seconds": 30.9
     },
     {
       "id": "elasticsearch-service",
@@ -2063,8 +2005,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 611,
-      "seconds": 36.8
+      "files": 569,
+      "seconds": 35.0
     },
     {
       "id": "elementalinference",
@@ -2076,8 +2018,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 209,
-      "seconds": 18.5
+      "files": 194,
+      "seconds": 20.7
     },
     {
       "id": "emr",
@@ -2089,8 +2031,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 783,
-      "seconds": 28.5
+      "files": 722,
+      "seconds": 39.4
     },
     {
       "id": "emr-containers",
@@ -2102,28 +2044,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 269,
-      "seconds": 24.9
+      "files": 252,
+      "seconds": 20.0
     },
     {
       "id": "emr-serverless",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 14,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
-      "error_codes": {
-        "CS1010": 1,
-        "CS1525": 3,
-        "CS1056": 3,
-        "CS1003": 4,
-        "CS1026": 2,
-        "CS1039": 1
-      },
-      "files": 240,
-      "seconds": 11.1
+      "first_error": "",
+      "error_codes": {},
+      "files": 219,
+      "seconds": 15.8
     },
     {
       "id": "endusermessaging",
@@ -2135,8 +2070,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 249,
-      "seconds": 12.7
+      "files": 232,
+      "seconds": 18.7
     },
     {
       "id": "entityresolution",
@@ -2148,8 +2083,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 416,
-      "seconds": 16.7
+      "files": 375,
+      "seconds": 22.5
     },
     {
       "id": "eventbridge",
@@ -2161,8 +2096,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 569,
-      "seconds": 33.8
+      "files": 530,
+      "seconds": 38.2
     },
     {
       "id": "eventbridgev2",
@@ -2174,8 +2109,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 311,
-      "seconds": 16.1
+      "files": 292,
+      "seconds": 19.0
     },
     {
       "id": "evs",
@@ -2187,36 +2122,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 256,
-      "seconds": 12.7
+      "files": 231,
+      "seconds": 22.4
     },
     {
       "id": "finspace",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 387,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
-      "error_codes": {
-        "CS1010": 2,
-        "CS1525": 4,
-        "CS1056": 19,
-        "CS1003": 136,
-        "CS1026": 27,
-        "CS1514": 1,
-        "CS1513": 5,
-        "CS1001": 62,
-        "CS1031": 36,
-        "CS1002": 20,
-        "CS8124": 25,
-        "CS1519": 43,
-        "CS1014": 6,
-        "CS1022": 1
-      },
-      "files": 460,
-      "seconds": 29.9
+      "first_error": "",
+      "error_codes": {},
+      "files": 427,
+      "seconds": 22.6
     },
     {
       "id": "finspace-data",
@@ -2228,8 +2148,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 269,
-      "seconds": 24.7
+      "files": 253,
+      "seconds": 14.3
     },
     {
       "id": "firehose",
@@ -2241,8 +2161,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 394,
-      "seconds": 25.5
+      "files": 372,
+      "seconds": 23.4
     },
     {
       "id": "fis",
@@ -2254,8 +2174,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 386,
-      "seconds": 25.2
+      "files": 343,
+      "seconds": 30.3
     },
     {
       "id": "fms",
@@ -2268,31 +2188,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 558,
-      "seconds": 35.5
+      "files": 505,
+      "seconds": 39.5
     },
     {
       "id": "forecast",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 52,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
-      "error_codes": {
-        "CS1010": 3,
-        "CS1003": 23,
-        "CS1001": 3,
-        "CS1525": 5,
-        "CS1040": 3,
-        "CS1026": 6,
-        "CS1513": 3,
-        "CS1514": 3,
-        "CS1022": 3
-      },
-      "files": 583,
-      "seconds": 40.3
+      "first_error": "",
+      "error_codes": {},
+      "files": 536,
+      "seconds": 42.5
     },
     {
       "id": "forecastquery",
@@ -2304,8 +2214,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 32,
-      "seconds": 6.0
+      "files": 29,
+      "seconds": 11.4
     },
     {
       "id": "frauddetector",
@@ -2319,52 +2229,34 @@
       "error_codes": {
         "CS0101": 1
       },
-      "files": 661,
-      "seconds": 17.4
+      "files": 607,
+      "seconds": 44.9
     },
     {
       "id": "freetier",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 75,
-      "seconds": 10.4
+      "first_error": "",
+      "error_codes": {},
+      "files": 69,
+      "seconds": 12.3
     },
     {
       "id": "fsx",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 374,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
-      "error_codes": {
-        "CS1010": 3,
-        "CS1525": 16,
-        "CS1001": 62,
-        "CS1003": 96,
-        "CS1026": 30,
-        "CS1513": 6,
-        "CS1514": 2,
-        "CS1022": 2,
-        "CS1519": 51,
-        "CS1056": 9,
-        "CS1031": 45,
-        "CS1040": 1,
-        "CS1002": 19,
-        "CS8124": 26,
-        "CS1014": 6
-      },
-      "files": 814,
-      "seconds": 24.9
+      "first_error": "",
+      "error_codes": {},
+      "files": 756,
+      "seconds": 18.0
     },
     {
       "id": "gamelift",
@@ -2377,8 +2269,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1124,
-      "seconds": 42.8
+      "files": 1038,
+      "seconds": 29.1
     },
     {
       "id": "gameliftstreams",
@@ -2390,8 +2282,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 268,
-      "seconds": 17.9
+      "files": 250,
+      "seconds": 19.1
     },
     {
       "id": "geo-maps",
@@ -2403,8 +2295,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 79,
-      "seconds": 12.5
+      "files": 75,
+      "seconds": 10.0
     },
     {
       "id": "geo-places",
@@ -2416,8 +2308,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 345,
-      "seconds": 17.6
+      "files": 294,
+      "seconds": 12.5
     },
     {
       "id": "geo-routes",
@@ -2429,8 +2321,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 925,
-      "seconds": 44.9
+      "files": 817,
+      "seconds": 33.4
     },
     {
       "id": "glacier",
@@ -2442,8 +2334,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 273,
-      "seconds": 12.7
+      "files": 262,
+      "seconds": 14.0
     },
     {
       "id": "global-accelerator",
@@ -2455,8 +2347,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 476,
-      "seconds": 26.0
+      "files": 440,
+      "seconds": 18.6
     },
     {
       "id": "glue",
@@ -2470,8 +2362,8 @@
       "error_codes": {
         "CS0102": 1
       },
-      "files": 3402,
-      "seconds": 150.8
+      "files": 3121,
+      "seconds": 117.3
     },
     {
       "id": "grafana",
@@ -2483,8 +2375,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 223,
-      "seconds": 14.3
+      "files": 202,
+      "seconds": 15.3
     },
     {
       "id": "greengrass",
@@ -2496,23 +2388,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 622,
-      "seconds": 47.1
+      "files": 601,
+      "seconds": 28.1
     },
     {
       "id": "greengrassv2",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 355,
-      "seconds": 25.5
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 322,
+      "seconds": 10.4
     },
     {
       "id": "groundstation",
@@ -2524,8 +2414,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 504,
-      "seconds": 19.3
+      "files": 468,
+      "seconds": 17.8
     },
     {
       "id": "guardduty",
@@ -2533,15 +2423,14 @@
         "restJson1"
       ],
       "stage": "compile",
-      "errors": 3,
+      "errors": 2,
       "warnings": 2,
-      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Guardduty.Equals?' to match positional parameter 'Equals'.",
+      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positional parameter 'Equals'.",
       "error_codes": {
-        "CS8866": 2,
-        "CS0542": 1
+        "CS8866": 2
       },
-      "files": 1520,
-      "seconds": 92.9
+      "files": 1382,
+      "seconds": 58.1
     },
     {
       "id": "health",
@@ -2554,8 +2443,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 241,
-      "seconds": 23.0
+      "files": 195,
+      "seconds": 14.0
     },
     {
       "id": "healthlake",
@@ -2567,8 +2456,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 290,
-      "seconds": 10.3
+      "files": 277,
+      "seconds": 16.1
     },
     {
       "id": "iam",
@@ -2580,8 +2469,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1304,
-      "seconds": 65.1
+      "files": 1236,
+      "seconds": 69.6
     },
     {
       "id": "iam-toolbox",
@@ -2593,23 +2482,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 43,
-      "seconds": 6.7
+      "files": 37,
+      "seconds": 6.0
     },
     {
       "id": "identitystore",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 214,
-      "seconds": 12.4
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 196,
+      "seconds": 13.2
     },
     {
       "id": "imagebuilder",
@@ -2621,8 +2508,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 843,
-      "seconds": 55.0
+      "files": 781,
+      "seconds": 25.3
     },
     {
       "id": "inspector",
@@ -2634,8 +2521,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 407,
-      "seconds": 44.8
+      "files": 361,
+      "seconds": 14.9
     },
     {
       "id": "inspector-scan",
@@ -2647,8 +2534,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 25,
-      "seconds": 5.5
+      "files": 24,
+      "seconds": 4.8
     },
     {
       "id": "inspector2",
@@ -2660,8 +2547,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1225,
-      "seconds": 53.3
+      "files": 1085,
+      "seconds": 39.1
     },
     {
       "id": "interconnect",
@@ -2674,8 +2561,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 117,
-      "seconds": 10.4
+      "files": 111,
+      "seconds": 10.3
     },
     {
       "id": "internetmonitor",
@@ -2687,8 +2574,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 166,
-      "seconds": 11.3
+      "files": 152,
+      "seconds": 8.4
     },
     {
       "id": "invoicing",
@@ -2700,8 +2587,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 281,
-      "seconds": 17.5
+      "files": 258,
+      "seconds": 21.7
     },
     {
       "id": "iot",
@@ -2713,8 +2600,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 2404,
-      "seconds": 111.7
+      "files": 2251,
+      "seconds": 101.0
     },
     {
       "id": "iot-data-plane",
@@ -2726,8 +2613,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 93,
-      "seconds": 7.2
+      "files": 90,
+      "seconds": 18.1
     },
     {
       "id": "iot-jobs-data-plane",
@@ -2739,8 +2626,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 65,
-      "seconds": 5.7
+      "files": 62,
+      "seconds": 7.2
     },
     {
       "id": "iot-managed-integrations",
@@ -2752,8 +2639,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 741,
-      "seconds": 26.2
+      "files": 688,
+      "seconds": 13.4
     },
     {
       "id": "iot-wireless",
@@ -2765,8 +2652,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1064,
-      "seconds": 95.4
+      "files": 1003,
+      "seconds": 24.8
     },
     {
       "id": "iotdeviceadvisor",
@@ -2778,21 +2665,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 128,
-      "seconds": 7.0
+      "files": 119,
+      "seconds": 6.7
     },
     {
       "id": "iotfleetwise",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "codegen",
+      "stage": "ok",
       "errors": 0,
       "warnings": 0,
-      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "first_error": "",
       "error_codes": {},
-      "files": 0,
-      "seconds": 1.7
+      "files": 564,
+      "seconds": 45.2
     },
     {
       "id": "iotsecuretunneling",
@@ -2804,21 +2691,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 72,
-      "seconds": 7.8
+      "files": 68,
+      "seconds": 6.6
     },
     {
       "id": "iotsitewise",
       "protocols": [
         "restJson1"
       ],
-      "stage": "codegen",
+      "stage": "ok",
       "errors": 0,
       "warnings": 0,
-      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "first_error": "",
       "error_codes": {},
-      "files": 0,
-      "seconds": 3.9
+      "files": 1501,
+      "seconds": 59.8
     },
     {
       "id": "iotthingsgraph",
@@ -2830,23 +2717,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 295,
-      "seconds": 8.3
+      "files": 274,
+      "seconds": 11.4
     },
     {
       "id": "iottwinmaker",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 496,
-      "seconds": 17.4
+      "first_error": "",
+      "error_codes": {},
+      "files": 432,
+      "seconds": 31.7
     },
     {
       "id": "ivs",
@@ -2858,8 +2743,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 357,
-      "seconds": 17.7
+      "files": 332,
+      "seconds": 13.5
     },
     {
       "id": "ivs-realtime",
@@ -2871,23 +2756,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 363,
-      "seconds": 15.7
+      "files": 338,
+      "seconds": 16.7
     },
     {
       "id": "ivschat",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 137,
-      "seconds": 13.5
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 128,
+      "seconds": 6.5
     },
     {
       "id": "kafka",
@@ -2899,8 +2782,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 738,
-      "seconds": 38.0
+      "files": 704,
+      "seconds": 28.2
     },
     {
       "id": "kafkaconnect",
@@ -2912,8 +2795,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 249,
-      "seconds": 15.4
+      "files": 237,
+      "seconds": 13.3
     },
     {
       "id": "kendra",
@@ -2927,8 +2810,8 @@
       "error_codes": {
         "CS0102": 1
       },
-      "files": 1008,
-      "seconds": 61.9
+      "files": 897,
+      "seconds": 53.6
     },
     {
       "id": "kendra-ranking",
@@ -2941,8 +2824,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 89,
-      "seconds": 13.2
+      "files": 82,
+      "seconds": 8.9
     },
     {
       "id": "keyspaces",
@@ -2955,8 +2838,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 199,
-      "seconds": 10.4
+      "files": 184,
+      "seconds": 10.7
     },
     {
       "id": "keyspacesstreams",
@@ -2968,8 +2851,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 86,
-      "seconds": 8.4
+      "files": 77,
+      "seconds": 10.8
     },
     {
       "id": "kinesis",
@@ -2981,8 +2864,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 431,
-      "seconds": 16.1
+      "files": 410,
+      "seconds": 18.7
     },
     {
       "id": "kinesis-analytics",
@@ -2994,8 +2877,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 280,
-      "seconds": 16.5
+      "files": 259,
+      "seconds": 16.1
     },
     {
       "id": "kinesis-analytics-v2",
@@ -3007,8 +2890,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 551,
-      "seconds": 31.3
+      "files": 517,
+      "seconds": 30.1
     },
     {
       "id": "kinesis-video",
@@ -3020,8 +2903,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 302,
-      "seconds": 20.2
+      "files": 291,
+      "seconds": 28.7
     },
     {
       "id": "kinesis-video-archived-media",
@@ -3033,8 +2916,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 108,
-      "seconds": 10.4
+      "files": 104,
+      "seconds": 26.9
     },
     {
       "id": "kinesis-video-media",
@@ -3047,7 +2930,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 23,
-      "seconds": 8.9
+      "seconds": 20.5
     },
     {
       "id": "kinesis-video-signaling",
@@ -3059,8 +2942,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 32,
-      "seconds": 7.7
+      "files": 30,
+      "seconds": 20.2
     },
     {
       "id": "kinesis-video-webrtc-storage",
@@ -3073,7 +2956,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 20,
-      "seconds": 15.3
+      "seconds": 16.2
     },
     {
       "id": "kms",
@@ -3085,8 +2968,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 492,
-      "seconds": 16.3
+      "files": 475,
+      "seconds": 18.7
     },
     {
       "id": "lakeformation",
@@ -3098,8 +2981,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 571,
-      "seconds": 17.8
+      "files": 529,
+      "seconds": 20.1
     },
     {
       "id": "lambda",
@@ -3111,8 +2994,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 996,
-      "seconds": 81.2
+      "files": 947,
+      "seconds": 51.6
     },
     {
       "id": "lambda-core",
@@ -3124,8 +3007,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 71,
-      "seconds": 8.5
+      "files": 66,
+      "seconds": 7.2
     },
     {
       "id": "lambda-microvms",
@@ -3137,8 +3020,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 234,
-      "seconds": 9.4
+      "files": 219,
+      "seconds": 12.6
     },
     {
       "id": "lambda-web",
@@ -3151,7 +3034,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 17,
-      "seconds": 6.9
+      "seconds": 6.3
     },
     {
       "id": "launch-wizard",
@@ -3163,8 +3046,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 161,
-      "seconds": 10.2
+      "files": 144,
+      "seconds": 11.1
     },
     {
       "id": "lex-model-building-service",
@@ -3176,8 +3059,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 410,
-      "seconds": 16.9
+      "files": 377,
+      "seconds": 19.8
     },
     {
       "id": "lex-models-v2",
@@ -3187,12 +3070,12 @@
       "stage": "compile",
       "errors": 9,
       "warnings": 9,
-      "first_error": "CS0102: The type 'BotLocaleFilterOperator' already contains a definition for 'Equals'",
+      "first_error": "CS0102: The type 'AggregatedUtterancesFilterOperator' already contains a definition for 'Equals'",
       "error_codes": {
         "CS0102": 9
       },
-      "files": 1559,
-      "seconds": 101.6
+      "files": 1433,
+      "seconds": 30.7
     },
     {
       "id": "lex-runtime-service",
@@ -3204,23 +3087,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 95,
-      "seconds": 8.0
+      "files": 88,
+      "seconds": 12.6
     },
     {
       "id": "lex-runtime-v2",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 160,
-      "seconds": 10.0
+      "first_error": "",
+      "error_codes": {},
+      "files": 148,
+      "seconds": 22.5
     },
     {
       "id": "license-manager",
@@ -3232,8 +3113,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 588,
-      "seconds": 25.7
+      "files": 545,
+      "seconds": 39.2
     },
     {
       "id": "license-manager-linux-subscriptions",
@@ -3245,8 +3126,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 95,
-      "seconds": 12.1
+      "files": 85,
+      "seconds": 9.4
     },
     {
       "id": "license-manager-user-subscriptions",
@@ -3258,8 +3139,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 165,
-      "seconds": 13.3
+      "files": 152,
+      "seconds": 7.8
     },
     {
       "id": "lightsail",
@@ -3271,8 +3152,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1440,
-      "seconds": 92.6
+      "files": 1342,
+      "seconds": 53.5
     },
     {
       "id": "location",
@@ -3284,8 +3165,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 586,
-      "seconds": 63.3
+      "files": 528,
+      "seconds": 34.5
     },
     {
       "id": "lookoutequipment",
@@ -3297,38 +3178,34 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 407,
-      "seconds": 43.5
+      "files": 392,
+      "seconds": 28.7
     },
     {
       "id": "m2",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 359,
-      "seconds": 12.5
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 333,
+      "seconds": 22.9
     },
     {
       "id": "machine-learning",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 5,
-      "warnings": 5,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 5
-      },
-      "files": 238,
-      "seconds": 10.9
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 226,
+      "seconds": 17.1
     },
     {
       "id": "macie2",
@@ -3340,8 +3217,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 933,
-      "seconds": 42.2
+      "files": 880,
+      "seconds": 32.4
     },
     {
       "id": "mailmanager",
@@ -3354,8 +3231,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 638,
-      "seconds": 48.3
+      "files": 605,
+      "seconds": 42.2
     },
     {
       "id": "managedblockchain",
@@ -3367,8 +3244,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 281,
-      "seconds": 17.0
+      "files": 269,
+      "seconds": 24.6
     },
     {
       "id": "managedblockchain-query",
@@ -3380,8 +3257,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 125,
-      "seconds": 19.9
+      "files": 115,
+      "seconds": 8.5
     },
     {
       "id": "marketplace-agreement",
@@ -3394,8 +3271,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 373,
-      "seconds": 10.5
+      "files": 343,
+      "seconds": 34.9
     },
     {
       "id": "marketplace-catalog",
@@ -3407,8 +3284,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 523,
-      "seconds": 25.4
+      "files": 457,
+      "seconds": 33.8
     },
     {
       "id": "marketplace-commerce-analytics",
@@ -3420,8 +3297,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 20,
-      "seconds": 7.3
+      "files": 19,
+      "seconds": 7.5
     },
     {
       "id": "marketplace-deployment",
@@ -3433,8 +3310,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 44,
-      "seconds": 7.6
+      "files": 41,
+      "seconds": 13.8
     },
     {
       "id": "marketplace-discovery",
@@ -3446,8 +3323,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 367,
-      "seconds": 17.8
+      "files": 319,
+      "seconds": 19.5
     },
     {
       "id": "marketplace-entitlement-service",
@@ -3460,8 +3337,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 25,
-      "seconds": 16.8
+      "files": 22,
+      "seconds": 10.8
     },
     {
       "id": "marketplace-metering",
@@ -3473,8 +3350,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 80,
-      "seconds": 16.9
+      "files": 76,
+      "seconds": 10.9
     },
     {
       "id": "marketplace-reporting",
@@ -3486,8 +3363,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 17,
-      "seconds": 11.6
+      "files": 16,
+      "seconds": 10.7
     },
     {
       "id": "mediaconnect",
@@ -3499,8 +3376,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1042,
-      "seconds": 54.2
+      "files": 975,
+      "seconds": 17.6
     },
     {
       "id": "mediaconvert",
@@ -3512,8 +3389,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1716,
-      "seconds": 109.9
+      "files": 1649,
+      "seconds": 50.9
     },
     {
       "id": "medialive",
@@ -3525,8 +3402,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 2287,
-      "seconds": 199.4
+      "files": 2171,
+      "seconds": 185.3
     },
     {
       "id": "mediapackage",
@@ -3538,8 +3415,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 209,
-      "seconds": 11.2
+      "files": 198,
+      "seconds": 18.5
     },
     {
       "id": "mediapackage-vod",
@@ -3551,8 +3428,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 181,
-      "seconds": 10.6
+      "files": 170,
+      "seconds": 16.8
     },
     {
       "id": "mediapackagev2",
@@ -3564,8 +3441,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 406,
-      "seconds": 22.4
+      "files": 372,
+      "seconds": 34.0
     },
     {
       "id": "mediastore",
@@ -3577,8 +3454,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 153,
-      "seconds": 10.0
+      "files": 144,
+      "seconds": 14.1
     },
     {
       "id": "mediastore-data",
@@ -3590,8 +3467,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 45,
-      "seconds": 9.8
+      "files": 44,
+      "seconds": 13.1
     },
     {
       "id": "mediatailor",
@@ -3603,8 +3480,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 540,
-      "seconds": 41.7
+      "files": 503,
+      "seconds": 14.9
     },
     {
       "id": "medical-imaging",
@@ -3616,8 +3493,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 196,
-      "seconds": 17.5
+      "files": 187,
+      "seconds": 9.8
     },
     {
       "id": "memorydb",
@@ -3629,68 +3506,60 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 527,
-      "seconds": 13.2
+      "files": 485,
+      "seconds": 32.7
     },
     {
       "id": "mgn",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 931,
-      "seconds": 84.4
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 837,
+      "seconds": 45.3
     },
     {
       "id": "migration-hub",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 175,
-      "seconds": 11.0
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 165,
+      "seconds": 12.3
     },
     {
       "id": "migration-hub-refactor-spaces",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 194,
-      "seconds": 9.1
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 183,
+      "seconds": 9.8
     },
     {
       "id": "migrationhub-config",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 42,
-      "seconds": 6.5
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 41,
+      "seconds": 6.0
     },
     {
       "id": "migrationhuborchestrator",
@@ -3702,8 +3571,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 239,
-      "seconds": 10.5
+      "files": 222,
+      "seconds": 8.1
     },
     {
       "id": "migrationhubstrategy",
@@ -3715,8 +3584,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 304,
-      "seconds": 13.0
+      "files": 270,
+      "seconds": 18.6
     },
     {
       "id": "mpa",
@@ -3728,8 +3597,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 252,
-      "seconds": 15.8
+      "files": 234,
+      "seconds": 17.2
     },
     {
       "id": "mq",
@@ -3741,8 +3610,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 255,
-      "seconds": 14.6
+      "files": 237,
+      "seconds": 13.3
     },
     {
       "id": "mturk",
@@ -3754,8 +3623,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 305,
-      "seconds": 23.1
+      "files": 284,
+      "seconds": 21.3
     },
     {
       "id": "mwaa",
@@ -3767,8 +3636,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 116,
-      "seconds": 9.6
+      "files": 108,
+      "seconds": 8.0
     },
     {
       "id": "mwaa-serverless",
@@ -3780,8 +3649,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 161,
-      "seconds": 9.6
+      "files": 148,
+      "seconds": 10.5
     },
     {
       "id": "neptune",
@@ -3793,8 +3662,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 694,
-      "seconds": 41.1
+      "files": 642,
+      "seconds": 28.3
     },
     {
       "id": "neptune-graph",
@@ -3806,8 +3675,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 304,
-      "seconds": 13.5
+      "files": 282,
+      "seconds": 12.4
     },
     {
       "id": "neptunedata",
@@ -3819,8 +3688,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 397,
-      "seconds": 42.4
+      "files": 376,
+      "seconds": 14.8
     },
     {
       "id": "network-firewall",
@@ -3832,8 +3701,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 887,
-      "seconds": 68.9
+      "files": 812,
+      "seconds": 30.4
     },
     {
       "id": "network-security-manager",
@@ -3845,8 +3714,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 452,
-      "seconds": 26.7
+      "files": 415,
+      "seconds": 28.0
     },
     {
       "id": "networkflowmonitor",
@@ -3858,8 +3727,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 211,
-      "seconds": 10.2
+      "files": 198,
+      "seconds": 15.9
     },
     {
       "id": "networkmanager",
@@ -3871,8 +3740,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 855,
-      "seconds": 23.9
+      "files": 790,
+      "seconds": 115.5
     },
     {
       "id": "networkmonitor",
@@ -3884,8 +3753,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 102,
-      "seconds": 11.0
+      "files": 97,
+      "seconds": 8.9
     },
     {
       "id": "notifications",
@@ -3897,8 +3766,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 346,
-      "seconds": 15.5
+      "files": 317,
+      "seconds": 18.3
     },
     {
       "id": "notificationscontacts",
@@ -3910,8 +3779,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 75,
-      "seconds": 9.7
+      "files": 71,
+      "seconds": 8.3
     },
     {
       "id": "nova-act",
@@ -3923,8 +3792,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 172,
-      "seconds": 11.4
+      "files": 160,
+      "seconds": 7.7
     },
     {
       "id": "oam",
@@ -3936,8 +3805,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 123,
-      "seconds": 9.8
+      "files": 115,
+      "seconds": 9.1
     },
     {
       "id": "observabilityadmin",
@@ -3947,12 +3816,12 @@
       "stage": "compile",
       "errors": 1,
       "warnings": 1,
-      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'Com.Amazonaws.Observabilityadmin.StringList?' to match positional parameter 'Equals'.",
+      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positional parameter 'Equals'.",
       "error_codes": {
         "CS8866": 1
       },
-      "files": 459,
-      "seconds": 51.4
+      "files": 428,
+      "seconds": 49.8
     },
     {
       "id": "odb",
@@ -3964,21 +3833,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 806,
-      "seconds": 31.5
+      "files": 758,
+      "seconds": 47.6
     },
     {
       "id": "omics",
       "protocols": [
         "restJson1"
       ],
-      "stage": "codegen",
+      "stage": "ok",
       "errors": 0,
       "warnings": 0,
-      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "first_error": "",
       "error_codes": {},
-      "files": 0,
-      "seconds": 1.9
+      "files": 811,
+      "seconds": 94.3
     },
     {
       "id": "opensearch",
@@ -3990,8 +3859,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1136,
-      "seconds": 82.1
+      "files": 1066,
+      "seconds": 91.2
     },
     {
       "id": "opensearchserverless",
@@ -4003,8 +3872,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 404,
-      "seconds": 51.5
+      "files": 374,
+      "seconds": 43.4
     },
     {
       "id": "organizations",
@@ -4016,8 +3885,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 557,
-      "seconds": 44.7
+      "files": 535,
+      "seconds": 43.1
     },
     {
       "id": "osis",
@@ -4029,8 +3898,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 216,
-      "seconds": 19.5
+      "files": 200,
+      "seconds": 45.9
     },
     {
       "id": "outposts",
@@ -4042,8 +3911,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 527,
-      "seconds": 27.5
+      "files": 471,
+      "seconds": 45.9
     },
     {
       "id": "partnercentral-account",
@@ -4055,8 +3924,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 314,
-      "seconds": 29.4
+      "files": 300,
+      "seconds": 45.9
     },
     {
       "id": "partnercentral-benefits",
@@ -4068,8 +3937,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 203,
-      "seconds": 25.2
+      "files": 179,
+      "seconds": 44.0
     },
     {
       "id": "partnercentral-channel",
@@ -4081,8 +3950,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 239,
-      "seconds": 10.2
+      "files": 223,
+      "seconds": 14.7
     },
     {
       "id": "partnercentral-revenue-measurement",
@@ -4094,8 +3963,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 192,
-      "seconds": 12.4
+      "files": 176,
+      "seconds": 11.4
     },
     {
       "id": "partnercentral-selling",
@@ -4107,21 +3976,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 659,
-      "seconds": 35.7
+      "files": 594,
+      "seconds": 30.4
     },
     {
       "id": "payment-cryptography",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "codegen",
+      "stage": "ok",
       "errors": 0,
       "warnings": 0,
-      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveBoolean (boolean). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Documen",
+      "first_error": "",
       "error_codes": {},
-      "files": 0,
-      "seconds": 1.3
+      "files": 253,
+      "seconds": 16.9
     },
     {
       "id": "payment-cryptography-data",
@@ -4133,8 +4002,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 267,
-      "seconds": 14.2
+      "files": 266,
+      "seconds": 15.9
     },
     {
       "id": "pca-connector-ad",
@@ -4146,8 +4015,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 287,
-      "seconds": 28.6
+      "files": 276,
+      "seconds": 24.4
     },
     {
       "id": "pca-connector-scep",
@@ -4159,8 +4028,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 110,
-      "seconds": 13.2
+      "files": 106,
+      "seconds": 15.5
     },
     {
       "id": "pcs",
@@ -4172,8 +4041,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 277,
-      "seconds": 26.5
+      "files": 256,
+      "seconds": 16.5
     },
     {
       "id": "personalize",
@@ -4187,8 +4056,8 @@
       "error_codes": {
         "CS0101": 1
       },
-      "files": 617,
-      "seconds": 20.9
+      "files": 579,
+      "seconds": 32.4
     },
     {
       "id": "personalize-events",
@@ -4200,8 +4069,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 59,
-      "seconds": 15.2
+      "files": 52,
+      "seconds": 8.3
     },
     {
       "id": "personalize-runtime",
@@ -4213,8 +4082,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 47,
-      "seconds": 13.6
+      "files": 37,
+      "seconds": 6.5
     },
     {
       "id": "pi",
@@ -4227,8 +4096,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 196,
-      "seconds": 10.2
+      "files": 167,
+      "seconds": 8.7
     },
     {
       "id": "pinpoint",
@@ -4240,8 +4109,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1200,
-      "seconds": 44.8
+      "files": 1151,
+      "seconds": 53.9
     },
     {
       "id": "pinpoint-email",
@@ -4253,8 +4122,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 372,
-      "seconds": 19.3
+      "files": 348,
+      "seconds": 12.4
     },
     {
       "id": "pinpoint-sms-voice",
@@ -4266,21 +4135,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 80,
-      "seconds": 7.9
+      "files": 77,
+      "seconds": 9.0
     },
     {
       "id": "pinpoint-sms-voice-v2",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "codegen",
+      "stage": "ok",
       "errors": 0,
       "warnings": 0,
-      "first_error": "Projection source failed: software.amazon.smithy.codegen.core.CodegenException: Unsupported Smithy prelude schema shape smithy.api#PrimitiveLong (long). Supported prelude schema shapes: Boolean, Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal, String, Blob, Timestamp, Document, Uni",
+      "first_error": "",
       "error_codes": {},
-      "files": 0,
-      "seconds": 1.4
+      "files": 851,
+      "seconds": 46.3
     },
     {
       "id": "pipes",
@@ -4292,8 +4161,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 278,
-      "seconds": 17.3
+      "files": 243,
+      "seconds": 15.3
     },
     {
       "id": "polly",
@@ -4305,7 +4174,7 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 168,
+      "files": 159,
       "seconds": 15.2
     },
     {
@@ -4318,8 +4187,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 67,
-      "seconds": 8.1
+      "files": 60,
+      "seconds": 7.8
     },
     {
       "id": "pricing-plan-manager",
@@ -4331,8 +4200,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 77,
-      "seconds": 8.8
+      "files": 75,
+      "seconds": 8.4
     },
     {
       "id": "proton",
@@ -4344,8 +4213,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 611,
-      "seconds": 41.0
+      "files": 584,
+      "seconds": 34.0
     },
     {
       "id": "qapps",
@@ -4357,8 +4226,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 345,
-      "seconds": 24.8
+      "files": 319,
+      "seconds": 11.1
     },
     {
       "id": "qbusiness",
@@ -4370,8 +4239,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 997,
-      "seconds": 51.0
+      "files": 928,
+      "seconds": 37.7
     },
     {
       "id": "qconnect",
@@ -4386,8 +4255,8 @@
         "CS0102": 1,
         "CS0542": 1
       },
-      "files": 1112,
-      "seconds": 95.1
+      "files": 1019,
+      "seconds": 47.7
     },
     {
       "id": "quicksight",
@@ -4401,8 +4270,8 @@
       "error_codes": {
         "CS0101": 2
       },
-      "files": 5339,
-      "seconds": 370.6
+      "files": 4907,
+      "seconds": 228.2
     },
     {
       "id": "ram",
@@ -4414,8 +4283,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 333,
-      "seconds": 14.3
+      "files": 311,
+      "seconds": 15.0
     },
     {
       "id": "rbin",
@@ -4427,8 +4296,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 102,
-      "seconds": 10.8
+      "files": 97,
+      "seconds": 7.9
     },
     {
       "id": "rds",
@@ -4440,23 +4309,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1698,
-      "seconds": 100.8
+      "files": 1575,
+      "seconds": 62.1
     },
     {
       "id": "rds-data",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 128,
-      "seconds": 8.5
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 113,
+      "seconds": 7.6
     },
     {
       "id": "redshift",
@@ -4470,8 +4337,8 @@
       "error_codes": {
         "CS0542": 1
       },
-      "files": 1507,
-      "seconds": 122.7
+      "files": 1401,
+      "seconds": 51.0
     },
     {
       "id": "redshift-data",
@@ -4483,8 +4350,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 128,
-      "seconds": 26.3
+      "files": 113,
+      "seconds": 8.3
     },
     {
       "id": "redshift-serverless",
@@ -4496,8 +4363,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 473,
-      "seconds": 40.7
+      "files": 441,
+      "seconds": 16.1
     },
     {
       "id": "rekognition",
@@ -4509,8 +4376,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 987,
-      "seconds": 70.1
+      "files": 902,
+      "seconds": 38.4
     },
     {
       "id": "repostspace",
@@ -4522,8 +4389,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 169,
-      "seconds": 20.8
+      "files": 155,
+      "seconds": 18.1
     },
     {
       "id": "resiliencehub",
@@ -4535,8 +4402,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 647,
-      "seconds": 16.8
+      "files": 588,
+      "seconds": 48.3
     },
     {
       "id": "resiliencehubv2",
@@ -4548,8 +4415,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 871,
-      "seconds": 25.4
+      "files": 804,
+      "seconds": 22.4
     },
     {
       "id": "resource-explorer-2",
@@ -4561,8 +4428,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 256,
-      "seconds": 22.7
+      "files": 237,
+      "seconds": 10.1
     },
     {
       "id": "resource-groups",
@@ -4574,8 +4441,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 241,
-      "seconds": 31.5
+      "files": 218,
+      "seconds": 18.4
     },
     {
       "id": "resource-groups-tagging-api",
@@ -4587,8 +4454,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 119,
-      "seconds": 7.8
+      "files": 99,
+      "seconds": 10.9
     },
     {
       "id": "rolesanywhere",
@@ -4600,8 +4467,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 224,
-      "seconds": 13.4
+      "files": 207,
+      "seconds": 14.0
     },
     {
       "id": "route-53",
@@ -4613,38 +4480,34 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 685,
-      "seconds": 44.1
+      "files": 653,
+      "seconds": 30.7
     },
     {
       "id": "route-53-domains",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Values': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 278,
-      "seconds": 14.4
+      "first_error": "",
+      "error_codes": {},
+      "files": 262,
+      "seconds": 14.0
     },
     {
       "id": "route53-recovery-cluster",
       "protocols": [
         "awsJson1_0"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 56,
-      "seconds": 12.3
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 52,
+      "seconds": 10.6
     },
     {
       "id": "route53-recovery-control-config",
@@ -4656,8 +4519,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 189,
-      "seconds": 14.4
+      "files": 180,
+      "seconds": 10.3
     },
     {
       "id": "route53-recovery-readiness",
@@ -4669,8 +4532,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 234,
-      "seconds": 15.7
+      "files": 220,
+      "seconds": 11.8
     },
     {
       "id": "route53globalresolver",
@@ -4682,8 +4545,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 374,
-      "seconds": 15.8
+      "files": 350,
+      "seconds": 11.5
     },
     {
       "id": "route53profiles",
@@ -4695,8 +4558,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 128,
-      "seconds": 11.6
+      "files": 122,
+      "seconds": 9.4
     },
     {
       "id": "route53resolver",
@@ -4708,8 +4571,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 594,
-      "seconds": 35.0
+      "files": 563,
+      "seconds": 30.2
     },
     {
       "id": "rtbfabric",
@@ -4721,8 +4584,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 310,
-      "seconds": 26.5
+      "files": 292,
+      "seconds": 17.7
     },
     {
       "id": "rum",
@@ -4734,8 +4597,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 196,
-      "seconds": 13.9
+      "files": 178,
+      "seconds": 16.2
     },
     {
       "id": "s3",
@@ -4747,8 +4610,8 @@
       "warnings": 2,
       "first_error": "",
       "error_codes": {},
-      "files": 1176,
-      "seconds": 97.2
+      "files": 1131,
+      "seconds": 45.7
     },
     {
       "id": "s3-control",
@@ -4760,8 +4623,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1001,
-      "seconds": 68.3
+      "files": 955,
+      "seconds": 48.8
     },
     {
       "id": "s3files",
@@ -4773,8 +4636,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 161,
-      "seconds": 19.3
+      "files": 152,
+      "seconds": 16.2
     },
     {
       "id": "s3outposts",
@@ -4786,8 +4649,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 59,
-      "seconds": 12.5
+      "files": 56,
+      "seconds": 8.8
     },
     {
       "id": "s3tables",
@@ -4799,8 +4662,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 405,
-      "seconds": 51.2
+      "files": 386,
+      "seconds": 20.0
     },
     {
       "id": "s3vectors",
@@ -4812,8 +4675,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 191,
-      "seconds": 49.8
+      "files": 178,
+      "seconds": 11.6
     },
     {
       "id": "sagemaker",
@@ -4825,8 +4688,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 5146,
-      "seconds": 258.5
+      "files": 4765,
+      "seconds": 232.2
     },
     {
       "id": "sagemaker-a2i-runtime",
@@ -4838,8 +4701,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 57,
-      "seconds": 40.4
+      "files": 55,
+      "seconds": 7.3
     },
     {
       "id": "sagemaker-edge",
@@ -4851,8 +4714,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 53,
-      "seconds": 37.6
+      "files": 48,
+      "seconds": 6.9
     },
     {
       "id": "sagemaker-featurestore-runtime",
@@ -4864,8 +4727,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 97,
-      "seconds": 8.2
+      "files": 84,
+      "seconds": 7.1
     },
     {
       "id": "sagemaker-geospatial",
@@ -4877,8 +4740,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 265,
-      "seconds": 11.6
+      "files": 246,
+      "seconds": 10.0
     },
     {
       "id": "sagemaker-metrics",
@@ -4890,8 +4753,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 42,
-      "seconds": 8.1
+      "files": 36,
+      "seconds": 6.5
     },
     {
       "id": "sagemaker-runtime",
@@ -4904,7 +4767,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 37,
-      "seconds": 7.8
+      "seconds": 7.1
     },
     {
       "id": "sagemaker-runtime-http2",
@@ -4917,7 +4780,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 27,
-      "seconds": 7.3
+      "seconds": 6.6
     },
     {
       "id": "sagemakerjobruntime",
@@ -4929,8 +4792,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 40,
-      "seconds": 7.1
+      "files": 39,
+      "seconds": 6.2
     },
     {
       "id": "savingsplans",
@@ -4942,8 +4805,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 172,
-      "seconds": 12.0
+      "files": 141,
+      "seconds": 7.6
     },
     {
       "id": "scheduler",
@@ -4955,8 +4818,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 136,
-      "seconds": 12.9
+      "files": 124,
+      "seconds": 8.5
     },
     {
       "id": "schemas",
@@ -4968,8 +4831,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 213,
-      "seconds": 10.8
+      "files": 204,
+      "seconds": 8.7
     },
     {
       "id": "secrets-manager",
@@ -4981,8 +4844,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 205,
-      "seconds": 11.4
+      "files": 188,
+      "seconds": 11.1
     },
     {
       "id": "security-ir",
@@ -4994,8 +4857,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 261,
-      "seconds": 13.7
+      "files": 239,
+      "seconds": 14.9
     },
     {
       "id": "securityagent",
@@ -5007,8 +4870,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1050,
-      "seconds": 29.0
+      "files": 945,
+      "seconds": 59.2
     },
     {
       "id": "securityhub",
@@ -5020,8 +4883,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 3099,
-      "seconds": 144.2
+      "files": 2766,
+      "seconds": 276.3
     },
     {
       "id": "securitylake",
@@ -5033,8 +4896,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 273,
-      "seconds": 15.5
+      "files": 255,
+      "seconds": 13.8
     },
     {
       "id": "serverlessapplicationrepository",
@@ -5046,8 +4909,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 128,
-      "seconds": 14.2
+      "files": 118,
+      "seconds": 9.6
     },
     {
       "id": "service-catalog",
@@ -5059,8 +4922,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 794,
-      "seconds": 36.1
+      "files": 728,
+      "seconds": 73.4
     },
     {
       "id": "service-catalog-appregistry",
@@ -5072,8 +4935,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 198,
-      "seconds": 19.2
+      "files": 187,
+      "seconds": 12.0
     },
     {
       "id": "service-quotas",
@@ -5085,8 +4948,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 238,
-      "seconds": 35.3
+      "files": 225,
+      "seconds": 11.4
     },
     {
       "id": "servicediscovery",
@@ -5098,8 +4961,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 322,
-      "seconds": 26.1
+      "files": 304,
+      "seconds": 14.4
     },
     {
       "id": "ses",
@@ -5111,8 +4974,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 597,
-      "seconds": 30.5
+      "files": 569,
+      "seconds": 23.8
     },
     {
       "id": "sesv2",
@@ -5124,8 +4987,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1112,
-      "seconds": 57.6
+      "files": 1039,
+      "seconds": 57.2
     },
     {
       "id": "sfn",
@@ -5137,42 +5000,34 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 445,
-      "seconds": 16.0
+      "files": 430,
+      "seconds": 27.9
     },
     {
       "id": "shield",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0266: Cannot implicitly convert type 'long?' to 'long'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 1
-      },
-      "files": 348,
-      "seconds": 14.3
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 321,
+      "seconds": 31.6
     },
     {
       "id": "signer",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 79,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS1010: Newline in constant",
-      "error_codes": {
-        "CS1010": 1,
-        "CS1056": 19,
-        "CS1003": 53,
-        "CS1525": 5,
-        "CS1001": 1
-      },
-      "files": 199,
-      "seconds": 29.0
+      "first_error": "",
+      "error_codes": {},
+      "files": 185,
+      "seconds": 23.8
     },
     {
       "id": "signer-data",
@@ -5184,8 +5039,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 19,
-      "seconds": 23.1
+      "files": 17,
+      "seconds": 22.1
     },
     {
       "id": "signin",
@@ -5197,8 +5052,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 99,
-      "seconds": 23.4
+      "files": 92,
+      "seconds": 11.2
     },
     {
       "id": "simpledbv2",
@@ -5210,8 +5065,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 39,
-      "seconds": 22.9
+      "files": 38,
+      "seconds": 10.7
     },
     {
       "id": "snow-device-management",
@@ -5223,8 +5078,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 139,
-      "seconds": 5.6
+      "files": 126,
+      "seconds": 10.7
     },
     {
       "id": "snowball",
@@ -5237,8 +5092,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 287,
-      "seconds": 9.8
+      "files": 271,
+      "seconds": 16.7
     },
     {
       "id": "sns",
@@ -5250,8 +5105,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 350,
-      "seconds": 10.7
+      "files": 330,
+      "seconds": 20.7
     },
     {
       "id": "socialmessaging",
@@ -5263,8 +5118,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 344,
-      "seconds": 15.8
+      "files": 316,
+      "seconds": 23.2
     },
     {
       "id": "sqs",
@@ -5276,8 +5131,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 247,
-      "seconds": 15.9
+      "files": 224,
+      "seconds": 22.4
     },
     {
       "id": "ssm",
@@ -5291,23 +5146,21 @@
       "error_codes": {
         "CS0101": 1
       },
-      "files": 2008,
-      "seconds": 95.2
+      "files": 1805,
+      "seconds": 112.8
     },
     {
       "id": "ssm-contacts",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 335,
-      "seconds": 13.5
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 309,
+      "seconds": 22.1
     },
     {
       "id": "ssm-guiconnect",
@@ -5319,8 +5172,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 39,
-      "seconds": 11.7
+      "files": 38,
+      "seconds": 9.0
     },
     {
       "id": "ssm-incidents",
@@ -5335,8 +5188,8 @@
         "CS0102": 1,
         "CS0542": 1
       },
-      "files": 309,
-      "seconds": 12.1
+      "files": 280,
+      "seconds": 10.1
     },
     {
       "id": "ssm-quicksetup",
@@ -5348,8 +5201,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 136,
-      "seconds": 12.7
+      "files": 122,
+      "seconds": 12.0
     },
     {
       "id": "ssm-sap",
@@ -5361,8 +5214,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 293,
-      "seconds": 21.4
+      "files": 266,
+      "seconds": 10.7
     },
     {
       "id": "sso",
@@ -5374,8 +5227,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 40,
-      "seconds": 7.5
+      "files": 38,
+      "seconds": 6.5
     },
     {
       "id": "sso-admin",
@@ -5387,8 +5240,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 607,
-      "seconds": 26.0
+      "files": 580,
+      "seconds": 32.9
     },
     {
       "id": "sso-oidc",
@@ -5400,8 +5253,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 62,
-      "seconds": 7.0
+      "files": 59,
+      "seconds": 8.1
     },
     {
       "id": "storage-gateway",
@@ -5413,8 +5266,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 678,
-      "seconds": 63.8
+      "files": 633,
+      "seconds": 46.8
     },
     {
       "id": "sts",
@@ -5426,8 +5279,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 103,
-      "seconds": 12.5
+      "files": 98,
+      "seconds": 13.7
     },
     {
       "id": "supplychain",
@@ -5441,8 +5294,8 @@
       "error_codes": {
         "CS0101": 1
       },
-      "files": 292,
-      "seconds": 16.2
+      "files": 277,
+      "seconds": 18.0
     },
     {
       "id": "support",
@@ -5454,8 +5307,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 226,
-      "seconds": 14.8
+      "files": 203,
+      "seconds": 15.4
     },
     {
       "id": "support-app",
@@ -5467,8 +5320,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 72,
-      "seconds": 9.8
+      "files": 70,
+      "seconds": 7.1
     },
     {
       "id": "supportauthz",
@@ -5480,8 +5333,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 113,
-      "seconds": 36.6
+      "files": 103,
+      "seconds": 7.3
     },
     {
       "id": "sustainability",
@@ -5493,8 +5346,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 80,
-      "seconds": 32.9
+      "files": 69,
+      "seconds": 6.2
     },
     {
       "id": "swf",
@@ -5506,8 +5359,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 465,
-      "seconds": 33.0
+      "files": 456,
+      "seconds": 13.7
     },
     {
       "id": "synthetics",
@@ -5519,8 +5372,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 280,
-      "seconds": 28.2
+      "files": 255,
+      "seconds": 19.1
     },
     {
       "id": "taxsettings",
@@ -5532,8 +5385,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 272,
-      "seconds": 20.1
+      "files": 258,
+      "seconds": 19.2
     },
     {
       "id": "textract",
@@ -5545,8 +5398,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 363,
-      "seconds": 14.4
+      "files": 323,
+      "seconds": 24.7
     },
     {
       "id": "timestream-influxdb",
@@ -5558,8 +5411,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 244,
-      "seconds": 22.4
+      "files": 230,
+      "seconds": 10.8
     },
     {
       "id": "timestream-query",
@@ -5571,8 +5424,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 235,
-      "seconds": 18.5
+      "files": 220,
+      "seconds": 11.2
     },
     {
       "id": "timestream-write",
@@ -5584,8 +5437,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 223,
-      "seconds": 17.8
+      "files": 209,
+      "seconds": 11.2
     },
     {
       "id": "tnb",
@@ -5597,8 +5450,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 303,
-      "seconds": 29.4
+      "files": 291,
+      "seconds": 14.6
     },
     {
       "id": "transcribe",
@@ -5610,8 +5463,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 436,
-      "seconds": 35.0
+      "files": 409,
+      "seconds": 20.1
     },
     {
       "id": "transcribe-streaming",
@@ -5623,8 +5476,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 223,
-      "seconds": 24.3
+      "files": 203,
+      "seconds": 27.4
     },
     {
       "id": "transfer",
@@ -5636,8 +5489,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 699,
-      "seconds": 19.7
+      "files": 660,
+      "seconds": 33.5
     },
     {
       "id": "translate",
@@ -5650,8 +5503,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 209,
-      "seconds": 13.6
+      "files": 198,
+      "seconds": 13.2
     },
     {
       "id": "trustedadvisor",
@@ -5663,8 +5516,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 150,
-      "seconds": 13.5
+      "files": 137,
+      "seconds": 20.9
     },
     {
       "id": "uxc",
@@ -5676,8 +5529,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 35,
-      "seconds": 7.7
+      "files": 32,
+      "seconds": 9.3
     },
     {
       "id": "verifiedpermissions",
@@ -5689,8 +5542,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 434,
-      "seconds": 16.3
+      "files": 401,
+      "seconds": 14.0
     },
     {
       "id": "voice-id",
@@ -5702,8 +5555,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 245,
-      "seconds": 13.8
+      "files": 233,
+      "seconds": 11.5
     },
     {
       "id": "vpc-lattice",
@@ -5715,8 +5568,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 541,
-      "seconds": 26.1
+      "files": 509,
+      "seconds": 16.6
     },
     {
       "id": "waf",
@@ -5728,8 +5581,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 653,
-      "seconds": 20.2
+      "files": 611,
+      "seconds": 41.6
     },
     {
       "id": "waf-regional",
@@ -5741,8 +5594,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 679,
-      "seconds": 39.3
+      "files": 636,
+      "seconds": 53.5
     },
     {
       "id": "wafv2",
@@ -5754,8 +5607,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 881,
-      "seconds": 25.0
+      "files": 810,
+      "seconds": 76.7
     },
     {
       "id": "wellarchitected",
@@ -5767,8 +5620,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 973,
-      "seconds": 65.6
+      "files": 876,
+      "seconds": 82.2
     },
     {
       "id": "wickr",
@@ -5780,8 +5633,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 360,
-      "seconds": 26.8
+      "files": 334,
+      "seconds": 23.4
     },
     {
       "id": "wisdom",
@@ -5793,8 +5646,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 373,
-      "seconds": 57.0
+      "files": 345,
+      "seconds": 13.0
     },
     {
       "id": "workdocs",
@@ -5806,8 +5659,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 466,
-      "seconds": 18.3
+      "files": 433,
+      "seconds": 18.4
     },
     {
       "id": "workmail",
@@ -5819,8 +5672,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 680,
-      "seconds": 47.5
+      "files": 643,
+      "seconds": 15.3
     },
     {
       "id": "workmailmessageflow",
@@ -5833,7 +5686,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 24,
-      "seconds": 7.4
+      "seconds": 7.7
     },
     {
       "id": "workspaces",
@@ -5845,8 +5698,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 975,
-      "seconds": 42.0
+      "files": 893,
+      "seconds": 51.2
     },
     {
       "id": "workspaces-instances",
@@ -5859,8 +5712,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 247,
-      "seconds": 30.7
+      "files": 227,
+      "seconds": 11.2
     },
     {
       "id": "workspaces-thin-client",
@@ -5872,23 +5725,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 158,
-      "seconds": 35.1
+      "files": 149,
+      "seconds": 10.9
     },
     {
       "id": "workspaces-web",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS0266: Cannot implicitly convert type 'int?' to 'int'. An explicit conversion exists (are you missing a cast?)",
-      "error_codes": {
-        "CS0266": 2
-      },
-      "files": 567,
-      "seconds": 30.4
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 534,
+      "seconds": 38.6
     },
     {
       "id": "xray",
@@ -5900,8 +5751,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 478,
-      "seconds": 26.8
+      "files": 422,
+      "seconds": 12.0
     }
   ]
 }
