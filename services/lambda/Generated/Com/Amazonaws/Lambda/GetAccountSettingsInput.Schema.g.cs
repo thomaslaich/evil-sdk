@@ -6,27 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetAccountSettingsInputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<GetAccountSettingsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetAccountSettingsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetAccountSettingsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetAccountSettingsInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetAccountSettingsInput"),
             [],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -37,11 +35,12 @@ public static partial class GetAccountSettingsInputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetAccountSettingsInput Build(Builder builder) =>
-            new GetAccountSettingsInput();
+        public override global::Com.Amazonaws.Lambda.GetAccountSettingsInput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.GetAccountSettingsInput();
 
         public override void SerializeMembers<TSerializer>(
-            GetAccountSettingsInput value,
+            global::Com.Amazonaws.Lambda.GetAccountSettingsInput value,
             ref TSerializer serializer
         ) { }
 

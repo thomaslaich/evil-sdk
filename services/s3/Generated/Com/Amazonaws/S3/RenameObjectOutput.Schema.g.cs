@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RenameObjectOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<RenameObjectOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.RenameObjectOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RenameObjectOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RenameObjectOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RenameObjectOutput"),
             [],
             [
@@ -28,10 +31,11 @@ public static partial class RenameObjectOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override RenameObjectOutput Build(Builder builder) => new RenameObjectOutput();
+        public override global::Com.Amazonaws.S3.RenameObjectOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RenameObjectOutput();
 
         public override void SerializeMembers<TSerializer>(
-            RenameObjectOutput value,
+            global::Com.Amazonaws.S3.RenameObjectOutput value,
             ref TSerializer serializer
         ) { }
 

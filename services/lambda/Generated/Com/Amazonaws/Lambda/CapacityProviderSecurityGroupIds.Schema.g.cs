@@ -6,18 +6,15 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderSecurityGroupIdsSchema
 {
-    public static ListSchema<
-        CapacityProviderSecurityGroupIds,
-        string,
-        List<string>
-    > Schema { get; } = new GeneratedSchema();
+    public static ListSchema<IReadOnlyList<string>, string, List<string>> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<CapacityProviderSecurityGroupIds, string, List<string>>(
+        : ListSchema<IReadOnlyList<string>, string, List<string>>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderSecurityGroupIds"),
             ShapeKind.List,
             Target0,
@@ -27,14 +24,10 @@ public static partial class CapacityProviderSecurityGroupIdsSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)5) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(5m) },
                         }
                     )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ],
             [
@@ -43,37 +36,35 @@ public static partial class CapacityProviderSecurityGroupIdsSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)1024) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(1024m) },
                         }
                     )
                 ),
                 new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^sg-[0-9a-zA-Z]*$")),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<string> GetElements(CapacityProviderSecurityGroupIds value) =>
-            value.Values;
+        public override IEnumerable<string> GetElements(IReadOnlyList<string> value) => value;
 
         public override List<string> CreateTypedBuilder() => new();
 
         public override void Add(List<string> builder, string value) => builder.Add(value);
 
-        public override CapacityProviderSecurityGroupIds Build(List<string> builder) =>
-            CapacityProviderSecurityGroupIds.FromOwnedList(builder);
+        public override IReadOnlyList<string> Build(List<string> builder) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            CapacityProviderSecurityGroupIds value,
+            IReadOnlyList<string> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

@@ -6,53 +6,26 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class VpcConfigSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.Lambda.SubnetIds? SubnetIds { get; set; }
-        public global::Com.Amazonaws.Lambda.SecurityGroupIds? SecurityGroupIds { get; set; }
+        public IReadOnlyList<string>? SubnetIds { get; set; }
+        public IReadOnlyList<string>? SecurityGroupIds { get; set; }
         public bool? Ipv6AllowedForDualStack { get; set; }
     }
 
-    public static StructSchema<VpcConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.VpcConfig, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<VpcConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.VpcConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#VpcConfig"),
             [
-                new(
-                    "SubnetIds",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of VPC subnet IDs.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "SecurityGroupIds",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of VPC security group IDs.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("SubnetIds", Target0),
+                new("SecurityGroupIds", Target1),
                 new(
                     "Ipv6AllowedForDualStack",
                     Target2,
@@ -62,52 +35,34 @@ public static partial class VpcConfigSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The VPC security groups and subnets that are attached to a Lambda function. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html\">Configuring a Lambda function to access resources in a VPC</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SubnetIds?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => SubnetIdsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SecurityGroupIds?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => SecurityGroupIdsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SubnetIdsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SecurityGroupIdsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override VpcConfig Build(Builder builder) =>
-            new VpcConfig(
+        public override global::Com.Amazonaws.Lambda.VpcConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.VpcConfig(
                 builder.Ipv6AllowedForDualStack,
                 builder.SecurityGroupIds,
                 builder.SubnetIds
             );
 
         public override void SerializeMembers<TSerializer>(
-            VpcConfig value,
+            global::Com.Amazonaws.Lambda.VpcConfig value,
             ref TSerializer serializer
         )
         {

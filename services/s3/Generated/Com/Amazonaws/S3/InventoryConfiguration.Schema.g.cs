@@ -6,26 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryConfigurationSchema
 {
     public sealed class Builder
     {
-        public InventoryDestination? Destination { get; set; }
+        public global::Com.Amazonaws.S3.InventoryDestination? Destination { get; set; }
         public bool? IsEnabled { get; set; }
-        public InventoryFilter? Filter { get; set; }
+        public global::Com.Amazonaws.S3.InventoryFilter? Filter { get; set; }
         public string? Id { get; set; }
-        public InventoryIncludedObjectVersions? IncludedObjectVersions { get; set; }
-        public InventoryOptionalFields? OptionalFields { get; set; }
-        public InventorySchedule? Schedule { get; set; }
+        public global::Com.Amazonaws.S3.InventoryIncludedObjectVersions? IncludedObjectVersions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.InventoryOptionalField>? OptionalFields { get; set; }
+        public global::Com.Amazonaws.S3.InventorySchedule? Schedule { get; set; }
     }
 
-    public static StructSchema<InventoryConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InventoryConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventoryConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventoryConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventoryConfiguration"),
             [
                 new(
@@ -34,12 +36,6 @@ public static partial class InventoryConfigurationSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains information about where to publish the inventory results.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -57,42 +53,18 @@ public static partial class InventoryConfigurationSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the inventory is enabled or disabled. If set to <code>True</code>, an inventory\n      list is generated. If set to <code>False</code>, no inventory list is generated.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Filter",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies an inventory filter. The inventory only includes objects that meet the filter's\n      criteria.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Filter", Target2),
                 new(
                     "Id",
                     Target3,
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID used to identify the inventory configuration.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -106,30 +78,12 @@ public static partial class InventoryConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Object versions to include in the inventory list. If set to <code>All</code>, the list includes all\n      the object versions, which adds the version-related fields <code>VersionId</code>,\n      <code>IsLatest</code>, and <code>DeleteMarker</code> to the list. If set to <code>Current</code>, the\n      list does not contain these version-related fields.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "OptionalFields",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains the optional fields that are included in the inventory results.</p>\n         <note>\n            <p>The following optional fields are supported for directory buckets <code>Size | LastModifiedDate | StorageClass | ETag | IsMultipartUploaded | \n      EncryptionStatus | BucketKeyStatus | ChecksumAlgorithm | LifecycleExpirationDate.</code> Throws MalformedXML error if unsupported optional field is provided. </p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("OptionalFields", Target5),
                 new(
                     "Schedule",
                     Target6,
@@ -137,48 +91,46 @@ public static partial class InventoryConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the schedule for generating inventory results.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the S3 Inventory configuration for an Amazon S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETInventoryConfig.html\">GET Bucket\n        inventory</a> in the <i>Amazon S3 API Reference</i>. </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryDestination?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryDestinationSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryFilter?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryFilterSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryDestination?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InventoryDestinationSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryFilter?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InventoryFilterSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryIncludedObjectVersions?> Target4 =
-            Schemas.Nullable(InventoryIncludedObjectVersionsSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryOptionalFields?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryOptionalFieldsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<InventorySchedule?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryScheduleSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryIncludedObjectVersions?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                InventoryIncludedObjectVersionsSchema.Schema
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.InventoryOptionalField>?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InventoryOptionalFieldsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventorySchedule?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InventoryScheduleSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventoryConfiguration Build(Builder builder) =>
-            new InventoryConfiguration(
+        public override global::Com.Amazonaws.S3.InventoryConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InventoryConfiguration(
                 builder.Destination ?? throw new MissingRequiredMemberException("Destination"),
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.IncludedObjectVersions
@@ -190,7 +142,7 @@ public static partial class InventoryConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            InventoryConfiguration value,
+            global::Com.Amazonaws.S3.InventoryConfiguration value,
             ref TSerializer serializer
         )
         {
@@ -267,8 +219,10 @@ public static partial class InventoryConfigurationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value4
-                                ? InventoryIncludedObjectVersions.FromValue(value4)
-                                : default(InventoryIncludedObjectVersions)
+                                ? global::Com.Amazonaws.S3.InventoryIncludedObjectVersions.FromValue(
+                                    value4
+                                )
+                                : default(global::Com.Amazonaws.S3.InventoryIncludedObjectVersions)
                         );
                     break;
                 case 5:

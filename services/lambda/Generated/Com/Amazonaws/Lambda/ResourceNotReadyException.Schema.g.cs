@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ResourceNotReadyExceptionSchema
 {
@@ -15,72 +15,42 @@ public static partial class ResourceNotReadyExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<ResourceNotReadyException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ResourceNotReadyException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ResourceNotReadyException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ResourceNotReadyException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ResourceNotReadyException"),
+            [new("Type", Target0), new("message", Target1)],
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception type.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception message.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The function is inactive and its VPC connection is no longer available. Wait for the VPC connection to reestablish and try again.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("server")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)502)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(502m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ResourceNotReadyException Build(Builder builder) =>
-            new ResourceNotReadyException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.ResourceNotReadyException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ResourceNotReadyException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ResourceNotReadyException value,
+            global::Com.Amazonaws.Lambda.ResourceNotReadyException value,
             ref TSerializer serializer
         )
         {

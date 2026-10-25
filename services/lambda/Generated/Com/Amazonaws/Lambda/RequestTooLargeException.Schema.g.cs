@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RequestTooLargeExceptionSchema
 {
@@ -15,64 +15,42 @@ public static partial class RequestTooLargeExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<RequestTooLargeException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.RequestTooLargeException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RequestTooLargeException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.RequestTooLargeException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#RequestTooLargeException"),
+            [new("Type", Target0), new("message", Target1)],
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request payload exceeded the <code>Invoke</code> request body JSON input quota. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html\">Lambda quotas</a>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)413)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(413m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RequestTooLargeException Build(Builder builder) =>
-            new RequestTooLargeException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.RequestTooLargeException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.RequestTooLargeException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            RequestTooLargeException value,
+            global::Com.Amazonaws.Lambda.RequestTooLargeException value,
             ref TSerializer serializer
         )
         {

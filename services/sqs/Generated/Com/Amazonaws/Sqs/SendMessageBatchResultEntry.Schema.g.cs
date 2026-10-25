@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageBatchResultEntrySchema
 {
@@ -20,11 +20,13 @@ public static partial class SendMessageBatchResultEntrySchema
         public string? SequenceNumber { get; set; }
     }
 
-    public static StructSchema<SendMessageBatchResultEntry, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.SendMessageBatchResultEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendMessageBatchResultEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.SendMessageBatchResultEntry, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageBatchResultEntry"),
             [
                 new(
@@ -33,10 +35,6 @@ public static partial class SendMessageBatchResultEntrySchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>An identifier for the message in this batch.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -50,10 +48,6 @@ public static partial class SendMessageBatchResultEntrySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>An identifier for the message.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -66,84 +60,49 @@ public static partial class SendMessageBatchResultEntrySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message body string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see <a href=\"https://www.ietf.org/rfc/rfc1321.txt\">RFC1321</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "MD5OfMessageAttributes",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message attribute string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see <a href=\"https://www.ietf.org/rfc/rfc1321.txt\">RFC1321</a>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "MD5OfMessageSystemAttributes",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message system attribute string. You can use this \nattribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see <a href=\"https://www.ietf.org/rfc/rfc1321.txt\">RFC1321</a>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "SequenceNumber",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This parameter applies only to FIFO (first-in-first-out) queues.</p>\n         <p>The large, non-consecutive number that Amazon SQS assigns to each message.</p>\n         <p>The length of <code>SequenceNumber</code> is 128 bits. As <code>SequenceNumber</code>\n            continues to increase for a particular <code>MessageGroupId</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("MD5OfMessageAttributes", Target3),
+                new("MD5OfMessageSystemAttributes", Target4),
+                new("SequenceNumber", Target5),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Encloses a <code>MessageId</code> for a successfully-enqueued message in a <code>\n               <a>SendMessageBatch</a>.</code>\n         </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendMessageBatchResultEntry Build(Builder builder) =>
-            new SendMessageBatchResultEntry(
+        public override global::Com.Amazonaws.Sqs.SendMessageBatchResultEntry Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.SendMessageBatchResultEntry(
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.MD5OfMessageBody
                     ?? throw new MissingRequiredMemberException("MD5OfMessageBody"),
@@ -154,7 +113,7 @@ public static partial class SendMessageBatchResultEntrySchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            SendMessageBatchResultEntry value,
+            global::Com.Amazonaws.Sqs.SendMessageBatchResultEntry value,
             ref TSerializer serializer
         )
         {

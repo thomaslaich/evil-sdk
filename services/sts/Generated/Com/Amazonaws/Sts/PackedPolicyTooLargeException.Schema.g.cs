@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class PackedPolicyTooLargeExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class PackedPolicyTooLargeExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<PackedPolicyTooLargeException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.PackedPolicyTooLargeException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PackedPolicyTooLargeException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.PackedPolicyTooLargeException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#PackedPolicyTooLargeException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class PackedPolicyTooLargeExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("PackedPolicyTooLarge") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request was rejected because the total packed size of the session policies and\n            session tags combined was too large. An Amazon Web Services conversion compresses the session policy\n            document, session policy ARNs, and session tags into a packed binary format that has a\n            separate limit. The error message indicates by percentage how close the policies and\n            tags are to the upper size limit. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html\">Passing Session Tags in STS</a> in\n            the <i>IAM User Guide</i>.</p>\n         <p>You could receive this error even though you meet other defined session policy and\n            session tag limits. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html#reference_iam-limits-entity-length\">IAM and STS Entity Character Limits</a> in the <i>IAM User\n                Guide</i>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PackedPolicyTooLargeException Build(Builder builder) =>
-            new PackedPolicyTooLargeException(builder.Message);
+        public override global::Com.Amazonaws.Sts.PackedPolicyTooLargeException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.PackedPolicyTooLargeException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            PackedPolicyTooLargeException value,
+            global::Com.Amazonaws.Sts.PackedPolicyTooLargeException value,
             ref TSerializer serializer
         )
         {

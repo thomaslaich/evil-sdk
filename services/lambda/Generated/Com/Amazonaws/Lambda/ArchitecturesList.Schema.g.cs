@@ -6,15 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ArchitecturesListSchema
 {
-    public static ListSchema<ArchitecturesList, Architecture, List<Architecture>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.Lambda.Architecture>,
+        global::Com.Amazonaws.Lambda.Architecture,
+        List<global::Com.Amazonaws.Lambda.Architecture>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<ArchitecturesList, Architecture, List<Architecture>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Architecture>,
+            global::Com.Amazonaws.Lambda.Architecture,
+            List<global::Com.Amazonaws.Lambda.Architecture>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ArchitecturesList"),
             ShapeKind.List,
             Target0,
@@ -24,44 +31,40 @@ public static partial class ArchitecturesListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)1) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(1m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Architecture> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Architecture> Target0 =
             ArchitectureSchema.Schema;
 
-        public override IEnumerable<Architecture> GetElements(ArchitecturesList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.Architecture> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Architecture> value
+        ) => value;
 
-        public override List<Architecture> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.Architecture> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<Architecture> builder, Architecture value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.Architecture> builder,
+            global::Com.Amazonaws.Lambda.Architecture value
+        ) => builder.Add(value);
 
-        public override ArchitecturesList Build(List<Architecture> builder) =>
-            ArchitecturesList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.Architecture> Build(
+            List<global::Com.Amazonaws.Lambda.Architecture> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ArchitecturesList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Architecture> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -69,14 +72,14 @@ public static partial class ArchitecturesListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Architecture> builder,
+            List<global::Com.Amazonaws.Lambda.Architecture> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? Architecture.FromValue(element)
-                        : default(Architecture)
+                        ? global::Com.Amazonaws.Lambda.Architecture.FromValue(element)
+                        : default(global::Com.Amazonaws.Lambda.Architecture)
                 )
             );
     }

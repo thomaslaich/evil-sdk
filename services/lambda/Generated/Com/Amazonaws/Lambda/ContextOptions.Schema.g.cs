@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ContextOptionsSchema
 {
@@ -15,10 +15,13 @@ public static partial class ContextOptionsSchema
         public bool? ReplayChildren { get; set; }
     }
 
-    public static StructSchema<ContextOptions, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ContextOptions,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ContextOptions, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ContextOptions, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ContextOptions"),
             [
                 new(
@@ -30,42 +33,22 @@ public static partial class ContextOptionsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Whether the state data of children of the completed context should be included in the invoke payload and <code>GetDurableExecutionState</code> response.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Configuration options for a durable execution context.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ContextOptions Build(Builder builder) =>
-            new ContextOptions(builder.ReplayChildren);
+        public override global::Com.Amazonaws.Lambda.ContextOptions Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ContextOptions(builder.ReplayChildren);
 
         public override void SerializeMembers<TSerializer>(
-            ContextOptions value,
+            global::Com.Amazonaws.Lambda.ContextOptions value,
             ref TSerializer serializer
         )
         {

@@ -5,35 +5,29 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SSES3Schema
 {
     public sealed class Builder { }
 
-    public static StructSchema<SSES3, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.SSES3, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SSES3, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SSES3, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SSES3"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the use of SSE-S3 to encrypt delivered inventory reports.</p>"
-                    )
-                ),
-                new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SSE-S3")),
-            ]
+            [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SSE-S3"))]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override SSES3 Build(Builder builder) => new SSES3();
+        public override global::Com.Amazonaws.S3.SSES3 Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SSES3();
 
         public override void SerializeMembers<TSerializer>(
-            SSES3 value,
+            global::Com.Amazonaws.S3.SSES3 value,
             ref TSerializer serializer
         ) { }
 

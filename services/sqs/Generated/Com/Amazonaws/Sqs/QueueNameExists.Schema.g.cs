@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class QueueNameExistsSchema
 {
@@ -15,10 +15,11 @@ public static partial class QueueNameExistsSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<QueueNameExists, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.QueueNameExists, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<QueueNameExists, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.QueueNameExists, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#QueueNameExists"),
             [new("message", Target0)],
             [
@@ -28,31 +29,27 @@ public static partial class QueueNameExistsSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("QueueAlreadyExists") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A queue with this name already exists. Amazon SQS returns this error only if the request\n            includes attributes whose values differ from those of the existing queue.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override QueueNameExists Build(Builder builder) =>
-            new QueueNameExists(builder.Message);
+        public override global::Com.Amazonaws.Sqs.QueueNameExists Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.QueueNameExists(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            QueueNameExists value,
+            global::Com.Amazonaws.Sqs.QueueNameExists value,
             ref TSerializer serializer
         )
         {

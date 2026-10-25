@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ProvisionedConcurrencyStatusEnumSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ProvisionedConcurrencyStatusEnum> Schema { get; } =
-        Schemas.StringEnum<ProvisionedConcurrencyStatusEnum>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ProvisionedConcurrencyStatusEnum>(
             ShapeId.Parse("com.amazonaws.lambda#ProvisionedConcurrencyStatusEnum"),
             values: ["IN_PROGRESS", "READY", "FAILED"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

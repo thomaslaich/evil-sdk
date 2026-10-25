@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectIdentifierListSchema
 {
     public static ListSchema<
-        ObjectIdentifierList,
-        ObjectIdentifier,
-        List<ObjectIdentifier>
+        IReadOnlyList<global::Com.Amazonaws.S3.ObjectIdentifier>,
+        global::Com.Amazonaws.S3.ObjectIdentifier,
+        List<global::Com.Amazonaws.S3.ObjectIdentifier>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<ObjectIdentifierList, ObjectIdentifier, List<ObjectIdentifier>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectIdentifier>,
+            global::Com.Amazonaws.S3.ObjectIdentifier,
+            List<global::Com.Amazonaws.S3.ObjectIdentifier>
+        >(
             ShapeId.Parse("com.amazonaws.s3#ObjectIdentifierList"),
             ShapeKind.List,
             Target0,
@@ -25,26 +29,31 @@ public static partial class ObjectIdentifierListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectIdentifier> Target0 =
-            Schemas.Lazy(() => ObjectIdentifierSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectIdentifier> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectIdentifierSchema.Schema!);
 
-        public override IEnumerable<ObjectIdentifier> GetElements(ObjectIdentifierList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.ObjectIdentifier> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectIdentifier> value
+        ) => value;
 
-        public override List<ObjectIdentifier> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.ObjectIdentifier> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<ObjectIdentifier> builder, ObjectIdentifier value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.ObjectIdentifier> builder,
+            global::Com.Amazonaws.S3.ObjectIdentifier value
+        ) => builder.Add(value);
 
-        public override ObjectIdentifierList Build(List<ObjectIdentifier> builder) =>
-            ObjectIdentifierList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.ObjectIdentifier> Build(
+            List<global::Com.Amazonaws.S3.ObjectIdentifier> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ObjectIdentifierList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectIdentifier> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -59,7 +68,7 @@ public static partial class ObjectIdentifierListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ObjectIdentifier> builder,
+            List<global::Com.Amazonaws.S3.ObjectIdentifier> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ObjectIdentifierSchema.Schema));
     }

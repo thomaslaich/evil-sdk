@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ModeNotSupportedExceptionSchema
 {
@@ -15,72 +15,42 @@ public static partial class ModeNotSupportedExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<ModeNotSupportedException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ModeNotSupportedException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ModeNotSupportedException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ModeNotSupportedException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ModeNotSupportedException"),
+            [new("Type", Target0), new("message", Target1)],
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception type.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception message.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The Lambda function doesn't support the invocation mode requested. For example, calling <code>Invoke</code> with <code>InvocationType=RequestResponse</code> on a function configured for asynchronous-only invocation, or vice versa. For more information about invocation types, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-options.html\">Invoking Lambda functions</a>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ModeNotSupportedException Build(Builder builder) =>
-            new ModeNotSupportedException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.ModeNotSupportedException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ModeNotSupportedException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ModeNotSupportedException value,
+            global::Com.Amazonaws.Lambda.ModeNotSupportedException value,
             ref TSerializer serializer
         )
         {

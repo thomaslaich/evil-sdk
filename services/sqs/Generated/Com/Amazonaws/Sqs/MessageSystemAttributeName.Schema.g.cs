@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageSystemAttributeNameSchema
 {
     public static global::NSmithy.Core.Serde.Schema<MessageSystemAttributeName> Schema { get; } =
-        Schemas.StringEnum<MessageSystemAttributeName>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<MessageSystemAttributeName>(
             ShapeId.Parse("com.amazonaws.sqs#MessageSystemAttributeName"),
             values:
             [

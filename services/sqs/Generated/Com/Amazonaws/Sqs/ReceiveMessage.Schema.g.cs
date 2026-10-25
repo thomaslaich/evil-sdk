@@ -5,89 +5,87 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ReceiveMessageSchema
 {
-    public static OperationSchema<ReceiveMessageInput, ReceiveMessageOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.ReceiveMessageInput,
+        global::Com.Amazonaws.Sqs.ReceiveMessageOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#ReceiveMessage"),
-            Schemas.Lazy(() => ReceiveMessageInputSchema.Schema!),
-            Schemas.Lazy(() => ReceiveMessageOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ReceiveMessageInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ReceiveMessageOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsAccessDenied"),
-                    Schemas.Lazy(() => KmsAccessDeniedSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsAccessDeniedSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsDisabled"),
-                    Schemas.Lazy(() => KmsDisabledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsDisabledSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsInvalidKeyUsage"),
-                    Schemas.Lazy(() => KmsInvalidKeyUsageSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsInvalidKeyUsageSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsInvalidState"),
-                    Schemas.Lazy(() => KmsInvalidStateSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsInvalidStateSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsNotFound"),
-                    Schemas.Lazy(() => KmsNotFoundSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsNotFoundSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsOptInRequired"),
-                    Schemas.Lazy(() => KmsOptInRequiredSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsOptInRequiredSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsThrottled"),
-                    Schemas.Lazy(() => KmsThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsThrottledSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#OverLimit"),
-                    Schemas.Lazy(() => OverLimitSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => OverLimitSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Retrieves one or more messages (up to 10), from the specified queue. Using the\n                <code>WaitTimeSeconds</code> parameter enables long-poll support. For more\n            information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html\">Amazon SQS\n                Long Polling</a> in the <i>Amazon SQS Developer Guide</i>. </p>\n         <p>Short poll is the default behavior where a weighted random set of machines is sampled\n            on a <code>ReceiveMessage</code> call. Therefore, only the messages on the sampled\n            machines are returned. If the number of messages in the queue is small (fewer than\n            1,000), you most likely get fewer messages than you requested per\n                <code>ReceiveMessage</code> call. If the number of messages in the queue is\n            extremely small, you might not receive any messages in a particular\n                <code>ReceiveMessage</code> response. If this happens, repeat the request.</p>\n         <p>For each message returned, the response includes the following:</p>\n         <ul>\n            <li>\n               <p>The message body.</p>\n            </li>\n            <li>\n               <p>An MD5 digest of the message body. For information about MD5, see <a href=\"https://www.ietf.org/rfc/rfc1321.txt\">RFC1321</a>.</p>\n            </li>\n            <li>\n               <p>The <code>MessageId</code> you received when you sent the message to the\n                    queue.</p>\n            </li>\n            <li>\n               <p>The receipt handle.</p>\n            </li>\n            <li>\n               <p>The message attributes.</p>\n            </li>\n            <li>\n               <p>An MD5 digest of the message attributes.</p>\n            </li>\n         </ul>\n         <p>The receipt handle is the identifier you must provide when deleting the message. For\n            more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-message-identifiers.html\">Queue and Message Identifiers</a> in the <i>Amazon SQS Developer\n                Guide</i>.</p>\n         <p>You can provide the <code>VisibilityTimeout</code> parameter in your request. The\n            parameter is applied to the messages that Amazon SQS returns in the response. If you don't\n            include the parameter, the overall visibility timeout for the queue is used for the\n            returned messages. The default visibility timeout for a queue is 30 seconds. </p>\n         <note>\n            <p>In the future, new attributes might be added. If you write code that calls this action, we recommend that you structure your code so that it can handle new attributes gracefully.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

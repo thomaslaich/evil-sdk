@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AccountLimitSchema
 {
@@ -19,83 +19,32 @@ public static partial class AccountLimitSchema
         public int? UnreservedConcurrentExecutions { get; set; }
     }
 
-    public static StructSchema<AccountLimit, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.AccountLimit, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AccountLimit, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.AccountLimit, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#AccountLimit"),
             [
                 new(
                     "TotalCodeSize",
                     Target0,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The amount of storage space that you can use for all deployment packages and layer archives.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
                 new(
                     "CodeSizeUnzipped",
                     Target1,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum size of a function's deployment package and layers when they're extracted.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
                 new(
                     "CodeSizeZipped",
                     Target2,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum size of a deployment package when it's uploaded directly to Lambda. Use Amazon S3 for larger files.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
                 new(
                     "ConcurrentExecutions",
                     Target3,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of simultaneous function executions.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
                 new(
                     "UnreservedConcurrentExecutions",
@@ -107,56 +56,27 @@ public static partial class AccountLimitSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of simultaneous function executions, minus the capacity that's reserved for individual functions with <a>PutFunctionConcurrency</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Limits that are related to concurrency and storage. All file and storage sizes are in bytes.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() =>
             new()
@@ -167,8 +87,8 @@ public static partial class AccountLimitSchema
                 ConcurrentExecutions = 0,
             };
 
-        public override AccountLimit Build(Builder builder) =>
-            new AccountLimit(
+        public override global::Com.Amazonaws.Lambda.AccountLimit Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.AccountLimit(
                 builder.CodeSizeUnzipped,
                 builder.CodeSizeZipped,
                 builder.ConcurrentExecutions,
@@ -177,7 +97,7 @@ public static partial class AccountLimitSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AccountLimit value,
+            global::Com.Amazonaws.Lambda.AccountLimit value,
             ref TSerializer serializer
         )
         {

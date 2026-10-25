@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryFrequencySchema
 {
     public static global::NSmithy.Core.Serde.Schema<InventoryFrequency> Schema { get; } =
-        Schemas.StringEnum<InventoryFrequency>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<InventoryFrequency>(
             ShapeId.Parse("com.amazonaws.s3#InventoryFrequency"),
             values: ["Daily", "Weekly"],
             traits:

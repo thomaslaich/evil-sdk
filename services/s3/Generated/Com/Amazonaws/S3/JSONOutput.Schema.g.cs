@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class JSONOutputSchema
 {
@@ -14,44 +14,28 @@ public static partial class JSONOutputSchema
         public string? RecordDelimiter { get; set; }
     }
 
-    public static StructSchema<JSONOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.JSONOutput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<JSONOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.JSONOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#JSONOutput"),
-            [
-                new(
-                    "RecordDelimiter",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value used to separate individual records in the output. If no value is specified, Amazon S3 uses a\n      newline character ('\\n').</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Specifies JSON as request's output serialization format.</p>")
-                ),
-            ]
+            [new("RecordDelimiter", Target0)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override JSONOutput Build(Builder builder) =>
-            new JSONOutput(builder.RecordDelimiter);
+        public override global::Com.Amazonaws.S3.JSONOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.JSONOutput(builder.RecordDelimiter);
 
         public override void SerializeMembers<TSerializer>(
-            JSONOutput value,
+            global::Com.Amazonaws.S3.JSONOutput value,
             ref TSerializer serializer
         )
         {

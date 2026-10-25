@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectTorrentInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class GetObjectTorrentInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<GetObjectTorrentInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectTorrentInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectTorrentInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectTorrentInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectTorrentInput"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class GetObjectTorrentInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket containing the object for which to get the torrent files.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -63,20 +59,13 @@ public static partial class GetObjectTorrentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The object key for which to get the information.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -102,12 +91,6 @@ public static partial class GetObjectTorrentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -127,18 +110,24 @@ public static partial class GetObjectTorrentInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target2 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectTorrentInput Build(Builder builder) =>
-            new GetObjectTorrentInput(
+        public override global::Com.Amazonaws.S3.GetObjectTorrentInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectTorrentInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ExpectedBucketOwner,
@@ -146,7 +135,7 @@ public static partial class GetObjectTorrentInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectTorrentInput value,
+            global::Com.Amazonaws.S3.GetObjectTorrentInput value,
             ref TSerializer serializer
         )
         {

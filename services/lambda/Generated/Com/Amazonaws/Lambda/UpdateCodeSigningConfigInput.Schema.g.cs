@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateCodeSigningConfigInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class UpdateCodeSigningConfigInputSchema
         public global::Com.Amazonaws.Lambda.CodeSigningPolicies? CodeSigningPolicies { get; set; }
     }
 
-    public static StructSchema<UpdateCodeSigningConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateCodeSigningConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#UpdateCodeSigningConfigInput"),
             [
                 new(
@@ -32,12 +34,6 @@ public static partial class UpdateCodeSigningConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The The Amazon Resource Name (ARN) of the code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -46,8 +42,8 @@ public static partial class UpdateCodeSigningConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)200) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(200m) },
                                 }
                             )
                         ),
@@ -61,10 +57,6 @@ public static partial class UpdateCodeSigningConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -73,68 +65,24 @@ public static partial class UpdateCodeSigningConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Descriptive name for this code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "AllowedPublishers",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Signing profiles for this code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "CodeSigningPolicies",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The code signing policy.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("AllowedPublishers", Target2),
+                new("CodeSigningPolicies", Target3),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -144,18 +92,28 @@ public static partial class UpdateCodeSigningConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.AllowedPublishers?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowedPublishersSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowedPublishersSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CodeSigningPolicies?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => CodeSigningPoliciesSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CodeSigningPoliciesSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateCodeSigningConfigInput Build(Builder builder) =>
-            new UpdateCodeSigningConfigInput(
+        public override global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigInput(
                 builder.CodeSigningConfigArn
                     ?? throw new MissingRequiredMemberException("CodeSigningConfigArn"),
                 builder.AllowedPublishers,
@@ -164,7 +122,7 @@ public static partial class UpdateCodeSigningConfigInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateCodeSigningConfigInput value,
+            global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigInput value,
             ref TSerializer serializer
         )
         {

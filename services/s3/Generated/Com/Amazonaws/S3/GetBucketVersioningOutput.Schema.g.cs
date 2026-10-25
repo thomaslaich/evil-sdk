@@ -6,45 +6,31 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketVersioningOutputSchema
 {
     public sealed class Builder
     {
-        public BucketVersioningStatus? Status { get; set; }
-        public MFADeleteStatus? MFADelete { get; set; }
+        public global::Com.Amazonaws.S3.BucketVersioningStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.MFADeleteStatus? MFADelete { get; set; }
     }
 
-    public static StructSchema<GetBucketVersioningOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketVersioningOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketVersioningOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketVersioningOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketVersioningOutput"),
             [
-                new(
-                    "Status",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The versioning state of the bucket.</p>")
-                        ),
-                    ]
-                ),
+                new("Status", Target0),
                 new(
                     "MFADelete",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether MFA delete is enabled in the bucket versioning configuration. This element is only\n      returned if the bucket has been configured with MFA delete. If the bucket has never been so configured,\n      this element is not returned.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("MfaDelete")),
                     ]
                 ),
@@ -61,18 +47,21 @@ public static partial class GetBucketVersioningOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketVersioningStatus?> Target0 =
-            Schemas.Nullable(BucketVersioningStatusSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<MFADeleteStatus?> Target1 =
-            Schemas.Nullable(MFADeleteStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketVersioningStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketVersioningStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MFADeleteStatus?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(MFADeleteStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketVersioningOutput Build(Builder builder) =>
-            new GetBucketVersioningOutput(builder.MFADelete, builder.Status);
+        public override global::Com.Amazonaws.S3.GetBucketVersioningOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketVersioningOutput(
+                builder.MFADelete,
+                builder.Status
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketVersioningOutput value,
+            global::Com.Amazonaws.S3.GetBucketVersioningOutput value,
             ref TSerializer serializer
         )
         {
@@ -107,8 +96,8 @@ public static partial class GetBucketVersioningOutputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? BucketVersioningStatus.FromValue(value0)
-                                : default(BucketVersioningStatus)
+                                ? global::Com.Amazonaws.S3.BucketVersioningStatus.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.BucketVersioningStatus)
                         );
                     break;
                 case 1:
@@ -116,8 +105,8 @@ public static partial class GetBucketVersioningOutputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? MFADeleteStatus.FromValue(value1)
-                                : default(MFADeleteStatus)
+                                ? global::Com.Amazonaws.S3.MFADeleteStatus.FromValue(value1)
+                                : default(global::Com.Amazonaws.S3.MFADeleteStatus)
                         );
                     break;
             }

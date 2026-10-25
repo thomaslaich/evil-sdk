@@ -4,129 +4,59 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionEventInvokeConfigSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        DeleteFunctionEventInvokeConfigInput,
-        DeleteFunctionEventInvokeConfigOutput
+        global::Com.Amazonaws.Lambda.DeleteFunctionEventInvokeConfigInput,
+        global::Com.Amazonaws.Lambda.DeleteFunctionEventInvokeConfigOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionEventInvokeConfig"),
-            Schemas.Lazy(() => DeleteFunctionEventInvokeConfigInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteFunctionEventInvokeConfigOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteFunctionEventInvokeConfigInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteFunctionEventInvokeConfigOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceConflictException"),
-                    Schemas.Lazy(() => ResourceConflictExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceConflictExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to delete the configuration for asynchronous invocation for an AWS Lambda function, version, or alias"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_DeleteFunctionEventInvokeConfig.html")
-                            },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "function",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Deletes the configuration for asynchronous invocation for a function, version, or alias.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example deletes the asynchronous invocation configuration for the GREEN alias of a function named my-function."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                                { "Qualifier", Document.From("GREEN") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To delete an asynchronous invocation configuration"
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -139,13 +69,9 @@ public static partial class DeleteFunctionEventInvokeConfigSchema
                                     "/2019-09-25/functions/{FunctionName}/event-invoke-config"
                                 )
                             },
-                            { "code", Document.From((decimal)204) },
+                            { "code", Document.From(204m) },
                         }
                     )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

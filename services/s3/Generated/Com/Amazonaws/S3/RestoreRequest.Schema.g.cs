@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RestoreRequestSchema
 {
@@ -14,17 +14,18 @@ public static partial class RestoreRequestSchema
     {
         public int? Days { get; set; }
         public global::Com.Amazonaws.S3.GlacierJobParameters? GlacierJobParameters { get; set; }
-        public RestoreRequestType? Type { get; set; }
+        public global::Com.Amazonaws.S3.RestoreRequestType? Type { get; set; }
         public global::Com.Amazonaws.S3.Tier? Tier { get; set; }
         public string? Description { get; set; }
         public global::Com.Amazonaws.S3.SelectParameters? SelectParameters { get; set; }
         public global::Com.Amazonaws.S3.OutputLocation? OutputLocation { get; set; }
     }
 
-    public static StructSchema<RestoreRequest, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.RestoreRequest, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RestoreRequest, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RestoreRequest, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RestoreRequest"),
             [
                 new(
@@ -36,119 +37,45 @@ public static partial class RestoreRequestSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Lifetime of the active copy in days. Do not use with restores that specify\n        <code>OutputLocation</code>.</p>\n         <p>The Days element is required for regular restores, and must not be provided for select\n      requests.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "GlacierJobParameters",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>S3 Glacier related parameters pertaining to this job. Do not use with restores that specify\n        <code>OutputLocation</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<important>\n            <p>Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can\n        continue to use the feature as usual. <a href=\"http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/\">Learn more</a>\n            </p>\n         </important>\n         <p>Type of restore request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Tier",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Retrieval tier at which the restore will be processed.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Description",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The optional description for the job.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "SelectParameters",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<important>\n            <p>Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can\n        continue to use the feature as usual. <a href=\"http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/\">Learn more</a>\n            </p>\n         </important>\n         <p>Describes the parameters for Select job types.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "OutputLocation",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the location where the restore job's output is stored.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("GlacierJobParameters", Target1),
+                new("Type", Target2),
+                new("Tier", Target3),
+                new("Description", Target4),
+                new("SelectParameters", Target5),
+                new("OutputLocation", Target6),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for restore job parameters.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.GlacierJobParameters?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => GlacierJobParametersSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<RestoreRequestType?> Target2 =
-            Schemas.Nullable(RestoreRequestTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => GlacierJobParametersSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RestoreRequestType?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(RestoreRequestTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tier?> Target3 =
-            Schemas.Nullable(TierSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(TierSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SelectParameters?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => SelectParametersSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SelectParametersSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.OutputLocation?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => OutputLocationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OutputLocationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RestoreRequest Build(Builder builder) =>
-            new RestoreRequest(
+        public override global::Com.Amazonaws.S3.RestoreRequest Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RestoreRequest(
                 builder.Days,
                 builder.Description,
                 builder.GlacierJobParameters,
@@ -159,7 +86,7 @@ public static partial class RestoreRequestSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            RestoreRequest value,
+            global::Com.Amazonaws.S3.RestoreRequest value,
             ref TSerializer serializer
         )
         {
@@ -242,8 +169,8 @@ public static partial class RestoreRequestSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value2
-                                ? RestoreRequestType.FromValue(value2)
-                                : default(RestoreRequestType)
+                                ? global::Com.Amazonaws.S3.RestoreRequestType.FromValue(value2)
+                                : default(global::Com.Amazonaws.S3.RestoreRequestType)
                         );
                     break;
                 case 3:

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketPolicyInputSchema
 {
@@ -20,11 +20,13 @@ public static partial class PutBucketPolicyInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<PutBucketPolicyInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketPolicyInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketPolicyInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketPolicyInput"),
             [
                 new(
@@ -33,12 +35,6 @@ public static partial class PutBucketPolicyInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket.</p>\n         <p>\n            <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use path-style requests in the format <code>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i>\n            </code>. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming rules</a> in the <i>Amazon S3 User Guide</i>\n         </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -64,12 +60,6 @@ public static partial class PutBucketPolicyInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The MD5 hash of the request body.</p>\n         <p>For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -80,12 +70,6 @@ public static partial class PutBucketPolicyInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum-<i>algorithm</i>\n            </code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>.</p>\n         <p>For the <code>x-amz-checksum-<i>algorithm</i>\n            </code> header, replace <code>\n               <i>algorithm</i>\n            </code> with the supported algorithm from the following list: </p>\n         <ul>\n            <li>\n               <p>\n                  <code>CRC32</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>CRC32C</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>CRC64NVME</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>MD5</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA1</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA256</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA512</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH3</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH64</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH128</code>\n               </p>\n            </li>\n         </ul>\n         <p>For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If the individual checksum value you provide through <code>x-amz-checksum-<i>algorithm</i>\n            </code> doesn't match the checksum algorithm you set through <code>x-amz-sdk-checksum-algorithm</code>, Amazon S3 fails the request with a <code>BadDigest</code> error.</p>\n         <note>\n            <p>For directory buckets, when you use Amazon Web Services SDKs, <code>CRC32</code> is the default checksum algorithm that's used for performance.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -102,12 +86,6 @@ public static partial class PutBucketPolicyInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set this parameter to true to confirm that you want to remove your permissions to change this bucket\n      policy in the future.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-confirm-remove-self-bucket-access")
                         ),
@@ -119,12 +97,6 @@ public static partial class PutBucketPolicyInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The bucket policy as a JSON document.</p>\n         <p>For directory buckets, the only IAM action supported in the bucket policy is\n        <code>s3express:CreateSession</code>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -140,12 +112,6 @@ public static partial class PutBucketPolicyInputSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>\n         <note>\n            <p>For directory buckets, this header is not supported in this API operation. If you specify this header, the request fails with the HTTP status code \n<code>501 Not Implemented</code>.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -166,23 +132,30 @@ public static partial class PutBucketPolicyInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target2 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketPolicyInput Build(Builder builder) =>
-            new PutBucketPolicyInput(
+        public override global::Com.Amazonaws.S3.PutBucketPolicyInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketPolicyInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Policy ?? throw new MissingRequiredMemberException("Policy"),
                 builder.ChecksumAlgorithm,
@@ -192,7 +165,7 @@ public static partial class PutBucketPolicyInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketPolicyInput value,
+            global::Com.Amazonaws.S3.PutBucketPolicyInput value,
             ref TSerializer serializer
         )
         {

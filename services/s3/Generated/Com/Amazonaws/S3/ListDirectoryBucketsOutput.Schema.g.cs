@@ -6,52 +6,38 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListDirectoryBucketsOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.S3.Buckets? Buckets { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Bucket>? Buckets { get; set; }
         public string? ContinuationToken { get; set; }
     }
 
-    public static StructSchema<ListDirectoryBucketsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListDirectoryBucketsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListDirectoryBucketsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListDirectoryBucketsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListDirectoryBucketsOutput"),
             [
-                new(
-                    "Buckets",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The list of buckets owned by the requester. </p>")
-                        ),
-                    ]
-                ),
+                new("Buckets", Target0),
                 new(
                     "ContinuationToken",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If <code>ContinuationToken</code> was sent with the request, it is included in the response. You can\n      use the returned <code>ContinuationToken</code> for pagination of the list response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -70,18 +56,27 @@ public static partial class ListDirectoryBucketsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Buckets?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => BucketsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Bucket>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => BucketsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListDirectoryBucketsOutput Build(Builder builder) =>
-            new ListDirectoryBucketsOutput(builder.Buckets, builder.ContinuationToken);
+        public override global::Com.Amazonaws.S3.ListDirectoryBucketsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ListDirectoryBucketsOutput(
+                builder.Buckets,
+                builder.ContinuationToken
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListDirectoryBucketsOutput value,
+            global::Com.Amazonaws.S3.ListDirectoryBucketsOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,34 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketIntelligentTieringConfigurationSchema
 {
     public static OperationSchema<
-        DeleteBucketIntelligentTieringConfigurationInput,
-        DeleteBucketIntelligentTieringConfigurationOutput
+        global::Com.Amazonaws.S3.DeleteBucketIntelligentTieringConfigurationInput,
+        global::Com.Amazonaws.S3.DeleteBucketIntelligentTieringConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketIntelligentTieringConfiguration"),
-            Schemas.Lazy(() => DeleteBucketIntelligentTieringConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteBucketIntelligentTieringConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketIntelligentTieringConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketIntelligentTieringConfigurationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Deletes the S3 Intelligent-Tiering configuration from the specified bucket.</p>\n         <p>The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically moving data to the most cost-effective storage access tier, without performance impact or operational overhead. S3 Intelligent-Tiering delivers automatic cost savings in three low latency and high throughput access tiers. To get the lowest storage cost on data that can be accessed in minutes to hours, you can choose to activate additional archiving capabilities.</p>\n         <p>The S3 Intelligent-Tiering storage class is  the ideal storage class for data with unknown, changing, or unpredictable access patterns, independent of object size or retention period. If the size of an object is less than 128 KB, it is not monitored and not eligible for auto-tiering. Smaller objects can be stored, but they are always charged at the Frequent Access tier rates in the S3 Intelligent-Tiering storage class.</p>\n         <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access\">Storage class for automatically optimizing frequently and infrequently accessed objects</a>.</p>\n         <p>Operations related to <code>DeleteBucketIntelligentTieringConfiguration</code> include: </p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketIntelligentTieringConfiguration.html\">GetBucketIntelligentTieringConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html\">PutBucketIntelligentTieringConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketIntelligentTieringConfigurations.html\">ListBucketIntelligentTieringConfigurations</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}?intelligent-tiering") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/?intelligent-tiering") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

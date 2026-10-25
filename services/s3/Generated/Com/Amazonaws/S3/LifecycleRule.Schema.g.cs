@@ -6,97 +6,40 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class LifecycleRuleSchema
 {
     public sealed class Builder
     {
-        public LifecycleExpiration? Expiration { get; set; }
+        public global::Com.Amazonaws.S3.LifecycleExpiration? Expiration { get; set; }
         public string? ID { get; set; }
         public string? Prefix { get; set; }
-        public LifecycleRuleFilter? Filter { get; set; }
-        public ExpirationStatus? Status { get; set; }
-        public TransitionList? Transitions { get; set; }
-        public NoncurrentVersionTransitionList? NoncurrentVersionTransitions { get; set; }
+        public global::Com.Amazonaws.S3.LifecycleRuleFilter? Filter { get; set; }
+        public global::Com.Amazonaws.S3.ExpirationStatus? Status { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Transition>? Transitions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.NoncurrentVersionTransition>? NoncurrentVersionTransitions { get; set; }
         public global::Com.Amazonaws.S3.NoncurrentVersionExpiration? NoncurrentVersionExpiration { get; set; }
         public global::Com.Amazonaws.S3.AbortIncompleteMultipartUpload? AbortIncompleteMultipartUpload { get; set; }
     }
 
-    public static StructSchema<LifecycleRule, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.LifecycleRule, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LifecycleRule, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.LifecycleRule, Builder>(
             ShapeId.Parse("com.amazonaws.s3#LifecycleRule"),
             [
-                new(
-                    "Expiration",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the expiration for the lifecycle of the object in the form of date, days and, whether the\n      object has a delete marker.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ID",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Unique identifier for the rule. The value cannot be longer than 255 characters.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Prefix",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The general purpose bucket prefix that identifies one or more objects to which the rule applies. We recommend using <code>Filter</code> instead of <code>Prefix</code> for new PUTs. Previous configurations where a prefix is defined will continue to operate as before.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Filter",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The <code>Filter</code> is used to identify objects that a Lifecycle Rule applies to. A\n        <code>Filter</code> must have exactly one of <code>Prefix</code>, <code>Tag</code>,\n        <code>ObjectSizeGreaterThan</code>, <code>ObjectSizeLessThan</code>, or <code>And</code> specified.\n        <code>Filter</code> is required if the <code>LifecycleRule</code> does not contain a\n        <code>Prefix</code> element.</p>\n         <p>For more information about <code>Tag</code> filters, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-filters.html\">Adding filters to Lifecycle rules</a>\n      in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>\n               <code>Tag</code> filters are not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Expiration", Target0),
+                new("ID", Target1),
+                new("Prefix", Target2),
+                new("Filter", Target3),
                 new(
                     "Status",
                     Target4,
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being\n      applied.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -108,12 +51,6 @@ public static partial class LifecycleRuleSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies when an Amazon S3 object transitions to a specified storage class.</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -127,12 +64,6 @@ public static partial class LifecycleRuleSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the transition rule for the lifecycle rule that describes when noncurrent objects\n      transition to a specific storage class. If your bucket is versioning-enabled (or versioning is\n      suspended), you can set this action to request that Amazon S3 transition noncurrent object versions to a\n      specific storage class at a set period in the object's lifetime.</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -145,45 +76,54 @@ public static partial class LifecycleRuleSchema
                 new("NoncurrentVersionExpiration", Target7),
                 new("AbortIncompleteMultipartUpload", Target8),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A lifecycle rule for individual objects in an Amazon S3 bucket.</p>\n         <p>For more information see, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html\">Managing your storage lifecycle</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<LifecycleExpiration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => LifecycleExpirationSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.LifecycleExpiration?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => LifecycleExpirationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<LifecycleRuleFilter?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => LifecycleRuleFilterSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<ExpirationStatus?> Target4 =
-            Schemas.Nullable(ExpirationStatusSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<TransitionList?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => TransitionListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<NoncurrentVersionTransitionList?> Target6 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => NoncurrentVersionTransitionListSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.LifecycleRuleFilter?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => LifecycleRuleFilterSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ExpirationStatus?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ExpirationStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Transition>?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TransitionListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.NoncurrentVersionTransition>?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    NoncurrentVersionTransitionListSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.NoncurrentVersionExpiration?> Target7 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => NoncurrentVersionExpirationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    NoncurrentVersionExpirationSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AbortIncompleteMultipartUpload?> Target8 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => AbortIncompleteMultipartUploadSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    AbortIncompleteMultipartUploadSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LifecycleRule Build(Builder builder) =>
-            new LifecycleRule(
+        public override global::Com.Amazonaws.S3.LifecycleRule Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.LifecycleRule(
                 builder.Status ?? throw new MissingRequiredMemberException("Status"),
                 builder.AbortIncompleteMultipartUpload,
                 builder.Expiration,
@@ -196,7 +136,7 @@ public static partial class LifecycleRuleSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            LifecycleRule value,
+            global::Com.Amazonaws.S3.LifecycleRule value,
             ref TSerializer serializer
         )
         {
@@ -292,8 +232,8 @@ public static partial class LifecycleRuleSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value4
-                                ? ExpirationStatus.FromValue(value4)
-                                : default(ExpirationStatus)
+                                ? global::Com.Amazonaws.S3.ExpirationStatus.FromValue(value4)
+                                : default(global::Com.Amazonaws.S3.ExpirationStatus)
                         );
                     break;
                 case 5:

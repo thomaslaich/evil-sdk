@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockEnabledSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ObjectLockEnabled> Schema { get; } =
-        Schemas.StringEnum<ObjectLockEnabled>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ObjectLockEnabled>(
             ShapeId.Parse("com.amazonaws.s3#ObjectLockEnabled"),
             values: ["Enabled"],
             traits:

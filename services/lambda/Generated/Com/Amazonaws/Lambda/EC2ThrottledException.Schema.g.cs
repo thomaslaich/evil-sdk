@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EC2ThrottledExceptionSchema
 {
@@ -15,64 +15,37 @@ public static partial class EC2ThrottledExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<EC2ThrottledException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.EC2ThrottledException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EC2ThrottledException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.EC2ThrottledException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#EC2ThrottledException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Amazon EC2 throttled Lambda during Lambda function initialization using the execution role provided for the function.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("server")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)502)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(502m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EC2ThrottledException Build(Builder builder) =>
-            new EC2ThrottledException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.EC2ThrottledException Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.EC2ThrottledException(builder.Message, builder.Type);
 
         public override void SerializeMembers<TSerializer>(
-            EC2ThrottledException value,
+            global::Com.Amazonaws.Lambda.EC2ThrottledException value,
             ref TSerializer serializer
         )
         {

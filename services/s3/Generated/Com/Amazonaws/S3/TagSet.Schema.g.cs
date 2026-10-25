@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TagSetSchema
 {
     public static ListSchema<
-        TagSet,
+        IReadOnlyList<global::Com.Amazonaws.S3.Tag>,
         global::Com.Amazonaws.S3.Tag,
         List<global::Com.Amazonaws.S3.Tag>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<TagSet, global::Com.Amazonaws.S3.Tag, List<global::Com.Amazonaws.S3.Tag>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.Tag>,
+            global::Com.Amazonaws.S3.Tag,
+            List<global::Com.Amazonaws.S3.Tag>
+        >(
             ShapeId.Parse("com.amazonaws.s3#TagSet"),
             ShapeKind.List,
             Target0,
@@ -26,10 +30,11 @@ public static partial class TagSetSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tag> Target0 =
-            Schemas.Lazy(() => TagSchema.Schema!);
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSchema.Schema!);
 
-        public override IEnumerable<global::Com.Amazonaws.S3.Tag> GetElements(TagSet value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.Tag> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.Tag> value
+        ) => value;
 
         public override List<global::Com.Amazonaws.S3.Tag> CreateTypedBuilder() => new();
 
@@ -38,15 +43,16 @@ public static partial class TagSetSchema
             global::Com.Amazonaws.S3.Tag value
         ) => builder.Add(value);
 
-        public override TagSet Build(List<global::Com.Amazonaws.S3.Tag> builder) =>
-            TagSet.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.Tag> Build(
+            List<global::Com.Amazonaws.S3.Tag> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            TagSet value,
+            IReadOnlyList<global::Com.Amazonaws.S3.Tag> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAbacOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketAbacOutputSchema
         public global::Com.Amazonaws.S3.AbacStatus? AbacStatus { get; set; }
     }
 
-    public static StructSchema<GetBucketAbacOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketAbacOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketAbacOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketAbacOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketAbacOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class GetBucketAbacOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The ABAC status of the general purpose bucket. </p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,15 +45,17 @@ public static partial class GetBucketAbacOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AbacStatus?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => AbacStatusSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AbacStatusSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketAbacOutput Build(Builder builder) =>
-            new GetBucketAbacOutput(builder.AbacStatus);
+        public override global::Com.Amazonaws.S3.GetBucketAbacOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketAbacOutput(builder.AbacStatus);
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketAbacOutput value,
+            global::Com.Amazonaws.S3.GetBucketAbacOutput value,
             ref TSerializer serializer
         )
         {

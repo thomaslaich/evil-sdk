@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectVersionStorageClassSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ObjectVersionStorageClass> Schema { get; } =
-        Schemas.StringEnum<ObjectVersionStorageClass>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ObjectVersionStorageClass>(
             ShapeId.Parse("com.amazonaws.s3#ObjectVersionStorageClass"),
             values: ["STANDARD"],
             traits:

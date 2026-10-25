@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketTaggingInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class GetBucketTaggingInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<GetBucketTaggingInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketTaggingInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketTaggingInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketTaggingInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketTaggingInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class GetBucketTaggingInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket for which to get the tagging information.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -60,12 +56,6 @@ public static partial class GetBucketTaggingInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -85,20 +75,24 @@ public static partial class GetBucketTaggingInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketTaggingInput Build(Builder builder) =>
-            new GetBucketTaggingInput(
+        public override global::Com.Amazonaws.S3.GetBucketTaggingInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketTaggingInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketTaggingInput value,
+            global::Com.Amazonaws.S3.GetBucketTaggingInput value,
             ref TSerializer serializer
         )
         {

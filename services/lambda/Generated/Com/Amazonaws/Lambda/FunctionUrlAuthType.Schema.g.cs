@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionUrlAuthTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<FunctionUrlAuthType> Schema { get; } =
-        Schemas.StringEnum<FunctionUrlAuthType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<FunctionUrlAuthType>(
             ShapeId.Parse("com.amazonaws.lambda#FunctionUrlAuthType"),
             values: ["NONE", "AWS_IAM"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

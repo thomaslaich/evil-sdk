@@ -6,63 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListLayersOutputSchema
 {
     public sealed class Builder
     {
         public string? NextMarker { get; set; }
-        public LayersList? Layers { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.LayersListItem>? Layers { get; set; }
     }
 
-    public static StructSchema<ListLayersOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListLayersOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListLayersOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListLayersOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListLayersOutput"),
-            [
-                new(
-                    "NextMarker",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A pagination token returned when the response doesn't contain all layers.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Layers",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of function layers.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("NextMarker", Target0), new("Layers", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -72,17 +38,21 @@ public static partial class ListLayersOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<LayersList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => LayersListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.LayersListItem>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => LayersListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListLayersOutput Build(Builder builder) =>
-            new ListLayersOutput(builder.Layers, builder.NextMarker);
+        public override global::Com.Amazonaws.Lambda.ListLayersOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ListLayersOutput(builder.Layers, builder.NextMarker);
 
         public override void SerializeMembers<TSerializer>(
-            ListLayersOutput value,
+            global::Com.Amazonaws.Lambda.ListLayersOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,49 +6,33 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class LifecycleRuleAndOperatorSchema
 {
     public sealed class Builder
     {
         public string? Prefix { get; set; }
-        public TagSet? Tags { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tag>? Tags { get; set; }
         public long? ObjectSizeGreaterThan { get; set; }
         public long? ObjectSizeLessThan { get; set; }
     }
 
-    public static StructSchema<LifecycleRuleAndOperator, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.LifecycleRuleAndOperator,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LifecycleRuleAndOperator, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.LifecycleRuleAndOperator, Builder>(
             ShapeId.Parse("com.amazonaws.s3#LifecycleRuleAndOperator"),
             [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Prefix identifying one or more objects to which the rule applies.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target0),
                 new(
                     "Tags",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>All of these tags must exist in the object's tag set in order for the rule to apply.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -65,10 +49,6 @@ public static partial class LifecycleRuleAndOperatorSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Minimum object size to which the rule applies.</p>")
-                        ),
                     ]
                 ),
                 new(
@@ -80,38 +60,29 @@ public static partial class LifecycleRuleAndOperatorSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Maximum object size to which the rule applies.</p>")
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>This is used in a Lifecycle Rule Filter to apply a logical AND to two or more predicates. The\n      Lifecycle Rule will apply to any object matching all of the predicates configured inside the And\n      operator.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagSet?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSetSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target3 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tag>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSetSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LifecycleRuleAndOperator Build(Builder builder) =>
-            new LifecycleRuleAndOperator(
+        public override global::Com.Amazonaws.S3.LifecycleRuleAndOperator Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.LifecycleRuleAndOperator(
                 builder.ObjectSizeGreaterThan,
                 builder.ObjectSizeLessThan,
                 builder.Prefix,
@@ -119,7 +90,7 @@ public static partial class LifecycleRuleAndOperatorSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            LifecycleRuleAndOperator value,
+            global::Com.Amazonaws.S3.LifecycleRuleAndOperator value,
             ref TSerializer serializer
         )
         {

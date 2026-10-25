@@ -4,24 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RequestChargedSchema
 {
     public static global::NSmithy.Core.Serde.Schema<RequestCharged> Schema { get; } =
-        Schemas.StringEnum<RequestCharged>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<RequestCharged>(
             ShapeId.Parse("com.amazonaws.s3#RequestCharged"),
             values: ["requester"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>If present, indicates that the requester was successfully charged for the request. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html\">Using Requester Pays buckets for storage transfers and usage</a> in the <i>Amazon Simple\n        Storage Service user guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

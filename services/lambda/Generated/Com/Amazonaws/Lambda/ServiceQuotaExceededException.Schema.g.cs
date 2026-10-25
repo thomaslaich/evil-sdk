@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ServiceQuotaExceededExceptionSchema
 {
@@ -15,72 +15,42 @@ public static partial class ServiceQuotaExceededExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<ServiceQuotaExceededException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ServiceQuotaExceededException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ServiceQuotaExceededException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ServiceQuotaExceededException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ServiceQuotaExceededException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception message.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception type.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request would exceed a service quota. For more information about Lambda service quotas, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html\">Lambda quotas</a>. To request a quota increase, see <a href=\"https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html\">Requesting a quota increase</a> in the <i>Service Quotas User Guide</i>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)402)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(402m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ServiceQuotaExceededException Build(Builder builder) =>
-            new ServiceQuotaExceededException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.ServiceQuotaExceededException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ServiceQuotaExceededException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ServiceQuotaExceededException value,
+            global::Com.Amazonaws.Lambda.ServiceQuotaExceededException value,
             ref TSerializer serializer
         )
         {

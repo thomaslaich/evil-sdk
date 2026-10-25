@@ -5,36 +5,34 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InvalidAnnotationNameSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<InvalidAnnotationName, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InvalidAnnotationName,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidAnnotationName, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InvalidAnnotationName, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InvalidAnnotationName"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The annotation name you provided is invalid.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidAnnotationName Build(Builder builder) =>
-            new InvalidAnnotationName(null);
+        public override global::Com.Amazonaws.S3.InvalidAnnotationName Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InvalidAnnotationName(null);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidAnnotationName value,
+            global::Com.Amazonaws.S3.InvalidAnnotationName value,
             ref TSerializer serializer
         ) { }
 

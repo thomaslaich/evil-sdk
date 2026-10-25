@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class StepSucceededDetailsSchema
 {
     public sealed class Builder
     {
-        public EventResult? Result { get; set; }
+        public global::Com.Amazonaws.Lambda.EventResult? Result { get; set; }
         public global::Com.Amazonaws.Lambda.RetryDetails? RetryDetails { get; set; }
     }
 
-    public static StructSchema<StepSucceededDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.StepSucceededDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StepSucceededDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.StepSucceededDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#StepSucceededDetails"),
             [
                 new(
@@ -30,18 +32,8 @@ public static partial class StepSucceededDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The response payload from the successful operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -52,49 +44,34 @@ public static partial class StepSucceededDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Information about retry attempts for this step operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a step that succeeded.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventResult?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventResultSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventResult?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventResultSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.RetryDetails?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => RetryDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RetryDetailsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StepSucceededDetails Build(Builder builder) =>
-            new StepSucceededDetails(
+        public override global::Com.Amazonaws.Lambda.StepSucceededDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.StepSucceededDetails(
                 builder.Result ?? throw new MissingRequiredMemberException("Result"),
                 builder.RetryDetails ?? throw new MissingRequiredMemberException("RetryDetails")
             );
 
         public override void SerializeMembers<TSerializer>(
-            StepSucceededDetails value,
+            global::Com.Amazonaws.Lambda.StepSucceededDetails value,
             ref TSerializer serializer
         )
         {

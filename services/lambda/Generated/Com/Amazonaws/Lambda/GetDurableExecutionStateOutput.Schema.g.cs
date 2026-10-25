@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetDurableExecutionStateOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.Lambda.Operations? Operations { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.Operation>? Operations { get; set; }
         public string? NextMarker { get; set; }
     }
 
-    public static StructSchema<GetDurableExecutionStateOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetDurableExecutionStateOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetDurableExecutionStateOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetDurableExecutionStateOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetDurableExecutionStateOutput"),
             [
                 new(
@@ -30,53 +32,17 @@ public static partial class GetDurableExecutionStateOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An array of operations that represent the current state of the durable execution. Operations are ordered by their start sequence number in ascending order and include information needed for replay processing.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "NextMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, indicates that more operations are available. Use this value as the <code>Marker</code> parameter in a subsequent request to retrieve the next page of results.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("NextMarker", Target1),
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The response from the GetDurableExecutionState operation, containing the current execution state for replay.</p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -85,21 +51,27 @@ public static partial class GetDurableExecutionStateOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Operations?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => OperationsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.Operation>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OperationsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetDurableExecutionStateOutput Build(Builder builder) =>
-            new GetDurableExecutionStateOutput(
+        public override global::Com.Amazonaws.Lambda.GetDurableExecutionStateOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetDurableExecutionStateOutput(
                 builder.Operations ?? throw new MissingRequiredMemberException("Operations"),
                 builder.NextMarker
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetDurableExecutionStateOutput value,
+            global::Com.Amazonaws.Lambda.GetDurableExecutionStateOutput value,
             ref TSerializer serializer
         )
         {

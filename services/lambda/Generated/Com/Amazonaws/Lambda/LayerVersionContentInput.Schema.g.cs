@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LayerVersionContentInputSchema
 {
@@ -19,11 +19,13 @@ public static partial class LayerVersionContentInputSchema
         public byte[]? ZipFile { get; set; }
     }
 
-    public static StructSchema<LayerVersionContentInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.LayerVersionContentInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LayerVersionContentInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.LayerVersionContentInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#LayerVersionContentInput"),
             [
                 new(
@@ -32,26 +34,18 @@ public static partial class LayerVersionContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Amazon S3 bucket of the layer archive.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)3) },
-                                    { "max", Document.From((decimal)63) },
+                                    { "min", Document.From(3m) },
+                                    { "max", Document.From(63m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[0-9A-Za-z\\.\\-_]*(?<!\\.)$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -61,24 +55,16 @@ public static partial class LayerVersionContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Amazon S3 key of the layer archive.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^.*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -87,96 +73,59 @@ public static partial class LayerVersionContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>For versioned objects, the version of the layer archive object to use.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^.*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "S3ObjectStorageMode",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies how the layer archive is stored. Valid values:</p> <ul> <li> <p> <code>COPY</code> (default) – Uploads a copy of your layer archive to Lambda.</p> </li> <li> <p> <code>REFERENCE</code> – Lambda references the layer archive from the specified Amazon S3 bucket.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("S3ObjectStorageMode", Target3),
                 new(
                     "ZipFile",
                     Target4,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The base64-encoded contents of the layer archive. Amazon Web Services SDK and Amazon Web Services CLI clients handle the encoding for you.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A ZIP archive that contains the contents of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>. You can specify either an Amazon S3 location, or upload a layer archive directly.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.S3ObjectStorageMode?> Target3 =
-            Schemas.Nullable(S3ObjectStorageModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(S3ObjectStorageModeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<byte[]?> Target4 =
-            Schemas.NullableReference(Schemas.Blob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Blob
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LayerVersionContentInput Build(Builder builder) =>
-            new LayerVersionContentInput(
+        public override global::Com.Amazonaws.Lambda.LayerVersionContentInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.LayerVersionContentInput(
                 builder.S3Bucket,
                 builder.S3Key,
                 builder.S3ObjectStorageMode,
@@ -185,7 +134,7 @@ public static partial class LayerVersionContentInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            LayerVersionContentInput value,
+            global::Com.Amazonaws.Lambda.LayerVersionContentInput value,
             ref TSerializer serializer
         )
         {

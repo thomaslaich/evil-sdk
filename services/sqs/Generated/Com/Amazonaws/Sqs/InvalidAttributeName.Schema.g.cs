@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class InvalidAttributeNameSchema
 {
@@ -14,32 +14,30 @@ public static partial class InvalidAttributeNameSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<InvalidAttributeName, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.InvalidAttributeName,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidAttributeName, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.InvalidAttributeName, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#InvalidAttributeName"),
             [new("message", Target0)],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified attribute doesn't exist.</p>")
-                ),
-                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-            ]
+            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client"))]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidAttributeName Build(Builder builder) =>
-            new InvalidAttributeName(builder.Message);
+        public override global::Com.Amazonaws.Sqs.InvalidAttributeName Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.InvalidAttributeName(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidAttributeName value,
+            global::Com.Amazonaws.Sqs.InvalidAttributeName value,
             ref TSerializer serializer
         )
         {

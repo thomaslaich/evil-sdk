@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketOwnershipControlsOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteBucketOwnershipControlsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketOwnershipControlsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketOwnershipControlsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketOwnershipControlsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketOwnershipControlsOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteBucketOwnershipControlsOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketOwnershipControlsOutput Build(Builder builder) =>
-            new DeleteBucketOwnershipControlsOutput();
+        public override global::Com.Amazonaws.S3.DeleteBucketOwnershipControlsOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.DeleteBucketOwnershipControlsOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketOwnershipControlsOutput value,
+            global::Com.Amazonaws.S3.DeleteBucketOwnershipControlsOutput value,
             ref TSerializer serializer
         ) { }
 

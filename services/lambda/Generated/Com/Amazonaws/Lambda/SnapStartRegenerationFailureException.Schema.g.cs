@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SnapStartRegenerationFailureExceptionSchema
 {
@@ -15,72 +15,42 @@ public static partial class SnapStartRegenerationFailureExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<SnapStartRegenerationFailureException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SnapStartRegenerationFailureException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SnapStartRegenerationFailureException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.SnapStartRegenerationFailureException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#SnapStartRegenerationFailureException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception message.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception type.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lambda couldn't regenerate the SnapStart snapshot for the function. SnapStart-enabled functions periodically regenerate snapshots when their underlying runtime or dependencies change; this regeneration failed. Wait for Lambda to retry, or update the function's configuration to trigger a new snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html\">Lambda SnapStart</a>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)409)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(409m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SnapStartRegenerationFailureException Build(Builder builder) =>
-            new SnapStartRegenerationFailureException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.SnapStartRegenerationFailureException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.SnapStartRegenerationFailureException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            SnapStartRegenerationFailureException value,
+            global::Com.Amazonaws.Lambda.SnapStartRegenerationFailureException value,
             ref TSerializer serializer
         )
         {

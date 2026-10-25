@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionResponseTypeListSchema
 {
     public static ListSchema<
-        FunctionResponseTypeList,
-        FunctionResponseType,
-        List<FunctionResponseType>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionResponseType>,
+        global::Com.Amazonaws.Lambda.FunctionResponseType,
+        List<global::Com.Amazonaws.Lambda.FunctionResponseType>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<FunctionResponseTypeList, FunctionResponseType, List<FunctionResponseType>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionResponseType>,
+            global::Com.Amazonaws.Lambda.FunctionResponseType,
+            List<global::Com.Amazonaws.Lambda.FunctionResponseType>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#FunctionResponseTypeList"),
             ShapeKind.List,
             Target0,
@@ -27,45 +31,40 @@ public static partial class FunctionResponseTypeListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)1) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(1m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionResponseType> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionResponseType> Target0 =
             FunctionResponseTypeSchema.Schema;
 
-        public override IEnumerable<FunctionResponseType> GetElements(
-            FunctionResponseTypeList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.FunctionResponseType> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionResponseType> value
+        ) => value;
 
-        public override List<FunctionResponseType> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.FunctionResponseType> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<FunctionResponseType> builder, FunctionResponseType value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.FunctionResponseType> builder,
+            global::Com.Amazonaws.Lambda.FunctionResponseType value
+        ) => builder.Add(value);
 
-        public override FunctionResponseTypeList Build(List<FunctionResponseType> builder) =>
-            FunctionResponseTypeList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionResponseType> Build(
+            List<global::Com.Amazonaws.Lambda.FunctionResponseType> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FunctionResponseTypeList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionResponseType> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -73,14 +72,14 @@ public static partial class FunctionResponseTypeListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<FunctionResponseType> builder,
+            List<global::Com.Amazonaws.Lambda.FunctionResponseType> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? FunctionResponseType.FromValue(element)
-                        : default(FunctionResponseType)
+                        ? global::Com.Amazonaws.Lambda.FunctionResponseType.FromValue(element)
+                        : default(global::Com.Amazonaws.Lambda.FunctionResponseType)
                 )
             );
     }

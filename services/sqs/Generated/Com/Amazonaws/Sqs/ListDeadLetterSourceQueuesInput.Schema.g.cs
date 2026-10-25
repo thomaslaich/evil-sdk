@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListDeadLetterSourceQueuesInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class ListDeadLetterSourceQueuesInputSchema
         public int? MaxResults { get; set; }
     }
 
-    public static StructSchema<ListDeadLetterSourceQueuesInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListDeadLetterSourceQueuesInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListDeadLetterSourceQueuesInput"),
             [
                 new(
@@ -31,30 +33,12 @@ public static partial class ListDeadLetterSourceQueuesInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of a dead-letter queue.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "NextToken",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Pagination token to request the next set of results.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("NextToken", Target1),
                 new(
                     "MaxResults",
                     Target2,
@@ -64,17 +48,10 @@ public static partial class ListDeadLetterSourceQueuesInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Maximum number of results to include in the response. Value range is 1 to 1000. You\n            must set <code>MaxResults</code> to receive a value for <code>NextToken</code> in the\n            response.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -87,24 +64,29 @@ public static partial class ListDeadLetterSourceQueuesInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListDeadLetterSourceQueuesInput Build(Builder builder) =>
-            new ListDeadLetterSourceQueuesInput(
+        public override global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.MaxResults,
                 builder.NextToken
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListDeadLetterSourceQueuesInput value,
+            global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesInput value,
             ref TSerializer serializer
         )
         {

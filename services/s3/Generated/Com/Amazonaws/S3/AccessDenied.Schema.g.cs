@@ -5,36 +5,32 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AccessDeniedSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<AccessDenied, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.AccessDenied, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AccessDenied, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AccessDenied, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AccessDenied"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      You might receive this error for several reasons. For details, see the description of this API \n      operation.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override AccessDenied Build(Builder builder) => new AccessDenied(null);
+        public override global::Com.Amazonaws.S3.AccessDenied Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AccessDenied(null);
 
         public override void SerializeMembers<TSerializer>(
-            AccessDenied value,
+            global::Com.Amazonaws.S3.AccessDenied value,
             ref TSerializer serializer
         ) { }
 

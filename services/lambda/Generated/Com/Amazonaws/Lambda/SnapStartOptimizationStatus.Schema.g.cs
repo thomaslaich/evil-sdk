@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SnapStartOptimizationStatusSchema
 {
     public static global::NSmithy.Core.Serde.Schema<SnapStartOptimizationStatus> Schema { get; } =
-        Schemas.StringEnum<SnapStartOptimizationStatus>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<SnapStartOptimizationStatus>(
             ShapeId.Parse("com.amazonaws.lambda#SnapStartOptimizationStatus"),
             values: ["On", "Off"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

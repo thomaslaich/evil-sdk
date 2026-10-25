@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LayerSchema
 {
@@ -18,10 +18,11 @@ public static partial class LayerSchema
         public string? SigningJobArn { get; set; }
     }
 
-    public static StructSchema<Layer, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.Layer, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Layer, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.Layer, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#Layer"),
             [
                 new(
@@ -30,18 +31,12 @@ public static partial class LayerSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the function layer.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -51,27 +46,12 @@ public static partial class LayerSchema
                                 "^((arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+:[0-9]+)|(arn:[a-zA-Z0-9-]+:lambda:::awslayer:[a-zA-Z0-9-_]+))$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
                     "CodeSize",
                     Target1,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The size of the layer archive in bytes.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
                 new(
                     "SigningProfileVersionArn",
@@ -79,18 +59,12 @@ public static partial class LayerSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) for a signing profile version.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -99,10 +73,6 @@ public static partial class LayerSchema
                             Document.From(
                                 "^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -112,16 +82,12 @@ public static partial class LayerSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Amazon Resource Name (ARN) of a signing job.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -131,48 +97,41 @@ public static partial class LayerSchema
                                 "^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>An <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new() { CodeSize = 0L };
 
-        public override Layer Build(Builder builder) =>
-            new Layer(
+        public override global::Com.Amazonaws.Lambda.Layer Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.Layer(
                 builder.Arn,
                 builder.CodeSize,
                 builder.SigningJobArn,
                 builder.SigningProfileVersionArn
             );
 
-        public override void SerializeMembers<TSerializer>(Layer value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.Lambda.Layer value,
+            ref TSerializer serializer
+        )
         {
             if (value.Arn is { } value0)
             {

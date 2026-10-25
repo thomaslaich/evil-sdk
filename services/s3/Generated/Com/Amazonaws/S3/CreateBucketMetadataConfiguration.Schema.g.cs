@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateBucketMetadataConfigurationSchema
 {
     public static OperationSchema<
-        CreateBucketMetadataConfigurationInput,
-        CreateBucketMetadataConfigurationOutput
+        global::Com.Amazonaws.S3.CreateBucketMetadataConfigurationInput,
+        global::Com.Amazonaws.S3.CreateBucketMetadataConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#CreateBucketMetadataConfiguration"),
-            Schemas.Lazy(() => CreateBucketMetadataConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => CreateBucketMetadataConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateBucketMetadataConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateBucketMetadataConfigurationOutputSchema.Schema!
+            ),
             [],
             [
                 new Trait(
@@ -31,19 +35,13 @@ public static partial class CreateBucketMetadataConfigurationSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Creates an S3 Metadata V2 metadata configuration for a general purpose bucket. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-overview.html\">Accelerating\n        data discovery with S3 Metadata</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>To use this operation, you must have the following permissions. For more information, see\n            <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-permissions.html\">Setting up permissions for configuring metadata tables</a> in the\n            <i>Amazon S3 User Guide</i>.</p>\n               <p>If you want to encrypt your metadata tables with server-side encryption with Key Management Service\n            (KMS) keys (SSE-KMS), you need additional permissions in your KMS key policy. For more\n            information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-permissions.html\">\n              Setting up permissions for configuring metadata tables</a> in the\n            <i>Amazon S3 User Guide</i>.</p>\n               <p>If you also want to integrate your table bucket with Amazon Web Services analytics services so that you can\n            query your metadata table, you need additional permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-integrating-aws.html\"> Integrating\n              Amazon S3 Tables with Amazon Web Services analytics services</a> in the\n            <i>Amazon S3 User Guide</i>.</p>\n               <p>To query your metadata tables, you need additional permissions. For more information, see \n            <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-bucket-query-permissions.html\">\n              Permissions for querying metadata tables</a> in the <i>Amazon S3 User Guide</i>.</p>\n               <ul>\n                  <li>\n                     <p>\n                        <code>s3:CreateBucketMetadataTableConfiguration</code>\n                     </p>\n                     <note>\n                        <p>The IAM policy action name is the same for the V1 and V2 API operations.</p>\n                     </note>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:CreateTableBucket</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:CreateNamespace</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:GetTable</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:CreateTable</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:PutTablePolicy</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:PutTableBucketPolicy</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:PutTableEncryption</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>kms:DescribeKey</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>iam:PassRole</code> - required if you include an\n                <code>AnnotationTableConfiguration</code> with an IAM role.</p>\n                  </li>\n               </ul>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>CreateBucketMetadataConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetadataConfiguration.html\">DeleteBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetadataConfiguration.html\">GetBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UpdateBucketMetadataInventoryTableConfiguration.html\">UpdateBucketMetadataInventoryTableConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UpdateBucketMetadataJournalTableConfiguration.html\">UpdateBucketMetadataJournalTableConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UpdateBucketMetadataAnnotationTableConfiguration.html\">UpdateBucketMetadataAnnotationTableConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <p>If you include an <code>AnnotationTableConfiguration</code> with an IAM role, the role must\n      have a trust policy that allows the Amazon S3 metadata service to assume it, and a permissions policy\n      that grants the actions needed to read annotations from your bucket. The following examples show\n      a trust policy and a permissions policy that you can adapt for your bucket and account.</p>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("POST") },
-                            { "uri", Document.From("/{Bucket}?metadataConfiguration") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?metadataConfiguration") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

@@ -5,60 +5,37 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TracingConfigResponseSchema
 {
     public sealed class Builder
     {
-        public TracingMode? Mode { get; set; }
+        public global::Com.Amazonaws.Lambda.TracingMode? Mode { get; set; }
     }
 
-    public static StructSchema<TracingConfigResponse, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.TracingConfigResponse,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TracingConfigResponse, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TracingConfigResponse, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TracingConfigResponse"),
-            [
-                new(
-                    "Mode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The tracing mode.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The function's X-Ray tracing configuration.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("Mode", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<TracingMode?> Target0 =
-            Schemas.Nullable(TracingModeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.TracingMode?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(TracingModeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TracingConfigResponse Build(Builder builder) =>
-            new TracingConfigResponse(builder.Mode);
+        public override global::Com.Amazonaws.Lambda.TracingConfigResponse Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.TracingConfigResponse(builder.Mode);
 
         public override void SerializeMembers<TSerializer>(
-            TracingConfigResponse value,
+            global::Com.Amazonaws.Lambda.TracingConfigResponse value,
             ref TSerializer serializer
         )
         {
@@ -85,8 +62,8 @@ public static partial class TracingConfigResponseSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? TracingMode.FromValue(value0)
-                                : default(TracingMode)
+                                ? global::Com.Amazonaws.Lambda.TracingMode.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.TracingMode)
                         );
                     break;
             }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class OnFailureSchema
 {
@@ -15,10 +15,11 @@ public static partial class OnFailureSchema
         public string? Destination { get; set; }
     }
 
-    public static StructSchema<OnFailure, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.OnFailure, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OnFailure, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.OnFailure, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#OnFailure"),
             [
                 new(
@@ -27,18 +28,12 @@ public static partial class OnFailureSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the destination resource.</p> <p>To retain records of failed invocations from <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html\">Kinesis</a>, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html\">DynamoDB</a>, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/kafka-on-failure.html\">self-managed Apache Kafka</a>, or <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/kafka-on-failure.html\">Amazon MSK</a>, you can configure an Amazon SNS topic, Amazon SQS queue, Amazon S3 bucket, or Kafka topic as the destination.</p> <note> <p>Amazon SNS destinations have a message size limit of 256 KB. If the combined size of the function request and response payload exceeds the limit, Lambda will drop the payload when sending <code>OnFailure</code> event to the destination. For details on this behavior, refer to <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html\">Retaining records of asynchronous invocations</a>.</p> </note> <p>To retain records of failed invocations from <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html\">Kinesis</a>, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html\">DynamoDB</a>, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-smaa-onfailure-destination\">self-managed Kafka</a> or <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-onfailure-destination\">Amazon MSK</a>, you can configure an Amazon SNS topic, Amazon SQS queue, or Amazon S3 bucket as the destination.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)350) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(350m) },
                                 }
                             )
                         ),
@@ -48,36 +43,24 @@ public static partial class OnFailureSchema
                                 "^$|kafka://([^.]([a-zA-Z0-9\\-_.]{0,248}))|arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A destination for events that failed processing. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations\">Adding a destination</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OnFailure Build(Builder builder) => new OnFailure(builder.Destination);
+        public override global::Com.Amazonaws.Lambda.OnFailure Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.OnFailure(builder.Destination);
 
         public override void SerializeMembers<TSerializer>(
-            OnFailure value,
+            global::Com.Amazonaws.Lambda.OnFailure value,
             ref TSerializer serializer
         )
         {

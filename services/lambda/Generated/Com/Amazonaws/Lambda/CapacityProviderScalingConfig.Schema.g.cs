@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderScalingConfigSchema
 {
     public sealed class Builder
     {
         public int? MaxVCpuCount { get; set; }
-        public CapacityProviderScalingMode? ScalingMode { get; set; }
-        public CapacityProviderScalingPoliciesList? ScalingPolicies { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderScalingMode? ScalingMode { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy>? ScalingPolicies { get; set; }
     }
 
-    public static StructSchema<CapacityProviderScalingConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CapacityProviderScalingConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderScalingConfig"),
             [
                 new(
@@ -34,97 +36,47 @@ public static partial class CapacityProviderScalingConfigSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of vCPUs that the capacity provider can provision across all compute instances.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)15000) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(15000m) },
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "ScalingMode",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The scaling mode that determines how the capacity provider responds to changes in demand.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ScalingPolicies",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of scaling policies that define how the capacity provider scales compute instances based on metrics and thresholds.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("ScalingMode", Target1),
+                new("ScalingPolicies", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration that defines how the capacity provider scales compute instances based on demand and policies.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderScalingMode?> Target1 =
-            Schemas.Nullable(CapacityProviderScalingModeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderScalingPoliciesList?> Target2 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderScalingPoliciesListSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderScalingMode?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(CapacityProviderScalingModeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderScalingPoliciesListSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CapacityProviderScalingConfig Build(Builder builder) =>
-            new CapacityProviderScalingConfig(
+        public override global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig(
                 builder.MaxVCpuCount,
                 builder.ScalingMode,
                 builder.ScalingPolicies
             );
 
         public override void SerializeMembers<TSerializer>(
-            CapacityProviderScalingConfig value,
+            global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig value,
             ref TSerializer serializer
         )
         {
@@ -172,8 +124,10 @@ public static partial class CapacityProviderScalingConfigSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? CapacityProviderScalingMode.FromValue(value1)
-                                : default(CapacityProviderScalingMode)
+                                ? global::Com.Amazonaws.Lambda.CapacityProviderScalingMode.FromValue(
+                                    value1
+                                )
+                                : default(global::Com.Amazonaws.Lambda.CapacityProviderScalingMode)
                         );
                     break;
                 case 2:

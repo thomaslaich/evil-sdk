@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteFunctionInputSchema
         public string? Qualifier { get; set; }
     }
 
-    public static StructSchema<DeleteFunctionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteFunctionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteFunctionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteFunctionInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class DeleteFunctionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function or version.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:1</code> (with version).</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +40,8 @@ public static partial class DeleteFunctionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -59,10 +55,6 @@ public static partial class DeleteFunctionInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -70,12 +62,6 @@ public static partial class DeleteFunctionInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify a version to delete. You can't delete a version that an alias references.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("Qualifier")
@@ -85,18 +71,14 @@ public static partial class DeleteFunctionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\$(LATEST(\\.PUBLISHED)?)|[a-zA-Z0-9-_$]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -107,10 +89,6 @@ public static partial class DeleteFunctionInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteFunctionRequest")
                 ),
@@ -118,20 +96,24 @@ public static partial class DeleteFunctionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteFunctionInput Build(Builder builder) =>
-            new DeleteFunctionInput(
+        public override global::Com.Amazonaws.Lambda.DeleteFunctionInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.DeleteFunctionInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.Qualifier
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteFunctionInput value,
+            global::Com.Amazonaws.Lambda.DeleteFunctionInput value,
             ref TSerializer serializer
         )
         {

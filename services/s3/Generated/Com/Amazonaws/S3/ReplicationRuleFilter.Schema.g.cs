@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationRuleFilterSchema
 {
@@ -13,80 +13,47 @@ public static partial class ReplicationRuleFilterSchema
     {
         public string? Prefix { get; set; }
         public global::Com.Amazonaws.S3.Tag? Tag { get; set; }
-        public ReplicationRuleAndOperator? And { get; set; }
+        public global::Com.Amazonaws.S3.ReplicationRuleAndOperator? And { get; set; }
     }
 
-    public static StructSchema<ReplicationRuleFilter, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ReplicationRuleFilter,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReplicationRuleFilter, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ReplicationRuleFilter, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ReplicationRuleFilter"),
-            [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object key name prefix that identifies the subset of objects to which the rule applies.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Tag",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container for specifying a tag key and value. </p>\n         <p>The rule applies only to objects that have the tag in their tag set.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "And",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container for specifying rule filters. The filters determine the subset of objects to which the\n      rule applies. This element is required only if you specify more than one filter. For example: </p>\n         <ul>\n            <li>\n               <p>If you specify both a <code>Prefix</code> and a <code>Tag</code> filter, wrap these filters in\n          an <code>And</code> tag.</p>\n            </li>\n            <li>\n               <p>If you specify a filter based on multiple tags, wrap the <code>Tag</code> elements in an\n            <code>And</code> tag.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A filter that identifies the subset of objects to which the replication rule applies. A\n        <code>Filter</code> must specify exactly one <code>Prefix</code>, <code>Tag</code>, or an\n        <code>And</code> child element.</p>"
-                    )
-                ),
-            ]
+            [new("Prefix", Target0), new("Tag", Target1), new("And", Target2)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tag?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<ReplicationRuleAndOperator?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => ReplicationRuleAndOperatorSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationRuleAndOperator?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ReplicationRuleAndOperatorSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReplicationRuleFilter Build(Builder builder) =>
-            new ReplicationRuleFilter(builder.And, builder.Prefix, builder.Tag);
+        public override global::Com.Amazonaws.S3.ReplicationRuleFilter Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ReplicationRuleFilter(
+                builder.And,
+                builder.Prefix,
+                builder.Tag
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ReplicationRuleFilter value,
+            global::Com.Amazonaws.S3.ReplicationRuleFilter value,
             ref TSerializer serializer
         )
         {

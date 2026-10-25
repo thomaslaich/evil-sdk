@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketAnalyticsConfigurationsInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class ListBucketAnalyticsConfigurationsInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<ListBucketAnalyticsConfigurationsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListBucketAnalyticsConfigurationsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListBucketAnalyticsConfigurationsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListBucketAnalyticsConfigurationsInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListBucketAnalyticsConfigurationsInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class ListBucketAnalyticsConfigurationsInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket from which analytics configurations are retrieved.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -61,12 +57,6 @@ public static partial class ListBucketAnalyticsConfigurationsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The <code>ContinuationToken</code> that represents a placeholder from where this request should\n      begin.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("continuation-token")
                         ),
@@ -77,12 +67,6 @@ public static partial class ListBucketAnalyticsConfigurationsInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -103,23 +87,31 @@ public static partial class ListBucketAnalyticsConfigurationsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListBucketAnalyticsConfigurationsInput Build(Builder builder) =>
-            new ListBucketAnalyticsConfigurationsInput(
+        public override global::Com.Amazonaws.S3.ListBucketAnalyticsConfigurationsInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ListBucketAnalyticsConfigurationsInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ContinuationToken,
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListBucketAnalyticsConfigurationsInput value,
+            global::Com.Amazonaws.S3.ListBucketAnalyticsConfigurationsInput value,
             ref TSerializer serializer
         )
         {

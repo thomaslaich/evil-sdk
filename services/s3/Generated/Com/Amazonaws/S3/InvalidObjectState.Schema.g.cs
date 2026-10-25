@@ -5,46 +5,47 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InvalidObjectStateSchema
 {
     public sealed class Builder
     {
-        public IntelligentTieringAccessTier? AccessTier { get; set; }
+        public global::Com.Amazonaws.S3.IntelligentTieringAccessTier? AccessTier { get; set; }
         public global::Com.Amazonaws.S3.StorageClass? StorageClass { get; set; }
     }
 
-    public static StructSchema<InvalidObjectState, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InvalidObjectState,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidObjectState, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InvalidObjectState, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InvalidObjectState"),
             [new("AccessTier", Target0), new("StorageClass", Target1)],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Object is archived and inaccessible until restored.</p>\n         <p>If the object you are retrieving is stored in the S3 Glacier Flexible Retrieval storage class, the\n      S3 Glacier Deep Archive storage class, the S3 Intelligent-Tiering Archive Access tier, or the\n      S3 Intelligent-Tiering Deep Archive Access tier, before you can retrieve the object you must first restore a copy\n      using <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html\">RestoreObject</a>. Otherwise, this operation returns an <code>InvalidObjectState</code> error. For\n      information about restoring archived objects, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/restoring-objects.html\">Restoring Archived Objects</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<IntelligentTieringAccessTier?> Target0 =
-            Schemas.Nullable(IntelligentTieringAccessTierSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringAccessTier?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(IntelligentTieringAccessTierSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target1 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidObjectState Build(Builder builder) =>
-            new InvalidObjectState(null, builder.AccessTier, builder.StorageClass);
+        public override global::Com.Amazonaws.S3.InvalidObjectState Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InvalidObjectState(
+                null,
+                builder.AccessTier,
+                builder.StorageClass
+            );
 
         public override void SerializeMembers<TSerializer>(
-            InvalidObjectState value,
+            global::Com.Amazonaws.S3.InvalidObjectState value,
             ref TSerializer serializer
         )
         {
@@ -79,8 +80,10 @@ public static partial class InvalidObjectStateSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? IntelligentTieringAccessTier.FromValue(value0)
-                                : default(IntelligentTieringAccessTier)
+                                ? global::Com.Amazonaws.S3.IntelligentTieringAccessTier.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.IntelligentTieringAccessTier)
                         );
                     break;
                 case 1:

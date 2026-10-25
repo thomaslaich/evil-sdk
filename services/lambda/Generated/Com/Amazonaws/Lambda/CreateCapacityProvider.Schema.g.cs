@@ -4,121 +4,59 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateCapacityProviderSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        CreateCapacityProviderInput,
-        CreateCapacityProviderOutput
+        global::Com.Amazonaws.Lambda.CreateCapacityProviderInput,
+        global::Com.Amazonaws.Lambda.CreateCapacityProviderOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#CreateCapacityProvider"),
-            Schemas.Lazy(() => CreateCapacityProviderInputSchema.Schema!),
-            Schemas.Lazy(() => CreateCapacityProviderOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateCapacityProviderInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateCapacityProviderOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#CapacityProviderLimitExceededException"),
-                    Schemas.Lazy(() => CapacityProviderLimitExceededExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        CapacityProviderLimitExceededExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceConflictException"),
-                    Schemas.Lazy(() => ResourceConflictExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceConflictExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#conditionKeys"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From("aws:RequestTag/${TagKey}"),
-                            Document.From("aws:TagKeys"),
-                            Document.From("lambda:SubnetIds"),
-                            Document.From("lambda:SecurityGroupIds"),
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "createsResources",
-                                Document.From(new Document[] { Document.From("capacityProvider") })
-                            },
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to create an AWS Lambda capacity provider"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_CreateCapacityProvider.html")
-                            },
-                            {
-                                "requiredActions",
-                                Document.From(
-                                    new Document[]
-                                    {
-                                        Document.From("iam:PassRole"),
-                                        Document.From("iam:CreateServiceLinkedRole"),
-                                        Document.From("kms:DescribeKey"),
-                                    }
-                                )
-                            },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "capacityProvider",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Creates a capacity provider that manages compute resources for Lambda functions</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -126,17 +64,13 @@ public static partial class CreateCapacityProviderSchema
                         {
                             { "method", Document.From("POST") },
                             { "uri", Document.From("/2025-11-30/capacity-providers") },
-                            { "code", Document.From((decimal)202) },
+                            { "code", Document.From(202m) },
                         }
                     )
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.api#idempotent"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

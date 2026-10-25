@@ -5,109 +5,69 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TooManyRequestsExceptionSchema
 {
     public sealed class Builder
     {
-        public ThrottleReason? Reason { get; set; }
+        public global::Com.Amazonaws.Lambda.ThrottleReason? Reason { get; set; }
         public string? Type { get; set; }
         public string? Message { get; set; }
         public string? RetryAfterSeconds { get; set; }
     }
 
-    public static StructSchema<TooManyRequestsException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.TooManyRequestsException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TooManyRequestsException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TooManyRequestsException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
             [
-                new(
-                    "Reason",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Reason", Target0),
+                new("Type", Target1),
+                new("message", Target2),
                 new(
                     "retryAfterSeconds",
                     Target3,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of seconds the caller should wait before retrying.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Retry-After")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request throughput limit was exceeded. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests\">Lambda quotas</a>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)429)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(429m)),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ThrottleReason?> Target0 =
-            Schemas.Nullable(ThrottleReasonSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ThrottleReason?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ThrottleReasonSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TooManyRequestsException Build(Builder builder) =>
-            new TooManyRequestsException(
+        public override global::Com.Amazonaws.Lambda.TooManyRequestsException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.TooManyRequestsException(
                 builder.Message,
                 builder.Reason,
                 builder.Type,
@@ -115,7 +75,7 @@ public static partial class TooManyRequestsExceptionSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            TooManyRequestsException value,
+            global::Com.Amazonaws.Lambda.TooManyRequestsException value,
             ref TSerializer serializer
         )
         {
@@ -166,8 +126,8 @@ public static partial class TooManyRequestsExceptionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ThrottleReason.FromValue(value0)
-                                : default(ThrottleReason)
+                                ? global::Com.Amazonaws.Lambda.ThrottleReason.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.ThrottleReason)
                         );
                     break;
                 case 1:

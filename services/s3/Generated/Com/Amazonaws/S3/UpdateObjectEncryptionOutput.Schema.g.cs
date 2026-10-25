@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateObjectEncryptionOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class UpdateObjectEncryptionOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<UpdateObjectEncryptionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.UpdateObjectEncryptionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateObjectEncryptionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.UpdateObjectEncryptionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#UpdateObjectEncryptionOutput"),
             [
                 new(
@@ -47,15 +49,16 @@ public static partial class UpdateObjectEncryptionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target0 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateObjectEncryptionOutput Build(Builder builder) =>
-            new UpdateObjectEncryptionOutput(builder.RequestCharged);
+        public override global::Com.Amazonaws.S3.UpdateObjectEncryptionOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.UpdateObjectEncryptionOutput(builder.RequestCharged);
 
         public override void SerializeMembers<TSerializer>(
-            UpdateObjectEncryptionOutput value,
+            global::Com.Amazonaws.S3.UpdateObjectEncryptionOutput value,
             ref TSerializer serializer
         )
         {

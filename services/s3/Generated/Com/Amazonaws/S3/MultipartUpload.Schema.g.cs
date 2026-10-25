@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MultipartUploadSchema
 {
@@ -23,153 +23,68 @@ public static partial class MultipartUploadSchema
         public global::Com.Amazonaws.S3.ChecksumType? ChecksumType { get; set; }
     }
 
-    public static StructSchema<MultipartUpload, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.MultipartUpload, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MultipartUpload, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.MultipartUpload, Builder>(
             ShapeId.Parse("com.amazonaws.s3#MultipartUpload"),
             [
-                new(
-                    "UploadId",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Upload ID that identifies the multipart upload.</p>")
-                        ),
-                    ]
-                ),
+                new("UploadId", Target0),
                 new(
                     "Key",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Key of the object for which the multipart upload was initiated.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "Initiated",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Date and time at which the multipart upload was initiated.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "StorageClass",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The class of storage used to store the object.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> -\n        Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Owner",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the owner of the object that is part of the multipart upload. </p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - The bucket owner is returned as the\n        object owner for all the objects.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Initiator",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Identifies who initiated the multipart upload.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumAlgorithm",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The algorithm that was used to create a checksum of the object.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumType",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The checksum type that is used to calculate the object’s checksum value. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Initiated", Target2),
+                new("StorageClass", Target3),
+                new("Owner", Target4),
+                new("Initiator", Target5),
+                new("ChecksumAlgorithm", Target6),
+                new("ChecksumType", Target7),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Container for the <code>MultipartUpload</code> for the Amazon S3 object.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target2 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target3 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Owner?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnerSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnerSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Initiator?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => InitiatorSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InitiatorSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target6 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target7 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MultipartUpload Build(Builder builder) =>
-            new MultipartUpload(
+        public override global::Com.Amazonaws.S3.MultipartUpload Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.MultipartUpload(
                 builder.ChecksumAlgorithm,
                 builder.ChecksumType,
                 builder.Initiated,
@@ -181,7 +96,7 @@ public static partial class MultipartUploadSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            MultipartUpload value,
+            global::Com.Amazonaws.S3.MultipartUpload value,
             ref TSerializer serializer
         )
         {

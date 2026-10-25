@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ExpirationStateSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ExpirationState> Schema { get; } =
-        Schemas.StringEnum<ExpirationState>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ExpirationState>(
             ShapeId.Parse("com.amazonaws.s3#ExpirationState"),
             values: ["ENABLED", "DISABLED"],
             traits:

@@ -6,22 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRootInputSchema
 {
     public sealed class Builder
     {
         public string? TargetPrincipal { get; set; }
-        public PolicyDescriptorType? TaskPolicyArn { get; set; }
+        public global::Com.Amazonaws.Sts.PolicyDescriptorType? TaskPolicyArn { get; set; }
         public int? DurationSeconds { get; set; }
         public int? MinimumSessionTokenSize { get; set; }
     }
 
-    public static StructSchema<AssumeRootInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sts.AssumeRootInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AssumeRootInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.AssumeRootInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#AssumeRootInput"),
             [
                 new(
@@ -31,16 +32,12 @@ public static partial class AssumeRootInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The member account principal ARN or account ID.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)12) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(12m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -57,12 +54,6 @@ public static partial class AssumeRootInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identity based policy that scopes the session to the privileged tasks that can be\n         performed. You must\n         \n         use one of following Amazon Web Services managed policies to scope root session\n         actions:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMAuditRootUserCredentials\">IAMAuditRootUserCredentials</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMCreateRootUserPassword\">IAMCreateRootUserPassword</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMDeleteRootUserCredentials\">IAMDeleteRootUserCredentials</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-S3UnlockBucketPolicy\">S3UnlockBucketPolicy</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-SQSUnlockQueuePolicy\">SQSUnlockQueuePolicy</a>\n               </p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -78,18 +69,12 @@ public static partial class AssumeRootInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The duration, in seconds, of the privileged session. The value can range from 0 seconds\n         up to the maximum session duration of 900 seconds (15 minutes). If you specify a value\n         higher than this setting, the operation fails.</p>\n         <p>By default, the value is set to <code>900</code> seconds.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)900) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(900m) },
                                 }
                             )
                         ),
@@ -105,18 +90,12 @@ public static partial class AssumeRootInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The minimum size, in bytes, of the session token that STS issues for the request. STS increases\n    the session token to at least this size, regardless of its actual content. The value must not\n    exceed 4,096 bytes. When set to 0 or not specified, the session token size is unchanged."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)4096) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(4096m) },
                                 }
                             )
                         ),
@@ -136,20 +115,22 @@ public static partial class AssumeRootInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<PolicyDescriptorType?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => PolicyDescriptorTypeSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.PolicyDescriptorType?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => PolicyDescriptorTypeSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AssumeRootInput Build(Builder builder) =>
-            new AssumeRootInput(
+        public override global::Com.Amazonaws.Sts.AssumeRootInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.AssumeRootInput(
                 builder.TargetPrincipal
                     ?? throw new MissingRequiredMemberException("TargetPrincipal"),
                 builder.TaskPolicyArn ?? throw new MissingRequiredMemberException("TaskPolicyArn"),
@@ -158,7 +139,7 @@ public static partial class AssumeRootInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AssumeRootInput value,
+            global::Com.Amazonaws.Sts.AssumeRootInput value,
             ref TSerializer serializer
         )
         {

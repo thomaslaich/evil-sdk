@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListProvisionedConcurrencyConfigsInputSchema
 {
@@ -17,11 +17,16 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
         public int? MaxItems { get; set; }
     }
 
-    public static StructSchema<ListProvisionedConcurrencyConfigsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListProvisionedConcurrencyConfigsInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ListProvisionedConcurrencyConfigsInput"),
             [
                 new(
@@ -31,12 +36,6 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -45,8 +44,8 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -60,10 +59,6 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -71,17 +66,7 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Marker")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -93,26 +78,16 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify a number to limit the number of configurations returned.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("MaxItems")),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)50) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(50m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -123,10 +98,6 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#ListProvisionedConcurrencyConfigsRequest")
                 ),
@@ -134,24 +105,29 @@ public static partial class ListProvisionedConcurrencyConfigsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListProvisionedConcurrencyConfigsInput Build(Builder builder) =>
-            new ListProvisionedConcurrencyConfigsInput(
+        public override global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.Marker,
                 builder.MaxItems
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListProvisionedConcurrencyConfigsInput value,
+            global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsInput value,
             ref TSerializer serializer
         )
         {

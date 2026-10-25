@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RuntimeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<Runtime> Schema { get; } =
-        Schemas.StringEnum<Runtime>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<Runtime>(
             ShapeId.Parse("com.amazonaws.lambda#Runtime"),
             values:
             [
@@ -69,10 +68,6 @@ public static partial class RuntimeSchema
             ],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

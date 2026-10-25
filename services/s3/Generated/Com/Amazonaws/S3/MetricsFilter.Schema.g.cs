@@ -5,104 +5,58 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetricsFilterSchema
 {
-    public static UnionSchema<MetricsFilter> Schema { get; } = new GeneratedSchema();
+    public static UnionSchema<global::Com.Amazonaws.S3.MetricsFilter> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : UnionSchema<MetricsFilter>(
+        : UnionSchema<global::Com.Amazonaws.S3.MetricsFilter>(
             ShapeId.Parse("com.amazonaws.s3#MetricsFilter"),
             [
-                new(
-                    "AccessPointArn",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The access point ARN used when evaluating a metrics filter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "And",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The\n      operator must have at least two predicates, and an object must match all of the predicates in order for\n      the filter to apply.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Prefix",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix used when evaluating a metrics filter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Tag",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tag used when evaluating a metrics filter.</p>\n         <note>\n            <p>\n               <code>Tag</code> filters are not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("AccessPointArn", Target0),
+                new("And", Target1),
+                new("Prefix", Target2),
+                new("Tag", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies a metrics configuration filter. The metrics configuration only includes objects that meet\n      the filter's criteria. A filter must be a prefix, an object tag, an access point ARN, or a conjunction\n      (MetricsAndOperator). For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html\">PutBucketMetricsConfiguration</a>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
-        private static readonly global::NSmithy.Core.Serde.Schema<MetricsAndOperator> Target1 =
-            Schemas.Lazy(() => MetricsAndOperatorSchema.Schema!);
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target2 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetricsAndOperator> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MetricsAndOperatorSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target2 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tag> Target3 =
-            Schemas.Lazy(() => TagSchema.Schema!);
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSchema.Schema!);
 
-        public override int CaseOf(MetricsFilter value) =>
+        public override int CaseOf(global::Com.Amazonaws.S3.MetricsFilter value) =>
             value switch
             {
-                MetricsFilter.AccessPointArn => 0,
-                MetricsFilter.And => 1,
-                MetricsFilter.Prefix => 2,
-                MetricsFilter.Tag => 3,
+                global::Com.Amazonaws.S3.MetricsFilter.AccessPointArn => 0,
+                global::Com.Amazonaws.S3.MetricsFilter.And => 1,
+                global::Com.Amazonaws.S3.MetricsFilter.Prefix => 2,
+                global::Com.Amazonaws.S3.MetricsFilter.TagCase => 3,
                 _ => throw NoCaseMatched(),
             };
 
         public override void SerializeCase<TSerializer>(
-            MetricsFilter value,
+            global::Com.Amazonaws.S3.MetricsFilter value,
             ref TSerializer serializer
         )
         {
             switch (value)
             {
-                case MetricsFilter.AccessPointArn @case:
+                case global::Com.Amazonaws.S3.MetricsFilter.AccessPointArn @case:
                     if (@case.Value is { } value0)
                     {
                         serializer.WriteString(0, value0);
@@ -112,7 +66,7 @@ public static partial class MetricsFilterSchema
                         serializer.WriteNull(0);
                     }
                     break;
-                case MetricsFilter.And @case:
+                case global::Com.Amazonaws.S3.MetricsFilter.And @case:
                     if (@case.Value is { } value1)
                     {
                         serializer.WriteStruct(1, value1, MetricsAndOperatorSchema.Schema);
@@ -122,7 +76,7 @@ public static partial class MetricsFilterSchema
                         serializer.WriteNull(1);
                     }
                     break;
-                case MetricsFilter.Prefix @case:
+                case global::Com.Amazonaws.S3.MetricsFilter.Prefix @case:
                     if (@case.Value is { } value2)
                     {
                         serializer.WriteString(2, value2);
@@ -132,7 +86,7 @@ public static partial class MetricsFilterSchema
                         serializer.WriteNull(2);
                     }
                     break;
-                case MetricsFilter.Tag @case:
+                case global::Com.Amazonaws.S3.MetricsFilter.TagCase @case:
                     if (@case.Value is { } value3)
                     {
                         serializer.WriteStruct(3, value3, TagSchema.Schema);
@@ -147,18 +101,24 @@ public static partial class MetricsFilterSchema
             }
         }
 
-        public override MetricsFilter DeserializeCase<TDeserializer>(
+        public override global::Com.Amazonaws.S3.MetricsFilter DeserializeCase<TDeserializer>(
             int index,
             ref TDeserializer deserializer
         ) =>
             index switch
             {
-                0 => new MetricsFilter.AccessPointArn((deserializer.ReadString())!),
-                1 => new MetricsFilter.And(
+                0 => new global::Com.Amazonaws.S3.MetricsFilter.AccessPointArn(
+                    (deserializer.ReadString())!
+                ),
+                1 => new global::Com.Amazonaws.S3.MetricsFilter.And(
                     (deserializer.ReadStruct(MetricsAndOperatorSchema.Schema))!
                 ),
-                2 => new MetricsFilter.Prefix((deserializer.ReadString())!),
-                3 => new MetricsFilter.Tag((deserializer.ReadStruct(TagSchema.Schema))!),
+                2 => new global::Com.Amazonaws.S3.MetricsFilter.Prefix(
+                    (deserializer.ReadString())!
+                ),
+                3 => new global::Com.Amazonaws.S3.MetricsFilter.TagCase(
+                    (deserializer.ReadStruct(TagSchema.Schema))!
+                ),
                 _ => throw NoCaseMatched(),
             };
     }

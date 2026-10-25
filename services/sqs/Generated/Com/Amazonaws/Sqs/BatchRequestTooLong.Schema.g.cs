@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class BatchRequestTooLongSchema
 {
@@ -15,11 +15,13 @@ public static partial class BatchRequestTooLongSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<BatchRequestTooLong, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.BatchRequestTooLong,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BatchRequestTooLong, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.BatchRequestTooLong, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#BatchRequestTooLong"),
             [new("message", Target0)],
             [
@@ -29,31 +31,27 @@ public static partial class BatchRequestTooLongSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("AWS.SimpleQueueService.BatchRequestTooLong") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The length of all the messages put together is more than the limit.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override BatchRequestTooLong Build(Builder builder) =>
-            new BatchRequestTooLong(builder.Message);
+        public override global::Com.Amazonaws.Sqs.BatchRequestTooLong Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.BatchRequestTooLong(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            BatchRequestTooLong value,
+            global::Com.Amazonaws.Sqs.BatchRequestTooLong value,
             ref TSerializer serializer
         )
         {

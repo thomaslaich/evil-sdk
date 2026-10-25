@@ -6,23 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NotificationConfigurationSchema
 {
     public sealed class Builder
     {
-        public TopicConfigurationList? TopicConfigurations { get; set; }
-        public QueueConfigurationList? QueueConfigurations { get; set; }
-        public LambdaFunctionConfigurationList? LambdaFunctionConfigurations { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.TopicConfiguration>? TopicConfigurations { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.QueueConfiguration>? QueueConfigurations { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.LambdaFunctionConfiguration>? LambdaFunctionConfigurations { get; set; }
         public global::Com.Amazonaws.S3.EventBridgeConfiguration? EventBridgeConfiguration { get; set; }
     }
 
-    public static StructSchema<NotificationConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.NotificationConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NotificationConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NotificationConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NotificationConfiguration"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class NotificationConfigurationSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The topic to which notifications are sent and the events for which notifications are\n      generated.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -52,12 +48,6 @@ public static partial class NotificationConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Simple Queue Service queues to publish messages to and the events for which to publish\n      messages.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -73,12 +63,6 @@ public static partial class NotificationConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the Lambda functions to invoke and the events for which to invoke them.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -88,45 +72,36 @@ public static partial class NotificationConfigurationSchema
                         ),
                     ]
                 ),
-                new(
-                    "EventBridgeConfiguration",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Enables delivery of events to Amazon EventBridge.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("EventBridgeConfiguration", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for specifying the notification configuration of the bucket. If this element is empty,\n      notifications are turned off for the bucket.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<TopicConfigurationList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => TopicConfigurationListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<QueueConfigurationList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => QueueConfigurationListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<LambdaFunctionConfigurationList?> Target2 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => LambdaFunctionConfigurationListSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.TopicConfiguration>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TopicConfigurationListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.QueueConfiguration>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueConfigurationListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.LambdaFunctionConfiguration>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    LambdaFunctionConfigurationListSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EventBridgeConfiguration?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventBridgeConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    EventBridgeConfigurationSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override NotificationConfiguration Build(Builder builder) =>
-            new NotificationConfiguration(
+        public override global::Com.Amazonaws.S3.NotificationConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.NotificationConfiguration(
                 builder.EventBridgeConfiguration,
                 builder.LambdaFunctionConfigurations,
                 builder.QueueConfigurations,
@@ -134,7 +109,7 @@ public static partial class NotificationConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            NotificationConfiguration value,
+            global::Com.Amazonaws.S3.NotificationConfiguration value,
             ref TSerializer serializer
         )
         {

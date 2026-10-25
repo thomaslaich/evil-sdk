@@ -6,50 +6,33 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CORSRuleSchema
 {
     public sealed class Builder
     {
         public string? ID { get; set; }
-        public global::Com.Amazonaws.S3.AllowedHeaders? AllowedHeaders { get; set; }
-        public global::Com.Amazonaws.S3.AllowedMethods? AllowedMethods { get; set; }
-        public global::Com.Amazonaws.S3.AllowedOrigins? AllowedOrigins { get; set; }
-        public global::Com.Amazonaws.S3.ExposeHeaders? ExposeHeaders { get; set; }
+        public IReadOnlyList<string>? AllowedHeaders { get; set; }
+        public IReadOnlyList<string>? AllowedMethods { get; set; }
+        public IReadOnlyList<string>? AllowedOrigins { get; set; }
+        public IReadOnlyList<string>? ExposeHeaders { get; set; }
         public int? MaxAgeSeconds { get; set; }
     }
 
-    public static StructSchema<CORSRule, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.CORSRule, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CORSRule, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CORSRule, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CORSRule"),
             [
-                new(
-                    "ID",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Unique identifier for the rule. The value cannot be longer than 255 characters.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ID", Target0),
                 new(
                     "AllowedHeaders",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Headers that are specified in the <code>Access-Control-Request-Headers</code> header. These headers\n      are allowed in a preflight OPTIONS request. In response to any preflight OPTIONS request, Amazon S3 returns\n      any requested headers that are allowed.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -66,12 +49,6 @@ public static partial class CORSRuleSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An HTTP method that you allow the origin to execute. Valid values are <code>GET</code>,\n        <code>PUT</code>, <code>HEAD</code>, <code>POST</code>, and <code>DELETE</code>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -93,12 +70,6 @@ public static partial class CORSRuleSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>One or more origins you want customers to be able to access the bucket from.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -118,12 +89,6 @@ public static partial class CORSRuleSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>One or more headers in the response that you want customers to be able to access from their\n      applications (for example, from a JavaScript <code>XMLHttpRequest</code> object).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -142,43 +107,39 @@ public static partial class CORSRuleSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The time in seconds that your browser is to cache the preflight response for the specified\n      resource.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies a cross-origin access rule for an Amazon S3 bucket.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AllowedHeaders?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowedHeadersSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AllowedMethods?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowedMethodsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AllowedOrigins?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowedOriginsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ExposeHeaders?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => ExposeHeadersSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowedHeadersSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowedMethodsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowedOriginsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ExposeHeadersSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CORSRule Build(Builder builder) =>
-            new CORSRule(
+        public override global::Com.Amazonaws.S3.CORSRule Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CORSRule(
                 builder.AllowedMethods
                     ?? throw new MissingRequiredMemberException("AllowedMethods"),
                 builder.AllowedOrigins
@@ -190,7 +151,7 @@ public static partial class CORSRuleSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CORSRule value,
+            global::Com.Amazonaws.S3.CORSRule value,
             ref TSerializer serializer
         )
         {

@@ -4,442 +4,52 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListVersionsByFunctionSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        ListVersionsByFunctionInput,
-        ListVersionsByFunctionOutput
+        global::Com.Amazonaws.Lambda.ListVersionsByFunctionInput,
+        global::Com.Amazonaws.Lambda.ListVersionsByFunctionOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#ListVersionsByFunction"),
-            Schemas.Lazy(() => ListVersionsByFunctionInputSchema.Schema!),
-            Schemas.Lazy(() => ListVersionsByFunctionOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListVersionsByFunctionInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListVersionsByFunctionOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to retrieve a list of versions for an AWS Lambda function"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_ListVersionsByFunction.html")
-                            },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "function",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns a list of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">versions</a>, with the version-specific configuration of each. Lambda returns up to 50 versions per call.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns a list of versions of a function named my-function"
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "Versions",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "CodeSha256",
-                                                                        Document.From(
-                                                                            "YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4="
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "CodeSize",
-                                                                        Document.From(
-                                                                            (decimal)5797206
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Description",
-                                                                        Document.From(
-                                                                            "Process image objects from Amazon S3."
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "DurableConfig",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "ExecutionTimeout",
-                                                                                    Document.From(
-                                                                                        (decimal)
-                                                                                            31622400
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "RetentionPeriodInDays",
-                                                                                    Document.From(
-                                                                                        (decimal)30
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Environment",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Variables",
-                                                                                    Document.From(
-                                                                                        new Dictionary<
-                                                                                            string,
-                                                                                            Document
-                                                                                        >
-                                                                                        {
-                                                                                            {
-                                                                                                "BUCKET",
-                                                                                                Document.From(
-                                                                                                    "my-bucket-1xpuxmplzrlbh"
-                                                                                                )
-                                                                                            },
-                                                                                            {
-                                                                                                "PREFIX",
-                                                                                                Document.From(
-                                                                                                    "inbound"
-                                                                                                )
-                                                                                            },
-                                                                                        }
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "FunctionArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-west-2:123456789012:function:my-function"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "FunctionName",
-                                                                        Document.From("my-function")
-                                                                    },
-                                                                    {
-                                                                        "Handler",
-                                                                        Document.From(
-                                                                            "index.handler"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "KMSKeyArn",
-                                                                        Document.From(
-                                                                            "arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            "2020-04-10T19:06:32.563+0000"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "MemorySize",
-                                                                        Document.From((decimal)256)
-                                                                    },
-                                                                    {
-                                                                        "RevisionId",
-                                                                        Document.From(
-                                                                            "850ca006-2d98-4ff4-86db-8766e9d32fe9"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Role",
-                                                                        Document.From(
-                                                                            "arn:aws:iam::123456789012:role/lambda-role"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Runtime",
-                                                                        Document.From("nodejs12.x")
-                                                                    },
-                                                                    {
-                                                                        "Timeout",
-                                                                        Document.From((decimal)15)
-                                                                    },
-                                                                    {
-                                                                        "TracingConfig",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Mode",
-                                                                                    Document.From(
-                                                                                        "Active"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Version",
-                                                                        Document.From("$LATEST")
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "CodeSha256",
-                                                                        Document.From(
-                                                                            "YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4="
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "CodeSize",
-                                                                        Document.From(
-                                                                            (decimal)5797206
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Description",
-                                                                        Document.From(
-                                                                            "Process image objects from Amazon S3."
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "DurableConfig",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "ExecutionTimeout",
-                                                                                    Document.From(
-                                                                                        (decimal)
-                                                                                            31622400
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "RetentionPeriodInDays",
-                                                                                    Document.From(
-                                                                                        (decimal)30
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Environment",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Variables",
-                                                                                    Document.From(
-                                                                                        new Dictionary<
-                                                                                            string,
-                                                                                            Document
-                                                                                        >
-                                                                                        {
-                                                                                            {
-                                                                                                "BUCKET",
-                                                                                                Document.From(
-                                                                                                    "my-bucket-1xpuxmplzrlbh"
-                                                                                                )
-                                                                                            },
-                                                                                            {
-                                                                                                "PREFIX",
-                                                                                                Document.From(
-                                                                                                    "inbound"
-                                                                                                )
-                                                                                            },
-                                                                                        }
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "FunctionArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-west-2:123456789012:function:my-function"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "FunctionName",
-                                                                        Document.From("my-function")
-                                                                    },
-                                                                    {
-                                                                        "Handler",
-                                                                        Document.From(
-                                                                            "index.handler"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "KMSKeyArn",
-                                                                        Document.From(
-                                                                            "arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            "2020-04-10T19:06:32.563+0000"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "MemorySize",
-                                                                        Document.From((decimal)256)
-                                                                    },
-                                                                    {
-                                                                        "RevisionId",
-                                                                        Document.From(
-                                                                            "b75dcd81-xmpl-48a8-a75a-93ba8b5b9727"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Role",
-                                                                        Document.From(
-                                                                            "arn:aws:iam::123456789012:role/lambda-role"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Runtime",
-                                                                        Document.From("nodejs12.x")
-                                                                    },
-                                                                    {
-                                                                        "Timeout",
-                                                                        Document.From((decimal)5)
-                                                                    },
-                                                                    {
-                                                                        "TracingConfig",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Mode",
-                                                                                    Document.From(
-                                                                                        "Active"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Version",
-                                                                        Document.From("1")
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    { "title", Document.From("To list versions of a function") },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -450,7 +60,7 @@ public static partial class ListVersionsByFunctionSchema
                                 "uri",
                                 Document.From("/2015-03-31/functions/{FunctionName}/versions")
                             },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
@@ -469,10 +79,6 @@ public static partial class ListVersionsByFunctionSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

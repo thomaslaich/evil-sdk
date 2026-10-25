@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateBucketMetadataTableConfigurationInputSchema
 {
@@ -20,12 +20,15 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
     }
 
     public static StructSchema<
-        CreateBucketMetadataTableConfigurationInput,
+        global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationInput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateBucketMetadataTableConfigurationInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#CreateBucketMetadataTableConfigurationInput"),
             [
                 new(
@@ -34,12 +37,6 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The general purpose bucket that you want to create the metadata table configuration for. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -65,12 +62,6 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The <code>Content-MD5</code> header for the metadata table configuration. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -81,12 +72,6 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The checksum algorithm to use with your metadata table configuration. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -99,12 +84,6 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The contents of your metadata table configuration. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -125,12 +104,6 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The expected owner of the general purpose bucket that corresponds to your metadata table configuration.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -150,20 +123,32 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target2 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataTableConfiguration?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetadataTableConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MetadataTableConfigurationSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateBucketMetadataTableConfigurationInput Build(Builder builder) =>
-            new CreateBucketMetadataTableConfigurationInput(
+        public override global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.MetadataTableConfiguration
                     ?? throw new MissingRequiredMemberException("MetadataTableConfiguration"),
@@ -173,7 +158,7 @@ public static partial class CreateBucketMetadataTableConfigurationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CreateBucketMetadataTableConfigurationInput value,
+            global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationInput value,
             ref TSerializer serializer
         )
         {

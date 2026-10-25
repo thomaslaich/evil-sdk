@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectAclInputSchema
 {
     public sealed class Builder
     {
-        public ObjectCannedACL? ACL { get; set; }
+        public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public global::Com.Amazonaws.S3.AccessControlPolicy? AccessControlPolicy { get; set; }
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
@@ -28,10 +28,13 @@ public static partial class PutObjectAclInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<PutObjectAclInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutObjectAclInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutObjectAclInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutObjectAclInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutObjectAclInput"),
             [
                 new(
@@ -39,12 +42,6 @@ public static partial class PutObjectAclInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The canned ACL to apply to the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL\">Canned ACL</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-acl")
@@ -56,12 +53,6 @@ public static partial class PutObjectAclInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains the elements that set the ACL permissions for an object per grantee.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -78,12 +69,6 @@ public static partial class PutObjectAclInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The bucket name that contains the object to which you want to attach the ACL. </p>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the \n                     form <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -109,12 +94,6 @@ public static partial class PutObjectAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded 128-bit <code>MD5</code> digest of the data. This header must be used as a\n      message integrity check to verify that the request body was not corrupted in transit. For more\n      information, go to <a href=\"http://www.ietf.org/rfc/rfc1864.txt\">RFC 1864.></a>\n         </p>\n         <p>For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -125,12 +104,6 @@ public static partial class PutObjectAclInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the object when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum</code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>. For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>\n      parameter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -143,12 +116,6 @@ public static partial class PutObjectAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-full-control")
                         ),
@@ -159,12 +126,6 @@ public static partial class PutObjectAclInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to list the objects in the bucket.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read")
@@ -177,12 +138,6 @@ public static partial class PutObjectAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to read the bucket ACL.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read-acp")
                         ),
@@ -194,12 +149,6 @@ public static partial class PutObjectAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to create new objects in the bucket.</p>\n         <p>For the bucket and object owners of existing objects, also allows deletions and overwrites of those\n      objects.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write")
                         ),
@@ -210,12 +159,6 @@ public static partial class PutObjectAclInputSchema
                     Target9,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to write the ACL for the applicable bucket.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write-acp")
@@ -229,20 +172,13 @@ public static partial class PutObjectAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Key for which the PUT action was initiated.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -277,12 +213,6 @@ public static partial class PutObjectAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Version ID used to reference a specific version of the object.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("versionId")
                         ),
@@ -293,12 +223,6 @@ public static partial class PutObjectAclInputSchema
                     Target13,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -318,39 +242,61 @@ public static partial class PutObjectAclInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectCannedACL?> Target0 =
-            Schemas.Nullable(ObjectCannedACLSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectCannedACL?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectCannedACLSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AccessControlPolicy?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AccessControlPolicySchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AccessControlPolicySchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target4 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target11 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target12 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutObjectAclInput Build(Builder builder) =>
-            new PutObjectAclInput(
+        public override global::Com.Amazonaws.S3.PutObjectAclInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutObjectAclInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ACL,
@@ -368,7 +314,7 @@ public static partial class PutObjectAclInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutObjectAclInput value,
+            global::Com.Amazonaws.S3.PutObjectAclInput value,
             ref TSerializer serializer
         )
         {
@@ -499,8 +445,8 @@ public static partial class PutObjectAclInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ObjectCannedACL.FromValue(value0)
-                                : default(ObjectCannedACL)
+                                ? global::Com.Amazonaws.S3.ObjectCannedACL.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ObjectCannedACL)
                         );
                     break;
                 case 1:

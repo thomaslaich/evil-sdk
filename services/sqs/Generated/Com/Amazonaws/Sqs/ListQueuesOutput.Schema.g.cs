@@ -6,20 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListQueuesOutputSchema
 {
     public sealed class Builder
     {
-        public QueueUrlList? QueueUrls { get; set; }
+        public IReadOnlyList<string>? QueueUrls { get; set; }
         public string? NextToken { get; set; }
     }
 
-    public static StructSchema<ListQueuesOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListQueuesOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListQueuesOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListQueuesOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListQueuesOutput"),
             [
                 new(
@@ -28,37 +31,15 @@ public static partial class ListQueuesOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of queue URLs, up to 1,000 entries, or the value of <code>MaxResults</code>\n            that you sent in the request.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("QueueUrl")),
                     ]
                 ),
-                new(
-                    "NextToken",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Pagination token to include in the next request. Token value is <code>null</code> if\n            there are no additional results to request, or if you did not set\n                <code>MaxResults</code> in the request.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("NextToken", Target1),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A list of your queues.</p>")
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -70,18 +51,22 @@ public static partial class ListQueuesOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<QueueUrlList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => QueueUrlListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueUrlListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListQueuesOutput Build(Builder builder) =>
-            new ListQueuesOutput(builder.NextToken, builder.QueueUrls);
+        public override global::Com.Amazonaws.Sqs.ListQueuesOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.ListQueuesOutput(builder.NextToken, builder.QueueUrls);
 
         public override void SerializeMembers<TSerializer>(
-            ListQueuesOutput value,
+            global::Com.Amazonaws.Sqs.ListQueuesOutput value,
             ref TSerializer serializer
         )
         {

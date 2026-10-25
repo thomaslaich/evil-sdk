@@ -4,191 +4,52 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionEventInvokeConfigsSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        ListFunctionEventInvokeConfigsInput,
-        ListFunctionEventInvokeConfigsOutput
+        global::Com.Amazonaws.Lambda.ListFunctionEventInvokeConfigsInput,
+        global::Com.Amazonaws.Lambda.ListFunctionEventInvokeConfigsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionEventInvokeConfigs"),
-            Schemas.Lazy(() => ListFunctionEventInvokeConfigsInputSchema.Schema!),
-            Schemas.Lazy(() => ListFunctionEventInvokeConfigsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListFunctionEventInvokeConfigsInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListFunctionEventInvokeConfigsOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to retrieve a list of configurations for asynchronous invocation for a function"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_ListFunctionEventInvokeConfigs.html")
-                            },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "function",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Retrieves a list of configurations for asynchronous invocation for a function.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns a list of asynchronous invocation configurations for a function named my-function."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "FunctionEventInvokeConfigs",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "FunctionArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-east-2:123456789012:function:my-function:GREEN"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            (decimal)
-                                                                                1.577824406719E9
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "MaximumEventAgeInSeconds",
-                                                                        Document.From((decimal)1800)
-                                                                    },
-                                                                    {
-                                                                        "MaximumRetryAttempts",
-                                                                        Document.From((decimal)2)
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "FunctionArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-east-2:123456789012:function:my-function:BLUE"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            (decimal)
-                                                                                1.577824396653E9
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "MaximumEventAgeInSeconds",
-                                                                        Document.From((decimal)3600)
-                                                                    },
-                                                                    {
-                                                                        "MaximumRetryAttempts",
-                                                                        Document.From((decimal)0)
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To view a list of asynchronous invocation configurations"
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -201,7 +62,7 @@ public static partial class ListFunctionEventInvokeConfigsSchema
                                     "/2019-09-25/functions/{FunctionName}/event-invoke-config/list"
                                 )
                             },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
@@ -217,10 +78,6 @@ public static partial class ListFunctionEventInvokeConfigsSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

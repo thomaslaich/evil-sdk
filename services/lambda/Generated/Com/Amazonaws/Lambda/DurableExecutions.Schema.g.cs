@@ -6,52 +6,53 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DurableExecutionsSchema
 {
-    public static ListSchema<DurableExecutions, Execution, List<Execution>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.Lambda.Execution>,
+        global::Com.Amazonaws.Lambda.Execution,
+        List<global::Com.Amazonaws.Lambda.Execution>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<DurableExecutions, Execution, List<Execution>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Execution>,
+            global::Com.Amazonaws.Lambda.Execution,
+            List<global::Com.Amazonaws.Lambda.Execution>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#DurableExecutions"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Execution> Target0 = Schemas.Lazy(
-            () =>
-                ExecutionSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Execution> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ExecutionSchema.Schema!);
 
-        public override IEnumerable<Execution> GetElements(DurableExecutions value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.Execution> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Execution> value
+        ) => value;
 
-        public override List<Execution> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.Execution> CreateTypedBuilder() => new();
 
-        public override void Add(List<Execution> builder, Execution value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.Execution> builder,
+            global::Com.Amazonaws.Lambda.Execution value
+        ) => builder.Add(value);
 
-        public override DurableExecutions Build(List<Execution> builder) =>
-            DurableExecutions.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.Execution> Build(
+            List<global::Com.Amazonaws.Lambda.Execution> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            DurableExecutions value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Execution> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -66,7 +67,7 @@ public static partial class DurableExecutionsSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Execution> builder,
+            List<global::Com.Amazonaws.Lambda.Execution> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ExecutionSchema.Schema));
     }

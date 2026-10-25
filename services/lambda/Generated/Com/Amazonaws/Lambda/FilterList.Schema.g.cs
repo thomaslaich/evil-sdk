@@ -6,51 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FilterListSchema
 {
-    public static ListSchema<FilterList, Filter, List<Filter>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.Lambda.Filter>,
+        global::Com.Amazonaws.Lambda.Filter,
+        List<global::Com.Amazonaws.Lambda.Filter>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<FilterList, Filter, List<Filter>>(
-            ShapeId.Parse("com.amazonaws.lambda#FilterList"),
-            ShapeKind.List,
-            Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Filter>,
+            global::Com.Amazonaws.Lambda.Filter,
+            List<global::Com.Amazonaws.Lambda.Filter>
+        >(ShapeId.Parse("com.amazonaws.lambda#FilterList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Filter> Target0 = Schemas.Lazy(
-            () =>
-                FilterSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Filter> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => FilterSchema.Schema!);
 
-        public override IEnumerable<Filter> GetElements(FilterList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.Filter> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Filter> value
+        ) => value;
 
-        public override List<Filter> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.Filter> CreateTypedBuilder() => new();
 
-        public override void Add(List<Filter> builder, Filter value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.Filter> builder,
+            global::Com.Amazonaws.Lambda.Filter value
+        ) => builder.Add(value);
 
-        public override FilterList Build(List<Filter> builder) => FilterList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.Filter> Build(
+            List<global::Com.Amazonaws.Lambda.Filter> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FilterList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Filter> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -65,7 +61,7 @@ public static partial class FilterListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Filter> builder,
+            List<global::Com.Amazonaws.Lambda.Filter> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(FilterSchema.Schema));
     }

@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionUrlConfigsOutputSchema
 {
     public sealed class Builder
     {
-        public FunctionUrlConfigList? FunctionUrlConfigs { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionUrlConfig>? FunctionUrlConfigs { get; set; }
         public string? NextMarker { get; set; }
     }
 
-    public static StructSchema<ListFunctionUrlConfigsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListFunctionUrlConfigsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListFunctionUrlConfigsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListFunctionUrlConfigsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionUrlConfigsOutput"),
             [
                 new(
@@ -30,45 +32,17 @@ public static partial class ListFunctionUrlConfigsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of function URL configurations.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "NextMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("NextMarker", Target1),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -77,22 +51,28 @@ public static partial class ListFunctionUrlConfigsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionUrlConfigList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionUrlConfigListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionUrlConfig>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionUrlConfigListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListFunctionUrlConfigsOutput Build(Builder builder) =>
-            new ListFunctionUrlConfigsOutput(
+        public override global::Com.Amazonaws.Lambda.ListFunctionUrlConfigsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListFunctionUrlConfigsOutput(
                 builder.FunctionUrlConfigs
                     ?? throw new MissingRequiredMemberException("FunctionUrlConfigs"),
                 builder.NextMarker
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListFunctionUrlConfigsOutput value,
+            global::Com.Amazonaws.Lambda.ListFunctionUrlConfigsOutput value,
             ref TSerializer serializer
         )
         {

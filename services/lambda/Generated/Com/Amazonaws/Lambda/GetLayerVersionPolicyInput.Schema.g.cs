@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetLayerVersionPolicyInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class GetLayerVersionPolicyInputSchema
         public long? VersionNumber { get; set; }
     }
 
-    public static StructSchema<GetLayerVersionPolicyInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetLayerVersionPolicyInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetLayerVersionPolicyInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetLayerVersionPolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetLayerVersionPolicyInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class GetLayerVersionPolicyInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or Amazon Resource Name (ARN) of the layer.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +40,8 @@ public static partial class GetLayerVersionPolicyInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -58,10 +54,6 @@ public static partial class GetLayerVersionPolicyInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -77,20 +69,12 @@ public static partial class GetLayerVersionPolicyInputSchema
                         ),
                         new Trait(ShapeId.Parse("smithy.api#default")),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The version number.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -101,10 +85,6 @@ public static partial class GetLayerVersionPolicyInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetLayerVersionPolicyRequest")
                 ),
@@ -112,21 +92,24 @@ public static partial class GetLayerVersionPolicyInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetLayerVersionPolicyInput Build(Builder builder) =>
-            new GetLayerVersionPolicyInput(
+        public override global::Com.Amazonaws.Lambda.GetLayerVersionPolicyInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetLayerVersionPolicyInput(
                 builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
                 builder.VersionNumber.GetValueOrDefault()
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetLayerVersionPolicyInput value,
+            global::Com.Amazonaws.Lambda.GetLayerVersionPolicyInput value,
             ref TSerializer serializer
         )
         {

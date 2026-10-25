@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.Lambda;
 
@@ -45,5 +46,5 @@ public sealed record class ListDurableExecutionsByFunctionInput(
     bool? ReverseOrder = null,
     DateTimeOffset? StartedAfter = null,
     DateTimeOffset? StartedBefore = null,
-    ExecutionStatusList? Statuses = null
+    IReadOnlyList<ExecutionStatus>? Statuses = null
 );

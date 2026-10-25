@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetEventSourceMappingOutputSchema
 {
     public sealed class Builder
     {
         public string? UUID { get; set; }
-        public EventSourcePosition? StartingPosition { get; set; }
+        public global::Com.Amazonaws.Lambda.EventSourcePosition? StartingPosition { get; set; }
         public DateTimeOffset? StartingPositionTimestamp { get; set; }
         public int? BatchSize { get; set; }
         public int? MaximumBatchingWindowInSeconds { get; set; }
@@ -23,8 +23,8 @@ public static partial class GetEventSourceMappingOutputSchema
         public global::Com.Amazonaws.Lambda.FilterCriteria? FilterCriteria { get; set; }
         public global::Com.Amazonaws.Lambda.FilterCriteriaError? FilterCriteriaError { get; set; }
         public string? KMSKeyArn { get; set; }
-        public EventSourceMappingMetricsConfig? MetricsConfig { get; set; }
-        public EventSourceMappingLoggingConfig? LoggingConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.EventSourceMappingMetricsConfig? MetricsConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.EventSourceMappingLoggingConfig? LoggingConfig { get; set; }
         public global::Com.Amazonaws.Lambda.ScalingConfig? ScalingConfig { get; set; }
         public string? FunctionArn { get; set; }
         public DateTimeOffset? LastModified { get; set; }
@@ -32,15 +32,15 @@ public static partial class GetEventSourceMappingOutputSchema
         public string? State { get; set; }
         public string? StateTransitionReason { get; set; }
         public global::Com.Amazonaws.Lambda.DestinationConfig? DestinationConfig { get; set; }
-        public global::Com.Amazonaws.Lambda.Topics? Topics { get; set; }
-        public global::Com.Amazonaws.Lambda.Queues? Queues { get; set; }
-        public global::Com.Amazonaws.Lambda.SourceAccessConfigurations? SourceAccessConfigurations { get; set; }
+        public IReadOnlyList<string>? Topics { get; set; }
+        public IReadOnlyList<string>? Queues { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.SourceAccessConfiguration>? SourceAccessConfigurations { get; set; }
         public global::Com.Amazonaws.Lambda.SelfManagedEventSource? SelfManagedEventSource { get; set; }
         public int? MaximumRecordAgeInSeconds { get; set; }
         public bool? BisectBatchOnFunctionError { get; set; }
         public int? MaximumRetryAttempts { get; set; }
         public int? TumblingWindowInSeconds { get; set; }
-        public FunctionResponseTypeList? FunctionResponseTypes { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionResponseType>? FunctionResponseTypes { get; set; }
         public global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig? AmazonManagedKafkaEventSourceConfig { get; set; }
         public global::Com.Amazonaws.Lambda.SelfManagedKafkaEventSourceConfig? SelfManagedKafkaEventSourceConfig { get; set; }
         public global::Com.Amazonaws.Lambda.DocumentDBEventSourceConfig? DocumentDBEventSourceConfig { get; set; }
@@ -48,11 +48,13 @@ public static partial class GetEventSourceMappingOutputSchema
         public global::Com.Amazonaws.Lambda.ProvisionedPollerConfig? ProvisionedPollerConfig { get; set; }
     }
 
-    public static StructSchema<GetEventSourceMappingOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetEventSourceMappingOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetEventSourceMappingOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetEventSourceMappingOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetEventSourceMappingOutput"),
             [
                 new(
@@ -61,59 +63,19 @@ public static partial class GetEventSourceMappingOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The identifier of the event source mapping.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)36) },
-                                    { "max", Document.From((decimal)36) },
+                                    { "min", Document.From(36m) },
+                                    { "max", Document.From(36m) },
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "StartingPosition",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon DynamoDB Stream event sources. <code>AT_TIMESTAMP</code> is supported only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "StartingPositionTimestamp",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading. <code>StartingPositionTimestamp</code> cannot be in the future.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("StartingPosition", Target1),
+                new("StartingPositionTimestamp", Target2),
                 new(
                     "BatchSize",
                     Target3,
@@ -124,24 +86,14 @@ public static partial class GetEventSourceMappingOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).</p> <p>Default value: Varies by service. For Amazon SQS, the default is 10. For all other services, the default is 100.</p> <p>Related setting: When you set <code>BatchSize</code> to a value greater than 10, you must set <code>MaximumBatchingWindowInSeconds</code> to at least 1.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -155,24 +107,14 @@ public static partial class GetEventSourceMappingOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure <code>MaximumBatchingWindowInSeconds</code> to any value from 0 seconds to 300 seconds in increments of seconds.</p> <p>For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change <code>MaximumBatchingWindowInSeconds</code> in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping.</p> <p>Related setting: For streams and Amazon SQS event sources, when you set <code>BatchSize</code> to a value greater than 10, you must set <code>MaximumBatchingWindowInSeconds</code> to at least 1.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)300) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(300m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -186,24 +128,14 @@ public static partial class GetEventSourceMappingOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Kinesis and DynamoDB Streams only) The number of batches to process concurrently from each shard. The default value is 1.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -213,18 +145,12 @@ public static partial class GetEventSourceMappingOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the event source.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -234,64 +160,22 @@ public static partial class GetEventSourceMappingOutputSchema
                                 "^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "FilterCriteria",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html\">Lambda event filtering</a>.</p> <p>If filter criteria is encrypted, this field shows up as <code>null</code> in the response of ListEventSourceMapping API calls. You can view this field in plaintext in the response of GetEventSourceMapping and DeleteEventSourceMapping calls if you have <code>kms:Decrypt</code> permissions for the correct KMS key.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "FilterCriteriaError",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object that contains details about an error related to filter criteria encryption.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("FilterCriteria", Target7),
+                new("FilterCriteriaError", Target8),
                 new(
                     "KMSKeyArn",
                     Target9,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics\">filter criteria</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -299,79 +183,23 @@ public static partial class GetEventSourceMappingOutputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "MetricsConfig",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The metrics configuration for your event source. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics\">Event source mapping metrics</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "LoggingConfig",
-                    Target11,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/esm-logging.html\">Event source mapping logging</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ScalingConfig",
-                    Target12,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Amazon SQS only) The scaling configuration for the event source. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency\">Configuring maximum concurrency for Amazon SQS event sources</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("MetricsConfig", Target10),
+                new("LoggingConfig", Target11),
+                new("ScalingConfig", Target12),
                 new(
                     "FunctionArn",
                     Target13,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The ARN of the Lambda function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -381,163 +209,17 @@ public static partial class GetEventSourceMappingOutputSchema
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "LastModified",
-                    Target14,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date that the event source mapping was last updated or that its state changed.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "LastProcessingResult",
-                    Target15,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The result of the event source mapping's last processing attempt.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "State",
-                    Target16,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The state of the event source mapping. It can be one of the following: <code>Creating</code>, <code>Enabling</code>, <code>Enabled</code>, <code>Disabling</code>, <code>Disabled</code>, <code>Updating</code>, or <code>Deleting</code>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "StateTransitionReason",
-                    Target17,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether a user or Lambda made the last change to the event source mapping.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "DestinationConfig",
-                    Target18,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that specifies the destination of an event after Lambda processes it.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Topics",
-                    Target19,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the Kafka topic.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Queues",
-                    Target20,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "SourceAccessConfigurations",
-                    Target21,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An array of the authentication protocol, VPC components, or virtual host to secure and define your event source.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "SelfManagedEventSource",
-                    Target22,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The self-managed Apache Kafka cluster for your event source.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("LastModified", Target14),
+                new("LastProcessingResult", Target15),
+                new("State", Target16),
+                new("StateTransitionReason", Target17),
+                new("DestinationConfig", Target18),
+                new("Topics", Target19),
+                new("Queues", Target20),
+                new("SourceAccessConfigurations", Target21),
+                new("SelfManagedEventSource", Target22),
                 new(
                     "MaximumRecordAgeInSeconds",
                     Target23,
@@ -548,24 +230,14 @@ public static partial class GetEventSourceMappingOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records older than the specified age. The default value is -1, which sets the maximum age to infinite. When the value is set to infinite, Lambda never discards old records.</p> <note> <p>The minimum valid value for maximum record age is 60s. Although values less than 60 and greater than -1 fall within the parameter's absolute range, they are not allowed</p> </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)-1) },
-                                    { "max", Document.From((decimal)604800) },
+                                    { "min", Document.From(-1m) },
+                                    { "max", Document.From(604800m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -577,16 +249,6 @@ public static partial class GetEventSourceMappingOutputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an error, split the batch in two and retry. The default value is false.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -600,24 +262,14 @@ public static partial class GetEventSourceMappingOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries. The default value is -1, which sets the maximum number of retries to infinite. When MaximumRetryAttempts is infinite, Lambda retries failed records until the record expires in the event source.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)-1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(-1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -631,113 +283,33 @@ public static partial class GetEventSourceMappingOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)900) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(900m) },
                                 }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "FunctionResponseTypes",
-                    Target27,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "AmazonManagedKafkaEventSourceConfig",
-                    Target28,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "SelfManagedKafkaEventSourceConfig",
-                    Target29,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specific configuration settings for a self-managed Apache Kafka event source.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "DocumentDBEventSourceConfig",
-                    Target30,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specific configuration settings for a DocumentDB event source.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("FunctionResponseTypes", Target27),
+                new("AmazonManagedKafkaEventSourceConfig", Target28),
+                new("SelfManagedKafkaEventSourceConfig", Target29),
+                new("DocumentDBEventSourceConfig", Target30),
                 new(
                     "EventSourceMappingArn",
                     Target31,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the event source mapping.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)85) },
-                                    { "max", Document.From((decimal)120) },
+                                    { "min", Document.From(85m) },
+                                    { "max", Document.From(120m) },
                                 }
                             )
                         ),
@@ -747,44 +319,14 @@ public static partial class GetEventSourceMappingOutputSchema
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:event-source-mapping:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "ProvisionedPollerConfig",
-                    Target32,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping-provisioned-mode\">provisioned mode</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("ProvisionedPollerConfig", Target32),
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A mapping between an Amazon Web Services resource and a Lambda function. For details, see <a>CreateEventSourceMapping</a>.</p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -794,92 +336,142 @@ public static partial class GetEventSourceMappingOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<EventSourcePosition?> Target1 =
-            Schemas.Nullable(EventSourcePositionSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target2 =
-            Schemas.Nullable(Schemas.Timestamp);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FilterCriteria?> Target7 =
-            Schemas.NullableReference(Schemas.Lazy(() => FilterCriteriaSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FilterCriteriaError?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => FilterCriteriaErrorSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<EventSourceMappingMetricsConfig?> Target10 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => EventSourceMappingMetricsConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<EventSourceMappingLoggingConfig?> Target11 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => EventSourceMappingLoggingConfigSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventSourcePosition?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(EventSourcePositionSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FilterCriteria?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FilterCriteriaSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FilterCriteriaError?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FilterCriteriaErrorSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventSourceMappingMetricsConfig?> Target10 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    EventSourceMappingMetricsConfigSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventSourceMappingLoggingConfig?> Target11 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    EventSourceMappingLoggingConfigSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ScalingConfig?> Target12 =
-            Schemas.NullableReference(Schemas.Lazy(() => ScalingConfigSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ScalingConfigSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target14 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target15 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target16 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target17 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.DestinationConfig?> Target18 =
-            Schemas.NullableReference(Schemas.Lazy(() => DestinationConfigSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Topics?> Target19 =
-            Schemas.NullableReference(Schemas.Lazy(() => TopicsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Queues?> Target20 =
-            Schemas.NullableReference(Schemas.Lazy(() => QueuesSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SourceAccessConfigurations?> Target21 =
-            Schemas.NullableReference(Schemas.Lazy(() => SourceAccessConfigurationsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => DestinationConfigSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target19 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TopicsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target20 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => QueuesSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.SourceAccessConfiguration>?> Target21 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    SourceAccessConfigurationsSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SelfManagedEventSource?> Target22 =
-            Schemas.NullableReference(Schemas.Lazy(() => SelfManagedEventSourceSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target23 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SelfManagedEventSourceSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target23 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target24 =
-            Schemas.Nullable(Schemas.Boolean);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target25 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target26 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionResponseTypeList?> Target27 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionResponseTypeListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target25 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target26 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionResponseType>?> Target27 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    FunctionResponseTypeListSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig?> Target28 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => AmazonManagedKafkaEventSourceConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    AmazonManagedKafkaEventSourceConfigSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SelfManagedKafkaEventSourceConfig?> Target29 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => SelfManagedKafkaEventSourceConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    SelfManagedKafkaEventSourceConfigSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.DocumentDBEventSourceConfig?> Target30 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => DocumentDBEventSourceConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    DocumentDBEventSourceConfigSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target31 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ProvisionedPollerConfig?> Target32 =
-            Schemas.NullableReference(Schemas.Lazy(() => ProvisionedPollerConfigSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ProvisionedPollerConfigSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetEventSourceMappingOutput Build(Builder builder) =>
-            new GetEventSourceMappingOutput(
+        public override global::Com.Amazonaws.Lambda.GetEventSourceMappingOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetEventSourceMappingOutput(
                 builder.AmazonManagedKafkaEventSourceConfig,
                 builder.BatchSize,
                 builder.BisectBatchOnFunctionError,
@@ -916,7 +508,7 @@ public static partial class GetEventSourceMappingOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetEventSourceMappingOutput value,
+            global::Com.Amazonaws.Lambda.GetEventSourceMappingOutput value,
             ref TSerializer serializer
         )
         {
@@ -1206,8 +798,8 @@ public static partial class GetEventSourceMappingOutputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? EventSourcePosition.FromValue(value1)
-                                : default(EventSourcePosition)
+                                ? global::Com.Amazonaws.Lambda.EventSourcePosition.FromValue(value1)
+                                : default(global::Com.Amazonaws.Lambda.EventSourcePosition)
                         );
                     break;
                 case 2:

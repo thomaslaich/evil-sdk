@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ExistingObjectReplicationSchema
 {
     public sealed class Builder
     {
-        public ExistingObjectReplicationStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.ExistingObjectReplicationStatus? Status { get; set; }
     }
 
-    public static StructSchema<ExistingObjectReplication, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ExistingObjectReplication,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ExistingObjectReplication, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ExistingObjectReplication, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ExistingObjectReplication"),
             [
                 new(
@@ -29,40 +31,29 @@ public static partial class ExistingObjectReplicationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 replicates existing source bucket objects. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Optional configuration to replicate existing source bucket objects. </p>\n         <note>\n            <p>This parameter is no longer supported. To replicate existing objects, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html\">Replicating\n          existing objects with S3 Batch Replication</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ExistingObjectReplicationStatus?> Target0 =
-            Schemas.Nullable(ExistingObjectReplicationStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ExistingObjectReplicationStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                ExistingObjectReplicationStatusSchema.Schema
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ExistingObjectReplication Build(Builder builder) =>
-            new ExistingObjectReplication(
+        public override global::Com.Amazonaws.S3.ExistingObjectReplication Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ExistingObjectReplication(
                 builder.Status ?? throw new MissingRequiredMemberException("Status")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ExistingObjectReplication value,
+            global::Com.Amazonaws.S3.ExistingObjectReplication value,
             ref TSerializer serializer
         )
         {
@@ -82,8 +73,10 @@ public static partial class ExistingObjectReplicationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ExistingObjectReplicationStatus.FromValue(value0)
-                                : default(ExistingObjectReplicationStatus)
+                                ? global::Com.Amazonaws.S3.ExistingObjectReplicationStatus.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.ExistingObjectReplicationStatus)
                         );
                     break;
             }

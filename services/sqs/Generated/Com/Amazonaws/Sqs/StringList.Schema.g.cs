@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class StringListSchema
 {
-    public static ListSchema<StringList, string, List<string>> Schema { get; } =
+    public static ListSchema<IReadOnlyList<string>, string, List<string>> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<StringList, string, List<string>>(
+        : ListSchema<IReadOnlyList<string>, string, List<string>>(
             ShapeId.Parse("com.amazonaws.sqs#StringList"),
             ShapeKind.List,
             Target0,
@@ -22,22 +22,26 @@ public static partial class StringListSchema
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("StringListValue"))]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<string> GetElements(StringList value) => value.Values;
+        public override IEnumerable<string> GetElements(IReadOnlyList<string> value) => value;
 
         public override List<string> CreateTypedBuilder() => new();
 
         public override void Add(List<string> builder, string value) => builder.Add(value);
 
-        public override StringList Build(List<string> builder) => StringList.FromOwnedList(builder);
+        public override IReadOnlyList<string> Build(List<string> builder) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            StringList value,
+            IReadOnlyList<string> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

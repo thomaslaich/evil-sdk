@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectTaggingInputSchema
 {
@@ -19,11 +19,13 @@ public static partial class GetObjectTaggingInputSchema
         public global::Com.Amazonaws.S3.RequestPayer? RequestPayer { get; set; }
     }
 
-    public static StructSchema<GetObjectTaggingInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectTaggingInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectTaggingInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectTaggingInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectTaggingInput"),
             [
                 new(
@@ -32,12 +34,6 @@ public static partial class GetObjectTaggingInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The bucket name containing the object for which to get the tagging information. </p>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the \n                     form <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -64,22 +60,13 @@ public static partial class GetObjectTaggingInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Object key for which to get the tagging information.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -94,12 +81,6 @@ public static partial class GetObjectTaggingInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The versionId of the object for which to get the tagging information.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("versionId")
                         ),
@@ -110,12 +91,6 @@ public static partial class GetObjectTaggingInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -147,20 +122,28 @@ public static partial class GetObjectTaggingInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target4 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectTaggingInput Build(Builder builder) =>
-            new GetObjectTaggingInput(
+        public override global::Com.Amazonaws.S3.GetObjectTaggingInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectTaggingInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ExpectedBucketOwner,
@@ -169,7 +152,7 @@ public static partial class GetObjectTaggingInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectTaggingInput value,
+            global::Com.Amazonaws.S3.GetObjectTaggingInput value,
             ref TSerializer serializer
         )
         {

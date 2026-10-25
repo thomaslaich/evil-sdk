@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectRetentionOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class PutObjectRetentionOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<PutObjectRetentionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutObjectRetentionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutObjectRetentionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutObjectRetentionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutObjectRetentionOutput"),
             [
                 new(
@@ -43,15 +45,15 @@ public static partial class PutObjectRetentionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target0 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutObjectRetentionOutput Build(Builder builder) =>
-            new PutObjectRetentionOutput(builder.RequestCharged);
+        public override global::Com.Amazonaws.S3.PutObjectRetentionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutObjectRetentionOutput(builder.RequestCharged);
 
         public override void SerializeMembers<TSerializer>(
-            PutObjectRetentionOutput value,
+            global::Com.Amazonaws.S3.PutObjectRetentionOutput value,
             ref TSerializer serializer
         )
         {

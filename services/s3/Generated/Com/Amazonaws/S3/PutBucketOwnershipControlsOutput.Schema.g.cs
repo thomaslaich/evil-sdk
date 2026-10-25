@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketOwnershipControlsOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketOwnershipControlsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketOwnershipControlsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketOwnershipControlsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketOwnershipControlsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketOwnershipControlsOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class PutBucketOwnershipControlsOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketOwnershipControlsOutput Build(Builder builder) =>
-            new PutBucketOwnershipControlsOutput();
+        public override global::Com.Amazonaws.S3.PutBucketOwnershipControlsOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.PutBucketOwnershipControlsOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketOwnershipControlsOutput value,
+            global::Com.Amazonaws.S3.PutBucketOwnershipControlsOutput value,
             ref TSerializer serializer
         ) { }
 

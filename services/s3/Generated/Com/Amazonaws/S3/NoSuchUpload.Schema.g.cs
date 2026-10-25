@@ -5,41 +5,45 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoSuchUploadSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder
+    {
 
-    public static StructSchema<NoSuchUpload, Builder> Schema { get; } = new GeneratedSchema();
+    }
+
+    public static StructSchema<global::Com.Amazonaws.S3.NoSuchUpload, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NoSuchUpload, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NoSuchUpload, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NoSuchUpload"),
-            [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified multipart upload does not exist.</p>")
-                ),
-                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
-            ]
-        )
+
+            ],
+            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")), new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m))])
     {
+
         public override Builder CreateTypedBuilder() => new();
 
-        public override NoSuchUpload Build(Builder builder) => new NoSuchUpload(null);
+        public override global::Com.Amazonaws.S3.NoSuchUpload Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.NoSuchUpload(null);
 
         public override void SerializeMembers<TSerializer>(
-            NoSuchUpload value,
-            ref TSerializer serializer
-        ) { }
+            global::Com.Amazonaws.S3.NoSuchUpload value,
+            ref TSerializer serializer)
+        {
+
+        }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        ) { }
+            ref TDeserializer deserializer)
+        {
+
+        }
     }
 }

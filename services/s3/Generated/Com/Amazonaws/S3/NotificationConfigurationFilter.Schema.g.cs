@@ -5,20 +5,22 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NotificationConfigurationFilterSchema
 {
     public sealed class Builder
     {
-        public S3KeyFilter? Key { get; set; }
+        public global::Com.Amazonaws.S3.S3KeyFilter? Key { get; set; }
     }
 
-    public static StructSchema<NotificationConfigurationFilter, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.NotificationConfigurationFilter,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NotificationConfigurationFilter, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NotificationConfigurationFilter, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NotificationConfigurationFilter"),
             [
                 new(
@@ -27,26 +29,22 @@ public static partial class NotificationConfigurationFilterSchema
                     traits: [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("S3Key"))]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies object key name filtering rules. For information about key name filtering, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html\">Configuring\n        event notifications using object key name filtering</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<S3KeyFilter?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => S3KeyFilterSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.S3KeyFilter?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => S3KeyFilterSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override NotificationConfigurationFilter Build(Builder builder) =>
-            new NotificationConfigurationFilter(builder.Key);
+        public override global::Com.Amazonaws.S3.NotificationConfigurationFilter Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.NotificationConfigurationFilter(builder.Key);
 
         public override void SerializeMembers<TSerializer>(
-            NotificationConfigurationFilter value,
+            global::Com.Amazonaws.S3.NotificationConfigurationFilter value,
             ref TSerializer serializer
         )
         {

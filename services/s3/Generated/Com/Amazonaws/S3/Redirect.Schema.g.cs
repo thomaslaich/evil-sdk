@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RedirectSchema
 {
@@ -18,112 +18,35 @@ public static partial class RedirectSchema
         public string? ReplaceKeyWith { get; set; }
     }
 
-    public static StructSchema<Redirect, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Redirect, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Redirect, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Redirect, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Redirect"),
             [
-                new(
-                    "HostName",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The host name to use in the redirect request.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "HttpRedirectCode",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The HTTP redirect code to use on the response. Not required if one of the siblings is\n      present.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Protocol",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Protocol to use when redirecting requests. The default is the protocol that is used in the original\n      request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ReplaceKeyPrefixWith",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The object key prefix to use in the redirect request. For example, to redirect requests for all\n      pages with prefix <code>docs/</code> (objects in the <code>docs/</code> folder) to\n        <code>documents/</code>, you can set a condition block with <code>KeyPrefixEquals</code> set to\n        <code>docs/</code> and in the Redirect set <code>ReplaceKeyPrefixWith</code> to\n        <code>/documents</code>. Not required if one of the siblings is present. Can be present only if\n        <code>ReplaceKeyWith</code> is not provided.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ReplaceKeyWith",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The specific object key to use in the redirect request. For example, redirect request to\n        <code>error.html</code>. Not required if one of the siblings is present. Can be present only if\n        <code>ReplaceKeyPrefixWith</code> is not provided.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
+                new("HostName", Target0),
+                new("HttpRedirectCode", Target1),
+                new("Protocol", Target2),
+                new("ReplaceKeyPrefixWith", Target3),
+                new("ReplaceKeyWith", Target4),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies how requests are redirected. In the event of an error, you can specify a different error\n      code to return.</p>"
-                    )
-                ),
-            ]
-        )
+            null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Protocol?> Target2 =
-            Schemas.Nullable(ProtocolSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Protocol?> Target2 = global::NSmithy.Core.Serde.Schemas.Nullable(ProtocolSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Redirect Build(Builder builder) =>
-            new Redirect(
-                builder.HostName,
-                builder.HttpRedirectCode,
-                builder.Protocol,
-                builder.ReplaceKeyPrefixWith,
-                builder.ReplaceKeyWith
-            );
+        public override global::Com.Amazonaws.S3.Redirect Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Redirect(builder.HostName, builder.HttpRedirectCode, builder.Protocol, builder.ReplaceKeyPrefixWith, builder.ReplaceKeyWith);
 
         public override void SerializeMembers<TSerializer>(
-            Redirect value,
-            ref TSerializer serializer
-        )
+            global::Com.Amazonaws.S3.Redirect value,
+            ref TSerializer serializer)
         {
             if (value.HostName is { } value0)
             {
@@ -170,8 +93,7 @@ public static partial class RedirectSchema
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        )
+            ref TDeserializer deserializer)
         {
             switch (index)
             {
@@ -182,13 +104,7 @@ public static partial class RedirectSchema
                     builder.HttpRedirectCode = deserializer.ReadString();
                     break;
                 case 2:
-                    builder.Protocol = deserializer.TryReadNull()
-                        ? null
-                        : (
-                            deserializer.ReadStringEnum() is { } value2
-                                ? global::Com.Amazonaws.S3.Protocol.FromValue(value2)
-                                : default(global::Com.Amazonaws.S3.Protocol)
-                        );
+                    builder.Protocol = deserializer.TryReadNull() ? null : (deserializer.ReadStringEnum() is { } value2 ? global::Com.Amazonaws.S3.Protocol.FromValue(value2) : default(global::Com.Amazonaws.S3.Protocol));
                     break;
                 case 3:
                     builder.ReplaceKeyPrefixWith = deserializer.ReadString();

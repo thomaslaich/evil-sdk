@@ -6,29 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SendDurableExecutionCallbackHeartbeatOutputSchema
 {
     public sealed class Builder { }
 
     public static StructSchema<
-        SendDurableExecutionCallbackHeartbeatOutput,
+        global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendDurableExecutionCallbackHeartbeatOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#SendDurableExecutionCallbackHeartbeatOutput"),
             [],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -41,11 +40,12 @@ public static partial class SendDurableExecutionCallbackHeartbeatOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendDurableExecutionCallbackHeartbeatOutput Build(Builder builder) =>
-            new SendDurableExecutionCallbackHeartbeatOutput();
+        public override global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatOutput();
 
         public override void SerializeMembers<TSerializer>(
-            SendDurableExecutionCallbackHeartbeatOutput value,
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatOutput value,
             ref TSerializer serializer
         ) { }
 

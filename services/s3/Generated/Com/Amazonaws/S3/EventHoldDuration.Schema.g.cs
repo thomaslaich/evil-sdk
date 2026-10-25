@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EventHoldDurationSchema
 {
@@ -16,10 +16,13 @@ public static partial class EventHoldDurationSchema
         public int? Years { get; set; }
     }
 
-    public static StructSchema<EventHoldDuration, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.EventHoldDuration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EventHoldDuration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.EventHoldDuration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#EventHoldDuration"),
             [
                 new(
@@ -30,12 +33,6 @@ public static partial class EventHoldDurationSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of days for the event hold duration. The minimum value is 1 and the maximum value is\n      36,500.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -48,39 +45,24 @@ public static partial class EventHoldDurationSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of years for the event hold duration. The minimum value is 1 and the maximum value is\n      100.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the event hold duration configuration, specified in either days or years.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EventHoldDuration Build(Builder builder) =>
-            new EventHoldDuration(builder.Days, builder.Years);
+        public override global::Com.Amazonaws.S3.EventHoldDuration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.EventHoldDuration(builder.Days, builder.Years);
 
         public override void SerializeMembers<TSerializer>(
-            EventHoldDuration value,
+            global::Com.Amazonaws.S3.EventHoldDuration value,
             ref TSerializer serializer
         )
         {

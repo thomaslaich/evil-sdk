@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryTableConfigurationUpdatesSchema
 {
     public sealed class Builder
     {
-        public InventoryConfigurationState? ConfigurationState { get; set; }
-        public MetadataTableEncryptionConfiguration? EncryptionConfiguration { get; set; }
+        public global::Com.Amazonaws.S3.InventoryConfigurationState? ConfigurationState { get; set; }
+        public global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration? EncryptionConfiguration { get; set; }
     }
 
-    public static StructSchema<InventoryTableConfigurationUpdates, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InventoryTableConfigurationUpdates,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventoryTableConfigurationUpdates, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventoryTableConfigurationUpdates, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventoryTableConfigurationUpdates"),
             [
                 new(
@@ -30,59 +32,38 @@ public static partial class InventoryTableConfigurationUpdatesSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The configuration state of the inventory table, indicating whether the inventory table is enabled \n      or disabled.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "EncryptionConfiguration",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The encryption configuration for the inventory table.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("EncryptionConfiguration", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The specified updates to the S3 Metadata inventory table configuration.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryConfigurationState?> Target0 =
-            Schemas.Nullable(InventoryConfigurationStateSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<MetadataTableEncryptionConfiguration?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => MetadataTableEncryptionConfigurationSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryConfigurationState?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(InventoryConfigurationStateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MetadataTableEncryptionConfigurationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventoryTableConfigurationUpdates Build(Builder builder) =>
-            new InventoryTableConfigurationUpdates(
+        public override global::Com.Amazonaws.S3.InventoryTableConfigurationUpdates Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.InventoryTableConfigurationUpdates(
                 builder.ConfigurationState
                     ?? throw new MissingRequiredMemberException("ConfigurationState"),
                 builder.EncryptionConfiguration
             );
 
         public override void SerializeMembers<TSerializer>(
-            InventoryTableConfigurationUpdates value,
+            global::Com.Amazonaws.S3.InventoryTableConfigurationUpdates value,
             ref TSerializer serializer
         )
         {
@@ -114,8 +95,10 @@ public static partial class InventoryTableConfigurationUpdatesSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? InventoryConfigurationState.FromValue(value0)
-                                : default(InventoryConfigurationState)
+                                ? global::Com.Amazonaws.S3.InventoryConfigurationState.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.InventoryConfigurationState)
                         );
                     break;
                 case 1:

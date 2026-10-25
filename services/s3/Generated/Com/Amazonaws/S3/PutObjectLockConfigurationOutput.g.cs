@@ -4,6 +4,4 @@
 
 namespace Com.Amazonaws.S3;
 
-public sealed record class PutObjectLockConfigurationOutput(
-    global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null
-);
+public sealed record class PutObjectLockConfigurationOutput(global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null);

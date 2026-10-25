@@ -6,22 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListLayersInputSchema
 {
     public sealed class Builder
     {
-        public Architecture? CompatibleArchitecture { get; set; }
-        public Runtime? CompatibleRuntime { get; set; }
+        public global::Com.Amazonaws.Lambda.Architecture? CompatibleArchitecture { get; set; }
+        public global::Com.Amazonaws.Lambda.Runtime? CompatibleRuntime { get; set; }
         public string? Marker { get; set; }
         public int? MaxItems { get; set; }
     }
 
-    public static StructSchema<ListLayersInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListLayersInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListLayersInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListLayersInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListLayersInput"),
             [
                 new(
@@ -30,18 +33,8 @@ public static partial class ListLayersInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The compatible <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html\">instruction set architecture</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("CompatibleArchitecture")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -51,18 +44,8 @@ public static partial class ListLayersInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A runtime identifier.</p> <p>The following list includes deprecated runtimes. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels\">Runtime use after deprecation</a>.</p> <p>For a list of all currently supported runtimes, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported\">Supported runtimes</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("CompatibleRuntime")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -71,15 +54,7 @@ public static partial class ListLayersInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A pagination token returned by a previous call.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Marker")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -91,24 +66,16 @@ public static partial class ListLayersInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The maximum number of layers to return.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("MaxItems")),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)50) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(50m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -119,30 +86,27 @@ public static partial class ListLayersInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#ListLayersRequest")
                 ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Architecture?> Target0 =
-            Schemas.Nullable(ArchitectureSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<Runtime?> Target1 =
-            Schemas.Nullable(RuntimeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Architecture?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ArchitectureSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Runtime?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(RuntimeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListLayersInput Build(Builder builder) =>
-            new ListLayersInput(
+        public override global::Com.Amazonaws.Lambda.ListLayersInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ListLayersInput(
                 builder.CompatibleArchitecture,
                 builder.CompatibleRuntime,
                 builder.Marker,
@@ -150,7 +114,7 @@ public static partial class ListLayersInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListLayersInput value,
+            global::Com.Amazonaws.Lambda.ListLayersInput value,
             ref TSerializer serializer
         )
         {
@@ -201,8 +165,8 @@ public static partial class ListLayersInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? Architecture.FromValue(value0)
-                                : default(Architecture)
+                                ? global::Com.Amazonaws.Lambda.Architecture.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.Architecture)
                         );
                     break;
                 case 1:
@@ -210,8 +174,8 @@ public static partial class ListLayersInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? Runtime.FromValue(value1)
-                                : default(Runtime)
+                                ? global::Com.Amazonaws.Lambda.Runtime.FromValue(value1)
+                                : default(global::Com.Amazonaws.Lambda.Runtime)
                         );
                     break;
                 case 2:

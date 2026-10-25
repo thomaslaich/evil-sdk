@@ -6,24 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CorsSchema
 {
     public sealed class Builder
     {
         public bool? AllowCredentials { get; set; }
-        public HeadersList? AllowHeaders { get; set; }
-        public AllowMethodsList? AllowMethods { get; set; }
-        public AllowOriginsList? AllowOrigins { get; set; }
-        public HeadersList? ExposeHeaders { get; set; }
+        public IReadOnlyList<string>? AllowHeaders { get; set; }
+        public IReadOnlyList<string>? AllowMethods { get; set; }
+        public IReadOnlyList<string>? AllowOrigins { get; set; }
+        public IReadOnlyList<string>? ExposeHeaders { get; set; }
         public int? MaxAge { get; set; }
     }
 
-    public static StructSchema<Cors, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.Cors, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Cors, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.Cors, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#Cors"),
             [
                 new(
@@ -35,86 +36,12 @@ public static partial class CorsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Whether to allow cookies or other credentials in requests to your function URL. The default is <code>false</code>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "AllowHeaders",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The HTTP headers that origins can include in requests to your function URL. For example: <code>Date</code>, <code>Keep-Alive</code>, <code>X-Custom-Header</code>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "AllowMethods",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The HTTP methods that are allowed when calling your function URL. For example: <code>GET</code>, <code>POST</code>, <code>DELETE</code>, or the wildcard character (<code>*</code>).</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "AllowOrigins",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The origins that can access your function URL. You can list any number of specific origins, separated by a comma. For example: <code>https://www.example.com</code>, <code>http://localhost:60905</code>.</p> <p>Alternatively, you can grant access to all origins using the wildcard character (<code>*</code>).</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ExposeHeaders",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The HTTP headers in your function response that you want to expose to origins that call your function URL. For example: <code>Date</code>, <code>Keep-Alive</code>, <code>X-Custom-Header</code>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("AllowHeaders", Target1),
+                new("AllowMethods", Target2),
+                new("AllowOrigins", Target3),
+                new("ExposeHeaders", Target4),
                 new(
                     "MaxAge",
                     Target5,
@@ -125,61 +52,46 @@ public static partial class CorsSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum amount of time, in seconds, that web browsers can cache results of a preflight request. By default, this is set to <code>0</code>, which means that the browser doesn't cache results.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)86400) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(86400m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\">cross-origin resource sharing (CORS)</a> settings for your Lambda function URL. Use CORS to grant access to your function URL from any origin. You can also use CORS to control access for specific HTTP headers and methods in requests to your function URL.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<HeadersList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => HeadersListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<AllowMethodsList?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowMethodsListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<AllowOriginsList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowOriginsListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<HeadersList?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => HeadersListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => HeadersListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowMethodsListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowOriginsListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => HeadersListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Cors Build(Builder builder) =>
-            new Cors(
+        public override global::Com.Amazonaws.Lambda.Cors Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.Cors(
                 builder.AllowCredentials,
                 builder.AllowHeaders,
                 builder.AllowMethods,
@@ -188,7 +100,10 @@ public static partial class CorsSchema
                 builder.MaxAge
             );
 
-        public override void SerializeMembers<TSerializer>(Cors value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.Lambda.Cors value,
+            ref TSerializer serializer
+        )
         {
             if (value.AllowCredentials is { } value0)
             {

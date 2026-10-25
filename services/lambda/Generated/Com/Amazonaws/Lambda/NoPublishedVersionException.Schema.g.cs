@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class NoPublishedVersionExceptionSchema
 {
@@ -15,66 +15,42 @@ public static partial class NoPublishedVersionExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<NoPublishedVersionException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.NoPublishedVersionException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NoPublishedVersionException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.NoPublishedVersionException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#NoPublishedVersionException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception type.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The function has no published versions available.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override NoPublishedVersionException Build(Builder builder) =>
-            new NoPublishedVersionException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.NoPublishedVersionException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.NoPublishedVersionException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            NoPublishedVersionException value,
+            global::Com.Amazonaws.Lambda.NoPublishedVersionException value,
             ref TSerializer serializer
         )
         {

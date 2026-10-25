@@ -6,93 +6,63 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PropagateTagsSchema
 {
     public sealed class Builder
     {
-        public PropagateTagsMode? Mode { get; set; }
-        public Tags? ExplicitTags { get; set; }
+        public global::Com.Amazonaws.Lambda.PropagateTagsMode? Mode { get; set; }
+        public IReadOnlyDictionary<string, string>? ExplicitTags { get; set; }
     }
 
-    public static StructSchema<PropagateTags, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PropagateTags,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PropagateTags, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PropagateTags, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PropagateTags"),
             [
-                new(
-                    "Mode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tag propagation mode. Set to <code>Explicit</code> to propagate the tags specified in <code>ExplicitTags</code> to managed resources. Set to <code>None</code> to disable tag propagation.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Mode", Target0),
                 new(
                     "ExplicitTags",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of tags to apply to managed resources when <code>Mode</code> is set to <code>Explicit</code>. You can specify up to 40 tags.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)40) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(40m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration for tag propagation to managed resources launched by the capacity provider.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<PropagateTagsMode?> Target0 =
-            Schemas.Nullable(PropagateTagsModeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<Tags?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.PropagateTagsMode?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(PropagateTagsModeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagsSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PropagateTags Build(Builder builder) =>
-            new PropagateTags(builder.ExplicitTags, builder.Mode);
+        public override global::Com.Amazonaws.Lambda.PropagateTags Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.PropagateTags(builder.ExplicitTags, builder.Mode);
 
         public override void SerializeMembers<TSerializer>(
-            PropagateTags value,
+            global::Com.Amazonaws.Lambda.PropagateTags value,
             ref TSerializer serializer
         )
         {
@@ -127,8 +97,8 @@ public static partial class PropagateTagsSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? PropagateTagsMode.FromValue(value0)
-                                : default(PropagateTagsMode)
+                                ? global::Com.Amazonaws.Lambda.PropagateTagsMode.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.PropagateTagsMode)
                         );
                     break;
                 case 1:

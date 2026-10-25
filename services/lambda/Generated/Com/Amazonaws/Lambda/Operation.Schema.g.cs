@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class OperationSchema
 {
@@ -16,11 +16,11 @@ public static partial class OperationSchema
         public string? Id { get; set; }
         public string? ParentId { get; set; }
         public string? Name { get; set; }
-        public OperationType? Type { get; set; }
+        public global::Com.Amazonaws.Lambda.OperationType? Type { get; set; }
         public string? SubType { get; set; }
         public DateTimeOffset? StartTimestamp { get; set; }
         public DateTimeOffset? EndTimestamp { get; set; }
-        public OperationStatus? Status { get; set; }
+        public global::Com.Amazonaws.Lambda.OperationStatus? Status { get; set; }
         public global::Com.Amazonaws.Lambda.ExecutionDetails? ExecutionDetails { get; set; }
         public global::Com.Amazonaws.Lambda.ContextDetails? ContextDetails { get; set; }
         public global::Com.Amazonaws.Lambda.StepDetails? StepDetails { get; set; }
@@ -29,10 +29,11 @@ public static partial class OperationSchema
         public global::Com.Amazonaws.Lambda.ChainedInvokeDetails? ChainedInvokeDetails { get; set; }
     }
 
-    public static StructSchema<Operation, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.Operation, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Operation, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.Operation, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#Operation"),
             [
                 new(
@@ -42,16 +43,12 @@ public static partial class OperationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The unique identifier for this operation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -63,10 +60,6 @@ public static partial class OperationSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -75,28 +68,18 @@ public static partial class OperationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique identifier of the parent operation, if this operation is running within a child context.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9-_]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -106,26 +89,18 @@ public static partial class OperationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The customer-provided name for this operation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\x20-\\x7E]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -136,16 +111,8 @@ public static partial class OperationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The type of operation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -155,28 +122,18 @@ public static partial class OperationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The subtype of the operation, providing additional categorization.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)32) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(32m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9-_]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -187,38 +144,12 @@ public static partial class OperationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the operation started, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "EndTimestamp",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the operation ended, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("EndTimestamp", Target6),
                 new(
                     "Status",
                     Target7,
@@ -226,157 +157,78 @@ public static partial class OperationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The current status of the operation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "ExecutionDetails",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Details about the execution, if this operation represents an execution.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ContextDetails",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Details about the context, if this operation represents a context.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "StepDetails",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Details about the step, if this operation represents a step.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "WaitDetails",
-                    Target11,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Details about the wait operation, if this operation represents a wait.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "CallbackDetails",
-                    Target12,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ChainedInvokeDetails",
-                    Target13,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("ExecutionDetails", Target8),
+                new("ContextDetails", Target9),
+                new("StepDetails", Target10),
+                new("WaitDetails", Target11),
+                new("CallbackDetails", Target12),
+                new("ChainedInvokeDetails", Target13),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Information about an operation within a durable execution.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<OperationType?> Target3 =
-            Schemas.Nullable(OperationTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.OperationType?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(OperationTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target5 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target6 =
-            Schemas.Nullable(Schemas.Timestamp);
-        private static readonly global::NSmithy.Core.Serde.Schema<OperationStatus?> Target7 =
-            Schemas.Nullable(OperationStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.OperationStatus?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(OperationStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ExecutionDetails?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => ExecutionDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ExecutionDetailsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ContextDetails?> Target9 =
-            Schemas.NullableReference(Schemas.Lazy(() => ContextDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ContextDetailsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.StepDetails?> Target10 =
-            Schemas.NullableReference(Schemas.Lazy(() => StepDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StepDetailsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.WaitDetails?> Target11 =
-            Schemas.NullableReference(Schemas.Lazy(() => WaitDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => WaitDetailsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CallbackDetails?> Target12 =
-            Schemas.NullableReference(Schemas.Lazy(() => CallbackDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CallbackDetailsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ChainedInvokeDetails?> Target13 =
-            Schemas.NullableReference(Schemas.Lazy(() => ChainedInvokeDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ChainedInvokeDetailsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Operation Build(Builder builder) =>
-            new Operation(
+        public override global::Com.Amazonaws.Lambda.Operation Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.Operation(
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.StartTimestamp.GetValueOrDefault(),
                 builder.Status ?? throw new MissingRequiredMemberException("Status"),
@@ -394,7 +246,7 @@ public static partial class OperationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            Operation value,
+            global::Com.Amazonaws.Lambda.Operation value,
             ref TSerializer serializer
         )
         {
@@ -513,8 +365,8 @@ public static partial class OperationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value3
-                                ? OperationType.FromValue(value3)
-                                : default(OperationType)
+                                ? global::Com.Amazonaws.Lambda.OperationType.FromValue(value3)
+                                : default(global::Com.Amazonaws.Lambda.OperationType)
                         );
                     break;
                 case 4:
@@ -535,8 +387,8 @@ public static partial class OperationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value7
-                                ? OperationStatus.FromValue(value7)
-                                : default(OperationStatus)
+                                ? global::Com.Amazonaws.Lambda.OperationStatus.FromValue(value7)
+                                : default(global::Com.Amazonaws.Lambda.OperationStatus)
                         );
                     break;
                 case 8:

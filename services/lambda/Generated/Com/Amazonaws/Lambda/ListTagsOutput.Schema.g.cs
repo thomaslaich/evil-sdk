@@ -6,45 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListTagsOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.Lambda.Tags? Tags { get; set; }
+        public IReadOnlyDictionary<string, string>? Tags { get; set; }
     }
 
-    public static StructSchema<ListTagsOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListTagsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListTagsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListTagsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListTagsOutput"),
-            [
-                new(
-                    "Tags",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The function's tags.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Tags", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -53,15 +36,20 @@ public static partial class ListTagsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Tags?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagsSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListTagsOutput Build(Builder builder) => new ListTagsOutput(builder.Tags);
+        public override global::Com.Amazonaws.Lambda.ListTagsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ListTagsOutput(builder.Tags);
 
         public override void SerializeMembers<TSerializer>(
-            ListTagsOutput value,
+            global::Com.Amazonaws.Lambda.ListTagsOutput value,
             ref TSerializer serializer
         )
         {

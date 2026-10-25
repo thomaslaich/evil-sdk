@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class StartMessageMoveTaskOutputSchema
 {
@@ -15,27 +15,15 @@ public static partial class StartMessageMoveTaskOutputSchema
         public string? TaskHandle { get; set; }
     }
 
-    public static StructSchema<StartMessageMoveTaskOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.StartMessageMoveTaskOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StartMessageMoveTaskOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.StartMessageMoveTaskOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#StartMessageMoveTaskOutput"),
-            [
-                new(
-                    "TaskHandle",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An identifier associated with a message movement task. You can use this identifier to\n            cancel a specified message movement task using the <code>CancelMessageMoveTask</code>\n            action.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
+            [new("TaskHandle", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
@@ -49,15 +37,18 @@ public static partial class StartMessageMoveTaskOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StartMessageMoveTaskOutput Build(Builder builder) =>
-            new StartMessageMoveTaskOutput(builder.TaskHandle);
+        public override global::Com.Amazonaws.Sqs.StartMessageMoveTaskOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sqs.StartMessageMoveTaskOutput(builder.TaskHandle);
 
         public override void SerializeMembers<TSerializer>(
-            StartMessageMoveTaskOutput value,
+            global::Com.Amazonaws.Sqs.StartMessageMoveTaskOutput value,
             ref TSerializer serializer
         )
         {

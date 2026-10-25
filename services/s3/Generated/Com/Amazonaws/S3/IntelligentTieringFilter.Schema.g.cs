@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class IntelligentTieringFilterSchema
 {
@@ -13,70 +13,47 @@ public static partial class IntelligentTieringFilterSchema
     {
         public string? Prefix { get; set; }
         public global::Com.Amazonaws.S3.Tag? Tag { get; set; }
-        public IntelligentTieringAndOperator? And { get; set; }
+        public global::Com.Amazonaws.S3.IntelligentTieringAndOperator? And { get; set; }
     }
 
-    public static StructSchema<IntelligentTieringFilter, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.IntelligentTieringFilter,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<IntelligentTieringFilter, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.IntelligentTieringFilter, Builder>(
             ShapeId.Parse("com.amazonaws.s3#IntelligentTieringFilter"),
-            [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object key name prefix that identifies the subset of objects to which the rule applies.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
-                new("Tag", Target1),
-                new(
-                    "And",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The\n      operator must have at least two predicates, and an object must match all of the predicates in order for\n      the filter to apply.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <code>Filter</code> is used to identify objects that the S3 Intelligent-Tiering configuration\n      applies to.</p>"
-                    )
-                ),
-            ]
+            [new("Prefix", Target0), new("Tag", Target1), new("And", Target2)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tag?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<IntelligentTieringAndOperator?> Target2 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => IntelligentTieringAndOperatorSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringAndOperator?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    IntelligentTieringAndOperatorSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override IntelligentTieringFilter Build(Builder builder) =>
-            new IntelligentTieringFilter(builder.And, builder.Prefix, builder.Tag);
+        public override global::Com.Amazonaws.S3.IntelligentTieringFilter Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.IntelligentTieringFilter(
+                builder.And,
+                builder.Prefix,
+                builder.Tag
+            );
 
         public override void SerializeMembers<TSerializer>(
-            IntelligentTieringFilter value,
+            global::Com.Amazonaws.S3.IntelligentTieringFilter value,
             ref TSerializer serializer
         )
         {

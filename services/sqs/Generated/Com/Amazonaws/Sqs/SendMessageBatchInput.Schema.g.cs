@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageBatchInputSchema
 {
     public sealed class Builder
     {
         public string? QueueUrl { get; set; }
-        public SendMessageBatchRequestEntryList? Entries { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry>? Entries { get; set; }
     }
 
-    public static StructSchema<SendMessageBatchInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.SendMessageBatchInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendMessageBatchInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.SendMessageBatchInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageBatchInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class SendMessageBatchInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue to which batched messages are sent.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,12 +43,6 @@ public static partial class SendMessageBatchInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of <code>\n               <a>SendMessageBatchRequestEntry</a>\n            </code> items.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -69,7 +59,6 @@ public static partial class SendMessageBatchInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -82,22 +71,26 @@ public static partial class SendMessageBatchInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<SendMessageBatchRequestEntryList?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => SendMessageBatchRequestEntryListSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    SendMessageBatchRequestEntryListSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendMessageBatchInput Build(Builder builder) =>
-            new SendMessageBatchInput(
+        public override global::Com.Amazonaws.Sqs.SendMessageBatchInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.SendMessageBatchInput(
                 builder.Entries ?? throw new MissingRequiredMemberException("Entries"),
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
             );
 
         public override void SerializeMembers<TSerializer>(
-            SendMessageBatchInput value,
+            global::Com.Amazonaws.Sqs.SendMessageBatchInput value,
             ref TSerializer serializer
         )
         {

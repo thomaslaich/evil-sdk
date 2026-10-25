@@ -6,34 +6,30 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketPolicyStatusSchema
 {
     public static OperationSchema<
-        GetBucketPolicyStatusInput,
-        GetBucketPolicyStatusOutput
+        global::Com.Amazonaws.S3.GetBucketPolicyStatusInput,
+        global::Com.Amazonaws.S3.GetBucketPolicyStatusOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketPolicyStatus"),
-            Schemas.Lazy(() => GetBucketPolicyStatusInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketPolicyStatusOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketPolicyStatusInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketPolicyStatusOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Retrieves the policy status for an Amazon S3 bucket, indicating whether the bucket is public. In order to\n      use this operation, you must have the <code>s3:GetBucketPolicyStatus</code> permission. For more\n      information about Amazon S3 permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html\">Specifying Permissions in a\n      Policy</a>.</p>\n         <p> For more information about when Amazon S3 considers a bucket public, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status\">The Meaning of \"Public\"</a>. </p>\n         <p>The following operations are related to <code>GetBucketPolicyStatus</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\">Using Amazon S3 Block Public Access</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetPublicAccessBlock.html\">GetPublicAccessBlock</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutPublicAccessBlock.html\">PutPublicAccessBlock</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html\">DeletePublicAccessBlock</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?policyStatus") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?policyStatus") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

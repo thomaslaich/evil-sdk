@@ -5,37 +5,34 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketAlreadyExistsSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<BucketAlreadyExists, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.BucketAlreadyExists,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BucketAlreadyExists, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.BucketAlreadyExists, Builder>(
             ShapeId.Parse("com.amazonaws.s3#BucketAlreadyExists"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The requested bucket name is not available. The bucket namespace is shared by all users of the\n      system. Select a different name and try again.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)409)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(409m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override BucketAlreadyExists Build(Builder builder) => new BucketAlreadyExists(null);
+        public override global::Com.Amazonaws.S3.BucketAlreadyExists Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.BucketAlreadyExists(null);
 
         public override void SerializeMembers<TSerializer>(
-            BucketAlreadyExists value,
+            global::Com.Amazonaws.S3.BucketAlreadyExists value,
             ref TSerializer serializer
         ) { }
 

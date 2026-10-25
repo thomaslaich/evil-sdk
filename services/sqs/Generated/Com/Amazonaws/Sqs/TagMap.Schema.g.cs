@@ -4,30 +4,39 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class TagMapSchema
 {
-    public static MapSchema<TagMap, string, Dictionary<string, string>> Schema { get; } =
-        new GeneratedSchema();
+    public static MapSchema<
+        IReadOnlyDictionary<string, string>,
+        string,
+        Dictionary<string, string>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : MapSchema<TagMap, string, Dictionary<string, string>>(
+        : MapSchema<IReadOnlyDictionary<string, string>, string, Dictionary<string, string>>(
             ShapeId.Parse("com.amazonaws.sqs#TagMap"),
             Target0,
             null,
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("Key"))],
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("Value"))],
-            Schemas.String
+            global::NSmithy.Core.Serde.Schemas.String
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<KeyValuePair<string, string>> GetEntries(TagMap value) =>
-            value.Values;
+        public override IEnumerable<KeyValuePair<string, string>> GetEntries(
+            IReadOnlyDictionary<string, string> value
+        ) => value;
 
         public override Dictionary<string, string> CreateTypedBuilder() =>
             new(StringComparer.Ordinal);
@@ -35,12 +44,16 @@ public static partial class TagMapSchema
         public override void Add(Dictionary<string, string> builder, string key, string value) =>
             builder[key] = value;
 
-        public override TagMap Build(Dictionary<string, string> builder) =>
-            TagMap.FromOwnedDictionary(builder);
+        public override IReadOnlyDictionary<string, string> Build(
+            Dictionary<string, string> builder
+        ) => new ReadOnlyDictionary<string, string>(builder);
 
-        public override void SerializeEntries<TSerializer>(TagMap value, ref TSerializer serializer)
+        public override void SerializeEntries<TSerializer>(
+            IReadOnlyDictionary<string, string> value,
+            ref TSerializer serializer
+        )
         {
-            foreach (var entry in value.Values)
+            foreach (var entry in value)
             {
                 serializer.WriteString(0, entry.Key);
                 if (entry.Value is { } entryValue)

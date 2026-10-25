@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PublicAccessBlockConfigurationSchema
 {
@@ -18,11 +18,13 @@ public static partial class PublicAccessBlockConfigurationSchema
         public bool? RestrictPublicBuckets { get; set; }
     }
 
-    public static StructSchema<PublicAccessBlockConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PublicAccessBlockConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PublicAccessBlockConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PublicAccessBlockConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PublicAccessBlockConfiguration"),
             [
                 new(
@@ -33,12 +35,6 @@ public static partial class PublicAccessBlockConfigurationSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should block public access control lists (ACLs) for this bucket and objects\n      in this bucket. Setting this element to <code>TRUE</code> causes the following behavior:</p>\n         <ul>\n            <li>\n               <p>PUT Bucket ACL and PUT Object ACL calls fail if the specified ACL is public.</p>\n            </li>\n            <li>\n               <p>PUT Object calls fail if the request includes a public ACL.</p>\n            </li>\n            <li>\n               <p>PUT Bucket calls fail if the request includes a public ACL.</p>\n            </li>\n         </ul>\n         <p>Enabling this setting doesn't affect existing policies or ACLs.</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlName"),
@@ -56,12 +52,6 @@ public static partial class PublicAccessBlockConfigurationSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should ignore public ACLs for this bucket and objects in this bucket. Setting\n      this element to <code>TRUE</code> causes Amazon S3 to ignore all public ACLs on this bucket and objects in\n      this bucket.</p>\n         <p>Enabling this setting doesn't affect the persistence of any existing ACLs and doesn't prevent new\n      public ACLs from being set.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlName"),
                             Document.From("IgnorePublicAcls")
                         ),
@@ -75,12 +65,6 @@ public static partial class PublicAccessBlockConfigurationSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should block public bucket policies for this bucket. Setting this element to\n        <code>TRUE</code> causes Amazon S3 to reject calls to PUT Bucket policy if the specified bucket policy\n      allows public access. </p>\n         <p>Enabling this setting doesn't affect existing bucket policies.</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlName"),
@@ -98,45 +82,30 @@ public static partial class PublicAccessBlockConfigurationSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should restrict public bucket policies for this bucket. Setting this element\n      to <code>TRUE</code> restricts access to this bucket to only Amazon Web Services service principals and\n      authorized users within this account if the bucket has a public policy.</p>\n         <p>Enabling this setting doesn't affect previously stored bucket policies, except that public and\n      cross-account access within any public bucket policy, including non-public delegation to specific\n      accounts, is blocked.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlName"),
                             Document.From("RestrictPublicBuckets")
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The PublicAccessBlock configuration that you want to apply to this Amazon S3 bucket. You can\n      enable the configuration options in any combination. Bucket-level settings work alongside\n      account-level settings (which may inherit from organization-level policies). For more\n      information about when Amazon S3 considers a bucket or object public, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status\">The Meaning of \"Public\"</a> in the <i>Amazon S3 User Guide</i>. </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PublicAccessBlockConfiguration Build(Builder builder) =>
-            new PublicAccessBlockConfiguration(
+        public override global::Com.Amazonaws.S3.PublicAccessBlockConfiguration Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PublicAccessBlockConfiguration(
                 builder.BlockPublicAcls,
                 builder.BlockPublicPolicy,
                 builder.IgnorePublicAcls,
@@ -144,7 +113,7 @@ public static partial class PublicAccessBlockConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PublicAccessBlockConfiguration value,
+            global::Com.Amazonaws.S3.PublicAccessBlockConfiguration value,
             ref TSerializer serializer
         )
         {

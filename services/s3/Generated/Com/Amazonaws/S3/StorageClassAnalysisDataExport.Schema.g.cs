@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class StorageClassAnalysisDataExportSchema
 {
     public sealed class Builder
     {
-        public StorageClassAnalysisSchemaVersion? OutputSchemaVersion { get; set; }
-        public AnalyticsExportDestination? Destination { get; set; }
+        public global::Com.Amazonaws.S3.StorageClassAnalysisSchemaVersion? OutputSchemaVersion { get; set; }
+        public global::Com.Amazonaws.S3.AnalyticsExportDestination? Destination { get; set; }
     }
 
-    public static StructSchema<StorageClassAnalysisDataExport, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.StorageClassAnalysisDataExport,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StorageClassAnalysisDataExport, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.StorageClassAnalysisDataExport, Builder>(
             ShapeId.Parse("com.amazonaws.s3#StorageClassAnalysisDataExport"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class StorageClassAnalysisDataExportSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version of the output schema to use when exporting data. Must be <code>V_1</code>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -48,42 +44,39 @@ public static partial class StorageClassAnalysisDataExportSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The place to store the data for an analysis.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Container for data related to the storage class analysis for an Amazon S3 bucket for export.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<StorageClassAnalysisSchemaVersion?> Target0 =
-            Schemas.Nullable(StorageClassAnalysisSchemaVersionSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<AnalyticsExportDestination?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AnalyticsExportDestinationSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClassAnalysisSchemaVersion?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                StorageClassAnalysisSchemaVersionSchema.Schema
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsExportDestination?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    AnalyticsExportDestinationSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StorageClassAnalysisDataExport Build(Builder builder) =>
-            new StorageClassAnalysisDataExport(
+        public override global::Com.Amazonaws.S3.StorageClassAnalysisDataExport Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.StorageClassAnalysisDataExport(
                 builder.Destination ?? throw new MissingRequiredMemberException("Destination"),
                 builder.OutputSchemaVersion
                     ?? throw new MissingRequiredMemberException("OutputSchemaVersion")
             );
 
         public override void SerializeMembers<TSerializer>(
-            StorageClassAnalysisDataExport value,
+            global::Com.Amazonaws.S3.StorageClassAnalysisDataExport value,
             ref TSerializer serializer
         )
         {
@@ -111,8 +104,10 @@ public static partial class StorageClassAnalysisDataExportSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? StorageClassAnalysisSchemaVersion.FromValue(value0)
-                                : default(StorageClassAnalysisSchemaVersion)
+                                ? global::Com.Amazonaws.S3.StorageClassAnalysisSchemaVersion.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.StorageClassAnalysisSchemaVersion)
                         );
                     break;
                 case 1:

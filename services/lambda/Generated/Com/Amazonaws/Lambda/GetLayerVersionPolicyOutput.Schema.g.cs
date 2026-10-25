@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetLayerVersionPolicyOutputSchema
 {
@@ -16,54 +16,19 @@ public static partial class GetLayerVersionPolicyOutputSchema
         public string? RevisionId { get; set; }
     }
 
-    public static StructSchema<GetLayerVersionPolicyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetLayerVersionPolicyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetLayerVersionPolicyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetLayerVersionPolicyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetLayerVersionPolicyOutput"),
-            [
-                new(
-                    "Policy",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The policy document.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "RevisionId",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A unique identifier for the current revision of the policy.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Policy", Target0), new("RevisionId", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -73,17 +38,26 @@ public static partial class GetLayerVersionPolicyOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetLayerVersionPolicyOutput Build(Builder builder) =>
-            new GetLayerVersionPolicyOutput(builder.Policy, builder.RevisionId);
+        public override global::Com.Amazonaws.Lambda.GetLayerVersionPolicyOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetLayerVersionPolicyOutput(
+                builder.Policy,
+                builder.RevisionId
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetLayerVersionPolicyOutput value,
+            global::Com.Amazonaws.Lambda.GetLayerVersionPolicyOutput value,
             ref TSerializer serializer
         )
         {

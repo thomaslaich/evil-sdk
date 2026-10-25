@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationStatusSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ReplicationStatus> Schema { get; } =
-        Schemas.StringEnum<ReplicationStatus>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ReplicationStatus>(
             ShapeId.Parse("com.amazonaws.s3#ReplicationStatus"),
             values: ["COMPLETE", "PENDING", "FAILED", "REPLICA", "COMPLETED"],
             traits:

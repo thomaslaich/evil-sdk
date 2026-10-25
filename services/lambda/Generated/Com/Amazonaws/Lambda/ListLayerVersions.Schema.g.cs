@@ -4,188 +4,48 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListLayerVersionsSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        ListLayerVersionsInput,
-        ListLayerVersionsOutput
+        global::Com.Amazonaws.Lambda.ListLayerVersionsInput,
+        global::Com.Amazonaws.Lambda.ListLayerVersionsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#ListLayerVersions"),
-            Schemas.Lazy(() => ListLayerVersionsInputSchema.Schema!),
-            Schemas.Lazy(() => ListLayerVersionsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListLayerVersionsInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListLayerVersionsOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to retrieve a list of versions of an AWS Lambda layer"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_ListLayerVersions.html")
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lists the versions of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>. Versions that have been deleted aren't listed. Specify a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime identifier</a> to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example displays information about the versions for the layer named blank-java-lib"
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "LayerName", Document.From("blank-java-lib") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "LayerVersions",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "CompatibleRuntimes",
-                                                                        Document.From(
-                                                                            new Document[]
-                                                                            {
-                                                                                Document.From(
-                                                                                    "java8"
-                                                                                ),
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "CreatedDate",
-                                                                        Document.From(
-                                                                            "2020-03-18T23:38:42.284+0000"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Description",
-                                                                        Document.From(
-                                                                            "Dependencies for the blank-java sample app."
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LayerVersionArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:7"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Version",
-                                                                        Document.From((decimal)7)
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "CompatibleRuntimes",
-                                                                        Document.From(
-                                                                            new Document[]
-                                                                            {
-                                                                                Document.From(
-                                                                                    "java8"
-                                                                                ),
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "CreatedDate",
-                                                                        Document.From(
-                                                                            "2020-03-17T07:24:21.960+0000"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Description",
-                                                                        Document.From(
-                                                                            "Dependencies for the blank-java sample app."
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LayerVersionArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:6"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Version",
-                                                                        Document.From((decimal)6)
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    { "title", Document.From("To list versions of a layer") },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -193,7 +53,7 @@ public static partial class ListLayerVersionsSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/2018-10-31/layers/{LayerName}/versions") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
@@ -209,10 +69,6 @@ public static partial class ListLayerVersionsSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

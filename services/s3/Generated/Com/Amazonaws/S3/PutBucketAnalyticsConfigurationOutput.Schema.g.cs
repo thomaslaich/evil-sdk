@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAnalyticsConfigurationOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketAnalyticsConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketAnalyticsConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAnalyticsConfigurationOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class PutBucketAnalyticsConfigurationOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketAnalyticsConfigurationOutput Build(Builder builder) =>
-            new PutBucketAnalyticsConfigurationOutput();
+        public override global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketAnalyticsConfigurationOutput value,
+            global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SnapStartExceptionSchema
 {
@@ -15,63 +15,37 @@ public static partial class SnapStartExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<SnapStartException, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SnapStartException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SnapStartException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.SnapStartException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#SnapStartException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <code>afterRestore()</code> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html\">runtime hook</a> encountered an error. For more information, check the Amazon CloudWatch logs.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SnapStartException Build(Builder builder) =>
-            new SnapStartException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.SnapStartException Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.SnapStartException(builder.Message, builder.Type);
 
         public override void SerializeMembers<TSerializer>(
-            SnapStartException value,
+            global::Com.Amazonaws.Lambda.SnapStartException value,
             ref TSerializer serializer
         )
         {

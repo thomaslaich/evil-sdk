@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ChainedInvokeOptionsSchema
 {
@@ -16,11 +16,13 @@ public static partial class ChainedInvokeOptionsSchema
         public string? TenantId { get; set; }
     }
 
-    public static StructSchema<ChainedInvokeOptions, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ChainedInvokeOptions,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChainedInvokeOptions, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ChainedInvokeOptions, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ChainedInvokeOptions"),
             [
                 new(
@@ -30,18 +32,12 @@ public static partial class ChainedInvokeOptionsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function to invoke.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -55,10 +51,6 @@ public static partial class ChainedInvokeOptionsSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -67,18 +59,12 @@ public static partial class ChainedInvokeOptionsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tenant identifier for the chained invocation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -86,42 +72,31 @@ public static partial class ChainedInvokeOptionsSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9\\._:\\/=+\\-@ ]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration options for chained function invocations in durable executions, including retry settings and timeout configuration.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChainedInvokeOptions Build(Builder builder) =>
-            new ChainedInvokeOptions(
+        public override global::Com.Amazonaws.Lambda.ChainedInvokeOptions Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ChainedInvokeOptions(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.TenantId
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChainedInvokeOptions value,
+            global::Com.Amazonaws.Lambda.ChainedInvokeOptions value,
             ref TSerializer serializer
         )
         {

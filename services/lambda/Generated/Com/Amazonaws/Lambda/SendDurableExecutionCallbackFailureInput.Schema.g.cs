@@ -6,21 +6,26 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SendDurableExecutionCallbackFailureInputSchema
 {
     public sealed class Builder
     {
         public string? CallbackId { get; set; }
-        public ErrorObject? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.ErrorObject? Error { get; set; }
     }
 
-    public static StructSchema<SendDurableExecutionCallbackFailureInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendDurableExecutionCallbackFailureInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#SendDurableExecutionCallbackFailureInput"),
             [
                 new(
@@ -30,12 +35,6 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique identifier for the callback operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +43,8 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -57,10 +56,6 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -69,18 +64,8 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Error details describing why the callback operation failed.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -91,10 +76,6 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#SendDurableExecutionCallbackFailureRequest")
                 ),
@@ -102,20 +83,26 @@ public static partial class SendDurableExecutionCallbackFailureInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorObject?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorObjectSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ErrorObject?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorObjectSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendDurableExecutionCallbackFailureInput Build(Builder builder) =>
-            new SendDurableExecutionCallbackFailureInput(
+        public override global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureInput(
                 builder.CallbackId ?? throw new MissingRequiredMemberException("CallbackId"),
                 builder.Error
             );
 
         public override void SerializeMembers<TSerializer>(
-            SendDurableExecutionCallbackFailureInput value,
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureInput value,
             ref TSerializer serializer
         )
         {

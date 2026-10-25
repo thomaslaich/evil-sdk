@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetAccountSettingsOutputSchema
 {
@@ -16,56 +16,19 @@ public static partial class GetAccountSettingsOutputSchema
         public global::Com.Amazonaws.Lambda.AccountUsage? AccountUsage { get; set; }
     }
 
-    public static StructSchema<GetAccountSettingsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetAccountSettingsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetAccountSettingsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetAccountSettingsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetAccountSettingsOutput"),
-            [
-                new(
-                    "AccountLimit",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Limits that are related to concurrency and code storage.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "AccountUsage",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of functions and amount of storage in use.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("AccountLimit", Target0), new("AccountUsage", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -75,17 +38,26 @@ public static partial class GetAccountSettingsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.AccountLimit?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => AccountLimitSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AccountLimitSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.AccountUsage?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AccountUsageSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AccountUsageSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetAccountSettingsOutput Build(Builder builder) =>
-            new GetAccountSettingsOutput(builder.AccountLimit, builder.AccountUsage);
+        public override global::Com.Amazonaws.Lambda.GetAccountSettingsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetAccountSettingsOutput(
+                builder.AccountLimit,
+                builder.AccountUsage
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetAccountSettingsOutput value,
+            global::Com.Amazonaws.Lambda.GetAccountSettingsOutput value,
             ref TSerializer serializer
         )
         {

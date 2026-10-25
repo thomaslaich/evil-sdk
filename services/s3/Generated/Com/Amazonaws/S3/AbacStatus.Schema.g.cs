@@ -5,52 +5,35 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AbacStatusSchema
 {
     public sealed class Builder
     {
-        public BucketAbacStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.BucketAbacStatus? Status { get; set; }
     }
 
-    public static StructSchema<AbacStatus, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.AbacStatus, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AbacStatus, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AbacStatus, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AbacStatus"),
-            [
-                new(
-                    "Status",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The ABAC status of the general purpose bucket. </p>")
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The ABAC status of the general purpose bucket. When ABAC is enabled for the general purpose bucket, you can use tags to manage access to the general purpose buckets as well as for cost tracking purposes. When ABAC is disabled for the general purpose buckets, you can only use tags for cost tracking purposes. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging.html\">Using tags with S3 general purpose buckets</a>. </p>"
-                    )
-                ),
-            ]
+            [new("Status", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketAbacStatus?> Target0 =
-            Schemas.Nullable(BucketAbacStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketAbacStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketAbacStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AbacStatus Build(Builder builder) => new AbacStatus(builder.Status);
+        public override global::Com.Amazonaws.S3.AbacStatus Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AbacStatus(builder.Status);
 
         public override void SerializeMembers<TSerializer>(
-            AbacStatus value,
+            global::Com.Amazonaws.S3.AbacStatus value,
             ref TSerializer serializer
         )
         {
@@ -77,8 +60,8 @@ public static partial class AbacStatusSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? BucketAbacStatus.FromValue(value0)
-                                : default(BucketAbacStatus)
+                                ? global::Com.Amazonaws.S3.BucketAbacStatus.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.BucketAbacStatus)
                         );
                     break;
             }

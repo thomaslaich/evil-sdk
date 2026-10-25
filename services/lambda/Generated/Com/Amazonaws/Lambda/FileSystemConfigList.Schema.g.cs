@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FileSystemConfigListSchema
 {
     public static ListSchema<
-        FileSystemConfigList,
-        FileSystemConfig,
-        List<FileSystemConfig>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.FileSystemConfig>,
+        global::Com.Amazonaws.Lambda.FileSystemConfig,
+        List<global::Com.Amazonaws.Lambda.FileSystemConfig>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<FileSystemConfigList, FileSystemConfig, List<FileSystemConfig>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FileSystemConfig>,
+            global::Com.Amazonaws.Lambda.FileSystemConfig,
+            List<global::Com.Amazonaws.Lambda.FileSystemConfig>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#FileSystemConfigList"),
             ShapeKind.List,
             Target0,
@@ -27,44 +31,40 @@ public static partial class FileSystemConfigListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)1) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(1m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FileSystemConfig> Target0 =
-            Schemas.Lazy(() => FileSystemConfigSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FileSystemConfig> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => FileSystemConfigSchema.Schema!);
 
-        public override IEnumerable<FileSystemConfig> GetElements(FileSystemConfigList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.FileSystemConfig> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FileSystemConfig> value
+        ) => value;
 
-        public override List<FileSystemConfig> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.FileSystemConfig> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<FileSystemConfig> builder, FileSystemConfig value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.FileSystemConfig> builder,
+            global::Com.Amazonaws.Lambda.FileSystemConfig value
+        ) => builder.Add(value);
 
-        public override FileSystemConfigList Build(List<FileSystemConfig> builder) =>
-            FileSystemConfigList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.FileSystemConfig> Build(
+            List<global::Com.Amazonaws.Lambda.FileSystemConfig> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FileSystemConfigList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FileSystemConfig> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -79,7 +79,7 @@ public static partial class FileSystemConfigListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<FileSystemConfig> builder,
+            List<global::Com.Amazonaws.Lambda.FileSystemConfig> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(FileSystemConfigSchema.Schema));
     }

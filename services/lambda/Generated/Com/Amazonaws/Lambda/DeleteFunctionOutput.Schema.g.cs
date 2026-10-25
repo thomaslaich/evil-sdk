@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class DeleteFunctionOutputSchema
         public int? StatusCode { get; set; }
     }
 
-    public static StructSchema<DeleteFunctionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteFunctionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteFunctionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteFunctionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionOutput"),
             [
                 new(
@@ -27,18 +29,10 @@ public static partial class DeleteFunctionOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The HTTP status code returned by the operation.</p>")
-                        ),
+                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m)),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpResponseCode"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -49,27 +43,22 @@ public static partial class DeleteFunctionOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteFunctionResponse")
                 ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new() { StatusCode = 0 };
 
-        public override DeleteFunctionOutput Build(Builder builder) =>
-            new DeleteFunctionOutput(builder.StatusCode);
+        public override global::Com.Amazonaws.Lambda.DeleteFunctionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.DeleteFunctionOutput(builder.StatusCode);
 
         public override void SerializeMembers<TSerializer>(
-            DeleteFunctionOutput value,
+            global::Com.Amazonaws.Lambda.DeleteFunctionOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RestoreObjectOutputSchema
 {
@@ -16,11 +16,13 @@ public static partial class RestoreObjectOutputSchema
         public string? RestoreOutputPath { get; set; }
     }
 
-    public static StructSchema<RestoreObjectOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.RestoreObjectOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RestoreObjectOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RestoreObjectOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RestoreObjectOutput"),
             [
                 new(
@@ -40,12 +42,6 @@ public static partial class RestoreObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the path in the provided S3 output location where Select results will be restored\n      to.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-restore-output-path")
                         ),
@@ -61,17 +57,22 @@ public static partial class RestoreObjectOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target0 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RestoreObjectOutput Build(Builder builder) =>
-            new RestoreObjectOutput(builder.RequestCharged, builder.RestoreOutputPath);
+        public override global::Com.Amazonaws.S3.RestoreObjectOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RestoreObjectOutput(
+                builder.RequestCharged,
+                builder.RestoreOutputPath
+            );
 
         public override void SerializeMembers<TSerializer>(
-            RestoreObjectOutput value,
+            global::Com.Amazonaws.S3.RestoreObjectOutput value,
             ref TSerializer serializer
         )
         {

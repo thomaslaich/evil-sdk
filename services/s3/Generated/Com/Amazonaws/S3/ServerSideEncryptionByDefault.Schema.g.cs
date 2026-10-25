@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ServerSideEncryptionByDefaultSchema
 {
     public sealed class Builder
     {
-        public ServerSideEncryption? SSEAlgorithm { get; set; }
+        public global::Com.Amazonaws.S3.ServerSideEncryption? SSEAlgorithm { get; set; }
         public string? KMSMasterKeyID { get; set; }
     }
 
-    public static StructSchema<ServerSideEncryptionByDefault, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ServerSideEncryptionByDefault,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ServerSideEncryptionByDefault, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ServerSideEncryptionByDefault, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ServerSideEncryptionByDefault"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class ServerSideEncryptionByDefaultSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Server-side encryption algorithm to use for the default encryption.</p>\n         <note>\n            <p>For directory buckets, there are only two supported values for server-side encryption: <code>AES256</code> and <code>aws:kms</code>.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,43 +43,34 @@ public static partial class ServerSideEncryptionByDefaultSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Amazon Web Services Key Management Service (KMS) customer managed key ID to use for the default encryption. </p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>General purpose buckets</b> - This parameter is allowed if and\n            only if <code>SSEAlgorithm</code> is set to <code>aws:kms</code> or\n            <code>aws:kms:dsse</code>.</p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> - This parameter is allowed if and\n            only if <code>SSEAlgorithm</code> is set to <code>aws:kms</code>.</p>\n               </li>\n            </ul>\n         </note>\n         <p>You can specify the key ID, key alias, or the Amazon Resource Name (ARN) of the KMS key.</p>\n         <ul>\n            <li>\n               <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>\n               </p>\n            </li>\n            <li>\n               <p>Key ARN:\n            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>\n               </p>\n            </li>\n            <li>\n               <p>Key Alias: <code>alias/alias-name</code>\n               </p>\n            </li>\n         </ul>\n         <p>If you are using encryption with cross-account or Amazon Web Services service operations, you must use a fully\n      qualified KMS key ARN. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html#bucket-encryption-update-bucket-policy\">Using\n        encryption for cross-account operations</a>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>General purpose buckets</b> - If you're specifying a customer\n            managed KMS key, we recommend using a fully qualified KMS key ARN. If you use a KMS key\n            alias instead, then KMS resolves the key within the requester’s account. This behavior can\n            result in data that's encrypted with a KMS key that belongs to the requester, and not the bucket\n            owner. Also, if you use a key ID, you can run into a LogDestination undeliverable error when\n            creating a VPC flow log. </p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> -\n            When you specify an <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">KMS customer managed key</a> for encryption in your directory bucket, only use the key ID or key ARN. The key alias format of the KMS key isn't supported.</p>\n               </li>\n            </ul>\n         </note>\n         <important>\n            <p>Amazon S3 only supports symmetric encryption KMS keys. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html\">Asymmetric keys in\n          Amazon Web Services KMS</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>\n         </important>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Describes the default server-side encryption to apply to new objects in the bucket. If a PUT Object\n      request doesn't specify any server-side encryption, this default encryption will be applied. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTencryption.html\">PutBucketEncryption</a>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>General purpose buckets</b> - If you don't specify a customer managed key\n            at configuration, Amazon S3 automatically creates an Amazon Web Services KMS key (<code>aws/s3</code>) in your Amazon Web Services\n            account the first time that you add an object encrypted with SSE-KMS to a bucket. By default, Amazon S3\n            uses this KMS key for SSE-KMS. </p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> -\n            Your SSE-KMS configuration can only support 1 <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">customer managed key</a> per directory bucket's lifetime. \nThe <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed key</a> (<code>aws/s3</code>) isn't supported. \n</p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> -\n            For directory buckets, there are only two supported options for server-side encryption: SSE-S3 and SSE-KMS.</p>\n               </li>\n            </ul>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ServerSideEncryption?> Target0 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ServerSideEncryptionByDefault Build(Builder builder) =>
-            new ServerSideEncryptionByDefault(
+        public override global::Com.Amazonaws.S3.ServerSideEncryptionByDefault Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ServerSideEncryptionByDefault(
                 builder.SSEAlgorithm ?? throw new MissingRequiredMemberException("SSEAlgorithm"),
                 builder.KMSMasterKeyID
             );
 
         public override void SerializeMembers<TSerializer>(
-            ServerSideEncryptionByDefault value,
+            global::Com.Amazonaws.S3.ServerSideEncryptionByDefault value,
             ref TSerializer serializer
         )
         {
@@ -111,8 +98,8 @@ public static partial class ServerSideEncryptionByDefaultSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ServerSideEncryption.FromValue(value0)
-                                : default(ServerSideEncryption)
+                                ? global::Com.Amazonaws.S3.ServerSideEncryption.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ServerSideEncryption)
                         );
                     break;
                 case 1:

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketOwnershipControlsInputSchema
 {
@@ -19,11 +19,13 @@ public static partial class PutBucketOwnershipControlsInputSchema
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
     }
 
-    public static StructSchema<PutBucketOwnershipControlsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketOwnershipControlsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketOwnershipControlsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketOwnershipControlsInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketOwnershipControlsInput"),
             [
                 new(
@@ -32,12 +34,6 @@ public static partial class PutBucketOwnershipControlsInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the Amazon S3 bucket whose <code>OwnershipControls</code> you want to set.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -63,12 +59,6 @@ public static partial class PutBucketOwnershipControlsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The MD5 hash of the <code>OwnershipControls</code> request body. </p>\n         <p>For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -79,12 +69,6 @@ public static partial class PutBucketOwnershipControlsInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -97,12 +81,6 @@ public static partial class PutBucketOwnershipControlsInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The <code>OwnershipControls</code> (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter) that\n      you want to apply to this Amazon S3 bucket.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -123,12 +101,6 @@ public static partial class PutBucketOwnershipControlsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Indicates the algorithm used to create the checksum for the object when you use the SDK. This\n      header will not provide any additional functionality if you don't use the SDK. When you send this\n      header, there must be a corresponding <code>x-amz-checksum-<i>algorithm</i>\n            </code> header\n      sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>\n      parameter. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
                         ),
@@ -148,20 +120,30 @@ public static partial class PutBucketOwnershipControlsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.OwnershipControls?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnershipControlsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnershipControlsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target4 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketOwnershipControlsInput Build(Builder builder) =>
-            new PutBucketOwnershipControlsInput(
+        public override global::Com.Amazonaws.S3.PutBucketOwnershipControlsInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketOwnershipControlsInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.OwnershipControls
                     ?? throw new MissingRequiredMemberException("OwnershipControls"),
@@ -171,7 +153,7 @@ public static partial class PutBucketOwnershipControlsInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketOwnershipControlsInput value,
+            global::Com.Amazonaws.S3.PutBucketOwnershipControlsInput value,
             ref TSerializer serializer
         )
         {

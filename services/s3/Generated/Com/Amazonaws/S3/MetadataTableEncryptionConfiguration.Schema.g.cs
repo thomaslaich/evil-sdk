@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetadataTableEncryptionConfigurationSchema
 {
     public sealed class Builder
     {
-        public TableSseAlgorithm? SseAlgorithm { get; set; }
+        public global::Com.Amazonaws.S3.TableSseAlgorithm? SseAlgorithm { get; set; }
         public string? KmsKeyArn { get; set; }
     }
 
-    public static StructSchema<MetadataTableEncryptionConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MetadataTableEncryptionConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#MetadataTableEncryptionConfiguration"),
             [
                 new(
@@ -30,56 +32,35 @@ public static partial class MetadataTableEncryptionConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The encryption type specified for a metadata table. To specify server-side encryption with \n      Key Management Service (KMS) keys (SSE-KMS), use the <code>aws:kms</code> value. To specify server-side \n      encryption with Amazon S3 managed keys (SSE-S3), use the <code>AES256</code> value. \n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "KmsKeyArn",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      If server-side encryption with Key Management Service (KMS) keys (SSE-KMS) is specified, you must also\n      specify the KMS key Amazon Resource Name (ARN). You must specify a customer-managed KMS key \n      that's located in the same Region as the general purpose bucket that corresponds to the metadata \n      table configuration.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("KmsKeyArn", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The encryption settings for an S3 Metadata journal table or inventory table configuration.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<TableSseAlgorithm?> Target0 =
-            Schemas.Nullable(TableSseAlgorithmSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TableSseAlgorithm?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(TableSseAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MetadataTableEncryptionConfiguration Build(Builder builder) =>
-            new MetadataTableEncryptionConfiguration(
+        public override global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration(
                 builder.SseAlgorithm ?? throw new MissingRequiredMemberException("SseAlgorithm"),
                 builder.KmsKeyArn
             );
 
         public override void SerializeMembers<TSerializer>(
-            MetadataTableEncryptionConfiguration value,
+            global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration value,
             ref TSerializer serializer
         )
         {
@@ -107,8 +88,8 @@ public static partial class MetadataTableEncryptionConfigurationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? TableSseAlgorithm.FromValue(value0)
-                                : default(TableSseAlgorithm)
+                                ? global::Com.Amazonaws.S3.TableSseAlgorithm.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.TableSseAlgorithm)
                         );
                     break;
                 case 1:

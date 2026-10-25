@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketLifecycleInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteBucketLifecycleInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<DeleteBucketLifecycleInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketLifecycleInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketLifecycleInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketLifecycleInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketLifecycleInput"),
             [
                 new(
@@ -29,10 +31,6 @@ public static partial class DeleteBucketLifecycleInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The bucket name of the lifecycle to delete.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -58,12 +56,6 @@ public static partial class DeleteBucketLifecycleInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -83,20 +75,26 @@ public static partial class DeleteBucketLifecycleInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketLifecycleInput Build(Builder builder) =>
-            new DeleteBucketLifecycleInput(
+        public override global::Com.Amazonaws.S3.DeleteBucketLifecycleInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.DeleteBucketLifecycleInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketLifecycleInput value,
+            global::Com.Amazonaws.S3.DeleteBucketLifecycleInput value,
             ref TSerializer serializer
         )
         {

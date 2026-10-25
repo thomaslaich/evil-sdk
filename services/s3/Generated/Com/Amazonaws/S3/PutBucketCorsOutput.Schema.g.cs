@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketCorsOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketCorsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketCorsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketCorsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketCorsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketCorsOutput"),
             [],
             [
@@ -33,10 +35,11 @@ public static partial class PutBucketCorsOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketCorsOutput Build(Builder builder) => new PutBucketCorsOutput();
+        public override global::Com.Amazonaws.S3.PutBucketCorsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketCorsOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketCorsOutput value,
+            global::Com.Amazonaws.S3.PutBucketCorsOutput value,
             ref TSerializer serializer
         ) { }
 

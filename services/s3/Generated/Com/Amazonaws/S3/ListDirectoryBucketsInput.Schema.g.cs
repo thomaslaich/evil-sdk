@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListDirectoryBucketsInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class ListDirectoryBucketsInputSchema
         public int? MaxDirectoryBuckets { get; set; }
     }
 
-    public static StructSchema<ListDirectoryBucketsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListDirectoryBucketsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListDirectoryBucketsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListDirectoryBucketsInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListDirectoryBucketsInput"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class ListDirectoryBucketsInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n            <code>ContinuationToken</code> indicates to Amazon S3 that the list is being continued on buckets in this\n      account with a token. <code>ContinuationToken</code> is obfuscated and is not a real bucket name. You\n      can use this <code>ContinuationToken</code> for the pagination of the list results. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("continuation-token")
@@ -43,8 +39,8 @@ public static partial class ListDirectoryBucketsInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -60,12 +56,6 @@ public static partial class ListDirectoryBucketsInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Maximum number of buckets to be returned in response. When the number is more than the count of\n      buckets that are owned by an Amazon Web Services account, return all the buckets in response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("max-directory-buckets")
                         ),
@@ -74,8 +64,8 @@ public static partial class ListDirectoryBucketsInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)1000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(1000m) },
                                 }
                             )
                         ),
@@ -95,18 +85,22 @@ public static partial class ListDirectoryBucketsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListDirectoryBucketsInput Build(Builder builder) =>
-            new ListDirectoryBucketsInput(builder.ContinuationToken, builder.MaxDirectoryBuckets);
+        public override global::Com.Amazonaws.S3.ListDirectoryBucketsInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ListDirectoryBucketsInput(
+                builder.ContinuationToken,
+                builder.MaxDirectoryBuckets
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListDirectoryBucketsInput value,
+            global::Com.Amazonaws.S3.ListDirectoryBucketsInput value,
             ref TSerializer serializer
         )
         {

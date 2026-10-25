@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class BinaryListSchema
 {
-    public static ListSchema<BinaryList, byte[], List<byte[]>> Schema { get; } =
+    public static ListSchema<IReadOnlyList<byte[]>, byte[], List<byte[]>> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<BinaryList, byte[], List<byte[]>>(
+        : ListSchema<IReadOnlyList<byte[]>, byte[], List<byte[]>>(
             ShapeId.Parse("com.amazonaws.sqs#BinaryList"),
             ShapeKind.List,
             Target0,
@@ -22,22 +22,26 @@ public static partial class BinaryListSchema
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("BinaryListValue"))]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<byte[]> Target0 = Schemas.Blob;
+        private static readonly global::NSmithy.Core.Serde.Schema<byte[]> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .Blob;
 
-        public override IEnumerable<byte[]> GetElements(BinaryList value) => value.Values;
+        public override IEnumerable<byte[]> GetElements(IReadOnlyList<byte[]> value) => value;
 
         public override List<byte[]> CreateTypedBuilder() => new();
 
         public override void Add(List<byte[]> builder, byte[] value) => builder.Add(value);
 
-        public override BinaryList Build(List<byte[]> builder) => BinaryList.FromOwnedList(builder);
+        public override IReadOnlyList<byte[]> Build(List<byte[]> builder) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            BinaryList value,
+            IReadOnlyList<byte[]> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

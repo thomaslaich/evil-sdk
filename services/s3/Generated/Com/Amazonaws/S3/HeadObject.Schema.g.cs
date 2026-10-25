@@ -6,200 +6,34 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class HeadObjectSchema
 {
-    public static OperationSchema<HeadObjectInput, HeadObjectOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.HeadObjectInput,
+        global::Com.Amazonaws.S3.HeadObjectOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#HeadObject"),
-            Schemas.Lazy(() => HeadObjectInputSchema.Schema!),
-            Schemas.Lazy(() => HeadObjectOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => HeadObjectInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => HeadObjectOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NotFound"),
-                    Schemas.Lazy(() => NotFoundSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NotFoundSchema.Schema!),
                     400
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <code>HEAD</code> operation retrieves metadata from an object without returning the object\n      itself. This operation is useful if you're interested only in an object's metadata.</p>\n         <note>\n            <p>A <code>HEAD</code> request has the same options as a <code>GET</code> operation on an object. The\n        response is identical to the <code>GET</code> response except that there is no response body. Because\n        of this, if the <code>HEAD</code> request generates an error, it returns a generic code, such as\n          <code>400 Bad Request</code>, <code>403 Forbidden</code>, <code>404 Not Found</code>, <code>405\n          Method Not Allowed</code>, <code>412 Precondition Failed</code>, or <code>304 Not Modified</code>.\n        It's not possible to retrieve the exact exception of these error codes.</p>\n         </note>\n         <p>Request headers are limited to 8 KB in size. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html\">Common Request Headers</a>.</p>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p></p>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket permissions</b> - To use\n                  <code>HEAD</code>, you must have the <code>s3:GetObject</code> permission. You need the\n                relevant read object (or version) permission for this operation. For more information, see\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html\">Actions, resources,\n                  and condition keys for Amazon S3</a> in the <i>Amazon S3 User Guide</i>. For more\n                information about the permissions to S3 API operations by S3 resource types, see <a href=\"/AmazonS3/latest/userguide/using-with-s3-policy-actions.html\">Required permissions for\n                  Amazon S3 API operations</a> in the <i>Amazon S3 User Guide</i>.</p>\n                     <p>If the object you request doesn't exist, the error that Amazon S3 returns depends on whether\n                you also have the <code>s3:ListBucket</code> permission.</p>\n                     <ul>\n                        <li>\n                           <p>If you have the <code>s3:ListBucket</code> permission on the bucket, Amazon S3 returns an\n                    HTTP status code <code>404 Not Found</code> error.</p>\n                        </li>\n                        <li>\n                           <p>If you don’t have the <code>s3:ListBucket</code> permission, Amazon S3 returns an HTTP\n                    status code <code>403 Forbidden</code> error.</p>\n                        </li>\n                     </ul>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket permissions</b> - To grant access to this API operation on a directory bucket, we recommend that you use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a> API operation for session-based authorization. Specifically, you grant the <code>s3express:CreateSession</code> permission to the directory bucket in a bucket policy or an IAM identity-based policy. Then, you make the <code>CreateSession</code> API call on the bucket to obtain a session token. With the session token in your request header, you can make API requests to this operation. After the session token expires, you make another <code>CreateSession</code> API call to generate a new session token for use. \nAmazon Web Services CLI or SDKs create session and refresh the session token automatically to avoid service interruptions when a session expires. For more information about authorization, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a>.</p>\n                     <p>If you enable <code>x-amz-checksum-mode</code> in the request and the object is encrypted\n                with Amazon Web Services Key Management Service (Amazon Web Services KMS), you must also have the\n                  <code>kms:GenerateDataKey</code> and <code>kms:Decrypt</code> permissions in IAM\n                identity-based policies and KMS key policies for the KMS key to retrieve the checksum of\n                the object.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>Encryption</dt>\n            <dd>\n               <note>\n                  <p>Encryption request headers, like <code>x-amz-server-side-encryption</code>, should not be\n              sent for <code>HEAD</code> requests if your object uses server-side encryption with Key Management Service\n              (KMS) keys (SSE-KMS), dual-layer server-side encryption with Amazon Web Services KMS keys (DSSE-KMS), or\n              server-side encryption with Amazon S3 managed encryption keys (SSE-S3). The\n                <code>x-amz-server-side-encryption</code> header is used when you <code>PUT</code> an object\n              to S3 and want to specify the encryption method. If you include this header in a\n                <code>HEAD</code> request for an object that uses these types of keys, you’ll get an HTTP\n                <code>400 Bad Request</code> error. It's because the encryption method can't be changed when\n              you retrieve the object.</p>\n               </note>\n               <p>If you encrypt an object by using server-side encryption with customer-provided encryption\n            keys (SSE-C) when you store the object in Amazon S3, then when you retrieve the metadata from the\n            object, you must use the following headers to provide the encryption key for the server to be able\n            to retrieve the object's metadata. The headers are: </p>\n               <ul>\n                  <li>\n                     <p>\n                        <code>x-amz-server-side-encryption-customer-algorithm</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>x-amz-server-side-encryption-customer-key</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>x-amz-server-side-encryption-customer-key-MD5</code>\n                     </p>\n                  </li>\n               </ul>\n               <p>For more information about SSE-C, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html\">Server-Side Encryption (Using\n              Customer-Provided Encryption Keys)</a> in the <i>Amazon S3 User Guide</i>.</p>\n               <note>\n                  <p>\n                     <b>Directory bucket </b> -\n              For directory buckets, there are only two supported options for server-side encryption: SSE-S3 and SSE-KMS. SSE-C isn't supported. For more\n         information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html\">Protecting data with server-side encryption</a> in the <i>Amazon S3 User Guide</i>. </p>\n               </note>\n            </dd>\n            <dt>Versioning</dt>\n            <dd>\n               <ul>\n                  <li>\n                     <p>If the current version of the object is a delete marker, Amazon S3 behaves as if the object was\n                deleted and includes <code>x-amz-delete-marker: true</code> in the response.</p>\n                  </li>\n                  <li>\n                     <p>If the specified version is a delete marker, the response returns a <code>405 Method Not\n                  Allowed</code> error and the <code>Last-Modified: timestamp</code> response header.</p>\n                  </li>\n               </ul>\n               <note>\n                  <ul>\n                     <li>\n                        <p>\n                           <b>Directory buckets</b> -\n                  Delete marker is not supported for directory buckets.</p>\n                     </li>\n                     <li>\n                        <p>\n                           <b>Directory buckets</b> -\n                  S3 Versioning isn't enabled and supported for directory buckets. For this API operation, only the <code>null</code> value of the version ID is supported by directory buckets. You can only specify <code>null</code> to the\n                    <code>versionId</code> query parameter in the request.</p>\n                     </li>\n                  </ul>\n               </note>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is <code>\n                     <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>.</p>\n               <note>\n                  <p>For directory buckets, you must make requests for this API operation to the Zonal endpoint. These endpoints support virtual-hosted-style requests in the format <code>https://<i>amzn-s3-demo-bucket</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com/<i>key-name</i>\n                     </code>. Path-style requests are not supported. For more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the\n    <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n               </note>\n            </dd>\n         </dl>\n         <p>The following actions are related to <code>HeadObject</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html\">GetObjectAttributes</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To retrieve metadata of an object without returning the object itself"
-                                        )
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example retrieves an object metadata."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "Key", Document.From("HappyFace.jpg") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "AcceptRanges", Document.From("bytes") },
-                                                { "ContentType", Document.From("image/jpeg") },
-                                                {
-                                                    "LastModified",
-                                                    Document.From("2016-12-15T01:19:41.000Z")
-                                                },
-                                                { "ContentLength", Document.From((decimal)3191) },
-                                                { "VersionId", Document.From("null") },
-                                                {
-                                                    "ETag",
-                                                    Document.From(
-                                                        "\"6805f2cfc46c0f04559748bb039d69ae\""
-                                                    )
-                                                },
-                                                {
-                                                    "Metadata",
-                                                    Document.From(
-                                                        new Dictionary<string, Document> { }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("HEAD") },
-                            { "uri", Document.From("/{Bucket}/{Key+}") },
-                            { "code", Document.From((decimal)200) },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.waiters#waitable"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "ObjectExists",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "acceptors",
-                                            Document.From(
-                                                new Document[]
-                                                {
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            { "state", Document.From("success") },
-                                                            {
-                                                                "matcher",
-                                                                Document.From(
-                                                                    new Dictionary<string, Document>
-                                                                    {
-                                                                        {
-                                                                            "success",
-                                                                            Document.From(true)
-                                                                        },
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    ),
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            { "state", Document.From("retry") },
-                                                            {
-                                                                "matcher",
-                                                                Document.From(
-                                                                    new Dictionary<string, Document>
-                                                                    {
-                                                                        {
-                                                                            "errorType",
-                                                                            Document.From(
-                                                                                "NotFound"
-                                                                            )
-                                                                        },
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    ),
-                                                }
-                                            )
-                                        },
-                                        { "minDelay", Document.From((decimal)5) },
-                                    }
-                                )
-                            },
-                            {
-                                "ObjectNotExists",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "acceptors",
-                                            Document.From(
-                                                new Document[]
-                                                {
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            { "state", Document.From("success") },
-                                                            {
-                                                                "matcher",
-                                                                Document.From(
-                                                                    new Dictionary<string, Document>
-                                                                    {
-                                                                        {
-                                                                            "errorType",
-                                                                            Document.From(
-                                                                                "NotFound"
-                                                                            )
-                                                                        },
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    ),
-                                                }
-                                            )
-                                        },
-                                        { "minDelay", Document.From((decimal)5) },
-                                    }
-                                )
-                            },
+                            { "uri", Document.From("/{Key+}") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

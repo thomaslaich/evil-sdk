@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteQueueOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteQueueOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.DeleteQueueOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteQueueOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.DeleteQueueOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteQueueOutput"),
             [],
             [
@@ -32,10 +35,11 @@ public static partial class DeleteQueueOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteQueueOutput Build(Builder builder) => new DeleteQueueOutput();
+        public override global::Com.Amazonaws.Sqs.DeleteQueueOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.DeleteQueueOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteQueueOutput value,
+            global::Com.Amazonaws.Sqs.DeleteQueueOutput value,
             ref TSerializer serializer
         ) { }
 

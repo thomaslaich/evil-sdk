@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EC2UnexpectedExceptionSchema
 {
@@ -16,77 +16,47 @@ public static partial class EC2UnexpectedExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<EC2UnexpectedException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.EC2UnexpectedException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EC2UnexpectedException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.EC2UnexpectedException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#EC2UnexpectedException"),
+            [new("EC2ErrorCode", Target0), new("Message", Target1), new("Type", Target2)],
             [
-                new(
-                    "EC2ErrorCode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lambda received an unexpected Amazon EC2 client exception while setting up for the Lambda function.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("server")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)502)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(502m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EC2UnexpectedException Build(Builder builder) =>
-            new EC2UnexpectedException(builder.Message, builder.EC2ErrorCode, builder.Type);
+        public override global::Com.Amazonaws.Lambda.EC2UnexpectedException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.EC2UnexpectedException(
+                builder.Message,
+                builder.EC2ErrorCode,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            EC2UnexpectedException value,
+            global::Com.Amazonaws.Lambda.EC2UnexpectedException value,
             ref TSerializer serializer
         )
         {

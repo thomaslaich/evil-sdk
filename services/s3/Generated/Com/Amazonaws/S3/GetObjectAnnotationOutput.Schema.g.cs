@@ -8,7 +8,7 @@ using System.IO;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectAnnotationOutputSchema
 {
@@ -35,11 +35,13 @@ public static partial class GetObjectAnnotationOutputSchema
         public global::Com.Amazonaws.S3.ReplicationStatus? ReplicationStatus { get; set; }
     }
 
-    public static StructSchema<GetObjectAnnotationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectAnnotationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectAnnotationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectAnnotationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectAnnotationOutput"),
             [
                 new(
@@ -48,10 +50,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#default"), Document.From("")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The annotation payload.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -68,12 +66,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version ID of the object that the annotation is attached to.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-version-id")
                         ),
@@ -84,12 +76,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time the annotation was last modified.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Last-Modified")
@@ -106,10 +92,6 @@ public static partial class GetObjectAnnotationOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The size of the annotation payload, in bytes.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Length")
                         ),
@@ -120,10 +102,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The entity tag of the annotation.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpHeader"), Document.From("ETag")),
                     ]
                 ),
@@ -132,10 +110,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The CRC32 checksum of the annotation payload.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32")
@@ -148,10 +122,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The CRC32C checksum of the annotation payload.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32c")
                         ),
@@ -162,12 +132,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The CRC64NVME checksum of the annotation payload.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc64nvme")
@@ -180,10 +144,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The SHA1 checksum of the annotation payload.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha1")
                         ),
@@ -194,10 +154,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target9,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The SHA256 checksum of the annotation payload.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha256")
@@ -210,10 +166,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The SHA512 checksum of the annotation payload.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha512")
                         ),
@@ -224,10 +176,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target11,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The MD5 checksum of the annotation payload.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-md5")
@@ -240,10 +188,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The XXHASH64 checksum of the annotation payload.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash64")
                         ),
@@ -254,10 +198,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target13,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The XXHASH3 checksum of the annotation payload.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash3")
@@ -270,12 +210,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The XXHASH128 checksum of the annotation payload.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash128")
                         ),
@@ -287,10 +221,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The type of checksum used.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-type")
                         ),
@@ -301,10 +231,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     Target16,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The server-side encryption algorithm used.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
@@ -328,12 +254,6 @@ public static partial class GetObjectAnnotationOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The replication status of the annotation. Possible values include <code>PENDING</code>, <code>COMPLETED</code>, <code>FAILED</code>, and <code>REPLICA</code>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-replication-status")
                         ),
@@ -349,49 +269,76 @@ public static partial class GetObjectAnnotationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<Stream?> Target0 =
-            Schemas.NullableReference(Schemas.StreamingBlob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.StreamingBlob
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target2 =
-            Schemas.Nullable(Schemas.Timestamp);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target3 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target12 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target14 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target15 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target16 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target17 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationStatus?> Target18 =
-            Schemas.Nullable(ReplicationStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ReplicationStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new() { AnnotationPayload = Stream.Null };
 
-        public override GetObjectAnnotationOutput Build(Builder builder) =>
-            new GetObjectAnnotationOutput(
+        public override global::Com.Amazonaws.S3.GetObjectAnnotationOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectAnnotationOutput(
                 builder.AnnotationPayload,
                 builder.ChecksumCRC32,
                 builder.ChecksumCRC32C,
@@ -414,7 +361,7 @@ public static partial class GetObjectAnnotationOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectAnnotationOutput value,
+            global::Com.Amazonaws.S3.GetObjectAnnotationOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class GetQueueAttributesOutputSchema
 {
     public sealed class Builder
     {
-        public QueueAttributeMap? Attributes { get; set; }
+        public IReadOnlyDictionary<string, string>? Attributes { get; set; }
     }
 
-    public static StructSchema<GetQueueAttributesOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.GetQueueAttributesOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetQueueAttributesOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.GetQueueAttributesOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#GetQueueAttributesOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class GetQueueAttributesOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A map of attributes to their respective values.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -40,10 +38,6 @@ public static partial class GetQueueAttributesOutputSchema
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A list of returned queue attributes.</p>")
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -55,16 +49,20 @@ public static partial class GetQueueAttributesOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<QueueAttributeMap?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => QueueAttributeMapSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueAttributeMapSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetQueueAttributesOutput Build(Builder builder) =>
-            new GetQueueAttributesOutput(builder.Attributes);
+        public override global::Com.Amazonaws.Sqs.GetQueueAttributesOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.GetQueueAttributesOutput(builder.Attributes);
 
         public override void SerializeMembers<TSerializer>(
-            GetQueueAttributesOutput value,
+            global::Com.Amazonaws.Sqs.GetQueueAttributesOutput value,
             ref TSerializer serializer
         )
         {

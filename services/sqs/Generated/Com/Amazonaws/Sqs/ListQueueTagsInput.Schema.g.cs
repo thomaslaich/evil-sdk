@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListQueueTagsInputSchema
 {
@@ -15,10 +15,13 @@ public static partial class ListQueueTagsInputSchema
         public string? QueueUrl { get; set; }
     }
 
-    public static StructSchema<ListQueueTagsInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListQueueTagsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListQueueTagsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListQueueTagsInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListQueueTagsInput"),
             [
                 new(
@@ -27,10 +30,6 @@ public static partial class ListQueueTagsInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The URL of the queue.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -51,17 +50,19 @@ public static partial class ListQueueTagsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListQueueTagsInput Build(Builder builder) =>
-            new ListQueueTagsInput(
+        public override global::Com.Amazonaws.Sqs.ListQueueTagsInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.ListQueueTagsInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListQueueTagsInput value,
+            global::Com.Amazonaws.Sqs.ListQueueTagsInput value,
             ref TSerializer serializer
         )
         {

@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SerializedRequestEntityTooLargeExceptionSchema
 {
@@ -15,68 +15,45 @@ public static partial class SerializedRequestEntityTooLargeExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<SerializedRequestEntityTooLargeException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SerializedRequestEntityTooLargeException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SerializedRequestEntityTooLargeException, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.SerializedRequestEntityTooLargeException,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#SerializedRequestEntityTooLargeException"),
+            [new("Type", Target0), new("message", Target1)],
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error type.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request payload exceeded the maximum allowed size for serialized request entities.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)413)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(413m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SerializedRequestEntityTooLargeException Build(Builder builder) =>
-            new SerializedRequestEntityTooLargeException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.SerializedRequestEntityTooLargeException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.SerializedRequestEntityTooLargeException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            SerializedRequestEntityTooLargeException value,
+            global::Com.Amazonaws.Lambda.SerializedRequestEntityTooLargeException value,
             ref TSerializer serializer
         )
         {

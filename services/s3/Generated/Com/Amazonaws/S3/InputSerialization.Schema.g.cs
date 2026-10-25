@@ -5,108 +5,45 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InputSerializationSchema
 {
     public sealed class Builder
     {
-        public CSVInput? CSV { get; set; }
+        public global::Com.Amazonaws.S3.CSVInput? CSV { get; set; }
         public global::Com.Amazonaws.S3.CompressionType? CompressionType { get; set; }
-        public JSONInput? JSON { get; set; }
-        public ParquetInput? Parquet { get; set; }
+        public global::Com.Amazonaws.S3.JSONInput? JSON { get; set; }
+        public global::Com.Amazonaws.S3.ParquetInput? Parquet { get; set; }
     }
 
-    public static StructSchema<InputSerialization, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.InputSerialization, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InputSerialization, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InputSerialization, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InputSerialization"),
             [
-                new(
-                    "CSV",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the serialization of a CSV-encoded object.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "CompressionType",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies object's compression format. Valid values: NONE, GZIP, BZIP2. Default Value: NONE.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "JSON",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies JSON as object's input serialization format.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Parquet",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies Parquet as object's input serialization format.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("CSV", Target0),
+                new("CompressionType", Target1),
+                new("JSON", Target2),
+                new("Parquet", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Describes the serialization format of the object.</p>")
-                ),
-            ]
-        )
+            null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CSVInput?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CSVInputSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CompressionType?> Target1 =
-            Schemas.Nullable(CompressionTypeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<JSONInput?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => JSONInputSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<ParquetInput?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ParquetInputSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CSVInput?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => CSVInputSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CompressionType?> Target1 = global::NSmithy.Core.Serde.Schemas.Nullable(CompressionTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.JSONInput?> Target2 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => JSONInputSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ParquetInput?> Target3 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => ParquetInputSchema.Schema!));
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InputSerialization Build(Builder builder) =>
-            new InputSerialization(
-                builder.CSV,
-                builder.CompressionType,
-                builder.JSON,
-                builder.Parquet
-            );
+        public override global::Com.Amazonaws.S3.InputSerialization Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InputSerialization(builder.CSV, builder.CompressionType, builder.JSON, builder.Parquet);
 
         public override void SerializeMembers<TSerializer>(
-            InputSerialization value,
-            ref TSerializer serializer
-        )
+            global::Com.Amazonaws.S3.InputSerialization value,
+            ref TSerializer serializer)
         {
             if (value.CSV is { } value0)
             {
@@ -145,8 +82,7 @@ public static partial class InputSerializationSchema
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        )
+            ref TDeserializer deserializer)
         {
             switch (index)
             {
@@ -154,13 +90,7 @@ public static partial class InputSerializationSchema
                     builder.CSV = deserializer.ReadStruct(CSVInputSchema.Schema);
                     break;
                 case 1:
-                    builder.CompressionType = deserializer.TryReadNull()
-                        ? null
-                        : (
-                            deserializer.ReadStringEnum() is { } value1
-                                ? global::Com.Amazonaws.S3.CompressionType.FromValue(value1)
-                                : default(global::Com.Amazonaws.S3.CompressionType)
-                        );
+                    builder.CompressionType = deserializer.TryReadNull() ? null : (deserializer.ReadStringEnum() is { } value1 ? global::Com.Amazonaws.S3.CompressionType.FromValue(value1) : default(global::Com.Amazonaws.S3.CompressionType));
                     break;
                 case 2:
                     builder.JSON = deserializer.ReadStruct(JSONInputSchema.Schema);

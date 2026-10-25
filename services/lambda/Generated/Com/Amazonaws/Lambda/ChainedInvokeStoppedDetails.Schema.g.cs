@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ChainedInvokeStoppedDetailsSchema
 {
     public sealed class Builder
     {
-        public EventError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.EventError? Error { get; set; }
     }
 
-    public static StructSchema<ChainedInvokeStoppedDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ChainedInvokeStoppedDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChainedInvokeStoppedDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ChainedInvokeStoppedDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ChainedInvokeStoppedDetails"),
             [
                 new(
@@ -29,46 +31,31 @@ public static partial class ChainedInvokeStoppedDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Details about why the chained invocation stopped.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a chained invocation that was stopped.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventError?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventErrorSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventError?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChainedInvokeStoppedDetails Build(Builder builder) =>
-            new ChainedInvokeStoppedDetails(
+        public override global::Com.Amazonaws.Lambda.ChainedInvokeStoppedDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ChainedInvokeStoppedDetails(
                 builder.Error ?? throw new MissingRequiredMemberException("Error")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChainedInvokeStoppedDetails value,
+            global::Com.Amazonaws.Lambda.ChainedInvokeStoppedDetails value,
             ref TSerializer serializer
         )
         {

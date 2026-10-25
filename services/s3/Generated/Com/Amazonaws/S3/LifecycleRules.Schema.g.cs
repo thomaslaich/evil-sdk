@@ -6,42 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class LifecycleRulesSchema
 {
-    public static ListSchema<LifecycleRules, LifecycleRule, List<LifecycleRule>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule>,
+        global::Com.Amazonaws.S3.LifecycleRule,
+        List<global::Com.Amazonaws.S3.LifecycleRule>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<LifecycleRules, LifecycleRule, List<LifecycleRule>>(
-            ShapeId.Parse("com.amazonaws.s3#LifecycleRules"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule>,
+            global::Com.Amazonaws.S3.LifecycleRule,
+            List<global::Com.Amazonaws.S3.LifecycleRule>
+        >(ShapeId.Parse("com.amazonaws.s3#LifecycleRules"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<LifecycleRule> Target0 =
-            Schemas.Lazy(() => LifecycleRuleSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.LifecycleRule> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => LifecycleRuleSchema.Schema!);
 
-        public override IEnumerable<LifecycleRule> GetElements(LifecycleRules value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.LifecycleRule> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule> value
+        ) => value;
 
-        public override List<LifecycleRule> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.LifecycleRule> CreateTypedBuilder() => new();
 
-        public override void Add(List<LifecycleRule> builder, LifecycleRule value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.LifecycleRule> builder,
+            global::Com.Amazonaws.S3.LifecycleRule value
+        ) => builder.Add(value);
 
-        public override LifecycleRules Build(List<LifecycleRule> builder) =>
-            LifecycleRules.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule> Build(
+            List<global::Com.Amazonaws.S3.LifecycleRule> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            LifecycleRules value,
+            IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -56,7 +61,7 @@ public static partial class LifecycleRulesSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<LifecycleRule> builder,
+            List<global::Com.Amazonaws.S3.LifecycleRule> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(LifecycleRuleSchema.Schema));
     }

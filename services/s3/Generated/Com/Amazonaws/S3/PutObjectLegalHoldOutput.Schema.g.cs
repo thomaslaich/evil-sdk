@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectLegalHoldOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class PutObjectLegalHoldOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<PutObjectLegalHoldOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutObjectLegalHoldOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutObjectLegalHoldOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutObjectLegalHoldOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutObjectLegalHoldOutput"),
             [
                 new(
@@ -43,15 +45,15 @@ public static partial class PutObjectLegalHoldOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target0 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutObjectLegalHoldOutput Build(Builder builder) =>
-            new PutObjectLegalHoldOutput(builder.RequestCharged);
+        public override global::Com.Amazonaws.S3.PutObjectLegalHoldOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutObjectLegalHoldOutput(builder.RequestCharged);
 
         public override void SerializeMembers<TSerializer>(
-            PutObjectLegalHoldOutput value,
+            global::Com.Amazonaws.S3.PutObjectLegalHoldOutput value,
             ref TSerializer serializer
         )
         {

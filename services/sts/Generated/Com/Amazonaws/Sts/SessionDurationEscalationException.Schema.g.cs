@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class SessionDurationEscalationExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class SessionDurationEscalationExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<SessionDurationEscalationException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.SessionDurationEscalationException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SessionDurationEscalationException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.SessionDurationEscalationException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#SessionDurationEscalationException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class SessionDurationEscalationExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("SessionDurationEscalationException") },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The requested token duration would extend the session beyond its original expiration time. \n            You cannot use this operation to extend the lifetime of a session beyond what was granted when the session was originally created.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SessionDurationEscalationException Build(Builder builder) =>
-            new SessionDurationEscalationException(builder.Message);
+        public override global::Com.Amazonaws.Sts.SessionDurationEscalationException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.SessionDurationEscalationException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            SessionDurationEscalationException value,
+            global::Com.Amazonaws.Sts.SessionDurationEscalationException value,
             ref TSerializer serializer
         )
         {

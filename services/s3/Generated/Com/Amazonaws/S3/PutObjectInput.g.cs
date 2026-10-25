@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Com.Amazonaws.S3;
@@ -555,7 +556,7 @@ public sealed record class PutObjectInput(
     string? GrantWriteACP = null,
     string? IfMatch = null,
     string? IfNoneMatch = null,
-    global::Com.Amazonaws.S3.Metadata? Metadata = null,
+    IReadOnlyDictionary<string, string>? Metadata = null,
     global::Com.Amazonaws.S3.ObjectLockEventHold? ObjectLockEventHold = null,
     int? ObjectLockEventHoldDurationDays = null,
     int? ObjectLockEventHoldDurationYears = null,

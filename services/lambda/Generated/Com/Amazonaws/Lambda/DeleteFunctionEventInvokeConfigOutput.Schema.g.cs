@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionEventInvokeConfigOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteFunctionEventInvokeConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteFunctionEventInvokeConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteFunctionEventInvokeConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteFunctionEventInvokeConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionEventInvokeConfigOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteFunctionEventInvokeConfigOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteFunctionEventInvokeConfigOutput Build(Builder builder) =>
-            new DeleteFunctionEventInvokeConfigOutput();
+        public override global::Com.Amazonaws.Lambda.DeleteFunctionEventInvokeConfigOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.DeleteFunctionEventInvokeConfigOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteFunctionEventInvokeConfigOutput value,
+            global::Com.Amazonaws.Lambda.DeleteFunctionEventInvokeConfigOutput value,
             ref TSerializer serializer
         ) { }
 

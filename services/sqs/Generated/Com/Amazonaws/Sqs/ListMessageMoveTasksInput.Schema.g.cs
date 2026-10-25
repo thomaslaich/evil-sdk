@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListMessageMoveTasksInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class ListMessageMoveTasksInputSchema
         public int? MaxResults { get; set; }
     }
 
-    public static StructSchema<ListMessageMoveTasksInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListMessageMoveTasksInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListMessageMoveTasksInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListMessageMoveTasksInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListMessageMoveTasksInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class ListMessageMoveTasksInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the queue whose message movement tasks are to be listed.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,12 +45,6 @@ public static partial class ListMessageMoveTasksInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of results to include in the response. The default is 1, which\n            provides the most recent message movement task. The upper limit is 10.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -72,21 +62,24 @@ public static partial class ListMessageMoveTasksInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListMessageMoveTasksInput Build(Builder builder) =>
-            new ListMessageMoveTasksInput(
+        public override global::Com.Amazonaws.Sqs.ListMessageMoveTasksInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ListMessageMoveTasksInput(
                 builder.SourceArn ?? throw new MissingRequiredMemberException("SourceArn"),
                 builder.MaxResults
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListMessageMoveTasksInput value,
+            global::Com.Amazonaws.Sqs.ListMessageMoveTasksInput value,
             ref TSerializer serializer
         )
         {

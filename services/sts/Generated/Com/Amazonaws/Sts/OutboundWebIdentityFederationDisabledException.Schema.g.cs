@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class OutboundWebIdentityFederationDisabledExceptionSchema
 {
@@ -16,12 +16,15 @@ public static partial class OutboundWebIdentityFederationDisabledExceptionSchema
     }
 
     public static StructSchema<
-        OutboundWebIdentityFederationDisabledException,
+        global::Com.Amazonaws.Sts.OutboundWebIdentityFederationDisabledException,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OutboundWebIdentityFederationDisabledException, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Sts.OutboundWebIdentityFederationDisabledException,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.sts#OutboundWebIdentityFederationDisabledException"),
             [new("message", Target0)],
             [
@@ -34,31 +37,31 @@ public static partial class OutboundWebIdentityFederationDisabledExceptionSchema
                                 "code",
                                 Document.From("OutboundWebIdentityFederationDisabledException")
                             },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The outbound web identity federation feature is not enabled for this account. To use\n            this feature, you must first enable it through the Amazon Web Services Management Console or API.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OutboundWebIdentityFederationDisabledException Build(Builder builder) =>
-            new OutboundWebIdentityFederationDisabledException(builder.Message);
+        public override global::Com.Amazonaws.Sts.OutboundWebIdentityFederationDisabledException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sts.OutboundWebIdentityFederationDisabledException(
+                builder.Message
+            );
 
         public override void SerializeMembers<TSerializer>(
-            OutboundWebIdentityFederationDisabledException value,
+            global::Com.Amazonaws.Sts.OutboundWebIdentityFederationDisabledException value,
             ref TSerializer serializer
         )
         {

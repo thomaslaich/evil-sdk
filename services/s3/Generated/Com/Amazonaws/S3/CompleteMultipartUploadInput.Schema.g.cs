@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompleteMultipartUploadInputSchema
 {
@@ -14,7 +14,7 @@ public static partial class CompleteMultipartUploadInputSchema
     {
         public string? Bucket { get; set; }
         public string? Key { get; set; }
-        public CompletedMultipartUpload? MultipartUpload { get; set; }
+        public global::Com.Amazonaws.S3.CompletedMultipartUpload? MultipartUpload { get; set; }
         public string? UploadId { get; set; }
         public string? ChecksumCRC32 { get; set; }
         public string? ChecksumCRC32C { get; set; }
@@ -37,11 +37,13 @@ public static partial class CompleteMultipartUploadInputSchema
         public string? SSECustomerKeyMD5 { get; set; }
     }
 
-    public static StructSchema<CompleteMultipartUploadInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.CompleteMultipartUploadInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CompleteMultipartUploadInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CompleteMultipartUploadInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CompleteMultipartUploadInput"),
             [
                 new(
@@ -50,12 +52,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Name of the bucket to which the multipart upload was initiated.</p>\n         <p>\n            <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format <code>\n               <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming\n         restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming\n            rules</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>Object Lambda access points are not supported by directory buckets.</p>\n         </note>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the \n                     form <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -82,22 +78,13 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Object key for which the multipart upload was initiated.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -121,12 +108,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The container for the multipart upload request information.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -142,10 +123,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>ID for the initiated multipart upload.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("uploadId")),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
@@ -159,12 +136,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 32-bit <code>CRC32</code> checksum of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32")
                         ),
@@ -175,12 +146,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 32-bit <code>CRC32C</code> checksum of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32c")
@@ -193,12 +158,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>CRC64NVME</code>\n      checksum of the object. The <code>CRC64NVME</code> checksum is always a full object checksum. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc64nvme")
                         ),
@@ -209,12 +168,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 160-bit <code>SHA1</code> digest of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha1")
@@ -227,12 +180,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 256-bit <code>SHA256</code> digest of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha256")
                         ),
@@ -243,12 +190,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target9,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 512-bit <code>SHA512</code>\n      digest of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha512")
@@ -261,12 +202,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 128-bit <code>MD5</code>\n      digest of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-md5")
                         ),
@@ -277,12 +212,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target11,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>XXHASH64</code>\n      checksum of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash64")
@@ -295,12 +224,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>XXHASH3</code>\n      checksum of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash3")
                         ),
@@ -312,12 +235,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 128-bit <code>XXHASH128</code>\n      checksum of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash128")
                         ),
@@ -328,12 +245,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target14,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header specifies the checksum type of the object, which determines how part-level checksums are\n      combined to create an object-level checksum for multipart objects. You can use this header as a data\n      integrity check to verify that the checksum type that is received is the same checksum that was\n      specified. If the checksum type doesn’t match the checksum type that was specified for the object during\n      the <code>CreateMultipartUpload</code> request, it’ll result in a <code>BadDigest</code> error. For more\n      information, see Checking object integrity in the Amazon S3 User Guide. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-type")
@@ -348,12 +259,6 @@ public static partial class CompleteMultipartUploadInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The expected total object size of the multipart upload request. If there’s a mismatch between the\n      specified object size value and the actual object size value, it results in an <code>HTTP 400\n        InvalidRequest</code> error. </p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -378,12 +283,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -394,12 +293,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target18,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches\n      the ETag of the object in S3. If the ETag values do not match, the operation returns a <code>412\n        Precondition Failed</code> error.</p>\n         <p>If a conflicting operation occurs during the upload S3 returns a <code>409\n        ConditionalRequestConflict</code> response. On a 409 failure you should fetch the object's ETag,\n      re-initiate the multipart upload with <code>CreateMultipartUpload</code>, and re-upload each\n      part.</p>\n         <p>Expects the ETag value as a string.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>, or <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html\">Conditional requests</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Match")
@@ -412,12 +305,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Uploads the object only if the object key name does not already exist in the bucket specified.\n      Otherwise, Amazon S3 returns a <code>412 Precondition Failed</code> error.</p>\n         <p>If a conflicting operation occurs during the upload S3 returns a <code>409\n        ConditionalRequestConflict</code> response. On a 409 failure you should re-initiate the multipart\n      upload with <code>CreateMultipartUpload</code> and re-upload each part.</p>\n         <p>Expects the '*' (asterisk) character.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>, or <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html\">Conditional requests</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-None-Match")
                         ),
@@ -429,12 +316,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption (SSE) algorithm used to encrypt the object. This parameter is required\n      only when the object was created using a checksum algorithm or if your bucket policy requires the use of\n      SSE-C. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html#ssec-require-condition-key\">Protecting data using SSE-C keys</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -445,12 +326,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target21,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption (SSE) customer managed key. This parameter is needed only when the object was created using a checksum algorithm. \n    For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html\">Protecting data using SSE-C keys</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key")
@@ -466,12 +341,6 @@ public static partial class CompleteMultipartUploadInputSchema
                     Target22,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The MD5 server-side encryption (SSE) customer managed key. This parameter is needed only when the object was created using a checksum \n    algorithm. For more information,\n    see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html\">Protecting data using SSE-C keys</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
@@ -492,56 +361,100 @@ public static partial class CompleteMultipartUploadInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<CompletedMultipartUpload?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => CompletedMultipartUploadSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CompletedMultipartUpload?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CompletedMultipartUploadSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target12 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target14 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<long?> Target15 =
-            Schemas.Nullable(Schemas.Long);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target16 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target17 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target18 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target19 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target20 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target21 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target22 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CompleteMultipartUploadInput Build(Builder builder) =>
-            new CompleteMultipartUploadInput(
+        public override global::Com.Amazonaws.S3.CompleteMultipartUploadInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.CompleteMultipartUploadInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.UploadId ?? throw new MissingRequiredMemberException("UploadId"),
@@ -568,7 +481,7 @@ public static partial class CompleteMultipartUploadInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CompleteMultipartUploadInput value,
+            global::Com.Amazonaws.S3.CompleteMultipartUploadInput value,
             ref TSerializer serializer
         )
         {

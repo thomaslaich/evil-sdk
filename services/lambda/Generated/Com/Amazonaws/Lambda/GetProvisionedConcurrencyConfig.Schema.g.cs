@@ -4,214 +4,61 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetProvisionedConcurrencyConfigSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        GetProvisionedConcurrencyConfigInput,
-        GetProvisionedConcurrencyConfigOutput
+        global::Com.Amazonaws.Lambda.GetProvisionedConcurrencyConfigInput,
+        global::Com.Amazonaws.Lambda.GetProvisionedConcurrencyConfigOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#GetProvisionedConcurrencyConfig"),
-            Schemas.Lazy(() => GetProvisionedConcurrencyConfigInputSchema.Schema!),
-            Schemas.Lazy(() => GetProvisionedConcurrencyConfigOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetProvisionedConcurrencyConfigInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetProvisionedConcurrencyConfigOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse(
                         "com.amazonaws.lambda#ProvisionedConcurrencyConfigNotFoundException"
                     ),
-                    Schemas.Lazy(() => ProvisionedConcurrencyConfigNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ProvisionedConcurrencyConfigNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to view the provisioned concurrency configuration for an AWS Lambda function's alias or version"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_GetProvisionedConcurrencyConfig.html")
-                            },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "optional",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "function version",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                    {
-                                                        "function alias",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Retrieves the provisioned concurrency configuration for a function's alias or version.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example displays details for the provisioned concurrency configuration for the BLUE alias of the specified function."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                                { "Qualifier", Document.From("BLUE") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "AllocatedProvisionedConcurrentExecutions",
-                                                    Document.From((decimal)100)
-                                                },
-                                                {
-                                                    "AvailableProvisionedConcurrentExecutions",
-                                                    Document.From((decimal)100)
-                                                },
-                                                {
-                                                    "LastModified",
-                                                    Document.From("2019-12-31T20:28:49+0000")
-                                                },
-                                                {
-                                                    "RequestedProvisionedConcurrentExecutions",
-                                                    Document.From((decimal)100)
-                                                },
-                                                { "Status", Document.From("READY") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To view a provisioned concurrency configuration"
-                                        )
-                                    },
-                                }
-                            ),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns details for the provisioned concurrency configuration for the BLUE alias of the specified function."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                                { "Qualifier", Document.From("BLUE") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "AllocatedProvisionedConcurrentExecutions",
-                                                    Document.From((decimal)100)
-                                                },
-                                                {
-                                                    "AvailableProvisionedConcurrentExecutions",
-                                                    Document.From((decimal)100)
-                                                },
-                                                {
-                                                    "LastModified",
-                                                    Document.From("2019-12-31T20:28:49+0000")
-                                                },
-                                                {
-                                                    "RequestedProvisionedConcurrentExecutions",
-                                                    Document.From((decimal)100)
-                                                },
-                                                { "Status", Document.From("READY") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To get a provisioned concurrency configuration"
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -224,17 +71,13 @@ public static partial class GetProvisionedConcurrencyConfigSchema
                                     "/2019-09-30/functions/{FunctionName}/provisioned-concurrency"
                                 )
                             },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProvidersListSchema
 {
     public static ListSchema<
-        CapacityProvidersList,
-        CapacityProvider,
-        List<CapacityProvider>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.CapacityProvider>,
+        global::Com.Amazonaws.Lambda.CapacityProvider,
+        List<global::Com.Amazonaws.Lambda.CapacityProvider>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<CapacityProvidersList, CapacityProvider, List<CapacityProvider>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.CapacityProvider>,
+            global::Com.Amazonaws.Lambda.CapacityProvider,
+            List<global::Com.Amazonaws.Lambda.CapacityProvider>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProvidersList"),
             ShapeKind.List,
             Target0,
@@ -27,44 +31,40 @@ public static partial class CapacityProvidersListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)50) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(50m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProvider> Target0 =
-            Schemas.Lazy(() => CapacityProviderSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProvider> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => CapacityProviderSchema.Schema!);
 
-        public override IEnumerable<CapacityProvider> GetElements(CapacityProvidersList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.CapacityProvider> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.CapacityProvider> value
+        ) => value;
 
-        public override List<CapacityProvider> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.CapacityProvider> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<CapacityProvider> builder, CapacityProvider value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.CapacityProvider> builder,
+            global::Com.Amazonaws.Lambda.CapacityProvider value
+        ) => builder.Add(value);
 
-        public override CapacityProvidersList Build(List<CapacityProvider> builder) =>
-            CapacityProvidersList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.CapacityProvider> Build(
+            List<global::Com.Amazonaws.Lambda.CapacityProvider> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            CapacityProvidersList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.CapacityProvider> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -79,7 +79,7 @@ public static partial class CapacityProvidersListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<CapacityProvider> builder,
+            List<global::Com.Amazonaws.Lambda.CapacityProvider> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(CapacityProviderSchema.Schema));
     }

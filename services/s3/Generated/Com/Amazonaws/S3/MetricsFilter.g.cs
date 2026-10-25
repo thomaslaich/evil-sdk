@@ -56,9 +56,9 @@ public abstract partial record class MetricsFilter
         return new Prefix(value);
     }
 
-    public sealed partial record class Tag : MetricsFilter
+    public sealed partial record class TagCase : MetricsFilter
     {
-        public Tag(global::Com.Amazonaws.S3.Tag value)
+        public TagCase(global::Com.Amazonaws.S3.Tag value)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
         }
@@ -68,7 +68,7 @@ public abstract partial record class MetricsFilter
 
     public static MetricsFilter FromTag(global::Com.Amazonaws.S3.Tag value)
     {
-        return new Tag(value);
+        return new TagCase(value);
     }
 
     public sealed partial record class Unknown : MetricsFilter
@@ -104,11 +104,11 @@ public abstract partial record class MetricsFilter
 
         return this switch
         {
-            AccessPointArn value => accessPointArn(value.Value),
-            And value => and(value.Value),
-            Prefix value => prefix(value.Value),
-            Tag value => tag(value.Value),
-            Unknown value => unknown(value.Tag, value.Value),
+            AccessPointArn variant => accessPointArn(variant.Value),
+            And variant => and(variant.Value),
+            Prefix variant => prefix(variant.Value),
+            TagCase variant => tag(variant.Value),
+            Unknown variant => unknown(variant.Tag, variant.Value),
             _ => throw new InvalidOperationException("Unknown union variant."),
         };
     }

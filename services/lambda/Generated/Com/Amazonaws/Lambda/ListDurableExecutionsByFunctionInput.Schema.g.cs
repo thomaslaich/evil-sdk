@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListDurableExecutionsByFunctionInputSchema
 {
@@ -16,7 +16,7 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
         public string? FunctionName { get; set; }
         public string? Qualifier { get; set; }
         public string? DurableExecutionName { get; set; }
-        public ExecutionStatusList? Statuses { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.ExecutionStatus>? Statuses { get; set; }
         public DateTimeOffset? StartedAfter { get; set; }
         public DateTimeOffset? StartedBefore { get; set; }
         public bool? ReverseOrder { get; set; }
@@ -24,11 +24,13 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
         public int? MaxItems { get; set; }
     }
 
-    public static StructSchema<ListDurableExecutionsByFunctionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListDurableExecutionsByFunctionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListDurableExecutionsByFunctionInput"),
             [
                 new(
@@ -38,12 +40,6 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function. You can specify a function name, a partial ARN, or a full ARN.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -52,8 +48,8 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -67,10 +63,6 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -78,12 +70,6 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The function version to filter executions by. If you don't specify a qualifier, this operation returns executions across all versions of the Lambda function.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("Qualifier")
@@ -93,18 +79,14 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\$(LATEST(\\.PUBLISHED)?)|[a-zA-Z0-9-_$]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -114,12 +96,6 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Filter executions by name. Only executions with names that matches this string are returned.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("DurableExecutionName")
                         ),
@@ -128,18 +104,14 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9-_]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -148,17 +120,7 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Filter executions by status. Valid values: RUNNING, SUCCEEDED, FAILED, TIMED_OUT, STOPPED.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Statuses")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -167,18 +129,8 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Filter executions that started after this timestamp (ISO 8601 format).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("StartedAfter")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -188,18 +140,8 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Filter executions that started before this timestamp (ISO 8601 format).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("StartedBefore")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -213,18 +155,8 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set to true to return results in chronological order (oldest first). Default is false.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("ReverseOrder")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -233,17 +165,7 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Pagination token from a previous request to continue retrieving results.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Marker")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -251,27 +173,17 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     Target8,
                     traits:
                     [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Maximum number of executions to return (1-1000). Default is 100.</p>"
-                            )
-                        ),
+                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m)),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("MaxItems")),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)1000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(1000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -282,10 +194,6 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#ListDurableExecutionsByFunctionRequest")
                 ),
@@ -293,30 +201,44 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ExecutionStatusList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ExecutionStatusListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.ExecutionStatus>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ExecutionStatusListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target4 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target5 =
-            Schemas.Nullable(Schemas.Timestamp);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target6 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target8 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new() { MaxItems = 0 };
 
-        public override ListDurableExecutionsByFunctionInput Build(Builder builder) =>
-            new ListDurableExecutionsByFunctionInput(
+        public override global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.DurableExecutionName,
                 builder.Marker,
@@ -329,7 +251,7 @@ public static partial class ListDurableExecutionsByFunctionInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListDurableExecutionsByFunctionInput value,
+            global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionInput value,
             ref TSerializer serializer
         )
         {

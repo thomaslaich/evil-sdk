@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectIdentifierSchema
 {
@@ -20,10 +20,11 @@ public static partial class ObjectIdentifierSchema
         public long? Size { get; set; }
     }
 
-    public static StructSchema<ObjectIdentifier, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ObjectIdentifier, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ObjectIdentifier, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ObjectIdentifier, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ObjectIdentifier"),
             [
                 new(
@@ -33,18 +34,9 @@ public static partial class ObjectIdentifierSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Key name of the object.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -53,43 +45,13 @@ public static partial class ObjectIdentifierSchema
                         ),
                     ]
                 ),
-                new(
-                    "VersionId",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Version ID for the specific version of the object to delete.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ETag",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An entity tag (ETag) is an identifier assigned by a web server to a specific version of a resource\n      found at a URL. This header field makes the request method conditional on <code>ETags</code>. </p>\n         <note>\n            <p>Entity tags (ETags) for S3 Express One Zone are random alphanumeric strings unique to the object.\n      </p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("VersionId", Target1),
+                new("ETag", Target2),
                 new(
                     "LastModifiedTime",
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, the objects are deleted only if its modification times matches the provided\n        <code>Timestamp</code>. </p>\n         <note>\n            <p>This functionality is only supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#timestampFormat"),
                             Document.From("http-date")
@@ -105,46 +67,40 @@ public static partial class ObjectIdentifierSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, the objects are deleted only if its size matches the provided size in bytes. </p>\n         <note>\n            <p>This functionality is only supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Object Identifier is unique value to identify objects.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target3 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("http-date")
                     ),
                 ])
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target4 = Schemas.Nullable(
-            Schemas.Long
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ObjectIdentifier Build(Builder builder) =>
-            new ObjectIdentifier(
+        public override global::Com.Amazonaws.S3.ObjectIdentifier Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ObjectIdentifier(
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ETag,
                 builder.LastModifiedTime,
@@ -153,7 +109,7 @@ public static partial class ObjectIdentifierSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ObjectIdentifier value,
+            global::Com.Amazonaws.S3.ObjectIdentifier value,
             ref TSerializer serializer
         )
         {

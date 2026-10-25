@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Com.Amazonaws.S3;
@@ -324,7 +325,7 @@ public sealed record class WriteGetObjectResponseInput(
     string? Expiration = null,
     string? Expires = null,
     DateTimeOffset? LastModified = null,
-    global::Com.Amazonaws.S3.Metadata? Metadata = null,
+    IReadOnlyDictionary<string, string>? Metadata = null,
     int? MissingMeta = null,
     global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus? ObjectLockLegalHoldStatus = null,
     global::Com.Amazonaws.S3.ObjectLockMode? ObjectLockMode = null,

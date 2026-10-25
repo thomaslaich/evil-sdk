@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryConfigurationStateSchema
 {
     public static global::NSmithy.Core.Serde.Schema<InventoryConfigurationState> Schema { get; } =
-        Schemas.StringEnum<InventoryConfigurationState>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<InventoryConfigurationState>(
             ShapeId.Parse("com.amazonaws.s3#InventoryConfigurationState"),
             values: ["ENABLED", "DISABLED"],
             traits:

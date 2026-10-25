@@ -6,72 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListDurableExecutionsByFunctionOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.Lambda.DurableExecutions? DurableExecutions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.Execution>? DurableExecutions { get; set; }
         public string? NextMarker { get; set; }
     }
 
-    public static StructSchema<ListDurableExecutionsByFunctionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListDurableExecutionsByFunctionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListDurableExecutionsByFunctionOutput"),
+            [new("DurableExecutions", Target0), new("NextMarker", Target1)],
             [
-                new(
-                    "DurableExecutions",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>List of durable execution summaries matching the filter criteria.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "NextMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Pagination token for retrieving additional results. Present only if there are more results available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The response from the ListDurableExecutionsByFunction operation, containing a list of durable executions and pagination information.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -80,21 +37,27 @@ public static partial class ListDurableExecutionsByFunctionOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.DurableExecutions?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => DurableExecutionsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.Execution>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => DurableExecutionsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListDurableExecutionsByFunctionOutput Build(Builder builder) =>
-            new ListDurableExecutionsByFunctionOutput(
+        public override global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionOutput(
                 builder.DurableExecutions,
                 builder.NextMarker
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListDurableExecutionsByFunctionOutput value,
+            global::Com.Amazonaws.Lambda.ListDurableExecutionsByFunctionOutput value,
             ref TSerializer serializer
         )
         {

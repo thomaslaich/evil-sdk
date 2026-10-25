@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class StateSchema
 {
     public static global::NSmithy.Core.Serde.Schema<State> Schema { get; } =
-        Schemas.StringEnum<State>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<State>(
             ShapeId.Parse("com.amazonaws.lambda#State"),
             values:
             [
@@ -26,10 +25,6 @@ public static partial class StateSchema
             ],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

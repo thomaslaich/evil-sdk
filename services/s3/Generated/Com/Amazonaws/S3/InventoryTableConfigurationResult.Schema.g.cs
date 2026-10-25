@@ -6,24 +6,26 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryTableConfigurationResultSchema
 {
     public sealed class Builder
     {
-        public InventoryConfigurationState? ConfigurationState { get; set; }
+        public global::Com.Amazonaws.S3.InventoryConfigurationState? ConfigurationState { get; set; }
         public string? TableStatus { get; set; }
-        public ErrorDetails? Error { get; set; }
+        public global::Com.Amazonaws.S3.ErrorDetails? Error { get; set; }
         public string? TableName { get; set; }
         public string? TableArn { get; set; }
     }
 
-    public static StructSchema<InventoryTableConfigurationResult, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InventoryTableConfigurationResult,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventoryTableConfigurationResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventoryTableConfigurationResult, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventoryTableConfigurationResult"),
             [
                 new(
@@ -33,81 +35,44 @@ public static partial class InventoryTableConfigurationResultSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The configuration state of the inventory table, indicating whether the inventory table is enabled \n      or disabled.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "TableStatus",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The status of the inventory table. The status values are: </p>\n         <ul>\n            <li>\n               <p>\n                  <code>CREATING</code> - The inventory table is in the process of being created in the specified\n          Amazon Web Services managed table bucket.</p>\n            </li>\n            <li>\n               <p>\n                  <code>BACKFILLING</code> - The inventory table is in the process of being backfilled. When \n          you enable the inventory table for your metadata configuration, the table goes through a \n          process known as backfilling, during which Amazon S3 scans your general purpose bucket to retrieve \n          the initial metadata for all objects in the bucket. Depending on the number of objects in your \n          bucket, this process can take several hours. When the backfilling process is finished, the \n          status of your inventory table changes from <code>BACKFILLING</code> to <code>ACTIVE</code>. \n          After backfilling is completed, updates to your objects are reflected in the inventory table \n          within one hour.</p>\n            </li>\n            <li>\n               <p>\n                  <code>ACTIVE</code> - The inventory table has been created successfully, and records are being\n          delivered to the table. </p>\n            </li>\n            <li>\n               <p>\n                  <code>FAILED</code> - Amazon S3 is unable to create the inventory table, or Amazon S3 is unable to deliver\n          records.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                    ]
-                ),
+                new("TableStatus", Target1),
                 new("Error", Target2),
-                new(
-                    "TableName",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>\n      The name of the inventory table.\n    </p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "TableArn",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The Amazon Resource Name (ARN) for the inventory table.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("TableName", Target3),
+                new("TableArn", Target4),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The inventory table configuration for an S3 Metadata configuration.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryConfigurationState?> Target0 =
-            Schemas.Nullable(InventoryConfigurationStateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryConfigurationState?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(InventoryConfigurationStateSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorDetails?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ErrorDetails?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorDetailsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventoryTableConfigurationResult Build(Builder builder) =>
-            new InventoryTableConfigurationResult(
+        public override global::Com.Amazonaws.S3.InventoryTableConfigurationResult Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.InventoryTableConfigurationResult(
                 builder.ConfigurationState
                     ?? throw new MissingRequiredMemberException("ConfigurationState"),
                 builder.Error,
@@ -117,7 +82,7 @@ public static partial class InventoryTableConfigurationResultSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            InventoryTableConfigurationResult value,
+            global::Com.Amazonaws.S3.InventoryTableConfigurationResult value,
             ref TSerializer serializer
         )
         {
@@ -169,8 +134,10 @@ public static partial class InventoryTableConfigurationResultSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? InventoryConfigurationState.FromValue(value0)
-                                : default(InventoryConfigurationState)
+                                ? global::Com.Amazonaws.S3.InventoryConfigurationState.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.InventoryConfigurationState)
                         );
                     break;
                 case 1:

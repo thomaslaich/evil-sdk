@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleWithWebIdentityOutputSchema
 {
@@ -23,62 +23,34 @@ public static partial class AssumeRoleWithWebIdentityOutputSchema
         public int? SessionTokenSize { get; set; }
     }
 
-    public static StructSchema<AssumeRoleWithWebIdentityOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.AssumeRoleWithWebIdentityOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AssumeRoleWithWebIdentityOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.AssumeRoleWithWebIdentityOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#AssumeRoleWithWebIdentityOutput"),
             [
-                new(
-                    "Credentials",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The temporary security credentials, which include an access key ID, a secret access key,\n         and a security token.</p>\n         <note>\n            <p>The size of the security token that STS API operations return is not fixed. We\n        strongly recommend that you make no assumptions about the maximum size.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Credentials", Target0),
                 new(
                     "SubjectFromWebIdentityToken",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique user identifier that is returned by the identity provider. This identifier is\n         associated with the <code>WebIdentityToken</code> that was submitted with the\n            <code>AssumeRoleWithWebIdentity</code> call. The identifier is typically unique to the\n         user and the application that acquired the <code>WebIdentityToken</code> (pairwise\n         identifier). For OpenID Connect ID tokens, this field contains the value returned by the\n         identity provider as the token's <code>sub</code> (Subject) claim. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)6) },
-                                    { "max", Document.From((decimal)255) },
+                                    { "min", Document.From(6m) },
+                                    { "max", Document.From(255m) },
                                 }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "AssumedRoleUser",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers that you\n         can use to refer to the resulting temporary security credentials. For example, you can\n         reference these credentials as a principal in a resource-based policy by using the ARN or\n         assumed role ID. The ARN and ID include the <code>RoleSessionName</code> that you specified\n         when you called <code>AssumeRole</code>. </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("AssumedRoleUser", Target2),
                 new(
                     "PackedPolicySize",
                     Target3,
@@ -89,81 +61,27 @@ public static partial class AssumeRoleWithWebIdentityOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "since", Document.From("2026-06-17") },
-                                    {
-                                        "message",
-                                        Document.From(
-                                            "Deprecated. Replaced by SessionTokenUtilization."
-                                        )
-                                    },
-                                }
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A percentage value that indicates the packed size of the session policies and session \n      tags combined passed in the request. The request fails if the packed size is greater than 100 percent, \n      which means the policies and tags exceeded the allowed space.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "Provider",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The issuing authority of the web identity token presented. For OpenID Connect ID\n         tokens, this contains the value of the <code>iss</code> field. For OAuth 2.0 access tokens,\n         this contains the value of the <code>ProviderId</code> parameter that was passed in the\n            <code>AssumeRoleWithWebIdentity</code> request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Audience",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The intended audience (also known as client ID) of the web identity token. This is\n         traditionally the client identifier issued to the application that requested the web\n         identity token.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Provider", Target4),
+                new("Audience", Target5),
                 new(
                     "SourceIdentity",
                     Target6,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value of the source identity that is returned in the JSON web token (JWT) from the\n         identity provider.</p>\n         <p>You can require users to set a source identity value when they assume a role. You do\n         this by using the <code>sts:SourceIdentity</code> condition key in a role trust policy.\n         That way, actions that are taken with the role are associated with that user. After the\n         source identity is set, the value cannot be changed. It is present in the request for all\n         actions that are taken by the role and persists across <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts\">chained role</a>\n         sessions. You can configure your identity provider to use an attribute associated with your\n         users, like user name or email, as the source identity when calling\n            <code>AssumeRoleWithWebIdentity</code>. You do this by adding a claim to the JSON web\n         token. To learn more about OIDC tokens and claims, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html\">Using Tokens with User Pools</a> in the <i>Amazon Cognito Developer Guide</i>.\n         For more information about using source identity, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">Monitor and control\n            actions taken with assumed roles</a> in the\n         <i>IAM User Guide</i>.</p>\n         <p>The regex used to validate this parameter is a string of characters \n    consisting of upper- and lower-case alphanumeric characters with no spaces. You can \n    also include underscores or any of the following characters: =,.@-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -183,18 +101,9 @@ public static partial class AssumeRoleWithWebIdentityOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The percentage (0-100) of the maximum allowed session token size that the returned session\n    token consumes."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -209,30 +118,15 @@ public static partial class AssumeRoleWithWebIdentityOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The size, in bytes, of the session token returned in the Credentials for this response."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the response to a successful <a>AssumeRoleWithWebIdentity</a>\n      request, including temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. </p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -245,31 +139,42 @@ public static partial class AssumeRoleWithWebIdentityOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Credentials?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CredentialsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CredentialsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.AssumedRoleUser?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => AssumedRoleUserSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AssumedRoleUserSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target8 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AssumeRoleWithWebIdentityOutput Build(Builder builder) =>
-            new AssumeRoleWithWebIdentityOutput(
+        public override global::Com.Amazonaws.Sts.AssumeRoleWithWebIdentityOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sts.AssumeRoleWithWebIdentityOutput(
                 builder.AssumedRoleUser,
                 builder.Audience,
                 builder.Credentials,
@@ -282,7 +187,7 @@ public static partial class AssumeRoleWithWebIdentityOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AssumeRoleWithWebIdentityOutput value,
+            global::Com.Amazonaws.Sts.AssumeRoleWithWebIdentityOutput value,
             ref TSerializer serializer
         )
         {

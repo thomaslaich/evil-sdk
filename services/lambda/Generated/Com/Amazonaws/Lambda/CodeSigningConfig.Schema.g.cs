@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CodeSigningConfigSchema
 {
@@ -20,10 +20,13 @@ public static partial class CodeSigningConfigSchema
         public string? LastModified { get; set; }
     }
 
-    public static StructSchema<CodeSigningConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CodeSigningConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CodeSigningConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CodeSigningConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CodeSigningConfig"),
             [
                 new(
@@ -33,22 +36,12 @@ public static partial class CodeSigningConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Unique identifer for the Code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^csc-[a-zA-Z0-9-_\\.]{17}$")
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -59,18 +52,12 @@ public static partial class CodeSigningConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the Code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)200) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(200m) },
                                 }
                             )
                         ),
@@ -84,10 +71,6 @@ public static partial class CodeSigningConfigSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -96,22 +79,14 @@ public static partial class CodeSigningConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Code signing configuration description.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -122,16 +97,8 @@ public static partial class CodeSigningConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>List of allowed publishers.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -142,18 +109,8 @@ public static partial class CodeSigningConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The code signing policy controls the validation failure action for signature mismatch or expiry.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -164,18 +121,12 @@ public static partial class CodeSigningConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time that the Code signing configuration was last modified, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD). </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)100) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(100m) },
                                 }
                             )
                         ),
@@ -184,44 +135,41 @@ public static partial class CodeSigningConfigSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Details about a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html\">Code signing configuration</a>. </p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.AllowedPublishers?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowedPublishersSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowedPublishersSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CodeSigningPolicies?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => CodeSigningPoliciesSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CodeSigningPoliciesSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CodeSigningConfig Build(Builder builder) =>
-            new CodeSigningConfig(
+        public override global::Com.Amazonaws.Lambda.CodeSigningConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.CodeSigningConfig(
                 builder.AllowedPublishers
                     ?? throw new MissingRequiredMemberException("AllowedPublishers"),
                 builder.CodeSigningConfigArn
@@ -235,7 +183,7 @@ public static partial class CodeSigningConfigSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CodeSigningConfig value,
+            global::Com.Amazonaws.Lambda.CodeSigningConfig value,
             ref TSerializer serializer
         )
         {

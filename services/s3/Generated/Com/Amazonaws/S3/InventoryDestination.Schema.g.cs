@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryDestinationSchema
 {
     public sealed class Builder
     {
-        public InventoryS3BucketDestination? S3BucketDestination { get; set; }
+        public global::Com.Amazonaws.S3.InventoryS3BucketDestination? S3BucketDestination { get; set; }
     }
 
-    public static StructSchema<InventoryDestination, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InventoryDestination,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventoryDestination, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventoryDestination, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventoryDestination"),
             [
                 new(
@@ -29,43 +31,32 @@ public static partial class InventoryDestinationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where\n      inventory results are published.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the S3 Inventory configuration for an Amazon S3 bucket.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryS3BucketDestination?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => InventoryS3BucketDestinationSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryS3BucketDestination?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    InventoryS3BucketDestinationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventoryDestination Build(Builder builder) =>
-            new InventoryDestination(
+        public override global::Com.Amazonaws.S3.InventoryDestination Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InventoryDestination(
                 builder.S3BucketDestination
                     ?? throw new MissingRequiredMemberException("S3BucketDestination")
             );
 
         public override void SerializeMembers<TSerializer>(
-            InventoryDestination value,
+            global::Com.Amazonaws.S3.InventoryDestination value,
             ref TSerializer serializer
         )
         {

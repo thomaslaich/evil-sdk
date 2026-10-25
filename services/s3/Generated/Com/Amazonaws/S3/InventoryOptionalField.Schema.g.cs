@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryOptionalFieldSchema
 {
     public static global::NSmithy.Core.Serde.Schema<InventoryOptionalField> Schema { get; } =
-        Schemas.StringEnum<InventoryOptionalField>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<InventoryOptionalField>(
             ShapeId.Parse("com.amazonaws.s3#InventoryOptionalField"),
             values:
             [

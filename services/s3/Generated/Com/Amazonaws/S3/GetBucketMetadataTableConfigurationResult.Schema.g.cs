@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetadataTableConfigurationResultSchema
 {
@@ -14,14 +14,16 @@ public static partial class GetBucketMetadataTableConfigurationResultSchema
     {
         public global::Com.Amazonaws.S3.MetadataTableConfigurationResult? MetadataTableConfigurationResult { get; set; }
         public string? Status { get; set; }
-        public ErrorDetails? Error { get; set; }
+        public global::Com.Amazonaws.S3.ErrorDetails? Error { get; set; }
     }
 
-    public static StructSchema<GetBucketMetadataTableConfigurationResult, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketMetadataTableConfigurationResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketMetadataTableConfigurationResult"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class GetBucketMetadataTableConfigurationResultSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The V1 S3 Metadata configuration for a general purpose bucket. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,54 +45,37 @@ public static partial class GetBucketMetadataTableConfigurationResultSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The status of the metadata table. The status values are: </p>\n         <ul>\n            <li>\n               <p>\n                  <code>CREATING</code> - The metadata table is in the process of being created in the specified\n          table bucket.</p>\n            </li>\n            <li>\n               <p>\n                  <code>ACTIVE</code> - The metadata table has been created successfully, and records are being\n          delivered to the table. </p>\n            </li>\n            <li>\n               <p>\n                  <code>FAILED</code> - Amazon S3 is unable to create the metadata table, or Amazon S3 is unable to deliver\n          records. See <code>ErrorDetails</code> for details.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Error",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> If the <code>CreateBucketMetadataTableConfiguration</code> request succeeds, but S3 Metadata was\n      unable to create the table, this structure contains the error code and error message. </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Error", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> The V1 S3 Metadata configuration for a general purpose bucket. </p>\n         <note>\n            <p>If you created your S3 Metadata configuration before July 15, 2025, we recommend that you delete \n        and re-create your configuration by using <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a> so that you can expire journal table records and create \n        a live inventory table.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataTableConfigurationResult?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => MetadataTableConfigurationResultSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MetadataTableConfigurationResultSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorDetails?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ErrorDetails?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorDetailsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketMetadataTableConfigurationResult Build(Builder builder) =>
-            new GetBucketMetadataTableConfigurationResult(
+        public override global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult(
                 builder.MetadataTableConfigurationResult
                     ?? throw new MissingRequiredMemberException("MetadataTableConfigurationResult"),
                 builder.Status ?? throw new MissingRequiredMemberException("Status"),
@@ -104,7 +83,7 @@ public static partial class GetBucketMetadataTableConfigurationResultSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketMetadataTableConfigurationResult value,
+            global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult value,
             ref TSerializer serializer
         )
         {

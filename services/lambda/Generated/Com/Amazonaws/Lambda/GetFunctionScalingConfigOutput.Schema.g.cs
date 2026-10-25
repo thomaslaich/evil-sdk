@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetFunctionScalingConfigOutputSchema
 {
     public sealed class Builder
     {
         public string? FunctionArn { get; set; }
-        public FunctionScalingConfig? AppliedFunctionScalingConfig { get; set; }
-        public FunctionScalingConfig? RequestedFunctionScalingConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.FunctionScalingConfig? AppliedFunctionScalingConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.FunctionScalingConfig? RequestedFunctionScalingConfig { get; set; }
     }
 
-    public static StructSchema<GetFunctionScalingConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetFunctionScalingConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFunctionScalingConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetFunctionScalingConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetFunctionScalingConfigOutput"),
             [
                 new(
@@ -30,16 +32,12 @@ public static partial class GetFunctionScalingConfigOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Amazon Resource Name (ARN) of the function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -49,55 +47,15 @@ public static partial class GetFunctionScalingConfigOutputSchema
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "AppliedFunctionScalingConfig",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The scaling configuration that is currently applied to the function. This represents the actual scaling settings in effect.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "RequestedFunctionScalingConfig",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The scaling configuration that was requested for the function.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("AppliedFunctionScalingConfig", Target1),
+                new("RequestedFunctionScalingConfig", Target2),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -107,23 +65,31 @@ public static partial class GetFunctionScalingConfigOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionScalingConfig?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionScalingConfigSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionScalingConfig?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionScalingConfigSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionScalingConfig?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionScalingConfigSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionScalingConfig?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionScalingConfigSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFunctionScalingConfigOutput Build(Builder builder) =>
-            new GetFunctionScalingConfigOutput(
+        public override global::Com.Amazonaws.Lambda.GetFunctionScalingConfigOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetFunctionScalingConfigOutput(
                 builder.AppliedFunctionScalingConfig,
                 builder.FunctionArn,
                 builder.RequestedFunctionScalingConfig
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetFunctionScalingConfigOutput value,
+            global::Com.Amazonaws.Lambda.GetFunctionScalingConfigOutput value,
             ref TSerializer serializer
         )
         {

@@ -7,7 +7,7 @@ using System.IO;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeAsyncInputSchema
 {
@@ -17,10 +17,13 @@ public static partial class InvokeAsyncInputSchema
         public Stream? InvokeArgs { get; set; }
     }
 
-    public static StructSchema<InvokeAsyncInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvokeAsyncInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvokeAsyncInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvokeAsyncInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvokeAsyncInput"),
             [
                 new(
@@ -30,12 +33,6 @@ public static partial class InvokeAsyncInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +41,8 @@ public static partial class InvokeAsyncInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -59,10 +56,6 @@ public static partial class InvokeAsyncInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -71,12 +64,6 @@ public static partial class InvokeAsyncInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The JSON that you want to provide to your Lambda function as input.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -89,25 +76,13 @@ public static partial class InvokeAsyncInputSchema
                             ShapeId.Parse("smithy.api#streaming"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#deprecated"),
-                    Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -117,20 +92,24 @@ public static partial class InvokeAsyncInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<Stream?> Target1 =
-            Schemas.NullableReference(Schemas.StreamingBlob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.StreamingBlob
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvokeAsyncInput Build(Builder builder) =>
-            new InvokeAsyncInput(
+        public override global::Com.Amazonaws.Lambda.InvokeAsyncInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.InvokeAsyncInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.InvokeArgs ?? throw new MissingRequiredMemberException("InvokeArgs")
             );
 
         public override void SerializeMembers<TSerializer>(
-            InvokeAsyncInput value,
+            global::Com.Amazonaws.Lambda.InvokeAsyncInput value,
             ref TSerializer serializer
         )
         {

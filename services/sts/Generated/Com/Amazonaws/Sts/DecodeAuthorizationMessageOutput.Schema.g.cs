@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class DecodeAuthorizationMessageOutputSchema
 {
@@ -15,34 +15,16 @@ public static partial class DecodeAuthorizationMessageOutputSchema
         public string? DecodedMessage { get; set; }
     }
 
-    public static StructSchema<DecodeAuthorizationMessageOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.DecodeAuthorizationMessageOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DecodeAuthorizationMessageOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.DecodeAuthorizationMessageOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#DecodeAuthorizationMessageOutput"),
+            [new("DecodedMessage", Target0)],
             [
-                new(
-                    "DecodedMessage",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The API returns a response with the decoded message.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A document that contains additional information about the authorization status of a\n      request from an encoded message that is returned in response to an Amazon Web Services request.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -55,15 +37,18 @@ public static partial class DecodeAuthorizationMessageOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DecodeAuthorizationMessageOutput Build(Builder builder) =>
-            new DecodeAuthorizationMessageOutput(builder.DecodedMessage);
+        public override global::Com.Amazonaws.Sts.DecodeAuthorizationMessageOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.DecodeAuthorizationMessageOutput(builder.DecodedMessage);
 
         public override void SerializeMembers<TSerializer>(
-            DecodeAuthorizationMessageOutput value,
+            global::Com.Amazonaws.Sts.DecodeAuthorizationMessageOutput value,
             ref TSerializer serializer
         )
         {

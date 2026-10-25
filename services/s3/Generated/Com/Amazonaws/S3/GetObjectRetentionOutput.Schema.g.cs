@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectRetentionOutputSchema
 {
     public sealed class Builder
     {
-        public ObjectLockRetention? Retention { get; set; }
+        public global::Com.Amazonaws.S3.ObjectLockRetention? Retention { get; set; }
     }
 
-    public static StructSchema<GetObjectRetentionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectRetentionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectRetentionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectRetentionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectRetentionOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class GetObjectRetentionOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The container element for an object's retention settings.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,16 +45,18 @@ public static partial class GetObjectRetentionOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectLockRetention?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ObjectLockRetentionSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockRetention?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectLockRetentionSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectRetentionOutput Build(Builder builder) =>
-            new GetObjectRetentionOutput(builder.Retention);
+        public override global::Com.Amazonaws.S3.GetObjectRetentionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectRetentionOutput(builder.Retention);
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectRetentionOutput value,
+            global::Com.Amazonaws.S3.GetObjectRetentionOutput value,
             ref TSerializer serializer
         )
         {

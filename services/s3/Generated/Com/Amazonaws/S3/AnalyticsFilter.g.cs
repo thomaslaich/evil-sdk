@@ -41,9 +41,9 @@ public abstract partial record class AnalyticsFilter
         return new Prefix(value);
     }
 
-    public sealed partial record class Tag : AnalyticsFilter
+    public sealed partial record class TagCase : AnalyticsFilter
     {
-        public Tag(global::Com.Amazonaws.S3.Tag value)
+        public TagCase(global::Com.Amazonaws.S3.Tag value)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
         }
@@ -53,7 +53,7 @@ public abstract partial record class AnalyticsFilter
 
     public static AnalyticsFilter FromTag(global::Com.Amazonaws.S3.Tag value)
     {
-        return new Tag(value);
+        return new TagCase(value);
     }
 
     public sealed partial record class Unknown : AnalyticsFilter
@@ -87,10 +87,10 @@ public abstract partial record class AnalyticsFilter
 
         return this switch
         {
-            And value => and(value.Value),
-            Prefix value => prefix(value.Value),
-            Tag value => tag(value.Value),
-            Unknown value => unknown(value.Tag, value.Value),
+            And variant => and(variant.Value),
+            Prefix variant => prefix(variant.Value),
+            TagCase variant => tag(variant.Value),
+            Unknown variant => unknown(variant.Tag, variant.Value),
             _ => throw new InvalidOperationException("Unknown union variant."),
         };
     }

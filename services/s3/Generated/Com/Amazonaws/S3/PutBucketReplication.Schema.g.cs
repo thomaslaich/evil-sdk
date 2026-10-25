@@ -6,18 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketReplicationSchema
 {
     public static OperationSchema<
-        PutBucketReplicationInput,
-        PutBucketReplicationOutput
+        global::Com.Amazonaws.S3.PutBucketReplicationInput,
+        global::Com.Amazonaws.S3.PutBucketReplicationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketReplication"),
-            Schemas.Lazy(() => PutBucketReplicationInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketReplicationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketReplicationInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketReplicationOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -31,116 +31,13 @@ public static partial class PutBucketReplicationSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p> Creates a replication configuration or replaces an existing one. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html\">Replication</a> in the\n        <i>Amazon S3 User Guide</i>. </p>\n         <p>Specify the replication configuration in the request body. In the replication configuration, you\n      provide the name of the destination bucket or buckets where you want Amazon S3 to replicate objects, the\n      IAM role that Amazon S3 can assume to replicate objects on your behalf, and other relevant information. You\n      can invoke this request for a specific Amazon Web Services Region by using the <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-requestedregion\">\n               <code>aws:RequestedRegion</code>\n            </a> condition key.</p>\n         <p>A replication configuration must include at least one rule, and can contain a maximum of 1,000. Each\n      rule identifies a subset of objects to replicate by filtering the objects in the source bucket. To\n      choose additional subsets of objects to replicate, add a rule for each subset.</p>\n         <p>To specify a subset of the objects in the source bucket to apply a replication rule to, add the\n      Filter element as a child of the Rule element. You can filter objects based on an object key prefix, one\n      or more object tags, or both. When you add the Filter element in the configuration, you must also add\n      the following elements: <code>DeleteMarkerReplication</code>, <code>Status</code>, and\n        <code>Priority</code>.</p>\n         <note>\n            <p>If you are using an earlier version of the replication configuration, Amazon S3 handles replication of\n        delete markers differently. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations\">Backward Compatibility</a>.</p>\n         </note>\n         <p>For information about enabling versioning on a bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html\">Using Versioning</a>.</p>\n         <dl>\n            <dt>Handling Replication of Encrypted Objects</dt>\n            <dd>\n               <p>By default, Amazon S3 doesn't replicate objects that are stored at rest using server-side\n            encryption with KMS keys. To replicate Amazon Web Services KMS-encrypted objects, add the following:\n              <code>SourceSelectionCriteria</code>, <code>SseKmsEncryptedObjects</code>, <code>Status</code>,\n              <code>EncryptionConfiguration</code>, and <code>ReplicaKmsKeyID</code>. For information about\n            replication configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-config-for-kms-objects.html\">Replicating Objects Created\n              with SSE Using KMS keys</a>.</p>\n               <p>For information on <code>PutBucketReplication</code> errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ReplicationErrorCodeList\">List of\n              replication-related error codes</a>\n               </p>\n            </dd>\n            <dt>Permissions</dt>\n            <dd>\n               <p>To create a <code>PutBucketReplication</code> request, you must have\n              <code>s3:PutReplicationConfiguration</code> permissions for the bucket.\n            \n          </p>\n               <p>By default, a resource owner, in this case the Amazon Web Services account that created the bucket, can\n            perform this operation. The resource owner can also grant others permissions to perform the\n            operation. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html\">Specifying Permissions in a Policy</a>\n            and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing\n              Access Permissions to Your Amazon S3 Resources</a>.</p>\n               <note>\n                  <p>To perform this operation, the user or role performing the action must have the <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html\">iam:PassRole</a> permission.</p>\n               </note>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>PutBucketReplication</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html\">GetBucketReplication</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html\">DeleteBucketReplication</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("Set replication configuration on a bucket")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example sets replication configuration on a bucket."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                {
-                                                    "ReplicationConfiguration",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "Role",
-                                                                Document.From(
-                                                                    "arn:aws:iam::123456789012:role/examplerole"
-                                                                )
-                                                            },
-                                                            {
-                                                                "Rules",
-                                                                Document.From(
-                                                                    new Document[]
-                                                                    {
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Prefix",
-                                                                                    Document.From(
-                                                                                        ""
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Status",
-                                                                                    Document.From(
-                                                                                        "Enabled"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Destination",
-                                                                                    Document.From(
-                                                                                        new Dictionary<
-                                                                                            string,
-                                                                                            Document
-                                                                                        >
-                                                                                        {
-                                                                                            {
-                                                                                                "Bucket",
-                                                                                                Document.From(
-                                                                                                    "arn:aws:s3:::destinationbucket"
-                                                                                                )
-                                                                                            },
-                                                                                            {
-                                                                                                "StorageClass",
-                                                                                                Document.From(
-                                                                                                    "STANDARD"
-                                                                                                )
-                                                                                            },
-                                                                                        }
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?replication") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?replication") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SessionModeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<SessionMode> Schema { get; } =
-        Schemas.StringEnum<SessionMode>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<SessionMode>(
             ShapeId.Parse("com.amazonaws.s3#SessionMode"),
             values: ["ReadOnly", "ReadWrite"],
             traits:

@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventSourceMappingSystemLogLevelSchema
 {
     public static global::NSmithy.Core.Serde.Schema<EventSourceMappingSystemLogLevel> Schema { get; } =
-        Schemas.StringEnum<EventSourceMappingSystemLogLevel>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<EventSourceMappingSystemLogLevel>(
             ShapeId.Parse("com.amazonaws.lambda#EventSourceMappingSystemLogLevel"),
             values: ["DEBUG", "INFO", "WARN"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

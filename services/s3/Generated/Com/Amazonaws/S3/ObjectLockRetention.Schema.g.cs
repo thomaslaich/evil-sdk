@@ -6,110 +6,67 @@ using System;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockRetentionSchema
 {
     public sealed class Builder
     {
-        public ObjectLockRetentionMode? Mode { get; set; }
+        public global::Com.Amazonaws.S3.ObjectLockRetentionMode? Mode { get; set; }
         public DateTimeOffset? RetainUntilDate { get; set; }
-        public ObjectLockEventHold? EventHold { get; set; }
+        public global::Com.Amazonaws.S3.ObjectLockEventHold? EventHold { get; set; }
         public global::Com.Amazonaws.S3.EventHoldDuration? EventHoldDuration { get; set; }
     }
 
-    public static StructSchema<ObjectLockRetention, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ObjectLockRetention,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ObjectLockRetention, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ObjectLockRetention, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ObjectLockRetention"),
             [
-                new(
-                    "Mode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the Retention mode for the specified object.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Mode", Target0),
                 new(
                     "RetainUntilDate",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date on which this Object Lock Retention will expire.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#timestampFormat"),
                             Document.From("date-time")
                         ),
                     ]
                 ),
-                new(
-                    "EventHold",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The event hold status for the object. Set to <code>ON</code> to enable an event hold or\n      <code>OFF</code> to disable it.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "EventHoldDuration",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The event hold duration for the object. Specifies how long the object remains protected after the\n      event hold is released.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("EventHold", Target2),
+                new("EventHoldDuration", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A Retention configuration for an object.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectLockRetentionMode?> Target0 =
-            Schemas.Nullable(ObjectLockRetentionModeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockRetentionMode?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockRetentionModeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("date-time")
                     ),
                 ])
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectLockEventHold?> Target2 =
-            Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockEventHold?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EventHoldDuration?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventHoldDurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventHoldDurationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ObjectLockRetention Build(Builder builder) =>
-            new ObjectLockRetention(
+        public override global::Com.Amazonaws.S3.ObjectLockRetention Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ObjectLockRetention(
                 builder.EventHold,
                 builder.EventHoldDuration,
                 builder.Mode,
@@ -117,7 +74,7 @@ public static partial class ObjectLockRetentionSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ObjectLockRetention value,
+            global::Com.Amazonaws.S3.ObjectLockRetention value,
             ref TSerializer serializer
         )
         {
@@ -168,8 +125,8 @@ public static partial class ObjectLockRetentionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ObjectLockRetentionMode.FromValue(value0)
-                                : default(ObjectLockRetentionMode)
+                                ? global::Com.Amazonaws.S3.ObjectLockRetentionMode.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ObjectLockRetentionMode)
                         );
                     break;
                 case 1:
@@ -182,8 +139,8 @@ public static partial class ObjectLockRetentionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value2
-                                ? ObjectLockEventHold.FromValue(value2)
-                                : default(ObjectLockEventHold)
+                                ? global::Com.Amazonaws.S3.ObjectLockEventHold.FromValue(value2)
+                                : default(global::Com.Amazonaws.S3.ObjectLockEventHold)
                         );
                     break;
                 case 3:

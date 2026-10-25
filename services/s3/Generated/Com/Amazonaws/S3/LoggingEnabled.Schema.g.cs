@@ -6,22 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class LoggingEnabledSchema
 {
     public sealed class Builder
     {
         public string? TargetBucket { get; set; }
-        public global::Com.Amazonaws.S3.TargetGrants? TargetGrants { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.TargetGrant>? TargetGrants { get; set; }
         public string? TargetPrefix { get; set; }
         public global::Com.Amazonaws.S3.TargetObjectKeyFormat? TargetObjectKeyFormat { get; set; }
     }
 
-    public static StructSchema<LoggingEnabled, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.LoggingEnabled, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LoggingEnabled, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.LoggingEnabled, Builder>(
             ShapeId.Parse("com.amazonaws.s3#LoggingEnabled"),
             [
                 new(
@@ -31,30 +32,12 @@ public static partial class LoggingEnabledSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the bucket where you want Amazon S3 to store server access logs. You can have your logs\n      delivered to any bucket that you own, including the same bucket that is being logged. You can also\n      configure multiple buckets to deliver their logs to the same target bucket. In this case, you should\n      choose a different <code>TargetPrefix</code> for each source bucket so that the delivered log files can\n      be distinguished by key.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "TargetGrants",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for granting information.</p>\n         <p>Buckets that use the bucket owner enforced setting for Object Ownership don't support target grants.\n      For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-general\">Permissions for server access log delivery</a> in the\n      <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("TargetGrants", Target1),
                 new(
                     "TargetPrefix",
                     Target2,
@@ -62,52 +45,37 @@ public static partial class LoggingEnabledSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A prefix for all log object keys. If you store log files from multiple Amazon S3 buckets in a single\n      bucket, you can use a prefix to distinguish which log files came from which bucket.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "TargetObjectKeyFormat",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Amazon S3 key format for log objects.</p>")
-                        ),
-                    ]
-                ),
+                new("TargetObjectKeyFormat", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Describes where logs are stored and the prefix that Amazon S3 assigns to all log object keys for a\n      bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html\">PUT Bucket logging</a> in the\n        <i>Amazon S3 API Reference</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TargetGrants?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TargetGrantsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.TargetGrant>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TargetGrantsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TargetObjectKeyFormat?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => TargetObjectKeyFormatSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TargetObjectKeyFormatSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LoggingEnabled Build(Builder builder) =>
-            new LoggingEnabled(
+        public override global::Com.Amazonaws.S3.LoggingEnabled Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.LoggingEnabled(
                 builder.TargetBucket ?? throw new MissingRequiredMemberException("TargetBucket"),
                 builder.TargetPrefix ?? throw new MissingRequiredMemberException("TargetPrefix"),
                 builder.TargetGrants,
@@ -115,7 +83,7 @@ public static partial class LoggingEnabledSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            LoggingEnabled value,
+            global::Com.Amazonaws.S3.LoggingEnabled value,
             ref TSerializer serializer
         )
         {

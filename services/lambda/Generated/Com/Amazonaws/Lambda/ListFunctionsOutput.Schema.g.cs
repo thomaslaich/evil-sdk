@@ -6,68 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionsOutputSchema
 {
     public sealed class Builder
     {
         public string? NextMarker { get; set; }
-        public FunctionList? Functions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration>? Functions { get; set; }
     }
 
-    public static StructSchema<ListFunctionsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListFunctionsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListFunctionsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListFunctionsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionsOutput"),
+            [new("NextMarker", Target0), new("Functions", Target1)],
             [
-                new(
-                    "NextMarker",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Functions",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of Lambda functions.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A list of Lambda functions.</p>")
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -77,17 +38,24 @@ public static partial class ListFunctionsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListFunctionsOutput Build(Builder builder) =>
-            new ListFunctionsOutput(builder.Functions, builder.NextMarker);
+        public override global::Com.Amazonaws.Lambda.ListFunctionsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ListFunctionsOutput(
+                builder.Functions,
+                builder.NextMarker
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListFunctionsOutput value,
+            global::Com.Amazonaws.Lambda.ListFunctionsOutput value,
             ref TSerializer serializer
         )
         {

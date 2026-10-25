@@ -6,40 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PartsListSchema
 {
-    public static ListSchema<PartsList, ObjectPart, List<ObjectPart>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.ObjectPart>,
+        global::Com.Amazonaws.S3.ObjectPart,
+        List<global::Com.Amazonaws.S3.ObjectPart>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<PartsList, ObjectPart, List<ObjectPart>>(
-            ShapeId.Parse("com.amazonaws.s3#PartsList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectPart>,
+            global::Com.Amazonaws.S3.ObjectPart,
+            List<global::Com.Amazonaws.S3.ObjectPart>
+        >(ShapeId.Parse("com.amazonaws.s3#PartsList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectPart> Target0 =
-            Schemas.Lazy(() => ObjectPartSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectPart> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectPartSchema.Schema!);
 
-        public override IEnumerable<ObjectPart> GetElements(PartsList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.ObjectPart> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectPart> value
+        ) => value;
 
-        public override List<ObjectPart> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.ObjectPart> CreateTypedBuilder() => new();
 
-        public override void Add(List<ObjectPart> builder, ObjectPart value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.ObjectPart> builder,
+            global::Com.Amazonaws.S3.ObjectPart value
+        ) => builder.Add(value);
 
-        public override PartsList Build(List<ObjectPart> builder) =>
-            PartsList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.ObjectPart> Build(
+            List<global::Com.Amazonaws.S3.ObjectPart> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            PartsList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectPart> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -54,7 +61,7 @@ public static partial class PartsListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ObjectPart> builder,
+            List<global::Com.Amazonaws.S3.ObjectPart> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ObjectPartSchema.Schema));
     }

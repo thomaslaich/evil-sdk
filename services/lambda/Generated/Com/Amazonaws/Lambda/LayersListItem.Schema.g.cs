@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LayersListItemSchema
 {
@@ -14,13 +14,16 @@ public static partial class LayersListItemSchema
     {
         public string? LayerName { get; set; }
         public string? LayerArn { get; set; }
-        public LayerVersionsListItem? LatestMatchingVersion { get; set; }
+        public global::Com.Amazonaws.Lambda.LayerVersionsListItem? LatestMatchingVersion { get; set; }
     }
 
-    public static StructSchema<LayersListItem, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.LayersListItem,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LayersListItem, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.LayersListItem, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#LayersListItem"),
             [
                 new(
@@ -29,16 +32,12 @@ public static partial class LayersListItemSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the layer.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -48,10 +47,6 @@ public static partial class LayersListItemSchema
                                 "^(arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -60,18 +55,12 @@ public static partial class LayersListItemSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the function layer.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -81,56 +70,37 @@ public static partial class LayersListItemSchema
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "LatestMatchingVersion",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The newest version of the layer.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("LatestMatchingVersion", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Details about an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<LayerVersionsListItem?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => LayerVersionsListItemSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.LayerVersionsListItem?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => LayerVersionsListItemSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LayersListItem Build(Builder builder) =>
-            new LayersListItem(builder.LatestMatchingVersion, builder.LayerArn, builder.LayerName);
+        public override global::Com.Amazonaws.Lambda.LayersListItem Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.LayersListItem(
+                builder.LatestMatchingVersion,
+                builder.LayerArn,
+                builder.LayerName
+            );
 
         public override void SerializeMembers<TSerializer>(
-            LayersListItem value,
+            global::Com.Amazonaws.Lambda.LayersListItem value,
             ref TSerializer serializer
         )
         {

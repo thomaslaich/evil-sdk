@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompressionTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<CompressionType> Schema { get; } =
-        Schemas.StringEnum<CompressionType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<CompressionType>(
             ShapeId.Parse("com.amazonaws.s3#CompressionType"),
             values: ["NONE", "GZIP", "BZIP2"],
             traits:

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ExecutionSchema
 {
@@ -16,16 +16,17 @@ public static partial class ExecutionSchema
         public string? DurableExecutionArn { get; set; }
         public string? DurableExecutionName { get; set; }
         public string? FunctionArn { get; set; }
-        public ExecutionStatus? Status { get; set; }
+        public global::Com.Amazonaws.Lambda.ExecutionStatus? Status { get; set; }
         public DateTimeOffset? StartTimestamp { get; set; }
         public DateTimeOffset? EndTimestamp { get; set; }
         public string? KMSKeyArn { get; set; }
     }
 
-    public static StructSchema<Execution, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.Execution, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Execution, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.Execution, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#Execution"),
             [
                 new(
@@ -35,18 +36,12 @@ public static partial class ExecutionSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the durable execution, if this execution is a durable execution.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -60,10 +55,6 @@ public static partial class ExecutionSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -73,18 +64,12 @@ public static partial class ExecutionSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique name of the durable execution, if one was provided when the execution was started.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -96,10 +81,6 @@ public static partial class ExecutionSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -109,18 +90,12 @@ public static partial class ExecutionSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the Lambda function.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -134,10 +109,6 @@ public static partial class ExecutionSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -147,16 +118,8 @@ public static partial class ExecutionSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The current status of the durable execution.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -167,56 +130,24 @@ public static partial class ExecutionSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the durable execution started, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "EndTimestamp",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the durable execution ended, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("EndTimestamp", Target5),
                 new(
                     "KMSKeyArn",
                     Target6,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -224,46 +155,43 @@ public static partial class ExecutionSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Information about a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html\">durable execution</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ExecutionStatus?> Target3 =
-            Schemas.Nullable(ExecutionStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ExecutionStatus?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ExecutionStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target4 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target5 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Execution Build(Builder builder) =>
-            new Execution(
+        public override global::Com.Amazonaws.Lambda.Execution Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.Execution(
                 builder.DurableExecutionArn
                     ?? throw new MissingRequiredMemberException("DurableExecutionArn"),
                 builder.DurableExecutionName
@@ -276,7 +204,7 @@ public static partial class ExecutionSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            Execution value,
+            global::Com.Amazonaws.Lambda.Execution value,
             ref TSerializer serializer
         )
         {
@@ -346,8 +274,8 @@ public static partial class ExecutionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value3
-                                ? ExecutionStatus.FromValue(value3)
-                                : default(ExecutionStatus)
+                                ? global::Com.Amazonaws.Lambda.ExecutionStatus.FromValue(value3)
+                                : default(global::Com.Amazonaws.Lambda.ExecutionStatus)
                         );
                     break;
                 case 4:

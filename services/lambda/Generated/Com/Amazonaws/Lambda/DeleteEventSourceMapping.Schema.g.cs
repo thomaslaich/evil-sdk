@@ -4,178 +4,66 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteEventSourceMappingSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        DeleteEventSourceMappingInput,
-        DeleteEventSourceMappingOutput
+        global::Com.Amazonaws.Lambda.DeleteEventSourceMappingInput,
+        global::Com.Amazonaws.Lambda.DeleteEventSourceMappingOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#DeleteEventSourceMapping"),
-            Schemas.Lazy(() => DeleteEventSourceMappingInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteEventSourceMappingOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteEventSourceMappingInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteEventSourceMappingOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceConflictException"),
-                    Schemas.Lazy(() => ResourceConflictExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceConflictExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceInUseException"),
-                    Schemas.Lazy(() => ResourceInUseExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceInUseExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#conditionKeys"),
-                    Document.From(new Document[] { Document.From("lambda:FunctionArn") })
-                ),
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to delete an AWS Lambda event source mapping"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_DeleteEventSourceMapping.html")
-                            },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "eventSourceMapping",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Deletes an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html\">event source mapping</a>. You can get the identifier of a mapping from the output of <a>ListEventSourceMappings</a>.</p> <p>When you delete an event source mapping, it enters a <code>Deleting</code> state and might not be completely deleted for several seconds.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example deletes an event source mapping. To get a mapping's UUID, use ListEventSourceMappings."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "UUID",
-                                                    Document.From(
-                                                        "14e0db71-xmpl-4eb5-b481-8945cf9d10c2"
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "BatchSize", Document.From((decimal)5) },
-                                                {
-                                                    "EventSourceArn",
-                                                    Document.From(
-                                                        "arn:aws:sqs:us-west-2:123456789012:my-queue"
-                                                    )
-                                                },
-                                                {
-                                                    "FunctionArn",
-                                                    Document.From(
-                                                        "arn:aws:lambda:us-east-2:123456789012:function:my-function"
-                                                    )
-                                                },
-                                                {
-                                                    "LastModified",
-                                                    Document.From("2016-11-21T19:49:20.006Z")
-                                                },
-                                                { "State", Document.From("Enabled") },
-                                                {
-                                                    "StateTransitionReason",
-                                                    Document.From("USER_INITIATED")
-                                                },
-                                                {
-                                                    "UUID",
-                                                    Document.From(
-                                                        "14e0db71-xmpl-4eb5-b481-8945cf9d10c2"
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To delete a Lambda function event source mapping"
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -183,17 +71,13 @@ public static partial class DeleteEventSourceMappingSchema
                         {
                             { "method", Document.From("DELETE") },
                             { "uri", Document.From("/2015-03-31/event-source-mappings/{UUID}") },
-                            { "code", Document.From((decimal)202) },
+                            { "code", Document.From(202m) },
                         }
                     )
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.api#idempotent"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

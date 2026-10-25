@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ChainedInvokeTimedOutDetailsSchema
 {
     public sealed class Builder
     {
-        public EventError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.EventError? Error { get; set; }
     }
 
-    public static StructSchema<ChainedInvokeTimedOutDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ChainedInvokeTimedOutDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChainedInvokeTimedOutDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ChainedInvokeTimedOutDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ChainedInvokeTimedOutDetails"),
             [
                 new(
@@ -29,44 +31,31 @@ public static partial class ChainedInvokeTimedOutDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Details about the chained invocation timeout.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a chained invocation that timed out.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventError?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventErrorSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventError?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChainedInvokeTimedOutDetails Build(Builder builder) =>
-            new ChainedInvokeTimedOutDetails(
+        public override global::Com.Amazonaws.Lambda.ChainedInvokeTimedOutDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ChainedInvokeTimedOutDetails(
                 builder.Error ?? throw new MissingRequiredMemberException("Error")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChainedInvokeTimedOutDetails value,
+            global::Com.Amazonaws.Lambda.ChainedInvokeTimedOutDetails value,
             ref TSerializer serializer
         )
         {

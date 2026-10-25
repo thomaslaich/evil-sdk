@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataJournalTableConfigurationInputSchema
 {
@@ -15,17 +15,20 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
-        public JournalTableConfigurationUpdates? JournalTableConfiguration { get; set; }
+        public global::Com.Amazonaws.S3.JournalTableConfigurationUpdates? JournalTableConfiguration { get; set; }
         public string? ExpectedBucketOwner { get; set; }
     }
 
     public static StructSchema<
-        UpdateBucketMetadataJournalTableConfigurationInput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationInput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateBucketMetadataJournalTableConfigurationInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#UpdateBucketMetadataJournalTableConfigurationInput"),
             [
                 new(
@@ -34,12 +37,6 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The general purpose bucket that corresponds to the metadata configuration that you want to \n      enable or disable journal table record expiration for.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -65,12 +62,6 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The <code>Content-MD5</code> header for the journal table configuration.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -81,12 +72,6 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The checksum algorithm to use with your journal table configuration.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -99,12 +84,6 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The contents of your journal table configuration.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -124,12 +103,6 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The expected owner of the general purpose bucket that corresponds to the metadata table \n      configuration that you want to enable or disable journal table record expiration for.      \n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -152,22 +125,32 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target2 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<JournalTableConfigurationUpdates?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => JournalTableConfigurationUpdatesSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.JournalTableConfigurationUpdates?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    JournalTableConfigurationUpdatesSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateBucketMetadataJournalTableConfigurationInput Build(Builder builder) =>
-            new UpdateBucketMetadataJournalTableConfigurationInput(
+        public override global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.JournalTableConfiguration
                     ?? throw new MissingRequiredMemberException("JournalTableConfiguration"),
@@ -177,7 +160,7 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationInputSc
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateBucketMetadataJournalTableConfigurationInput value,
+            global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationInput value,
             ref TSerializer serializer
         )
         {

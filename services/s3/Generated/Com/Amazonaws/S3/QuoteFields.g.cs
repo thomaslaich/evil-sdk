@@ -6,7 +6,8 @@ using NSmithy.Core.Serde;
 
 namespace Com.Amazonaws.S3;
 
-public readonly partial record struct QuoteFields(string Value) : IStringEnumValue<QuoteFields>
+public readonly partial record struct QuoteFields(string Value)
+    : IStringEnumValue<QuoteFields>
 {
     public static QuoteFields FromValue(string value)
     {

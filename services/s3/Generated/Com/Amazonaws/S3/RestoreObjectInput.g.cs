@@ -34,12 +34,4 @@ namespace Com.Amazonaws.S3;
 /// <param name="VersionId">
 /// &lt;p&gt;VersionId used to reference a specific version of the object.&lt;/p&gt;
 /// </param>
-public sealed record class RestoreObjectInput(
-    string Bucket,
-    string Key,
-    global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
-    string? ExpectedBucketOwner = null,
-    global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
-    global::Com.Amazonaws.S3.RestoreRequest? RestoreRequest = null,
-    string? VersionId = null
-);
+public sealed record class RestoreObjectInput(string Bucket, string Key, global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null, string? ExpectedBucketOwner = null, global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null, global::Com.Amazonaws.S3.RestoreRequest? RestoreRequest = null, string? VersionId = null);

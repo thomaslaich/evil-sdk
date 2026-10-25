@@ -6,199 +6,34 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectsSchema
 {
-    public static OperationSchema<ListObjectsInput, ListObjectsOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.ListObjectsInput,
+        global::Com.Amazonaws.S3.ListObjectsOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#ListObjects"),
-            Schemas.Lazy(() => ListObjectsInputSchema.Schema!),
-            Schemas.Lazy(() => ListObjectsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListObjectsInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListObjectsOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchBucket"),
-                    Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
                     404
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Returns some or all (up to 1,000) of the objects in a bucket. You can use the request parameters as\n      selection criteria to return a subset of the objects in a bucket. A 200 OK response can contain valid or\n      invalid XML. Be sure to design your application to parse the contents of the response and handle it\n      appropriately.</p>\n         <important>\n            <p>This action has been revised. We recommend that you use the newer version, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html\">ListObjectsV2</a>, when\n        developing applications. For backward compatibility, Amazon S3 continues to support\n          <code>ListObjects</code>.</p>\n         </important>\n         <p>The following operations are related to <code>ListObjects</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html\">ListObjectsV2</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html\">ListBuckets</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To list objects in a bucket") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example list two objects in a bucket."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "MaxKeys", Document.From((decimal)2) },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "NextMarker",
-                                                    Document.From(
-                                                        "eyJNYXJrZXIiOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAyfQ=="
-                                                    )
-                                                },
-                                                {
-                                                    "Contents",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            "2014-11-21T19:40:05.000Z"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "ETag",
-                                                                        Document.From(
-                                                                            "\"70ee1738b6b21e2c8a43f3a5ab0eee71\""
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "StorageClass",
-                                                                        Document.From("STANDARD")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From(
-                                                                            "example1.jpg"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Owner",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "DisplayName",
-                                                                                    Document.From(
-                                                                                        "myname"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "ID",
-                                                                                    Document.From(
-                                                                                        "12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Size",
-                                                                        Document.From((decimal)11)
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            "2013-11-15T01:10:49.000Z"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "ETag",
-                                                                        Document.From(
-                                                                            "\"9c8af9a76df052144598c115ef33e511\""
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "StorageClass",
-                                                                        Document.From("STANDARD")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From(
-                                                                            "example2.jpg"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Owner",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "DisplayName",
-                                                                                    Document.From(
-                                                                                        "myname"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "ID",
-                                                                                    Document.From(
-                                                                                        "12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Size",
-                                                                        Document.From(
-                                                                            (decimal)713193
-                                                                        )
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

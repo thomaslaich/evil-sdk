@@ -5,50 +5,35 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class JSONInputSchema
 {
     public sealed class Builder
     {
-        public JSONType? Type { get; set; }
+        public global::Com.Amazonaws.S3.JSONType? Type { get; set; }
     }
 
-    public static StructSchema<JSONInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.JSONInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<JSONInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.JSONInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#JSONInput"),
-            [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The type of JSON. Valid values: Document, Lines.</p>")
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Specifies JSON as object's input serialization format.</p>")
-                ),
-            ]
+            [new("Type", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<JSONType?> Target0 =
-            Schemas.Nullable(JSONTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.JSONType?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(JSONTypeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override JSONInput Build(Builder builder) => new JSONInput(builder.Type);
+        public override global::Com.Amazonaws.S3.JSONInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.JSONInput(builder.Type);
 
         public override void SerializeMembers<TSerializer>(
-            JSONInput value,
+            global::Com.Amazonaws.S3.JSONInput value,
             ref TSerializer serializer
         )
         {
@@ -75,8 +60,8 @@ public static partial class JSONInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? JSONType.FromValue(value0)
-                                : default(JSONType)
+                                ? global::Com.Amazonaws.S3.JSONType.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.JSONType)
                         );
                     break;
             }

@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityBatchResultEntryListSchema
 {
     public static ListSchema<
-        ChangeMessageVisibilityBatchResultEntryList,
-        ChangeMessageVisibilityBatchResultEntry,
-        List<ChangeMessageVisibilityBatchResultEntry>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry>,
+        global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry,
+        List<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            ChangeMessageVisibilityBatchResultEntryList,
-            ChangeMessageVisibilityBatchResultEntry,
-            List<ChangeMessageVisibilityBatchResultEntry>
+            IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry>,
+            global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry,
+            List<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry>
         >(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityBatchResultEntryList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class ChangeMessageVisibilityBatchResultEntryListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ChangeMessageVisibilityBatchResultEntry> Target0 =
-            Schemas.Lazy(() => ChangeMessageVisibilityBatchResultEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ChangeMessageVisibilityBatchResultEntrySchema.Schema!
+            );
 
-        public override IEnumerable<ChangeMessageVisibilityBatchResultEntry> GetElements(
-            ChangeMessageVisibilityBatchResultEntryList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> value
+        ) => value;
 
-        public override List<ChangeMessageVisibilityBatchResultEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<ChangeMessageVisibilityBatchResultEntry> builder,
-            ChangeMessageVisibilityBatchResultEntry value
+            List<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> builder,
+            global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry value
         ) => builder.Add(value);
 
-        public override ChangeMessageVisibilityBatchResultEntryList Build(
-            List<ChangeMessageVisibilityBatchResultEntry> builder
-        ) => ChangeMessageVisibilityBatchResultEntryList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> Build(
+            List<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ChangeMessageVisibilityBatchResultEntryList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -71,7 +74,7 @@ public static partial class ChangeMessageVisibilityBatchResultEntryListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ChangeMessageVisibilityBatchResultEntry> builder,
+            List<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(

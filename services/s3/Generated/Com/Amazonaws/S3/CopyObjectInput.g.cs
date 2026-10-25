@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.S3;
 
@@ -701,7 +702,7 @@ public sealed record class CopyObjectInput(
     string? GrantWriteACP = null,
     string? IfMatch = null,
     string? IfNoneMatch = null,
-    global::Com.Amazonaws.S3.Metadata? Metadata = null,
+    IReadOnlyDictionary<string, string>? Metadata = null,
     global::Com.Amazonaws.S3.MetadataDirective? MetadataDirective = null,
     global::Com.Amazonaws.S3.ObjectLockEventHold? ObjectLockEventHold = null,
     int? ObjectLockEventHoldDurationDays = null,

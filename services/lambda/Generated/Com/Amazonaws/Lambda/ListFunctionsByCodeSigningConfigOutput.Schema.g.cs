@@ -6,64 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionsByCodeSigningConfigOutputSchema
 {
     public sealed class Builder
     {
         public string? NextMarker { get; set; }
-        public FunctionArnList? FunctionArns { get; set; }
+        public IReadOnlyList<string>? FunctionArns { get; set; }
     }
 
-    public static StructSchema<ListFunctionsByCodeSigningConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListFunctionsByCodeSigningConfigOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionsByCodeSigningConfigOutput"),
-            [
-                new(
-                    "NextMarker",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "FunctionArns",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The function ARNs. </p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("NextMarker", Target0), new("FunctionArns", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -73,17 +41,26 @@ public static partial class ListFunctionsByCodeSigningConfigOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionArnList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionArnListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionArnListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListFunctionsByCodeSigningConfigOutput Build(Builder builder) =>
-            new ListFunctionsByCodeSigningConfigOutput(builder.FunctionArns, builder.NextMarker);
+        public override global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigOutput(
+                builder.FunctionArns,
+                builder.NextMarker
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListFunctionsByCodeSigningConfigOutput value,
+            global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigOutput value,
             ref TSerializer serializer
         )
         {

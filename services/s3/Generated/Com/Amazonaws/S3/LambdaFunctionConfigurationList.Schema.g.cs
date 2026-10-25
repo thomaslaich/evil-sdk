@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class LambdaFunctionConfigurationListSchema
 {
     public static ListSchema<
-        LambdaFunctionConfigurationList,
-        LambdaFunctionConfiguration,
-        List<LambdaFunctionConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.S3.LambdaFunctionConfiguration>,
+        global::Com.Amazonaws.S3.LambdaFunctionConfiguration,
+        List<global::Com.Amazonaws.S3.LambdaFunctionConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            LambdaFunctionConfigurationList,
-            LambdaFunctionConfiguration,
-            List<LambdaFunctionConfiguration>
+            IReadOnlyList<global::Com.Amazonaws.S3.LambdaFunctionConfiguration>,
+            global::Com.Amazonaws.S3.LambdaFunctionConfiguration,
+            List<global::Com.Amazonaws.S3.LambdaFunctionConfiguration>
         >(
             ShapeId.Parse("com.amazonaws.s3#LambdaFunctionConfigurationList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class LambdaFunctionConfigurationListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<LambdaFunctionConfiguration> Target0 =
-            Schemas.Lazy(() => LambdaFunctionConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                LambdaFunctionConfigurationSchema.Schema!
+            );
 
-        public override IEnumerable<LambdaFunctionConfiguration> GetElements(
-            LambdaFunctionConfigurationList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> value
+        ) => value;
 
-        public override List<LambdaFunctionConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<LambdaFunctionConfiguration> builder,
-            LambdaFunctionConfiguration value
+            List<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> builder,
+            global::Com.Amazonaws.S3.LambdaFunctionConfiguration value
         ) => builder.Add(value);
 
-        public override LambdaFunctionConfigurationList Build(
-            List<LambdaFunctionConfiguration> builder
-        ) => LambdaFunctionConfigurationList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> Build(
+            List<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            LambdaFunctionConfigurationList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -67,7 +70,7 @@ public static partial class LambdaFunctionConfigurationListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<LambdaFunctionConfiguration> builder,
+            List<global::Com.Amazonaws.S3.LambdaFunctionConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(LambdaFunctionConfigurationSchema.Schema));
     }

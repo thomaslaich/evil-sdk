@@ -6,34 +6,26 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAccelerateConfigurationOutputSchema
 {
     public sealed class Builder
     {
-        public BucketAccelerateStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.BucketAccelerateStatus? Status { get; set; }
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<GetBucketAccelerateConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketAccelerateConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketAccelerateConfigurationOutput"),
             [
-                new(
-                    "Status",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The accelerate configuration of the bucket.</p>")
-                        ),
-                    ]
-                ),
+                new("Status", Target0),
                 new(
                     "RequestCharged",
                     Target1,
@@ -58,18 +50,23 @@ public static partial class GetBucketAccelerateConfigurationOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketAccelerateStatus?> Target0 =
-            Schemas.Nullable(BucketAccelerateStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketAccelerateStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketAccelerateStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target1 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketAccelerateConfigurationOutput Build(Builder builder) =>
-            new GetBucketAccelerateConfigurationOutput(builder.RequestCharged, builder.Status);
+        public override global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationOutput(
+                builder.RequestCharged,
+                builder.Status
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketAccelerateConfigurationOutput value,
+            global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationOutput value,
             ref TSerializer serializer
         )
         {
@@ -104,8 +101,8 @@ public static partial class GetBucketAccelerateConfigurationOutputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? BucketAccelerateStatus.FromValue(value0)
-                                : default(BucketAccelerateStatus)
+                                ? global::Com.Amazonaws.S3.BucketAccelerateStatus.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.BucketAccelerateStatus)
                         );
                     break;
                 case 1:

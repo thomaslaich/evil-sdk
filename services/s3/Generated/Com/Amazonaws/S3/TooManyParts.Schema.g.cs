@@ -5,36 +5,32 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TooManyPartsSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<TooManyParts, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.TooManyParts, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TooManyParts, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.TooManyParts, Builder>(
             ShapeId.Parse("com.amazonaws.s3#TooManyParts"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> You have attempted to add more parts than the maximum of 10000 that are allowed for this object.\n      You can use the CopyObject operation to copy this object to another and then add more data to the newly\n      copied object. </p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override TooManyParts Build(Builder builder) => new TooManyParts(null);
+        public override global::Com.Amazonaws.S3.TooManyParts Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.TooManyParts(null);
 
         public override void SerializeMembers<TSerializer>(
-            TooManyParts value,
+            global::Com.Amazonaws.S3.TooManyParts value,
             ref TSerializer serializer
         ) { }
 

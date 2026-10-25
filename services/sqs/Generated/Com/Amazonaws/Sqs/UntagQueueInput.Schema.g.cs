@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class UntagQueueInputSchema
 {
     public sealed class Builder
     {
         public string? QueueUrl { get; set; }
-        public TagKeyList? TagKeys { get; set; }
+        public IReadOnlyList<string>? TagKeys { get; set; }
     }
 
-    public static StructSchema<UntagQueueInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.UntagQueueInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UntagQueueInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.UntagQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#UntagQueueInput"),
             [
                 new(
@@ -28,10 +29,6 @@ public static partial class UntagQueueInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The URL of the queue.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -44,12 +41,6 @@ public static partial class UntagQueueInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The list of tags to be removed from the specified queue.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -75,20 +66,24 @@ public static partial class UntagQueueInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagKeyList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagKeyListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagKeyListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UntagQueueInput Build(Builder builder) =>
-            new UntagQueueInput(
+        public override global::Com.Amazonaws.Sqs.UntagQueueInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.UntagQueueInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
             );
 
         public override void SerializeMembers<TSerializer>(
-            UntagQueueInput value,
+            global::Com.Amazonaws.Sqs.UntagQueueInput value,
             ref TSerializer serializer
         )
         {

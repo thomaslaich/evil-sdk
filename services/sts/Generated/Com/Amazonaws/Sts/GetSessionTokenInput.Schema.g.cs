@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetSessionTokenInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class GetSessionTokenInputSchema
         public int? MinimumSessionTokenSize { get; set; }
     }
 
-    public static StructSchema<GetSessionTokenInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetSessionTokenInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetSessionTokenInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetSessionTokenInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetSessionTokenInput"),
             [
                 new(
@@ -35,18 +37,12 @@ public static partial class GetSessionTokenInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The duration, in seconds, that the credentials should remain valid. Acceptable durations\n         for IAM user sessions range from 900 seconds (15 minutes) to 129,600 seconds\n         (36 hours), with 43,200 seconds (12 hours) as the default. Sessions for Amazon Web Services account\n         owners are restricted to a maximum of 3,600 seconds (one hour). If the duration is longer\n         than one hour, the session for Amazon Web Services account owners defaults to one hour.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)900) },
-                                    { "max", Document.From((decimal)129600) },
+                                    { "min", Document.From(900m) },
+                                    { "max", Document.From(129600m) },
                                 }
                             )
                         ),
@@ -58,18 +54,12 @@ public static partial class GetSessionTokenInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identification number of the MFA device that is associated with the IAM user who is making the <code>GetSessionToken</code> call. Specify this value\n         if the IAM user has a policy that requires MFA authentication. The value is\n         either the serial number for a hardware device (such as <code>GAHT12345678</code>) or an\n         Amazon Resource Name (ARN) for a virtual device (such as\n            <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an IAM user by going to the Amazon Web Services Management Console and viewing the user's security credentials. </p>\n         <p>The regex used to validate this parameter is a string of \n    characters consisting of upper- and lower-case alphanumeric characters with no spaces. \n    You can also include underscores or any of the following characters: =,.@:/-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)9) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(9m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -85,18 +75,12 @@ public static partial class GetSessionTokenInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value provided by the MFA device, if MFA is required. If any policy requires the\n            IAM user to submit an MFA code, specify this value. If MFA authentication\n         is required, the user must provide a code when requesting a set of temporary security\n         credentials. A user who fails to provide the code receives an \"access denied\" response when\n         requesting resources that require MFA authentication.</p>\n         <p>The format for this parameter, as described by its regex pattern, is a sequence of six\n         numeric digits.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)6) },
-                                    { "max", Document.From((decimal)6) },
+                                    { "min", Document.From(6m) },
+                                    { "max", Document.From(6m) },
                                 }
                             )
                         ),
@@ -113,18 +97,12 @@ public static partial class GetSessionTokenInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The minimum size, in bytes, of the session token that STS issues for the request. STS increases\n    the session token to at least this size, regardless of its actual content. The value must not\n    exceed 4,096 bytes. When set to 0 or not specified, the session token size is unchanged."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)4096) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(4096m) },
                                 }
                             )
                         ),
@@ -143,21 +121,23 @@ public static partial class GetSessionTokenInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetSessionTokenInput Build(Builder builder) =>
-            new GetSessionTokenInput(
+        public override global::Com.Amazonaws.Sts.GetSessionTokenInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetSessionTokenInput(
                 builder.DurationSeconds,
                 builder.MinimumSessionTokenSize,
                 builder.SerialNumber,
@@ -165,7 +145,7 @@ public static partial class GetSessionTokenInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetSessionTokenInput value,
+            global::Com.Amazonaws.Sts.GetSessionTokenInput value,
             ref TSerializer serializer
         )
         {

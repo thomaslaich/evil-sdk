@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FileSystemConfigSchema
 {
@@ -17,10 +17,13 @@ public static partial class FileSystemConfigSchema
         public global::Com.Amazonaws.Lambda.S3FilesConfig? S3FilesConfig { get; set; }
     }
 
-    public static StructSchema<FileSystemConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.FileSystemConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<FileSystemConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.FileSystemConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#FileSystemConfig"),
             [
                 new(
@@ -30,18 +33,12 @@ public static partial class FileSystemConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the Amazon EFS or Amazon S3 Files access point that provides access to the file system.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -55,10 +52,6 @@ public static partial class FileSystemConfigSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -68,18 +61,12 @@ public static partial class FileSystemConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The path where the function can access the file system, starting with <code>/mnt/</code>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)160) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(160m) },
                                 }
                             )
                         ),
@@ -91,55 +78,30 @@ public static partial class FileSystemConfigSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "S3FilesConfig",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The configuration for how your function accesses data on an Amazon S3 file system. Valid only when the file system access point ARN is an Amazon S3 Files access point. If you specify a different access point type (for example, Amazon Elastic File System), the operation returns an <code>InvalidParameterException</code>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("S3FilesConfig", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Details about the connection between a Lambda function and an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html\">Amazon EFS file system</a> or an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html\">Amazon S3 file system</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.S3FilesConfig?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => S3FilesConfigSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => S3FilesConfigSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override FileSystemConfig Build(Builder builder) =>
-            new FileSystemConfig(
+        public override global::Com.Amazonaws.Lambda.FileSystemConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.FileSystemConfig(
                 builder.Arn ?? throw new MissingRequiredMemberException("Arn"),
                 builder.LocalMountPath
                     ?? throw new MissingRequiredMemberException("LocalMountPath"),
@@ -147,7 +109,7 @@ public static partial class FileSystemConfigSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            FileSystemConfig value,
+            global::Com.Amazonaws.Lambda.FileSystemConfig value,
             ref TSerializer serializer
         )
         {

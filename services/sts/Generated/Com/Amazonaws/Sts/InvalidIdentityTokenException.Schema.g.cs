@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class InvalidIdentityTokenExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class InvalidIdentityTokenExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<InvalidIdentityTokenException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.InvalidIdentityTokenException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidIdentityTokenException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.InvalidIdentityTokenException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#InvalidIdentityTokenException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class InvalidIdentityTokenExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("InvalidIdentityToken") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The web identity token that was passed could not be validated by Amazon Web Services. Get a new\n            identity token from the identity provider and then retry the request.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidIdentityTokenException Build(Builder builder) =>
-            new InvalidIdentityTokenException(builder.Message);
+        public override global::Com.Amazonaws.Sts.InvalidIdentityTokenException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.InvalidIdentityTokenException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidIdentityTokenException value,
+            global::Com.Amazonaws.Sts.InvalidIdentityTokenException value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectOutputSchema
 {
@@ -36,10 +36,11 @@ public static partial class PutObjectOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<PutObjectOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.PutObjectOutput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutObjectOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutObjectOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutObjectOutput"),
             [
                 new(
@@ -47,12 +48,6 @@ public static partial class PutObjectOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the expiration is configured for the object (see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html\">PutBucketLifecycleConfiguration</a>) in the <i>Amazon S3 User Guide</i>, the response\n      includes this header. It includes the <code>expiry-date</code> and <code>rule-id</code> key-value pairs\n      that provide information about object expiration. The value of the <code>rule-id</code> is\n      URL-encoded.</p>\n         <note>\n            <p>Object expiration information is not returned in directory buckets and this header returns the\n        value \"<code>NotImplemented</code>\" in all responses for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expiration")
@@ -64,12 +59,6 @@ public static partial class PutObjectOutputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Entity tag for the uploaded object.</p>\n         <p>\n            <b>General purpose buckets </b> - To ensure that data is not corrupted\n      traversing the network, for objects where the ETag is the MD5 digest of the object, you can calculate\n      the MD5 while putting an object to Amazon S3 and compare the returned ETag to the calculated MD5\n      value.</p>\n         <p>\n            <b>Directory buckets </b> - The ETag for the object in a\n      directory bucket isn't the MD5 digest of the object.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpHeader"), Document.From("ETag")),
                     ]
                 ),
@@ -78,12 +67,6 @@ public static partial class PutObjectOutputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 32-bit <code>CRC32 checksum</code> of the object. This checksum is only present if the checksum was uploaded\n    with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated\n    with multipart uploads, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32")
@@ -96,12 +79,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 32-bit <code>CRC32C</code> checksum of the object. This checksum is only present if the checksum was uploaded\n    with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated\n    with multipart uploads, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32c")
                         ),
@@ -112,12 +89,6 @@ public static partial class PutObjectOutputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>CRC64NVME</code> checksum of the object. This header is present if\n      the object was uploaded with the <code>CRC64NVME</code> checksum algorithm, or if it was uploaded\n      without a checksum (and Amazon S3 added the default checksum, <code>CRC64NVME</code>, to the uploaded\n      object). For more information about how checksums are calculated with multipart uploads, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object\n        integrity in the Amazon S3 User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc64nvme")
@@ -130,12 +101,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 160-bit <code>SHA1</code> digest of the object. This checksum is only present if the checksum was uploaded\n    with the object. When you use the API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated\n    with multipart uploads, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha1")
                         ),
@@ -146,12 +111,6 @@ public static partial class PutObjectOutputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 256-bit <code>SHA256</code> digest of the object. This checksum is only present if the checksum was uploaded\n    with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated\n    with multipart uploads, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha256")
@@ -164,12 +123,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 512-bit <code>SHA512</code> digest of the object. This header is present if\n      the object was uploaded with the <code>SHA512</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity in the Amazon S3 User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha512")
                         ),
@@ -180,12 +133,6 @@ public static partial class PutObjectOutputSchema
                     Target8,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 128-bit <code>MD5</code> digest of the object. This header is present if\n      the object was uploaded with the <code>MD5</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity in the Amazon S3 User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-md5")
@@ -198,12 +145,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>XXHASH64</code> checksum of the object. This header is present if\n      the object was uploaded with the <code>XXHASH64</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity in the Amazon S3 User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash64")
                         ),
@@ -214,12 +155,6 @@ public static partial class PutObjectOutputSchema
                     Target10,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>XXHASH3</code> checksum of the object. This header is present if\n      the object was uploaded with the <code>XXHASH3</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity in the Amazon S3 User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash3")
@@ -232,12 +167,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 128-bit <code>XXHASH128</code> checksum of the object. This header is present if\n      the object was uploaded with the <code>XXHASH128</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity in the Amazon S3 User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash128")
                         ),
@@ -248,12 +177,6 @@ public static partial class PutObjectOutputSchema
                     Target12,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header specifies the checksum type of the object, which determines how part-level checksums are\n      combined to create an object-level checksum for multipart objects. For <code>PutObject</code> uploads,\n      the checksum type is always <code>FULL_OBJECT</code>. You can use this header as a data integrity check\n      to verify that the checksum type that is received is the same checksum that was specified. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-type")
@@ -266,12 +189,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.</p>\n         <note>\n            <p>When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side\n        encryption option is <code>aws:fsx</code>.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
                         ),
@@ -282,12 +199,6 @@ public static partial class PutObjectOutputSchema
                     Target14,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Version ID of the object.</p>\n         <p>If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the\n      object being stored. Amazon S3 returns this ID in the response. When you enable versioning for a bucket, if\n      Amazon S3 receives multiple write requests for the same object simultaneously, it stores all of the objects.\n      For more information about versioning, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/AddingObjectstoVersioningEnabledBuckets.html\">Adding Objects to\n        Versioning-Enabled Buckets</a> in the <i>Amazon S3 User Guide</i>. For information about\n      returning the versioning state of a bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html\">GetBucketVersioning</a>. </p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-version-id")
@@ -300,12 +211,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If server-side encryption with a customer-provided encryption key was requested, the response will\n      include this header to confirm the encryption algorithm that's used.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -317,12 +222,6 @@ public static partial class PutObjectOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If server-side encryption with a customer-provided encryption key was requested, the response will\n      include this header to provide the round-trip message integrity verification of the customer-provided\n      encryption key.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
                         ),
@@ -333,12 +232,6 @@ public static partial class PutObjectOutputSchema
                     Target17,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, indicates the ID of the KMS key that was used for object encryption.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-aws-kms-key-id")
@@ -354,12 +247,6 @@ public static partial class PutObjectOutputSchema
                     Target18,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption. The value of\n         this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs. \n         This value is stored as object metadata and automatically gets\n         passed on to Amazon Web Services KMS for future <code>GetObject</code> \n         operations on this object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-context")
@@ -380,12 +267,6 @@ public static partial class PutObjectOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether the uploaded object uses an S3 Bucket Key for server-side encryption with\n      Key Management Service (KMS) keys (SSE-KMS).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-bucket-key-enabled")
                         ),
@@ -399,12 +280,6 @@ public static partial class PutObjectOutputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The size of the object in bytes. This value is only be present if you append to an object. </p>\n         <note>\n            <p>This functionality is only supported for objects in the Amazon S3 Express One Zone storage class in\n        directory buckets.</p>\n         </note>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -433,54 +308,88 @@ public static partial class PutObjectOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target12 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target13 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target14 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target15 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target16 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target17 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target18 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target19 =
-            Schemas.Nullable(Schemas.Boolean);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<long?> Target20 =
-            Schemas.Nullable(Schemas.Long);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target21 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutObjectOutput Build(Builder builder) =>
-            new PutObjectOutput(
+        public override global::Com.Amazonaws.S3.PutObjectOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutObjectOutput(
                 builder.BucketKeyEnabled,
                 builder.ChecksumCRC32,
                 builder.ChecksumCRC32C,
@@ -506,7 +415,7 @@ public static partial class PutObjectOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutObjectOutput value,
+            global::Com.Amazonaws.S3.PutObjectOutput value,
             ref TSerializer serializer
         )
         {

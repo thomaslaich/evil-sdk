@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ContextDetailsSchema
 {
@@ -14,13 +14,16 @@ public static partial class ContextDetailsSchema
     {
         public bool? ReplayChildren { get; set; }
         public string? Result { get; set; }
-        public ErrorObject? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.ErrorObject? Error { get; set; }
     }
 
-    public static StructSchema<ContextDetails, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ContextDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ContextDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ContextDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ContextDetails"),
             [
                 new(
@@ -32,16 +35,6 @@ public static partial class ContextDetailsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Whether the state data of child operations of this completed context should be included in the invoke payload and <code>GetDurableExecutionState</code> response.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -50,16 +43,12 @@ public static partial class ContextDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The response payload from the context.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)6291456) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(6291456m) },
                                 }
                             )
                         ),
@@ -67,55 +56,35 @@ public static partial class ContextDetailsSchema
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "Error",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Details about the context failure.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Error", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a durable execution context.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorObject?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorObjectSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ErrorObject?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorObjectSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ContextDetails Build(Builder builder) =>
-            new ContextDetails(builder.Error, builder.ReplayChildren, builder.Result);
+        public override global::Com.Amazonaws.Lambda.ContextDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ContextDetails(
+                builder.Error,
+                builder.ReplayChildren,
+                builder.Result
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ContextDetails value,
+            global::Com.Amazonaws.Lambda.ContextDetails value,
             ref TSerializer serializer
         )
         {

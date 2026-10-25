@@ -6,19 +6,20 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ProgressEventSchema
 {
     public sealed class Builder
     {
-        public Progress? Details { get; set; }
+        public global::Com.Amazonaws.S3.Progress? Details { get; set; }
     }
 
-    public static StructSchema<ProgressEvent, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ProgressEvent, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ProgressEvent, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ProgressEvent, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ProgressEvent"),
             [
                 new(
@@ -27,35 +28,27 @@ public static partial class ProgressEventSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Progress event details.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#eventPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>This data type contains information about the progress event of an operation.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Progress?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ProgressSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Progress?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ProgressSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ProgressEvent Build(Builder builder) => new ProgressEvent(builder.Details);
+        public override global::Com.Amazonaws.S3.ProgressEvent Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ProgressEvent(builder.Details);
 
         public override void SerializeMembers<TSerializer>(
-            ProgressEvent value,
+            global::Com.Amazonaws.S3.ProgressEvent value,
             ref TSerializer serializer
         )
         {

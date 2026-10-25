@@ -6,58 +6,38 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class KafkaSchemaRegistryAccessConfigSchema
 {
     public sealed class Builder
     {
-        public KafkaSchemaRegistryAuthType? Type { get; set; }
+        public global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAuthType? Type { get; set; }
         public string? URI { get; set; }
     }
 
-    public static StructSchema<KafkaSchemaRegistryAccessConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<KafkaSchemaRegistryAccessConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#KafkaSchemaRegistryAccessConfig"),
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The type of authentication Lambda uses to access your schema registry. </p> <ul> <li> <p> <code>BASIC_AUTH</code> – The Secrets Manager ARN of your secret key used for basic authentication with your Confluent schema registry.</p> </li> <li> <p> <code>CLIENT_CERTIFICATE_TLS_AUTH</code> – The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication with your Confluent schema registry.</p> </li> <li> <p> <code>SERVER_ROOT_CA_CERTIFICATE</code> – The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption with your Confluent schema registry.</p> </li> <li> <p> <code>OAUTHBEARER_AUTH</code> – The Secrets Manager ARN of your secret key containing the OAuth 2.0 credentials that Lambda uses to acquire an access token for your Confluent schema registry. For the contents of the secret, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret\">Configuring the OAuth secret</a>.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Type", Target0),
                 new(
                     "URI",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The URI of the secret (Secrets Manager secret ARN) to authenticate with your schema registry. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -67,39 +47,31 @@ public static partial class KafkaSchemaRegistryAccessConfigSchema
                                 "^arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specific access configuration settings that tell Lambda how to authenticate with your schema registry.</p> <p>If you're working with an Glue schema registry, don't provide authentication details in this object. Instead, ensure that your execution role has the required permissions for Lambda to access your cluster.</p> <p>If you're working with a Confluent schema registry, choose the authentication method in the <code>Type</code> field, and provide the Secrets Manager secret ARN in the <code>URI</code> field.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<KafkaSchemaRegistryAuthType?> Target0 =
-            Schemas.Nullable(KafkaSchemaRegistryAuthTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAuthType?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(KafkaSchemaRegistryAuthTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override KafkaSchemaRegistryAccessConfig Build(Builder builder) =>
-            new KafkaSchemaRegistryAccessConfig(builder.Type, builder.URI);
+        public override global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig(
+                builder.Type,
+                builder.URI
+            );
 
         public override void SerializeMembers<TSerializer>(
-            KafkaSchemaRegistryAccessConfig value,
+            global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig value,
             ref TSerializer serializer
         )
         {
@@ -134,8 +106,10 @@ public static partial class KafkaSchemaRegistryAccessConfigSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? KafkaSchemaRegistryAuthType.FromValue(value0)
-                                : default(KafkaSchemaRegistryAuthType)
+                                ? global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAuthType.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAuthType)
                         );
                     break;
                 case 1:

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class OverLimitSchema
 {
@@ -15,10 +15,11 @@ public static partial class OverLimitSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<OverLimit, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.OverLimit, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OverLimit, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.OverLimit, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#OverLimit"),
             [new("message", Target0)],
             [
@@ -28,30 +29,27 @@ public static partial class OverLimitSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("OverLimit") },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The specified action violates a limit. For example, <code>ReceiveMessage</code>\n            returns this error if the maximum number of in flight messages is reached and\n                <code>AddPermission</code> returns this error if the maximum number of permissions\n            for the queue is reached.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OverLimit Build(Builder builder) => new OverLimit(builder.Message);
+        public override global::Com.Amazonaws.Sqs.OverLimit Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.OverLimit(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            OverLimit value,
+            global::Com.Amazonaws.Sqs.OverLimit value,
             ref TSerializer serializer
         )
         {

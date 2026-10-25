@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ChecksumAlgorithmListSchema
 {
     public static ListSchema<
-        ChecksumAlgorithmList,
-        ChecksumAlgorithm,
-        List<ChecksumAlgorithm>
+        IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>,
+        global::Com.Amazonaws.S3.ChecksumAlgorithm,
+        List<global::Com.Amazonaws.S3.ChecksumAlgorithm>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<ChecksumAlgorithmList, ChecksumAlgorithm, List<ChecksumAlgorithm>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>,
+            global::Com.Amazonaws.S3.ChecksumAlgorithm,
+            List<global::Com.Amazonaws.S3.ChecksumAlgorithm>
+        >(
             ShapeId.Parse("com.amazonaws.s3#ChecksumAlgorithmList"),
             ShapeKind.List,
             Target0,
@@ -25,26 +29,31 @@ public static partial class ChecksumAlgorithmListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ChecksumAlgorithm> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm> Target0 =
             ChecksumAlgorithmSchema.Schema;
 
-        public override IEnumerable<ChecksumAlgorithm> GetElements(ChecksumAlgorithmList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.ChecksumAlgorithm> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm> value
+        ) => value;
 
-        public override List<ChecksumAlgorithm> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.ChecksumAlgorithm> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<ChecksumAlgorithm> builder, ChecksumAlgorithm value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.ChecksumAlgorithm> builder,
+            global::Com.Amazonaws.S3.ChecksumAlgorithm value
+        ) => builder.Add(value);
 
-        public override ChecksumAlgorithmList Build(List<ChecksumAlgorithm> builder) =>
-            ChecksumAlgorithmList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm> Build(
+            List<global::Com.Amazonaws.S3.ChecksumAlgorithm> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ChecksumAlgorithmList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -52,14 +61,14 @@ public static partial class ChecksumAlgorithmListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ChecksumAlgorithm> builder,
+            List<global::Com.Amazonaws.S3.ChecksumAlgorithm> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? ChecksumAlgorithm.FromValue(element)
-                        : default(ChecksumAlgorithm)
+                        ? global::Com.Amazonaws.S3.ChecksumAlgorithm.FromValue(element)
+                        : default(global::Com.Amazonaws.S3.ChecksumAlgorithm)
                 )
             );
     }

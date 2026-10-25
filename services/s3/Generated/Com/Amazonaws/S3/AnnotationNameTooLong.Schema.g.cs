@@ -5,43 +5,45 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationNameTooLongSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder
+    {
 
-    public static StructSchema<AnnotationNameTooLong, Builder> Schema { get; } =
+    }
+
+    public static StructSchema<global::Com.Amazonaws.S3.AnnotationNameTooLong, Builder> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnnotationNameTooLong, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnnotationNameTooLong, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnnotationNameTooLong"),
-            [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The annotation name exceeds 512 bytes.</p>")
-                ),
-                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
-            ]
-        )
+
+            ],
+            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")), new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m))])
     {
+
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnnotationNameTooLong Build(Builder builder) =>
-            new AnnotationNameTooLong(null);
+        public override global::Com.Amazonaws.S3.AnnotationNameTooLong Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AnnotationNameTooLong(null);
 
         public override void SerializeMembers<TSerializer>(
-            AnnotationNameTooLong value,
-            ref TSerializer serializer
-        ) { }
+            global::Com.Amazonaws.S3.AnnotationNameTooLong value,
+            ref TSerializer serializer)
+        {
+
+        }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        ) { }
+            ref TDeserializer deserializer)
+        {
+
+        }
     }
 }

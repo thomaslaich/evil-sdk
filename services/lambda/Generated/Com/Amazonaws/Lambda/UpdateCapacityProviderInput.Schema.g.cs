@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateCapacityProviderInputSchema
 {
@@ -15,14 +15,16 @@ public static partial class UpdateCapacityProviderInputSchema
         public string? CapacityProviderName { get; set; }
         public global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig? CapacityProviderScalingConfig { get; set; }
         public global::Com.Amazonaws.Lambda.PropagateTags? PropagateTags { get; set; }
-        public CapacityProviderTelemetryConfig? TelemetryConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig? TelemetryConfig { get; set; }
     }
 
-    public static StructSchema<UpdateCapacityProviderInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.UpdateCapacityProviderInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateCapacityProviderInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.UpdateCapacityProviderInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#UpdateCapacityProviderInput"),
             [
                 new(
@@ -32,10 +34,6 @@ public static partial class UpdateCapacityProviderInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the capacity provider to update.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +42,8 @@ public static partial class UpdateCapacityProviderInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -59,66 +57,16 @@ public static partial class UpdateCapacityProviderInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "CapacityProviderScalingConfig",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The updated scaling configuration for the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "PropagateTags",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "TelemetryConfig",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The updated telemetry configuration for the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("CapacityProviderScalingConfig", Target1),
+                new("PropagateTags", Target2),
+                new("TelemetryConfig", Target3),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -128,22 +76,32 @@ public static partial class UpdateCapacityProviderInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderScalingConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderScalingConfigSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.PropagateTags?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => PropagateTagsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderTelemetryConfig?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderTelemetryConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => PropagateTagsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderTelemetryConfigSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateCapacityProviderInput Build(Builder builder) =>
-            new UpdateCapacityProviderInput(
+        public override global::Com.Amazonaws.Lambda.UpdateCapacityProviderInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.UpdateCapacityProviderInput(
                 builder.CapacityProviderName
                     ?? throw new MissingRequiredMemberException("CapacityProviderName"),
                 builder.CapacityProviderScalingConfig,
@@ -152,7 +110,7 @@ public static partial class UpdateCapacityProviderInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateCapacityProviderInput value,
+            global::Com.Amazonaws.Lambda.UpdateCapacityProviderInput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AddLayerVersionPermissionOutputSchema
 {
@@ -16,54 +16,19 @@ public static partial class AddLayerVersionPermissionOutputSchema
         public string? RevisionId { get; set; }
     }
 
-    public static StructSchema<AddLayerVersionPermissionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.AddLayerVersionPermissionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AddLayerVersionPermissionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.AddLayerVersionPermissionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#AddLayerVersionPermissionOutput"),
-            [
-                new(
-                    "Statement",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The permission statement.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "RevisionId",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A unique identifier for the current revision of the policy.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Statement", Target0), new("RevisionId", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -73,17 +38,26 @@ public static partial class AddLayerVersionPermissionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AddLayerVersionPermissionOutput Build(Builder builder) =>
-            new AddLayerVersionPermissionOutput(builder.RevisionId, builder.Statement);
+        public override global::Com.Amazonaws.Lambda.AddLayerVersionPermissionOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.AddLayerVersionPermissionOutput(
+                builder.RevisionId,
+                builder.Statement
+            );
 
         public override void SerializeMembers<TSerializer>(
-            AddLayerVersionPermissionOutput value,
+            global::Com.Amazonaws.Lambda.AddLayerVersionPermissionOutput value,
             ref TSerializer serializer
         )
         {

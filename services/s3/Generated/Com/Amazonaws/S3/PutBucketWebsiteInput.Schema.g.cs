@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketWebsiteInputSchema
 {
@@ -19,11 +19,13 @@ public static partial class PutBucketWebsiteInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<PutBucketWebsiteInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketWebsiteInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketWebsiteInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketWebsiteInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketWebsiteInput"),
             [
                 new(
@@ -32,10 +34,6 @@ public static partial class PutBucketWebsiteInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The bucket name.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -61,12 +59,6 @@ public static partial class PutBucketWebsiteInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded 128-bit <code>MD5</code> digest of the data. You must use this header as a\n      message integrity check to verify that the request body was not corrupted in transit. For more\n      information, see <a href=\"http://www.ietf.org/rfc/rfc1864.txt\">RFC 1864</a>.</p>\n         <p>For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -77,12 +69,6 @@ public static partial class PutBucketWebsiteInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum</code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>. For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>\n      parameter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -95,10 +81,6 @@ public static partial class PutBucketWebsiteInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Container for the request.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -119,12 +101,6 @@ public static partial class PutBucketWebsiteInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -144,20 +120,28 @@ public static partial class PutBucketWebsiteInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target2 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.WebsiteConfiguration?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => WebsiteConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => WebsiteConfigurationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketWebsiteInput Build(Builder builder) =>
-            new PutBucketWebsiteInput(
+        public override global::Com.Amazonaws.S3.PutBucketWebsiteInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketWebsiteInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.WebsiteConfiguration
                     ?? throw new MissingRequiredMemberException("WebsiteConfiguration"),
@@ -167,7 +151,7 @@ public static partial class PutBucketWebsiteInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketWebsiteInput value,
+            global::Com.Amazonaws.S3.PutBucketWebsiteInput value,
             ref TSerializer serializer
         )
         {

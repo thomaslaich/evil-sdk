@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class InvalidBatchEntryIdSchema
 {
@@ -15,11 +15,13 @@ public static partial class InvalidBatchEntryIdSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<InvalidBatchEntryId, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.InvalidBatchEntryId,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidBatchEntryId, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.InvalidBatchEntryId, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#InvalidBatchEntryId"),
             [new("message", Target0)],
             [
@@ -29,31 +31,27 @@ public static partial class InvalidBatchEntryIdSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("AWS.SimpleQueueService.InvalidBatchEntryId") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <code>Id</code> of a batch entry in a batch request doesn't abide by the\n            specification.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidBatchEntryId Build(Builder builder) =>
-            new InvalidBatchEntryId(builder.Message);
+        public override global::Com.Amazonaws.Sqs.InvalidBatchEntryId Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.InvalidBatchEntryId(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidBatchEntryId value,
+            global::Com.Amazonaws.Sqs.InvalidBatchEntryId value,
             ref TSerializer serializer
         )
         {

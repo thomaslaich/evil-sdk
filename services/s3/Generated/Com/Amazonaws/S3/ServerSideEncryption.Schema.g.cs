@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ServerSideEncryptionSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ServerSideEncryption> Schema { get; } =
-        Schemas.StringEnum<ServerSideEncryption>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ServerSideEncryption>(
             ShapeId.Parse("com.amazonaws.s3#ServerSideEncryption"),
             values: ["AES256", "aws:fsx", "aws:backup", "aws:kms", "aws:kms:dsse"],
             traits:

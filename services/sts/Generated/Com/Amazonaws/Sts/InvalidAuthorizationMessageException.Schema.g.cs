@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class InvalidAuthorizationMessageExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class InvalidAuthorizationMessageExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<InvalidAuthorizationMessageException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.InvalidAuthorizationMessageException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidAuthorizationMessageException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.InvalidAuthorizationMessageException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#InvalidAuthorizationMessageException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class InvalidAuthorizationMessageExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("InvalidAuthorizationMessageException") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The error returned if the message passed to <code>DecodeAuthorizationMessage</code>\n            was invalid. This can happen if the token contains invalid characters, such as line\n            breaks, or if the message has expired.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidAuthorizationMessageException Build(Builder builder) =>
-            new InvalidAuthorizationMessageException(builder.Message);
+        public override global::Com.Amazonaws.Sts.InvalidAuthorizationMessageException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.InvalidAuthorizationMessageException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidAuthorizationMessageException value,
+            global::Com.Amazonaws.Sts.InvalidAuthorizationMessageException value,
             ref TSerializer serializer
         )
         {

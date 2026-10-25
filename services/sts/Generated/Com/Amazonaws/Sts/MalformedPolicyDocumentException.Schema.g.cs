@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class MalformedPolicyDocumentExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class MalformedPolicyDocumentExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<MalformedPolicyDocumentException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.MalformedPolicyDocumentException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MalformedPolicyDocumentException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.MalformedPolicyDocumentException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#MalformedPolicyDocumentException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class MalformedPolicyDocumentExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("MalformedPolicyDocument") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request was rejected because the policy document was malformed. The error message\n            describes the specific error.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MalformedPolicyDocumentException Build(Builder builder) =>
-            new MalformedPolicyDocumentException(builder.Message);
+        public override global::Com.Amazonaws.Sts.MalformedPolicyDocumentException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.MalformedPolicyDocumentException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            MalformedPolicyDocumentException value,
+            global::Com.Amazonaws.Sts.MalformedPolicyDocumentException value,
             ref TSerializer serializer
         )
         {

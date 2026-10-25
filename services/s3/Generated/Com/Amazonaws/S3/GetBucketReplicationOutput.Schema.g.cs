@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketReplicationOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketReplicationOutputSchema
         public global::Com.Amazonaws.S3.ReplicationConfiguration? ReplicationConfiguration { get; set; }
     }
 
-    public static StructSchema<GetBucketReplicationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketReplicationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketReplicationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketReplicationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketReplicationOutput"),
             [
                 new(
@@ -43,15 +45,23 @@ public static partial class GetBucketReplicationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationConfiguration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ReplicationConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ReplicationConfigurationSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketReplicationOutput Build(Builder builder) =>
-            new GetBucketReplicationOutput(builder.ReplicationConfiguration);
+        public override global::Com.Amazonaws.S3.GetBucketReplicationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketReplicationOutput(
+                builder.ReplicationConfiguration
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketReplicationOutput value,
+            global::Com.Amazonaws.S3.GetBucketReplicationOutput value,
             ref TSerializer serializer
         )
         {

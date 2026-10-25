@@ -5,34 +5,32 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InvalidPrefixSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<InvalidPrefix, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.InvalidPrefix, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidPrefix, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InvalidPrefix, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InvalidPrefix"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The annotation prefix you provided is invalid.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidPrefix Build(Builder builder) => new InvalidPrefix(null);
+        public override global::Com.Amazonaws.S3.InvalidPrefix Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InvalidPrefix(null);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidPrefix value,
+            global::Com.Amazonaws.S3.InvalidPrefix value,
             ref TSerializer serializer
         ) { }
 

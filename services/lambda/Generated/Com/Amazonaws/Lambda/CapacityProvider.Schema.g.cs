@@ -6,28 +6,31 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderSchema
 {
     public sealed class Builder
     {
         public string? CapacityProviderArn { get; set; }
-        public CapacityProviderState? State { get; set; }
-        public CapacityProviderVpcConfig? VpcConfig { get; set; }
-        public CapacityProviderPermissionsConfig? PermissionsConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderState? State { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig? VpcConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderPermissionsConfig? PermissionsConfig { get; set; }
         public global::Com.Amazonaws.Lambda.InstanceRequirements? InstanceRequirements { get; set; }
         public global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig? CapacityProviderScalingConfig { get; set; }
         public string? KmsKeyArn { get; set; }
         public string? LastModified { get; set; }
         public global::Com.Amazonaws.Lambda.PropagateTags? PropagateTags { get; set; }
-        public CapacityProviderTelemetryConfig? TelemetryConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig? TelemetryConfig { get; set; }
     }
 
-    public static StructSchema<CapacityProvider, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CapacityProvider,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CapacityProvider, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CapacityProvider, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProvider"),
             [
                 new(
@@ -37,18 +40,12 @@ public static partial class CapacityProviderSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -62,10 +59,6 @@ public static partial class CapacityProviderSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -75,16 +68,8 @@ public static partial class CapacityProviderSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The current state of the capacity provider.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -95,16 +80,8 @@ public static partial class CapacityProviderSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The VPC configuration for the capacity provider.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -115,83 +92,31 @@ public static partial class CapacityProviderSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The permissions configuration for the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "InstanceRequirements",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The instance requirements for compute resources managed by the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "CapacityProviderScalingConfig",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The scaling configuration for the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("InstanceRequirements", Target4),
+                new("CapacityProviderScalingConfig", Target5),
                 new(
                     "KmsKeyArn",
                     Target6,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the KMS key used to encrypt the capacity provider's resources.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -201,102 +126,75 @@ public static partial class CapacityProviderSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the capacity provider was last modified.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)100) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(100m) },
                                 }
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^.*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "PropagateTags",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "TelemetryConfig",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The telemetry configuration for the capacity provider, including logging settings.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("PropagateTags", Target8),
+                new("TelemetryConfig", Target9),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A capacity provider manages compute resources for Lambda functions.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderState?> Target1 =
-            Schemas.Nullable(CapacityProviderStateSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderVpcConfig?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => CapacityProviderVpcConfigSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderPermissionsConfig?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderPermissionsConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderState?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(CapacityProviderStateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderVpcConfigSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderPermissionsConfig?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderPermissionsConfigSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.InstanceRequirements?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => InstanceRequirementsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InstanceRequirementsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderScalingConfig?> Target5 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderScalingConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderScalingConfigSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.PropagateTags?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => PropagateTagsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderTelemetryConfig?> Target9 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderTelemetryConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => PropagateTagsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig?> Target9 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderTelemetryConfigSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CapacityProvider Build(Builder builder) =>
-            new CapacityProvider(
+        public override global::Com.Amazonaws.Lambda.CapacityProvider Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.CapacityProvider(
                 builder.CapacityProviderArn
                     ?? throw new MissingRequiredMemberException("CapacityProviderArn"),
                 builder.PermissionsConfig
@@ -312,7 +210,7 @@ public static partial class CapacityProviderSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CapacityProvider value,
+            global::Com.Amazonaws.Lambda.CapacityProvider value,
             ref TSerializer serializer
         )
         {
@@ -407,8 +305,10 @@ public static partial class CapacityProviderSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? CapacityProviderState.FromValue(value1)
-                                : default(CapacityProviderState)
+                                ? global::Com.Amazonaws.Lambda.CapacityProviderState.FromValue(
+                                    value1
+                                )
+                                : default(global::Com.Amazonaws.Lambda.CapacityProviderState)
                         );
                     break;
                 case 2:

@@ -34,9 +34,4 @@ namespace Com.Amazonaws.S3;
 /// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
 /// &lt;/note&gt;
 /// </param>
-public sealed record class DeletedObject(
-    bool? DeleteMarker = null,
-    string? DeleteMarkerVersionId = null,
-    string? Key = null,
-    string? VersionId = null
-);
+public sealed record class DeletedObject(bool? DeleteMarker = null, string? DeleteMarkerVersionId = null, string? Key = null, string? VersionId = null);

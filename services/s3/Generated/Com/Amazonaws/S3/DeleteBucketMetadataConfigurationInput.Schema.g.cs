@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketMetadataConfigurationInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteBucketMetadataConfigurationInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<DeleteBucketMetadataConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketMetadataConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketMetadataConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketMetadataConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketMetadataConfigurationInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class DeleteBucketMetadataConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The general purpose bucket that you want to remove the metadata configuration from.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -60,12 +56,6 @@ public static partial class DeleteBucketMetadataConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The expected bucket owner of the general purpose bucket that you want to remove the metadata table\n      configuration from.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -85,20 +75,26 @@ public static partial class DeleteBucketMetadataConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketMetadataConfigurationInput Build(Builder builder) =>
-            new DeleteBucketMetadataConfigurationInput(
+        public override global::Com.Amazonaws.S3.DeleteBucketMetadataConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.DeleteBucketMetadataConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketMetadataConfigurationInput value,
+            global::Com.Amazonaws.S3.DeleteBucketMetadataConfigurationInput value,
             ref TSerializer serializer
         )
         {

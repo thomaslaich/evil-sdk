@@ -5,46 +5,43 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetWebIdentityTokenSchema
 {
     public static OperationSchema<
-        GetWebIdentityTokenInput,
-        GetWebIdentityTokenOutput
+        global::Com.Amazonaws.Sts.GetWebIdentityTokenInput,
+        global::Com.Amazonaws.Sts.GetWebIdentityTokenOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sts#GetWebIdentityToken"),
-            Schemas.Lazy(() => GetWebIdentityTokenInputSchema.Schema!),
-            Schemas.Lazy(() => GetWebIdentityTokenOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetWebIdentityTokenInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetWebIdentityTokenOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sts#JWTPayloadSizeExceededException"),
-                    Schemas.Lazy(() => JWTPayloadSizeExceededExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        JWTPayloadSizeExceededExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse(
                         "com.amazonaws.sts#OutboundWebIdentityFederationDisabledException"
                     ),
-                    Schemas.Lazy(() =>
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
                         OutboundWebIdentityFederationDisabledExceptionSchema.Schema!
                     ),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sts#SessionDurationEscalationException"),
-                    Schemas.Lazy(() => SessionDurationEscalationExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        SessionDurationEscalationExceptionSchema.Schema!
+                    ),
                     403
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns a signed JSON Web Token (JWT) that represents the calling Amazon Web Services identity. \n         The returned JWT can be used to authenticate with external services that support OIDC discovery. \n         The token is signed by Amazon Web Services STS and can be publicly verified using the verification keys published at the issuer's JWKS endpoint.</p>\n         <note>\n            <p>The <code>GetWebIdentityToken</code> API is not available on the STS Global endpoint.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PermissionSchema
 {
     public static global::NSmithy.Core.Serde.Schema<Permission> Schema { get; } =
-        Schemas.StringEnum<Permission>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<Permission>(
             ShapeId.Parse("com.amazonaws.s3#Permission"),
             values: ["FULL_CONTROL", "WRITE", "WRITE_ACP", "READ", "READ_ACP"],
             traits:

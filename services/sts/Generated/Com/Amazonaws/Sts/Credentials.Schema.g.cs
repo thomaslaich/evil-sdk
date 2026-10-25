@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class CredentialsSchema
 {
@@ -19,10 +19,11 @@ public static partial class CredentialsSchema
         public DateTimeOffset? Expiration { get; set; }
     }
 
-    public static StructSchema<Credentials, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sts.Credentials, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Credentials, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.Credentials, Builder>(
             ShapeId.Parse("com.amazonaws.sts#Credentials"),
             [
                 new(
@@ -32,18 +33,12 @@ public static partial class CredentialsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The access key ID that identifies the temporary security credentials.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)16) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(16m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
@@ -61,12 +56,6 @@ public static partial class CredentialsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The secret access key that can be used to sign requests.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -83,12 +72,6 @@ public static partial class CredentialsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The token that users must pass to the service API to use the temporary\n         credentials.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -101,39 +84,36 @@ public static partial class CredentialsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date on which the current credentials expire.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Amazon Web Services credentials for API authentication.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target3 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Credentials Build(Builder builder) =>
-            new Credentials(
+        public override global::Com.Amazonaws.Sts.Credentials Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.Credentials(
                 builder.AccessKeyId ?? throw new MissingRequiredMemberException("AccessKeyId"),
                 builder.Expiration.GetValueOrDefault(),
                 builder.SecretAccessKey
@@ -142,7 +122,7 @@ public static partial class CredentialsSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            Credentials value,
+            global::Com.Amazonaws.Sts.Credentials value,
             ref TSerializer serializer
         )
         {

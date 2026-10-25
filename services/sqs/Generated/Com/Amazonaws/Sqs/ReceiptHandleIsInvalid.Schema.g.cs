@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ReceiptHandleIsInvalidSchema
 {
@@ -15,11 +15,13 @@ public static partial class ReceiptHandleIsInvalidSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<ReceiptHandleIsInvalid, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ReceiptHandleIsInvalid,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReceiptHandleIsInvalid, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ReceiptHandleIsInvalid, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ReceiptHandleIsInvalid"),
             [new("message", Target0)],
             [
@@ -29,29 +31,27 @@ public static partial class ReceiptHandleIsInvalidSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("ReceiptHandleIsInvalid") },
-                            { "httpResponseCode", Document.From((decimal)404) },
+                            { "httpResponseCode", Document.From(404m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified receipt handle isn't valid.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReceiptHandleIsInvalid Build(Builder builder) =>
-            new ReceiptHandleIsInvalid(builder.Message);
+        public override global::Com.Amazonaws.Sqs.ReceiptHandleIsInvalid Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.ReceiptHandleIsInvalid(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            ReceiptHandleIsInvalid value,
+            global::Com.Amazonaws.Sqs.ReceiptHandleIsInvalid value,
             ref TSerializer serializer
         )
         {

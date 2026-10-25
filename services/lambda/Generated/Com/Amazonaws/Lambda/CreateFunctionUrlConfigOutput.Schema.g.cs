@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateFunctionUrlConfigOutputSchema
 {
@@ -14,17 +14,19 @@ public static partial class CreateFunctionUrlConfigOutputSchema
     {
         public string? FunctionUrl { get; set; }
         public string? FunctionArn { get; set; }
-        public FunctionUrlAuthType? AuthType { get; set; }
+        public global::Com.Amazonaws.Lambda.FunctionUrlAuthType? AuthType { get; set; }
         public global::Com.Amazonaws.Lambda.Cors? Cors { get; set; }
         public string? CreationTime { get; set; }
         public global::Com.Amazonaws.Lambda.InvokeMode? InvokeMode { get; set; }
     }
 
-    public static StructSchema<CreateFunctionUrlConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CreateFunctionUrlConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateFunctionUrlConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CreateFunctionUrlConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CreateFunctionUrlConfigOutput"),
             [
                 new(
@@ -34,26 +36,18 @@ public static partial class CreateFunctionUrlConfigOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The HTTP URL endpoint for your function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)40) },
-                                    { "max", Document.From((decimal)100) },
+                                    { "min", Document.From(40m) },
+                                    { "max", Document.From(100m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -64,16 +58,12 @@ public static partial class CreateFunctionUrlConfigOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Amazon Resource Name (ARN) of your function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -87,10 +77,6 @@ public static partial class CreateFunctionUrlConfigOutputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -100,38 +86,12 @@ public static partial class CreateFunctionUrlConfigOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The type of authentication that your function URL uses. Set to <code>AWS_IAM</code> if you want to restrict access to authenticated users only. Set to <code>NONE</code> if you want to bypass IAM authentication to create a public endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html\">Control access to Lambda function URLs</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "Cors",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\">cross-origin resource sharing (CORS)</a> settings for your function URL.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Cors", Target3),
                 new(
                     "CreationTime",
                     Target4,
@@ -139,18 +99,12 @@ public static partial class CreateFunctionUrlConfigOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When the function URL was created, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)100) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(100m) },
                                 }
                             )
                         ),
@@ -159,38 +113,14 @@ public static partial class CreateFunctionUrlConfigOutputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "InvokeMode",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Use one of the following options:</p> <ul> <li> <p> <code>BUFFERED</code> – This is the default option. Lambda invokes your function using the <code>Invoke</code> API operation. Invocation results are available when the payload is complete. The maximum payload size is 6 MB.</p> </li> <li> <p> <code>RESPONSE_STREAM</code> – Your function streams payload results as they become available. Lambda invokes your function using the <code>InvokeWithResponseStream</code> API operation. The maximum response payload size is 200 MB.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("InvokeMode", Target5),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -200,22 +130,32 @@ public static partial class CreateFunctionUrlConfigOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionUrlAuthType?> Target2 =
-            Schemas.Nullable(FunctionUrlAuthTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionUrlAuthType?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(FunctionUrlAuthTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Cors?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => CorsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CorsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.InvokeMode?> Target5 =
-            Schemas.Nullable(InvokeModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(InvokeModeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateFunctionUrlConfigOutput Build(Builder builder) =>
-            new CreateFunctionUrlConfigOutput(
+        public override global::Com.Amazonaws.Lambda.CreateFunctionUrlConfigOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CreateFunctionUrlConfigOutput(
                 builder.AuthType ?? throw new MissingRequiredMemberException("AuthType"),
                 builder.CreationTime ?? throw new MissingRequiredMemberException("CreationTime"),
                 builder.FunctionArn ?? throw new MissingRequiredMemberException("FunctionArn"),
@@ -225,7 +165,7 @@ public static partial class CreateFunctionUrlConfigOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CreateFunctionUrlConfigOutput value,
+            global::Com.Amazonaws.Lambda.CreateFunctionUrlConfigOutput value,
             ref TSerializer serializer
         )
         {
@@ -291,8 +231,8 @@ public static partial class CreateFunctionUrlConfigOutputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value2
-                                ? FunctionUrlAuthType.FromValue(value2)
-                                : default(FunctionUrlAuthType)
+                                ? global::Com.Amazonaws.Lambda.FunctionUrlAuthType.FromValue(value2)
+                                : default(global::Com.Amazonaws.Lambda.FunctionUrlAuthType)
                         );
                     break;
                 case 3:

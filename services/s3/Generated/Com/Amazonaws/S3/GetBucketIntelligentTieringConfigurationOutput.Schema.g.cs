@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketIntelligentTieringConfigurationOutputSchema
 {
@@ -16,12 +16,15 @@ public static partial class GetBucketIntelligentTieringConfigurationOutputSchema
     }
 
     public static StructSchema<
-        GetBucketIntelligentTieringConfigurationOutput,
+        global::Com.Amazonaws.S3.GetBucketIntelligentTieringConfigurationOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketIntelligentTieringConfigurationOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.GetBucketIntelligentTieringConfigurationOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#GetBucketIntelligentTieringConfigurationOutput"),
             [
                 new(
@@ -29,12 +32,6 @@ public static partial class GetBucketIntelligentTieringConfigurationOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for S3 Intelligent-Tiering configuration.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -51,19 +48,23 @@ public static partial class GetBucketIntelligentTieringConfigurationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringConfiguration?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => IntelligentTieringConfigurationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    IntelligentTieringConfigurationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketIntelligentTieringConfigurationOutput Build(Builder builder) =>
-            new GetBucketIntelligentTieringConfigurationOutput(
+        public override global::Com.Amazonaws.S3.GetBucketIntelligentTieringConfigurationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketIntelligentTieringConfigurationOutput(
                 builder.IntelligentTieringConfiguration
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketIntelligentTieringConfigurationOutput value,
+            global::Com.Amazonaws.S3.GetBucketIntelligentTieringConfigurationOutput value,
             ref TSerializer serializer
         )
         {

@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SchemaRegistryEventRecordFormatSchema
 {
     public static global::NSmithy.Core.Serde.Schema<SchemaRegistryEventRecordFormat> Schema { get; } =
-        Schemas.StringEnum<SchemaRegistryEventRecordFormat>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<SchemaRegistryEventRecordFormat>(
             ShapeId.Parse("com.amazonaws.lambda#SchemaRegistryEventRecordFormat"),
             values: ["JSON", "SOURCE"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

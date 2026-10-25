@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class RemovePermissionOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<RemovePermissionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.RemovePermissionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RemovePermissionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.RemovePermissionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#RemovePermissionOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class RemovePermissionOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override RemovePermissionOutput Build(Builder builder) =>
-            new RemovePermissionOutput();
+        public override global::Com.Amazonaws.Sqs.RemovePermissionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.RemovePermissionOutput();
 
         public override void SerializeMembers<TSerializer>(
-            RemovePermissionOutput value,
+            global::Com.Amazonaws.Sqs.RemovePermissionOutput value,
             ref TSerializer serializer
         ) { }
 

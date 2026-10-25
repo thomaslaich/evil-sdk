@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListQueueTagsOutputSchema
 {
     public sealed class Builder
     {
-        public TagMap? Tags { get; set; }
+        public IReadOnlyDictionary<string, string>? Tags { get; set; }
     }
 
-    public static StructSchema<ListQueueTagsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListQueueTagsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListQueueTagsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListQueueTagsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListQueueTagsOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class ListQueueTagsOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The list of all tags added to the specified queue.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -53,16 +49,20 @@ public static partial class ListQueueTagsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<TagMap?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagMapSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagMapSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListQueueTagsOutput Build(Builder builder) =>
-            new ListQueueTagsOutput(builder.Tags);
+        public override global::Com.Amazonaws.Sqs.ListQueueTagsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.ListQueueTagsOutput(builder.Tags);
 
         public override void SerializeMembers<TSerializer>(
-            ListQueueTagsOutput value,
+            global::Com.Amazonaws.Sqs.ListQueueTagsOutput value,
             ref TSerializer serializer
         )
         {

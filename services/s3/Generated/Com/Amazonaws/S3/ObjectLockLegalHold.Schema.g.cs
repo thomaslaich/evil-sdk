@@ -5,54 +5,37 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockLegalHoldSchema
 {
     public sealed class Builder
     {
-        public ObjectLockLegalHoldStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus? Status { get; set; }
     }
 
-    public static StructSchema<ObjectLockLegalHold, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ObjectLockLegalHold,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ObjectLockLegalHold, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ObjectLockLegalHold, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ObjectLockLegalHold"),
-            [
-                new(
-                    "Status",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether the specified object has a legal hold in place.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A legal hold configuration for an object.</p>")
-                ),
-            ]
+            [new("Status", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectLockLegalHoldStatus?> Target0 =
-            Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ObjectLockLegalHold Build(Builder builder) =>
-            new ObjectLockLegalHold(builder.Status);
+        public override global::Com.Amazonaws.S3.ObjectLockLegalHold Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ObjectLockLegalHold(builder.Status);
 
         public override void SerializeMembers<TSerializer>(
-            ObjectLockLegalHold value,
+            global::Com.Amazonaws.S3.ObjectLockLegalHold value,
             ref TSerializer serializer
         )
         {
@@ -79,8 +62,10 @@ public static partial class ObjectLockLegalHoldSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ObjectLockLegalHoldStatus.FromValue(value0)
-                                : default(ObjectLockLegalHoldStatus)
+                                ? global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus)
                         );
                     break;
             }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetDelegatedAccessTokenOutputSchema
 {
@@ -17,11 +17,13 @@ public static partial class GetDelegatedAccessTokenOutputSchema
         public string? AssumedPrincipal { get; set; }
     }
 
-    public static StructSchema<GetDelegatedAccessTokenOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetDelegatedAccessTokenOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetDelegatedAccessTokenOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetDelegatedAccessTokenOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetDelegatedAccessTokenOutput"),
             [
                 new("Credentials", Target0),
@@ -35,33 +37,9 @@ public static partial class GetDelegatedAccessTokenOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "since", Document.From("2026-06-17") },
-                                    {
-                                        "message",
-                                        Document.From(
-                                            "Deprecated. This field is not populated for GetDelegatedAccessToken."
-                                        )
-                                    },
-                                }
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The percentage of the maximum policy size that is used by the session policy. The policy\n         size is calculated as the sum of all the session policies and permission boundaries\n         attached to the session. If the packed size exceeds 100%, the request fails.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -72,18 +50,12 @@ public static partial class GetDelegatedAccessTokenOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the principal that was assumed when obtaining the\n         delegated access token. This ARN identifies the IAM entity whose permissions are granted\n         by the temporary credentials.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)20) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(20m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -109,24 +81,29 @@ public static partial class GetDelegatedAccessTokenOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Credentials?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CredentialsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CredentialsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetDelegatedAccessTokenOutput Build(Builder builder) =>
-            new GetDelegatedAccessTokenOutput(
+        public override global::Com.Amazonaws.Sts.GetDelegatedAccessTokenOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sts.GetDelegatedAccessTokenOutput(
                 builder.AssumedPrincipal,
                 builder.Credentials,
                 builder.PackedPolicySize
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetDelegatedAccessTokenOutput value,
+            global::Com.Amazonaws.Sts.GetDelegatedAccessTokenOutput value,
             ref TSerializer serializer
         )
         {

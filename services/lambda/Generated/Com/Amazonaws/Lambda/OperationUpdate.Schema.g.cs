@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class OperationUpdateSchema
 {
@@ -15,11 +15,11 @@ public static partial class OperationUpdateSchema
         public string? Id { get; set; }
         public string? ParentId { get; set; }
         public string? Name { get; set; }
-        public OperationType? Type { get; set; }
+        public global::Com.Amazonaws.Lambda.OperationType? Type { get; set; }
         public string? SubType { get; set; }
-        public OperationAction? Action { get; set; }
+        public global::Com.Amazonaws.Lambda.OperationAction? Action { get; set; }
         public string? Payload { get; set; }
-        public ErrorObject? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.ErrorObject? Error { get; set; }
         public global::Com.Amazonaws.Lambda.ContextOptions? ContextOptions { get; set; }
         public global::Com.Amazonaws.Lambda.StepOptions? StepOptions { get; set; }
         public global::Com.Amazonaws.Lambda.WaitOptions? WaitOptions { get; set; }
@@ -27,10 +27,13 @@ public static partial class OperationUpdateSchema
         public global::Com.Amazonaws.Lambda.ChainedInvokeOptions? ChainedInvokeOptions { get; set; }
     }
 
-    public static StructSchema<OperationUpdate, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.OperationUpdate,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OperationUpdate, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.OperationUpdate, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#OperationUpdate"),
             [
                 new(
@@ -40,16 +43,12 @@ public static partial class OperationUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The unique identifier for this operation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -61,10 +60,6 @@ public static partial class OperationUpdateSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -73,28 +68,18 @@ public static partial class OperationUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique identifier of the parent operation, if this operation is running within a child context.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9-_]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -104,26 +89,18 @@ public static partial class OperationUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The customer-provided name for this operation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\x20-\\x7E]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -134,16 +111,8 @@ public static partial class OperationUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The type of operation to update.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -153,28 +122,18 @@ public static partial class OperationUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The subtype of the operation, providing additional categorization.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)32) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(32m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9-_]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -185,16 +144,8 @@ public static partial class OperationUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The action to take on the operation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -204,18 +155,12 @@ public static partial class OperationUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The payload for successful operations. The maximum payload size is 6 MB for synchronous <code>EXECUTION</code> operations (RequestResponse invocationType), 1 MB for asynchronous <code>EXECUTION</code> (Event invocationType) and <code>CHAINED_INVOKE</code> operations, and 256 KB for <code>CONTEXT</code>, <code>STEP</code>, <code>WAIT</code>, and <code>CALLBACK</code> operations.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)6291456) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(6291456m) },
                                 }
                             )
                         ),
@@ -223,140 +168,71 @@ public static partial class OperationUpdateSchema
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "Error",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error information for failed operations.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ContextOptions",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Options for context operations.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "StepOptions",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Options for step operations.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "WaitOptions",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Options for wait operations.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "CallbackOptions",
-                    Target11,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ChainedInvokeOptions",
-                    Target12,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Error", Target7),
+                new("ContextOptions", Target8),
+                new("StepOptions", Target9),
+                new("WaitOptions", Target10),
+                new("CallbackOptions", Target11),
+                new("ChainedInvokeOptions", Target12),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>An update to be applied to an operation during checkpointing.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<OperationType?> Target3 =
-            Schemas.Nullable(OperationTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.OperationType?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(OperationTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<OperationAction?> Target5 =
-            Schemas.Nullable(OperationActionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.OperationAction?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(OperationActionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorObject?> Target7 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorObjectSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ErrorObject?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorObjectSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ContextOptions?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => ContextOptionsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ContextOptionsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.StepOptions?> Target9 =
-            Schemas.NullableReference(Schemas.Lazy(() => StepOptionsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StepOptionsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.WaitOptions?> Target10 =
-            Schemas.NullableReference(Schemas.Lazy(() => WaitOptionsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => WaitOptionsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CallbackOptions?> Target11 =
-            Schemas.NullableReference(Schemas.Lazy(() => CallbackOptionsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CallbackOptionsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ChainedInvokeOptions?> Target12 =
-            Schemas.NullableReference(Schemas.Lazy(() => ChainedInvokeOptionsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ChainedInvokeOptionsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OperationUpdate Build(Builder builder) =>
-            new OperationUpdate(
+        public override global::Com.Amazonaws.Lambda.OperationUpdate Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.OperationUpdate(
                 builder.Action ?? throw new MissingRequiredMemberException("Action"),
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.Type ?? throw new MissingRequiredMemberException("Type"),
@@ -373,7 +249,7 @@ public static partial class OperationUpdateSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            OperationUpdate value,
+            global::Com.Amazonaws.Lambda.OperationUpdate value,
             ref TSerializer serializer
         )
         {
@@ -491,8 +367,8 @@ public static partial class OperationUpdateSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value3
-                                ? OperationType.FromValue(value3)
-                                : default(OperationType)
+                                ? global::Com.Amazonaws.Lambda.OperationType.FromValue(value3)
+                                : default(global::Com.Amazonaws.Lambda.OperationType)
                         );
                     break;
                 case 4:
@@ -503,8 +379,8 @@ public static partial class OperationUpdateSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value5
-                                ? OperationAction.FromValue(value5)
-                                : default(OperationAction)
+                                ? global::Com.Amazonaws.Lambda.OperationAction.FromValue(value5)
+                                : default(global::Com.Amazonaws.Lambda.OperationAction)
                         );
                     break;
                 case 6:

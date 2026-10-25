@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventResultSchema
 {
@@ -16,10 +16,11 @@ public static partial class EventResultSchema
         public bool? Truncated { get; set; }
     }
 
-    public static StructSchema<EventResult, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.EventResult, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EventResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.EventResult, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#EventResult"),
             [
                 new(
@@ -28,26 +29,18 @@ public static partial class EventResultSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The result payload.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)6291456) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(6291456m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -60,44 +53,26 @@ public static partial class EventResultSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates if the error payload was truncated due to size limits.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Result information for an event.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EventResult Build(Builder builder) =>
-            new EventResult(builder.Payload, builder.Truncated);
+        public override global::Com.Amazonaws.Lambda.EventResult Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.EventResult(builder.Payload, builder.Truncated);
 
         public override void SerializeMembers<TSerializer>(
-            EventResult value,
+            global::Com.Amazonaws.Lambda.EventResult value,
             ref TSerializer serializer
         )
         {

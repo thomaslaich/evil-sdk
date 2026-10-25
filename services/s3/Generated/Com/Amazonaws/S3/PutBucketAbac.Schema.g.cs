@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAbacSchema
 {
-    public static OperationSchema<PutBucketAbacInput, PutBucketAbacOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.PutBucketAbacInput,
+        global::Com.Amazonaws.S3.PutBucketAbacOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAbac"),
-            Schemas.Lazy(() => PutBucketAbacInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketAbacOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketAbacInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketAbacOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -27,19 +30,13 @@ public static partial class PutBucketAbacSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Sets the attribute-based access control (ABAC) property of the general purpose bucket. You must have <code>s3:PutBucketABAC</code> permission to perform this action. When you enable ABAC, you can use tags for access control on your buckets. Additionally, when ABAC is enabled, you must use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_TagResource.html\">TagResource</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UntagResource.html\">UntagResource</a> actions to manage tags on your buckets. You can nolonger use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html\">PutBucketTagging</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html\">DeleteBucketTagging</a> actions to tag your bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging-enable-abac.html\">Enabling ABAC in general purpose buckets</a>. </p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?abac") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?abac") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

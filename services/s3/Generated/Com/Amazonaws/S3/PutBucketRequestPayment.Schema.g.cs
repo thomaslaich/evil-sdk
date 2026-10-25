@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketRequestPaymentSchema
 {
     public static OperationSchema<
-        PutBucketRequestPaymentInput,
-        PutBucketRequestPaymentOutput
+        global::Com.Amazonaws.S3.PutBucketRequestPaymentInput,
+        global::Com.Amazonaws.S3.PutBucketRequestPaymentOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketRequestPayment"),
-            Schemas.Lazy(() => PutBucketRequestPaymentInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketRequestPaymentOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutBucketRequestPaymentInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutBucketRequestPaymentOutputSchema.Schema!
+            ),
             [],
             [
                 new Trait(
@@ -31,62 +35,13 @@ public static partial class PutBucketRequestPaymentSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Sets the request payment configuration for a bucket. By default, the bucket owner pays for downloads\n      from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person\n      requesting the download will be charged for the download. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html\">Requester Pays\n        Buckets</a>.</p>\n         <p>The following operations are related to <code>PutBucketRequestPayment</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketRequestPayment.html\">GetBucketRequestPayment</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "Set request payment configuration on a bucket."
-                                        )
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example sets request payment configuration on a bucket so that person requesting the download is charged."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                {
-                                                    "RequestPaymentConfiguration",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            { "Payer", Document.From("Requester") },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?requestPayment") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?requestPayment") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

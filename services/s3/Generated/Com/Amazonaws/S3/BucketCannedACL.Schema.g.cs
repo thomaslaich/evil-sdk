@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketCannedACLSchema
 {
     public static global::NSmithy.Core.Serde.Schema<BucketCannedACL> Schema { get; } =
-        Schemas.StringEnum<BucketCannedACL>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<BucketCannedACL>(
             ShapeId.Parse("com.amazonaws.s3#BucketCannedACL"),
             values: ["private", "public-read", "public-read-write", "authenticated-read"],
             traits:

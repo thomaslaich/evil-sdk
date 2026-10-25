@@ -5,52 +5,51 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class CancelMessageMoveTaskSchema
 {
     public static OperationSchema<
-        CancelMessageMoveTaskInput,
-        CancelMessageMoveTaskOutput
+        global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput,
+        global::Com.Amazonaws.Sqs.CancelMessageMoveTaskOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#CancelMessageMoveTask"),
-            Schemas.Lazy(() => CancelMessageMoveTaskInputSchema.Schema!),
-            Schemas.Lazy(() => CancelMessageMoveTaskOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => CancelMessageMoveTaskInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CancelMessageMoveTaskOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Cancels a specified message movement task. A message movement can only be cancelled\n            when the current status is RUNNING. Cancelling a message movement task does not revert\n            the messages that have already been moved. It can only stop the messages that have not\n            been moved yet.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This action is currently limited to supporting message redrive from <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html\">dead-letter queues (DLQs)</a> only. In this context, the source\n                        queue is the dead-letter queue (DLQ), while the destination queue can be the\n                        original source queue (from which the messages were driven to the\n                        dead-letter-queue), or a custom destination queue. </p>\n               </li>\n               <li>\n                  <p>Only one active message movement task is supported per queue at any given\n                        time.</p>\n               </li>\n            </ul>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

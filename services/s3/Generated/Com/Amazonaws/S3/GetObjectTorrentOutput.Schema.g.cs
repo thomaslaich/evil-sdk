@@ -7,7 +7,7 @@ using System.IO;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectTorrentOutputSchema
 {
@@ -17,11 +17,13 @@ public static partial class GetObjectTorrentOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<GetObjectTorrentOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectTorrentOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectTorrentOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectTorrentOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectTorrentOutput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class GetObjectTorrentOutputSchema
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#default"), Document.From("")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A Bencoded dictionary as defined by the BitTorrent specification</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -67,17 +63,22 @@ public static partial class GetObjectTorrentOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<Stream?> Target0 =
-            Schemas.NullableReference(Schemas.StreamingBlob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.StreamingBlob
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target1 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new() { Body = Stream.Null };
 
-        public override GetObjectTorrentOutput Build(Builder builder) =>
-            new GetObjectTorrentOutput(builder.Body, builder.RequestCharged);
+        public override global::Com.Amazonaws.S3.GetObjectTorrentOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectTorrentOutput(
+                builder.Body,
+                builder.RequestCharged
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectTorrentOutput value,
+            global::Com.Amazonaws.S3.GetObjectTorrentOutput value,
             ref TSerializer serializer
         )
         {

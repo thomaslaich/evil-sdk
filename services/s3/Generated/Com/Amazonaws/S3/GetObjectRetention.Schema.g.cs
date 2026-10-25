@@ -6,34 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectRetentionSchema
 {
     public static OperationSchema<
-        GetObjectRetentionInput,
-        GetObjectRetentionOutput
+        global::Com.Amazonaws.S3.GetObjectRetentionInput,
+        global::Com.Amazonaws.S3.GetObjectRetentionOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetObjectRetention"),
-            Schemas.Lazy(() => GetObjectRetentionInputSchema.Schema!),
-            Schemas.Lazy(() => GetObjectRetentionOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectRetentionInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectRetentionOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Retrieves an object's retention settings. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Locking Objects</a>.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n         <p>The following action is related to <code>GetObjectRetention</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html\">GetObjectAttributes</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?retention") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?retention") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

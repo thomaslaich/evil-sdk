@@ -6,20 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UntagResourceInputSchema
 {
     public sealed class Builder
     {
         public string? Resource { get; set; }
-        public TagKeyList? TagKeys { get; set; }
+        public IReadOnlyList<string>? TagKeys { get; set; }
     }
 
-    public static StructSchema<UntagResourceInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.UntagResourceInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UntagResourceInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.UntagResourceInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#UntagResourceInput"),
             [
                 new(
@@ -29,10 +32,6 @@ public static partial class UntagResourceInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The resource's Amazon Resource Name (ARN).</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,8 +40,8 @@ public static partial class UntagResourceInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -56,10 +55,6 @@ public static partial class UntagResourceInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -68,18 +63,10 @@ public static partial class UntagResourceInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of tag keys to remove from the resource.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("tagKeys")),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -90,10 +77,6 @@ public static partial class UntagResourceInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#UntagResourceRequest")
                 ),
@@ -101,20 +84,24 @@ public static partial class UntagResourceInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagKeyList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagKeyListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagKeyListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UntagResourceInput Build(Builder builder) =>
-            new UntagResourceInput(
+        public override global::Com.Amazonaws.Lambda.UntagResourceInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.UntagResourceInput(
                 builder.Resource ?? throw new MissingRequiredMemberException("Resource"),
                 builder.TagKeys ?? throw new MissingRequiredMemberException("TagKeys")
             );
 
         public override void SerializeMembers<TSerializer>(
-            UntagResourceInput value,
+            global::Com.Amazonaws.Lambda.UntagResourceInput value,
             ref TSerializer serializer
         )
         {

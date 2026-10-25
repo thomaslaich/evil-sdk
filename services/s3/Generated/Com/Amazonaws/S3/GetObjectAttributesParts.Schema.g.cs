@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectAttributesPartsSchema
 {
@@ -17,14 +17,16 @@ public static partial class GetObjectAttributesPartsSchema
         public string? NextPartNumberMarker { get; set; }
         public int? MaxParts { get; set; }
         public bool? IsTruncated { get; set; }
-        public PartsList? Parts { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ObjectPart>? Parts { get; set; }
     }
 
-    public static StructSchema<GetObjectAttributesParts, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectAttributesParts,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectAttributesParts, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectAttributesParts, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectAttributesParts"),
             [
                 new(
@@ -36,37 +38,11 @@ public static partial class GetObjectAttributesPartsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The total number of parts.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("PartsCount")),
                     ]
                 ),
-                new(
-                    "PartNumberMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The marker for the current part.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "NextPartNumberMarker",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When a list is truncated, this element specifies the last part in the list, as well as the value to\n      use for the <code>PartNumberMarker</code> request parameter in a subsequent request.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("PartNumberMarker", Target1),
+                new("NextPartNumberMarker", Target2),
                 new(
                     "MaxParts",
                     Target3,
@@ -75,12 +51,6 @@ public static partial class GetObjectAttributesPartsSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of parts allowed in the response.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -93,12 +63,6 @@ public static partial class GetObjectAttributesPartsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether the returned list of parts is truncated. A value of <code>true</code> indicates\n      that the list was truncated. A list can be truncated if the number of parts exceeds the limit returned\n      in the <code>MaxParts</code> element.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -107,12 +71,6 @@ public static partial class GetObjectAttributesPartsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container for elements related to a particular part. A response can contain zero or more\n        <code>Parts</code> elements.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>General purpose buckets</b> - For\n              <code>GetObjectAttributes</code>, if an additional checksum (including\n              <code>x-amz-checksum-crc32</code>, <code>x-amz-checksum-crc32c</code>,\n              <code>x-amz-checksum-sha1</code>, or <code>x-amz-checksum-sha256</code>) isn't applied to the\n            object specified in the request, the response doesn't return the <code>Part</code> element.</p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> - For\n              <code>GetObjectAttributes</code>, regardless of whether an additional checksum is applied to the\n            object specified in the request, the response returns the <code>Part</code> element.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -120,36 +78,32 @@ public static partial class GetObjectAttributesPartsSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A collection of parts associated with a multipart upload.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target4 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<PartsList?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => PartsListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ObjectPart>?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => PartsListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectAttributesParts Build(Builder builder) =>
-            new GetObjectAttributesParts(
+        public override global::Com.Amazonaws.S3.GetObjectAttributesParts Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectAttributesParts(
                 builder.IsTruncated,
                 builder.MaxParts,
                 builder.NextPartNumberMarker,
@@ -159,7 +113,7 @@ public static partial class GetObjectAttributesPartsSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectAttributesParts value,
+            global::Com.Amazonaws.S3.GetObjectAttributesParts value,
             ref TSerializer serializer
         )
         {

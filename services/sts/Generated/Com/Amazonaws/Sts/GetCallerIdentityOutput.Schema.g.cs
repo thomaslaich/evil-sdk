@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetCallerIdentityOutputSchema
 {
@@ -17,57 +17,29 @@ public static partial class GetCallerIdentityOutputSchema
         public string? Arn { get; set; }
     }
 
-    public static StructSchema<GetCallerIdentityOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetCallerIdentityOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetCallerIdentityOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetCallerIdentityOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetCallerIdentityOutput"),
             [
-                new(
-                    "UserId",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique identifier of the calling entity. The exact value depends on the type of\n         entity that is making the call. The values returned are those listed in the <b>aws:userid</b> column in the <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#principaltable\">Principal\n            table</a> found on the <b>Policy Variables</b> reference\n         page in the <i>IAM User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Account",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Web Services account ID number of the account that owns or contains the calling\n         entity.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("UserId", Target0),
+                new("Account", Target1),
                 new(
                     "Arn",
                     Target2,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Web Services ARN associated with the calling entity.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)20) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(20m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -82,12 +54,6 @@ public static partial class GetCallerIdentityOutputSchema
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the response to a successful <a>GetCallerIdentity</a> request,\n         including information about the entity making the request.</p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
                 ),
@@ -99,19 +65,29 @@ public static partial class GetCallerIdentityOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetCallerIdentityOutput Build(Builder builder) =>
-            new GetCallerIdentityOutput(builder.Account, builder.Arn, builder.UserId);
+        public override global::Com.Amazonaws.Sts.GetCallerIdentityOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetCallerIdentityOutput(
+                builder.Account,
+                builder.Arn,
+                builder.UserId
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetCallerIdentityOutput value,
+            global::Com.Amazonaws.Sts.GetCallerIdentityOutput value,
             ref TSerializer serializer
         )
         {

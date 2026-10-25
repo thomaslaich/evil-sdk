@@ -6,6 +6,8 @@ using NSmithy.Client;
 using NSmithy.Protocols.RestXml;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -123,6 +125,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To abort a multipart upload
+    /// </para>
+    /// <para>
+    /// The following example aborts a multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new AbortMultipartUploadInput(Bucket: &quot;examplebucket&quot;, Key: &quot;bigobject&quot;, UploadId: &quot;xadcOB_7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;);
+    /// var output = await client.AbortMultipartUploadAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AbortMultipartUploadOutput();
+    /// </code>
+    /// </example>
     Task<AbortMultipartUploadOutput> AbortMultipartUploadAsync(AbortMultipartUploadInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Completes a multipart upload by assembling previously uploaded parts.&lt;/p&gt;
@@ -288,6 +305,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To complete multipart upload
+    /// </para>
+    /// <para>
+    /// The following example completes a multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new CompleteMultipartUploadInput(Bucket: &quot;examplebucket&quot;, Key: &quot;bigobject&quot;, UploadId: &quot;7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;, MultipartUpload: new CompletedMultipartUpload(Parts: new CompletedPart[] { new CompletedPart(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, PartNumber: 1), new CompletedPart(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, PartNumber: 2) }));
+    /// var output = await client.CompleteMultipartUploadAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CompleteMultipartUploadOutput(Bucket: &quot;acexamplebucket&quot;, ETag: &quot;\&quot;4d9031c7644d8081c2829f4ea23c55f7-2\&quot;&quot;, Key: &quot;bigobject&quot;, Location: &quot;https://examplebucket.s3.&lt;Region&gt;.amazonaws.com/bigobject&quot;);
+    /// </code>
+    /// </example>
     Task<CompleteMultipartUploadOutput> CompleteMultipartUploadAsync(CompleteMultipartUploadInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Creates a copy of an object that is already stored in Amazon S3.&lt;/p&gt;
@@ -493,6 +525,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To copy an object
+    /// </para>
+    /// <para>
+    /// The following example copies an object from one bucket to another.
+    /// </para>
+    /// <code>
+    /// var input = new CopyObjectInput(Bucket: &quot;destinationbucket&quot;, CopySource: &quot;/sourcebucket/HappyFacejpg&quot;, Key: &quot;HappyFaceCopyjpg&quot;);
+    /// var output = await client.CopyObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CopyObjectOutput(CopyObjectResult: new CopyObjectResult(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T17:38:53.000Z&quot;, CultureInfo.InvariantCulture)));
+    /// </code>
+    /// </example>
     Task<CopyObjectOutput> CopyObjectAsync(CopyObjectInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -644,6 +691,36 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a bucket in a specific region
+    /// </para>
+    /// <para>
+    /// The following example creates a bucket. The request specifies an AWS region where to create the bucket.
+    /// </para>
+    /// <code>
+    /// var input = new CreateBucketInput(Bucket: &quot;examplebucket&quot;, CreateBucketConfiguration: new CreateBucketConfiguration(LocationConstraint: new BucketLocationConstraint(&quot;eu-west-1&quot;)));
+    /// var output = await client.CreateBucketAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateBucketOutput(Location: &quot;http://examplebucket.&lt;Region&gt;.s3.amazonaws.com/&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To create a bucket
+    /// </para>
+    /// <para>
+    /// The following example creates a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new CreateBucketInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.CreateBucketAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateBucketOutput(Location: &quot;/examplebucket&quot;);
+    /// </code>
+    /// </example>
     Task<CreateBucketOutput> CreateBucketAsync(CreateBucketInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Creates an S3 Metadata V2 metadata configuration for a general purpose bucket. For more information, see
@@ -1089,6 +1166,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To initiate a multipart upload
+    /// </para>
+    /// <para>
+    /// The following example initiates a multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new CreateMultipartUploadInput(Bucket: &quot;examplebucket&quot;, Key: &quot;largeobject&quot;);
+    /// var output = await client.CreateMultipartUploadAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateMultipartUploadOutput(Bucket: &quot;examplebucket&quot;, Key: &quot;largeobject&quot;, UploadId: &quot;ibZBv_75gd9r8lH_gqXatLdxMVpAlj6ZQjEs.OwyF3953YdwbcQnMA2BLGn8Lx12fQNICtMw5KyteFeHw.Sjng--&quot;);
+    /// </code>
+    /// </example>
     Task<CreateMultipartUploadOutput> CreateMultipartUploadAsync(CreateMultipartUploadInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Creates a session that establishes temporary security credentials to support fast authentication and
@@ -1261,6 +1353,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a bucket
+    /// </para>
+    /// <para>
+    /// The following example deletes the specified bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketInput(Bucket: &quot;forrandall2&quot;);
+    /// var output = await client.DeleteBucketAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteBucketOutput> DeleteBucketAsync(DeleteBucketInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -1325,6 +1429,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete cors configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example deletes CORS configuration on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketCorsInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketCorsAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteBucketCorsOutput> DeleteBucketCorsAsync(DeleteBucketCorsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;This implementation of the DELETE action resets the default encryption for the bucket as server-side
@@ -1560,6 +1676,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete lifecycle configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example deletes lifecycle configuration on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketLifecycleInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketLifecycleAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteBucketLifecycleOutput> DeleteBucketLifecycleAsync(DeleteBucketLifecycleInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt; Deletes an S3 Metadata configuration from a general purpose bucket. For more information, see
@@ -1828,6 +1956,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket policy
+    /// </para>
+    /// <para>
+    /// The following example deletes bucket policy on the specified bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketPolicyInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketPolicyAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteBucketPolicyOutput> DeleteBucketPolicyAsync(DeleteBucketPolicyInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -1860,6 +2000,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket replication configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes replication configuration set on bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketReplicationInput(Bucket: &quot;example&quot;);
+    /// var output = await client.DeleteBucketReplicationAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteBucketReplicationOutput> DeleteBucketReplicationAsync(DeleteBucketReplicationInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -1885,6 +2037,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket tags
+    /// </para>
+    /// <para>
+    /// The following example deletes bucket tags.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketTaggingInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketTaggingAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteBucketTaggingOutput> DeleteBucketTaggingAsync(DeleteBucketTaggingInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -1917,6 +2081,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket website configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes bucket website configuration.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketWebsiteInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketWebsiteAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteBucketWebsiteOutput> DeleteBucketWebsiteAsync(DeleteBucketWebsiteInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Removes an object from a bucket. The behavior depends on the bucket's versioning state: &lt;/p&gt;
@@ -2045,6 +2221,33 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;The &lt;code&gt;If-Match&lt;/code&gt; header is supported for both general purpose and directory buckets. &lt;code&gt;IfMatchLastModifiedTime&lt;/code&gt; and &lt;code&gt;IfMatchSize&lt;/code&gt; is only supported for directory buckets. &lt;/p&gt;
     /// &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete an object (from a non-versioned bucket)
+    /// </para>
+    /// <para>
+    /// The following example deletes an object from a non-versioned bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectInput(Bucket: &quot;ExampleBucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.DeleteObjectAsync(input);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To delete an object
+    /// </para>
+    /// <para>
+    /// The following example deletes an object from an S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;objectkey.jpg&quot;);
+    /// var output = await client.DeleteObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectOutput();
+    /// </code>
+    /// </example>
     Task<DeleteObjectOutput> DeleteObjectAsync(DeleteObjectInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Deletes a specific annotation from an Amazon S3 object. Use the &lt;code&gt;x-amz-object-if-match&lt;/code&gt;
@@ -2108,6 +2311,36 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove tag set from an object
+    /// </para>
+    /// <para>
+    /// The following example removes tag set associated with the specified object. If the bucket is versioning enabled, the operation removes tag set from the latest object version.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.DeleteObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectTaggingOutput(VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To remove tag set from an object version
+    /// </para>
+    /// <para>
+    /// The following example removes tag set associated with the specified object version. The request specifies both the object key and object version.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// var output = await client.DeleteObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectTaggingOutput(VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// </code>
+    /// </example>
     Task<DeleteObjectTaggingOutput> DeleteObjectTaggingAsync(DeleteObjectTaggingInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;This operation enables you to delete multiple objects from a bucket using a single HTTP request. If
@@ -2249,6 +2482,36 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete multiple object versions from a versioned bucket
+    /// </para>
+    /// <para>
+    /// The following example deletes objects from a bucket. The request specifies object versions. S3 deletes specific object versions and returns the key and versions of deleted objects in the response.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectsInput(Bucket: &quot;examplebucket&quot;, Delete: new Delete(Objects: new ObjectIdentifier[] { new ObjectIdentifier(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;), new ObjectIdentifier(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;) }, Quiet: false));
+    /// var output = await client.DeleteObjectsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectsOutput(Deleted: new DeletedObject[] { new DeletedObject(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;), new DeletedObject(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;) });
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To delete multiple objects from a versioned bucket
+    /// </para>
+    /// <para>
+    /// The following example deletes objects from a bucket. The bucket is versioned, and the request does not specify the object version to delete. In this case, all versions remain in the bucket and S3 adds a delete marker.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectsInput(Bucket: &quot;examplebucket&quot;, Delete: new Delete(Objects: new ObjectIdentifier[] { new ObjectIdentifier(Key: &quot;objectkey1&quot;), new ObjectIdentifier(Key: &quot;objectkey2&quot;) }, Quiet: false));
+    /// var output = await client.DeleteObjectsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectsOutput(Deleted: new DeletedObject[] { new DeletedObject(DeleteMarker: true, DeleteMarkerVersionId: &quot;A._w1z6EFiCF5uhtQMDal9JDkID9tQ7F&quot;, Key: &quot;objectkey1&quot;), new DeletedObject(DeleteMarker: true, DeleteMarkerVersionId: &quot;iOd_ORxhkKe_e8G8_oSGxt2PjsCZKlkt&quot;, Key: &quot;objectkey2&quot;) });
+    /// </code>
+    /// </example>
     Task<DeleteObjectsOutput> DeleteObjectsAsync(DeleteObjectsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -2424,6 +2687,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get cors configuration set on a bucket
+    /// </para>
+    /// <para>
+    /// The following example returns cross-origin resource sharing (CORS) configuration set on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketCorsInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketCorsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketCorsOutput(CORSRules: new CORSRule[] { new CORSRule(AllowedMethods: new string[] { &quot;GET&quot; }, AllowedOrigins: new string[] { &quot;*&quot; }, AllowedHeaders: new string[] { &quot;Authorization&quot; }, MaxAgeSeconds: 3000) });
+    /// </code>
+    /// </example>
     Task<GetBucketCorsOutput> GetBucketCorsAsync(GetBucketCorsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Returns the default encryption configuration for an Amazon S3 bucket. By default, all buckets have a
@@ -2684,6 +2962,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get lifecycle configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example retrieves lifecycle configuration on set on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketLifecycleConfigurationInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketLifecycleConfigurationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketLifecycleConfigurationOutput(Rules: new LifecycleRule[] { new LifecycleRule(Status: new ExpirationStatus(&quot;Enabled&quot;), ID: &quot;Rule for TaxDocs/&quot;, Prefix: &quot;TaxDocs&quot;, Transitions: new Transition[] { new Transition(Days: 365, StorageClass: new TransitionStorageClass(&quot;STANDARD_IA&quot;)) }) });
+    /// </code>
+    /// </example>
     Task<GetBucketLifecycleConfigurationOutput> GetBucketLifecycleConfigurationAsync(GetBucketLifecycleConfigurationInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;important&gt;
@@ -2729,6 +3022,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket location
+    /// </para>
+    /// <para>
+    /// The following example returns bucket location.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketLocationInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketLocationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketLocationOutput(LocationConstraint: new BucketLocationConstraint(&quot;us-west-2&quot;));
+    /// </code>
+    /// </example>
     Task<GetBucketLocationOutput> GetBucketLocationAsync(GetBucketLocationInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3068,6 +3376,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket policy
+    /// </para>
+    /// <para>
+    /// The following example returns bucket policy associated with a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketPolicyInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketPolicyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketPolicyOutput(Policy: &quot;{\&quot;Version\&quot;:\&quot;2008-10-17\&quot;,&amp;TCX5-2025-waiver;\&quot;Id\&quot;:\&quot;LogPolicy\&quot;,\&quot;Statement\&quot;:[{\&quot;Sid\&quot;:\&quot;Enables the log delivery group to publish logs to your bucket \&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;111122223333\&quot;},\&quot;Action\&quot;:[\&quot;s3:GetBucketAcl\&quot;,\&quot;s3:GetObjectAcl\&quot;,\&quot;s3:PutObject\&quot;],\&quot;Resource\&quot;:[\&quot;arn:aws:s3:::policytest1/*\&quot;,\&quot;arn:aws:s3:::policytest1\&quot;]}]}&quot;);
+    /// </code>
+    /// </example>
     Task<GetBucketPolicyOutput> GetBucketPolicyAsync(GetBucketPolicyInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3143,6 +3466,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get replication configuration set on a bucket
+    /// </para>
+    /// <para>
+    /// The following example returns replication configuration set on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketReplicationInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketReplicationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketReplicationOutput(ReplicationConfiguration: new ReplicationConfiguration(Role: &quot;arn:aws:iam::acct-id:role/example-role&quot;, Rules: new ReplicationRule[] { new ReplicationRule(Destination: new Destination(Bucket: &quot;arn:aws:s3:::destination-bucket&quot;), Status: new ReplicationRuleStatus(&quot;Enabled&quot;), ID: &quot;MWIwNTkwZmItMTE3MS00ZTc3LWJkZDEtNzRmODQwYzc1OTQy&quot;, Prefix: &quot;Tax&quot;) }));
+    /// </code>
+    /// </example>
     Task<GetBucketReplicationOutput> GetBucketReplicationAsync(GetBucketReplicationInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3162,6 +3500,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket versioning configuration
+    /// </para>
+    /// <para>
+    /// The following example retrieves bucket versioning configuration.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketRequestPaymentInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketRequestPaymentAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketRequestPaymentOutput(Payer: new Payer(&quot;BucketOwner&quot;));
+    /// </code>
+    /// </example>
     Task<GetBucketRequestPaymentOutput> GetBucketRequestPaymentAsync(GetBucketRequestPaymentInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3200,6 +3553,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get tag set associated with a bucket
+    /// </para>
+    /// <para>
+    /// The following example returns tag set associated with a bucket
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketTaggingInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketTaggingOutput(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;key1&quot;, Value: &quot;value1&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;key2&quot;, Value: &quot;value2&quot;) });
+    /// </code>
+    /// </example>
     Task<GetBucketTaggingOutput> GetBucketTaggingAsync(GetBucketTaggingInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3232,6 +3600,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket versioning configuration
+    /// </para>
+    /// <para>
+    /// The following example retrieves bucket versioning configuration.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketVersioningInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketVersioningAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketVersioningOutput(MFADelete: new MFADeleteStatus(&quot;Disabled&quot;), Status: new BucketVersioningStatus(&quot;Enabled&quot;));
+    /// </code>
+    /// </example>
     Task<GetBucketVersioningOutput> GetBucketVersioningAsync(GetBucketVersioningInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3260,6 +3643,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket website configuration
+    /// </para>
+    /// <para>
+    /// The following example retrieves website configuration of a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketWebsiteInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketWebsiteAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketWebsiteOutput(ErrorDocument: new ErrorDocument(Key: &quot;error.html&quot;), IndexDocument: new IndexDocument(Suffix: &quot;index.html&quot;));
+    /// </code>
+    /// </example>
     Task<GetBucketWebsiteOutput> GetBucketWebsiteAsync(GetBucketWebsiteInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Retrieves an object from Amazon S3.&lt;/p&gt;
@@ -3428,6 +3826,36 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve a byte range of an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves an object for an S3 bucket. The request specifies the range header to retrieve a specific byte range.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;SampleFile.txt&quot;, Range: &quot;bytes=0-9&quot;);
+    /// var output = await client.GetObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectOutput(AcceptRanges: &quot;bytes&quot;, ContentLength: 10L, ContentRange: &quot;bytes 0-9/43&quot;, ContentType: &quot;text/plain&quot;, ETag: &quot;\&quot;0d94420ffd0bc68cd3d152506b97a9cc\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-10-09T22:57:28.000Z&quot;, CultureInfo.InvariantCulture), Metadata: new Dictionary&lt;string, string&gt; {  }, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To retrieve an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves an object for an S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectOutput(AcceptRanges: &quot;bytes&quot;, ContentLength: 3191L, ContentType: &quot;image/jpeg&quot;, ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T01:19:41.000Z&quot;, CultureInfo.InvariantCulture), Metadata: new Dictionary&lt;string, string&gt; {  }, TagCount: 2, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     Task<GetObjectOutput> GetObjectAsync(GetObjectInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3474,6 +3902,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve object ACL
+    /// </para>
+    /// <para>
+    /// The following example retrieves access control list (ACL) of an object.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectAclInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectAclAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectAclOutput(Grants: new Grant[] { new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;WRITE&quot;)), new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;WRITE_ACP&quot;)), new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;READ&quot;)), new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;852b113eexamplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;READ_ACP&quot;)) }, Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;));
+    /// </code>
+    /// </example>
     Task<GetObjectAclOutput> GetObjectAclAsync(GetObjectAclInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Retrieves an annotation from an Amazon S3 object. To use this operation, you must have the
@@ -3809,6 +4252,36 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve tag set of a specific object version
+    /// </para>
+    /// <para>
+    /// The following example retrieves tag set of an object. The request specifies object version.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// var output = await client.GetObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectTaggingOutput(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key1&quot;, Value: &quot;Value1&quot;) }, VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To retrieve tag set of an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves tag set of an object.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectTaggingOutput(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key4&quot;, Value: &quot;Value4&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;Key3&quot;, Value: &quot;Value3&quot;) }, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     Task<GetObjectTaggingOutput> GetObjectTaggingAsync(GetObjectTaggingInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3834,6 +4307,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve torrent files for an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves torrent files of an object.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectTorrentInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectTorrentAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectTorrentOutput();
+    /// </code>
+    /// </example>
     Task<GetObjectTorrentOutput> GetObjectTorrentAsync(GetObjectTorrentInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -3960,7 +4448,59 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To determine if bucket exists
+    /// </para>
+    /// <para>
+    /// This operation checks to see if a bucket exists.
+    /// </para>
+    /// <code>
+    /// var input = new HeadBucketInput(Bucket: &quot;acl1&quot;);
+    /// var output = await client.HeadBucketAsync(input);
+    /// </code>
+    /// </example>
     Task<HeadBucketOutput> HeadBucketAsync(HeadBucketInput input, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketExistsAsync(HeadBucketInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketExistsAsync(HeadBucketInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketNotExistsAsync(HeadBucketInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketNotExistsAsync(HeadBucketInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;The &lt;code&gt;HEAD&lt;/code&gt; operation retrieves metadata from an object without returning the object
     /// itself. This operation is useful if you're interested only in an object's metadata.&lt;/p&gt;
@@ -4117,7 +4657,62 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve metadata of an object without returning the object itself
+    /// </para>
+    /// <para>
+    /// The following example retrieves an object metadata.
+    /// </para>
+    /// <code>
+    /// var input = new HeadObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.HeadObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new HeadObjectOutput(AcceptRanges: &quot;bytes&quot;, ContentLength: 3191L, ContentType: &quot;image/jpeg&quot;, ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T01:19:41.000Z&quot;, CultureInfo.InvariantCulture), Metadata: new Dictionary&lt;string, string&gt; {  }, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     Task<HeadObjectOutput> HeadObjectAsync(HeadObjectInput input, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectExistsAsync(HeadObjectInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectExistsAsync(HeadObjectInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectNotExistsAsync(HeadObjectInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default);
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectNotExistsAsync(HeadObjectInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
     /// &lt;p&gt;This operation is not supported for directory buckets.&lt;/p&gt;
@@ -4356,6 +4951,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list all buckets
+    /// </para>
+    /// <para>
+    /// The following example returns all the buckets owned by the sender of this request.
+    /// </para>
+    /// <code>
+    /// var input = new ListBucketsInput();
+    /// var output = await client.ListBucketsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListBucketsOutput(Buckets: new Bucket[] { new Bucket(CreationDate: DateTimeOffset.Parse(&quot;2012-02-15T21:03:02.000Z&quot;, CultureInfo.InvariantCulture), Name: &quot;examplebucket&quot;), new Bucket(CreationDate: DateTimeOffset.Parse(&quot;2011-07-24T19:33:50.000Z&quot;, CultureInfo.InvariantCulture), Name: &quot;examplebucket2&quot;), new Bucket(CreationDate: DateTimeOffset.Parse(&quot;2010-12-17T00:56:49.000Z&quot;, CultureInfo.InvariantCulture), Name: &quot;examplebucket3&quot;) }, Owner: new Owner(DisplayName: &quot;own-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31&quot;));
+    /// </code>
+    /// </example>
     Task<ListBucketsOutput> ListBucketsAsync(ListBucketsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -4635,6 +5245,36 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// List next set of multipart uploads when previous result is truncated
+    /// </para>
+    /// <para>
+    /// The following example specifies the upload-id-marker and key-marker from previous truncated response to retrieve next setup of multipart uploads.
+    /// </para>
+    /// <code>
+    /// var input = new ListMultipartUploadsInput(Bucket: &quot;examplebucket&quot;, KeyMarker: &quot;nextkeyfrompreviousresponse&quot;, MaxUploads: 2, UploadIdMarker: &quot;valuefrompreviousresponse&quot;);
+    /// var output = await client.ListMultipartUploadsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListMultipartUploadsOutput(Bucket: &quot;acl1&quot;, IsTruncated: true, KeyMarker: &quot;&quot;, MaxUploads: 2, NextKeyMarker: &quot;someobjectkey&quot;, NextUploadIdMarker: &quot;examplelo91lv1iwvWpvCiJWugw2xXLPAD7Z8cJyX9.WiIRgNrdG6Ldsn.9FtS63TCl1Uf5faTB.1U5Ckcbmdw--&quot;, UploadIdMarker: &quot;&quot;, Uploads: new MultipartUpload[] { new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:40:58.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;ownder-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;mohanataws&quot;, ID: &quot;852b113e7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;gZ30jIqlUa.CInXklLQtSMJITdUnoZ1Y5GACB5UckOtspm5zbDMCkPF_qkfZzMiFZ6dksmcnqxJyIBvQMG9X9Q--&quot;), new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:41:27.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;ownder-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;ownder-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;b7tZSqIlo91lv1iwvWpvCiJWugw2xXLPAD7Z8cJyX9.WiIRgNrdG6Ldsn.9FtS63TCl1Uf5faTB.1U5Ckcbmdw--&quot;) });
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To list in-progress multipart uploads on a bucket
+    /// </para>
+    /// <para>
+    /// The following example lists in-progress multipart uploads on a specific bucket.
+    /// </para>
+    /// <code>
+    /// var input = new ListMultipartUploadsInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.ListMultipartUploadsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListMultipartUploadsOutput(Uploads: new MultipartUpload[] { new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:40:58.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;examplelUa.CInXklLQtSMJITdUnoZ1Y5GACB5UckOtspm5zbDMCkPF_qkfZzMiFZ6dksmcnqxJyIBvQMG9X9Q--&quot;), new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:41:27.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;examplelo91lv1iwvWpvCiJWugw2xXLPAD7Z8cJyX9.WiIRgNrdG6Ldsn.9FtS63TCl1Uf5faTB.1U5Ckcbmdw--&quot;) });
+    /// </code>
+    /// </example>
     Task<ListMultipartUploadsOutput> ListMultipartUploadsAsync(ListMultipartUploadsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Lists the annotations attached to an Amazon S3 object. Results are paginated, with a maximum of
@@ -4768,6 +5408,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list object versions
+    /// </para>
+    /// <para>
+    /// The following example returns versions of an object with specific key name prefix.
+    /// </para>
+    /// <code>
+    /// var input = new ListObjectVersionsInput(Bucket: &quot;examplebucket&quot;, Prefix: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.ListObjectVersionsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListObjectVersionsOutput(Versions: new ObjectVersion[] { new ObjectVersion(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, IsLatest: true, Key: &quot;HappyFace.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T01:19:41.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 3191L, StorageClass: new ObjectVersionStorageClass(&quot;STANDARD&quot;), VersionId: &quot;null&quot;), new ObjectVersion(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, IsLatest: false, Key: &quot;HappyFace.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-13T00:58:26.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 3191L, StorageClass: new ObjectVersionStorageClass(&quot;STANDARD&quot;), VersionId: &quot;PHtexPGjH2y.zBgT8LmB7wwLI2mpbz.k&quot;) });
+    /// </code>
+    /// </example>
     Task<ListObjectVersionsOutput> ListObjectVersionsAsync(ListObjectVersionsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -4814,6 +5469,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list objects in a bucket
+    /// </para>
+    /// <para>
+    /// The following example list two objects in a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new ListObjectsInput(Bucket: &quot;examplebucket&quot;, MaxKeys: 2);
+    /// var output = await client.ListObjectsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListObjectsOutput(Contents: new Object[] { new Object(ETag: &quot;\&quot;70ee1738b6b21e2c8a43f3a5ab0eee71\&quot;&quot;, Key: &quot;example1.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-11-21T19:40:05.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;myname&quot;, ID: &quot;12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 11L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)), new Object(ETag: &quot;\&quot;9c8af9a76df052144598c115ef33e511\&quot;&quot;, Key: &quot;example2.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2013-11-15T01:10:49.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;myname&quot;, ID: &quot;12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 713193L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)) }, NextMarker: &quot;eyJNYXJrZXIiOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAyfQ==&quot;);
+    /// </code>
+    /// </example>
     Task<ListObjectsOutput> ListObjectsAsync(ListObjectsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Returns some or all (up to 1,000) of the objects in a bucket with each request. You can use the
@@ -4920,6 +5590,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get object list
+    /// </para>
+    /// <para>
+    /// The following example retrieves object list. The request specifies max keys to limit response to include only 2 object keys.
+    /// </para>
+    /// <code>
+    /// var input = new ListObjectsV2Input(Bucket: &quot;DOC-EXAMPLE-BUCKET&quot;, MaxKeys: 2);
+    /// var output = await client.ListObjectsV2Async(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListObjectsV2Output(Contents: new Object[] { new Object(ETag: &quot;\&quot;70ee1738b6b21e2c8a43f3a5ab0eee71\&quot;&quot;, Key: &quot;happyface.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-11-21T19:40:05.000Z&quot;, CultureInfo.InvariantCulture), Size: 11L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)), new Object(ETag: &quot;\&quot;becf17f89c30367a9a44495d62ed521a-1\&quot;&quot;, Key: &quot;test.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-05-02T04:51:50.000Z&quot;, CultureInfo.InvariantCulture), Size: 4192256L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)) }, IsTruncated: true, KeyCount: 2, MaxKeys: 2, Name: &quot;DOC-EXAMPLE-BUCKET&quot;, NextContinuationToken: &quot;1w41l63U0xa8q7smH50vCxyTQqdxo69O3EmK28Bi5PcROI4wI/EyIJg==&quot;, Prefix: &quot;&quot;);
+    /// </code>
+    /// </example>
     Task<ListObjectsV2Output> ListObjectsV2Async(ListObjectsV2Input input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Returns some or all (up to 1,000) of the objects in a bucket with each request. You can use the
@@ -5117,6 +5802,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list parts of a multipart upload.
+    /// </para>
+    /// <para>
+    /// The following example lists parts uploaded for a specific multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new ListPartsInput(Bucket: &quot;examplebucket&quot;, Key: &quot;bigobject&quot;, UploadId: &quot;example7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;);
+    /// var output = await client.ListPartsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListPartsOutput(Initiator: new Initiator(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Parts: new Part[] { new Part(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-16T00:11:42.000Z&quot;, CultureInfo.InvariantCulture), PartNumber: 1, Size: 26246026L), new Part(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-16T00:15:01.000Z&quot;, CultureInfo.InvariantCulture), PartNumber: 2, Size: 26246026L) }, StorageClass: new StorageClass(&quot;STANDARD&quot;));
+    /// </code>
+    /// </example>
     Task<ListPartsOutput> ListPartsAsync(ListPartsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Lists the parts that have been uploaded for a specific multipart upload.&lt;/p&gt;
@@ -5551,6 +6251,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Put bucket acl
+    /// </para>
+    /// <para>
+    /// The following example replaces existing ACL on a bucket. The ACL grants the bucket owner (specified using the owner ID) and write permission to the LogDelivery group. Because this is a replace operation, you must specify all the grants in your request. To incrementally add or remove ACL grants, you might use the console.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketAclInput(Bucket: &quot;examplebucket&quot;, GrantFullControl: &quot;id=examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484&quot;, GrantWrite: &quot;uri=http://acs.amazonaws.com/groups/s3/LogDelivery&quot;);
+    /// var output = await client.PutBucketAclAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketAclOutput> PutBucketAclAsync(PutBucketAclInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -5720,6 +6432,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To set cors configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example enables PUT, POST, and DELETE requests from www.example.com, and enables GET requests from any domain.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketCorsInput(Bucket: &quot;&quot;, CORSConfiguration: new CORSConfiguration(CORSRules: new CORSRule[] { new CORSRule(AllowedMethods: new string[] { &quot;PUT&quot;, &quot;POST&quot;, &quot;DELETE&quot; }, AllowedOrigins: new string[] { &quot;http://www.example.com&quot; }, AllowedHeaders: new string[] { &quot;*&quot; }, ExposeHeaders: new string[] { &quot;x-amz-server-side-encryption&quot; }, MaxAgeSeconds: 3000), new CORSRule(AllowedMethods: new string[] { &quot;GET&quot; }, AllowedOrigins: new string[] { &quot;*&quot; }, AllowedHeaders: new string[] { &quot;Authorization&quot; }, MaxAgeSeconds: 3000) }), ContentMD5: &quot;&quot;);
+    /// var output = await client.PutBucketCorsAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketCorsOutput> PutBucketCorsAsync(PutBucketCorsInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;This operation configures default encryption and Amazon S3 Bucket Keys for an existing bucket. You can also &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_BlockedEncryptionTypes.html&quot;&gt;block encryption types&lt;/a&gt; using this operation.&lt;/p&gt;
@@ -6154,6 +6878,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Put bucket lifecycle
+    /// </para>
+    /// <para>
+    /// The following example replaces existing lifecycle configuration, if any, on the specified bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketLifecycleConfigurationInput(Bucket: &quot;examplebucket&quot;, LifecycleConfiguration: new BucketLifecycleConfiguration(Rules: new LifecycleRule[] { new LifecycleRule(Status: new ExpirationStatus(&quot;Enabled&quot;), Expiration: new LifecycleExpiration(Days: 3650), Filter: new LifecycleRuleFilter(Prefix: &quot;documents/&quot;), ID: &quot;TestOnly&quot;, Transitions: new Transition[] { new Transition(Days: 365, StorageClass: new TransitionStorageClass(&quot;GLACIER&quot;)) }) }));
+    /// var output = await client.PutBucketLifecycleConfigurationAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketLifecycleConfigurationOutput> PutBucketLifecycleConfigurationAsync(PutBucketLifecycleConfigurationInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;important&gt;
@@ -6249,6 +6985,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set logging configuration for a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets logging policy on a bucket. For the Log Delivery group to deliver logs to the destination bucket, it needs permission for the READ_ACP action which the policy grants.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketLoggingInput(Bucket: &quot;sourcebucket&quot;, BucketLoggingStatus: new BucketLoggingStatus(LoggingEnabled: new LoggingEnabled(TargetBucket: &quot;targetbucket&quot;, TargetPrefix: &quot;MyBucketLogs/&quot;, TargetGrants: new TargetGrant[] { new TargetGrant(Grantee: new Grantee(Type: new Type(&quot;Group&quot;), URI: &quot;http://acs.amazonaws.com/groups/global/AllUsers&quot;), Permission: new BucketLogsPermission(&quot;READ&quot;)) })));
+    /// var output = await client.PutBucketLoggingAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketLoggingOutput> PutBucketLoggingAsync(PutBucketLoggingInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Sets a metrics configuration (specified by the metrics configuration ID) for the bucket. You can
@@ -6389,6 +7137,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set notification configuration for a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets notification configuration on a bucket to publish the object created events to an SNS topic.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketNotificationConfigurationInput(Bucket: &quot;examplebucket&quot;, NotificationConfiguration: new NotificationConfiguration(TopicConfigurations: new TopicConfiguration[] { new TopicConfiguration(Events: new Event[] { new Event(&quot;s3:ObjectCreated:*&quot;) }, TopicArn: &quot;arn:aws:sns:us-west-2:123456789012:s3-notification-topic&quot;) }));
+    /// var output = await client.PutBucketNotificationConfigurationAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketNotificationConfigurationOutput> PutBucketNotificationConfigurationAsync(PutBucketNotificationConfigurationInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -6493,6 +7253,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set bucket policy
+    /// </para>
+    /// <para>
+    /// The following example sets a permission policy on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketPolicyInput(Bucket: &quot;examplebucket&quot;, Policy: &quot;{\&quot;Version\&quot;: \&quot;2012-10-17\&quot;, \&quot;Statement\&quot;: [{ \&quot;Sid\&quot;: \&quot;id-1\&quot;,\&quot;Effect\&quot;: \&quot;Allow\&quot;,\&quot;Principal\&quot;: {\&quot;AWS\&quot;: \&quot;arn:aws:iam::123456789012:root\&quot;}, \&quot;Action\&quot;: [ \&quot;s3:PutObject\&quot;,\&quot;s3:PutObjectAcl\&quot;], \&quot;Resource\&quot;: [\&quot;arn:aws:s3:::acl3/*\&quot; ] } ]}&quot;);
+    /// var output = await client.PutBucketPolicyAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketPolicyOutput> PutBucketPolicyAsync(PutBucketPolicyInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -6565,6 +7337,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set replication configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets replication configuration on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketReplicationInput(Bucket: &quot;examplebucket&quot;, ReplicationConfiguration: new ReplicationConfiguration(Role: &quot;arn:aws:iam::123456789012:role/examplerole&quot;, Rules: new ReplicationRule[] { new ReplicationRule(Destination: new Destination(Bucket: &quot;arn:aws:s3:::destinationbucket&quot;, StorageClass: new StorageClass(&quot;STANDARD&quot;)), Status: new ReplicationRuleStatus(&quot;Enabled&quot;), Prefix: &quot;&quot;) }));
+    /// var output = await client.PutBucketReplicationAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketReplicationOutput> PutBucketReplicationAsync(PutBucketReplicationInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -6591,6 +7375,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set request payment configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example sets request payment configuration on a bucket so that person requesting the download is charged.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketRequestPaymentInput(Bucket: &quot;examplebucket&quot;, RequestPaymentConfiguration: new RequestPaymentConfiguration(Payer: new Payer(&quot;Requester&quot;)));
+    /// var output = await client.PutBucketRequestPaymentAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketRequestPaymentOutput> PutBucketRequestPaymentAsync(PutBucketRequestPaymentInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -6652,6 +7448,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set tags on a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets tags on a bucket. Any existing tags are replaced.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketTaggingInput(Bucket: &quot;examplebucket&quot;, Tagging: new Tagging(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key1&quot;, Value: &quot;Value1&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;Key2&quot;, Value: &quot;Value2&quot;) }));
+    /// var output = await client.PutBucketTaggingAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketTaggingOutput> PutBucketTaggingAsync(PutBucketTaggingInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -6707,6 +7515,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set versioning configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets versioning configuration on bucket. The configuration enables versioning on the bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketVersioningInput(Bucket: &quot;examplebucket&quot;, VersioningConfiguration: new VersioningConfiguration(MFADelete: new MFADelete(&quot;Disabled&quot;), Status: new BucketVersioningStatus(&quot;Enabled&quot;)));
+    /// var output = await client.PutBucketVersioningAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketVersioningOutput> PutBucketVersioningAsync(PutBucketVersioningInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -6840,6 +7660,18 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set website configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example adds website configuration to a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketWebsiteInput(Bucket: &quot;examplebucket&quot;, WebsiteConfiguration: new WebsiteConfiguration(ErrorDocument: new ErrorDocument(Key: &quot;error.html&quot;), IndexDocument: new IndexDocument(Suffix: &quot;index.html&quot;)), ContentMD5: &quot;&quot;);
+    /// var output = await client.PutBucketWebsiteAsync(input);
+    /// </code>
+    /// </example>
     Task<PutBucketWebsiteOutput> PutBucketWebsiteAsync(PutBucketWebsiteInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;important&gt;
@@ -7023,6 +7855,111 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create an object.
+    /// </para>
+    /// <para>
+    /// The following example creates an object. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;objectkey&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;Bvq0EDKxOcXLJXNo_Lkz37eM3R4pfzyQ&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object (specify optional headers)
+    /// </para>
+    /// <para>
+    /// The following example uploads an object. The request specifies optional request headers to directs S3 to use specific storage class and use server-side encryption.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;HappyFace.jpg&quot;)), ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), StorageClass: new StorageClass(&quot;STANDARD_IA&quot;));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), VersionId: &quot;CG612hodqujkf8FaaNfp8U..FIhLROcp&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object
+    /// </para>
+    /// <para>
+    /// The following example uploads an object to a versioning-enabled bucket. The source file is specified using Windows file syntax. S3 returns VersionId of the newly created object.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;HappyFace.jpg&quot;)));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;tpf3zF08nBplQK1XLOefGskR7mGDwcDk&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object and specify canned ACL.
+    /// </para>
+    /// <para>
+    /// The following example uploads and object. The request specifies optional canned ACL (access control list) to all READ access to authenticated users. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, ACL: new ObjectCannedACL(&quot;authenticated-read&quot;), Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;Kirh.unyZwjQ69YxcQLA8z4F5j3kJJKr&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object and specify optional tags
+    /// </para>
+    /// <para>
+    /// The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;c:\\HappyFace.jpg&quot;)), Tagging: &quot;key1=value1&amp;key2=value2&quot;);
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;psM2sYY4.o1501dSx8wMvnkOzSBB.V4a&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object and specify server-side encryption and object tags
+    /// </para>
+    /// <para>
+    /// The following example uploads an object. The request specifies the optional server-side encryption option. The request also specifies optional object tags. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)), ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), Tagging: &quot;key1=value1&amp;key2=value2&quot;);
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), VersionId: &quot;Ri.vC6qVlA4dEnjgRV4ZHsHoFIjqEMNt&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload object and specify user-defined metadata
+    /// </para>
+    /// <para>
+    /// The following example creates an object. The request also specifies optional metadata. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)), Metadata: new Dictionary&lt;string, string&gt; { { &quot;metadata1&quot;, &quot;value1&quot; }, { &quot;metadata2&quot;, &quot;value2&quot; } });
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;pSKidl4pHBiNwukdbcPXAIs.sshFFOc0&quot;);
+    /// </code>
+    /// </example>
     Task<PutObjectOutput> PutObjectAsync(PutObjectInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;important&gt;
@@ -7218,6 +8155,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To grant permissions using object ACL
+    /// </para>
+    /// <para>
+    /// The following example adds grants to an object ACL. The first permission grants user1 and user2 FULL_CONTROL and the AllUsers group READ permission.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectAclInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, AccessControlPolicy: new AccessControlPolicy(), GrantFullControl: &quot;emailaddress=user1@example.com,emailaddress=user2@example.com&quot;, GrantRead: &quot;uri=http://acs.amazonaws.com/groups/global/AllUsers&quot;);
+    /// var output = await client.PutObjectAclAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectAclOutput();
+    /// </code>
+    /// </example>
     Task<PutObjectAclOutput> PutObjectAclAsync(PutObjectAclInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Attaches an annotation to an Amazon S3 object. An annotation is a named payload of 1 byte to 1 MiB
@@ -7364,6 +8316,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To add tags to an existing object
+    /// </para>
+    /// <para>
+    /// The following example adds tags to an existing object.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Tagging: new Tagging(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key3&quot;, Value: &quot;Value3&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;Key4&quot;, Value: &quot;Value4&quot;) }));
+    /// var output = await client.PutObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectTaggingOutput(VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     Task<PutObjectTaggingOutput> PutObjectTaggingAsync(PutObjectTaggingInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -7666,6 +8633,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To restore an archived object
+    /// </para>
+    /// <para>
+    /// The following example restores for one day an archived copy of an object back into Amazon S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new RestoreObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;archivedobjectkey&quot;, RestoreRequest: new RestoreRequest(Days: 1, GlacierJobParameters: new GlacierJobParameters(Tier: new Tier(&quot;Expedited&quot;))));
+    /// var output = await client.RestoreObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new RestoreObjectOutput();
+    /// </code>
+    /// </example>
     Task<RestoreObjectOutput> RestoreObjectAsync(RestoreObjectInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -8304,6 +9286,21 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To upload a part
+    /// </para>
+    /// <para>
+    /// The following example uploads part 1 of a multipart upload. The example specifies a file name for the part data. The Upload ID is same that is returned by the initiate multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new UploadPartInput(Bucket: &quot;examplebucket&quot;, Key: &quot;examplelargeobject&quot;, PartNumber: 1, UploadId: &quot;xadcOB_7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;fileToUpload&quot;)));
+    /// var output = await client.UploadPartAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UploadPartOutput(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;);
+    /// </code>
+    /// </example>
     Task<UploadPartOutput> UploadPartAsync(UploadPartInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;p&gt;Uploads a part by copying data from an existing object as data source. To specify the data source,
@@ -8524,6 +9521,36 @@ public interface IAmazonS3Client : IDisposable
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To upload a part by copying byte range from an existing object as data source
+    /// </para>
+    /// <para>
+    /// The following example uploads a part of a multipart upload by copying a specified byte range from an existing object as data source.
+    /// </para>
+    /// <code>
+    /// var input = new UploadPartCopyInput(Bucket: &quot;examplebucket&quot;, CopySource: &quot;/bucketname/sourceobjectkey&quot;, Key: &quot;examplelargeobject&quot;, PartNumber: 2, UploadId: &quot;exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--&quot;, CopySourceRange: &quot;bytes=1-100000&quot;);
+    /// var output = await client.UploadPartCopyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UploadPartCopyOutput(CopyPartResult: new CopyPartResult(ETag: &quot;\&quot;65d16d19e65a7508a51f043180edcc36\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-29T21:44:28.000Z&quot;, CultureInfo.InvariantCulture)));
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload a part by copying data from an existing object as data source
+    /// </para>
+    /// <para>
+    /// The following example uploads a part of a multipart upload by copying data from an existing object as data source.
+    /// </para>
+    /// <code>
+    /// var input = new UploadPartCopyInput(Bucket: &quot;examplebucket&quot;, CopySource: &quot;/bucketname/sourceobjectkey&quot;, Key: &quot;examplelargeobject&quot;, PartNumber: 1, UploadId: &quot;exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--&quot;);
+    /// var output = await client.UploadPartCopyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UploadPartCopyOutput(CopyPartResult: new CopyPartResult(ETag: &quot;\&quot;b0c6f0e7e054ab8fa2536a2677f8734d\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-29T21:24:43.000Z&quot;, CultureInfo.InvariantCulture)));
+    /// </code>
+    /// </example>
     Task<UploadPartCopyOutput> UploadPartCopyAsync(UploadPartCopyInput input, CancellationToken cancellationToken = default);
     /// <summary>
     /// &lt;note&gt;
@@ -8707,461 +9734,461 @@ public sealed class AmazonS3Client : IAmazonS3Client
     {
     }
 
-    private AmazonS3Client(AmazonS3ClientConfig config)
+    public AmazonS3Client(AmazonS3ClientConfig config)
     {
         ArgumentNullException.ThrowIfNull(config);
         this.environment = SmithyHttpClientEnvironment.Create(
-            AmazonS3Schema.Schema, config, static () => new RestXmlProtocol(),
-            ModeledAuthSchemes, null, null);
+            global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema, config, static () => new RestXmlProtocol(),
+            ModeledAuthSchemes, null, null, modeledEndpointResolver: endpoint => new AmazonS3EndpointResolver(config, endpoint));
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
         this.idempotencyTokenProvider = config.IdempotencyTokenProvider ?? DefaultIdempotencyToken;
         try
         {
             this.AbortMultipartUploadBinding = new SmithyOperationBinding<AbortMultipartUploadInput, AbortMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, AbortMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AbortMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema);
             this.CompleteMultipartUploadBinding = new SmithyOperationBinding<CompleteMultipartUploadInput, CompleteMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, CompleteMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CompleteMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema);
             this.CopyObjectBinding = new SmithyOperationBinding<CopyObjectInput, CopyObjectOutput>(
-                AmazonS3Schema.Schema.Id, CopyObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CopyObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema);
             this.CreateBucketBinding = new SmithyOperationBinding<CreateBucketInput, CreateBucketOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema);
             this.CreateBucketMetadataConfigurationBinding = new SmithyOperationBinding<CreateBucketMetadataConfigurationInput, CreateBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema);
             this.CreateBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<CreateBucketMetadataTableConfigurationInput, CreateBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema);
             this.CreateMultipartUploadBinding = new SmithyOperationBinding<CreateMultipartUploadInput, CreateMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, CreateMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema);
             this.CreateSessionBinding = new SmithyOperationBinding<CreateSessionInput, CreateSessionOutput>(
-                AmazonS3Schema.Schema.Id, CreateSessionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateSessionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema);
             this.DeleteBucketBinding = new SmithyOperationBinding<DeleteBucketInput, DeleteBucketOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema);
             this.DeleteBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<DeleteBucketAnalyticsConfigurationInput, DeleteBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema);
             this.DeleteBucketCorsBinding = new SmithyOperationBinding<DeleteBucketCorsInput, DeleteBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema);
             this.DeleteBucketEncryptionBinding = new SmithyOperationBinding<DeleteBucketEncryptionInput, DeleteBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema);
             this.DeleteBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<DeleteBucketIntelligentTieringConfigurationInput, DeleteBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema);
             this.DeleteBucketInventoryConfigurationBinding = new SmithyOperationBinding<DeleteBucketInventoryConfigurationInput, DeleteBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema);
             this.DeleteBucketLifecycleBinding = new SmithyOperationBinding<DeleteBucketLifecycleInput, DeleteBucketLifecycleOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketLifecycleSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketLifecycleSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema);
             this.DeleteBucketMetadataConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetadataConfigurationInput, DeleteBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema);
             this.DeleteBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetadataTableConfigurationInput, DeleteBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema);
             this.DeleteBucketMetricsConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetricsConfigurationInput, DeleteBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema);
             this.DeleteBucketOwnershipControlsBinding = new SmithyOperationBinding<DeleteBucketOwnershipControlsInput, DeleteBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema);
             this.DeleteBucketPolicyBinding = new SmithyOperationBinding<DeleteBucketPolicyInput, DeleteBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema);
             this.DeleteBucketReplicationBinding = new SmithyOperationBinding<DeleteBucketReplicationInput, DeleteBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema);
             this.DeleteBucketTaggingBinding = new SmithyOperationBinding<DeleteBucketTaggingInput, DeleteBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema);
             this.DeleteBucketWebsiteBinding = new SmithyOperationBinding<DeleteBucketWebsiteInput, DeleteBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema);
             this.DeleteObjectBinding = new SmithyOperationBinding<DeleteObjectInput, DeleteObjectOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema);
             this.DeleteObjectAnnotationBinding = new SmithyOperationBinding<DeleteObjectAnnotationInput, DeleteObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema);
             this.DeleteObjectTaggingBinding = new SmithyOperationBinding<DeleteObjectTaggingInput, DeleteObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema);
             this.DeleteObjectsBinding = new SmithyOperationBinding<DeleteObjectsInput, DeleteObjectsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema);
             this.DeletePublicAccessBlockBinding = new SmithyOperationBinding<DeletePublicAccessBlockInput, DeletePublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, DeletePublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeletePublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema);
             this.GetBucketAbacBinding = new SmithyOperationBinding<GetBucketAbacInput, GetBucketAbacOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAbacSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAbacSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema);
             this.GetBucketAccelerateConfigurationBinding = new SmithyOperationBinding<GetBucketAccelerateConfigurationInput, GetBucketAccelerateConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAccelerateConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAccelerateConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema);
             this.GetBucketAclBinding = new SmithyOperationBinding<GetBucketAclInput, GetBucketAclOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema);
             this.GetBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<GetBucketAnalyticsConfigurationInput, GetBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema);
             this.GetBucketCorsBinding = new SmithyOperationBinding<GetBucketCorsInput, GetBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema);
             this.GetBucketEncryptionBinding = new SmithyOperationBinding<GetBucketEncryptionInput, GetBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema);
             this.GetBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<GetBucketIntelligentTieringConfigurationInput, GetBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema);
             this.GetBucketInventoryConfigurationBinding = new SmithyOperationBinding<GetBucketInventoryConfigurationInput, GetBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema);
             this.GetBucketLifecycleConfigurationBinding = new SmithyOperationBinding<GetBucketLifecycleConfigurationInput, GetBucketLifecycleConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLifecycleConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLifecycleConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema);
             this.GetBucketLocationBinding = new SmithyOperationBinding<GetBucketLocationInput, GetBucketLocationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLocationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLocationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema);
             this.GetBucketLoggingBinding = new SmithyOperationBinding<GetBucketLoggingInput, GetBucketLoggingOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLoggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLoggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema);
             this.GetBucketMetadataConfigurationBinding = new SmithyOperationBinding<GetBucketMetadataConfigurationInput, GetBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema);
             this.GetBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<GetBucketMetadataTableConfigurationInput, GetBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema);
             this.GetBucketMetricsConfigurationBinding = new SmithyOperationBinding<GetBucketMetricsConfigurationInput, GetBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema);
             this.GetBucketNotificationConfigurationBinding = new SmithyOperationBinding<GetBucketNotificationConfigurationInput, GetBucketNotificationConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketNotificationConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketNotificationConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema);
             this.GetBucketOwnershipControlsBinding = new SmithyOperationBinding<GetBucketOwnershipControlsInput, GetBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema);
             this.GetBucketPolicyBinding = new SmithyOperationBinding<GetBucketPolicyInput, GetBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema);
             this.GetBucketPolicyStatusBinding = new SmithyOperationBinding<GetBucketPolicyStatusInput, GetBucketPolicyStatusOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketPolicyStatusSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketPolicyStatusSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema);
             this.GetBucketReplicationBinding = new SmithyOperationBinding<GetBucketReplicationInput, GetBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema);
             this.GetBucketRequestPaymentBinding = new SmithyOperationBinding<GetBucketRequestPaymentInput, GetBucketRequestPaymentOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketRequestPaymentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketRequestPaymentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema);
             this.GetBucketTaggingBinding = new SmithyOperationBinding<GetBucketTaggingInput, GetBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema);
             this.GetBucketVersioningBinding = new SmithyOperationBinding<GetBucketVersioningInput, GetBucketVersioningOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketVersioningSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketVersioningSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema);
             this.GetBucketWebsiteBinding = new SmithyOperationBinding<GetBucketWebsiteInput, GetBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema);
             this.GetObjectBinding = new SmithyOperationBinding<GetObjectInput, GetObjectOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema);
             this.GetObjectAclBinding = new SmithyOperationBinding<GetObjectAclInput, GetObjectAclOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema);
             this.GetObjectAnnotationBinding = new SmithyOperationBinding<GetObjectAnnotationInput, GetObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema);
             this.GetObjectAttributesBinding = new SmithyOperationBinding<GetObjectAttributesInput, GetObjectAttributesOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAttributesSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema);
             this.GetObjectLegalHoldBinding = new SmithyOperationBinding<GetObjectLegalHoldInput, GetObjectLegalHoldOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectLegalHoldSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectLegalHoldSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema);
             this.GetObjectLockConfigurationBinding = new SmithyOperationBinding<GetObjectLockConfigurationInput, GetObjectLockConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectLockConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectLockConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema);
             this.GetObjectRetentionBinding = new SmithyOperationBinding<GetObjectRetentionInput, GetObjectRetentionOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectRetentionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectRetentionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema);
             this.GetObjectTaggingBinding = new SmithyOperationBinding<GetObjectTaggingInput, GetObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema);
             this.GetObjectTorrentBinding = new SmithyOperationBinding<GetObjectTorrentInput, GetObjectTorrentOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectTorrentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectTorrentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema);
             this.GetPublicAccessBlockBinding = new SmithyOperationBinding<GetPublicAccessBlockInput, GetPublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, GetPublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetPublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema);
             this.HeadBucketBinding = new SmithyOperationBinding<HeadBucketInput, HeadBucketOutput>(
-                AmazonS3Schema.Schema.Id, HeadBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(HeadBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema);
             this.HeadObjectBinding = new SmithyOperationBinding<HeadObjectInput, HeadObjectOutput>(
-                AmazonS3Schema.Schema.Id, HeadObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(HeadObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema);
             this.ListBucketAnalyticsConfigurationsBinding = new SmithyOperationBinding<ListBucketAnalyticsConfigurationsInput, ListBucketAnalyticsConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketAnalyticsConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketAnalyticsConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema);
             this.ListBucketIntelligentTieringConfigurationsBinding = new SmithyOperationBinding<ListBucketIntelligentTieringConfigurationsInput, ListBucketIntelligentTieringConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketIntelligentTieringConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketIntelligentTieringConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema);
             this.ListBucketInventoryConfigurationsBinding = new SmithyOperationBinding<ListBucketInventoryConfigurationsInput, ListBucketInventoryConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketInventoryConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketInventoryConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema);
             this.ListBucketMetricsConfigurationsBinding = new SmithyOperationBinding<ListBucketMetricsConfigurationsInput, ListBucketMetricsConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketMetricsConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketMetricsConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema);
             this.ListBucketsBinding = new SmithyOperationBinding<ListBucketsInput, ListBucketsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema);
             this.ListDirectoryBucketsBinding = new SmithyOperationBinding<ListDirectoryBucketsInput, ListDirectoryBucketsOutput>(
-                AmazonS3Schema.Schema.Id, ListDirectoryBucketsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDirectoryBucketsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema);
             this.ListMultipartUploadsBinding = new SmithyOperationBinding<ListMultipartUploadsInput, ListMultipartUploadsOutput>(
-                AmazonS3Schema.Schema.Id, ListMultipartUploadsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListMultipartUploadsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema);
             this.ListObjectAnnotationsBinding = new SmithyOperationBinding<ListObjectAnnotationsInput, ListObjectAnnotationsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectAnnotationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectAnnotationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema);
             this.ListObjectVersionsBinding = new SmithyOperationBinding<ListObjectVersionsInput, ListObjectVersionsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectVersionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectVersionsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema);
             this.ListObjectsBinding = new SmithyOperationBinding<ListObjectsInput, ListObjectsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema);
             this.ListObjectsV2Binding = new SmithyOperationBinding<ListObjectsV2Input, ListObjectsV2Output>(
-                AmazonS3Schema.Schema.Id, ListObjectsV2Schema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectsV2Schema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema);
             this.ListPartsBinding = new SmithyOperationBinding<ListPartsInput, ListPartsOutput>(
-                AmazonS3Schema.Schema.Id, ListPartsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListPartsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema);
             this.PutBucketAbacBinding = new SmithyOperationBinding<PutBucketAbacInput, PutBucketAbacOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAbacSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAbacSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema);
             this.PutBucketAccelerateConfigurationBinding = new SmithyOperationBinding<PutBucketAccelerateConfigurationInput, PutBucketAccelerateConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAccelerateConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAccelerateConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema);
             this.PutBucketAclBinding = new SmithyOperationBinding<PutBucketAclInput, PutBucketAclOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema);
             this.PutBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<PutBucketAnalyticsConfigurationInput, PutBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema);
             this.PutBucketCorsBinding = new SmithyOperationBinding<PutBucketCorsInput, PutBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema);
             this.PutBucketEncryptionBinding = new SmithyOperationBinding<PutBucketEncryptionInput, PutBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema);
             this.PutBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<PutBucketIntelligentTieringConfigurationInput, PutBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema);
             this.PutBucketInventoryConfigurationBinding = new SmithyOperationBinding<PutBucketInventoryConfigurationInput, PutBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema);
             this.PutBucketLifecycleConfigurationBinding = new SmithyOperationBinding<PutBucketLifecycleConfigurationInput, PutBucketLifecycleConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketLifecycleConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketLifecycleConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema);
             this.PutBucketLoggingBinding = new SmithyOperationBinding<PutBucketLoggingInput, PutBucketLoggingOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketLoggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketLoggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema);
             this.PutBucketMetricsConfigurationBinding = new SmithyOperationBinding<PutBucketMetricsConfigurationInput, PutBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema);
             this.PutBucketNotificationConfigurationBinding = new SmithyOperationBinding<PutBucketNotificationConfigurationInput, PutBucketNotificationConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketNotificationConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketNotificationConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema);
             this.PutBucketOwnershipControlsBinding = new SmithyOperationBinding<PutBucketOwnershipControlsInput, PutBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema);
             this.PutBucketPolicyBinding = new SmithyOperationBinding<PutBucketPolicyInput, PutBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema);
             this.PutBucketReplicationBinding = new SmithyOperationBinding<PutBucketReplicationInput, PutBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema);
             this.PutBucketRequestPaymentBinding = new SmithyOperationBinding<PutBucketRequestPaymentInput, PutBucketRequestPaymentOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketRequestPaymentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketRequestPaymentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema);
             this.PutBucketTaggingBinding = new SmithyOperationBinding<PutBucketTaggingInput, PutBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema);
             this.PutBucketVersioningBinding = new SmithyOperationBinding<PutBucketVersioningInput, PutBucketVersioningOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketVersioningSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketVersioningSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema);
             this.PutBucketWebsiteBinding = new SmithyOperationBinding<PutBucketWebsiteInput, PutBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema);
             this.PutObjectBinding = new SmithyOperationBinding<PutObjectInput, PutObjectOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema);
             this.PutObjectAclBinding = new SmithyOperationBinding<PutObjectAclInput, PutObjectAclOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema);
             this.PutObjectAnnotationBinding = new SmithyOperationBinding<PutObjectAnnotationInput, PutObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema);
             this.PutObjectLegalHoldBinding = new SmithyOperationBinding<PutObjectLegalHoldInput, PutObjectLegalHoldOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectLegalHoldSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectLegalHoldSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema);
             this.PutObjectLockConfigurationBinding = new SmithyOperationBinding<PutObjectLockConfigurationInput, PutObjectLockConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectLockConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectLockConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema);
             this.PutObjectRetentionBinding = new SmithyOperationBinding<PutObjectRetentionInput, PutObjectRetentionOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectRetentionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectRetentionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema);
             this.PutObjectTaggingBinding = new SmithyOperationBinding<PutObjectTaggingInput, PutObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema);
             this.PutPublicAccessBlockBinding = new SmithyOperationBinding<PutPublicAccessBlockInput, PutPublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, PutPublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutPublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema);
             this.RenameObjectBinding = new SmithyOperationBinding<RenameObjectInput, RenameObjectOutput>(
-                AmazonS3Schema.Schema.Id, RenameObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RenameObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema);
             this.RestoreObjectBinding = new SmithyOperationBinding<RestoreObjectInput, RestoreObjectOutput>(
-                AmazonS3Schema.Schema.Id, RestoreObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RestoreObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema);
             this.UpdateBucketMetadataAnnotationTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataAnnotationTableConfigurationInput, UpdateBucketMetadataAnnotationTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema);
             this.UpdateBucketMetadataInventoryTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataInventoryTableConfigurationInput, UpdateBucketMetadataInventoryTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataInventoryTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataInventoryTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema);
             this.UpdateBucketMetadataJournalTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataJournalTableConfigurationInput, UpdateBucketMetadataJournalTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataJournalTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataJournalTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema);
             this.UpdateObjectEncryptionBinding = new SmithyOperationBinding<UpdateObjectEncryptionInput, UpdateObjectEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, UpdateObjectEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateObjectEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema);
             this.UploadPartBinding = new SmithyOperationBinding<UploadPartInput, UploadPartOutput>(
-                AmazonS3Schema.Schema.Id, UploadPartSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UploadPartSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema);
             this.UploadPartCopyBinding = new SmithyOperationBinding<UploadPartCopyInput, UploadPartCopyOutput>(
-                AmazonS3Schema.Schema.Id, UploadPartCopySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UploadPartCopySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema);
             this.WriteGetObjectResponseBinding = new SmithyOperationBinding<WriteGetObjectResponseInput, WriteGetObjectResponseOutput>(
-                AmazonS3Schema.Schema.Id, WriteGetObjectResponseSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(WriteGetObjectResponseSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, static input => SmithyHostPrefix.Expand("{RequestRoute}.", new SmithyHostLabel("RequestRoute", input.RequestRoute)));
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, static input => SmithyHostPrefix.Expand("{RequestRoute}.", new SmithyHostLabel("RequestRoute", input.RequestRoute)), global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema);
         }
         catch
         {
@@ -9175,457 +10202,457 @@ public sealed class AmazonS3Client : IAmazonS3Client
         ArgumentNullException.ThrowIfNull(httpClient);
         config ??= new AmazonS3ClientConfig();
         this.environment = SmithyHttpClientEnvironment.Create(
-            AmazonS3Schema.Schema, config, static () => new RestXmlProtocol(),
-            ModeledAuthSchemes, null, httpClient);
+            global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema, config, static () => new RestXmlProtocol(),
+            ModeledAuthSchemes, null, httpClient, modeledEndpointResolver: endpoint => new AmazonS3EndpointResolver(config, endpoint));
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
         this.idempotencyTokenProvider = config.IdempotencyTokenProvider ?? DefaultIdempotencyToken;
         try
         {
             this.AbortMultipartUploadBinding = new SmithyOperationBinding<AbortMultipartUploadInput, AbortMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, AbortMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AbortMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema);
             this.CompleteMultipartUploadBinding = new SmithyOperationBinding<CompleteMultipartUploadInput, CompleteMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, CompleteMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CompleteMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema);
             this.CopyObjectBinding = new SmithyOperationBinding<CopyObjectInput, CopyObjectOutput>(
-                AmazonS3Schema.Schema.Id, CopyObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CopyObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema);
             this.CreateBucketBinding = new SmithyOperationBinding<CreateBucketInput, CreateBucketOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema);
             this.CreateBucketMetadataConfigurationBinding = new SmithyOperationBinding<CreateBucketMetadataConfigurationInput, CreateBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema);
             this.CreateBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<CreateBucketMetadataTableConfigurationInput, CreateBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema);
             this.CreateMultipartUploadBinding = new SmithyOperationBinding<CreateMultipartUploadInput, CreateMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, CreateMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema);
             this.CreateSessionBinding = new SmithyOperationBinding<CreateSessionInput, CreateSessionOutput>(
-                AmazonS3Schema.Schema.Id, CreateSessionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateSessionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema);
             this.DeleteBucketBinding = new SmithyOperationBinding<DeleteBucketInput, DeleteBucketOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema);
             this.DeleteBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<DeleteBucketAnalyticsConfigurationInput, DeleteBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema);
             this.DeleteBucketCorsBinding = new SmithyOperationBinding<DeleteBucketCorsInput, DeleteBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema);
             this.DeleteBucketEncryptionBinding = new SmithyOperationBinding<DeleteBucketEncryptionInput, DeleteBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema);
             this.DeleteBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<DeleteBucketIntelligentTieringConfigurationInput, DeleteBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema);
             this.DeleteBucketInventoryConfigurationBinding = new SmithyOperationBinding<DeleteBucketInventoryConfigurationInput, DeleteBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema);
             this.DeleteBucketLifecycleBinding = new SmithyOperationBinding<DeleteBucketLifecycleInput, DeleteBucketLifecycleOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketLifecycleSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketLifecycleSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema);
             this.DeleteBucketMetadataConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetadataConfigurationInput, DeleteBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema);
             this.DeleteBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetadataTableConfigurationInput, DeleteBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema);
             this.DeleteBucketMetricsConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetricsConfigurationInput, DeleteBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema);
             this.DeleteBucketOwnershipControlsBinding = new SmithyOperationBinding<DeleteBucketOwnershipControlsInput, DeleteBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema);
             this.DeleteBucketPolicyBinding = new SmithyOperationBinding<DeleteBucketPolicyInput, DeleteBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema);
             this.DeleteBucketReplicationBinding = new SmithyOperationBinding<DeleteBucketReplicationInput, DeleteBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema);
             this.DeleteBucketTaggingBinding = new SmithyOperationBinding<DeleteBucketTaggingInput, DeleteBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema);
             this.DeleteBucketWebsiteBinding = new SmithyOperationBinding<DeleteBucketWebsiteInput, DeleteBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema);
             this.DeleteObjectBinding = new SmithyOperationBinding<DeleteObjectInput, DeleteObjectOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema);
             this.DeleteObjectAnnotationBinding = new SmithyOperationBinding<DeleteObjectAnnotationInput, DeleteObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema);
             this.DeleteObjectTaggingBinding = new SmithyOperationBinding<DeleteObjectTaggingInput, DeleteObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema);
             this.DeleteObjectsBinding = new SmithyOperationBinding<DeleteObjectsInput, DeleteObjectsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema);
             this.DeletePublicAccessBlockBinding = new SmithyOperationBinding<DeletePublicAccessBlockInput, DeletePublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, DeletePublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeletePublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema);
             this.GetBucketAbacBinding = new SmithyOperationBinding<GetBucketAbacInput, GetBucketAbacOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAbacSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAbacSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema);
             this.GetBucketAccelerateConfigurationBinding = new SmithyOperationBinding<GetBucketAccelerateConfigurationInput, GetBucketAccelerateConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAccelerateConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAccelerateConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema);
             this.GetBucketAclBinding = new SmithyOperationBinding<GetBucketAclInput, GetBucketAclOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema);
             this.GetBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<GetBucketAnalyticsConfigurationInput, GetBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema);
             this.GetBucketCorsBinding = new SmithyOperationBinding<GetBucketCorsInput, GetBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema);
             this.GetBucketEncryptionBinding = new SmithyOperationBinding<GetBucketEncryptionInput, GetBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema);
             this.GetBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<GetBucketIntelligentTieringConfigurationInput, GetBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema);
             this.GetBucketInventoryConfigurationBinding = new SmithyOperationBinding<GetBucketInventoryConfigurationInput, GetBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema);
             this.GetBucketLifecycleConfigurationBinding = new SmithyOperationBinding<GetBucketLifecycleConfigurationInput, GetBucketLifecycleConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLifecycleConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLifecycleConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema);
             this.GetBucketLocationBinding = new SmithyOperationBinding<GetBucketLocationInput, GetBucketLocationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLocationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLocationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema);
             this.GetBucketLoggingBinding = new SmithyOperationBinding<GetBucketLoggingInput, GetBucketLoggingOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLoggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLoggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema);
             this.GetBucketMetadataConfigurationBinding = new SmithyOperationBinding<GetBucketMetadataConfigurationInput, GetBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema);
             this.GetBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<GetBucketMetadataTableConfigurationInput, GetBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema);
             this.GetBucketMetricsConfigurationBinding = new SmithyOperationBinding<GetBucketMetricsConfigurationInput, GetBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema);
             this.GetBucketNotificationConfigurationBinding = new SmithyOperationBinding<GetBucketNotificationConfigurationInput, GetBucketNotificationConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketNotificationConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketNotificationConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema);
             this.GetBucketOwnershipControlsBinding = new SmithyOperationBinding<GetBucketOwnershipControlsInput, GetBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema);
             this.GetBucketPolicyBinding = new SmithyOperationBinding<GetBucketPolicyInput, GetBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema);
             this.GetBucketPolicyStatusBinding = new SmithyOperationBinding<GetBucketPolicyStatusInput, GetBucketPolicyStatusOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketPolicyStatusSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketPolicyStatusSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema);
             this.GetBucketReplicationBinding = new SmithyOperationBinding<GetBucketReplicationInput, GetBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema);
             this.GetBucketRequestPaymentBinding = new SmithyOperationBinding<GetBucketRequestPaymentInput, GetBucketRequestPaymentOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketRequestPaymentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketRequestPaymentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema);
             this.GetBucketTaggingBinding = new SmithyOperationBinding<GetBucketTaggingInput, GetBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema);
             this.GetBucketVersioningBinding = new SmithyOperationBinding<GetBucketVersioningInput, GetBucketVersioningOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketVersioningSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketVersioningSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema);
             this.GetBucketWebsiteBinding = new SmithyOperationBinding<GetBucketWebsiteInput, GetBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema);
             this.GetObjectBinding = new SmithyOperationBinding<GetObjectInput, GetObjectOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema);
             this.GetObjectAclBinding = new SmithyOperationBinding<GetObjectAclInput, GetObjectAclOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema);
             this.GetObjectAnnotationBinding = new SmithyOperationBinding<GetObjectAnnotationInput, GetObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema);
             this.GetObjectAttributesBinding = new SmithyOperationBinding<GetObjectAttributesInput, GetObjectAttributesOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAttributesSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema);
             this.GetObjectLegalHoldBinding = new SmithyOperationBinding<GetObjectLegalHoldInput, GetObjectLegalHoldOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectLegalHoldSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectLegalHoldSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema);
             this.GetObjectLockConfigurationBinding = new SmithyOperationBinding<GetObjectLockConfigurationInput, GetObjectLockConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectLockConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectLockConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema);
             this.GetObjectRetentionBinding = new SmithyOperationBinding<GetObjectRetentionInput, GetObjectRetentionOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectRetentionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectRetentionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema);
             this.GetObjectTaggingBinding = new SmithyOperationBinding<GetObjectTaggingInput, GetObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema);
             this.GetObjectTorrentBinding = new SmithyOperationBinding<GetObjectTorrentInput, GetObjectTorrentOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectTorrentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectTorrentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema);
             this.GetPublicAccessBlockBinding = new SmithyOperationBinding<GetPublicAccessBlockInput, GetPublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, GetPublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetPublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema);
             this.HeadBucketBinding = new SmithyOperationBinding<HeadBucketInput, HeadBucketOutput>(
-                AmazonS3Schema.Schema.Id, HeadBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(HeadBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema);
             this.HeadObjectBinding = new SmithyOperationBinding<HeadObjectInput, HeadObjectOutput>(
-                AmazonS3Schema.Schema.Id, HeadObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(HeadObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema);
             this.ListBucketAnalyticsConfigurationsBinding = new SmithyOperationBinding<ListBucketAnalyticsConfigurationsInput, ListBucketAnalyticsConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketAnalyticsConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketAnalyticsConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema);
             this.ListBucketIntelligentTieringConfigurationsBinding = new SmithyOperationBinding<ListBucketIntelligentTieringConfigurationsInput, ListBucketIntelligentTieringConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketIntelligentTieringConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketIntelligentTieringConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema);
             this.ListBucketInventoryConfigurationsBinding = new SmithyOperationBinding<ListBucketInventoryConfigurationsInput, ListBucketInventoryConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketInventoryConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketInventoryConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema);
             this.ListBucketMetricsConfigurationsBinding = new SmithyOperationBinding<ListBucketMetricsConfigurationsInput, ListBucketMetricsConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketMetricsConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketMetricsConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema);
             this.ListBucketsBinding = new SmithyOperationBinding<ListBucketsInput, ListBucketsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema);
             this.ListDirectoryBucketsBinding = new SmithyOperationBinding<ListDirectoryBucketsInput, ListDirectoryBucketsOutput>(
-                AmazonS3Schema.Schema.Id, ListDirectoryBucketsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDirectoryBucketsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema);
             this.ListMultipartUploadsBinding = new SmithyOperationBinding<ListMultipartUploadsInput, ListMultipartUploadsOutput>(
-                AmazonS3Schema.Schema.Id, ListMultipartUploadsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListMultipartUploadsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema);
             this.ListObjectAnnotationsBinding = new SmithyOperationBinding<ListObjectAnnotationsInput, ListObjectAnnotationsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectAnnotationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectAnnotationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema);
             this.ListObjectVersionsBinding = new SmithyOperationBinding<ListObjectVersionsInput, ListObjectVersionsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectVersionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectVersionsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema);
             this.ListObjectsBinding = new SmithyOperationBinding<ListObjectsInput, ListObjectsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema);
             this.ListObjectsV2Binding = new SmithyOperationBinding<ListObjectsV2Input, ListObjectsV2Output>(
-                AmazonS3Schema.Schema.Id, ListObjectsV2Schema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectsV2Schema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema);
             this.ListPartsBinding = new SmithyOperationBinding<ListPartsInput, ListPartsOutput>(
-                AmazonS3Schema.Schema.Id, ListPartsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListPartsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema);
             this.PutBucketAbacBinding = new SmithyOperationBinding<PutBucketAbacInput, PutBucketAbacOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAbacSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAbacSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema);
             this.PutBucketAccelerateConfigurationBinding = new SmithyOperationBinding<PutBucketAccelerateConfigurationInput, PutBucketAccelerateConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAccelerateConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAccelerateConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema);
             this.PutBucketAclBinding = new SmithyOperationBinding<PutBucketAclInput, PutBucketAclOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema);
             this.PutBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<PutBucketAnalyticsConfigurationInput, PutBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema);
             this.PutBucketCorsBinding = new SmithyOperationBinding<PutBucketCorsInput, PutBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema);
             this.PutBucketEncryptionBinding = new SmithyOperationBinding<PutBucketEncryptionInput, PutBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema);
             this.PutBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<PutBucketIntelligentTieringConfigurationInput, PutBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema);
             this.PutBucketInventoryConfigurationBinding = new SmithyOperationBinding<PutBucketInventoryConfigurationInput, PutBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema);
             this.PutBucketLifecycleConfigurationBinding = new SmithyOperationBinding<PutBucketLifecycleConfigurationInput, PutBucketLifecycleConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketLifecycleConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketLifecycleConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema);
             this.PutBucketLoggingBinding = new SmithyOperationBinding<PutBucketLoggingInput, PutBucketLoggingOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketLoggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketLoggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema);
             this.PutBucketMetricsConfigurationBinding = new SmithyOperationBinding<PutBucketMetricsConfigurationInput, PutBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema);
             this.PutBucketNotificationConfigurationBinding = new SmithyOperationBinding<PutBucketNotificationConfigurationInput, PutBucketNotificationConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketNotificationConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketNotificationConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema);
             this.PutBucketOwnershipControlsBinding = new SmithyOperationBinding<PutBucketOwnershipControlsInput, PutBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema);
             this.PutBucketPolicyBinding = new SmithyOperationBinding<PutBucketPolicyInput, PutBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema);
             this.PutBucketReplicationBinding = new SmithyOperationBinding<PutBucketReplicationInput, PutBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema);
             this.PutBucketRequestPaymentBinding = new SmithyOperationBinding<PutBucketRequestPaymentInput, PutBucketRequestPaymentOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketRequestPaymentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketRequestPaymentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema);
             this.PutBucketTaggingBinding = new SmithyOperationBinding<PutBucketTaggingInput, PutBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema);
             this.PutBucketVersioningBinding = new SmithyOperationBinding<PutBucketVersioningInput, PutBucketVersioningOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketVersioningSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketVersioningSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema);
             this.PutBucketWebsiteBinding = new SmithyOperationBinding<PutBucketWebsiteInput, PutBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema);
             this.PutObjectBinding = new SmithyOperationBinding<PutObjectInput, PutObjectOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema);
             this.PutObjectAclBinding = new SmithyOperationBinding<PutObjectAclInput, PutObjectAclOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema);
             this.PutObjectAnnotationBinding = new SmithyOperationBinding<PutObjectAnnotationInput, PutObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema);
             this.PutObjectLegalHoldBinding = new SmithyOperationBinding<PutObjectLegalHoldInput, PutObjectLegalHoldOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectLegalHoldSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectLegalHoldSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema);
             this.PutObjectLockConfigurationBinding = new SmithyOperationBinding<PutObjectLockConfigurationInput, PutObjectLockConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectLockConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectLockConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema);
             this.PutObjectRetentionBinding = new SmithyOperationBinding<PutObjectRetentionInput, PutObjectRetentionOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectRetentionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectRetentionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema);
             this.PutObjectTaggingBinding = new SmithyOperationBinding<PutObjectTaggingInput, PutObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema);
             this.PutPublicAccessBlockBinding = new SmithyOperationBinding<PutPublicAccessBlockInput, PutPublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, PutPublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutPublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema);
             this.RenameObjectBinding = new SmithyOperationBinding<RenameObjectInput, RenameObjectOutput>(
-                AmazonS3Schema.Schema.Id, RenameObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RenameObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema);
             this.RestoreObjectBinding = new SmithyOperationBinding<RestoreObjectInput, RestoreObjectOutput>(
-                AmazonS3Schema.Schema.Id, RestoreObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RestoreObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema);
             this.UpdateBucketMetadataAnnotationTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataAnnotationTableConfigurationInput, UpdateBucketMetadataAnnotationTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema);
             this.UpdateBucketMetadataInventoryTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataInventoryTableConfigurationInput, UpdateBucketMetadataInventoryTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataInventoryTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataInventoryTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema);
             this.UpdateBucketMetadataJournalTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataJournalTableConfigurationInput, UpdateBucketMetadataJournalTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataJournalTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataJournalTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema);
             this.UpdateObjectEncryptionBinding = new SmithyOperationBinding<UpdateObjectEncryptionInput, UpdateObjectEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, UpdateObjectEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateObjectEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema);
             this.UploadPartBinding = new SmithyOperationBinding<UploadPartInput, UploadPartOutput>(
-                AmazonS3Schema.Schema.Id, UploadPartSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UploadPartSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema);
             this.UploadPartCopyBinding = new SmithyOperationBinding<UploadPartCopyInput, UploadPartCopyOutput>(
-                AmazonS3Schema.Schema.Id, UploadPartCopySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UploadPartCopySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema);
             this.WriteGetObjectResponseBinding = new SmithyOperationBinding<WriteGetObjectResponseInput, WriteGetObjectResponseOutput>(
-                AmazonS3Schema.Schema.Id, WriteGetObjectResponseSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(WriteGetObjectResponseSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, static input => SmithyHostPrefix.Expand("{RequestRoute}.", new SmithyHostLabel("RequestRoute", input.RequestRoute)));
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, static input => SmithyHostPrefix.Expand("{RequestRoute}.", new SmithyHostLabel("RequestRoute", input.RequestRoute)), global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema);
         }
         catch
         {
@@ -9638,456 +10665,456 @@ public sealed class AmazonS3Client : IAmazonS3Client
     {
         config ??= new AmazonS3ClientConfig();
         this.environment = SmithyHttpClientEnvironment.FromRuntime(
-            AmazonS3Schema.Schema, runtime, config, static () => new RestXmlProtocol());
+            global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema, runtime, config, static () => new RestXmlProtocol());
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
         this.idempotencyTokenProvider = config.IdempotencyTokenProvider ?? DefaultIdempotencyToken;
         try
         {
             this.AbortMultipartUploadBinding = new SmithyOperationBinding<AbortMultipartUploadInput, AbortMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, AbortMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AbortMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.AbortMultipartUploadSchema.Schema);
             this.CompleteMultipartUploadBinding = new SmithyOperationBinding<CompleteMultipartUploadInput, CompleteMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, CompleteMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CompleteMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CompleteMultipartUploadSchema.Schema);
             this.CopyObjectBinding = new SmithyOperationBinding<CopyObjectInput, CopyObjectOutput>(
-                AmazonS3Schema.Schema.Id, CopyObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CopyObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CopyObjectSchema.Schema);
             this.CreateBucketBinding = new SmithyOperationBinding<CreateBucketInput, CreateBucketOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketSchema.Schema);
             this.CreateBucketMetadataConfigurationBinding = new SmithyOperationBinding<CreateBucketMetadataConfigurationInput, CreateBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataConfigurationSchema.Schema);
             this.CreateBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<CreateBucketMetadataTableConfigurationInput, CreateBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, CreateBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateBucketMetadataTableConfigurationSchema.Schema);
             this.CreateMultipartUploadBinding = new SmithyOperationBinding<CreateMultipartUploadInput, CreateMultipartUploadOutput>(
-                AmazonS3Schema.Schema.Id, CreateMultipartUploadSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateMultipartUploadSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateMultipartUploadSchema.Schema);
             this.CreateSessionBinding = new SmithyOperationBinding<CreateSessionInput, CreateSessionOutput>(
-                AmazonS3Schema.Schema.Id, CreateSessionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateSessionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.CreateSessionSchema.Schema);
             this.DeleteBucketBinding = new SmithyOperationBinding<DeleteBucketInput, DeleteBucketOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketSchema.Schema);
             this.DeleteBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<DeleteBucketAnalyticsConfigurationInput, DeleteBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketAnalyticsConfigurationSchema.Schema);
             this.DeleteBucketCorsBinding = new SmithyOperationBinding<DeleteBucketCorsInput, DeleteBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketCorsSchema.Schema);
             this.DeleteBucketEncryptionBinding = new SmithyOperationBinding<DeleteBucketEncryptionInput, DeleteBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketEncryptionSchema.Schema);
             this.DeleteBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<DeleteBucketIntelligentTieringConfigurationInput, DeleteBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketIntelligentTieringConfigurationSchema.Schema);
             this.DeleteBucketInventoryConfigurationBinding = new SmithyOperationBinding<DeleteBucketInventoryConfigurationInput, DeleteBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketInventoryConfigurationSchema.Schema);
             this.DeleteBucketLifecycleBinding = new SmithyOperationBinding<DeleteBucketLifecycleInput, DeleteBucketLifecycleOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketLifecycleSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketLifecycleSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketLifecycleSchema.Schema);
             this.DeleteBucketMetadataConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetadataConfigurationInput, DeleteBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataConfigurationSchema.Schema);
             this.DeleteBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetadataTableConfigurationInput, DeleteBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetadataTableConfigurationSchema.Schema);
             this.DeleteBucketMetricsConfigurationBinding = new SmithyOperationBinding<DeleteBucketMetricsConfigurationInput, DeleteBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketMetricsConfigurationSchema.Schema);
             this.DeleteBucketOwnershipControlsBinding = new SmithyOperationBinding<DeleteBucketOwnershipControlsInput, DeleteBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketOwnershipControlsSchema.Schema);
             this.DeleteBucketPolicyBinding = new SmithyOperationBinding<DeleteBucketPolicyInput, DeleteBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketPolicySchema.Schema);
             this.DeleteBucketReplicationBinding = new SmithyOperationBinding<DeleteBucketReplicationInput, DeleteBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketReplicationSchema.Schema);
             this.DeleteBucketTaggingBinding = new SmithyOperationBinding<DeleteBucketTaggingInput, DeleteBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketTaggingSchema.Schema);
             this.DeleteBucketWebsiteBinding = new SmithyOperationBinding<DeleteBucketWebsiteInput, DeleteBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, DeleteBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteBucketWebsiteSchema.Schema);
             this.DeleteObjectBinding = new SmithyOperationBinding<DeleteObjectInput, DeleteObjectOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectSchema.Schema);
             this.DeleteObjectAnnotationBinding = new SmithyOperationBinding<DeleteObjectAnnotationInput, DeleteObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectAnnotationSchema.Schema);
             this.DeleteObjectTaggingBinding = new SmithyOperationBinding<DeleteObjectTaggingInput, DeleteObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectTaggingSchema.Schema);
             this.DeleteObjectsBinding = new SmithyOperationBinding<DeleteObjectsInput, DeleteObjectsOutput>(
-                AmazonS3Schema.Schema.Id, DeleteObjectsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteObjectsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeleteObjectsSchema.Schema);
             this.DeletePublicAccessBlockBinding = new SmithyOperationBinding<DeletePublicAccessBlockInput, DeletePublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, DeletePublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeletePublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.DeletePublicAccessBlockSchema.Schema);
             this.GetBucketAbacBinding = new SmithyOperationBinding<GetBucketAbacInput, GetBucketAbacOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAbacSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAbacSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAbacSchema.Schema);
             this.GetBucketAccelerateConfigurationBinding = new SmithyOperationBinding<GetBucketAccelerateConfigurationInput, GetBucketAccelerateConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAccelerateConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAccelerateConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAccelerateConfigurationSchema.Schema);
             this.GetBucketAclBinding = new SmithyOperationBinding<GetBucketAclInput, GetBucketAclOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAclSchema.Schema);
             this.GetBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<GetBucketAnalyticsConfigurationInput, GetBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketAnalyticsConfigurationSchema.Schema);
             this.GetBucketCorsBinding = new SmithyOperationBinding<GetBucketCorsInput, GetBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketCorsSchema.Schema);
             this.GetBucketEncryptionBinding = new SmithyOperationBinding<GetBucketEncryptionInput, GetBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketEncryptionSchema.Schema);
             this.GetBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<GetBucketIntelligentTieringConfigurationInput, GetBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketIntelligentTieringConfigurationSchema.Schema);
             this.GetBucketInventoryConfigurationBinding = new SmithyOperationBinding<GetBucketInventoryConfigurationInput, GetBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketInventoryConfigurationSchema.Schema);
             this.GetBucketLifecycleConfigurationBinding = new SmithyOperationBinding<GetBucketLifecycleConfigurationInput, GetBucketLifecycleConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLifecycleConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLifecycleConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLifecycleConfigurationSchema.Schema);
             this.GetBucketLocationBinding = new SmithyOperationBinding<GetBucketLocationInput, GetBucketLocationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLocationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLocationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLocationSchema.Schema);
             this.GetBucketLoggingBinding = new SmithyOperationBinding<GetBucketLoggingInput, GetBucketLoggingOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketLoggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketLoggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketLoggingSchema.Schema);
             this.GetBucketMetadataConfigurationBinding = new SmithyOperationBinding<GetBucketMetadataConfigurationInput, GetBucketMetadataConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetadataConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetadataConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataConfigurationSchema.Schema);
             this.GetBucketMetadataTableConfigurationBinding = new SmithyOperationBinding<GetBucketMetadataTableConfigurationInput, GetBucketMetadataTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetadataTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetadataTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetadataTableConfigurationSchema.Schema);
             this.GetBucketMetricsConfigurationBinding = new SmithyOperationBinding<GetBucketMetricsConfigurationInput, GetBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketMetricsConfigurationSchema.Schema);
             this.GetBucketNotificationConfigurationBinding = new SmithyOperationBinding<GetBucketNotificationConfigurationInput, GetBucketNotificationConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketNotificationConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketNotificationConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketNotificationConfigurationSchema.Schema);
             this.GetBucketOwnershipControlsBinding = new SmithyOperationBinding<GetBucketOwnershipControlsInput, GetBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketOwnershipControlsSchema.Schema);
             this.GetBucketPolicyBinding = new SmithyOperationBinding<GetBucketPolicyInput, GetBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketPolicySchema.Schema);
             this.GetBucketPolicyStatusBinding = new SmithyOperationBinding<GetBucketPolicyStatusInput, GetBucketPolicyStatusOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketPolicyStatusSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketPolicyStatusSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketPolicyStatusSchema.Schema);
             this.GetBucketReplicationBinding = new SmithyOperationBinding<GetBucketReplicationInput, GetBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketReplicationSchema.Schema);
             this.GetBucketRequestPaymentBinding = new SmithyOperationBinding<GetBucketRequestPaymentInput, GetBucketRequestPaymentOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketRequestPaymentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketRequestPaymentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketRequestPaymentSchema.Schema);
             this.GetBucketTaggingBinding = new SmithyOperationBinding<GetBucketTaggingInput, GetBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketTaggingSchema.Schema);
             this.GetBucketVersioningBinding = new SmithyOperationBinding<GetBucketVersioningInput, GetBucketVersioningOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketVersioningSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketVersioningSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketVersioningSchema.Schema);
             this.GetBucketWebsiteBinding = new SmithyOperationBinding<GetBucketWebsiteInput, GetBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, GetBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetBucketWebsiteSchema.Schema);
             this.GetObjectBinding = new SmithyOperationBinding<GetObjectInput, GetObjectOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectSchema.Schema);
             this.GetObjectAclBinding = new SmithyOperationBinding<GetObjectAclInput, GetObjectAclOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAclSchema.Schema);
             this.GetObjectAnnotationBinding = new SmithyOperationBinding<GetObjectAnnotationInput, GetObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAnnotationSchema.Schema);
             this.GetObjectAttributesBinding = new SmithyOperationBinding<GetObjectAttributesInput, GetObjectAttributesOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectAttributesSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectAttributesSchema.Schema);
             this.GetObjectLegalHoldBinding = new SmithyOperationBinding<GetObjectLegalHoldInput, GetObjectLegalHoldOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectLegalHoldSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectLegalHoldSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectLegalHoldSchema.Schema);
             this.GetObjectLockConfigurationBinding = new SmithyOperationBinding<GetObjectLockConfigurationInput, GetObjectLockConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectLockConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectLockConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectLockConfigurationSchema.Schema);
             this.GetObjectRetentionBinding = new SmithyOperationBinding<GetObjectRetentionInput, GetObjectRetentionOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectRetentionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectRetentionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectRetentionSchema.Schema);
             this.GetObjectTaggingBinding = new SmithyOperationBinding<GetObjectTaggingInput, GetObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectTaggingSchema.Schema);
             this.GetObjectTorrentBinding = new SmithyOperationBinding<GetObjectTorrentInput, GetObjectTorrentOutput>(
-                AmazonS3Schema.Schema.Id, GetObjectTorrentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetObjectTorrentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetObjectTorrentSchema.Schema);
             this.GetPublicAccessBlockBinding = new SmithyOperationBinding<GetPublicAccessBlockInput, GetPublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, GetPublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetPublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.GetPublicAccessBlockSchema.Schema);
             this.HeadBucketBinding = new SmithyOperationBinding<HeadBucketInput, HeadBucketOutput>(
-                AmazonS3Schema.Schema.Id, HeadBucketSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(HeadBucketSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.HeadBucketSchema.Schema);
             this.HeadObjectBinding = new SmithyOperationBinding<HeadObjectInput, HeadObjectOutput>(
-                AmazonS3Schema.Schema.Id, HeadObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(HeadObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.HeadObjectSchema.Schema);
             this.ListBucketAnalyticsConfigurationsBinding = new SmithyOperationBinding<ListBucketAnalyticsConfigurationsInput, ListBucketAnalyticsConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketAnalyticsConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketAnalyticsConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketAnalyticsConfigurationsSchema.Schema);
             this.ListBucketIntelligentTieringConfigurationsBinding = new SmithyOperationBinding<ListBucketIntelligentTieringConfigurationsInput, ListBucketIntelligentTieringConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketIntelligentTieringConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketIntelligentTieringConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketIntelligentTieringConfigurationsSchema.Schema);
             this.ListBucketInventoryConfigurationsBinding = new SmithyOperationBinding<ListBucketInventoryConfigurationsInput, ListBucketInventoryConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketInventoryConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketInventoryConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketInventoryConfigurationsSchema.Schema);
             this.ListBucketMetricsConfigurationsBinding = new SmithyOperationBinding<ListBucketMetricsConfigurationsInput, ListBucketMetricsConfigurationsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketMetricsConfigurationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketMetricsConfigurationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketMetricsConfigurationsSchema.Schema);
             this.ListBucketsBinding = new SmithyOperationBinding<ListBucketsInput, ListBucketsOutput>(
-                AmazonS3Schema.Schema.Id, ListBucketsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListBucketsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListBucketsSchema.Schema);
             this.ListDirectoryBucketsBinding = new SmithyOperationBinding<ListDirectoryBucketsInput, ListDirectoryBucketsOutput>(
-                AmazonS3Schema.Schema.Id, ListDirectoryBucketsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDirectoryBucketsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListDirectoryBucketsSchema.Schema);
             this.ListMultipartUploadsBinding = new SmithyOperationBinding<ListMultipartUploadsInput, ListMultipartUploadsOutput>(
-                AmazonS3Schema.Schema.Id, ListMultipartUploadsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListMultipartUploadsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListMultipartUploadsSchema.Schema);
             this.ListObjectAnnotationsBinding = new SmithyOperationBinding<ListObjectAnnotationsInput, ListObjectAnnotationsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectAnnotationsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectAnnotationsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectAnnotationsSchema.Schema);
             this.ListObjectVersionsBinding = new SmithyOperationBinding<ListObjectVersionsInput, ListObjectVersionsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectVersionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectVersionsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectVersionsSchema.Schema);
             this.ListObjectsBinding = new SmithyOperationBinding<ListObjectsInput, ListObjectsOutput>(
-                AmazonS3Schema.Schema.Id, ListObjectsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectsSchema.Schema);
             this.ListObjectsV2Binding = new SmithyOperationBinding<ListObjectsV2Input, ListObjectsV2Output>(
-                AmazonS3Schema.Schema.Id, ListObjectsV2Schema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListObjectsV2Schema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListObjectsV2Schema.Schema);
             this.ListPartsBinding = new SmithyOperationBinding<ListPartsInput, ListPartsOutput>(
-                AmazonS3Schema.Schema.Id, ListPartsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListPartsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.ListPartsSchema.Schema);
             this.PutBucketAbacBinding = new SmithyOperationBinding<PutBucketAbacInput, PutBucketAbacOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAbacSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAbacSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAbacSchema.Schema);
             this.PutBucketAccelerateConfigurationBinding = new SmithyOperationBinding<PutBucketAccelerateConfigurationInput, PutBucketAccelerateConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAccelerateConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAccelerateConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAccelerateConfigurationSchema.Schema);
             this.PutBucketAclBinding = new SmithyOperationBinding<PutBucketAclInput, PutBucketAclOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAclSchema.Schema);
             this.PutBucketAnalyticsConfigurationBinding = new SmithyOperationBinding<PutBucketAnalyticsConfigurationInput, PutBucketAnalyticsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketAnalyticsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketAnalyticsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketAnalyticsConfigurationSchema.Schema);
             this.PutBucketCorsBinding = new SmithyOperationBinding<PutBucketCorsInput, PutBucketCorsOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketCorsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketCorsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketCorsSchema.Schema);
             this.PutBucketEncryptionBinding = new SmithyOperationBinding<PutBucketEncryptionInput, PutBucketEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketEncryptionSchema.Schema);
             this.PutBucketIntelligentTieringConfigurationBinding = new SmithyOperationBinding<PutBucketIntelligentTieringConfigurationInput, PutBucketIntelligentTieringConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketIntelligentTieringConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketIntelligentTieringConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketIntelligentTieringConfigurationSchema.Schema);
             this.PutBucketInventoryConfigurationBinding = new SmithyOperationBinding<PutBucketInventoryConfigurationInput, PutBucketInventoryConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketInventoryConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketInventoryConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketInventoryConfigurationSchema.Schema);
             this.PutBucketLifecycleConfigurationBinding = new SmithyOperationBinding<PutBucketLifecycleConfigurationInput, PutBucketLifecycleConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketLifecycleConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketLifecycleConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketLifecycleConfigurationSchema.Schema);
             this.PutBucketLoggingBinding = new SmithyOperationBinding<PutBucketLoggingInput, PutBucketLoggingOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketLoggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketLoggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketLoggingSchema.Schema);
             this.PutBucketMetricsConfigurationBinding = new SmithyOperationBinding<PutBucketMetricsConfigurationInput, PutBucketMetricsConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketMetricsConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketMetricsConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketMetricsConfigurationSchema.Schema);
             this.PutBucketNotificationConfigurationBinding = new SmithyOperationBinding<PutBucketNotificationConfigurationInput, PutBucketNotificationConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketNotificationConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketNotificationConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketNotificationConfigurationSchema.Schema);
             this.PutBucketOwnershipControlsBinding = new SmithyOperationBinding<PutBucketOwnershipControlsInput, PutBucketOwnershipControlsOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketOwnershipControlsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketOwnershipControlsSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketOwnershipControlsSchema.Schema);
             this.PutBucketPolicyBinding = new SmithyOperationBinding<PutBucketPolicyInput, PutBucketPolicyOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketPolicySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketPolicySchema.Schema);
             this.PutBucketReplicationBinding = new SmithyOperationBinding<PutBucketReplicationInput, PutBucketReplicationOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketReplicationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketReplicationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketReplicationSchema.Schema);
             this.PutBucketRequestPaymentBinding = new SmithyOperationBinding<PutBucketRequestPaymentInput, PutBucketRequestPaymentOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketRequestPaymentSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketRequestPaymentSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketRequestPaymentSchema.Schema);
             this.PutBucketTaggingBinding = new SmithyOperationBinding<PutBucketTaggingInput, PutBucketTaggingOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketTaggingSchema.Schema);
             this.PutBucketVersioningBinding = new SmithyOperationBinding<PutBucketVersioningInput, PutBucketVersioningOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketVersioningSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketVersioningSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketVersioningSchema.Schema);
             this.PutBucketWebsiteBinding = new SmithyOperationBinding<PutBucketWebsiteInput, PutBucketWebsiteOutput>(
-                AmazonS3Schema.Schema.Id, PutBucketWebsiteSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutBucketWebsiteSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutBucketWebsiteSchema.Schema);
             this.PutObjectBinding = new SmithyOperationBinding<PutObjectInput, PutObjectOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectSchema.Schema);
             this.PutObjectAclBinding = new SmithyOperationBinding<PutObjectAclInput, PutObjectAclOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectAclSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectAclSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectAclSchema.Schema);
             this.PutObjectAnnotationBinding = new SmithyOperationBinding<PutObjectAnnotationInput, PutObjectAnnotationOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectAnnotationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectAnnotationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectAnnotationSchema.Schema);
             this.PutObjectLegalHoldBinding = new SmithyOperationBinding<PutObjectLegalHoldInput, PutObjectLegalHoldOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectLegalHoldSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectLegalHoldSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectLegalHoldSchema.Schema);
             this.PutObjectLockConfigurationBinding = new SmithyOperationBinding<PutObjectLockConfigurationInput, PutObjectLockConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectLockConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectLockConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectLockConfigurationSchema.Schema);
             this.PutObjectRetentionBinding = new SmithyOperationBinding<PutObjectRetentionInput, PutObjectRetentionOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectRetentionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectRetentionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectRetentionSchema.Schema);
             this.PutObjectTaggingBinding = new SmithyOperationBinding<PutObjectTaggingInput, PutObjectTaggingOutput>(
-                AmazonS3Schema.Schema.Id, PutObjectTaggingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutObjectTaggingSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutObjectTaggingSchema.Schema);
             this.PutPublicAccessBlockBinding = new SmithyOperationBinding<PutPublicAccessBlockInput, PutPublicAccessBlockOutput>(
-                AmazonS3Schema.Schema.Id, PutPublicAccessBlockSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutPublicAccessBlockSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.PutPublicAccessBlockSchema.Schema);
             this.RenameObjectBinding = new SmithyOperationBinding<RenameObjectInput, RenameObjectOutput>(
-                AmazonS3Schema.Schema.Id, RenameObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RenameObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.RenameObjectSchema.Schema);
             this.RestoreObjectBinding = new SmithyOperationBinding<RestoreObjectInput, RestoreObjectOutput>(
-                AmazonS3Schema.Schema.Id, RestoreObjectSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RestoreObjectSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.RestoreObjectSchema.Schema);
             this.UpdateBucketMetadataAnnotationTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataAnnotationTableConfigurationInput, UpdateBucketMetadataAnnotationTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataAnnotationTableConfigurationSchema.Schema);
             this.UpdateBucketMetadataInventoryTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataInventoryTableConfigurationInput, UpdateBucketMetadataInventoryTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataInventoryTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataInventoryTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataInventoryTableConfigurationSchema.Schema);
             this.UpdateBucketMetadataJournalTableConfigurationBinding = new SmithyOperationBinding<UpdateBucketMetadataJournalTableConfigurationInput, UpdateBucketMetadataJournalTableConfigurationOutput>(
-                AmazonS3Schema.Schema.Id, UpdateBucketMetadataJournalTableConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateBucketMetadataJournalTableConfigurationSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateBucketMetadataJournalTableConfigurationSchema.Schema);
             this.UpdateObjectEncryptionBinding = new SmithyOperationBinding<UpdateObjectEncryptionInput, UpdateObjectEncryptionOutput>(
-                AmazonS3Schema.Schema.Id, UpdateObjectEncryptionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateObjectEncryptionSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UpdateObjectEncryptionSchema.Schema);
             this.UploadPartBinding = new SmithyOperationBinding<UploadPartInput, UploadPartOutput>(
-                AmazonS3Schema.Schema.Id, UploadPartSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UploadPartSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UploadPartSchema.Schema);
             this.UploadPartCopyBinding = new SmithyOperationBinding<UploadPartCopyInput, UploadPartCopyOutput>(
-                AmazonS3Schema.Schema.Id, UploadPartCopySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UploadPartCopySchema.Schema),
-                new string[] { "aws.auth#sigv4" }, null);
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema),
+                new string[] { "aws.auth#sigv4" }, null, global::Com.Amazonaws.S3.Schemas.UploadPartCopySchema.Schema);
             this.WriteGetObjectResponseBinding = new SmithyOperationBinding<WriteGetObjectResponseInput, WriteGetObjectResponseOutput>(
-                AmazonS3Schema.Schema.Id, WriteGetObjectResponseSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(WriteGetObjectResponseSchema.Schema),
-                new string[] { "aws.auth#sigv4" }, static input => SmithyHostPrefix.Expand("{RequestRoute}.", new SmithyHostLabel("RequestRoute", input.RequestRoute)));
+                global::Com.Amazonaws.S3.Schemas.AmazonS3Schema.Schema.Id, global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema),
+                new string[] { "aws.auth#sigv4" }, static input => SmithyHostPrefix.Expand("{RequestRoute}.", new SmithyHostLabel("RequestRoute", input.RequestRoute)), global::Com.Amazonaws.S3.Schemas.WriteGetObjectResponseSchema.Schema);
         }
         catch
         {
@@ -10198,6 +11225,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To abort a multipart upload
+    /// </para>
+    /// <para>
+    /// The following example aborts a multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new AbortMultipartUploadInput(Bucket: &quot;examplebucket&quot;, Key: &quot;bigobject&quot;, UploadId: &quot;xadcOB_7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;);
+    /// var output = await client.AbortMultipartUploadAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AbortMultipartUploadOutput();
+    /// </code>
+    /// </example>
     public Task<AbortMultipartUploadOutput> AbortMultipartUploadAsync(AbortMultipartUploadInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -10368,6 +11410,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To complete multipart upload
+    /// </para>
+    /// <para>
+    /// The following example completes a multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new CompleteMultipartUploadInput(Bucket: &quot;examplebucket&quot;, Key: &quot;bigobject&quot;, UploadId: &quot;7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;, MultipartUpload: new CompletedMultipartUpload(Parts: new CompletedPart[] { new CompletedPart(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, PartNumber: 1), new CompletedPart(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, PartNumber: 2) }));
+    /// var output = await client.CompleteMultipartUploadAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CompleteMultipartUploadOutput(Bucket: &quot;acexamplebucket&quot;, ETag: &quot;\&quot;4d9031c7644d8081c2829f4ea23c55f7-2\&quot;&quot;, Key: &quot;bigobject&quot;, Location: &quot;https://examplebucket.s3.&lt;Region&gt;.amazonaws.com/bigobject&quot;);
+    /// </code>
+    /// </example>
     public Task<CompleteMultipartUploadOutput> CompleteMultipartUploadAsync(CompleteMultipartUploadInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -10578,6 +11635,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To copy an object
+    /// </para>
+    /// <para>
+    /// The following example copies an object from one bucket to another.
+    /// </para>
+    /// <code>
+    /// var input = new CopyObjectInput(Bucket: &quot;destinationbucket&quot;, CopySource: &quot;/sourcebucket/HappyFacejpg&quot;, Key: &quot;HappyFaceCopyjpg&quot;);
+    /// var output = await client.CopyObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CopyObjectOutput(CopyObjectResult: new CopyObjectResult(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T17:38:53.000Z&quot;, CultureInfo.InvariantCulture)));
+    /// </code>
+    /// </example>
     public Task<CopyObjectOutput> CopyObjectAsync(CopyObjectInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -10734,6 +11806,36 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a bucket in a specific region
+    /// </para>
+    /// <para>
+    /// The following example creates a bucket. The request specifies an AWS region where to create the bucket.
+    /// </para>
+    /// <code>
+    /// var input = new CreateBucketInput(Bucket: &quot;examplebucket&quot;, CreateBucketConfiguration: new CreateBucketConfiguration(LocationConstraint: new BucketLocationConstraint(&quot;eu-west-1&quot;)));
+    /// var output = await client.CreateBucketAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateBucketOutput(Location: &quot;http://examplebucket.&lt;Region&gt;.s3.amazonaws.com/&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To create a bucket
+    /// </para>
+    /// <para>
+    /// The following example creates a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new CreateBucketInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.CreateBucketAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateBucketOutput(Location: &quot;/examplebucket&quot;);
+    /// </code>
+    /// </example>
     public Task<CreateBucketOutput> CreateBucketAsync(CreateBucketInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -11194,6 +12296,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To initiate a multipart upload
+    /// </para>
+    /// <para>
+    /// The following example initiates a multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new CreateMultipartUploadInput(Bucket: &quot;examplebucket&quot;, Key: &quot;largeobject&quot;);
+    /// var output = await client.CreateMultipartUploadAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateMultipartUploadOutput(Bucket: &quot;examplebucket&quot;, Key: &quot;largeobject&quot;, UploadId: &quot;ibZBv_75gd9r8lH_gqXatLdxMVpAlj6ZQjEs.OwyF3953YdwbcQnMA2BLGn8Lx12fQNICtMw5KyteFeHw.Sjng--&quot;);
+    /// </code>
+    /// </example>
     public Task<CreateMultipartUploadOutput> CreateMultipartUploadAsync(CreateMultipartUploadInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -11376,6 +12493,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a bucket
+    /// </para>
+    /// <para>
+    /// The following example deletes the specified bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketInput(Bucket: &quot;forrandall2&quot;);
+    /// var output = await client.DeleteBucketAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteBucketOutput> DeleteBucketAsync(DeleteBucketInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -11450,6 +12579,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete cors configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example deletes CORS configuration on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketCorsInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketCorsAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteBucketCorsOutput> DeleteBucketCorsAsync(DeleteBucketCorsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -11705,6 +12846,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete lifecycle configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example deletes lifecycle configuration on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketLifecycleInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketLifecycleAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteBucketLifecycleOutput> DeleteBucketLifecycleAsync(DeleteBucketLifecycleInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -11998,6 +13151,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket policy
+    /// </para>
+    /// <para>
+    /// The following example deletes bucket policy on the specified bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketPolicyInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketPolicyAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteBucketPolicyOutput> DeleteBucketPolicyAsync(DeleteBucketPolicyInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12035,6 +13200,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket replication configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes replication configuration set on bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketReplicationInput(Bucket: &quot;example&quot;);
+    /// var output = await client.DeleteBucketReplicationAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteBucketReplicationOutput> DeleteBucketReplicationAsync(DeleteBucketReplicationInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12065,6 +13242,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket tags
+    /// </para>
+    /// <para>
+    /// The following example deletes bucket tags.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketTaggingInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketTaggingAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteBucketTaggingOutput> DeleteBucketTaggingAsync(DeleteBucketTaggingInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12102,6 +13291,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete bucket website configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes bucket website configuration.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteBucketWebsiteInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.DeleteBucketWebsiteAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteBucketWebsiteOutput> DeleteBucketWebsiteAsync(DeleteBucketWebsiteInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12235,6 +13436,33 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;The &lt;code&gt;If-Match&lt;/code&gt; header is supported for both general purpose and directory buckets. &lt;code&gt;IfMatchLastModifiedTime&lt;/code&gt; and &lt;code&gt;IfMatchSize&lt;/code&gt; is only supported for directory buckets. &lt;/p&gt;
     /// &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete an object (from a non-versioned bucket)
+    /// </para>
+    /// <para>
+    /// The following example deletes an object from a non-versioned bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectInput(Bucket: &quot;ExampleBucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.DeleteObjectAsync(input);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To delete an object
+    /// </para>
+    /// <para>
+    /// The following example deletes an object from an S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;objectkey.jpg&quot;);
+    /// var output = await client.DeleteObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectOutput();
+    /// </code>
+    /// </example>
     public Task<DeleteObjectOutput> DeleteObjectAsync(DeleteObjectInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12308,6 +13536,36 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove tag set from an object
+    /// </para>
+    /// <para>
+    /// The following example removes tag set associated with the specified object. If the bucket is versioning enabled, the operation removes tag set from the latest object version.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.DeleteObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectTaggingOutput(VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To remove tag set from an object version
+    /// </para>
+    /// <para>
+    /// The following example removes tag set associated with the specified object version. The request specifies both the object key and object version.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// var output = await client.DeleteObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectTaggingOutput(VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// </code>
+    /// </example>
     public Task<DeleteObjectTaggingOutput> DeleteObjectTaggingAsync(DeleteObjectTaggingInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12454,6 +13712,36 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete multiple object versions from a versioned bucket
+    /// </para>
+    /// <para>
+    /// The following example deletes objects from a bucket. The request specifies object versions. S3 deletes specific object versions and returns the key and versions of deleted objects in the response.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectsInput(Bucket: &quot;examplebucket&quot;, Delete: new Delete(Objects: new ObjectIdentifier[] { new ObjectIdentifier(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;), new ObjectIdentifier(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;) }, Quiet: false));
+    /// var output = await client.DeleteObjectsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectsOutput(Deleted: new DeletedObject[] { new DeletedObject(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;), new DeletedObject(Key: &quot;HappyFace.jpg&quot;, VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;) });
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To delete multiple objects from a versioned bucket
+    /// </para>
+    /// <para>
+    /// The following example deletes objects from a bucket. The bucket is versioned, and the request does not specify the object version to delete. In this case, all versions remain in the bucket and S3 adds a delete marker.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteObjectsInput(Bucket: &quot;examplebucket&quot;, Delete: new Delete(Objects: new ObjectIdentifier[] { new ObjectIdentifier(Key: &quot;objectkey1&quot;), new ObjectIdentifier(Key: &quot;objectkey2&quot;) }, Quiet: false));
+    /// var output = await client.DeleteObjectsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteObjectsOutput(Deleted: new DeletedObject[] { new DeletedObject(DeleteMarker: true, DeleteMarkerVersionId: &quot;A._w1z6EFiCF5uhtQMDal9JDkID9tQ7F&quot;, Key: &quot;objectkey1&quot;), new DeletedObject(DeleteMarker: true, DeleteMarkerVersionId: &quot;iOd_ORxhkKe_e8G8_oSGxt2PjsCZKlkt&quot;, Key: &quot;objectkey2&quot;) });
+    /// </code>
+    /// </example>
     public Task<DeleteObjectsOutput> DeleteObjectsAsync(DeleteObjectsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12659,6 +13947,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get cors configuration set on a bucket
+    /// </para>
+    /// <para>
+    /// The following example returns cross-origin resource sharing (CORS) configuration set on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketCorsInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketCorsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketCorsOutput(CORSRules: new CORSRule[] { new CORSRule(AllowedMethods: new string[] { &quot;GET&quot; }, AllowedOrigins: new string[] { &quot;*&quot; }, AllowedHeaders: new string[] { &quot;Authorization&quot; }, MaxAgeSeconds: 3000) });
+    /// </code>
+    /// </example>
     public Task<GetBucketCorsOutput> GetBucketCorsAsync(GetBucketCorsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12939,6 +14242,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get lifecycle configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example retrieves lifecycle configuration on set on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketLifecycleConfigurationInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketLifecycleConfigurationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketLifecycleConfigurationOutput(Rules: new LifecycleRule[] { new LifecycleRule(Status: new ExpirationStatus(&quot;Enabled&quot;), ID: &quot;Rule for TaxDocs/&quot;, Prefix: &quot;TaxDocs&quot;, Transitions: new Transition[] { new Transition(Days: 365, StorageClass: new TransitionStorageClass(&quot;STANDARD_IA&quot;)) }) });
+    /// </code>
+    /// </example>
     public Task<GetBucketLifecycleConfigurationOutput> GetBucketLifecycleConfigurationAsync(GetBucketLifecycleConfigurationInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -12989,6 +14307,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket location
+    /// </para>
+    /// <para>
+    /// The following example returns bucket location.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketLocationInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketLocationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketLocationOutput(LocationConstraint: new BucketLocationConstraint(&quot;us-west-2&quot;));
+    /// </code>
+    /// </example>
     public Task<GetBucketLocationOutput> GetBucketLocationAsync(GetBucketLocationInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13363,6 +14696,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket policy
+    /// </para>
+    /// <para>
+    /// The following example returns bucket policy associated with a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketPolicyInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketPolicyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketPolicyOutput(Policy: &quot;{\&quot;Version\&quot;:\&quot;2008-10-17\&quot;,&amp;TCX5-2025-waiver;\&quot;Id\&quot;:\&quot;LogPolicy\&quot;,\&quot;Statement\&quot;:[{\&quot;Sid\&quot;:\&quot;Enables the log delivery group to publish logs to your bucket \&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;111122223333\&quot;},\&quot;Action\&quot;:[\&quot;s3:GetBucketAcl\&quot;,\&quot;s3:GetObjectAcl\&quot;,\&quot;s3:PutObject\&quot;],\&quot;Resource\&quot;:[\&quot;arn:aws:s3:::policytest1/*\&quot;,\&quot;arn:aws:s3:::policytest1\&quot;]}]}&quot;);
+    /// </code>
+    /// </example>
     public Task<GetBucketPolicyOutput> GetBucketPolicyAsync(GetBucketPolicyInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13448,6 +14796,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get replication configuration set on a bucket
+    /// </para>
+    /// <para>
+    /// The following example returns replication configuration set on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketReplicationInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketReplicationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketReplicationOutput(ReplicationConfiguration: new ReplicationConfiguration(Role: &quot;arn:aws:iam::acct-id:role/example-role&quot;, Rules: new ReplicationRule[] { new ReplicationRule(Destination: new Destination(Bucket: &quot;arn:aws:s3:::destination-bucket&quot;), Status: new ReplicationRuleStatus(&quot;Enabled&quot;), ID: &quot;MWIwNTkwZmItMTE3MS00ZTc3LWJkZDEtNzRmODQwYzc1OTQy&quot;, Prefix: &quot;Tax&quot;) }));
+    /// </code>
+    /// </example>
     public Task<GetBucketReplicationOutput> GetBucketReplicationAsync(GetBucketReplicationInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13472,6 +14835,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket versioning configuration
+    /// </para>
+    /// <para>
+    /// The following example retrieves bucket versioning configuration.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketRequestPaymentInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketRequestPaymentAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketRequestPaymentOutput(Payer: new Payer(&quot;BucketOwner&quot;));
+    /// </code>
+    /// </example>
     public Task<GetBucketRequestPaymentOutput> GetBucketRequestPaymentAsync(GetBucketRequestPaymentInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13515,6 +14893,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get tag set associated with a bucket
+    /// </para>
+    /// <para>
+    /// The following example returns tag set associated with a bucket
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketTaggingInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketTaggingOutput(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;key1&quot;, Value: &quot;value1&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;key2&quot;, Value: &quot;value2&quot;) });
+    /// </code>
+    /// </example>
     public Task<GetBucketTaggingOutput> GetBucketTaggingAsync(GetBucketTaggingInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13552,6 +14945,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket versioning configuration
+    /// </para>
+    /// <para>
+    /// The following example retrieves bucket versioning configuration.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketVersioningInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketVersioningAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketVersioningOutput(MFADelete: new MFADeleteStatus(&quot;Disabled&quot;), Status: new BucketVersioningStatus(&quot;Enabled&quot;));
+    /// </code>
+    /// </example>
     public Task<GetBucketVersioningOutput> GetBucketVersioningAsync(GetBucketVersioningInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13585,6 +14993,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get bucket website configuration
+    /// </para>
+    /// <para>
+    /// The following example retrieves website configuration of a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetBucketWebsiteInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.GetBucketWebsiteAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetBucketWebsiteOutput(ErrorDocument: new ErrorDocument(Key: &quot;error.html&quot;), IndexDocument: new IndexDocument(Suffix: &quot;index.html&quot;));
+    /// </code>
+    /// </example>
     public Task<GetBucketWebsiteOutput> GetBucketWebsiteAsync(GetBucketWebsiteInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13758,6 +15181,36 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve a byte range of an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves an object for an S3 bucket. The request specifies the range header to retrieve a specific byte range.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;SampleFile.txt&quot;, Range: &quot;bytes=0-9&quot;);
+    /// var output = await client.GetObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectOutput(AcceptRanges: &quot;bytes&quot;, ContentLength: 10L, ContentRange: &quot;bytes 0-9/43&quot;, ContentType: &quot;text/plain&quot;, ETag: &quot;\&quot;0d94420ffd0bc68cd3d152506b97a9cc\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-10-09T22:57:28.000Z&quot;, CultureInfo.InvariantCulture), Metadata: new Dictionary&lt;string, string&gt; {  }, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To retrieve an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves an object for an S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectOutput(AcceptRanges: &quot;bytes&quot;, ContentLength: 3191L, ContentType: &quot;image/jpeg&quot;, ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T01:19:41.000Z&quot;, CultureInfo.InvariantCulture), Metadata: new Dictionary&lt;string, string&gt; {  }, TagCount: 2, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     public Task<GetObjectOutput> GetObjectAsync(GetObjectInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -13809,6 +15262,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve object ACL
+    /// </para>
+    /// <para>
+    /// The following example retrieves access control list (ACL) of an object.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectAclInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectAclAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectAclOutput(Grants: new Grant[] { new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;WRITE&quot;)), new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;WRITE_ACP&quot;)), new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;READ&quot;)), new Grant(Grantee: new Grantee(Type: new Type(&quot;CanonicalUser&quot;), DisplayName: &quot;owner-display-name&quot;, ID: &quot;852b113eexamplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Permission: new Permission(&quot;READ_ACP&quot;)) }, Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;));
+    /// </code>
+    /// </example>
     public Task<GetObjectAclOutput> GetObjectAclAsync(GetObjectAclInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -14174,6 +15642,36 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve tag set of a specific object version
+    /// </para>
+    /// <para>
+    /// The following example retrieves tag set of an object. The request specifies object version.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// var output = await client.GetObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectTaggingOutput(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key1&quot;, Value: &quot;Value1&quot;) }, VersionId: &quot;ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To retrieve tag set of an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves tag set of an object.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectTaggingOutput(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key4&quot;, Value: &quot;Value4&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;Key3&quot;, Value: &quot;Value3&quot;) }, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     public Task<GetObjectTaggingOutput> GetObjectTaggingAsync(GetObjectTaggingInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -14204,6 +15702,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve torrent files for an object
+    /// </para>
+    /// <para>
+    /// The following example retrieves torrent files of an object.
+    /// </para>
+    /// <code>
+    /// var input = new GetObjectTorrentInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.GetObjectTorrentAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetObjectTorrentOutput();
+    /// </code>
+    /// </example>
     public Task<GetObjectTorrentOutput> GetObjectTorrentAsync(GetObjectTorrentInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -14340,11 +15853,87 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To determine if bucket exists
+    /// </para>
+    /// <para>
+    /// This operation checks to see if a bucket exists.
+    /// </para>
+    /// <code>
+    /// var input = new HeadBucketInput(Bucket: &quot;acl1&quot;);
+    /// var output = await client.HeadBucketAsync(input);
+    /// </code>
+    /// </example>
     public Task<HeadBucketOutput> HeadBucketAsync(HeadBucketInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
         return runtime.InvokeAsync(HeadBucketBinding, input, cancellationToken);
     }
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketExistsAsync(HeadBucketInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default) =>
+        WaitUntilBucketExistsAsync(input, new SmithyWaiterOptions(maxWaitTime), cancellationToken);
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketExistsAsync(HeadBucketInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default) =>
+        SmithyWaiter.WaitAsync(
+            "BucketExists",
+            HeadBucketAsync,
+            input,
+            AmazonS3Waiters.BucketExists,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(120),
+            options,
+            cancellationToken);
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketNotExistsAsync(HeadBucketInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default) =>
+        WaitUntilBucketNotExistsAsync(input, new SmithyWaiterOptions(maxWaitTime), cancellationToken);
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadBucketOutput>> WaitUntilBucketNotExistsAsync(HeadBucketInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default) =>
+        SmithyWaiter.WaitAsync(
+            "BucketNotExists",
+            HeadBucketAsync,
+            input,
+            AmazonS3Waiters.BucketNotExists,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(120),
+            options,
+            cancellationToken);
 
     /// <summary>
     /// &lt;p&gt;The &lt;code&gt;HEAD&lt;/code&gt; operation retrieves metadata from an object without returning the object
@@ -14502,11 +16091,90 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve metadata of an object without returning the object itself
+    /// </para>
+    /// <para>
+    /// The following example retrieves an object metadata.
+    /// </para>
+    /// <code>
+    /// var input = new HeadObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.HeadObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new HeadObjectOutput(AcceptRanges: &quot;bytes&quot;, ContentLength: 3191L, ContentType: &quot;image/jpeg&quot;, ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T01:19:41.000Z&quot;, CultureInfo.InvariantCulture), Metadata: new Dictionary&lt;string, string&gt; {  }, VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     public Task<HeadObjectOutput> HeadObjectAsync(HeadObjectInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
         return runtime.InvokeAsync(HeadObjectBinding, input, cancellationToken);
     }
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectExistsAsync(HeadObjectInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default) =>
+        WaitUntilObjectExistsAsync(input, new SmithyWaiterOptions(maxWaitTime), cancellationToken);
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectExistsAsync(HeadObjectInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default) =>
+        SmithyWaiter.WaitAsync(
+            "ObjectExists",
+            HeadObjectAsync,
+            input,
+            AmazonS3Waiters.ObjectExists,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(120),
+            options,
+            cancellationToken);
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectNotExistsAsync(HeadObjectInput input, TimeSpan maxWaitTime, CancellationToken cancellationToken = default) =>
+        WaitUntilObjectNotExistsAsync(input, new SmithyWaiterOptions(maxWaitTime), cancellationToken);
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<HeadObjectOutput>> WaitUntilObjectNotExistsAsync(HeadObjectInput input, SmithyWaiterOptions options, CancellationToken cancellationToken = default) =>
+        SmithyWaiter.WaitAsync(
+            "ObjectNotExists",
+            HeadObjectAsync,
+            input,
+            AmazonS3Waiters.ObjectNotExists,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(120),
+            options,
+            cancellationToken);
 
     /// <summary>
     /// &lt;note&gt;
@@ -14766,6 +16434,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list all buckets
+    /// </para>
+    /// <para>
+    /// The following example returns all the buckets owned by the sender of this request.
+    /// </para>
+    /// <code>
+    /// var input = new ListBucketsInput();
+    /// var output = await client.ListBucketsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListBucketsOutput(Buckets: new Bucket[] { new Bucket(CreationDate: DateTimeOffset.Parse(&quot;2012-02-15T21:03:02.000Z&quot;, CultureInfo.InvariantCulture), Name: &quot;examplebucket&quot;), new Bucket(CreationDate: DateTimeOffset.Parse(&quot;2011-07-24T19:33:50.000Z&quot;, CultureInfo.InvariantCulture), Name: &quot;examplebucket2&quot;), new Bucket(CreationDate: DateTimeOffset.Parse(&quot;2010-12-17T00:56:49.000Z&quot;, CultureInfo.InvariantCulture), Name: &quot;examplebucket3&quot;) }, Owner: new Owner(DisplayName: &quot;own-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31&quot;));
+    /// </code>
+    /// </example>
     public Task<ListBucketsOutput> ListBucketsAsync(ListBucketsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -14837,7 +16520,7 @@ public sealed class AmazonS3Client : IAmazonS3Client
               {
                   continue;
               }
-              foreach (var item in items.Values)
+              foreach (var item in items)
               {
                   yield return item;
               }
@@ -14977,7 +16660,7 @@ public sealed class AmazonS3Client : IAmazonS3Client
               {
                   continue;
               }
-              foreach (var item in items.Values)
+              foreach (var item in items)
               {
                   yield return item;
               }
@@ -15115,6 +16798,36 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// List next set of multipart uploads when previous result is truncated
+    /// </para>
+    /// <para>
+    /// The following example specifies the upload-id-marker and key-marker from previous truncated response to retrieve next setup of multipart uploads.
+    /// </para>
+    /// <code>
+    /// var input = new ListMultipartUploadsInput(Bucket: &quot;examplebucket&quot;, KeyMarker: &quot;nextkeyfrompreviousresponse&quot;, MaxUploads: 2, UploadIdMarker: &quot;valuefrompreviousresponse&quot;);
+    /// var output = await client.ListMultipartUploadsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListMultipartUploadsOutput(Bucket: &quot;acl1&quot;, IsTruncated: true, KeyMarker: &quot;&quot;, MaxUploads: 2, NextKeyMarker: &quot;someobjectkey&quot;, NextUploadIdMarker: &quot;examplelo91lv1iwvWpvCiJWugw2xXLPAD7Z8cJyX9.WiIRgNrdG6Ldsn.9FtS63TCl1Uf5faTB.1U5Ckcbmdw--&quot;, UploadIdMarker: &quot;&quot;, Uploads: new MultipartUpload[] { new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:40:58.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;ownder-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;mohanataws&quot;, ID: &quot;852b113e7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;gZ30jIqlUa.CInXklLQtSMJITdUnoZ1Y5GACB5UckOtspm5zbDMCkPF_qkfZzMiFZ6dksmcnqxJyIBvQMG9X9Q--&quot;), new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:41:27.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;ownder-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;ownder-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;b7tZSqIlo91lv1iwvWpvCiJWugw2xXLPAD7Z8cJyX9.WiIRgNrdG6Ldsn.9FtS63TCl1Uf5faTB.1U5Ckcbmdw--&quot;) });
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To list in-progress multipart uploads on a bucket
+    /// </para>
+    /// <para>
+    /// The following example lists in-progress multipart uploads on a specific bucket.
+    /// </para>
+    /// <code>
+    /// var input = new ListMultipartUploadsInput(Bucket: &quot;examplebucket&quot;);
+    /// var output = await client.ListMultipartUploadsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListMultipartUploadsOutput(Uploads: new MultipartUpload[] { new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:40:58.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;examplelUa.CInXklLQtSMJITdUnoZ1Y5GACB5UckOtspm5zbDMCkPF_qkfZzMiFZ6dksmcnqxJyIBvQMG9X9Q--&quot;), new MultipartUpload(Initiated: DateTimeOffset.Parse(&quot;2014-05-01T05:41:27.000Z&quot;, CultureInfo.InvariantCulture), Initiator: new Initiator(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Key: &quot;JavaFile&quot;, Owner: new Owner(DisplayName: &quot;display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), StorageClass: new StorageClass(&quot;STANDARD&quot;), UploadId: &quot;examplelo91lv1iwvWpvCiJWugw2xXLPAD7Z8cJyX9.WiIRgNrdG6Ldsn.9FtS63TCl1Uf5faTB.1U5Ckcbmdw--&quot;) });
+    /// </code>
+    /// </example>
     public Task<ListMultipartUploadsOutput> ListMultipartUploadsAsync(ListMultipartUploadsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -15239,7 +16952,7 @@ public sealed class AmazonS3Client : IAmazonS3Client
               {
                   continue;
               }
-              foreach (var item in items.Values)
+              foreach (var item in items)
               {
                   yield return item;
               }
@@ -15288,6 +17001,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list object versions
+    /// </para>
+    /// <para>
+    /// The following example returns versions of an object with specific key name prefix.
+    /// </para>
+    /// <code>
+    /// var input = new ListObjectVersionsInput(Bucket: &quot;examplebucket&quot;, Prefix: &quot;HappyFace.jpg&quot;);
+    /// var output = await client.ListObjectVersionsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListObjectVersionsOutput(Versions: new ObjectVersion[] { new ObjectVersion(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, IsLatest: true, Key: &quot;HappyFace.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-15T01:19:41.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 3191L, StorageClass: new ObjectVersionStorageClass(&quot;STANDARD&quot;), VersionId: &quot;null&quot;), new ObjectVersion(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, IsLatest: false, Key: &quot;HappyFace.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-13T00:58:26.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 3191L, StorageClass: new ObjectVersionStorageClass(&quot;STANDARD&quot;), VersionId: &quot;PHtexPGjH2y.zBgT8LmB7wwLI2mpbz.k&quot;) });
+    /// </code>
+    /// </example>
     public Task<ListObjectVersionsOutput> ListObjectVersionsAsync(ListObjectVersionsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -15339,6 +17067,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list objects in a bucket
+    /// </para>
+    /// <para>
+    /// The following example list two objects in a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new ListObjectsInput(Bucket: &quot;examplebucket&quot;, MaxKeys: 2);
+    /// var output = await client.ListObjectsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListObjectsOutput(Contents: new Object[] { new Object(ETag: &quot;\&quot;70ee1738b6b21e2c8a43f3a5ab0eee71\&quot;&quot;, Key: &quot;example1.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-11-21T19:40:05.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;myname&quot;, ID: &quot;12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 11L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)), new Object(ETag: &quot;\&quot;9c8af9a76df052144598c115ef33e511\&quot;&quot;, Key: &quot;example2.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2013-11-15T01:10:49.000Z&quot;, CultureInfo.InvariantCulture), Owner: new Owner(DisplayName: &quot;myname&quot;, ID: &quot;12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Size: 713193L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)) }, NextMarker: &quot;eyJNYXJrZXIiOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAyfQ==&quot;);
+    /// </code>
+    /// </example>
     public Task<ListObjectsOutput> ListObjectsAsync(ListObjectsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -15450,6 +17193,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get object list
+    /// </para>
+    /// <para>
+    /// The following example retrieves object list. The request specifies max keys to limit response to include only 2 object keys.
+    /// </para>
+    /// <code>
+    /// var input = new ListObjectsV2Input(Bucket: &quot;DOC-EXAMPLE-BUCKET&quot;, MaxKeys: 2);
+    /// var output = await client.ListObjectsV2Async(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListObjectsV2Output(Contents: new Object[] { new Object(ETag: &quot;\&quot;70ee1738b6b21e2c8a43f3a5ab0eee71\&quot;&quot;, Key: &quot;happyface.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-11-21T19:40:05.000Z&quot;, CultureInfo.InvariantCulture), Size: 11L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)), new Object(ETag: &quot;\&quot;becf17f89c30367a9a44495d62ed521a-1\&quot;&quot;, Key: &quot;test.jpg&quot;, LastModified: DateTimeOffset.Parse(&quot;2014-05-02T04:51:50.000Z&quot;, CultureInfo.InvariantCulture), Size: 4192256L, StorageClass: new ObjectStorageClass(&quot;STANDARD&quot;)) }, IsTruncated: true, KeyCount: 2, MaxKeys: 2, Name: &quot;DOC-EXAMPLE-BUCKET&quot;, NextContinuationToken: &quot;1w41l63U0xa8q7smH50vCxyTQqdxo69O3EmK28Bi5PcROI4wI/EyIJg==&quot;, Prefix: &quot;&quot;);
+    /// </code>
+    /// </example>
     public Task<ListObjectsV2Output> ListObjectsV2Async(ListObjectsV2Input input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -15666,6 +17424,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list parts of a multipart upload.
+    /// </para>
+    /// <para>
+    /// The following example lists parts uploaded for a specific multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new ListPartsInput(Bucket: &quot;examplebucket&quot;, Key: &quot;bigobject&quot;, UploadId: &quot;example7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;);
+    /// var output = await client.ListPartsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListPartsOutput(Initiator: new Initiator(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Owner: new Owner(DisplayName: &quot;owner-display-name&quot;, ID: &quot;examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc&quot;), Parts: new Part[] { new Part(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-16T00:11:42.000Z&quot;, CultureInfo.InvariantCulture), PartNumber: 1, Size: 26246026L), new Part(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-16T00:15:01.000Z&quot;, CultureInfo.InvariantCulture), PartNumber: 2, Size: 26246026L) }, StorageClass: new StorageClass(&quot;STANDARD&quot;));
+    /// </code>
+    /// </example>
     public Task<ListPartsOutput> ListPartsAsync(ListPartsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -15877,7 +17650,7 @@ public sealed class AmazonS3Client : IAmazonS3Client
               {
                   continue;
               }
-              foreach (var item in items.Values)
+              foreach (var item in items)
               {
                   yield return item;
               }
@@ -16145,6 +17918,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Put bucket acl
+    /// </para>
+    /// <para>
+    /// The following example replaces existing ACL on a bucket. The ACL grants the bucket owner (specified using the owner ID) and write permission to the LogDelivery group. Because this is a replace operation, you must specify all the grants in your request. To incrementally add or remove ACL grants, you might use the console.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketAclInput(Bucket: &quot;examplebucket&quot;, GrantFullControl: &quot;id=examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484&quot;, GrantWrite: &quot;uri=http://acs.amazonaws.com/groups/s3/LogDelivery&quot;);
+    /// var output = await client.PutBucketAclAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketAclOutput> PutBucketAclAsync(PutBucketAclInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -16324,6 +18109,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To set cors configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example enables PUT, POST, and DELETE requests from www.example.com, and enables GET requests from any domain.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketCorsInput(Bucket: &quot;&quot;, CORSConfiguration: new CORSConfiguration(CORSRules: new CORSRule[] { new CORSRule(AllowedMethods: new string[] { &quot;PUT&quot;, &quot;POST&quot;, &quot;DELETE&quot; }, AllowedOrigins: new string[] { &quot;http://www.example.com&quot; }, AllowedHeaders: new string[] { &quot;*&quot; }, ExposeHeaders: new string[] { &quot;x-amz-server-side-encryption&quot; }, MaxAgeSeconds: 3000), new CORSRule(AllowedMethods: new string[] { &quot;GET&quot; }, AllowedOrigins: new string[] { &quot;*&quot; }, AllowedHeaders: new string[] { &quot;Authorization&quot; }, MaxAgeSeconds: 3000) }), ContentMD5: &quot;&quot;);
+    /// var output = await client.PutBucketCorsAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketCorsOutput> PutBucketCorsAsync(PutBucketCorsInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -16778,6 +18575,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Put bucket lifecycle
+    /// </para>
+    /// <para>
+    /// The following example replaces existing lifecycle configuration, if any, on the specified bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketLifecycleConfigurationInput(Bucket: &quot;examplebucket&quot;, LifecycleConfiguration: new BucketLifecycleConfiguration(Rules: new LifecycleRule[] { new LifecycleRule(Status: new ExpirationStatus(&quot;Enabled&quot;), Expiration: new LifecycleExpiration(Days: 3650), Filter: new LifecycleRuleFilter(Prefix: &quot;documents/&quot;), ID: &quot;TestOnly&quot;, Transitions: new Transition[] { new Transition(Days: 365, StorageClass: new TransitionStorageClass(&quot;GLACIER&quot;)) }) }));
+    /// var output = await client.PutBucketLifecycleConfigurationAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketLifecycleConfigurationOutput> PutBucketLifecycleConfigurationAsync(PutBucketLifecycleConfigurationInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -16878,6 +18687,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set logging configuration for a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets logging policy on a bucket. For the Log Delivery group to deliver logs to the destination bucket, it needs permission for the READ_ACP action which the policy grants.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketLoggingInput(Bucket: &quot;sourcebucket&quot;, BucketLoggingStatus: new BucketLoggingStatus(LoggingEnabled: new LoggingEnabled(TargetBucket: &quot;targetbucket&quot;, TargetPrefix: &quot;MyBucketLogs/&quot;, TargetGrants: new TargetGrant[] { new TargetGrant(Grantee: new Grantee(Type: new Type(&quot;Group&quot;), URI: &quot;http://acs.amazonaws.com/groups/global/AllUsers&quot;), Permission: new BucketLogsPermission(&quot;READ&quot;)) })));
+    /// var output = await client.PutBucketLoggingAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketLoggingOutput> PutBucketLoggingAsync(PutBucketLoggingInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17028,6 +18849,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set notification configuration for a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets notification configuration on a bucket to publish the object created events to an SNS topic.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketNotificationConfigurationInput(Bucket: &quot;examplebucket&quot;, NotificationConfiguration: new NotificationConfiguration(TopicConfigurations: new TopicConfiguration[] { new TopicConfiguration(Events: new Event[] { new Event(&quot;s3:ObjectCreated:*&quot;) }, TopicArn: &quot;arn:aws:sns:us-west-2:123456789012:s3-notification-topic&quot;) }));
+    /// var output = await client.PutBucketNotificationConfigurationAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketNotificationConfigurationOutput> PutBucketNotificationConfigurationAsync(PutBucketNotificationConfigurationInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17142,6 +18975,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set bucket policy
+    /// </para>
+    /// <para>
+    /// The following example sets a permission policy on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketPolicyInput(Bucket: &quot;examplebucket&quot;, Policy: &quot;{\&quot;Version\&quot;: \&quot;2012-10-17\&quot;, \&quot;Statement\&quot;: [{ \&quot;Sid\&quot;: \&quot;id-1\&quot;,\&quot;Effect\&quot;: \&quot;Allow\&quot;,\&quot;Principal\&quot;: {\&quot;AWS\&quot;: \&quot;arn:aws:iam::123456789012:root\&quot;}, \&quot;Action\&quot;: [ \&quot;s3:PutObject\&quot;,\&quot;s3:PutObjectAcl\&quot;], \&quot;Resource\&quot;: [\&quot;arn:aws:s3:::acl3/*\&quot; ] } ]}&quot;);
+    /// var output = await client.PutBucketPolicyAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketPolicyOutput> PutBucketPolicyAsync(PutBucketPolicyInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17219,6 +19064,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set replication configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets replication configuration on a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketReplicationInput(Bucket: &quot;examplebucket&quot;, ReplicationConfiguration: new ReplicationConfiguration(Role: &quot;arn:aws:iam::123456789012:role/examplerole&quot;, Rules: new ReplicationRule[] { new ReplicationRule(Destination: new Destination(Bucket: &quot;arn:aws:s3:::destinationbucket&quot;, StorageClass: new StorageClass(&quot;STANDARD&quot;)), Status: new ReplicationRuleStatus(&quot;Enabled&quot;), Prefix: &quot;&quot;) }));
+    /// var output = await client.PutBucketReplicationAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketReplicationOutput> PutBucketReplicationAsync(PutBucketReplicationInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17250,6 +19107,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set request payment configuration on a bucket.
+    /// </para>
+    /// <para>
+    /// The following example sets request payment configuration on a bucket so that person requesting the download is charged.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketRequestPaymentInput(Bucket: &quot;examplebucket&quot;, RequestPaymentConfiguration: new RequestPaymentConfiguration(Payer: new Payer(&quot;Requester&quot;)));
+    /// var output = await client.PutBucketRequestPaymentAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketRequestPaymentOutput> PutBucketRequestPaymentAsync(PutBucketRequestPaymentInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17316,6 +19185,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set tags on a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets tags on a bucket. Any existing tags are replaced.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketTaggingInput(Bucket: &quot;examplebucket&quot;, Tagging: new Tagging(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key1&quot;, Value: &quot;Value1&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;Key2&quot;, Value: &quot;Value2&quot;) }));
+    /// var output = await client.PutBucketTaggingAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketTaggingOutput> PutBucketTaggingAsync(PutBucketTaggingInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17376,6 +19257,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set versioning configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example sets versioning configuration on bucket. The configuration enables versioning on the bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketVersioningInput(Bucket: &quot;examplebucket&quot;, VersioningConfiguration: new VersioningConfiguration(MFADelete: new MFADelete(&quot;Disabled&quot;), Status: new BucketVersioningStatus(&quot;Enabled&quot;)));
+    /// var output = await client.PutBucketVersioningAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketVersioningOutput> PutBucketVersioningAsync(PutBucketVersioningInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17514,6 +19407,18 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// Set website configuration on a bucket
+    /// </para>
+    /// <para>
+    /// The following example adds website configuration to a bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PutBucketWebsiteInput(Bucket: &quot;examplebucket&quot;, WebsiteConfiguration: new WebsiteConfiguration(ErrorDocument: new ErrorDocument(Key: &quot;error.html&quot;), IndexDocument: new IndexDocument(Suffix: &quot;index.html&quot;)), ContentMD5: &quot;&quot;);
+    /// var output = await client.PutBucketWebsiteAsync(input);
+    /// </code>
+    /// </example>
     public Task<PutBucketWebsiteOutput> PutBucketWebsiteAsync(PutBucketWebsiteInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17702,6 +19607,111 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create an object.
+    /// </para>
+    /// <para>
+    /// The following example creates an object. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;objectkey&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;Bvq0EDKxOcXLJXNo_Lkz37eM3R4pfzyQ&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object (specify optional headers)
+    /// </para>
+    /// <para>
+    /// The following example uploads an object. The request specifies optional request headers to directs S3 to use specific storage class and use server-side encryption.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;HappyFace.jpg&quot;)), ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), StorageClass: new StorageClass(&quot;STANDARD_IA&quot;));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), VersionId: &quot;CG612hodqujkf8FaaNfp8U..FIhLROcp&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object
+    /// </para>
+    /// <para>
+    /// The following example uploads an object to a versioning-enabled bucket. The source file is specified using Windows file syntax. S3 returns VersionId of the newly created object.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;HappyFace.jpg&quot;)));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;tpf3zF08nBplQK1XLOefGskR7mGDwcDk&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object and specify canned ACL.
+    /// </para>
+    /// <para>
+    /// The following example uploads and object. The request specifies optional canned ACL (access control list) to all READ access to authenticated users. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, ACL: new ObjectCannedACL(&quot;authenticated-read&quot;), Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)));
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;Kirh.unyZwjQ69YxcQLA8z4F5j3kJJKr&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object and specify optional tags
+    /// </para>
+    /// <para>
+    /// The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;c:\\HappyFace.jpg&quot;)), Tagging: &quot;key1=value1&amp;key2=value2&quot;);
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;psM2sYY4.o1501dSx8wMvnkOzSBB.V4a&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload an object and specify server-side encryption and object tags
+    /// </para>
+    /// <para>
+    /// The following example uploads an object. The request specifies the optional server-side encryption option. The request also specifies optional object tags. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)), ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), Tagging: &quot;key1=value1&amp;key2=value2&quot;);
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, ServerSideEncryption: new ServerSideEncryption(&quot;AES256&quot;), VersionId: &quot;Ri.vC6qVlA4dEnjgRV4ZHsHoFIjqEMNt&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload object and specify user-defined metadata
+    /// </para>
+    /// <para>
+    /// The following example creates an object. The request also specifies optional metadata. If the bucket is versioning enabled, S3 returns version ID in response.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;exampleobject&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;filetoupload&quot;)), Metadata: new Dictionary&lt;string, string&gt; { { &quot;metadata1&quot;, &quot;value1&quot; }, { &quot;metadata2&quot;, &quot;value2&quot; } });
+    /// var output = await client.PutObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectOutput(ETag: &quot;\&quot;6805f2cfc46c0f04559748bb039d69ae\&quot;&quot;, VersionId: &quot;pSKidl4pHBiNwukdbcPXAIs.sshFFOc0&quot;);
+    /// </code>
+    /// </example>
     public Task<PutObjectOutput> PutObjectAsync(PutObjectInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -17902,6 +19912,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To grant permissions using object ACL
+    /// </para>
+    /// <para>
+    /// The following example adds grants to an object ACL. The first permission grants user1 and user2 FULL_CONTROL and the AllUsers group READ permission.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectAclInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, AccessControlPolicy: new AccessControlPolicy(), GrantFullControl: &quot;emailaddress=user1@example.com,emailaddress=user2@example.com&quot;, GrantRead: &quot;uri=http://acs.amazonaws.com/groups/global/AllUsers&quot;);
+    /// var output = await client.PutObjectAclAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectAclOutput();
+    /// </code>
+    /// </example>
     public Task<PutObjectAclOutput> PutObjectAclAsync(PutObjectAclInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -18073,6 +20098,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To add tags to an existing object
+    /// </para>
+    /// <para>
+    /// The following example adds tags to an existing object.
+    /// </para>
+    /// <code>
+    /// var input = new PutObjectTaggingInput(Bucket: &quot;examplebucket&quot;, Key: &quot;HappyFace.jpg&quot;, Tagging: new Tagging(TagSet: new global::Com.Amazonaws.S3.Tag[] { new global::Com.Amazonaws.S3.Tag(Key: &quot;Key3&quot;, Value: &quot;Value3&quot;), new global::Com.Amazonaws.S3.Tag(Key: &quot;Key4&quot;, Value: &quot;Value4&quot;) }));
+    /// var output = await client.PutObjectTaggingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutObjectTaggingOutput(VersionId: &quot;null&quot;);
+    /// </code>
+    /// </example>
     public Task<PutObjectTaggingOutput> PutObjectTaggingAsync(PutObjectTaggingInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -18394,6 +20434,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To restore an archived object
+    /// </para>
+    /// <para>
+    /// The following example restores for one day an archived copy of an object back into Amazon S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new RestoreObjectInput(Bucket: &quot;examplebucket&quot;, Key: &quot;archivedobjectkey&quot;, RestoreRequest: new RestoreRequest(Days: 1, GlacierJobParameters: new GlacierJobParameters(Tier: new Tier(&quot;Expedited&quot;))));
+    /// var output = await client.RestoreObjectAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new RestoreObjectOutput();
+    /// </code>
+    /// </example>
     public Task<RestoreObjectOutput> RestoreObjectAsync(RestoreObjectInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -19062,6 +21117,21 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To upload a part
+    /// </para>
+    /// <para>
+    /// The following example uploads part 1 of a multipart upload. The example specifies a file name for the part data. The Upload ID is same that is returned by the initiate multipart upload.
+    /// </para>
+    /// <code>
+    /// var input = new UploadPartInput(Bucket: &quot;examplebucket&quot;, Key: &quot;examplelargeobject&quot;, PartNumber: 1, UploadId: &quot;xadcOB_7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--&quot;, Body: new MemoryStream(Convert.FromBase64String(&quot;fileToUpload&quot;)));
+    /// var output = await client.UploadPartAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UploadPartOutput(ETag: &quot;\&quot;d8c2eafd90c266e19ab9dcacc479f8af\&quot;&quot;);
+    /// </code>
+    /// </example>
     public Task<UploadPartOutput> UploadPartAsync(UploadPartInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -19287,6 +21357,36 @@ public sealed class AmazonS3Client : IAmazonS3Client
     /// &lt;p&gt;You must URL encode any signed header values that contain spaces. For example, if your header value is &lt;code&gt;my  file.txt&lt;/code&gt;, containing two spaces after &lt;code&gt;my&lt;/code&gt;, you must URL encode this value to &lt;code&gt;my%20%20file.txt&lt;/code&gt;.&lt;/p&gt;
     /// &lt;/important&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To upload a part by copying byte range from an existing object as data source
+    /// </para>
+    /// <para>
+    /// The following example uploads a part of a multipart upload by copying a specified byte range from an existing object as data source.
+    /// </para>
+    /// <code>
+    /// var input = new UploadPartCopyInput(Bucket: &quot;examplebucket&quot;, CopySource: &quot;/bucketname/sourceobjectkey&quot;, Key: &quot;examplelargeobject&quot;, PartNumber: 2, UploadId: &quot;exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--&quot;, CopySourceRange: &quot;bytes=1-100000&quot;);
+    /// var output = await client.UploadPartCopyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UploadPartCopyOutput(CopyPartResult: new CopyPartResult(ETag: &quot;\&quot;65d16d19e65a7508a51f043180edcc36\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-29T21:44:28.000Z&quot;, CultureInfo.InvariantCulture)));
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To upload a part by copying data from an existing object as data source
+    /// </para>
+    /// <para>
+    /// The following example uploads a part of a multipart upload by copying data from an existing object as data source.
+    /// </para>
+    /// <code>
+    /// var input = new UploadPartCopyInput(Bucket: &quot;examplebucket&quot;, CopySource: &quot;/bucketname/sourceobjectkey&quot;, Key: &quot;examplelargeobject&quot;, PartNumber: 1, UploadId: &quot;exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--&quot;);
+    /// var output = await client.UploadPartCopyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UploadPartCopyOutput(CopyPartResult: new CopyPartResult(ETag: &quot;\&quot;b0c6f0e7e054ab8fa2536a2677f8734d\&quot;&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-12-29T21:24:43.000Z&quot;, CultureInfo.InvariantCulture)));
+    /// </code>
+    /// </example>
     public Task<UploadPartCopyOutput> UploadPartCopyAsync(UploadPartCopyInput input, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(input);
@@ -19346,5 +21446,61 @@ public sealed class AmazonS3ClientConfig : SmithyClientConfig
 
     }
 
-    public AmazonS3ClientConfig(AmazonS3ClientConfig source) : base(source) { }
+    public AmazonS3ClientConfig(AmazonS3ClientConfig source) : base(source)
+    {
+        Region = source.Region;
+        UseFips = source.UseFips;
+        UseDualStack = source.UseDualStack;
+        ForcePathStyle = source.ForcePathStyle;
+        Accelerate = source.Accelerate;
+        UseGlobalEndpoint = source.UseGlobalEndpoint;
+        DisableMultiRegionAccessPoints = source.DisableMultiRegionAccessPoints;
+        UseArnRegion = source.UseArnRegion;
+        DisableS3ExpressSessionAuth = source.DisableS3ExpressSessionAuth;
+    }
+
+    /// <summary>
+    /// The AWS region requests are sent to, such as us-east-1.
+    /// </summary>
+    public string? Region { get; set; }
+
+    /// <summary>
+    /// Whether to use FIPS endpoints.
+    /// </summary>
+    public bool? UseFips { get; set; }
+
+    /// <summary>
+    /// Whether to use dual-stack (IPv4 and IPv6) endpoints.
+    /// </summary>
+    public bool? UseDualStack { get; set; }
+
+    /// <summary>
+    /// Whether to address S3 buckets in the path instead of the host name.
+    /// </summary>
+    public bool? ForcePathStyle { get; set; }
+
+    /// <summary>
+    /// Whether to use S3 Transfer Acceleration.
+    /// </summary>
+    public bool? Accelerate { get; set; }
+
+    /// <summary>
+    /// Whether us-east-1 requests use the global S3 endpoint.
+    /// </summary>
+    public bool? UseGlobalEndpoint { get; set; }
+
+    /// <summary>
+    /// Whether to reject S3 Multi-Region Access Point ARNs.
+    /// </summary>
+    public bool? DisableMultiRegionAccessPoints { get; set; }
+
+    /// <summary>
+    /// Whether the region in an ARN takes precedence over the configured region.
+    /// </summary>
+    public bool? UseArnRegion { get; set; }
+
+    /// <summary>
+    /// Disables this client's usage of Session Auth for S3Express       buckets and reverts to using conventional SigV4 for those.
+    /// </summary>
+    public bool? DisableS3ExpressSessionAuth { get; set; }
 }

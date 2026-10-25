@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AccountUsageSchema
 {
@@ -15,74 +15,43 @@ public static partial class AccountUsageSchema
         public long? FunctionCount { get; set; }
     }
 
-    public static StructSchema<AccountUsage, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.AccountUsage, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AccountUsage, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.AccountUsage, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#AccountUsage"),
             [
                 new(
                     "TotalCodeSize",
                     Target0,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The amount of storage space, in bytes, that's being used by deployment packages and layer archives.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
                 new(
                     "FunctionCount",
                     Target1,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The number of Lambda functions.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The number of functions and amount of storage in use.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() =>
             new() { TotalCodeSize = 0L, FunctionCount = 0L };
 
-        public override AccountUsage Build(Builder builder) =>
-            new AccountUsage(builder.FunctionCount, builder.TotalCodeSize);
+        public override global::Com.Amazonaws.Lambda.AccountUsage Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.AccountUsage(
+                builder.FunctionCount,
+                builder.TotalCodeSize
+            );
 
         public override void SerializeMembers<TSerializer>(
-            AccountUsage value,
+            global::Com.Amazonaws.Lambda.AccountUsage value,
             ref TSerializer serializer
         )
         {

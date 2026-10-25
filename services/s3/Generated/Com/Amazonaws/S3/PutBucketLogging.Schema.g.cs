@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketLoggingSchema
 {
-    public static OperationSchema<PutBucketLoggingInput, PutBucketLoggingOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.PutBucketLoggingInput,
+        global::Com.Amazonaws.S3.PutBucketLoggingOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketLogging"),
-            Schemas.Lazy(() => PutBucketLoggingInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketLoggingOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketLoggingInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketLoggingOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -28,124 +31,13 @@ public static partial class PutBucketLoggingSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<important>\n            <p>End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025, \n the request will receive an <code>HTTP 405</code> (Method Not Allowed) error.</p>\n            <p>This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).</p>\n         </important>\n         <note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Set the logging parameters for a bucket and to specify permissions for who can view and modify the\n      logging parameters. All logs are saved to buckets in the same Amazon Web Services Region as the source bucket. To set\n      the logging status of a bucket, you must be the bucket owner.</p>\n         <p>The bucket owner is automatically granted FULL_CONTROL to all logs. You use the <code>Grantee</code>\n      request element to grant access to other people. The <code>Permissions</code> request element specifies\n      the kind of access the grantee has to the logs.</p>\n         <important>\n            <p>If the target bucket for log delivery uses the bucket owner enforced setting for S3 Object\n        Ownership, you can't use the <code>Grantee</code> request element to grant access to others.\n        Permissions can only be granted using policies. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-general\">Permissions for server access log delivery</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         </important>\n         <dl>\n            <dt>Grantee Values</dt>\n            <dd>\n               <p>You can specify the person (grantee) to whom you're assigning access rights (by using request\n            elements) in the following ways. For examples of how to specify these grantee values in JSON\n            format, see the Amazon Web Services CLI example in <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html\"> Enabling Amazon S3 server\n              access logging</a> in the <i>Amazon S3 User Guide</i>.</p>\n               <ul>\n                  <li>\n                     <p>By the person's ID:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"CanonicalUser\"><ID><>ID<></ID><DisplayName><>GranteesEmail<></DisplayName>\n                  </Grantee></code>\n                     </p>\n                     <p>\n                        <code>DisplayName</code> is optional and ignored in the request.</p>\n                  </li>\n                  <li>\n                     <p>By Email address:</p>\n                     <p>\n                        <code> <Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"AmazonCustomerByEmail\"><EmailAddress><>Grantees@email.com<></EmailAddress></Grantee></code>\n                     </p>\n                     <p>The grantee is resolved to the <code>CanonicalUser</code> and, in a response to a\n                  <code>GETObjectAcl</code> request, appears as the CanonicalUser.</p>\n                  </li>\n                  <li>\n                     <p>By URI:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"Group\"><URI><>http://acs.amazonaws.com/groups/global/AuthenticatedUsers<></URI></Grantee></code>\n                     </p>\n                  </li>\n               </ul>\n            </dd>\n         </dl>\n         <p>To enable logging, you use <code>LoggingEnabled</code> and its children request elements. To disable\n      logging, you use an empty <code>BucketLoggingStatus</code> request element:</p>\n         <p>\n            <code><BucketLoggingStatus xmlns=\"http://doc.s3.amazonaws.com/2006-03-01\" /></code>\n         </p>\n         <p>For more information about server access logging, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html\">Server Access Logging</a> in the\n        <i>Amazon S3 User Guide</i>. </p>\n         <p>For more information about creating a bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>. For more information about\n      returning the logging status of a bucket, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLogging.html\">GetBucketLogging</a>.</p>\n         <p>The following operations are related to <code>PutBucketLogging</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html\">DeleteBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLogging.html\">GetBucketLogging</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("Set logging configuration for a bucket")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example sets logging policy on a bucket. For the Log Delivery group to deliver logs to the destination bucket, it needs permission for the READ_ACP action which the policy grants."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("sourcebucket") },
-                                                {
-                                                    "BucketLoggingStatus",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "LoggingEnabled",
-                                                                Document.From(
-                                                                    new Dictionary<string, Document>
-                                                                    {
-                                                                        {
-                                                                            "TargetBucket",
-                                                                            Document.From(
-                                                                                "targetbucket"
-                                                                            )
-                                                                        },
-                                                                        {
-                                                                            "TargetPrefix",
-                                                                            Document.From(
-                                                                                "MyBucketLogs/"
-                                                                            )
-                                                                        },
-                                                                        {
-                                                                            "TargetGrants",
-                                                                            Document.From(
-                                                                                new Document[]
-                                                                                {
-                                                                                    Document.From(
-                                                                                        new Dictionary<
-                                                                                            string,
-                                                                                            Document
-                                                                                        >
-                                                                                        {
-                                                                                            {
-                                                                                                "Grantee",
-                                                                                                Document.From(
-                                                                                                    new Dictionary<
-                                                                                                        string,
-                                                                                                        Document
-                                                                                                    >
-                                                                                                    {
-                                                                                                        {
-                                                                                                            "Type",
-                                                                                                            Document.From(
-                                                                                                                "Group"
-                                                                                                            )
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "URI",
-                                                                                                            Document.From(
-                                                                                                                "http://acs.amazonaws.com/groups/global/AllUsers"
-                                                                                                            )
-                                                                                                        },
-                                                                                                    }
-                                                                                                )
-                                                                                            },
-                                                                                            {
-                                                                                                "Permission",
-                                                                                                Document.From(
-                                                                                                    "READ"
-                                                                                                )
-                                                                                            },
-                                                                                        }
-                                                                                    ),
-                                                                                }
-                                                                            )
-                                                                        },
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?logging") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?logging") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

@@ -4,367 +4,317 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        InvokeInput,
-        InvokeOutput
+        global::Com.Amazonaws.Lambda.InvokeInput,
+        global::Com.Amazonaws.Lambda.InvokeOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#Invoke"),
-            Schemas.Lazy(() => InvokeInputSchema.Schema!),
-            Schemas.Lazy(() => InvokeOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => InvokeInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => InvokeOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#CodeArtifactUserDeletedException"),
-                    Schemas.Lazy(() => CodeArtifactUserDeletedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        CodeArtifactUserDeletedExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#CodeArtifactUserFailedException"),
-                    Schemas.Lazy(() => CodeArtifactUserFailedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        CodeArtifactUserFailedExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#CodeArtifactUserPendingException"),
-                    Schemas.Lazy(() => CodeArtifactUserPendingExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        CodeArtifactUserPendingExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#DurableExecutionAlreadyStartedException"),
-                    Schemas.Lazy(() => DurableExecutionAlreadyStartedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        DurableExecutionAlreadyStartedExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#EC2AccessDeniedException"),
-                    Schemas.Lazy(() => EC2AccessDeniedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        EC2AccessDeniedExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#EC2ThrottledException"),
-                    Schemas.Lazy(() => EC2ThrottledExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        EC2ThrottledExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#EC2UnexpectedException"),
-                    Schemas.Lazy(() => EC2UnexpectedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        EC2UnexpectedExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#EFSIOException"),
-                    Schemas.Lazy(() => EFSIOExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => EFSIOExceptionSchema.Schema!),
                     410
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#EFSMountConnectivityException"),
-                    Schemas.Lazy(() => EFSMountConnectivityExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        EFSMountConnectivityExceptionSchema.Schema!
+                    ),
                     408
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#EFSMountFailureException"),
-                    Schemas.Lazy(() => EFSMountFailureExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        EFSMountFailureExceptionSchema.Schema!
+                    ),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#EFSMountTimeoutException"),
-                    Schemas.Lazy(() => EFSMountTimeoutExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        EFSMountTimeoutExceptionSchema.Schema!
+                    ),
                     408
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ENILimitReachedException"),
-                    Schemas.Lazy(() => ENILimitReachedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ENILimitReachedExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ENINotReadyException"),
-                    Schemas.Lazy(() => ENINotReadyExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ENINotReadyExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidRequestContentException"),
-                    Schemas.Lazy(() => InvalidRequestContentExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidRequestContentExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidRuntimeException"),
-                    Schemas.Lazy(() => InvalidRuntimeExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidRuntimeExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidSecurityGroupIDException"),
-                    Schemas.Lazy(() => InvalidSecurityGroupIDExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidSecurityGroupIDExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidSubnetIDException"),
-                    Schemas.Lazy(() => InvalidSubnetIDExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidSubnetIDExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidZipFileException"),
-                    Schemas.Lazy(() => InvalidZipFileExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidZipFileExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#KMSAccessDeniedException"),
-                    Schemas.Lazy(() => KMSAccessDeniedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        KMSAccessDeniedExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#KMSDisabledException"),
-                    Schemas.Lazy(() => KMSDisabledExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        KMSDisabledExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#KMSInvalidStateException"),
-                    Schemas.Lazy(() => KMSInvalidStateExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        KMSInvalidStateExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#KMSNotFoundException"),
-                    Schemas.Lazy(() => KMSNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        KMSNotFoundExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ModeNotSupportedException"),
-                    Schemas.Lazy(() => ModeNotSupportedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ModeNotSupportedExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#NoPublishedVersionException"),
-                    Schemas.Lazy(() => NoPublishedVersionExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        NoPublishedVersionExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#RecursiveInvocationException"),
-                    Schemas.Lazy(() => RecursiveInvocationExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        RecursiveInvocationExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#RequestTooLargeException"),
-                    Schemas.Lazy(() => RequestTooLargeExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        RequestTooLargeExceptionSchema.Schema!
+                    ),
                     413
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceConflictException"),
-                    Schemas.Lazy(() => ResourceConflictExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceConflictExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotReadyException"),
-                    Schemas.Lazy(() => ResourceNotReadyExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotReadyExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#S3FilesMountConnectivityException"),
-                    Schemas.Lazy(() => S3FilesMountConnectivityExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        S3FilesMountConnectivityExceptionSchema.Schema!
+                    ),
                     408
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#S3FilesMountFailureException"),
-                    Schemas.Lazy(() => S3FilesMountFailureExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        S3FilesMountFailureExceptionSchema.Schema!
+                    ),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#S3FilesMountTimeoutException"),
-                    Schemas.Lazy(() => S3FilesMountTimeoutExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        S3FilesMountTimeoutExceptionSchema.Schema!
+                    ),
                     408
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#SerializedRequestEntityTooLargeException"),
-                    Schemas.Lazy(() => SerializedRequestEntityTooLargeExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        SerializedRequestEntityTooLargeExceptionSchema.Schema!
+                    ),
                     413
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceQuotaExceededException"),
-                    Schemas.Lazy(() => ServiceQuotaExceededExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ServiceQuotaExceededExceptionSchema.Schema!
+                    ),
                     402
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#SnapStartException"),
-                    Schemas.Lazy(() => SnapStartExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => SnapStartExceptionSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#SnapStartNotReadyException"),
-                    Schemas.Lazy(() => SnapStartNotReadyExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        SnapStartNotReadyExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#SnapStartRegenerationFailureException"),
-                    Schemas.Lazy(() => SnapStartRegenerationFailureExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        SnapStartRegenerationFailureExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#SnapStartTimeoutException"),
-                    Schemas.Lazy(() => SnapStartTimeoutExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        SnapStartTimeoutExceptionSchema.Schema!
+                    ),
                     408
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#SubnetIPAddressLimitReachedException"),
-                    Schemas.Lazy(() => SubnetIPAddressLimitReachedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        SubnetIPAddressLimitReachedExceptionSchema.Schema!
+                    ),
                     502
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#UnsupportedMediaTypeException"),
-                    Schemas.Lazy(() => UnsupportedMediaTypeExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedMediaTypeExceptionSchema.Schema!
+                    ),
                     415
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#conditionKeys"),
-                    Document.From(new Document[] { Document.From("lambda:EventSourceToken") })
-                ),
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            { "name", Document.From("InvokeFunction") },
-                            {
-                                "documentation",
-                                Document.From("Grants permission to invoke an AWS Lambda function")
-                            },
-                            { "relativeDocumentation", Document.From("API_Invoke.html") },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "function",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. By default, Lambda invokes your function synchronously (i.e. the<code>InvocationType</code> is <code>RequestResponse</code>). To invoke a function asynchronously, set <code>InvocationType</code> to <code>Event</code>. Lambda passes the <code>ClientContext</code> object to your function for synchronous invocations only.</p> <p>For synchronous invocations, the maximum payload size is 6 MB. For asynchronous invocations, the maximum payload size is 1 MB.</p> <p>For <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html\">synchronous invocation</a>, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html\">execution log</a> and <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html\">trace</a>.</p> <p>When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html\">Error handling and automatic retries in Lambda</a>.</p> <p>For <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html\">asynchronous invocation</a>, Lambda adds events to a queue before sending them to your function. If your function does not have enough capacity to keep up with the queue, events may be lost. Occasionally, your function may receive the same event multiple times, even if no error occurs. To retain events that were not processed, configure your function with a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq\">dead-letter queue</a>.</p> <p>The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html\">quota</a> errors, or issues with your function's code and configuration. For example, Lambda returns <code>TooManyRequestsException</code> if running the function would cause you to exceed a concurrency limit at either the account level (<code>ConcurrentInvocationLimitExceeded</code>) or function level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).</p> <p>For functions with a long timeout, your client might disconnect during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings.</p> <p>This operation requires permission for the <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html\">lambda:InvokeFunction</a> action. For details on how to set up permissions for cross-account invocations, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke\">Granting function access to other accounts</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example invokes version 1 of a function named my-function with an empty event payload."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "DurableExecutionName",
-                                                    Document.From("myExecution")
-                                                },
-                                                { "FunctionName", Document.From("my-function") },
-                                                { "InvocationType", Document.From("Event") },
-                                                { "Payload", Document.From("{}") },
-                                                { "Qualifier", Document.From("1") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Payload", Document.From("200 SUCCESS") },
-                                                { "StatusCode", Document.From((decimal)200) },
-                                            }
-                                        )
-                                    },
-                                    { "title", Document.From("To invoke a Lambda function") },
-                                }
-                            ),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example invokes version 1 of a function named my-function asynchronously."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                                { "InvocationType", Document.From("Event") },
-                                                { "Payload", Document.From("{}") },
-                                                { "Qualifier", Document.From("1") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Payload", Document.From("") },
-                                                { "StatusCode", Document.From((decimal)202) },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From("To invoke a Lambda function asynchronously")
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -375,64 +325,7 @@ public static partial class InvokeSchema
                                 "uri",
                                 Document.From("/2015-03-31/functions/{FunctionName}/invocations")
                             },
-                            { "code", Document.From((decimal)200) },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.test#smokeTests"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "id", Document.From("ErrorInvalidFunctionName") },
-                                    {
-                                        "params",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("bogus-function") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "expect",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "failure",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "errorId",
-                                                                Document.From(
-                                                                    "com.amazonaws.lambda#ResourceNotFoundException"
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "vendorParams",
-                                        Document.From(new Dictionary<string, Document> { })
-                                    },
-                                    {
-                                        "vendorParamsShape",
-                                        Document.From("aws.test#AwsVendorParams")
-                                    },
-                                }
-                            ),
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

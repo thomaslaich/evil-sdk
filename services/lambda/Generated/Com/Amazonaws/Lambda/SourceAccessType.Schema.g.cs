@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SourceAccessTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<SourceAccessType> Schema { get; } =
-        Schemas.StringEnum<SourceAccessType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<SourceAccessType>(
             ShapeId.Parse("com.amazonaws.lambda#SourceAccessType"),
             values:
             [
@@ -33,10 +32,6 @@ public static partial class SourceAccessTypeSchema
             ],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

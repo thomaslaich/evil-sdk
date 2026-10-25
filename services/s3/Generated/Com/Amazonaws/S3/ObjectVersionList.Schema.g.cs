@@ -6,45 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectVersionListSchema
 {
     public static ListSchema<
-        ObjectVersionList,
-        ObjectVersion,
-        List<ObjectVersion>
+        IReadOnlyList<global::Com.Amazonaws.S3.ObjectVersion>,
+        global::Com.Amazonaws.S3.ObjectVersion,
+        List<global::Com.Amazonaws.S3.ObjectVersion>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<ObjectVersionList, ObjectVersion, List<ObjectVersion>>(
-            ShapeId.Parse("com.amazonaws.s3#ObjectVersionList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectVersion>,
+            global::Com.Amazonaws.S3.ObjectVersion,
+            List<global::Com.Amazonaws.S3.ObjectVersion>
+        >(ShapeId.Parse("com.amazonaws.s3#ObjectVersionList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectVersion> Target0 =
-            Schemas.Lazy(() => ObjectVersionSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectVersion> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectVersionSchema.Schema!);
 
-        public override IEnumerable<ObjectVersion> GetElements(ObjectVersionList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.ObjectVersion> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectVersion> value
+        ) => value;
 
-        public override List<ObjectVersion> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.ObjectVersion> CreateTypedBuilder() => new();
 
-        public override void Add(List<ObjectVersion> builder, ObjectVersion value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.ObjectVersion> builder,
+            global::Com.Amazonaws.S3.ObjectVersion value
+        ) => builder.Add(value);
 
-        public override ObjectVersionList Build(List<ObjectVersion> builder) =>
-            ObjectVersionList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.ObjectVersion> Build(
+            List<global::Com.Amazonaws.S3.ObjectVersion> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ObjectVersionList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.ObjectVersion> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -59,7 +61,7 @@ public static partial class ObjectVersionListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ObjectVersion> builder,
+            List<global::Com.Amazonaws.S3.ObjectVersion> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ObjectVersionSchema.Schema));
     }

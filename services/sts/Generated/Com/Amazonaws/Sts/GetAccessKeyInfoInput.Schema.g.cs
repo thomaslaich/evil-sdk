@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetAccessKeyInfoInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetAccessKeyInfoInputSchema
         public string? AccessKeyId { get; set; }
     }
 
-    public static StructSchema<GetAccessKeyInfoInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetAccessKeyInfoInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetAccessKeyInfoInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetAccessKeyInfoInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetAccessKeyInfoInput"),
             [
                 new(
@@ -29,18 +31,12 @@ public static partial class GetAccessKeyInfoInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identifier of an access key.</p>\n         <p>This parameter allows (through its regex pattern) a string of characters that can\n         consist of any upper- or lowercase letter or digit.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)16) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(16m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
@@ -65,17 +61,19 @@ public static partial class GetAccessKeyInfoInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetAccessKeyInfoInput Build(Builder builder) =>
-            new GetAccessKeyInfoInput(
+        public override global::Com.Amazonaws.Sts.GetAccessKeyInfoInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetAccessKeyInfoInput(
                 builder.AccessKeyId ?? throw new MissingRequiredMemberException("AccessKeyId")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetAccessKeyInfoInput value,
+            global::Com.Amazonaws.Sts.GetAccessKeyInfoInput value,
             ref TSerializer serializer
         )
         {

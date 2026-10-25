@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleInputSchema
 {
@@ -14,23 +14,24 @@ public static partial class AssumeRoleInputSchema
     {
         public string? RoleArn { get; set; }
         public string? RoleSessionName { get; set; }
-        public PolicyDescriptorListType? PolicyArns { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType>? PolicyArns { get; set; }
         public string? Policy { get; set; }
         public int? DurationSeconds { get; set; }
-        public TagListType? Tags { get; set; }
-        public TagKeyListType? TransitiveTagKeys { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sts.Tag>? Tags { get; set; }
+        public IReadOnlyList<string>? TransitiveTagKeys { get; set; }
         public string? ExternalId { get; set; }
         public string? SerialNumber { get; set; }
         public string? TokenCode { get; set; }
         public string? SourceIdentity { get; set; }
-        public ProvidedContextsListType? ProvidedContexts { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sts.ProvidedContext>? ProvidedContexts { get; set; }
         public int? MinimumSessionTokenSize { get; set; }
     }
 
-    public static StructSchema<AssumeRoleInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sts.AssumeRoleInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AssumeRoleInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.AssumeRoleInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#AssumeRoleInput"),
             [
                 new(
@@ -40,18 +41,12 @@ public static partial class AssumeRoleInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the role to assume.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)20) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(20m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -74,18 +69,12 @@ public static partial class AssumeRoleInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An identifier for the assumed role session.</p>\n         <p>Use the role session name to uniquely identify a session when the same role is assumed\n         by different principals or for different reasons. In cross-account scenarios, the role\n         session name is visible to, and can be logged by the account that owns the role. The role\n         session name is also used in the ARN of the assumed role principal. This means that\n         subsequent cross-account API requests that use the temporary security credentials will\n         expose the role session name to the external account in their CloudTrail logs.</p>\n         <p>For security purposes, administrators can view this field in <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_signin-tempcreds\">CloudTrail logs</a> to help identify who performed an action in Amazon Web Services. Your\n         administrator might require that you specify your user name as the session name when you\n         assume the role. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#ck_rolesessionname\">\n               <code>sts:RoleSessionName</code>\n            </a>.</p>\n         <p>The regex used to validate this parameter is a string of \n    characters consisting of upper- and lower-case alphanumeric characters with no spaces. \n    You can also include underscores or any of the following characters: +=,.@-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -99,37 +88,16 @@ public static partial class AssumeRoleInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "PolicyArns",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Names (ARNs) of the IAM managed policies that you want to use as\n         managed session policies. The policies must exist in the same account as the role.</p>\n         <p>This parameter is optional. You can provide up to 10 managed policy ARNs. However, the\n         plaintext that you use for both inline and managed session policies can't exceed 2,048\n         characters. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services\n            Service Namespaces</a> in the Amazon Web Services General Reference.</p>\n         <note>\n            <p>An Amazon Web Services conversion compresses the passed inline session policy, managed policy ARNs,\n            and session tags into a packed binary format that has a separate limit. Your request can\n            fail for this limit even if your plaintext meets the other requirements. The\n               <code>PackedPolicySize</code> response element indicates by percentage how close the\n            policies and tags for your request are to the upper size limit.</p>\n         </note>\n         <p>Passing policies to this operation returns new \n         temporary credentials. The resulting session's permissions are the intersection of the \n         role's identity-based policy and the session policies. You can use the role's temporary \n         credentials in subsequent Amazon Web Services API calls to access resources in the account that owns \n         the role. You cannot use session policies to grant more permissions than those allowed \n         by the identity-based policy of the role that is being assumed. For more information, see\n            <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session\">Session\n            Policies</a> in the <i>IAM User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("PolicyArns", Target2),
                 new(
                     "Policy",
                     Target3,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An IAM policy in JSON format that you want to use as an inline session policy.</p>\n         <p>This parameter is optional. Passing policies to this operation returns new \n         temporary credentials. The resulting session's permissions are the intersection of the \n         role's identity-based policy and the session policies. You can use the role's temporary \n         credentials in subsequent Amazon Web Services API calls to access resources in the account that owns \n         the role. You cannot use session policies to grant more permissions than those allowed \n         by the identity-based policy of the role that is being assumed. For more information, see\n            <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session\">Session\n            Policies</a> in the <i>IAM User Guide</i>.</p>\n         <p>The plaintext that you use for both inline and managed session policies can't exceed\n         2,048 characters. The JSON policy characters can be any ASCII character from the space\n         character to the end of the valid character list (\\u0020 through \\u00FF). It can also\n         include the tab (\\u0009), linefeed (\\u000A), and carriage return (\\u000D)\n         characters.</p>\n         <note>\n            <p>An Amazon Web Services conversion compresses the passed inline session policy, managed policy ARNs,\n            and session tags into a packed binary format that has a separate limit. Your request can\n            fail for this limit even if your plaintext meets the other requirements. The\n               <code>PackedPolicySize</code> response element indicates by percentage how close the\n            policies and tags for your request are to the upper size limit.</p>\n         </note>\n         <p>For more information about role session permissions, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session\">Session\n            policies</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -148,67 +116,31 @@ public static partial class AssumeRoleInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The duration, in seconds, of the role session. The value specified can range from 900\n         seconds (15 minutes) up to the maximum session duration set for the role. The maximum\n         session duration setting can have a value from 1 hour to 12 hours. If you specify a value\n         higher than this setting or the administrator setting (whichever is lower), the operation\n         fails. For example, if you specify a session duration of 12 hours, but your administrator\n         set the maximum session duration to 6 hours, your operation fails. </p>\n         <p>Role chaining limits your Amazon Web Services CLI or Amazon Web Services API role session to a maximum of one hour.\n         When you use the <code>AssumeRole</code> API operation to assume a role, you can specify\n         the duration of your role session with the <code>DurationSeconds</code> parameter. You can\n         specify a parameter value of up to 43200 seconds (12 hours), depending on the maximum\n         session duration setting for your role. However, if you assume a role using role chaining\n         and provide a <code>DurationSeconds</code> parameter value greater than one hour, the\n         operation fails. To learn how to view the maximum value for your role, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_update-role-settings.html#id_roles_update-session-duration\">Update the maximum session duration for a role</a>.</p>\n         <p>By default, the value is set to <code>3600</code> seconds. </p>\n         <note>\n            <p>The <code>DurationSeconds</code> parameter is separate from the duration of a console\n            session that you might request using the returned credentials. The request to the\n            federation endpoint for a console sign-in token takes a <code>SessionDuration</code>\n            parameter that specifies the maximum length of the console session. For more\n            information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html\">Creating a URL\n               that Enables Federated Users to Access the Amazon Web Services Management Console</a> in the\n               <i>IAM User Guide</i>.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)900) },
-                                    { "max", Document.From((decimal)43200) },
+                                    { "min", Document.From(900m) },
+                                    { "max", Document.From(43200m) },
                                 }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of session tags that you want to pass. Each session tag consists of a key name\n         and an associated value. For more information about session tags, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html\">Tagging Amazon Web Services STS\n            Sessions</a> in the <i>IAM User Guide</i>.</p>\n         <p>This parameter is optional. You can pass up to 50 session tags. The plaintext session\n         tag keys can’t exceed 128 characters, and the values can’t exceed 256 characters. For these\n         and additional limits, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html#reference_iam-limits-entity-length\">IAM\n            and STS Character Limits</a> in the <i>IAM User Guide</i>.</p>\n         <note>\n            <p>An Amazon Web Services conversion compresses the passed inline session policy, managed policy ARNs,\n            and session tags into a packed binary format that has a separate limit. Your request can\n            fail for this limit even if your plaintext meets the other requirements. The\n               <code>PackedPolicySize</code> response element indicates by percentage how close the\n            policies and tags for your request are to the upper size limit.</p>\n         </note>\n         <p>You can pass a session tag with the same key as a tag that is already attached to the\n         role. When you do, session tags override a role tag with the same key. </p>\n         <p>Tag key–value pairs are not case sensitive, but case is preserved. This means that you\n         cannot have separate <code>Department</code> and <code>department</code> tag keys. Assume\n         that the role has the <code>Department</code>=<code>Marketing</code> tag and you pass the\n            <code>department</code>=<code>engineering</code> session tag. <code>Department</code>\n         and <code>department</code> are not saved as separate tags, and the session tag passed in\n         the request takes precedence over the role tag.</p>\n         <p>Additionally, if you used temporary credentials to perform this operation, the new\n         session inherits any transitive session tags from the calling session. If you pass a\n         session tag with the same key as an inherited tag, the operation fails. To view the\n         inherited tags for a session, see the CloudTrail logs. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs\">Viewing Session Tags in CloudTrail</a> in the\n         <i>IAM User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "TransitiveTagKeys",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of keys for session tags that you want to set as transitive. If you set a tag key\n         as transitive, the corresponding key and value passes to subsequent sessions in a role\n         chain. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_role-chaining\">Chaining Roles\n            with Session Tags</a> in the <i>IAM User Guide</i>.</p>\n         <p>This parameter is optional. The transitive status of a session tag does not impact its\n         packed binary size.</p>\n         <p>If you choose not to specify a transitive tag key, then no tags are passed from this\n         session to any subsequent sessions.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Tags", Target5),
+                new("TransitiveTagKeys", Target6),
                 new(
                     "ExternalId",
                     Target7,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A unique identifier that might be required when you assume a role in another account. If\n         the administrator of the account to which the role belongs provided you with an external\n         ID, then provide that value in the <code>ExternalId</code> parameter. This value can be any\n         string, such as a passphrase or account number. A cross-account role is usually set up to\n         trust everyone in an account. Therefore, the administrator of the trusting account might\n         send an external ID to the administrator of the trusted account. That way, only someone\n         with the ID can assume the role, rather than everyone in the account. For more information\n         about the external ID, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html\">How to Use an External ID\n            When Granting Access to Your Amazon Web Services Resources to a Third Party</a> in the\n            <i>IAM User Guide</i>.</p>\n         <p>The regex used to validate this parameter is a string of \n    characters consisting of upper- and lower-case alphanumeric characters with no spaces. \n    You can also include underscores or any of the following characters: +=,.@:\\/-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)1224) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(1224m) },
                                 }
                             )
                         ),
@@ -224,18 +156,12 @@ public static partial class AssumeRoleInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identification number of the MFA device that is associated with the user who is\n         making the <code>AssumeRole</code> call. Specify this value if the trust policy of the role\n         being assumed includes a condition that requires MFA authentication. The value is either\n         the serial number for a hardware device (such as <code>GAHT12345678</code>) or an Amazon\n         Resource Name (ARN) for a virtual device (such as\n            <code>arn:aws:iam::123456789012:mfa/user</code>).</p>\n         <p>The regex used to validate this parameter is a string of \n    characters consisting of upper- and lower-case alphanumeric characters with no spaces. \n    You can also include underscores or any of the following characters: +=/:,.@-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)9) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(9m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -251,18 +177,12 @@ public static partial class AssumeRoleInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value provided by the MFA device, if the trust policy of the role being assumed\n         requires MFA. (In other words, if the policy includes a condition that tests for MFA). If\n         the role being assumed requires MFA and if the <code>TokenCode</code> value is missing or\n         expired, the <code>AssumeRole</code> call returns an \"access denied\" error.</p>\n         <p>The format for this parameter, as described by its regex pattern, is a sequence of six\n         numeric digits.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)6) },
-                                    { "max", Document.From((decimal)6) },
+                                    { "min", Document.From(6m) },
+                                    { "max", Document.From(6m) },
                                 }
                             )
                         ),
@@ -275,18 +195,12 @@ public static partial class AssumeRoleInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The source identity specified by the principal that is calling the\n            <code>AssumeRole</code> operation. The source identity value persists across <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#iam-term-role-chaining\">chained role</a> sessions.</p>\n         <p>You can require users to specify a source identity when they assume a role. You do this\n         by using the <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceidentity\">\n               <code>sts:SourceIdentity</code>\n            </a> condition key in a role trust policy. You\n         can use source identity information in CloudTrail logs to determine who took actions with a\n         role. You can use the <code>aws:SourceIdentity</code> condition key to further control\n         access to Amazon Web Services resources based on the value of source identity. For more information about\n         using source identity, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">Monitor and control\n            actions taken with assumed roles</a> in the\n         <i>IAM User Guide</i>.</p>\n         <p>The regex used to validate this parameter is a string of characters consisting of upper-\n         and lower-case alphanumeric characters with no spaces. You can also include underscores or\n         any of the following characters: +=,.@-. You cannot use a value that begins with the text\n            <code>aws:</code>. This prefix is reserved for Amazon Web Services internal use.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -296,19 +210,7 @@ public static partial class AssumeRoleInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "ProvidedContexts",
-                    Target11,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of previously acquired trusted context assertions in the format of a JSON array.\n         The trusted context assertion is signed and encrypted by Amazon Web Services STS.</p>\n         <p>The following is an example of a <code>ProvidedContext</code> value that includes a\n         single trusted context assertion and the ARN of the context provider from which the trusted\n         context assertion was generated.</p>\n         <p>\n            <code>[{\"ProviderArn\":\"arn:aws:iam::aws:contextProvider/IdentityCenter\",\"ContextAssertion\":\"trusted-context-assertion\"}]</code>\n         </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ProvidedContexts", Target11),
                 new(
                     "MinimumSessionTokenSize",
                     Target12,
@@ -319,18 +221,12 @@ public static partial class AssumeRoleInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The minimum size, in bytes, of the session token that STS issues for the request. STS increases\n    the session token to at least this size, regardless of its actual content. The value must not\n    exceed 4,096 bytes. When set to 0 or not specified, the session token size is unchanged."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)4096) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(4096m) },
                                 }
                             )
                         ),
@@ -350,38 +246,62 @@ public static partial class AssumeRoleInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<PolicyDescriptorListType?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => PolicyDescriptorListTypeSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    PolicyDescriptorListTypeSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<TagListType?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagListTypeSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<TagKeyListType?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagKeyListTypeSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sts.Tag>?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagListTypeSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagKeyListTypeSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ProvidedContextsListType?> Target11 =
-            Schemas.NullableReference(Schemas.Lazy(() => ProvidedContextsListTypeSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target12 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sts.ProvidedContext>?> Target11 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ProvidedContextsListTypeSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target12 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AssumeRoleInput Build(Builder builder) =>
-            new AssumeRoleInput(
+        public override global::Com.Amazonaws.Sts.AssumeRoleInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.AssumeRoleInput(
                 builder.RoleArn ?? throw new MissingRequiredMemberException("RoleArn"),
                 builder.RoleSessionName
                     ?? throw new MissingRequiredMemberException("RoleSessionName"),
@@ -399,7 +319,7 @@ public static partial class AssumeRoleInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AssumeRoleInput value,
+            global::Com.Amazonaws.Sts.AssumeRoleInput value,
             ref TSerializer serializer
         )
         {

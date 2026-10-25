@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ProvisionedConcurrencyConfigNotFoundExceptionSchema
 {
@@ -16,63 +16,44 @@ public static partial class ProvisionedConcurrencyConfigNotFoundExceptionSchema
     }
 
     public static StructSchema<
-        ProvisionedConcurrencyConfigNotFoundException,
+        global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigNotFoundException,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ProvisionedConcurrencyConfigNotFoundException, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigNotFoundException,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ProvisionedConcurrencyConfigNotFoundException"),
+            [new("Type", Target0), new("message", Target1)],
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified configuration does not exist.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ProvisionedConcurrencyConfigNotFoundException Build(Builder builder) =>
-            new ProvisionedConcurrencyConfigNotFoundException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigNotFoundException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigNotFoundException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ProvisionedConcurrencyConfigNotFoundException value,
+            global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigNotFoundException value,
             ref TSerializer serializer
         )
         {

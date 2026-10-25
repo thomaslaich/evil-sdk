@@ -6,63 +6,54 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionEventInvokeConfigListSchema
 {
     public static ListSchema<
-        FunctionEventInvokeConfigList,
-        FunctionEventInvokeConfig,
-        List<FunctionEventInvokeConfig>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig>,
+        global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig,
+        List<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            FunctionEventInvokeConfigList,
-            FunctionEventInvokeConfig,
-            List<FunctionEventInvokeConfig>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig>,
+            global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig,
+            List<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig>
         >(
             ShapeId.Parse("com.amazonaws.lambda#FunctionEventInvokeConfigList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionEventInvokeConfig> Target0 =
-            Schemas.Lazy(() => FunctionEventInvokeConfigSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionEventInvokeConfigSchema.Schema!);
 
-        public override IEnumerable<FunctionEventInvokeConfig> GetElements(
-            FunctionEventInvokeConfigList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> value
+        ) => value;
 
-        public override List<FunctionEventInvokeConfig> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<FunctionEventInvokeConfig> builder,
-            FunctionEventInvokeConfig value
+            List<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> builder,
+            global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig value
         ) => builder.Add(value);
 
-        public override FunctionEventInvokeConfigList Build(
-            List<FunctionEventInvokeConfig> builder
-        ) => FunctionEventInvokeConfigList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> Build(
+            List<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FunctionEventInvokeConfigList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -77,7 +68,7 @@ public static partial class FunctionEventInvokeConfigListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<FunctionEventInvokeConfig> builder,
+            List<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(FunctionEventInvokeConfigSchema.Schema));
     }

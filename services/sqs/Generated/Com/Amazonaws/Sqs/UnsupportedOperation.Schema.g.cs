@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class UnsupportedOperationSchema
 {
@@ -15,11 +15,13 @@ public static partial class UnsupportedOperationSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<UnsupportedOperation, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.UnsupportedOperation,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UnsupportedOperation, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.UnsupportedOperation, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
             [new("message", Target0)],
             [
@@ -32,29 +34,27 @@ public static partial class UnsupportedOperationSchema
                                 "code",
                                 Document.From("AWS.SimpleQueueService.UnsupportedOperation")
                             },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Error code 400. Unsupported operation.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UnsupportedOperation Build(Builder builder) =>
-            new UnsupportedOperation(builder.Message);
+        public override global::Com.Amazonaws.Sqs.UnsupportedOperation Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.UnsupportedOperation(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            UnsupportedOperation value,
+            global::Com.Amazonaws.Sqs.UnsupportedOperation value,
             ref TSerializer serializer
         )
         {

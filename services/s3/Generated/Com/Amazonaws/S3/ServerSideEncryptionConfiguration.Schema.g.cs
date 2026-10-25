@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ServerSideEncryptionConfigurationSchema
 {
     public sealed class Builder
     {
-        public ServerSideEncryptionRules? Rules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ServerSideEncryptionRule>? Rules { get; set; }
     }
 
-    public static StructSchema<ServerSideEncryptionConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ServerSideEncryptionConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ServerSideEncryptionConfiguration"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class ServerSideEncryptionConfigurationSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for information about a particular server-side encryption configuration rule.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -46,28 +42,27 @@ public static partial class ServerSideEncryptionConfigurationSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the default server-side-encryption configuration.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ServerSideEncryptionRules?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ServerSideEncryptionRulesSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ServerSideEncryptionRule>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ServerSideEncryptionRulesSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ServerSideEncryptionConfiguration Build(Builder builder) =>
-            new ServerSideEncryptionConfiguration(
+        public override global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration(
                 builder.Rules ?? throw new MissingRequiredMemberException("Rules")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ServerSideEncryptionConfiguration value,
+            global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration value,
             ref TSerializer serializer
         )
         {

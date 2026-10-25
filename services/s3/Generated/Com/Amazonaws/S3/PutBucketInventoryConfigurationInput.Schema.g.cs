@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketInventoryConfigurationInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class PutBucketInventoryConfigurationInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<PutBucketInventoryConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketInventoryConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketInventoryConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketInventoryConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketInventoryConfigurationInput"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class PutBucketInventoryConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket where the inventory configuration will be stored.</p>\n         <p>\n            <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use path-style requests in the format <code>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i>\n            </code>. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming rules</a> in the <i>Amazon S3 User Guide</i>\n         </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -62,12 +58,6 @@ public static partial class PutBucketInventoryConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID used to identify the inventory configuration.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
@@ -81,10 +71,6 @@ public static partial class PutBucketInventoryConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies the inventory configuration.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -105,12 +91,6 @@ public static partial class PutBucketInventoryConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>\n         <note>\n            <p>For directory buckets, this header is not supported in this API operation. If you specify this header, the request fails with the HTTP status code \n<code>501 Not Implemented</code>.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -130,18 +110,28 @@ public static partial class PutBucketInventoryConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryConfiguration?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InventoryConfigurationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketInventoryConfigurationInput Build(Builder builder) =>
-            new PutBucketInventoryConfigurationInput(
+        public override global::Com.Amazonaws.S3.PutBucketInventoryConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketInventoryConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.InventoryConfiguration
@@ -150,7 +140,7 @@ public static partial class PutBucketInventoryConfigurationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketInventoryConfigurationInput value,
+            global::Com.Amazonaws.S3.PutBucketInventoryConfigurationInput value,
             ref TSerializer serializer
         )
         {

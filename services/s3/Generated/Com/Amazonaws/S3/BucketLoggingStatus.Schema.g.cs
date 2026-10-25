@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketLoggingStatusSchema
 {
@@ -14,31 +14,30 @@ public static partial class BucketLoggingStatusSchema
         public global::Com.Amazonaws.S3.LoggingEnabled? LoggingEnabled { get; set; }
     }
 
-    public static StructSchema<BucketLoggingStatus, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.BucketLoggingStatus,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BucketLoggingStatus, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.BucketLoggingStatus, Builder>(
             ShapeId.Parse("com.amazonaws.s3#BucketLoggingStatus"),
             [new("LoggingEnabled", Target0)],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for logging status information.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.LoggingEnabled?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => LoggingEnabledSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => LoggingEnabledSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override BucketLoggingStatus Build(Builder builder) =>
-            new BucketLoggingStatus(builder.LoggingEnabled);
+        public override global::Com.Amazonaws.S3.BucketLoggingStatus Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.BucketLoggingStatus(builder.LoggingEnabled);
 
         public override void SerializeMembers<TSerializer>(
-            BucketLoggingStatus value,
+            global::Com.Amazonaws.S3.BucketLoggingStatus value,
             ref TSerializer serializer
         )
         {

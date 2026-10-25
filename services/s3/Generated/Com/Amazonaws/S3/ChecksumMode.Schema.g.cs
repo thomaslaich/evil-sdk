@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ChecksumModeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ChecksumMode> Schema { get; } =
-        Schemas.StringEnum<ChecksumMode>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ChecksumMode>(
             ShapeId.Parse("com.amazonaws.s3#ChecksumMode"),
             values: ["ENABLED"],
             traits:

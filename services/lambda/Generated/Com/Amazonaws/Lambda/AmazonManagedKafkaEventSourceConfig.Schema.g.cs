@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AmazonManagedKafkaEventSourceConfigSchema
 {
     public sealed class Builder
     {
         public string? ConsumerGroupId { get; set; }
-        public KafkaSchemaRegistryConfig? SchemaRegistryConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.KafkaSchemaRegistryConfig? SchemaRegistryConfig { get; set; }
     }
 
-    public static StructSchema<AmazonManagedKafkaEventSourceConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AmazonManagedKafkaEventSourceConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#AmazonManagedKafkaEventSourceConfig"),
             [
                 new(
@@ -29,18 +31,12 @@ public static partial class AmazonManagedKafkaEventSourceConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identifier for the Kafka consumer group to join. The consumer group ID must be unique among all your Kafka event sources. After creating a Kafka event source mapping with the consumer group ID specified, you cannot update this value. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-consumer-group-id\">Customizable consumer group ID</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)200) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(200m) },
                                 }
                             )
                         ),
@@ -48,59 +44,36 @@ public static partial class AmazonManagedKafkaEventSourceConfigSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[ a-zA-Z0-9-\\/*:_+=.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "SchemaRegistryConfig",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specific configuration settings for a Kafka schema registry.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("SchemaRegistryConfig", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<KafkaSchemaRegistryConfig?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => KafkaSchemaRegistryConfigSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryConfig?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    KafkaSchemaRegistryConfigSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AmazonManagedKafkaEventSourceConfig Build(Builder builder) =>
-            new AmazonManagedKafkaEventSourceConfig(
+        public override global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig(
                 builder.ConsumerGroupId,
                 builder.SchemaRegistryConfig
             );
 
         public override void SerializeMembers<TSerializer>(
-            AmazonManagedKafkaEventSourceConfig value,
+            global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig value,
             ref TSerializer serializer
         )
         {

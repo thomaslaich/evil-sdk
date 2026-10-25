@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderVpcConfigSchema
 {
     public sealed class Builder
     {
-        public CapacityProviderSubnetIds? SubnetIds { get; set; }
-        public CapacityProviderSecurityGroupIds? SecurityGroupIds { get; set; }
+        public IReadOnlyList<string>? SubnetIds { get; set; }
+        public IReadOnlyList<string>? SecurityGroupIds { get; set; }
     }
 
-    public static StructSchema<CapacityProviderVpcConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CapacityProviderVpcConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderVpcConfig"),
             [
                 new(
@@ -30,18 +32,8 @@ public static partial class CapacityProviderVpcConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of subnet IDs where the capacity provider launches compute instances.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -52,54 +44,41 @@ public static partial class CapacityProviderVpcConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of security group IDs that control network access for compute instances managed by the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>VPC configuration that specifies the network settings for compute instances managed by the capacity provider.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderSubnetIds?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CapacityProviderSubnetIdsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderSecurityGroupIds?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderSecurityGroupIdsSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderSubnetIdsSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderSecurityGroupIdsSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CapacityProviderVpcConfig Build(Builder builder) =>
-            new CapacityProviderVpcConfig(
+        public override global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig(
                 builder.SecurityGroupIds
                     ?? throw new MissingRequiredMemberException("SecurityGroupIds"),
                 builder.SubnetIds ?? throw new MissingRequiredMemberException("SubnetIds")
             );
 
         public override void SerializeMembers<TSerializer>(
-            CapacityProviderVpcConfig value,
+            global::Com.Amazonaws.Lambda.CapacityProviderVpcConfig value,
             ref TSerializer serializer
         )
         {

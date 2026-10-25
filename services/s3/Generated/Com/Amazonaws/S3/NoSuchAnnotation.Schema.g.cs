@@ -5,41 +5,45 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoSuchAnnotationSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder
+    {
 
-    public static StructSchema<NoSuchAnnotation, Builder> Schema { get; } = new GeneratedSchema();
+    }
+
+    public static StructSchema<global::Com.Amazonaws.S3.NoSuchAnnotation, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NoSuchAnnotation, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NoSuchAnnotation, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NoSuchAnnotation"),
-            [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified annotation does not exist on this object.</p>")
-                ),
-                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
-            ]
-        )
+
+            ],
+            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")), new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m))])
     {
+
         public override Builder CreateTypedBuilder() => new();
 
-        public override NoSuchAnnotation Build(Builder builder) => new NoSuchAnnotation(null);
+        public override global::Com.Amazonaws.S3.NoSuchAnnotation Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.NoSuchAnnotation(null);
 
         public override void SerializeMembers<TSerializer>(
-            NoSuchAnnotation value,
-            ref TSerializer serializer
-        ) { }
+            global::Com.Amazonaws.S3.NoSuchAnnotation value,
+            ref TSerializer serializer)
+        {
+
+        }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        ) { }
+            ref TDeserializer deserializer)
+        {
+
+        }
     }
 }

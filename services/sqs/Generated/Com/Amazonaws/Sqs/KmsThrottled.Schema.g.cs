@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class KmsThrottledSchema
 {
@@ -15,10 +15,11 @@ public static partial class KmsThrottledSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<KmsThrottled, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.KmsThrottled, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<KmsThrottled, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.KmsThrottled, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#KmsThrottled"),
             [new("message", Target0)],
             [
@@ -28,30 +29,27 @@ public static partial class KmsThrottledSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("KMS.ThrottlingException") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Amazon Web Services KMS throttles requests for the following conditions.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override KmsThrottled Build(Builder builder) => new KmsThrottled(builder.Message);
+        public override global::Com.Amazonaws.Sqs.KmsThrottled Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.KmsThrottled(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            KmsThrottled value,
+            global::Com.Amazonaws.Sqs.KmsThrottled value,
             ref TSerializer serializer
         )
         {

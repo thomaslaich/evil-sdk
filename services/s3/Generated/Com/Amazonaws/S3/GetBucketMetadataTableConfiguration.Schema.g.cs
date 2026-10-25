@@ -6,34 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetadataTableConfigurationSchema
 {
     public static OperationSchema<
-        GetBucketMetadataTableConfigurationInput,
-        GetBucketMetadataTableConfigurationOutput
+        global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationInput,
+        global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketMetadataTableConfiguration"),
-            Schemas.Lazy(() => GetBucketMetadataTableConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketMetadataTableConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketMetadataTableConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketMetadataTableConfigurationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<important>\n            <p>\n        We recommend that you retrieve your S3 Metadata configurations by using the V2 \n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetadataTableConfiguration.html\">GetBucketMetadataTableConfiguration</a> API operation. We no longer recommend using the V1 \n        <code>GetBucketMetadataTableConfiguration</code> API operation.\n      </p>\n            <p>If you created your S3 Metadata configuration before July 15, 2025, we recommend that you delete \n        and re-create your configuration by using <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a> so that you can expire journal table records and create \n        a live inventory table.</p>\n         </important>\n         <p> Retrieves the V1 S3 Metadata configuration for a general purpose bucket. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-overview.html\">Accelerating\n        data discovery with S3 Metadata</a> in the <i>Amazon S3 User Guide</i>. </p>\n         <note>\n            <p>You can use the V2 <code>GetBucketMetadataConfiguration</code> API operation with V1 or V2 \n            metadata table configurations. However, if you try to use the V1 \n            <code>GetBucketMetadataTableConfiguration</code> API operation with V2 configurations, you\n            will receive an HTTP <code>405 Method Not Allowed</code> error.</p>\n            <p>Make sure that you update your processes to use the new V2 API operations\n            (<code>CreateBucketMetadataConfiguration</code>, <code>GetBucketMetadataConfiguration</code>, and\n            <code>DeleteBucketMetadataConfiguration</code>) instead of the V1 API operations. </p>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>To use this operation, you must have the <code>s3:GetBucketMetadataTableConfiguration</code>\n            permission. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-permissions.html\">Setting up permissions for\n              configuring metadata tables</a> in the <i>Amazon S3 User Guide</i>. </p>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>GetBucketMetadataTableConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataTableConfiguration.html\">CreateBucketMetadataTableConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetadataTableConfiguration.html\">DeleteBucketMetadataTableConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?metadataTable") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?metadataTable") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

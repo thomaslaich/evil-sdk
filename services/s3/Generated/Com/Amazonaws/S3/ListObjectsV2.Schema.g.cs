@@ -6,156 +6,34 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectsV2Schema
 {
-    public static OperationSchema<ListObjectsV2Input, ListObjectsV2Output> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.ListObjectsV2Input,
+        global::Com.Amazonaws.S3.ListObjectsV2Output
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#ListObjectsV2"),
-            Schemas.Lazy(() => ListObjectsV2InputSchema.Schema!),
-            Schemas.Lazy(() => ListObjectsV2OutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListObjectsV2InputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListObjectsV2OutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchBucket"),
-                    Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
                     404
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns some or all (up to 1,000) of the objects in a bucket with each request. You can use the\n      request parameters as selection criteria to return a subset of the objects in a bucket. A <code>200\n        OK</code> response can contain valid or invalid XML. Make sure to design your application to parse the\n      contents of the response and handle it appropriately. For more information about listing objects, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ListingKeysUsingAPIs.html\">Listing object\n        keys programmatically</a> in the <i>Amazon S3 User Guide</i>. To get a list of your\n      buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html\">ListBuckets</a>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>General purpose bucket</b> - For general purpose buckets,\n              <code>ListObjectsV2</code> doesn't return prefixes that are related only to in-progress\n            multipart uploads.</p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> - For directory buckets,\n              <code>ListObjectsV2</code> response includes the prefixes that are related only to in-progress\n            multipart uploads. </p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> - For directory buckets, you must make requests for this API operation to the Zonal endpoint. These endpoints support virtual-hosted-style requests in the format <code>https://<i>amzn-s3-demo-bucket</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com/<i>key-name</i>\n                     </code>. Path-style requests are not supported. For more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the\n    <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n               </li>\n            </ul>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket permissions</b> - To use this\n                operation, you must have READ access to the bucket. You must have permission to perform the\n                  <code>s3:ListBucket</code> action. The bucket owner has this permission by default and can\n                grant this permission to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\">Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access\n                  Permissions to Your Amazon S3 Resources</a> in the\n                <i>Amazon S3 User Guide</i>.</p>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket permissions</b> - To grant access to this API operation on a directory bucket, we recommend that you use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a> API operation for session-based authorization. Specifically, you grant the <code>s3express:CreateSession</code> permission to the directory bucket in a bucket policy or an IAM identity-based policy. Then, you make the <code>CreateSession</code> API call on the bucket to obtain a session token. With the session token in your request header, you can make API requests to this operation. After the session token expires, you make another <code>CreateSession</code> API call to generate a new session token for use. \nAmazon Web Services CLI or SDKs create session and refresh the session token automatically to avoid service interruptions when a session expires. For more information about authorization, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a>.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>Sorting order of returned objects</dt>\n            <dd>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket</b> - For general purpose buckets,\n                  <code>ListObjectsV2</code> returns objects in lexicographical order based on their key\n                names.</p>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket</b> - For directory buckets,\n                  <code>ListObjectsV2</code> does not return objects in lexicographical order.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is <code>\n                     <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>.</p>\n            </dd>\n         </dl>\n         <important>\n            <p>This section describes the latest revision of this action. We recommend that you use this revised\n        API operation for application development. For backward compatibility, Amazon S3 continues to support the\n        prior version of this API operation, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html\">ListObjects</a>.</p>\n         </important>\n         <p>The following operations are related to <code>ListObjectsV2</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To get object list") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example retrieves object list. The request specifies max keys to limit response to include only 2 object keys. "
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("DOC-EXAMPLE-BUCKET") },
-                                                { "MaxKeys", Document.From((decimal)2) },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Name", Document.From("DOC-EXAMPLE-BUCKET") },
-                                                { "MaxKeys", Document.From((decimal)2) },
-                                                { "Prefix", Document.From("") },
-                                                { "KeyCount", Document.From((decimal)2) },
-                                                {
-                                                    "NextContinuationToken",
-                                                    Document.From(
-                                                        "1w41l63U0xa8q7smH50vCxyTQqdxo69O3EmK28Bi5PcROI4wI/EyIJg=="
-                                                    )
-                                                },
-                                                { "IsTruncated", Document.From(true) },
-                                                {
-                                                    "Contents",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            "2014-11-21T19:40:05.000Z"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "ETag",
-                                                                        Document.From(
-                                                                            "\"70ee1738b6b21e2c8a43f3a5ab0eee71\""
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "StorageClass",
-                                                                        Document.From("STANDARD")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From(
-                                                                            "happyface.jpg"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Size",
-                                                                        Document.From((decimal)11)
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            "2014-05-02T04:51:50.000Z"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "ETag",
-                                                                        Document.From(
-                                                                            "\"becf17f89c30367a9a44495d62ed521a-1\""
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "StorageClass",
-                                                                        Document.From("STANDARD")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From("test.jpg")
-                                                                    },
-                                                                    {
-                                                                        "Size",
-                                                                        Document.From(
-                                                                            (decimal)4192256
-                                                                        )
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?list-type=2") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?list-type=2") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

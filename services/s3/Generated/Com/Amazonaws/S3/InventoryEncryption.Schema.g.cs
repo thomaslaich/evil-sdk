@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryEncryptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class InventoryEncryptionSchema
         public global::Com.Amazonaws.S3.SSEKMS? SSEKMS { get; set; }
     }
 
-    public static StructSchema<InventoryEncryption, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InventoryEncryption,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventoryEncryption, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventoryEncryption, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventoryEncryption"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class InventoryEncryptionSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the use of SSE-S3 to encrypt delivered inventory reports.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SSE-S3")),
                     ]
                 ),
@@ -41,38 +37,29 @@ public static partial class InventoryEncryptionSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the use of SSE-KMS to encrypt delivered inventory reports.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SSE-KMS")),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the type of server-side encryption used to encrypt the S3 Inventory results.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SSES3?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => SSES3Schema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SSES3Schema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SSEKMS?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => SSEKMSSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SSEKMSSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventoryEncryption Build(Builder builder) =>
-            new InventoryEncryption(builder.SSEKMS, builder.SSES3);
+        public override global::Com.Amazonaws.S3.InventoryEncryption Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InventoryEncryption(builder.SSEKMS, builder.SSES3);
 
         public override void SerializeMembers<TSerializer>(
-            InventoryEncryption value,
+            global::Com.Amazonaws.S3.InventoryEncryption value,
             ref TSerializer serializer
         )
         {

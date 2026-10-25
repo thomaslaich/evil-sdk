@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetAccessKeyInfoOutputSchema
 {
@@ -15,27 +15,15 @@ public static partial class GetAccessKeyInfoOutputSchema
         public string? Account { get; set; }
     }
 
-    public static StructSchema<GetAccessKeyInfoOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetAccessKeyInfoOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetAccessKeyInfoOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetAccessKeyInfoOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetAccessKeyInfoOutput"),
-            [
-                new(
-                    "Account",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number used to identify the Amazon Web Services account.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
+            [new("Account", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
@@ -49,15 +37,17 @@ public static partial class GetAccessKeyInfoOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetAccessKeyInfoOutput Build(Builder builder) =>
-            new GetAccessKeyInfoOutput(builder.Account);
+        public override global::Com.Amazonaws.Sts.GetAccessKeyInfoOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetAccessKeyInfoOutput(builder.Account);
 
         public override void SerializeMembers<TSerializer>(
-            GetAccessKeyInfoOutput value,
+            global::Com.Amazonaws.Sts.GetAccessKeyInfoOutput value,
             ref TSerializer serializer
         )
         {

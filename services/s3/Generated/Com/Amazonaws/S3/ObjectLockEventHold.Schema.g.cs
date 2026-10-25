@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockEventHoldSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ObjectLockEventHold> Schema { get; } =
-        Schemas.StringEnum<ObjectLockEventHold>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ObjectLockEventHold>(
             ShapeId.Parse("com.amazonaws.s3#ObjectLockEventHold"),
             values: ["ON", "OFF"],
             traits:

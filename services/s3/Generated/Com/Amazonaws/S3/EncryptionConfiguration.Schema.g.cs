@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EncryptionConfigurationSchema
 {
@@ -14,47 +14,30 @@ public static partial class EncryptionConfigurationSchema
         public string? ReplicaKmsKeyID { get; set; }
     }
 
-    public static StructSchema<EncryptionConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.EncryptionConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EncryptionConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.EncryptionConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#EncryptionConfiguration"),
-            [
-                new(
-                    "ReplicaKmsKeyID",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the ID (Key ARN or Alias ARN) of the customer managed Amazon Web Services KMS key stored in Amazon Web Services Key\n      Management Service (KMS) for the destination bucket. Amazon S3 uses this key to encrypt replica objects. Amazon S3\n      only supports symmetric encryption KMS keys. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html\">Asymmetric keys in Amazon Web Services KMS</a> in the\n        <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated\n      objects.</p>\n         <note>\n            <p>If you're specifying a customer managed KMS key, we recommend using a fully qualified KMS key\n        ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester’s account.\n        This behavior can result in data that's encrypted with a KMS key that belongs to the requester, and\n        not the bucket owner.</p>\n         </note>"
-                    )
-                ),
-            ]
+            [new("ReplicaKmsKeyID", Target0)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EncryptionConfiguration Build(Builder builder) =>
-            new EncryptionConfiguration(builder.ReplicaKmsKeyID);
+        public override global::Com.Amazonaws.S3.EncryptionConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.EncryptionConfiguration(builder.ReplicaKmsKeyID);
 
         public override void SerializeMembers<TSerializer>(
-            EncryptionConfiguration value,
+            global::Com.Amazonaws.S3.EncryptionConfiguration value,
             ref TSerializer serializer
         )
         {

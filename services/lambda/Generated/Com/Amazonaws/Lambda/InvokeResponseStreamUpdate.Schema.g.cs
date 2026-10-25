@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeResponseStreamUpdateSchema
 {
@@ -15,11 +15,13 @@ public static partial class InvokeResponseStreamUpdateSchema
         public byte[]? Payload { get; set; }
     }
 
-    public static StructSchema<InvokeResponseStreamUpdate, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvokeResponseStreamUpdate,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvokeResponseStreamUpdate, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvokeResponseStreamUpdate, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvokeResponseStreamUpdate"),
             [
                 new(
@@ -28,10 +30,6 @@ public static partial class InvokeResponseStreamUpdateSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Data returned by your Lambda function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#eventPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -39,35 +37,25 @@ public static partial class InvokeResponseStreamUpdateSchema
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A chunk of the streamed response payload.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<byte[]?> Target0 =
-            Schemas.NullableReference(Schemas.Blob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Blob
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvokeResponseStreamUpdate Build(Builder builder) =>
-            new InvokeResponseStreamUpdate(builder.Payload);
+        public override global::Com.Amazonaws.Lambda.InvokeResponseStreamUpdate Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.InvokeResponseStreamUpdate(builder.Payload);
 
         public override void SerializeMembers<TSerializer>(
-            InvokeResponseStreamUpdate value,
+            global::Com.Amazonaws.Lambda.InvokeResponseStreamUpdate value,
             ref TSerializer serializer
         )
         {

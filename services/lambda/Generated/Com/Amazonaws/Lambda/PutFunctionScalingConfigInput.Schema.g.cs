@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutFunctionScalingConfigInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class PutFunctionScalingConfigInputSchema
         public global::Com.Amazonaws.Lambda.FunctionScalingConfig? FunctionScalingConfig { get; set; }
     }
 
-    public static StructSchema<PutFunctionScalingConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PutFunctionScalingConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutFunctionScalingConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PutFunctionScalingConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PutFunctionScalingConfigInput"),
             [
                 new(
@@ -31,10 +33,6 @@ public static partial class PutFunctionScalingConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name or ARN of the Lambda function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -43,8 +41,8 @@ public static partial class PutFunctionScalingConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -58,10 +56,6 @@ public static partial class PutFunctionScalingConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -71,12 +65,6 @@ public static partial class PutFunctionScalingConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify a version or alias to set the scaling configuration for a published version of the function.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("Qualifier")
                         ),
@@ -85,8 +73,8 @@ public static partial class PutFunctionScalingConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
@@ -98,38 +86,14 @@ public static partial class PutFunctionScalingConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "FunctionScalingConfig",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The scaling configuration to apply to the function, including minimum and maximum execution environment limits.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("FunctionScalingConfig", Target2),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -139,23 +103,31 @@ public static partial class PutFunctionScalingConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionScalingConfig?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionScalingConfigSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionScalingConfigSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutFunctionScalingConfigInput Build(Builder builder) =>
-            new PutFunctionScalingConfigInput(
+        public override global::Com.Amazonaws.Lambda.PutFunctionScalingConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.PutFunctionScalingConfigInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.Qualifier ?? throw new MissingRequiredMemberException("Qualifier"),
                 builder.FunctionScalingConfig
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutFunctionScalingConfigInput value,
+            global::Com.Amazonaws.Lambda.PutFunctionScalingConfigInput value,
             ref TSerializer serializer
         )
         {

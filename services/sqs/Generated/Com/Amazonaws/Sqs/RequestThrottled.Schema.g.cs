@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class RequestThrottledSchema
 {
@@ -15,10 +15,13 @@ public static partial class RequestThrottledSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<RequestThrottled, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.RequestThrottled,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RequestThrottled, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.RequestThrottled, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
             [new("message", Target0)],
             [
@@ -28,31 +31,27 @@ public static partial class RequestThrottledSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("RequestThrottled") },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request was denied due to request throttling.</p>\n         <ul>\n            <li>\n               <p>Exceeds the permitted request rate for the queue or for the recipient of the\n                    request.</p>\n            </li>\n            <li>\n               <p>Ensure that the request rate is within the Amazon SQS limits for\n                    sending messages. For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html#quotas-requests\">Amazon SQS quotas</a> in the <i>Amazon SQS\n                        Developer Guide</i>.</p>\n            </li>\n         </ul>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RequestThrottled Build(Builder builder) =>
-            new RequestThrottled(builder.Message);
+        public override global::Com.Amazonaws.Sqs.RequestThrottled Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.RequestThrottled(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            RequestThrottled value,
+            global::Com.Amazonaws.Sqs.RequestThrottled value,
             ref TSerializer serializer
         )
         {

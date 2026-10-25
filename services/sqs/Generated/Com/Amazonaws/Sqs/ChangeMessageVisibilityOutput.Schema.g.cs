@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<ChangeMessageVisibilityOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ChangeMessageVisibilityOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChangeMessageVisibilityOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class ChangeMessageVisibilityOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChangeMessageVisibilityOutput Build(Builder builder) =>
-            new ChangeMessageVisibilityOutput();
+        public override global::Com.Amazonaws.Sqs.ChangeMessageVisibilityOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sqs.ChangeMessageVisibilityOutput();
 
         public override void SerializeMembers<TSerializer>(
-            ChangeMessageVisibilityOutput value,
+            global::Com.Amazonaws.Sqs.ChangeMessageVisibilityOutput value,
             ref TSerializer serializer
         ) { }
 

@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CallbackFailedDetailsSchema
 {
     public sealed class Builder
     {
-        public EventError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.EventError? Error { get; set; }
     }
 
-    public static StructSchema<CallbackFailedDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CallbackFailedDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CallbackFailedDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CallbackFailedDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CallbackFailedDetails"),
             [
                 new(
@@ -29,48 +31,29 @@ public static partial class CallbackFailedDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An error object that contains details about the failure.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains details about a failed callback operation, including error information and the reason for failure.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventError?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventErrorSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventError?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CallbackFailedDetails Build(Builder builder) =>
-            new CallbackFailedDetails(
+        public override global::Com.Amazonaws.Lambda.CallbackFailedDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.CallbackFailedDetails(
                 builder.Error ?? throw new MissingRequiredMemberException("Error")
             );
 
         public override void SerializeMembers<TSerializer>(
-            CallbackFailedDetails value,
+            global::Com.Amazonaws.Lambda.CallbackFailedDetails value,
             ref TSerializer serializer
         )
         {

@@ -6,34 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketMetadataConfigurationSchema
 {
     public static OperationSchema<
-        DeleteBucketMetadataConfigurationInput,
-        DeleteBucketMetadataConfigurationOutput
+        global::Com.Amazonaws.S3.DeleteBucketMetadataConfigurationInput,
+        global::Com.Amazonaws.S3.DeleteBucketMetadataConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketMetadataConfiguration"),
-            Schemas.Lazy(() => DeleteBucketMetadataConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteBucketMetadataConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketMetadataConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketMetadataConfigurationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> Deletes an S3 Metadata configuration from a general purpose bucket. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-overview.html\">Accelerating\n        data discovery with S3 Metadata</a> in the <i>Amazon S3 User Guide</i>. </p>\n         <note>\n            <p>You can use the V2 <code>DeleteBucketMetadataConfiguration</code> API operation with V1 or V2 \n            metadata configurations. However, if you try to use the V1 \n            <code>DeleteBucketMetadataTableConfiguration</code> API operation with V2 configurations, you\n            will receive an HTTP <code>405 Method Not Allowed</code> error.</p>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>To use this operation, you must have the\n            <code>s3:DeleteBucketMetadataTableConfiguration</code> permission. For more information, see\n            <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-permissions.html\">Setting up permissions for configuring metadata tables</a> in the\n            <i>Amazon S3 User Guide</i>. </p>\n               <note>\n                  <p>The IAM policy action name is the same for the V1 and V2 API operations.</p>\n               </note>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>DeleteBucketMetadataConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetadataConfiguration.html\">GetBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UpdateBucketMetadataInventoryTableConfiguration.html\">UpdateBucketMetadataInventoryTableConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UpdateBucketMetadataJournalTableConfiguration.html\">UpdateBucketMetadataJournalTableConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}?metadataConfiguration") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/?metadataConfiguration") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

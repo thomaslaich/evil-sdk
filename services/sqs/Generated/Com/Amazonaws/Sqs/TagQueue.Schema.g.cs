@@ -5,49 +5,47 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class TagQueueSchema
 {
-    public static OperationSchema<TagQueueInput, TagQueueOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.TagQueueInput,
+        global::Com.Amazonaws.Sqs.TagQueueOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#TagQueue"),
-            Schemas.Lazy(() => TagQueueInputSchema.Schema!),
-            Schemas.Lazy(() => TagQueueOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagQueueInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagQueueOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Add cost allocation tags to the specified Amazon SQS queue. For an overview, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-tags.html\">Tagging \nYour Amazon SQS Queues</a> in the <i>Amazon SQS Developer Guide</i>.</p>\n         <p>When you use queue tags, keep the following guidelines in mind:</p>\n         <ul>\n            <li>\n               <p>Adding more than 50 tags to a queue isn't recommended.</p>\n            </li>\n            <li>\n               <p>Tags don't have any semantic meaning. Amazon SQS interprets tags as character strings.</p>\n            </li>\n            <li>\n               <p>Tags are case-sensitive.</p>\n            </li>\n            <li>\n               <p>A new tag with a key identical to that of an existing tag overwrites the existing tag.</p>\n            </li>\n         </ul>\n         <p>For a full list of tag restrictions, see \n<a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-limits.html#limits-queues\">Quotas related to queues</a> \nin the <i>Amazon SQS Developer Guide</i>.</p>\n         <note>\n            <p>Cross-account permissions don't apply to this action. For more information, \nsee <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name\">Grant \ncross-account permissions to a role and a username</a> in the <i>Amazon SQS Developer Guide</i>.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketLifecycleOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteBucketLifecycleOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketLifecycleOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketLifecycleOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketLifecycleOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketLifecycleOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteBucketLifecycleOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketLifecycleOutput Build(Builder builder) =>
-            new DeleteBucketLifecycleOutput();
+        public override global::Com.Amazonaws.S3.DeleteBucketLifecycleOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.DeleteBucketLifecycleOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketLifecycleOutput value,
+            global::Com.Amazonaws.S3.DeleteBucketLifecycleOutput value,
             ref TSerializer serializer
         ) { }
 

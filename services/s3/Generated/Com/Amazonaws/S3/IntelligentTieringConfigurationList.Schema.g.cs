@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class IntelligentTieringConfigurationListSchema
 {
     public static ListSchema<
-        IntelligentTieringConfigurationList,
-        IntelligentTieringConfiguration,
-        List<IntelligentTieringConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.S3.IntelligentTieringConfiguration>,
+        global::Com.Amazonaws.S3.IntelligentTieringConfiguration,
+        List<global::Com.Amazonaws.S3.IntelligentTieringConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            IntelligentTieringConfigurationList,
-            IntelligentTieringConfiguration,
-            List<IntelligentTieringConfiguration>
+            IReadOnlyList<global::Com.Amazonaws.S3.IntelligentTieringConfiguration>,
+            global::Com.Amazonaws.S3.IntelligentTieringConfiguration,
+            List<global::Com.Amazonaws.S3.IntelligentTieringConfiguration>
         >(
             ShapeId.Parse("com.amazonaws.s3#IntelligentTieringConfigurationList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class IntelligentTieringConfigurationListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<IntelligentTieringConfiguration> Target0 =
-            Schemas.Lazy(() => IntelligentTieringConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                IntelligentTieringConfigurationSchema.Schema!
+            );
 
-        public override IEnumerable<IntelligentTieringConfiguration> GetElements(
-            IntelligentTieringConfigurationList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> value
+        ) => value;
 
-        public override List<IntelligentTieringConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<IntelligentTieringConfiguration> builder,
-            IntelligentTieringConfiguration value
+            List<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> builder,
+            global::Com.Amazonaws.S3.IntelligentTieringConfiguration value
         ) => builder.Add(value);
 
-        public override IntelligentTieringConfigurationList Build(
-            List<IntelligentTieringConfiguration> builder
-        ) => IntelligentTieringConfigurationList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> Build(
+            List<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            IntelligentTieringConfigurationList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -71,7 +74,7 @@ public static partial class IntelligentTieringConfigurationListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<IntelligentTieringConfiguration> builder,
+            List<global::Com.Amazonaws.S3.IntelligentTieringConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(IntelligentTieringConfigurationSchema.Schema));
     }

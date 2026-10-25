@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UploadPartCopyOutputSchema
 {
@@ -22,11 +22,13 @@ public static partial class UploadPartCopyOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<UploadPartCopyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.UploadPartCopyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UploadPartCopyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.UploadPartCopyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#UploadPartCopyOutput"),
             [
                 new(
@@ -34,12 +36,6 @@ public static partial class UploadPartCopyOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version of the source object that was copied, if you have enabled versioning on the source\n      bucket.</p>\n         <note>\n            <p>This functionality is not supported when the source object is in a directory bucket.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-copy-source-version-id")
@@ -52,10 +48,6 @@ public static partial class UploadPartCopyOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Container for all response elements.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -66,12 +58,6 @@ public static partial class UploadPartCopyOutputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.</p>\n         <note>\n            <p>When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side\n        encryption option is <code>aws:fsx</code>.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
@@ -84,12 +70,6 @@ public static partial class UploadPartCopyOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If server-side encryption with a customer-provided encryption key was requested, the response will\n      include this header to confirm the encryption algorithm that's used.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -101,12 +81,6 @@ public static partial class UploadPartCopyOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If server-side encryption with a customer-provided encryption key was requested, the response will\n      include this header to provide the round-trip message integrity verification of the customer-provided\n      encryption key.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
                         ),
@@ -117,12 +91,6 @@ public static partial class UploadPartCopyOutputSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, indicates the ID of the KMS key that was used for object encryption.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-aws-kms-key-id")
@@ -141,12 +109,6 @@ public static partial class UploadPartCopyOutputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with\n      Key Management Service (KMS) keys (SSE-KMS).</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -175,27 +137,36 @@ public static partial class UploadPartCopyOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CopyPartResult?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => CopyPartResultSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CopyPartResultSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target2 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target6 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target7 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UploadPartCopyOutput Build(Builder builder) =>
-            new UploadPartCopyOutput(
+        public override global::Com.Amazonaws.S3.UploadPartCopyOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.UploadPartCopyOutput(
                 builder.BucketKeyEnabled,
                 builder.CopyPartResult,
                 builder.CopySourceVersionId,
@@ -207,7 +178,7 @@ public static partial class UploadPartCopyOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            UploadPartCopyOutput value,
+            global::Com.Amazonaws.S3.UploadPartCopyOutput value,
             ref TSerializer serializer
         )
         {

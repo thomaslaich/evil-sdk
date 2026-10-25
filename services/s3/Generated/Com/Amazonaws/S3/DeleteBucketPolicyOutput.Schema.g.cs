@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketPolicyOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteBucketPolicyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketPolicyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketPolicyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketPolicyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketPolicyOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class DeleteBucketPolicyOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketPolicyOutput Build(Builder builder) =>
-            new DeleteBucketPolicyOutput();
+        public override global::Com.Amazonaws.S3.DeleteBucketPolicyOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeleteBucketPolicyOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketPolicyOutput value,
+            global::Com.Amazonaws.S3.DeleteBucketPolicyOutput value,
             ref TSerializer serializer
         ) { }
 

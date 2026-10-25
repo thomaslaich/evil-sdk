@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class PurgeQueueInProgressSchema
 {
@@ -15,11 +15,13 @@ public static partial class PurgeQueueInProgressSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<PurgeQueueInProgress, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.PurgeQueueInProgress,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PurgeQueueInProgress, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.PurgeQueueInProgress, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#PurgeQueueInProgress"),
             [new("message", Target0)],
             [
@@ -32,31 +34,27 @@ public static partial class PurgeQueueInProgressSchema
                                 "code",
                                 Document.From("AWS.SimpleQueueService.PurgeQueueInProgress")
                             },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Indicates that the specified queue previously received a <code>PurgeQueue</code>\n            request within the last 60 seconds (the time it can take to delete the messages in the\n            queue).</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PurgeQueueInProgress Build(Builder builder) =>
-            new PurgeQueueInProgress(builder.Message);
+        public override global::Com.Amazonaws.Sqs.PurgeQueueInProgress Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.PurgeQueueInProgress(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            PurgeQueueInProgress value,
+            global::Com.Amazonaws.Sqs.PurgeQueueInProgress value,
             ref TSerializer serializer
         )
         {

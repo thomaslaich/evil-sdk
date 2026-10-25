@@ -6,37 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventErrorSchema
 {
     public sealed class Builder
     {
-        public ErrorObject? Payload { get; set; }
+        public global::Com.Amazonaws.Lambda.ErrorObject? Payload { get; set; }
         public bool? Truncated { get; set; }
     }
 
-    public static StructSchema<EventError, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.EventError, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EventError, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.EventError, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#EventError"),
             [
-                new(
-                    "Payload",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error payload.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Payload", Target0),
                 new(
                     "Truncated",
                     Target1,
@@ -46,44 +33,26 @@ public static partial class EventErrorSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates if the error payload was truncated due to size limits.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Error information for an event.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorObject?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorObjectSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ErrorObject?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorObjectSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EventError Build(Builder builder) =>
-            new EventError(builder.Payload, builder.Truncated);
+        public override global::Com.Amazonaws.Lambda.EventError Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.EventError(builder.Payload, builder.Truncated);
 
         public override void SerializeMembers<TSerializer>(
-            EventError value,
+            global::Com.Amazonaws.Lambda.EventError value,
             ref TSerializer serializer
         )
         {

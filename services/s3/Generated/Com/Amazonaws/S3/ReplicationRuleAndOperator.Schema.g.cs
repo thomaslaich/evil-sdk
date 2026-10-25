@@ -6,45 +6,31 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationRuleAndOperatorSchema
 {
     public sealed class Builder
     {
         public string? Prefix { get; set; }
-        public TagSet? Tags { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tag>? Tags { get; set; }
     }
 
-    public static StructSchema<ReplicationRuleAndOperator, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ReplicationRuleAndOperator,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReplicationRuleAndOperator, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ReplicationRuleAndOperator, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ReplicationRuleAndOperator"),
             [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object key name prefix that identifies the subset of objects to which the rule applies.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target0),
                 new(
                     "Tags",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>An array of tags containing key and value pairs.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -53,28 +39,26 @@ public static partial class ReplicationRuleAndOperatorSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for specifying rule filters. The filters determine the subset of objects to which the\n      rule applies. This element is required only if you specify more than one filter. </p>\n         <p>For example:</p>\n         <ul>\n            <li>\n               <p>If you specify both a <code>Prefix</code> and a <code>Tag</code> filter, wrap these filters in\n          an <code>And</code> tag. </p>\n            </li>\n            <li>\n               <p>If you specify a filter based on multiple tags, wrap the <code>Tag</code> elements in an\n            <code>And</code> tag.</p>\n            </li>\n         </ul>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagSet?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSetSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tag>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSetSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReplicationRuleAndOperator Build(Builder builder) =>
-            new ReplicationRuleAndOperator(builder.Prefix, builder.Tags);
+        public override global::Com.Amazonaws.S3.ReplicationRuleAndOperator Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.ReplicationRuleAndOperator(builder.Prefix, builder.Tags);
 
         public override void SerializeMembers<TSerializer>(
-            ReplicationRuleAndOperator value,
+            global::Com.Amazonaws.S3.ReplicationRuleAndOperator value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetCapacityProviderOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetCapacityProviderOutputSchema
         public global::Com.Amazonaws.Lambda.CapacityProvider? CapacityProvider { get; set; }
     }
 
-    public static StructSchema<GetCapacityProviderOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetCapacityProviderOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetCapacityProviderOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetCapacityProviderOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetCapacityProviderOutput"),
             [
                 new(
@@ -29,18 +31,8 @@ public static partial class GetCapacityProviderOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Information about the capacity provider, including its configuration and current state.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -51,10 +43,6 @@ public static partial class GetCapacityProviderOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetCapacityProviderResponse")
                 ),
@@ -62,18 +50,22 @@ public static partial class GetCapacityProviderOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProvider?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CapacityProviderSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CapacityProviderSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetCapacityProviderOutput Build(Builder builder) =>
-            new GetCapacityProviderOutput(
+        public override global::Com.Amazonaws.Lambda.GetCapacityProviderOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetCapacityProviderOutput(
                 builder.CapacityProvider
                     ?? throw new MissingRequiredMemberException("CapacityProvider")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetCapacityProviderOutput value,
+            global::Com.Amazonaws.Lambda.GetCapacityProviderOutput value,
             ref TSerializer serializer
         )
         {

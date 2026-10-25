@@ -4,129 +4,34 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetAccountSettingsSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        GetAccountSettingsInput,
-        GetAccountSettingsOutput
+        global::Com.Amazonaws.Lambda.GetAccountSettingsInput,
+        global::Com.Amazonaws.Lambda.GetAccountSettingsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#GetAccountSettings"),
-            Schemas.Lazy(() => GetAccountSettingsInputSchema.Schema!),
-            Schemas.Lazy(() => GetAccountSettingsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetAccountSettingsInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetAccountSettingsOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to view details about an account's limits and usage in an AWS Region"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_GetAccountSettings.html")
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Retrieves details about your account's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/limits.html\">limits</a> and usage in an Amazon Web Services Region.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "This operation takes no parameters and returns details about storage and concurrency quotas in the current Region."
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "AccountLimit",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "CodeSizeUnzipped",
-                                                                Document.From((decimal)262144000)
-                                                            },
-                                                            {
-                                                                "CodeSizeZipped",
-                                                                Document.From((decimal)52428800)
-                                                            },
-                                                            {
-                                                                "ConcurrentExecutions",
-                                                                Document.From((decimal)1000)
-                                                            },
-                                                            {
-                                                                "TotalCodeSize",
-                                                                Document.From((decimal)80530636800)
-                                                            },
-                                                            {
-                                                                "UnreservedConcurrentExecutions",
-                                                                Document.From((decimal)1000)
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                                {
-                                                    "AccountUsage",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "FunctionCount",
-                                                                Document.From((decimal)4)
-                                                            },
-                                                            {
-                                                                "TotalCodeSize",
-                                                                Document.From((decimal)9426)
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    { "title", Document.From("To get account settings") },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -134,17 +39,13 @@ public static partial class GetAccountSettingsSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/2016-08-19/account-settings") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CheckpointDurableExecutionOutputSchema
 {
     public sealed class Builder
     {
         public string? CheckpointToken { get; set; }
-        public CheckpointUpdatedExecutionState? NewExecutionState { get; set; }
+        public global::Com.Amazonaws.Lambda.CheckpointUpdatedExecutionState? NewExecutionState { get; set; }
     }
 
-    public static StructSchema<CheckpointDurableExecutionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CheckpointDurableExecutionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CheckpointDurableExecutionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CheckpointDurableExecutionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CheckpointDurableExecutionOutput"),
             [
                 new(
@@ -29,28 +31,18 @@ public static partial class CheckpointDurableExecutionOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A new checkpoint token to use for the next checkpoint operation. This token replaces the one provided in the request and must be used for subsequent checkpoints to maintain proper ordering.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[A-Za-z0-9+/]+={0,2}$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -61,36 +53,16 @@ public static partial class CheckpointDurableExecutionOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Updated execution state information that includes any changes that occurred since the last checkpoint, such as completed callbacks or expired timers. This allows the SDK to update its internal state during replay.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The response from the CheckpointDurableExecution operation.</p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -100,23 +72,29 @@ public static partial class CheckpointDurableExecutionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<CheckpointUpdatedExecutionState?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CheckpointUpdatedExecutionStateSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CheckpointUpdatedExecutionState?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CheckpointUpdatedExecutionStateSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CheckpointDurableExecutionOutput Build(Builder builder) =>
-            new CheckpointDurableExecutionOutput(
+        public override global::Com.Amazonaws.Lambda.CheckpointDurableExecutionOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CheckpointDurableExecutionOutput(
                 builder.NewExecutionState
                     ?? throw new MissingRequiredMemberException("NewExecutionState"),
                 builder.CheckpointToken
             );
 
         public override void SerializeMembers<TSerializer>(
-            CheckpointDurableExecutionOutput value,
+            global::Com.Amazonaws.Lambda.CheckpointDurableExecutionOutput value,
             ref TSerializer serializer
         )
         {

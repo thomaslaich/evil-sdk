@@ -6,15 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RoutingRulesSchema
 {
-    public static ListSchema<RoutingRules, RoutingRule, List<RoutingRule>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule>,
+        global::Com.Amazonaws.S3.RoutingRule,
+        List<global::Com.Amazonaws.S3.RoutingRule>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<RoutingRules, RoutingRule, List<RoutingRule>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule>,
+            global::Com.Amazonaws.S3.RoutingRule,
+            List<global::Com.Amazonaws.S3.RoutingRule>
+        >(
             ShapeId.Parse("com.amazonaws.s3#RoutingRules"),
             ShapeKind.List,
             Target0,
@@ -22,25 +29,30 @@ public static partial class RoutingRulesSchema
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("RoutingRule"))]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<RoutingRule> Target0 =
-            Schemas.Lazy(() => RoutingRuleSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RoutingRule> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => RoutingRuleSchema.Schema!);
 
-        public override IEnumerable<RoutingRule> GetElements(RoutingRules value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.RoutingRule> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule> value
+        ) => value;
 
-        public override List<RoutingRule> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.RoutingRule> CreateTypedBuilder() => new();
 
-        public override void Add(List<RoutingRule> builder, RoutingRule value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.RoutingRule> builder,
+            global::Com.Amazonaws.S3.RoutingRule value
+        ) => builder.Add(value);
 
-        public override RoutingRules Build(List<RoutingRule> builder) =>
-            RoutingRules.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule> Build(
+            List<global::Com.Amazonaws.S3.RoutingRule> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            RoutingRules value,
+            IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -55,7 +67,7 @@ public static partial class RoutingRulesSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<RoutingRule> builder,
+            List<global::Com.Amazonaws.S3.RoutingRule> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(RoutingRuleSchema.Schema));
     }

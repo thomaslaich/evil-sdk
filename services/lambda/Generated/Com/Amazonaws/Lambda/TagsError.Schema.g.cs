@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TagsErrorSchema
 {
@@ -16,10 +16,11 @@ public static partial class TagsErrorSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<TagsError, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.TagsError, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TagsError, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TagsError, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TagsError"),
             [
                 new(
@@ -29,16 +30,12 @@ public static partial class TagsErrorSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error code.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)10) },
-                                    { "max", Document.From((decimal)21) },
+                                    { "min", Document.From(10m) },
+                                    { "max", Document.From(21m) },
                                 }
                             )
                         ),
@@ -50,10 +47,6 @@ public static partial class TagsErrorSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -63,16 +56,12 @@ public static partial class TagsErrorSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error message.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)84) },
-                                    { "max", Document.From((decimal)1000) },
+                                    { "min", Document.From(84m) },
+                                    { "max", Document.From(1000m) },
                                 }
                             )
                         ),
@@ -81,42 +70,31 @@ public static partial class TagsErrorSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>An object that contains details about an error related to retrieving tags.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TagsError Build(Builder builder) =>
-            new TagsError(
+        public override global::Com.Amazonaws.Lambda.TagsError Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.TagsError(
                 builder.ErrorCode ?? throw new MissingRequiredMemberException("ErrorCode"),
                 builder.Message ?? throw new MissingRequiredMemberException("Message")
             );
 
         public override void SerializeMembers<TSerializer>(
-            TagsError value,
+            global::Com.Amazonaws.Lambda.TagsError value,
             ref TSerializer serializer
         )
         {

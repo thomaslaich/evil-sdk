@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleWithSAMLOutputSchema
 {
@@ -25,39 +25,17 @@ public static partial class AssumeRoleWithSAMLOutputSchema
         public int? SessionTokenSize { get; set; }
     }
 
-    public static StructSchema<AssumeRoleWithSAMLOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.AssumeRoleWithSAMLOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AssumeRoleWithSAMLOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.AssumeRoleWithSAMLOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#AssumeRoleWithSAMLOutput"),
             [
-                new(
-                    "Credentials",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The temporary security credentials, which include an access key ID, a secret access key,\n         and a security (or session) token.</p>\n         <note>\n            <p>The size of the security token that STS API operations return is not fixed. We\n        strongly recommend that you make no assumptions about the maximum size.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "AssumedRoleUser",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identifiers for the temporary security credentials that the operation\n         returns.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Credentials", Target0),
+                new("AssumedRoleUser", Target1),
                 new(
                     "PackedPolicySize",
                     Target2,
@@ -68,120 +46,30 @@ public static partial class AssumeRoleWithSAMLOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "since", Document.From("2026-06-17") },
-                                    {
-                                        "message",
-                                        Document.From(
-                                            "Deprecated. Replaced by SessionTokenUtilization."
-                                        )
-                                    },
-                                }
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A percentage value that indicates the packed size of the session policies and session \n      tags combined passed in the request. The request fails if the packed size is greater than 100 percent, \n      which means the policies and tags exceeded the allowed space.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "Subject",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value of the <code>NameID</code> element in the <code>Subject</code> element of the\n         SAML assertion.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "SubjectType",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The format of the name ID, as defined by the <code>Format</code> attribute in the\n            <code>NameID</code> element of the SAML assertion. Typical examples of the format are\n            <code>transient</code> or <code>persistent</code>. </p>\n         <p> If the format includes the prefix\n            <code>urn:oasis:names:tc:SAML:2.0:nameid-format</code>, that prefix is removed. For\n         example, <code>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</code> is returned as\n            <code>transient</code>. If the format includes any other prefix, the format is returned\n         with no modifications.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Issuer",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value of the <code>Issuer</code> element of the SAML assertion.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Audience",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The value of the <code>Recipient</code> attribute of the\n            <code>SubjectConfirmationData</code> element of the SAML assertion. </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NameQualifier",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A hash value based on the concatenation of the following:</p>\n         <ul>\n            <li>\n               <p>The <code>Issuer</code> response value.</p>\n            </li>\n            <li>\n               <p>The Amazon Web Services account ID.</p>\n            </li>\n            <li>\n               <p>The friendly name (the last part of the ARN) of the SAML provider in IAM.</p>\n            </li>\n         </ul>\n         <p>The combination of <code>NameQualifier</code> and <code>Subject</code> can be used to\n         uniquely identify a user.</p>\n         <p>The following pseudocode shows how the hash value is calculated:</p>\n         <p>\n            <code>BASE64 ( SHA1 ( \"https://example.com/saml\" + \"123456789012\" + \"/MySAMLIdP\" ) )</code>\n         </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Subject", Target3),
+                new("SubjectType", Target4),
+                new("Issuer", Target5),
+                new("Audience", Target6),
+                new("NameQualifier", Target7),
                 new(
                     "SourceIdentity",
                     Target8,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value in the <code>SourceIdentity</code> attribute in the SAML assertion. The source\n         identity value persists across <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#iam-term-role-chaining\">chained role</a>\n         sessions.</p>\n         <p>You can require users to set a source identity value when they assume a role. You do\n         this by using the <code>sts:SourceIdentity</code> condition key in a role trust policy.\n         That way, actions that are taken with the role are associated with that user. After the\n         source identity is set, the value cannot be changed. It is present in the request for all\n         actions that are taken by the role and persists across <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts\">chained role</a>\n         sessions. You can configure your SAML identity provider to use an attribute associated with\n         your users, like user name or email, as the source identity when calling\n            <code>AssumeRoleWithSAML</code>. You do this by adding an attribute to the SAML\n         assertion. For more information about using source identity, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">Monitor and control\n            actions taken with assumed roles</a> in the\n         <i>IAM User Guide</i>.</p>\n         <p>The regex used to validate this parameter is a string of characters \n    consisting of upper- and lower-case alphanumeric characters with no spaces. You can \n    also include underscores or any of the following characters: =,.@-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -201,18 +89,9 @@ public static partial class AssumeRoleWithSAMLOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The percentage (0-100) of the maximum allowed session token size that the returned session\n    token consumes."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -227,30 +106,15 @@ public static partial class AssumeRoleWithSAMLOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The size, in bytes, of the session token returned in the Credentials for this response."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the response to a successful <a>AssumeRoleWithSAML</a> request,\n      including temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. </p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -263,35 +127,48 @@ public static partial class AssumeRoleWithSAMLOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Credentials?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CredentialsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CredentialsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.AssumedRoleUser?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AssumedRoleUserSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AssumedRoleUserSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target9 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target10 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target9 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target10 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AssumeRoleWithSAMLOutput Build(Builder builder) =>
-            new AssumeRoleWithSAMLOutput(
+        public override global::Com.Amazonaws.Sts.AssumeRoleWithSAMLOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.AssumeRoleWithSAMLOutput(
                 builder.AssumedRoleUser,
                 builder.Audience,
                 builder.Credentials,
@@ -306,7 +183,7 @@ public static partial class AssumeRoleWithSAMLOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AssumeRoleWithSAMLOutput value,
+            global::Com.Amazonaws.Sts.AssumeRoleWithSAMLOutput value,
             ref TSerializer serializer
         )
         {

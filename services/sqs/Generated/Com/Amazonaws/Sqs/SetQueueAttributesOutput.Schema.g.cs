@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SetQueueAttributesOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<SetQueueAttributesOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.SetQueueAttributesOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SetQueueAttributesOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.SetQueueAttributesOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SetQueueAttributesOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class SetQueueAttributesOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override SetQueueAttributesOutput Build(Builder builder) =>
-            new SetQueueAttributesOutput();
+        public override global::Com.Amazonaws.Sqs.SetQueueAttributesOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.SetQueueAttributesOutput();
 
         public override void SerializeMembers<TSerializer>(
-            SetQueueAttributesOutput value,
+            global::Com.Amazonaws.Sqs.SetQueueAttributesOutput value,
             ref TSerializer serializer
         ) { }
 

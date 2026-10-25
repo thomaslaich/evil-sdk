@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionUrlConfigInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteFunctionUrlConfigInputSchema
         public string? Qualifier { get; set; }
     }
 
-    public static StructSchema<DeleteFunctionUrlConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteFunctionUrlConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionUrlConfigInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class DeleteFunctionUrlConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +40,8 @@ public static partial class DeleteFunctionUrlConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -59,10 +55,6 @@ public static partial class DeleteFunctionUrlConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -70,10 +62,6 @@ public static partial class DeleteFunctionUrlConfigInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The alias name.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("Qualifier")
@@ -83,18 +71,14 @@ public static partial class DeleteFunctionUrlConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^((?!^\\d+$)^[0-9a-zA-Z-_]+$)$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -105,10 +89,6 @@ public static partial class DeleteFunctionUrlConfigInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteFunctionUrlConfigRequest")
                 ),
@@ -116,20 +96,26 @@ public static partial class DeleteFunctionUrlConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteFunctionUrlConfigInput Build(Builder builder) =>
-            new DeleteFunctionUrlConfigInput(
+        public override global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.Qualifier
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteFunctionUrlConfigInput value,
+            global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigInput value,
             ref TSerializer serializer
         )
         {

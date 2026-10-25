@@ -7,17 +7,17 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectVersionSchema
 {
     public sealed class Builder
     {
         public string? ETag { get; set; }
-        public ChecksumAlgorithmList? ChecksumAlgorithm { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm { get; set; }
         public global::Com.Amazonaws.S3.ChecksumType? ChecksumType { get; set; }
         public long? Size { get; set; }
-        public ObjectVersionStorageClass? StorageClass { get; set; }
+        public global::Com.Amazonaws.S3.ObjectVersionStorageClass? StorageClass { get; set; }
         public string? Key { get; set; }
         public string? VersionId { get; set; }
         public bool? IsLatest { get; set; }
@@ -26,55 +26,26 @@ public static partial class ObjectVersionSchema
         public global::Com.Amazonaws.S3.RestoreStatus? RestoreStatus { get; set; }
     }
 
-    public static StructSchema<ObjectVersion, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ObjectVersion, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ObjectVersion, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ObjectVersion, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ObjectVersion"),
             [
-                new(
-                    "ETag",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The entity tag is an MD5 hash of that version of the object.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ETag", Target0),
                 new(
                     "ChecksumAlgorithm",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The algorithm that was used to create a checksum of the object.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "ChecksumType",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The checksum type that is used to calculate the object’s checksum value. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ChecksumType", Target2),
                 new(
                     "Size",
                     Target3,
@@ -84,54 +55,23 @@ public static partial class ObjectVersionSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Size in bytes of the object.</p>")
-                        ),
                     ]
                 ),
-                new(
-                    "StorageClass",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The class of storage used to store the object.</p>")
-                        ),
-                    ]
-                ),
+                new("StorageClass", Target4),
                 new(
                     "Key",
                     Target5,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The object key.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "VersionId",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Version ID of an object.</p>")
-                        ),
-                    ]
-                ),
+                new("VersionId", Target6),
                 new(
                     "IsLatest",
                     Target7,
@@ -141,87 +81,56 @@ public static partial class ObjectVersionSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the object is (true) or is not (false) the latest version of an object.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "LastModified",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Date and time when the object was last modified.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Owner",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies the owner of the object.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "RestoreStatus",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the restoration status of an object. Objects in certain storage classes must be restored\n      before they can be retrieved. For more information about these storage classes and how to work with\n      archived objects, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html\">\n        Working with archived objects</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("LastModified", Target8),
+                new("Owner", Target9),
+                new("RestoreStatus", Target10),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The version of an object.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ChecksumAlgorithmList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ChecksumAlgorithmListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ChecksumAlgorithmListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target2 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target3 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectVersionStorageClass?> Target4 =
-            Schemas.Nullable(ObjectVersionStorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectVersionStorageClass?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectVersionStorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target7 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target8 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Owner?> Target9 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnerSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnerSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RestoreStatus?> Target10 =
-            Schemas.NullableReference(Schemas.Lazy(() => RestoreStatusSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RestoreStatusSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ObjectVersion Build(Builder builder) =>
-            new ObjectVersion(
+        public override global::Com.Amazonaws.S3.ObjectVersion Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ObjectVersion(
                 builder.ChecksumAlgorithm,
                 builder.ChecksumType,
                 builder.ETag,
@@ -236,7 +145,7 @@ public static partial class ObjectVersionSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ObjectVersion value,
+            global::Com.Amazonaws.S3.ObjectVersion value,
             ref TSerializer serializer
         )
         {
@@ -363,8 +272,10 @@ public static partial class ObjectVersionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value4
-                                ? ObjectVersionStorageClass.FromValue(value4)
-                                : default(ObjectVersionStorageClass)
+                                ? global::Com.Amazonaws.S3.ObjectVersionStorageClass.FromValue(
+                                    value4
+                                )
+                                : default(global::Com.Amazonaws.S3.ObjectVersionStorageClass)
                         );
                     break;
                 case 5:

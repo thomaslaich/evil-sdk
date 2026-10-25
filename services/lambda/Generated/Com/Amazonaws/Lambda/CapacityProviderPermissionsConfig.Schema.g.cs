@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderPermissionsConfigSchema
 {
@@ -15,11 +15,13 @@ public static partial class CapacityProviderPermissionsConfigSchema
         public string? CapacityProviderOperatorRoleArn { get; set; }
     }
 
-    public static StructSchema<CapacityProviderPermissionsConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CapacityProviderPermissionsConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CapacityProviderPermissionsConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CapacityProviderPermissionsConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderPermissionsConfig"),
             [
                 new(
@@ -29,18 +31,12 @@ public static partial class CapacityProviderPermissionsConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the IAM role that the capacity provider uses to manage compute instances and other Amazon Web Services resources.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -54,40 +50,29 @@ public static partial class CapacityProviderPermissionsConfigSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration that specifies the permissions required for the capacity provider to manage compute resources.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CapacityProviderPermissionsConfig Build(Builder builder) =>
-            new CapacityProviderPermissionsConfig(
+        public override global::Com.Amazonaws.Lambda.CapacityProviderPermissionsConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CapacityProviderPermissionsConfig(
                 builder.CapacityProviderOperatorRoleArn
                     ?? throw new MissingRequiredMemberException("CapacityProviderOperatorRoleArn")
             );
 
         public override void SerializeMembers<TSerializer>(
-            CapacityProviderPermissionsConfig value,
+            global::Com.Amazonaws.Lambda.CapacityProviderPermissionsConfig value,
             ref TSerializer serializer
         )
         {

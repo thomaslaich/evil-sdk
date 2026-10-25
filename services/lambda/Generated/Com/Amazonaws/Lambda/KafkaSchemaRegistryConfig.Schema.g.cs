@@ -6,23 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class KafkaSchemaRegistryConfigSchema
 {
     public sealed class Builder
     {
         public string? SchemaRegistryURI { get; set; }
-        public SchemaRegistryEventRecordFormat? EventRecordFormat { get; set; }
-        public KafkaSchemaRegistryAccessConfigList? AccessConfigs { get; set; }
-        public KafkaSchemaValidationConfigList? SchemaValidationConfigs { get; set; }
+        public global::Com.Amazonaws.Lambda.SchemaRegistryEventRecordFormat? EventRecordFormat { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig>? AccessConfigs { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig>? SchemaValidationConfigs { get; set; }
     }
 
-    public static StructSchema<KafkaSchemaRegistryConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.KafkaSchemaRegistryConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<KafkaSchemaRegistryConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#KafkaSchemaRegistryConfig"),
             [
                 new(
@@ -31,18 +33,12 @@ public static partial class KafkaSchemaRegistryConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URI for your schema registry. The correct URI format depends on the type of schema registry you're using.</p> <ul> <li> <p>For Glue schema registries, use the ARN of the registry.</p> </li> <li> <p>For Confluent schema registries, use the URL of the registry.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -50,95 +46,42 @@ public static partial class KafkaSchemaRegistryConfigSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9-\\/*:_+=.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "EventRecordFormat",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The record format that Lambda delivers to your function after schema validation.</p> <ul> <li> <p>Choose <code>JSON</code> to have Lambda deliver the record to your function as a standard JSON object.</p> </li> <li> <p>Choose <code>SOURCE</code> to have Lambda deliver the record to your function in its original source format. Lambda removes all schema metadata, such as the schema ID, before sending the record to your function.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "AccessConfigs",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An array of access configuration objects that tell Lambda how to authenticate with your schema registry.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "SchemaValidationConfigs",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An array of schema validation configuration objects, which tell Lambda the message attributes you want to validate and filter using your schema registry.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("EventRecordFormat", Target1),
+                new("AccessConfigs", Target2),
+                new("SchemaValidationConfigs", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specific configuration settings for a Kafka schema registry.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<SchemaRegistryEventRecordFormat?> Target1 =
-            Schemas.Nullable(SchemaRegistryEventRecordFormatSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<KafkaSchemaRegistryAccessConfigList?> Target2 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => KafkaSchemaRegistryAccessConfigListSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<KafkaSchemaValidationConfigList?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => KafkaSchemaValidationConfigListSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SchemaRegistryEventRecordFormat?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                SchemaRegistryEventRecordFormatSchema.Schema
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    KafkaSchemaRegistryAccessConfigListSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    KafkaSchemaValidationConfigListSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override KafkaSchemaRegistryConfig Build(Builder builder) =>
-            new KafkaSchemaRegistryConfig(
+        public override global::Com.Amazonaws.Lambda.KafkaSchemaRegistryConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.KafkaSchemaRegistryConfig(
                 builder.AccessConfigs,
                 builder.EventRecordFormat,
                 builder.SchemaRegistryURI,
@@ -146,7 +89,7 @@ public static partial class KafkaSchemaRegistryConfigSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            KafkaSchemaRegistryConfig value,
+            global::Com.Amazonaws.Lambda.KafkaSchemaRegistryConfig value,
             ref TSerializer serializer
         )
         {
@@ -200,8 +143,10 @@ public static partial class KafkaSchemaRegistryConfigSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? SchemaRegistryEventRecordFormat.FromValue(value1)
-                                : default(SchemaRegistryEventRecordFormat)
+                                ? global::Com.Amazonaws.Lambda.SchemaRegistryEventRecordFormat.FromValue(
+                                    value1
+                                )
+                                : default(global::Com.Amazonaws.Lambda.SchemaRegistryEventRecordFormat)
                         );
                     break;
                 case 2:

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionScalingConfigSchema
 {
@@ -16,11 +16,13 @@ public static partial class FunctionScalingConfigSchema
         public int? MaxExecutionEnvironments { get; set; }
     }
 
-    public static StructSchema<FunctionScalingConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.FunctionScalingConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<FunctionScalingConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.FunctionScalingConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#FunctionScalingConfig"),
             [
                 new(
@@ -33,24 +35,14 @@ public static partial class FunctionScalingConfigSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The minimum number of execution environments to maintain for the function.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)15000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(15000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -64,59 +56,36 @@ public static partial class FunctionScalingConfigSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of execution environments that can be provisioned for the function.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)15000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(15000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration that defines the scaling behavior for a Lambda Managed Instances function, including the minimum and maximum number of execution environments that can be provisioned.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override FunctionScalingConfig Build(Builder builder) =>
-            new FunctionScalingConfig(
+        public override global::Com.Amazonaws.Lambda.FunctionScalingConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.FunctionScalingConfig(
                 builder.MaxExecutionEnvironments,
                 builder.MinExecutionEnvironments
             );
 
         public override void SerializeMembers<TSerializer>(
-            FunctionScalingConfig value,
+            global::Com.Amazonaws.Lambda.FunctionScalingConfig value,
             ref TSerializer serializer
         )
         {

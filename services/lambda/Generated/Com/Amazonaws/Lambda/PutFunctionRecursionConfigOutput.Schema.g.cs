@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutFunctionRecursionConfigOutputSchema
 {
@@ -15,39 +15,19 @@ public static partial class PutFunctionRecursionConfigOutputSchema
         public global::Com.Amazonaws.Lambda.RecursiveLoop? RecursiveLoop { get; set; }
     }
 
-    public static StructSchema<PutFunctionRecursionConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutFunctionRecursionConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PutFunctionRecursionConfigOutput"),
-            [
-                new(
-                    "RecursiveLoop",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The status of your function's recursive loop detection configuration.</p> <p>When this value is set to <code>Allow</code>and Lambda detects your function being invoked as part of a recursive loop, it doesn't take any action.</p> <p>When this value is set to <code>Terminate</code> and Lambda detects your function being invoked as part of a recursive loop, it stops your function being invoked and notifies you. </p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("RecursiveLoop", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -57,15 +37,19 @@ public static partial class PutFunctionRecursionConfigOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.RecursiveLoop?> Target0 =
-            Schemas.Nullable(RecursiveLoopSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RecursiveLoopSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutFunctionRecursionConfigOutput Build(Builder builder) =>
-            new PutFunctionRecursionConfigOutput(builder.RecursiveLoop);
+        public override global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigOutput(
+                builder.RecursiveLoop
+            );
 
         public override void SerializeMembers<TSerializer>(
-            PutFunctionRecursionConfigOutput value,
+            global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigOutput value,
             ref TSerializer serializer
         )
         {

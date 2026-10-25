@@ -6,42 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageListSchema
 {
-    public static ListSchema<MessageList, Message, List<Message>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.Sqs.Message>,
+        global::Com.Amazonaws.Sqs.Message,
+        List<global::Com.Amazonaws.Sqs.Message>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<MessageList, Message, List<Message>>(
-            ShapeId.Parse("com.amazonaws.sqs#MessageList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Sqs.Message>,
+            global::Com.Amazonaws.Sqs.Message,
+            List<global::Com.Amazonaws.Sqs.Message>
+        >(ShapeId.Parse("com.amazonaws.sqs#MessageList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Message> Target0 = Schemas.Lazy(
-            () =>
-                MessageSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.Message> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MessageSchema.Schema!);
 
-        public override IEnumerable<Message> GetElements(MessageList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.Message> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.Message> value
+        ) => value;
 
-        public override List<Message> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.Message> CreateTypedBuilder() => new();
 
-        public override void Add(List<Message> builder, Message value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Sqs.Message> builder,
+            global::Com.Amazonaws.Sqs.Message value
+        ) => builder.Add(value);
 
-        public override MessageList Build(List<Message> builder) =>
-            MessageList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.Message> Build(
+            List<global::Com.Amazonaws.Sqs.Message> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            MessageList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.Message> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -56,7 +61,7 @@ public static partial class MessageListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Message> builder,
+            List<global::Com.Amazonaws.Sqs.Message> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(MessageSchema.Schema));
     }

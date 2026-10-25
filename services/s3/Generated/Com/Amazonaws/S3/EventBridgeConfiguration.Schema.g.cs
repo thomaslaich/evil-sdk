@@ -5,36 +5,31 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EventBridgeConfigurationSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<EventBridgeConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.EventBridgeConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EventBridgeConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.EventBridgeConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#EventBridgeConfiguration"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for specifying the configuration for Amazon EventBridge.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override EventBridgeConfiguration Build(Builder builder) =>
-            new EventBridgeConfiguration();
+        public override global::Com.Amazonaws.S3.EventBridgeConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.EventBridgeConfiguration();
 
         public override void SerializeMembers<TSerializer>(
-            EventBridgeConfiguration value,
+            global::Com.Amazonaws.S3.EventBridgeConfiguration value,
             ref TSerializer serializer
         ) { }
 

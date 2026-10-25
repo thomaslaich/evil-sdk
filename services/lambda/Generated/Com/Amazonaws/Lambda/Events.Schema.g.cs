@@ -6,50 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventsSchema
 {
-    public static ListSchema<Events, Event, List<Event>> Schema { get; } = new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.Lambda.Event>,
+        global::Com.Amazonaws.Lambda.Event,
+        List<global::Com.Amazonaws.Lambda.Event>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<Events, Event, List<Event>>(
-            ShapeId.Parse("com.amazonaws.lambda#Events"),
-            ShapeKind.List,
-            Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Event>,
+            global::Com.Amazonaws.Lambda.Event,
+            List<global::Com.Amazonaws.Lambda.Event>
+        >(ShapeId.Parse("com.amazonaws.lambda#Events"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Event> Target0 = Schemas.Lazy(
-            () =>
-                EventSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Event> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => EventSchema.Schema!);
 
-        public override IEnumerable<Event> GetElements(Events value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.Event> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Event> value
+        ) => value;
 
-        public override List<Event> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.Event> CreateTypedBuilder() => new();
 
-        public override void Add(List<Event> builder, Event value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.Event> builder,
+            global::Com.Amazonaws.Lambda.Event value
+        ) => builder.Add(value);
 
-        public override Events Build(List<Event> builder) => Events.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.Event> Build(
+            List<global::Com.Amazonaws.Lambda.Event> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            Events value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Event> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -64,7 +61,7 @@ public static partial class EventsSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Event> builder,
+            List<global::Com.Amazonaws.Lambda.Event> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(EventSchema.Schema));
     }

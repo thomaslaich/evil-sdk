@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class ChangeMessageVisibilityInputSchema
         public int? VisibilityTimeout { get; set; }
     }
 
-    public static StructSchema<ChangeMessageVisibilityInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ChangeMessageVisibilityInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChangeMessageVisibilityInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class ChangeMessageVisibilityInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue whose message's visibility is changed.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -48,12 +44,6 @@ public static partial class ChangeMessageVisibilityInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The receipt handle associated with the message, whose visibility timeout is changed.\n            This parameter is returned by the <code>\n               <a>ReceiveMessage</a>\n            </code>\n            action.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -69,12 +59,6 @@ public static partial class ChangeMessageVisibilityInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The new value for the message's visibility timeout (in seconds). Values range:\n                <code>0</code> to <code>43200</code>. Maximum: 12 hours.</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
@@ -96,24 +80,29 @@ public static partial class ChangeMessageVisibilityInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChangeMessageVisibilityInput Build(Builder builder) =>
-            new ChangeMessageVisibilityInput(
+        public override global::Com.Amazonaws.Sqs.ChangeMessageVisibilityInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ChangeMessageVisibilityInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.ReceiptHandle ?? throw new MissingRequiredMemberException("ReceiptHandle"),
                 builder.VisibilityTimeout.GetValueOrDefault()
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChangeMessageVisibilityInput value,
+            global::Com.Amazonaws.Sqs.ChangeMessageVisibilityInput value,
             ref TSerializer serializer
         )
         {

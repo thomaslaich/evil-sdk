@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAccelerateConfigurationInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class GetBucketAccelerateConfigurationInputSchema
         public global::Com.Amazonaws.S3.RequestPayer? RequestPayer { get; set; }
     }
 
-    public static StructSchema<GetBucketAccelerateConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketAccelerateConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketAccelerateConfigurationInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class GetBucketAccelerateConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket for which the accelerate configuration is retrieved.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -60,12 +56,6 @@ public static partial class GetBucketAccelerateConfigurationInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -97,23 +87,29 @@ public static partial class GetBucketAccelerateConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target2 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketAccelerateConfigurationInput Build(Builder builder) =>
-            new GetBucketAccelerateConfigurationInput(
+        public override global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ExpectedBucketOwner,
                 builder.RequestPayer
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketAccelerateConfigurationInput value,
+            global::Com.Amazonaws.S3.GetBucketAccelerateConfigurationInput value,
             ref TSerializer serializer
         )
         {

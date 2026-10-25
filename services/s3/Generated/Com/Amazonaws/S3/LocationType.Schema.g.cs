@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class LocationTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<LocationType> Schema { get; } =
-        Schemas.StringEnum<LocationType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<LocationType>(
             ShapeId.Parse("com.amazonaws.s3#LocationType"),
             values: ["AvailabilityZone", "LocalZone"],
             traits:

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoncurrentVersionExpirationSchema
 {
@@ -16,11 +16,13 @@ public static partial class NoncurrentVersionExpirationSchema
         public int? NewerNoncurrentVersions { get; set; }
     }
 
-    public static StructSchema<NoncurrentVersionExpiration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.NoncurrentVersionExpiration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NoncurrentVersionExpiration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NoncurrentVersionExpiration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NoncurrentVersionExpiration"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class NoncurrentVersionExpirationSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action.\n      The value must be a non-zero positive integer. For information about the noncurrent days calculations,\n      see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations\">How Amazon S3 Calculates\n        When an Object Became Noncurrent</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>"
-                            )
                         ),
                     ]
                 ),
@@ -49,42 +45,29 @@ public static partial class NoncurrentVersionExpirationSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies how many noncurrent versions Amazon S3 will retain. You can specify up to 100 noncurrent\n      versions to retain. Amazon S3 will permanently delete any additional noncurrent versions beyond the specified\n      number to retain. For more information about noncurrent versions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html\">Lifecycle configuration elements</a> in\n      the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the\n      noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning\n      enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in\n      the object's lifetime.</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override NoncurrentVersionExpiration Build(Builder builder) =>
-            new NoncurrentVersionExpiration(
+        public override global::Com.Amazonaws.S3.NoncurrentVersionExpiration Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.NoncurrentVersionExpiration(
                 builder.NewerNoncurrentVersions,
                 builder.NoncurrentDays
             );
 
         public override void SerializeMembers<TSerializer>(
-            NoncurrentVersionExpiration value,
+            global::Com.Amazonaws.S3.NoncurrentVersionExpiration value,
             ref TSerializer serializer
         )
         {

@@ -6,19 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class TagListTypeSchema
 {
     public static ListSchema<
-        TagListType,
+        IReadOnlyList<global::Com.Amazonaws.Sts.Tag>,
         global::Com.Amazonaws.Sts.Tag,
         List<global::Com.Amazonaws.Sts.Tag>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            TagListType,
+            IReadOnlyList<global::Com.Amazonaws.Sts.Tag>,
             global::Com.Amazonaws.Sts.Tag,
             List<global::Com.Amazonaws.Sts.Tag>
         >(
@@ -31,8 +31,8 @@ public static partial class TagListTypeSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)50) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(50m) },
                         }
                     )
                 ),
@@ -41,10 +41,11 @@ public static partial class TagListTypeSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Tag> Target0 =
-            Schemas.Lazy(() => TagSchema.Schema!);
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSchema.Schema!);
 
-        public override IEnumerable<global::Com.Amazonaws.Sts.Tag> GetElements(TagListType value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sts.Tag> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sts.Tag> value
+        ) => value;
 
         public override List<global::Com.Amazonaws.Sts.Tag> CreateTypedBuilder() => new();
 
@@ -53,15 +54,16 @@ public static partial class TagListTypeSchema
             global::Com.Amazonaws.Sts.Tag value
         ) => builder.Add(value);
 
-        public override TagListType Build(List<global::Com.Amazonaws.Sts.Tag> builder) =>
-            TagListType.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sts.Tag> Build(
+            List<global::Com.Amazonaws.Sts.Tag> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            TagListType value,
+            IReadOnlyList<global::Com.Amazonaws.Sts.Tag> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

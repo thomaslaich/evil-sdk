@@ -5,93 +5,42 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DestinationResultSchema
 {
     public sealed class Builder
     {
-        public S3TablesBucketType? TableBucketType { get; set; }
+        public global::Com.Amazonaws.S3.S3TablesBucketType? TableBucketType { get; set; }
         public string? TableBucketArn { get; set; }
         public string? TableNamespace { get; set; }
     }
 
-    public static StructSchema<DestinationResult, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.DestinationResult, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DestinationResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DestinationResult, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DestinationResult"),
             [
-                new(
-                    "TableBucketType",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The type of the table bucket where the metadata configuration is stored. The <code>aws</code> \n      value indicates an Amazon Web Services managed table bucket, and the <code>customer</code> value indicates a \n      customer-managed table bucket. V2 metadata configurations are stored in Amazon Web Services managed table \n      buckets, and V1 metadata configurations are stored in customer-managed table buckets. \n    </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "TableBucketArn",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The Amazon Resource Name (ARN) of the table bucket where the metadata configuration is stored.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "TableNamespace",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The namespace in the table bucket where the metadata tables for a metadata configuration are \n      stored.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("TableBucketType", Target0),
+                new("TableBucketArn", Target1),
+                new("TableNamespace", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The destination information for the S3 Metadata configuration.\n    </p>"
-                    )
-                ),
-            ]
-        )
+            null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<S3TablesBucketType?> Target0 =
-            Schemas.Nullable(S3TablesBucketTypeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.S3TablesBucketType?> Target0 = global::NSmithy.Core.Serde.Schemas.Nullable(S3TablesBucketTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DestinationResult Build(Builder builder) =>
-            new DestinationResult(
-                builder.TableBucketArn,
-                builder.TableBucketType,
-                builder.TableNamespace
-            );
+        public override global::Com.Amazonaws.S3.DestinationResult Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DestinationResult(builder.TableBucketArn, builder.TableBucketType, builder.TableNamespace);
 
         public override void SerializeMembers<TSerializer>(
-            DestinationResult value,
-            ref TSerializer serializer
-        )
+            global::Com.Amazonaws.S3.DestinationResult value,
+            ref TSerializer serializer)
         {
             if (value.TableBucketType is { } value0)
             {
@@ -122,19 +71,12 @@ public static partial class DestinationResultSchema
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        )
+            ref TDeserializer deserializer)
         {
             switch (index)
             {
                 case 0:
-                    builder.TableBucketType = deserializer.TryReadNull()
-                        ? null
-                        : (
-                            deserializer.ReadStringEnum() is { } value0
-                                ? S3TablesBucketType.FromValue(value0)
-                                : default(S3TablesBucketType)
-                        );
+                    builder.TableBucketType = deserializer.TryReadNull() ? null : (deserializer.ReadStringEnum() is { } value0 ? global::Com.Amazonaws.S3.S3TablesBucketType.FromValue(value0) : default(global::Com.Amazonaws.S3.S3TablesBucketType));
                     break;
                 case 1:
                     builder.TableBucketArn = deserializer.ReadString();

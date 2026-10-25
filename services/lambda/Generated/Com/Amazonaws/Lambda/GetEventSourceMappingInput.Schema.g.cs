@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetEventSourceMappingInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetEventSourceMappingInputSchema
         public string? UUID { get; set; }
     }
 
-    public static StructSchema<GetEventSourceMappingInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetEventSourceMappingInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetEventSourceMappingInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetEventSourceMappingInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetEventSourceMappingInput"),
             [
                 new(
@@ -29,10 +31,6 @@ public static partial class GetEventSourceMappingInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The identifier of the event source mapping.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,18 +39,14 @@ public static partial class GetEventSourceMappingInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)36) },
-                                    { "max", Document.From((decimal)36) },
+                                    { "min", Document.From(36m) },
+                                    { "max", Document.From(36m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -63,10 +57,6 @@ public static partial class GetEventSourceMappingInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetEventSourceMappingRequest")
                 ),
@@ -74,17 +64,21 @@ public static partial class GetEventSourceMappingInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetEventSourceMappingInput Build(Builder builder) =>
-            new GetEventSourceMappingInput(
+        public override global::Com.Amazonaws.Lambda.GetEventSourceMappingInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetEventSourceMappingInput(
                 builder.UUID ?? throw new MissingRequiredMemberException("UUID")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetEventSourceMappingInput value,
+            global::Com.Amazonaws.Lambda.GetEventSourceMappingInput value,
             ref TSerializer serializer
         )
         {

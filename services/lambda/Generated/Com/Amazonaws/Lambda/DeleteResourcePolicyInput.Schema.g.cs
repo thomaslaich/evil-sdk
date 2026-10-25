@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteResourcePolicyInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteResourcePolicyInputSchema
         public string? RevisionId { get; set; }
     }
 
-    public static StructSchema<DeleteResourcePolicyInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteResourcePolicyInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteResourcePolicyInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteResourcePolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteResourcePolicyInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class DeleteResourcePolicyInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the Lambda resource you want to delete the policy from. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +40,8 @@ public static partial class DeleteResourcePolicyInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -59,10 +55,6 @@ public static partial class DeleteResourcePolicyInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -70,12 +62,6 @@ public static partial class DeleteResourcePolicyInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The revision ID that the existing policy must match for the deletion to proceed. If the revision ID doesn't match, the operation fails with a <code>PreconditionFailedException</code> error. To retrieve the current revision ID, use the <a>GetResourcePolicy</a> operation.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("RevisionId")
@@ -85,8 +71,8 @@ public static partial class DeleteResourcePolicyInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)36) },
-                                    { "max", Document.From((decimal)36) },
+                                    { "min", Document.From(36m) },
+                                    { "max", Document.From(36m) },
                                 }
                             )
                         ),
@@ -95,10 +81,6 @@ public static partial class DeleteResourcePolicyInputSchema
                             Document.From(
                                 "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -109,10 +91,6 @@ public static partial class DeleteResourcePolicyInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteResourcePolicyRequest")
                 ),
@@ -120,20 +98,26 @@ public static partial class DeleteResourcePolicyInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteResourcePolicyInput Build(Builder builder) =>
-            new DeleteResourcePolicyInput(
+        public override global::Com.Amazonaws.Lambda.DeleteResourcePolicyInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DeleteResourcePolicyInput(
                 builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn"),
                 builder.RevisionId
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteResourcePolicyInput value,
+            global::Com.Amazonaws.Lambda.DeleteResourcePolicyInput value,
             ref TSerializer serializer
         )
         {

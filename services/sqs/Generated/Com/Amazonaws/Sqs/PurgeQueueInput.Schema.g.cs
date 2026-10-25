@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class PurgeQueueInputSchema
 {
@@ -15,10 +15,11 @@ public static partial class PurgeQueueInputSchema
         public string? QueueUrl { get; set; }
     }
 
-    public static StructSchema<PurgeQueueInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.PurgeQueueInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PurgeQueueInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.PurgeQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#PurgeQueueInput"),
             [
                 new(
@@ -28,12 +29,6 @@ public static partial class PurgeQueueInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the queue from which the <code>PurgeQueue</code> action deletes\n            messages.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,7 +36,6 @@ public static partial class PurgeQueueInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -54,17 +48,19 @@ public static partial class PurgeQueueInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PurgeQueueInput Build(Builder builder) =>
-            new PurgeQueueInput(
+        public override global::Com.Amazonaws.Sqs.PurgeQueueInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.PurgeQueueInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
             );
 
         public override void SerializeMembers<TSerializer>(
-            PurgeQueueInput value,
+            global::Com.Amazonaws.Sqs.PurgeQueueInput value,
             ref TSerializer serializer
         )
         {

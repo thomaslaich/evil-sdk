@@ -6,34 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketOwnershipControlsSchema
 {
     public static OperationSchema<
-        DeleteBucketOwnershipControlsInput,
-        DeleteBucketOwnershipControlsOutput
+        global::Com.Amazonaws.S3.DeleteBucketOwnershipControlsInput,
+        global::Com.Amazonaws.S3.DeleteBucketOwnershipControlsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketOwnershipControls"),
-            Schemas.Lazy(() => DeleteBucketOwnershipControlsInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteBucketOwnershipControlsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketOwnershipControlsInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketOwnershipControlsOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Removes <code>OwnershipControls</code> for an Amazon S3 bucket. To use this operation, you must have the\n        <code>s3:PutBucketOwnershipControls</code> permission. For more information about Amazon S3 permissions,\n      see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html\">Specifying\n        Permissions in a Policy</a>.</p>\n         <p>For information about Amazon S3 Object Ownership, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html\">Using Object Ownership</a>. </p>\n         <p>The following operations are related to <code>DeleteBucketOwnershipControls</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a>GetBucketOwnershipControls</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a>PutBucketOwnershipControls</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}?ownershipControls") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/?ownershipControls") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

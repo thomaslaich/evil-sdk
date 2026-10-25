@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketRequestPaymentOutputSchema
 {
@@ -15,27 +15,15 @@ public static partial class GetBucketRequestPaymentOutputSchema
         public global::Com.Amazonaws.S3.Payer? Payer { get; set; }
     }
 
-    public static StructSchema<GetBucketRequestPaymentOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketRequestPaymentOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketRequestPaymentOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketRequestPaymentOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketRequestPaymentOutput"),
-            [
-                new(
-                    "Payer",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies who pays for the download and request fees.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
+            [new("Payer", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
@@ -49,15 +37,16 @@ public static partial class GetBucketRequestPaymentOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Payer?> Target0 =
-            Schemas.Nullable(PayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(PayerSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketRequestPaymentOutput Build(Builder builder) =>
-            new GetBucketRequestPaymentOutput(builder.Payer);
+        public override global::Com.Amazonaws.S3.GetBucketRequestPaymentOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.GetBucketRequestPaymentOutput(builder.Payer);
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketRequestPaymentOutput value,
+            global::Com.Amazonaws.S3.GetBucketRequestPaymentOutput value,
             ref TSerializer serializer
         )
         {

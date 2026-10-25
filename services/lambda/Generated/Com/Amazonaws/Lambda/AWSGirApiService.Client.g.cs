@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -21,6 +23,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Adds permissions to the resource-based policy of a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Use this action to grant layer usage permission to other accounts. You can grant permission to a single account, all accounts in an organization, or all Amazon Web Services accounts. &lt;/p&gt; &lt;p&gt;To revoke permission, call &lt;a&gt;RemoveLayerVersionPermission&lt;/a&gt; with the statement ID that you specified when you added it.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To add permissions to a layer version
+    /// </para>
+    /// <para>
+    /// The following example grants permission for the account 223456789012 to use version 1 of a layer named my-layer.
+    /// </para>
+    /// <code>
+    /// var input = new AddLayerVersionPermissionInput(Action: &quot;lambda:GetLayerVersion&quot;, LayerName: &quot;my-layer&quot;, Principal: &quot;223456789012&quot;, StatementId: &quot;xaccount&quot;, VersionNumber: 1L);
+    /// var output = await client.AddLayerVersionPermissionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AddLayerVersionPermissionOutput(RevisionId: &quot;35d87451-f796-4a3f-a618-95a3671b0a0c&quot;, Statement: &quot;{\&quot;Sid\&quot;:\&quot;xaccount\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;arn:aws:iam::223456789012:root\&quot;},\&quot;Action\&quot;:\&quot;lambda:GetLayerVersion\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer:1\&quot;}&quot;);
+    /// </code>
+    /// </example>
     Task<AddLayerVersionPermissionOutput> AddLayerVersionPermissionAsync(
         AddLayerVersionPermissionInput input,
         CancellationToken cancellationToken = default
@@ -29,6 +46,36 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Grants a &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying&quot;&gt;principal&lt;/a&gt; permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does not support adding policies to version $LATEST.&lt;/p&gt; &lt;p&gt;To grant permission to another account, specify the account ID as the &lt;code&gt;Principal&lt;/code&gt;. To grant permission to an organization defined in Organizations, specify the organization ID as the &lt;code&gt;PrincipalOrgID&lt;/code&gt;. For Amazon Web Services services, the principal is a domain-style identifier that the service defines, such as &lt;code&gt;s3.amazonaws.com&lt;/code&gt; or &lt;code&gt;sns.amazonaws.com&lt;/code&gt;. For Amazon Web Services services, you can also specify the ARN of the associated resource as the &lt;code&gt;SourceArn&lt;/code&gt;. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function.&lt;/p&gt; &lt;p&gt;This operation adds a statement to a resource-based permissions policy for the function. For more information about function policies, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;Using resource-based policies for Lambda&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To grant Amazon S3 permission to invoke a function
+    /// </para>
+    /// <para>
+    /// The following example adds permission for Amazon S3 to invoke a Lambda function named my-function for notifications from a bucket named my-bucket-1xpuxmplzrlbh in account 123456789012.
+    /// </para>
+    /// <code>
+    /// var input = new AddPermissionInput(Action: &quot;lambda:InvokeFunction&quot;, FunctionName: &quot;my-function&quot;, Principal: &quot;s3.amazonaws.com&quot;, StatementId: &quot;s3&quot;, SourceAccount: &quot;123456789012&quot;, SourceArn: &quot;arn:aws:s3:::my-bucket-1xpuxmplzrlbh/*&quot;);
+    /// var output = await client.AddPermissionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AddPermissionOutput(Statement: &quot;{\&quot;Sid\&quot;:\&quot;s3\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;Service\&quot;:\&quot;s3.amazonaws.com\&quot;},\&quot;Action\&quot;:\&quot;lambda:InvokeFunction\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:function:my-function\&quot;,\&quot;Condition\&quot;:{\&quot;StringEquals\&quot;:{\&quot;AWS:SourceAccount\&quot;:\&quot;123456789012\&quot;},\&quot;ArnLike\&quot;:{\&quot;AWS:SourceArn\&quot;:\&quot;arn:aws:s3:::my-bucket-1xpuxmplzrlbh\&quot;}}}&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To grant another account permission to invoke a function
+    /// </para>
+    /// <para>
+    /// The following example adds permission for account 223456789012 invoke a Lambda function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new AddPermissionInput(Action: &quot;lambda:InvokeFunction&quot;, FunctionName: &quot;my-function&quot;, Principal: &quot;223456789012&quot;, StatementId: &quot;xaccount&quot;);
+    /// var output = await client.AddPermissionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AddPermissionOutput(Statement: &quot;{\&quot;Sid\&quot;:\&quot;xaccount\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;arn:aws:iam::223456789012:root\&quot;},\&quot;Action\&quot;:\&quot;lambda:InvokeFunction\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:function:my-function\&quot;}&quot;);
+    /// </code>
+    /// </example>
     Task<AddPermissionOutput> AddPermissionAsync(
         AddPermissionInput input,
         CancellationToken cancellationToken = default
@@ -45,6 +92,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt; for a Lambda function version. Use aliases to provide clients with a function identifier that you can update to invoke a different version.&lt;/p&gt; &lt;p&gt;You can also map an alias to split invocation requests between two versions. Use the &lt;code&gt;RoutingConfig&lt;/code&gt; parameter to specify a second version and the percentage of invocation requests that it receives.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create an alias for a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example creates an alias named LIVE that points to version 1 of the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new CreateAliasInput(FunctionName: &quot;my-function&quot;, FunctionVersion: &quot;1&quot;, Name: &quot;LIVE&quot;, Description: &quot;alias for live version of function&quot;);
+    /// var output = await client.CreateAliasAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateAliasOutput(AliasArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:LIVE&quot;, Description: &quot;alias for live version of function&quot;, FunctionVersion: &quot;1&quot;, Name: &quot;LIVE&quot;, RevisionId: &quot;873282ed-xmpl-4dc8-a069-d0c647e470c6&quot;);
+    /// </code>
+    /// </example>
     Task<CreateAliasOutput> CreateAliasAsync(
         CreateAliasInput input,
         CancellationToken cancellationToken = default
@@ -69,6 +131,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and invokes the function.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a mapping between an event source and an AWS Lambda function
+    /// </para>
+    /// <para>
+    /// The following example creates a mapping between an SQS queue and the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new CreateEventSourceMappingInput(FunctionName: &quot;my-function&quot;, BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:my-queue&quot;);
+    /// var output = await client.CreateEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateEventSourceMappingOutput(BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:my-queue&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15692845203330000L), State: &quot;Creating&quot;, StateTransitionReason: &quot;USER_INITIATED&quot;, UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;);
+    /// </code>
+    /// </example>
     Task<CreateEventSourceMappingOutput> CreateEventSourceMappingAsync(
         CreateEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -77,6 +154,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Creates a Lambda function. To create a function, you need a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html&quot;&gt;deployment package&lt;/a&gt; and an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role&quot;&gt;execution role&lt;/a&gt;. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use Amazon Web Services services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt;, then you set the package type to &lt;code&gt;Image&lt;/code&gt;. For a container image, the code property must include the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and runtime properties.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;, then you set the package type to &lt;code&gt;Zip&lt;/code&gt;. For a .zip file archive, the code property specifies the location of the .zip file. You must also specify the handler and runtime properties. The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;). If you do not specify the architecture, then the default value is &lt;code&gt;x86-64&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The &lt;code&gt;State&lt;/code&gt;, &lt;code&gt;StateReason&lt;/code&gt;, and &lt;code&gt;StateReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the function is ready to invoke. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the &lt;code&gt;Publish&lt;/code&gt; parameter to create version &lt;code&gt;1&lt;/code&gt; of your function from its initial configuration.&lt;/p&gt; &lt;p&gt;The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;. Function-level settings apply to both the unpublished and published versions of the function, and include tags (&lt;a&gt;TagResource&lt;/a&gt;) and per-function concurrency limits (&lt;a&gt;PutFunctionConcurrency&lt;/a&gt;).&lt;/p&gt; &lt;p&gt;You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with &lt;a&gt;UpdateFunctionCode&lt;/a&gt;, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set of signing profiles, which define the trusted publishers for this function.&lt;/p&gt; &lt;p&gt;If another Amazon Web Services account or an Amazon Web Services service invokes your function, use &lt;a&gt;AddPermission&lt;/a&gt; to grant permission by creating a resource-based Identity and Access Management (IAM) policy. You can grant permissions at the function level, on a version, or on an alias.&lt;/p&gt; &lt;p&gt;To invoke your function directly, use &lt;a&gt;Invoke&lt;/a&gt;. To invoke your function in response to events in other Amazon Web Services services, create an event source mapping (&lt;a&gt;CreateEventSourceMapping&lt;/a&gt;), or configure a function trigger in the other service. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html&quot;&gt;Invoking Lambda functions&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a function
+    /// </para>
+    /// <para>
+    /// The following example creates a function with a deployment package in Amazon S3 and enables X-Ray tracing and environment variable encryption.
+    /// </para>
+    /// <code>
+    /// var input = new CreateFunctionInput(Code: new FunctionCode(S3Bucket: &quot;my-bucket-1xpuxmplzrlbh&quot;, S3Key: &quot;function.zip&quot;), FunctionName: &quot;my-function&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new Environment(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, MemorySize: 256, Publish: true, Runtime: new Runtime(&quot;nodejs12.x&quot;), Tags: new Dictionary&lt;string, string&gt; { { &quot;DEPARTMENT&quot;, &quot;Assets&quot; } }, Timeout: 15, TracingConfig: new TracingConfig(Mode: new TracingMode(&quot;Active&quot;)));
+    /// var output = await client.CreateFunctionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateFunctionOutput(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;1&quot;);
+    /// </code>
+    /// </example>
     Task<CreateFunctionOutput> CreateFunctionAsync(
         CreateFunctionInput input,
         CancellationToken cancellationToken = default
@@ -93,6 +185,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Deletes a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a Lambda function alias
+    /// </para>
+    /// <para>
+    /// The following example deletes an alias named BLUE from a function named my-function
+    /// </para>
+    /// <code>
+    /// var input = new DeleteAliasInput(FunctionName: &quot;my-function&quot;, Name: &quot;BLUE&quot;);
+    /// var output = await client.DeleteAliasAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteAliasOutput> DeleteAliasAsync(
         DeleteAliasInput input,
         CancellationToken cancellationToken = default
@@ -117,6 +221,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Deletes an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html&quot;&gt;event source mapping&lt;/a&gt;. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When you delete an event source mapping, it enters a &lt;code&gt;Deleting&lt;/code&gt; state and might not be completely deleted for several seconds.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a Lambda function event source mapping
+    /// </para>
+    /// <para>
+    /// The following example deletes an event source mapping. To get a mapping's UUID, use ListEventSourceMappings.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteEventSourceMappingInput(UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// var output = await client.DeleteEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteEventSourceMappingOutput(BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:my-queue&quot;, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), State: &quot;Enabled&quot;, StateTransitionReason: &quot;USER_INITIATED&quot;, UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// </code>
+    /// </example>
     Task<DeleteEventSourceMappingOutput> DeleteEventSourceMappingAsync(
         DeleteEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -125,6 +244,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Deletes a Lambda function. To delete a specific function version, use the &lt;code&gt;Qualifier&lt;/code&gt; parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have explicit permissions for &lt;a&gt;DeleteAlias&lt;/a&gt;.&lt;/p&gt; &lt;note&gt; &lt;p&gt;A deleted Lambda function cannot be recovered. Ensure that you specify the correct function name and version before deleting.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;To delete Lambda event source mappings that invoke a function, use &lt;a&gt;DeleteEventSourceMapping&lt;/a&gt;. For Amazon Web Services services and resources that invoke your function directly, delete the trigger in the service where you originally configured it.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a version of a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example deletes version 1 of a Lambda function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteFunctionInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.DeleteFunctionAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteFunctionOutput> DeleteFunctionAsync(
         DeleteFunctionInput input,
         CancellationToken cancellationToken = default
@@ -141,6 +272,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Removes a concurrent execution limit from a function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove the reserved concurrent execution limit from a function
+    /// </para>
+    /// <para>
+    /// The following example deletes the reserved concurrent execution limit from a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteFunctionConcurrencyInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.DeleteFunctionConcurrencyAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteFunctionConcurrencyOutput> DeleteFunctionConcurrencyAsync(
         DeleteFunctionConcurrencyInput input,
         CancellationToken cancellationToken = default
@@ -149,6 +292,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Deletes the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete an asynchronous invocation configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes the asynchronous invocation configuration for the GREEN alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;GREEN&quot;);
+    /// var output = await client.DeleteFunctionEventInvokeConfigAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteFunctionEventInvokeConfigOutput> DeleteFunctionEventInvokeConfigAsync(
         DeleteFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -165,6 +320,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Deletes a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Deleted versions can no longer be viewed or added to functions. To avoid breaking functions, a copy of the version remains in Lambda until no functions refer to it.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a version of a Lambda layer
+    /// </para>
+    /// <para>
+    /// The following example deletes version 2 of a layer named my-layer.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteLayerVersionInput(LayerName: &quot;my-layer&quot;, VersionNumber: 2L);
+    /// var output = await client.DeleteLayerVersionAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteLayerVersionOutput> DeleteLayerVersionAsync(
         DeleteLayerVersionInput input,
         CancellationToken cancellationToken = default
@@ -173,6 +340,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Deletes the provisioned concurrency configuration for a function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a provisioned concurrency configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes the provisioned concurrency configuration for the GREEN alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;GREEN&quot;);
+    /// var output = await client.DeleteProvisionedConcurrencyConfigAsync(input);
+    /// </code>
+    /// </example>
     Task<DeleteProvisionedConcurrencyConfigOutput> DeleteProvisionedConcurrencyConfigAsync(
         DeleteProvisionedConcurrencyConfigInput input,
         CancellationToken cancellationToken = default
@@ -189,6 +368,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Retrieves details about your account's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/limits.html&quot;&gt;limits&lt;/a&gt; and usage in an Amazon Web Services Region.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get account settings
+    /// </para>
+    /// <para>
+    /// This operation takes no parameters and returns details about storage and concurrency quotas in the current Region.
+    /// </para>
+    /// <code>
+    /// var input = new GetAccountSettingsInput();
+    /// var output = await client.GetAccountSettingsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetAccountSettingsOutput(AccountLimit: new AccountLimit(CodeSizeUnzipped: 262144000L, CodeSizeZipped: 52428800L, ConcurrentExecutions: 1000, TotalCodeSize: 80530636800L, UnreservedConcurrentExecutions: 1000), AccountUsage: new AccountUsage(FunctionCount: 4L, TotalCodeSize: 9426L));
+    /// </code>
+    /// </example>
     Task<GetAccountSettingsOutput> GetAccountSettingsAsync(
         GetAccountSettingsInput input,
         CancellationToken cancellationToken = default
@@ -197,6 +391,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns details about a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function alias
+    /// </para>
+    /// <para>
+    /// The following example returns details about an alias named BLUE for a function named my-function
+    /// </para>
+    /// <code>
+    /// var input = new GetAliasInput(FunctionName: &quot;my-function&quot;, Name: &quot;BLUE&quot;);
+    /// var output = await client.GetAliasAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetAliasOutput(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:BLUE&quot;, Description: &quot;Production environment BLUE.&quot;, FunctionVersion: &quot;3&quot;, Name: &quot;BLUE&quot;, RevisionId: &quot;594f41fb-xmpl-4c20-95c7-6ca5f2a92c93&quot;);
+    /// </code>
+    /// </example>
     Task<GetAliasOutput> GetAliasAsync(
         GetAliasInput input,
         CancellationToken cancellationToken = default
@@ -277,6 +486,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns details about an event source mapping. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function's event source mapping
+    /// </para>
+    /// <para>
+    /// The following example returns details about an event source mapping. To get a mapping's UUID, use ListEventSourceMappings.
+    /// </para>
+    /// <code>
+    /// var input = new GetEventSourceMappingInput(UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// var output = await client.GetEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetEventSourceMappingOutput(BatchSize: 500, BisectBatchOnFunctionError: false, DestinationConfig: new DestinationConfig(), EventSourceArn: &quot;arn:aws:sqs:us-east-2:123456789012:mySQSqueue&quot;, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:myFunction&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), LastProcessingResult: &quot;No records processed&quot;, MaximumRecordAgeInSeconds: 604800, MaximumRetryAttempts: 10000, State: &quot;Creating&quot;, StateTransitionReason: &quot;User action&quot;, UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// </code>
+    /// </example>
     Task<GetEventSourceMappingOutput> GetEventSourceMappingAsync(
         GetEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -285,8 +509,125 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns information about the function or function version, with a link to download the deployment package that's valid for 10 minutes. If you specify a function version, only details that are specific to that version are returned.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example returns code and configuration details for version 1 of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.GetFunctionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionOutput(Code: new FunctionCodeLocation(Location: &quot;https://awslambda-us-west-2-tasks.s3.us-west-2.amazonaws.com/snapshots/123456789012/my-function-e7d9d1ed-xmpl-4f79-904a-4b87f2681f30?versionId=sH3TQwBOaUy...&quot;, RepositoryType: &quot;S3&quot;), Configuration: new FunctionConfiguration(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;$LATEST&quot;), Tags: new Dictionary&lt;string, string&gt; { { &quot;DEPARTMENT&quot;, &quot;Assets&quot; } });
+    /// </code>
+    /// </example>
     Task<GetFunctionOutput> GetFunctionAsync(
         GetFunctionInput input,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunction API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionActiveV2Async(
+        GetFunctionInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunction API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionActiveV2Async(
+        GetFunctionInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionExistsAsync(
+        GetFunctionInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionExistsAsync(
+        GetFunctionInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunction API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionUpdatedV2Async(
+        GetFunctionInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunction API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionUpdatedV2Async(
+        GetFunctionInput input,
+        SmithyWaiterOptions options,
         CancellationToken cancellationToken = default
     );
 
@@ -301,6 +642,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns details about the reserved concurrency configuration for a function. To set a concurrency limit for a function, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get the reserved concurrency setting for a function
+    /// </para>
+    /// <para>
+    /// The following example returns the reserved concurrency setting for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionConcurrencyInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.GetFunctionConcurrencyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionConcurrencyOutput(ReservedConcurrentExecutions: 250);
+    /// </code>
+    /// </example>
     Task<GetFunctionConcurrencyOutput> GetFunctionConcurrencyAsync(
         GetFunctionConcurrencyInput input,
         CancellationToken cancellationToken = default
@@ -309,14 +665,152 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns the version-specific settings of a Lambda function or version. The output includes only options that can vary between versions of a function. To modify these settings, use &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To get all of a function's details, including function-level settings, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function's event source mapping
+    /// </para>
+    /// <para>
+    /// The following example returns and configuration details for version 1 of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionConfigurationInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.GetFunctionConfigurationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionConfigurationOutput(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;$LATEST&quot;);
+    /// </code>
+    /// </example>
     Task<GetFunctionConfigurationOutput> GetFunctionConfigurationAsync(
         GetFunctionConfigurationInput input,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionActiveAsync(
+        GetFunctionConfigurationInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionActiveAsync(
+        GetFunctionConfigurationInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunctionConfiguration API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionUpdatedAsync(
+        GetFunctionConfigurationInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunctionConfiguration API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionUpdatedAsync(
+        GetFunctionConfigurationInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the published version's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new version is published.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilPublishedVersionActiveAsync(
+        GetFunctionConfigurationInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Waits for the published version's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new version is published.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilPublishedVersionActiveAsync(
+        GetFunctionConfigurationInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// &lt;p&gt;Retrieves the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get an asynchronous invocation configuration
+    /// </para>
+    /// <para>
+    /// The following example returns the asynchronous invocation configuration for the BLUE alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.GetFunctionEventInvokeConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionEventInvokeConfigOutput(DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(Destination: &quot;arn:aws:sqs:us-east-2:123456789012:failed-invocations&quot;), OnSuccess: new OnSuccess()), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:BLUE&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// </code>
+    /// </example>
     Task<GetFunctionEventInvokeConfigOutput> GetFunctionEventInvokeConfigAsync(
         GetFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -349,6 +843,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get information about a Lambda layer version
+    /// </para>
+    /// <para>
+    /// The following example returns information for version 1 of a layer named my-layer.
+    /// </para>
+    /// <code>
+    /// var input = new GetLayerVersionInput(LayerName: &quot;my-layer&quot;, VersionNumber: 1L);
+    /// var output = await client.GetLayerVersionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetLayerVersionOutput(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, Content: new LayerVersionContentOutput(CodeSha256: &quot;tv9jJO+rPbXUUXuRKi7CwHzKtLDkDRJLB3cC3Z/ouXo=&quot;, CodeSize: 169L, Location: &quot;https://awslambda-us-east-2-layers.s3.us-east-2.amazonaws.com/snapshots/123456789012/my-layer-4aaa2fbb-ff77-4b0a-ad92-5b78a716a96a?versionId=27iWyA73cCAYqyH...&quot;), CreatedDate: &quot;2018-11-14T23:03:52.894+0000&quot;, Description: &quot;My Python layer&quot;, LayerArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer:1&quot;, LicenseInfo: &quot;MIT&quot;, Version: 1L);
+    /// </code>
+    /// </example>
     Task<GetLayerVersionOutput> GetLayerVersionAsync(
         GetLayerVersionInput input,
         CancellationToken cancellationToken = default
@@ -357,6 +866,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get information about a Lambda layer version
+    /// </para>
+    /// <para>
+    /// The following example returns information about the layer version with the specified Amazon Resource Name (ARN).
+    /// </para>
+    /// <code>
+    /// var input = new GetLayerVersionByArnInput(Arn: &quot;arn:aws:lambda:ca-central-1:123456789012:layer:blank-python-lib:3&quot;);
+    /// var output = await client.GetLayerVersionByArnAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetLayerVersionByArnOutput(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.8&quot;) }, Content: new LayerVersionContentOutput(CodeSha256: &quot;6x+xmpl/M3BnQUk7gS9sGmfeFsR/npojXoA3fZUv4eU=&quot;, CodeSize: 9529009L, Location: &quot;https://awslambda-us-east-2-layers.s3.us-east-2.amazonaws.com/snapshots/123456789012/blank-python-lib-e5212378-xmpl-44ee-8398-9d8ec5113949?versionId=WbZnvf...&quot;), CreatedDate: &quot;2020-03-31T00:35:18.949+0000&quot;, Description: &quot;Dependencies for the blank-python sample app.&quot;, LayerArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-python-lib&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-python-lib:3&quot;, Version: 3L);
+    /// </code>
+    /// </example>
     Task<GetLayerVersionByArnOutput> GetLayerVersionByArnAsync(
         GetLayerVersionByArnInput input,
         CancellationToken cancellationToken = default
@@ -373,6 +897,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based IAM policy&lt;/a&gt; for a function, version, or alias.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve a Lambda function policy
+    /// </para>
+    /// <para>
+    /// The following example returns the resource-based policy for version 1 of a Lambda function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetPolicyInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.GetPolicyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetPolicyOutput(Policy: &quot;{\&quot;Version\&quot;:\&quot;2012-10-17\&quot;,\&quot;Id\&quot;:\&quot;default\&quot;,\&quot;Statement\&quot;:[{\&quot;Sid\&quot;:\&quot;xaccount\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;arn:aws:iam::123456789012:root\&quot;},\&quot;Action\&quot;:\&quot;lambda:InvokeFunction\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:1\&quot;}]}&quot;, RevisionId: &quot;4843f2f6-7c59-4fda-b484-afd0bc0e22b8&quot;);
+    /// </code>
+    /// </example>
     Task<GetPolicyOutput> GetPolicyAsync(
         GetPolicyInput input,
         CancellationToken cancellationToken = default
@@ -381,6 +920,36 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Retrieves the provisioned concurrency configuration for a function's alias or version.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To view a provisioned concurrency configuration
+    /// </para>
+    /// <para>
+    /// The following example displays details for the provisioned concurrency configuration for the BLUE alias of the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new GetProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.GetProvisionedConcurrencyConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetProvisionedConcurrencyConfigOutput(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, LastModified: &quot;2019-12-31T20:28:49+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;));
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To get a provisioned concurrency configuration
+    /// </para>
+    /// <para>
+    /// The following example returns details for the provisioned concurrency configuration for the BLUE alias of the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new GetProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.GetProvisionedConcurrencyConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetProvisionedConcurrencyConfigOutput(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, LastModified: &quot;2019-12-31T20:28:49+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;));
+    /// </code>
+    /// </example>
     Task<GetProvisionedConcurrencyConfigOutput> GetProvisionedConcurrencyConfigAsync(
         GetProvisionedConcurrencyConfigInput input,
         CancellationToken cancellationToken = default
@@ -405,6 +974,36 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. By default, Lambda invokes your function synchronously (i.e. the&lt;code&gt;InvocationType&lt;/code&gt; is &lt;code&gt;RequestResponse&lt;/code&gt;). To invoke a function asynchronously, set &lt;code&gt;InvocationType&lt;/code&gt; to &lt;code&gt;Event&lt;/code&gt;. Lambda passes the &lt;code&gt;ClientContext&lt;/code&gt; object to your function for synchronous invocations only.&lt;/p&gt; &lt;p&gt;For synchronous invocations, the maximum payload size is 6 MB. For asynchronous invocations, the maximum payload size is 1 MB.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html&quot;&gt;synchronous invocation&lt;/a&gt;, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html&quot;&gt;execution log&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html&quot;&gt;trace&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html&quot;&gt;Error handling and automatic retries in Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt;, Lambda adds events to a queue before sending them to your function. If your function does not have enough capacity to keep up with the queue, events may be lost. Occasionally, your function may receive the same event multiple times, even if no error occurs. To retain events that were not processed, configure your function with a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq&quot;&gt;dead-letter queue&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;quota&lt;/a&gt; errors, or issues with your function's code and configuration. For example, Lambda returns &lt;code&gt;TooManyRequestsException&lt;/code&gt; if running the function would cause you to exceed a concurrency limit at either the account level (&lt;code&gt;ConcurrentInvocationLimitExceeded&lt;/code&gt;) or function level (&lt;code&gt;ReservedFunctionConcurrentInvocationLimitExceeded&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;For functions with a long timeout, your client might disconnect during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings.&lt;/p&gt; &lt;p&gt;This operation requires permission for the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html&quot;&gt;lambda:InvokeFunction&lt;/a&gt; action. For details on how to set up permissions for cross-account invocations, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke&quot;&gt;Granting function access to other accounts&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To invoke a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example invokes version 1 of a function named my-function with an empty event payload.
+    /// </para>
+    /// <code>
+    /// var input = new InvokeInput(FunctionName: &quot;my-function&quot;, DurableExecutionName: &quot;myExecution&quot;, InvocationType: new InvocationType(&quot;Event&quot;), Payload: Convert.FromBase64String(&quot;{}&quot;), Qualifier: &quot;1&quot;);
+    /// var output = await client.InvokeAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new InvokeOutput(Payload: Convert.FromBase64String(&quot;200 SUCCESS&quot;), StatusCode: 200);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To invoke a Lambda function asynchronously
+    /// </para>
+    /// <para>
+    /// The following example invokes version 1 of a function named my-function asynchronously.
+    /// </para>
+    /// <code>
+    /// var input = new InvokeInput(FunctionName: &quot;my-function&quot;, InvocationType: new InvocationType(&quot;Event&quot;), Payload: Convert.FromBase64String(&quot;{}&quot;), Qualifier: &quot;1&quot;);
+    /// var output = await client.InvokeAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new InvokeOutput(Payload: Convert.FromBase64String(&quot;&quot;), StatusCode: 202);
+    /// </code>
+    /// </example>
     Task<InvokeOutput> InvokeAsync(
         InvokeInput input,
         CancellationToken cancellationToken = default
@@ -413,6 +1012,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;note&gt; &lt;p&gt;For asynchronous function invocation, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;Invokes a function asynchronously.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The payload limit is 256KB. For larger payloads, for up to 1MB, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;note&gt; &lt;p&gt;If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing is turned on.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To invoke a Lambda function asynchronously
+    /// </para>
+    /// <para>
+    /// The following example invokes a Lambda function asynchronously
+    /// </para>
+    /// <code>
+    /// var input = new InvokeAsyncInput(FunctionName: &quot;my-function&quot;, InvokeArgs: new MemoryStream(Convert.FromBase64String(&quot;{}&quot;)));
+    /// var output = await client.InvokeAsyncAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new InvokeAsyncOutput(Status: 202);
+    /// </code>
+    /// </example>
     Task<InvokeAsyncOutput> InvokeAsyncAsync(
         InvokeAsyncInput input,
         CancellationToken cancellationToken = default
@@ -429,6 +1043,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list a function's aliases
+    /// </para>
+    /// <para>
+    /// The following example returns a list of aliases for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListAliasesInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListAliasesAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListAliasesOutput(Aliases: new AliasConfiguration[] { new AliasConfiguration(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:BETA&quot;, Description: &quot;Production environment BLUE.&quot;, FunctionVersion: &quot;2&quot;, Name: &quot;BLUE&quot;, RevisionId: &quot;a410117f-xmpl-494e-8035-7e204bb7933b&quot;, RoutingConfig: new AliasRoutingConfiguration(AdditionalVersionWeights: new Dictionary&lt;string, double&gt; { { &quot;1&quot;, 0.7d } })), new AliasConfiguration(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:LIVE&quot;, Description: &quot;Production environment GREEN.&quot;, FunctionVersion: &quot;1&quot;, Name: &quot;GREEN&quot;, RevisionId: &quot;21d40116-xmpl-40ba-9360-3ea284da1bb5&quot;) });
+    /// </code>
+    /// </example>
     Task<ListAliasesOutput> ListAliasesAsync(
         ListAliasesInput input,
         CancellationToken cancellationToken = default
@@ -525,6 +1154,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list the event source mappings for a function
+    /// </para>
+    /// <para>
+    /// The following example returns a list of the event source mappings for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListEventSourceMappingsInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListEventSourceMappingsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListEventSourceMappingsOutput(EventSourceMappings: new EventSourceMappingConfiguration[] { new EventSourceMappingConfiguration(BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:mySQSqueue&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15692845203330000L), State: &quot;Enabled&quot;, StateTransitionReason: &quot;USER_INITIATED&quot;, UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;) });
+    /// </code>
+    /// </example>
     Task<ListEventSourceMappingsOutput> ListEventSourceMappingsAsync(
         ListEventSourceMappingsInput input,
         CancellationToken cancellationToken = default
@@ -549,6 +1193,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To view a list of asynchronous invocation configurations
+    /// </para>
+    /// <para>
+    /// The following example returns a list of asynchronous invocation configurations for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListFunctionEventInvokeConfigsInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListFunctionEventInvokeConfigsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListFunctionEventInvokeConfigsOutput(FunctionEventInvokeConfigs: new FunctionEventInvokeConfig[] { new FunctionEventInvokeConfig(FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:GREEN&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15778244067190000L), MaximumEventAgeInSeconds: 1800, MaximumRetryAttempts: 2), new FunctionEventInvokeConfig(FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:BLUE&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15778243966530000L), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0) });
+    /// </code>
+    /// </example>
     Task<ListFunctionEventInvokeConfigsOutput> ListFunctionEventInvokeConfigsAsync(
         ListFunctionEventInvokeConfigsInput input,
         CancellationToken cancellationToken = default
@@ -621,6 +1280,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a list of Lambda functions
+    /// </para>
+    /// <para>
+    /// This operation returns a list of Lambda functions.
+    /// </para>
+    /// <code>
+    /// var input = new ListFunctionsInput();
+    /// var output = await client.ListFunctionsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListFunctionsOutput(Functions: new FunctionConfiguration[] { new FunctionConfiguration(CodeSha256: &quot;dBG9m8SGdmlEjw/JYXlhhvCrAv5TxvXsbL/RMr0fT/I=&quot;, CodeSize: 294L, Description: &quot;&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:helloworld&quot;, FunctionName: &quot;helloworld&quot;, Handler: &quot;helloworld.handler&quot;, LastModified: &quot;2019-09-23T18:32:33.857+0000&quot;, MemorySize: 128, RevisionId: &quot;1718e831-badf-4253-9518-d0644210af7b&quot;, Role: &quot;arn:aws:iam::123456789012:role/service-role/MyTestFunction-role-zgur6bf4&quot;, Runtime: new Runtime(&quot;nodejs10.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;), new FunctionConfiguration(CodeSha256: &quot;sU0cJ2/hOZevwV/lTxCuQqK3gDZP3i8gUoqUUVRmY6E=&quot;, CodeSize: 266L, Description: &quot;&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, LastModified: &quot;2019-10-01T16:47:28.490+0000&quot;, MemorySize: 256, RevisionId: &quot;93017fc9-59cb-41dc-901b-4845ce4bf668&quot;, Role: &quot;arn:aws:iam::123456789012:role/service-role/helloWorldPython-role-uy3l9qyq&quot;, Runtime: new Runtime(&quot;nodejs10.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;, VpcConfig: new VpcConfigResponse(SecurityGroupIds: new string[] {  }, SubnetIds: new string[] {  }, VpcId: &quot;&quot;)) }, NextMarker: &quot;&quot;);
+    /// </code>
+    /// </example>
     Task<ListFunctionsOutput> ListFunctionsAsync(
         ListFunctionsInput input,
         CancellationToken cancellationToken = default
@@ -669,6 +1343,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list versions of a layer
+    /// </para>
+    /// <para>
+    /// The following example displays information about the versions for the layer named blank-java-lib
+    /// </para>
+    /// <code>
+    /// var input = new ListLayerVersionsInput(LayerName: &quot;blank-java-lib&quot;);
+    /// var output = await client.ListLayerVersionsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListLayerVersionsOutput(LayerVersions: new LayerVersionsListItem[] { new LayerVersionsListItem(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;java8&quot;) }, CreatedDate: &quot;2020-03-18T23:38:42.284+0000&quot;, Description: &quot;Dependencies for the blank-java sample app.&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:7&quot;, Version: 7L), new LayerVersionsListItem(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;java8&quot;) }, CreatedDate: &quot;2020-03-17T07:24:21.960+0000&quot;, Description: &quot;Dependencies for the blank-java sample app.&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:6&quot;, Version: 6L) });
+    /// </code>
+    /// </example>
     Task<ListLayerVersionsOutput> ListLayerVersionsAsync(
         ListLayerVersionsInput input,
         CancellationToken cancellationToken = default
@@ -693,6 +1382,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list the layers that are compatible with your function's runtime
+    /// </para>
+    /// <para>
+    /// The following example returns information about layers that are compatible with the Python 3.7 runtime.
+    /// </para>
+    /// <code>
+    /// var input = new ListLayersInput(CompatibleRuntime: new Runtime(&quot;python3.7&quot;));
+    /// var output = await client.ListLayersAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListLayersOutput(Layers: new LayersListItem[] { new LayersListItem(LatestMatchingVersion: new LayerVersionsListItem(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, CreatedDate: &quot;2018-11-15T00:37:46.592+0000&quot;, Description: &quot;My layer&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer:2&quot;, Version: 2L), LayerArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer&quot;, LayerName: &quot;my-layer&quot;) });
+    /// </code>
+    /// </example>
     Task<ListLayersOutput> ListLayersAsync(
         ListLayersInput input,
         CancellationToken cancellationToken = default
@@ -717,6 +1421,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a list of provisioned concurrency configurations
+    /// </para>
+    /// <para>
+    /// The following example returns a list of provisioned concurrency configurations for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListProvisionedConcurrencyConfigsInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListProvisionedConcurrencyConfigsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListProvisionedConcurrencyConfigsOutput(ProvisionedConcurrencyConfigs: new ProvisionedConcurrencyConfigListItem[] { new ProvisionedConcurrencyConfigListItem(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:GREEN&quot;, LastModified: &quot;2019-12-31T20:29:00+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;)), new ProvisionedConcurrencyConfigListItem(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:BLUE&quot;, LastModified: &quot;2019-12-31T20:28:49+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;)) });
+    /// </code>
+    /// </example>
     Task<ListProvisionedConcurrencyConfigsOutput> ListProvisionedConcurrencyConfigsAsync(
         ListProvisionedConcurrencyConfigsInput input,
         CancellationToken cancellationToken = default
@@ -741,6 +1460,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns a function, event source mapping, or code signing configuration's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt;. You can also view function tags with &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve the list of tags for a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example displays the tags attached to the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new ListTagsInput(Resource: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;);
+    /// var output = await client.ListTagsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListTagsOutput(Tags: new Dictionary&lt;string, string&gt; { { &quot;Category&quot;, &quot;Web Tools&quot; }, { &quot;Department&quot;, &quot;Sales&quot; } });
+    /// </code>
+    /// </example>
     Task<ListTagsOutput> ListTagsAsync(
         ListTagsInput input,
         CancellationToken cancellationToken = default
@@ -749,6 +1483,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list versions of a function
+    /// </para>
+    /// <para>
+    /// The following example returns a list of versions of a function named my-function
+    /// </para>
+    /// <code>
+    /// var input = new ListVersionsByFunctionInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListVersionsByFunctionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListVersionsByFunctionOutput(Versions: new FunctionConfiguration[] { new FunctionConfiguration(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, MemorySize: 256, RevisionId: &quot;850ca006-2d98-4ff4-86db-8766e9d32fe9&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;$LATEST&quot;), new FunctionConfiguration(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 5, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;1&quot;) });
+    /// </code>
+    /// </example>
     Task<ListVersionsByFunctionOutput> ListVersionsByFunctionAsync(
         ListVersionsByFunctionInput input,
         CancellationToken cancellationToken = default
@@ -773,6 +1522,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt; from a ZIP archive. Each time you call &lt;code&gt;PublishLayerVersion&lt;/code&gt; with the same layer name, a new version is created.&lt;/p&gt; &lt;p&gt;Add layers to your function with &lt;a&gt;CreateFunction&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a Lambda layer version
+    /// </para>
+    /// <para>
+    /// The following example creates a new Python library layer version. The command retrieves the layer content a file named layer.zip in the specified S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PublishLayerVersionInput(Content: new LayerVersionContentInput(S3Bucket: &quot;lambda-layers-us-west-2-123456789012&quot;, S3Key: &quot;layer.zip&quot;), LayerName: &quot;my-layer&quot;, CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, Description: &quot;My Python layer&quot;, LicenseInfo: &quot;MIT&quot;);
+    /// var output = await client.PublishLayerVersionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PublishLayerVersionOutput(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, Content: new LayerVersionContentOutput(CodeSha256: &quot;tv9jJO+rPbXUUXuRKi7CwHzKtLDkDRJLB3cC3Z/ouXo=&quot;, CodeSize: 169L, Location: &quot;https://awslambda-us-west-2-layers.s3.us-west-2.amazonaws.com/snapshots/123456789012/my-layer-4aaa2fbb-ff77-4b0a-ad92-5b78a716a96a?versionId=27iWyA73cCAYqyH...&quot;), CreatedDate: &quot;2018-11-14T23:03:52.894+0000&quot;, Description: &quot;My Python layer&quot;, LayerArn: &quot;arn:aws:lambda:us-west-2:123456789012:layer:my-layer&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-west-2:123456789012:layer:my-layer:1&quot;, LicenseInfo: &quot;MIT&quot;, Version: 1L);
+    /// </code>
+    /// </example>
     Task<PublishLayerVersionOutput> PublishLayerVersionAsync(
         PublishLayerVersionInput input,
         CancellationToken cancellationToken = default
@@ -781,6 +1545,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Creates a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;version&lt;/a&gt; from the current code and configuration of a function. Use versions to create a snapshot of your function code and configuration that doesn't change.&lt;/p&gt; &lt;p&gt;Lambda doesn't publish a version if the function's configuration and code haven't changed since the last version. Use &lt;a&gt;UpdateFunctionCode&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt; to update the function before publishing a version.&lt;/p&gt; &lt;p&gt;Clients can invoke versions directly or with an alias. To create an alias, use &lt;a&gt;CreateAlias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To publish a version of a Lambda function
+    /// </para>
+    /// <para>
+    /// This operation publishes a version of a Lambda function
+    /// </para>
+    /// <code>
+    /// var input = new PublishVersionInput(FunctionName: &quot;myFunction&quot;, CodeSha256: &quot;&quot;, Description: &quot;&quot;);
+    /// var output = await client.PublishVersionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PublishVersionOutput(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 5, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;1&quot;);
+    /// </code>
+    /// </example>
     Task<PublishVersionOutput> PublishVersionAsync(
         PublishVersionInput input,
         CancellationToken cancellationToken = default
@@ -797,6 +1576,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Sets the maximum number of simultaneous executions for a function, and reserves capacity for that concurrency level.&lt;/p&gt; &lt;p&gt;Concurrency settings apply to the function as a whole, including all published versions and the unpublished version. Reserving concurrency both ensures that your function has capacity to process the specified number of events simultaneously, and prevents it from scaling beyond that level. Use &lt;a&gt;GetFunction&lt;/a&gt; to see the current setting for a function.&lt;/p&gt; &lt;p&gt;Use &lt;a&gt;GetAccountSettings&lt;/a&gt; to see your Regional concurrency limit. You can reserve concurrency for as many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for functions that aren't configured with a per-function limit. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html&quot;&gt;Lambda function scaling&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To configure a reserved concurrency limit for a function
+    /// </para>
+    /// <para>
+    /// The following example configures 100 reserved concurrent executions for the my-function function.
+    /// </para>
+    /// <code>
+    /// var input = new PutFunctionConcurrencyInput(FunctionName: &quot;my-function&quot;, ReservedConcurrentExecutions: 100);
+    /// var output = await client.PutFunctionConcurrencyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutFunctionConcurrencyOutput(ReservedConcurrentExecutions: 100);
+    /// </code>
+    /// </example>
     Task<PutFunctionConcurrencyOutput> PutFunctionConcurrencyAsync(
         PutFunctionConcurrencyInput input,
         CancellationToken cancellationToken = default
@@ -805,6 +1599,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Configures options for &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt; on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use &lt;a&gt;UpdateFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To send an invocation record to a queue, topic, S3 bucket, function, or event bus, specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations&quot;&gt;destination&lt;/a&gt;. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue.&lt;/p&gt; &lt;note&gt; &lt;p&gt;S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To configure error handling for asynchronous invocation
+    /// </para>
+    /// <para>
+    /// The following example sets a maximum event age of one hour and disables retries for the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new PutFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// var output = await client.PutFunctionEventInvokeConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutFunctionEventInvokeConfigOutput(DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(), OnSuccess: new OnSuccess()), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:$LATEST&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// </code>
+    /// </example>
     Task<PutFunctionEventInvokeConfigOutput> PutFunctionEventInvokeConfigAsync(
         PutFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -829,6 +1638,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Adds a provisioned concurrency configuration to a function's alias or version.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To allocate provisioned concurrency
+    /// </para>
+    /// <para>
+    /// The following example allocates 100 provisioned concurrency for the BLUE alias of the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new PutProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, ProvisionedConcurrentExecutions: 100, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.PutProvisionedConcurrencyConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutProvisionedConcurrencyConfigOutput(AllocatedProvisionedConcurrentExecutions: 0, LastModified: &quot;2019-11-21T19:32:12+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;IN_PROGRESS&quot;));
+    /// </code>
+    /// </example>
     Task<PutProvisionedConcurrencyConfigOutput> PutProvisionedConcurrencyConfigAsync(
         PutProvisionedConcurrencyConfigInput input,
         CancellationToken cancellationToken = default
@@ -853,6 +1677,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Removes a statement from the permissions policy for a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. For more information, see &lt;a&gt;AddLayerVersionPermission&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete layer-version permissions
+    /// </para>
+    /// <para>
+    /// The following example deletes permission for an account to configure a layer version.
+    /// </para>
+    /// <code>
+    /// var input = new RemoveLayerVersionPermissionInput(LayerName: &quot;my-layer&quot;, StatementId: &quot;xaccount&quot;, VersionNumber: 1L);
+    /// var output = await client.RemoveLayerVersionPermissionAsync(input);
+    /// </code>
+    /// </example>
     Task<RemoveLayerVersionPermissionOutput> RemoveLayerVersionPermissionAsync(
         RemoveLayerVersionPermissionInput input,
         CancellationToken cancellationToken = default
@@ -861,6 +1697,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Revokes function-use permission from an Amazon Web Services service or another Amazon Web Services account. You can get the ID of the statement from the output of &lt;a&gt;GetPolicy&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove a Lambda function's permissions
+    /// </para>
+    /// <para>
+    /// The following example removes a permissions statement named xaccount from the PROD alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new RemovePermissionInput(FunctionName: &quot;my-function&quot;, StatementId: &quot;xaccount&quot;, Qualifier: &quot;PROD&quot;);
+    /// var output = await client.RemovePermissionAsync(input);
+    /// </code>
+    /// </example>
     Task<RemovePermissionOutput> RemovePermissionAsync(
         RemovePermissionInput input,
         CancellationToken cancellationToken = default
@@ -901,6 +1749,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Adds &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; to a function, event source mapping, or code signing configuration.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To add tags to an existing Lambda function
+    /// </para>
+    /// <para>
+    /// The following example adds a tag with the key name DEPARTMENT and a value of 'Department A' to the specified Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new TagResourceInput(Resource: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, Tags: new Dictionary&lt;string, string&gt; { { &quot;DEPARTMENT&quot;, &quot;Department A&quot; } });
+    /// var output = await client.TagResourceAsync(input);
+    /// </code>
+    /// </example>
     Task<TagResourceOutput> TagResourceAsync(
         TagResourceInput input,
         CancellationToken cancellationToken = default
@@ -909,6 +1769,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Removes &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; from a function, event source mapping, or code signing configuration.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove tags from an existing Lambda function
+    /// </para>
+    /// <para>
+    /// The following example removes the tag with the key name DEPARTMENT tag from the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new UntagResourceInput(Resource: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, TagKeys: new string[] { &quot;DEPARTMENT&quot; });
+    /// var output = await client.UntagResourceAsync(input);
+    /// </code>
+    /// </example>
     Task<UntagResourceOutput> UntagResourceAsync(
         UntagResourceInput input,
         CancellationToken cancellationToken = default
@@ -917,6 +1789,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Updates the configuration of a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a function alias
+    /// </para>
+    /// <para>
+    /// The following example updates the alias named BLUE to send 30% of traffic to version 2 and 70% to version 1.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateAliasInput(FunctionName: &quot;my-function&quot;, Name: &quot;BLUE&quot;, FunctionVersion: &quot;2&quot;, RoutingConfig: new AliasRoutingConfiguration(AdditionalVersionWeights: new Dictionary&lt;string, double&gt; { { &quot;1&quot;, 0.7d } }));
+    /// var output = await client.UpdateAliasAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateAliasOutput(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:BLUE&quot;, Description: &quot;Production environment BLUE.&quot;, FunctionVersion: &quot;2&quot;, Name: &quot;BLUE&quot;, RevisionId: &quot;594f41fb-xmpl-4c20-95c7-6ca5f2a92c93&quot;, RoutingConfig: new AliasRoutingConfiguration(AdditionalVersionWeights: new Dictionary&lt;string, double&gt; { { &quot;1&quot;, 0.7d } }));
+    /// </code>
+    /// </example>
     Task<UpdateAliasOutput> UpdateAliasAsync(
         UpdateAliasInput input,
         CancellationToken cancellationToken = default
@@ -941,6 +1828,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a Lambda function event source mapping
+    /// </para>
+    /// <para>
+    /// This operation updates a Lambda function event source mapping
+    /// </para>
+    /// <code>
+    /// var input = new UpdateEventSourceMappingInput(UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;, BatchSize: 123, Enabled: true, FunctionName: &quot;myFunction&quot;);
+    /// var output = await client.UpdateEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateEventSourceMappingOutput(BatchSize: 123, EventSourceArn: &quot;arn:aws:s3:::examplebucket/*&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:myFunction&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), LastProcessingResult: &quot;&quot;, State: &quot;&quot;, StateTransitionReason: &quot;&quot;, UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;);
+    /// </code>
+    /// </example>
     Task<UpdateEventSourceMappingOutput> UpdateEventSourceMappingAsync(
         UpdateEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -949,6 +1851,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html&quot;&gt;Configuring code signing for Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Image&lt;/code&gt;, then you must specify the code package in &lt;code&gt;ImageUri&lt;/code&gt; as the URI of a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt; in the Amazon ECR registry.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Zip&lt;/code&gt;, then you must specify the deployment package as a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;. Enter the Amazon S3 bucket and key of the code .zip file location. You can also provide the function code inline using the &lt;code&gt;ZipFile&lt;/code&gt; field.&lt;/p&gt; &lt;p&gt;The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a Lambda function's code
+    /// </para>
+    /// <para>
+    /// The following example replaces the code of the unpublished ($LATEST) version of a function named my-function with the contents of the specified zip file in Amazon S3.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateFunctionCodeInput(FunctionName: &quot;my-function&quot;, S3Bucket: &quot;my-bucket-1xpuxmplzrlbh&quot;, S3Key: &quot;function.zip&quot;);
+    /// var output = await client.UpdateFunctionCodeAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateFunctionCodeOutput(CodeSha256: &quot;PFn4S+er27qk+UuZSTKEQfNKG/XNn7QJs90mJgq6oH8=&quot;, CodeSize: 308L, Description: &quot;&quot;, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, LastModified: &quot;2019-08-14T22:26:11.234+0000&quot;, MemorySize: 128, RevisionId: &quot;873282ed-xmpl-4dc8-a069-d0c647e470c6&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;);
+    /// </code>
+    /// </example>
     Task<UpdateFunctionCodeOutput> UpdateFunctionCodeAsync(
         UpdateFunctionCodeInput input,
         CancellationToken cancellationToken = default
@@ -957,6 +1874,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Modify the version-specific settings of a Lambda function.&lt;/p&gt; &lt;p&gt;When you update a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but you can still invoke it. The &lt;code&gt;LastUpdateStatus&lt;/code&gt;, &lt;code&gt;LastUpdateStatusReason&lt;/code&gt;, and &lt;code&gt;LastUpdateStatusReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the update is complete and the function is processing events with the new configuration. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version.&lt;/p&gt; &lt;p&gt;To configure function concurrency, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;. To grant invoke permissions to an Amazon Web Services account or Amazon Web Services service, use &lt;a&gt;AddPermission&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a Lambda function's configuration
+    /// </para>
+    /// <para>
+    /// The following example modifies the memory size to be 256 MB for the unpublished ($LATEST) version of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateFunctionConfigurationInput(FunctionName: &quot;my-function&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 3600, RetentionPeriodInDays: 45), MemorySize: 256);
+    /// var output = await client.UpdateFunctionConfigurationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateFunctionConfigurationOutput(CodeSha256: &quot;PFn4S+er27qk+UuZSTKEQfNKG/XNn7QJs90mJgq6oH8=&quot;, CodeSize: 308L, Description: &quot;&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 3600, RetentionPeriodInDays: 45), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, LastModified: &quot;2019-08-14T22:26:11.234+0000&quot;, MemorySize: 256, RevisionId: &quot;873282ed-xmpl-4dc8-a069-d0c647e470c6&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;);
+    /// </code>
+    /// </example>
     Task<UpdateFunctionConfigurationOutput> UpdateFunctionConfigurationAsync(
         UpdateFunctionConfigurationInput input,
         CancellationToken cancellationToken = default
@@ -965,6 +1897,21 @@ public interface IAWSGirApiServiceClient : IDisposable
     /// <summary>
     /// &lt;p&gt;Updates the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update an asynchronous invocation configuration
+    /// </para>
+    /// <para>
+    /// The following example adds an on-failure destination to the existing asynchronous invocation configuration for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(Destination: &quot;arn:aws:sqs:us-east-2:123456789012:destination&quot;)));
+    /// var output = await client.UpdateFunctionEventInvokeConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateFunctionEventInvokeConfigOutput(DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(Destination: &quot;arn:aws:sqs:us-east-2:123456789012:destination&quot;), OnSuccess: new OnSuccess()), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:$LATEST&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15736878964930000L), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// </code>
+    /// </example>
     Task<UpdateFunctionEventInvokeConfigOutput> UpdateFunctionEventInvokeConfigAsync(
         UpdateFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -1307,16 +2254,20 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     public AWSGirApiServiceClient(Uri endpoint, AWSGirApiServiceClientConfig? config = null)
         : this(WithEndpoint(endpoint, config)) { }
 
-    private AWSGirApiServiceClient(AWSGirApiServiceClientConfig config)
+    public AWSGirApiServiceClient(AWSGirApiServiceClientConfig config)
     {
         ArgumentNullException.ThrowIfNull(config);
         this.environment = SmithyHttpClientEnvironment.Create(
-            AWSGirApiServiceSchema.Schema,
+            global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema,
             config,
             static () => new RestJson1Protocol(),
             ModeledAuthSchemes,
             null,
-            null
+            null,
+            modeledEndpointResolver: endpoint => new AWSGirApiServiceEndpointResolver(
+                config,
+                endpoint
+            )
         );
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
@@ -1327,874 +2278,1293 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
                 AddLayerVersionPermissionInput,
                 AddLayerVersionPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                AddLayerVersionPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddLayerVersionPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema
             );
             this.AddPermissionBinding = new SmithyOperationBinding<
                 AddPermissionInput,
                 AddPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                AddPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema
             );
             this.CheckpointDurableExecutionBinding = new SmithyOperationBinding<
                 CheckpointDurableExecutionInput,
                 CheckpointDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CheckpointDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CheckpointDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema
             );
             this.CreateAliasBinding = new SmithyOperationBinding<
                 CreateAliasInput,
                 CreateAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema
             );
             this.CreateCapacityProviderBinding = new SmithyOperationBinding<
                 CreateCapacityProviderInput,
                 CreateCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema
             );
             this.CreateCodeSigningConfigBinding = new SmithyOperationBinding<
                 CreateCodeSigningConfigInput,
                 CreateCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema
             );
             this.CreateEventSourceMappingBinding = new SmithyOperationBinding<
                 CreateEventSourceMappingInput,
                 CreateEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema
             );
             this.CreateFunctionBinding = new SmithyOperationBinding<
                 CreateFunctionInput,
                 CreateFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema
             );
             this.CreateFunctionUrlConfigBinding = new SmithyOperationBinding<
                 CreateFunctionUrlConfigInput,
                 CreateFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema
             );
             this.DeleteAliasBinding = new SmithyOperationBinding<
                 DeleteAliasInput,
                 DeleteAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema
             );
             this.DeleteCapacityProviderBinding = new SmithyOperationBinding<
                 DeleteCapacityProviderInput,
                 DeleteCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema
             );
             this.DeleteCodeSigningConfigBinding = new SmithyOperationBinding<
                 DeleteCodeSigningConfigInput,
                 DeleteCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema
             );
             this.DeleteEventSourceMappingBinding = new SmithyOperationBinding<
                 DeleteEventSourceMappingInput,
                 DeleteEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema
             );
             this.DeleteFunctionBinding = new SmithyOperationBinding<
                 DeleteFunctionInput,
                 DeleteFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema
             );
             this.DeleteFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionCodeSigningConfigInput,
                 DeleteFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteFunctionCodeSigningConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteFunctionCodeSigningConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionCodeSigningConfigSchema.Schema
             );
             this.DeleteFunctionConcurrencyBinding = new SmithyOperationBinding<
                 DeleteFunctionConcurrencyInput,
                 DeleteFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema
             );
             this.DeleteFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionEventInvokeConfigInput,
                 DeleteFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteFunctionEventInvokeConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteFunctionEventInvokeConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionEventInvokeConfigSchema.Schema
             );
             this.DeleteFunctionUrlConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionUrlConfigInput,
                 DeleteFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema
             );
             this.DeleteLayerVersionBinding = new SmithyOperationBinding<
                 DeleteLayerVersionInput,
                 DeleteLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema
             );
             this.DeleteProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 DeleteProvisionedConcurrencyConfigInput,
                 DeleteProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteProvisionedConcurrencyConfigSchema.Schema
             );
             this.DeleteResourcePolicyBinding = new SmithyOperationBinding<
                 DeleteResourcePolicyInput,
                 DeleteResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema
             );
             this.GetAccountSettingsBinding = new SmithyOperationBinding<
                 GetAccountSettingsInput,
                 GetAccountSettingsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetAccountSettingsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAccountSettingsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema
             );
             this.GetAliasBinding = new SmithyOperationBinding<GetAliasInput, GetAliasOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema
             );
             this.GetCapacityProviderBinding = new SmithyOperationBinding<
                 GetCapacityProviderInput,
                 GetCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema
             );
             this.GetCodeSigningConfigBinding = new SmithyOperationBinding<
                 GetCodeSigningConfigInput,
                 GetCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema
             );
             this.GetDurableExecutionBinding = new SmithyOperationBinding<
                 GetDurableExecutionInput,
                 GetDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema
             );
             this.GetDurableExecutionHistoryBinding = new SmithyOperationBinding<
                 GetDurableExecutionHistoryInput,
                 GetDurableExecutionHistoryOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionHistorySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionHistorySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema
             );
             this.GetDurableExecutionStateBinding = new SmithyOperationBinding<
                 GetDurableExecutionStateInput,
                 GetDurableExecutionStateOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionStateSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionStateSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema
             );
             this.GetEventSourceMappingBinding = new SmithyOperationBinding<
                 GetEventSourceMappingInput,
                 GetEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema
             );
             this.GetFunctionBinding = new SmithyOperationBinding<
                 GetFunctionInput,
                 GetFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema
             );
             this.GetFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 GetFunctionCodeSigningConfigInput,
                 GetFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema
             );
             this.GetFunctionConcurrencyBinding = new SmithyOperationBinding<
                 GetFunctionConcurrencyInput,
                 GetFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema
             );
             this.GetFunctionConfigurationBinding = new SmithyOperationBinding<
                 GetFunctionConfigurationInput,
                 GetFunctionConfigurationOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionConfigurationSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema
             );
             this.GetFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 GetFunctionEventInvokeConfigInput,
                 GetFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema
             );
             this.GetFunctionRecursionConfigBinding = new SmithyOperationBinding<
                 GetFunctionRecursionConfigInput,
                 GetFunctionRecursionConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionRecursionConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionRecursionConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema
             );
             this.GetFunctionScalingConfigBinding = new SmithyOperationBinding<
                 GetFunctionScalingConfigInput,
                 GetFunctionScalingConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionScalingConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionScalingConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema
             );
             this.GetFunctionUrlConfigBinding = new SmithyOperationBinding<
                 GetFunctionUrlConfigInput,
                 GetFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema
             );
             this.GetLayerVersionBinding = new SmithyOperationBinding<
                 GetLayerVersionInput,
                 GetLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema
             );
             this.GetLayerVersionByArnBinding = new SmithyOperationBinding<
                 GetLayerVersionByArnInput,
                 GetLayerVersionByArnOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionByArnSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionByArnSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema
             );
             this.GetLayerVersionPolicyBinding = new SmithyOperationBinding<
                 GetLayerVersionPolicyInput,
                 GetLayerVersionPolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionPolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema
             );
             this.GetPolicyBinding = new SmithyOperationBinding<GetPolicyInput, GetPolicyOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetPolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema
             );
             this.GetProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 GetProvisionedConcurrencyConfigInput,
                 GetProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .GetProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .GetProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetProvisionedConcurrencyConfigSchema.Schema
             );
             this.GetResourcePolicyBinding = new SmithyOperationBinding<
                 GetResourcePolicyInput,
                 GetResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema
             );
             this.GetRuntimeManagementConfigBinding = new SmithyOperationBinding<
                 GetRuntimeManagementConfigInput,
                 GetRuntimeManagementConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetRuntimeManagementConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetRuntimeManagementConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema
             );
             this.InvokeBinding = new SmithyOperationBinding<InvokeInput, InvokeOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema
             );
             this.InvokeAsyncBinding = new SmithyOperationBinding<
                 InvokeAsyncInput,
                 InvokeAsyncOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeAsyncSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeAsyncSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema
             );
             this.InvokeWithResponseStreamBinding = new SmithyOperationBinding<
                 InvokeWithResponseStreamInput,
                 InvokeWithResponseStreamOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeWithResponseStreamSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeWithResponseStreamSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema
             );
             this.ListAliasesBinding = new SmithyOperationBinding<
                 ListAliasesInput,
                 ListAliasesOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListAliasesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListAliasesSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema
             );
             this.ListCapacityProvidersBinding = new SmithyOperationBinding<
                 ListCapacityProvidersInput,
                 ListCapacityProvidersOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListCapacityProvidersSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListCapacityProvidersSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema
             );
             this.ListCodeSigningConfigsBinding = new SmithyOperationBinding<
                 ListCodeSigningConfigsInput,
                 ListCodeSigningConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListCodeSigningConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListCodeSigningConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema
             );
             this.ListDurableExecutionsByFunctionBinding = new SmithyOperationBinding<
                 ListDurableExecutionsByFunctionInput,
                 ListDurableExecutionsByFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListDurableExecutionsByFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDurableExecutionsByFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListDurableExecutionsByFunctionSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListDurableExecutionsByFunctionSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListDurableExecutionsByFunctionSchema.Schema
             );
             this.ListEventSourceMappingsBinding = new SmithyOperationBinding<
                 ListEventSourceMappingsInput,
                 ListEventSourceMappingsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListEventSourceMappingsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListEventSourceMappingsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema
             );
             this.ListFunctionEventInvokeConfigsBinding = new SmithyOperationBinding<
                 ListFunctionEventInvokeConfigsInput,
                 ListFunctionEventInvokeConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionEventInvokeConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionEventInvokeConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema
             );
             this.ListFunctionUrlConfigsBinding = new SmithyOperationBinding<
                 ListFunctionUrlConfigsInput,
                 ListFunctionUrlConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionUrlConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionUrlConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema
             );
             this.ListFunctionVersionsByCapacityProviderBinding = new SmithyOperationBinding<
                 ListFunctionVersionsByCapacityProviderInput,
                 ListFunctionVersionsByCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionVersionsByCapacityProviderSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionVersionsByCapacityProviderSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    ListFunctionVersionsByCapacityProviderSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListFunctionVersionsByCapacityProviderSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionVersionsByCapacityProviderSchema
+                    .Schema
             );
             this.ListFunctionsBinding = new SmithyOperationBinding<
                 ListFunctionsInput,
                 ListFunctionsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema
             );
             this.ListFunctionsByCodeSigningConfigBinding = new SmithyOperationBinding<
                 ListFunctionsByCodeSigningConfigInput,
                 ListFunctionsByCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionsByCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionsByCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionsByCodeSigningConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListFunctionsByCodeSigningConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsByCodeSigningConfigSchema.Schema
             );
             this.ListLayerVersionsBinding = new SmithyOperationBinding<
                 ListLayerVersionsInput,
                 ListLayerVersionsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListLayerVersionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListLayerVersionsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema
             );
             this.ListLayersBinding = new SmithyOperationBinding<ListLayersInput, ListLayersOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListLayersSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListLayersSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema
             );
             this.ListProvisionedConcurrencyConfigsBinding = new SmithyOperationBinding<
                 ListProvisionedConcurrencyConfigsInput,
                 ListProvisionedConcurrencyConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListProvisionedConcurrencyConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListProvisionedConcurrencyConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListProvisionedConcurrencyConfigsSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListProvisionedConcurrencyConfigsSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListProvisionedConcurrencyConfigsSchema.Schema
             );
             this.ListTagsBinding = new SmithyOperationBinding<ListTagsInput, ListTagsOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListTagsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListTagsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema
             );
             this.ListVersionsByFunctionBinding = new SmithyOperationBinding<
                 ListVersionsByFunctionInput,
                 ListVersionsByFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListVersionsByFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListVersionsByFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema
             );
             this.PublishLayerVersionBinding = new SmithyOperationBinding<
                 PublishLayerVersionInput,
                 PublishLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PublishLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PublishLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema
             );
             this.PublishVersionBinding = new SmithyOperationBinding<
                 PublishVersionInput,
                 PublishVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PublishVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PublishVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema
             );
             this.PutFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 PutFunctionCodeSigningConfigInput,
                 PutFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema
             );
             this.PutFunctionConcurrencyBinding = new SmithyOperationBinding<
                 PutFunctionConcurrencyInput,
                 PutFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema
             );
             this.PutFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 PutFunctionEventInvokeConfigInput,
                 PutFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema
             );
             this.PutFunctionRecursionConfigBinding = new SmithyOperationBinding<
                 PutFunctionRecursionConfigInput,
                 PutFunctionRecursionConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionRecursionConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionRecursionConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema
             );
             this.PutFunctionScalingConfigBinding = new SmithyOperationBinding<
                 PutFunctionScalingConfigInput,
                 PutFunctionScalingConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionScalingConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionScalingConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema
             );
             this.PutProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 PutProvisionedConcurrencyConfigInput,
                 PutProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .PutProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .PutProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutProvisionedConcurrencyConfigSchema.Schema
             );
             this.PutResourcePolicyBinding = new SmithyOperationBinding<
                 PutResourcePolicyInput,
                 PutResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema
             );
             this.PutRuntimeManagementConfigBinding = new SmithyOperationBinding<
                 PutRuntimeManagementConfigInput,
                 PutRuntimeManagementConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutRuntimeManagementConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutRuntimeManagementConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema
             );
             this.RemoveLayerVersionPermissionBinding = new SmithyOperationBinding<
                 RemoveLayerVersionPermissionInput,
                 RemoveLayerVersionPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                RemoveLayerVersionPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemoveLayerVersionPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema
             );
             this.RemovePermissionBinding = new SmithyOperationBinding<
                 RemovePermissionInput,
                 RemovePermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                RemovePermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemovePermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema
             );
             this.SendDurableExecutionCallbackFailureBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackFailureInput,
                 SendDurableExecutionCallbackFailureOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackFailureSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackFailureSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackFailureSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackFailureSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackFailureSchema
+                    .Schema
             );
             this.SendDurableExecutionCallbackHeartbeatBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackHeartbeatInput,
                 SendDurableExecutionCallbackHeartbeatOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackHeartbeatSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackHeartbeatSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackHeartbeatSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackHeartbeatSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackHeartbeatSchema
+                    .Schema
             );
             this.SendDurableExecutionCallbackSuccessBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackSuccessInput,
                 SendDurableExecutionCallbackSuccessOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackSuccessSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackSuccessSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackSuccessSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackSuccessSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackSuccessSchema
+                    .Schema
             );
             this.StopDurableExecutionBinding = new SmithyOperationBinding<
                 StopDurableExecutionInput,
                 StopDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                StopDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(StopDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema
             );
             this.TagResourceBinding = new SmithyOperationBinding<
                 TagResourceInput,
                 TagResourceOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                TagResourceSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(TagResourceSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema
             );
             this.UntagResourceBinding = new SmithyOperationBinding<
                 UntagResourceInput,
                 UntagResourceOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UntagResourceSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UntagResourceSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema
             );
             this.UpdateAliasBinding = new SmithyOperationBinding<
                 UpdateAliasInput,
                 UpdateAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema
             );
             this.UpdateCapacityProviderBinding = new SmithyOperationBinding<
                 UpdateCapacityProviderInput,
                 UpdateCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema
             );
             this.UpdateCodeSigningConfigBinding = new SmithyOperationBinding<
                 UpdateCodeSigningConfigInput,
                 UpdateCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema
             );
             this.UpdateEventSourceMappingBinding = new SmithyOperationBinding<
                 UpdateEventSourceMappingInput,
                 UpdateEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema
             );
             this.UpdateFunctionCodeBinding = new SmithyOperationBinding<
                 UpdateFunctionCodeInput,
                 UpdateFunctionCodeOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionCodeSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionCodeSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema
             );
             this.UpdateFunctionConfigurationBinding = new SmithyOperationBinding<
                 UpdateFunctionConfigurationInput,
                 UpdateFunctionConfigurationOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionConfigurationSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema
             );
             this.UpdateFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 UpdateFunctionEventInvokeConfigInput,
                 UpdateFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .UpdateFunctionEventInvokeConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .UpdateFunctionEventInvokeConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionEventInvokeConfigSchema.Schema
             );
             this.UpdateFunctionUrlConfigBinding = new SmithyOperationBinding<
                 UpdateFunctionUrlConfigInput,
                 UpdateFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema
             );
         }
         catch
@@ -2212,12 +3582,16 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
         ArgumentNullException.ThrowIfNull(httpClient);
         config ??= new AWSGirApiServiceClientConfig();
         this.environment = SmithyHttpClientEnvironment.Create(
-            AWSGirApiServiceSchema.Schema,
+            global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema,
             config,
             static () => new RestJson1Protocol(),
             ModeledAuthSchemes,
             null,
-            httpClient
+            httpClient,
+            modeledEndpointResolver: endpoint => new AWSGirApiServiceEndpointResolver(
+                config,
+                endpoint
+            )
         );
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
@@ -2228,874 +3602,1293 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
                 AddLayerVersionPermissionInput,
                 AddLayerVersionPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                AddLayerVersionPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddLayerVersionPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema
             );
             this.AddPermissionBinding = new SmithyOperationBinding<
                 AddPermissionInput,
                 AddPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                AddPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema
             );
             this.CheckpointDurableExecutionBinding = new SmithyOperationBinding<
                 CheckpointDurableExecutionInput,
                 CheckpointDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CheckpointDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CheckpointDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema
             );
             this.CreateAliasBinding = new SmithyOperationBinding<
                 CreateAliasInput,
                 CreateAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema
             );
             this.CreateCapacityProviderBinding = new SmithyOperationBinding<
                 CreateCapacityProviderInput,
                 CreateCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema
             );
             this.CreateCodeSigningConfigBinding = new SmithyOperationBinding<
                 CreateCodeSigningConfigInput,
                 CreateCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema
             );
             this.CreateEventSourceMappingBinding = new SmithyOperationBinding<
                 CreateEventSourceMappingInput,
                 CreateEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema
             );
             this.CreateFunctionBinding = new SmithyOperationBinding<
                 CreateFunctionInput,
                 CreateFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema
             );
             this.CreateFunctionUrlConfigBinding = new SmithyOperationBinding<
                 CreateFunctionUrlConfigInput,
                 CreateFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema
             );
             this.DeleteAliasBinding = new SmithyOperationBinding<
                 DeleteAliasInput,
                 DeleteAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema
             );
             this.DeleteCapacityProviderBinding = new SmithyOperationBinding<
                 DeleteCapacityProviderInput,
                 DeleteCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema
             );
             this.DeleteCodeSigningConfigBinding = new SmithyOperationBinding<
                 DeleteCodeSigningConfigInput,
                 DeleteCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema
             );
             this.DeleteEventSourceMappingBinding = new SmithyOperationBinding<
                 DeleteEventSourceMappingInput,
                 DeleteEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema
             );
             this.DeleteFunctionBinding = new SmithyOperationBinding<
                 DeleteFunctionInput,
                 DeleteFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema
             );
             this.DeleteFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionCodeSigningConfigInput,
                 DeleteFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteFunctionCodeSigningConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteFunctionCodeSigningConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionCodeSigningConfigSchema.Schema
             );
             this.DeleteFunctionConcurrencyBinding = new SmithyOperationBinding<
                 DeleteFunctionConcurrencyInput,
                 DeleteFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema
             );
             this.DeleteFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionEventInvokeConfigInput,
                 DeleteFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteFunctionEventInvokeConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteFunctionEventInvokeConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionEventInvokeConfigSchema.Schema
             );
             this.DeleteFunctionUrlConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionUrlConfigInput,
                 DeleteFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema
             );
             this.DeleteLayerVersionBinding = new SmithyOperationBinding<
                 DeleteLayerVersionInput,
                 DeleteLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema
             );
             this.DeleteProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 DeleteProvisionedConcurrencyConfigInput,
                 DeleteProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteProvisionedConcurrencyConfigSchema.Schema
             );
             this.DeleteResourcePolicyBinding = new SmithyOperationBinding<
                 DeleteResourcePolicyInput,
                 DeleteResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema
             );
             this.GetAccountSettingsBinding = new SmithyOperationBinding<
                 GetAccountSettingsInput,
                 GetAccountSettingsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetAccountSettingsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAccountSettingsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema
             );
             this.GetAliasBinding = new SmithyOperationBinding<GetAliasInput, GetAliasOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema
             );
             this.GetCapacityProviderBinding = new SmithyOperationBinding<
                 GetCapacityProviderInput,
                 GetCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema
             );
             this.GetCodeSigningConfigBinding = new SmithyOperationBinding<
                 GetCodeSigningConfigInput,
                 GetCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema
             );
             this.GetDurableExecutionBinding = new SmithyOperationBinding<
                 GetDurableExecutionInput,
                 GetDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema
             );
             this.GetDurableExecutionHistoryBinding = new SmithyOperationBinding<
                 GetDurableExecutionHistoryInput,
                 GetDurableExecutionHistoryOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionHistorySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionHistorySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema
             );
             this.GetDurableExecutionStateBinding = new SmithyOperationBinding<
                 GetDurableExecutionStateInput,
                 GetDurableExecutionStateOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionStateSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionStateSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema
             );
             this.GetEventSourceMappingBinding = new SmithyOperationBinding<
                 GetEventSourceMappingInput,
                 GetEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema
             );
             this.GetFunctionBinding = new SmithyOperationBinding<
                 GetFunctionInput,
                 GetFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema
             );
             this.GetFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 GetFunctionCodeSigningConfigInput,
                 GetFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema
             );
             this.GetFunctionConcurrencyBinding = new SmithyOperationBinding<
                 GetFunctionConcurrencyInput,
                 GetFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema
             );
             this.GetFunctionConfigurationBinding = new SmithyOperationBinding<
                 GetFunctionConfigurationInput,
                 GetFunctionConfigurationOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionConfigurationSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema
             );
             this.GetFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 GetFunctionEventInvokeConfigInput,
                 GetFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema
             );
             this.GetFunctionRecursionConfigBinding = new SmithyOperationBinding<
                 GetFunctionRecursionConfigInput,
                 GetFunctionRecursionConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionRecursionConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionRecursionConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema
             );
             this.GetFunctionScalingConfigBinding = new SmithyOperationBinding<
                 GetFunctionScalingConfigInput,
                 GetFunctionScalingConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionScalingConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionScalingConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema
             );
             this.GetFunctionUrlConfigBinding = new SmithyOperationBinding<
                 GetFunctionUrlConfigInput,
                 GetFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema
             );
             this.GetLayerVersionBinding = new SmithyOperationBinding<
                 GetLayerVersionInput,
                 GetLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema
             );
             this.GetLayerVersionByArnBinding = new SmithyOperationBinding<
                 GetLayerVersionByArnInput,
                 GetLayerVersionByArnOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionByArnSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionByArnSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema
             );
             this.GetLayerVersionPolicyBinding = new SmithyOperationBinding<
                 GetLayerVersionPolicyInput,
                 GetLayerVersionPolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionPolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema
             );
             this.GetPolicyBinding = new SmithyOperationBinding<GetPolicyInput, GetPolicyOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetPolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema
             );
             this.GetProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 GetProvisionedConcurrencyConfigInput,
                 GetProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .GetProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .GetProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetProvisionedConcurrencyConfigSchema.Schema
             );
             this.GetResourcePolicyBinding = new SmithyOperationBinding<
                 GetResourcePolicyInput,
                 GetResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema
             );
             this.GetRuntimeManagementConfigBinding = new SmithyOperationBinding<
                 GetRuntimeManagementConfigInput,
                 GetRuntimeManagementConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetRuntimeManagementConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetRuntimeManagementConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema
             );
             this.InvokeBinding = new SmithyOperationBinding<InvokeInput, InvokeOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema
             );
             this.InvokeAsyncBinding = new SmithyOperationBinding<
                 InvokeAsyncInput,
                 InvokeAsyncOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeAsyncSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeAsyncSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema
             );
             this.InvokeWithResponseStreamBinding = new SmithyOperationBinding<
                 InvokeWithResponseStreamInput,
                 InvokeWithResponseStreamOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeWithResponseStreamSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeWithResponseStreamSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema
             );
             this.ListAliasesBinding = new SmithyOperationBinding<
                 ListAliasesInput,
                 ListAliasesOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListAliasesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListAliasesSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema
             );
             this.ListCapacityProvidersBinding = new SmithyOperationBinding<
                 ListCapacityProvidersInput,
                 ListCapacityProvidersOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListCapacityProvidersSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListCapacityProvidersSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema
             );
             this.ListCodeSigningConfigsBinding = new SmithyOperationBinding<
                 ListCodeSigningConfigsInput,
                 ListCodeSigningConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListCodeSigningConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListCodeSigningConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema
             );
             this.ListDurableExecutionsByFunctionBinding = new SmithyOperationBinding<
                 ListDurableExecutionsByFunctionInput,
                 ListDurableExecutionsByFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListDurableExecutionsByFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDurableExecutionsByFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListDurableExecutionsByFunctionSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListDurableExecutionsByFunctionSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListDurableExecutionsByFunctionSchema.Schema
             );
             this.ListEventSourceMappingsBinding = new SmithyOperationBinding<
                 ListEventSourceMappingsInput,
                 ListEventSourceMappingsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListEventSourceMappingsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListEventSourceMappingsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema
             );
             this.ListFunctionEventInvokeConfigsBinding = new SmithyOperationBinding<
                 ListFunctionEventInvokeConfigsInput,
                 ListFunctionEventInvokeConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionEventInvokeConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionEventInvokeConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema
             );
             this.ListFunctionUrlConfigsBinding = new SmithyOperationBinding<
                 ListFunctionUrlConfigsInput,
                 ListFunctionUrlConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionUrlConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionUrlConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema
             );
             this.ListFunctionVersionsByCapacityProviderBinding = new SmithyOperationBinding<
                 ListFunctionVersionsByCapacityProviderInput,
                 ListFunctionVersionsByCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionVersionsByCapacityProviderSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionVersionsByCapacityProviderSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    ListFunctionVersionsByCapacityProviderSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListFunctionVersionsByCapacityProviderSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionVersionsByCapacityProviderSchema
+                    .Schema
             );
             this.ListFunctionsBinding = new SmithyOperationBinding<
                 ListFunctionsInput,
                 ListFunctionsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema
             );
             this.ListFunctionsByCodeSigningConfigBinding = new SmithyOperationBinding<
                 ListFunctionsByCodeSigningConfigInput,
                 ListFunctionsByCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionsByCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionsByCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionsByCodeSigningConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListFunctionsByCodeSigningConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsByCodeSigningConfigSchema.Schema
             );
             this.ListLayerVersionsBinding = new SmithyOperationBinding<
                 ListLayerVersionsInput,
                 ListLayerVersionsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListLayerVersionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListLayerVersionsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema
             );
             this.ListLayersBinding = new SmithyOperationBinding<ListLayersInput, ListLayersOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListLayersSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListLayersSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema
             );
             this.ListProvisionedConcurrencyConfigsBinding = new SmithyOperationBinding<
                 ListProvisionedConcurrencyConfigsInput,
                 ListProvisionedConcurrencyConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListProvisionedConcurrencyConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListProvisionedConcurrencyConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListProvisionedConcurrencyConfigsSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListProvisionedConcurrencyConfigsSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListProvisionedConcurrencyConfigsSchema.Schema
             );
             this.ListTagsBinding = new SmithyOperationBinding<ListTagsInput, ListTagsOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListTagsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListTagsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema
             );
             this.ListVersionsByFunctionBinding = new SmithyOperationBinding<
                 ListVersionsByFunctionInput,
                 ListVersionsByFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListVersionsByFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListVersionsByFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema
             );
             this.PublishLayerVersionBinding = new SmithyOperationBinding<
                 PublishLayerVersionInput,
                 PublishLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PublishLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PublishLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema
             );
             this.PublishVersionBinding = new SmithyOperationBinding<
                 PublishVersionInput,
                 PublishVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PublishVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PublishVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema
             );
             this.PutFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 PutFunctionCodeSigningConfigInput,
                 PutFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema
             );
             this.PutFunctionConcurrencyBinding = new SmithyOperationBinding<
                 PutFunctionConcurrencyInput,
                 PutFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema
             );
             this.PutFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 PutFunctionEventInvokeConfigInput,
                 PutFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema
             );
             this.PutFunctionRecursionConfigBinding = new SmithyOperationBinding<
                 PutFunctionRecursionConfigInput,
                 PutFunctionRecursionConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionRecursionConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionRecursionConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema
             );
             this.PutFunctionScalingConfigBinding = new SmithyOperationBinding<
                 PutFunctionScalingConfigInput,
                 PutFunctionScalingConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionScalingConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionScalingConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema
             );
             this.PutProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 PutProvisionedConcurrencyConfigInput,
                 PutProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .PutProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .PutProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutProvisionedConcurrencyConfigSchema.Schema
             );
             this.PutResourcePolicyBinding = new SmithyOperationBinding<
                 PutResourcePolicyInput,
                 PutResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema
             );
             this.PutRuntimeManagementConfigBinding = new SmithyOperationBinding<
                 PutRuntimeManagementConfigInput,
                 PutRuntimeManagementConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutRuntimeManagementConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutRuntimeManagementConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema
             );
             this.RemoveLayerVersionPermissionBinding = new SmithyOperationBinding<
                 RemoveLayerVersionPermissionInput,
                 RemoveLayerVersionPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                RemoveLayerVersionPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemoveLayerVersionPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema
             );
             this.RemovePermissionBinding = new SmithyOperationBinding<
                 RemovePermissionInput,
                 RemovePermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                RemovePermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemovePermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema
             );
             this.SendDurableExecutionCallbackFailureBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackFailureInput,
                 SendDurableExecutionCallbackFailureOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackFailureSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackFailureSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackFailureSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackFailureSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackFailureSchema
+                    .Schema
             );
             this.SendDurableExecutionCallbackHeartbeatBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackHeartbeatInput,
                 SendDurableExecutionCallbackHeartbeatOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackHeartbeatSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackHeartbeatSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackHeartbeatSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackHeartbeatSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackHeartbeatSchema
+                    .Schema
             );
             this.SendDurableExecutionCallbackSuccessBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackSuccessInput,
                 SendDurableExecutionCallbackSuccessOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackSuccessSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackSuccessSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackSuccessSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackSuccessSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackSuccessSchema
+                    .Schema
             );
             this.StopDurableExecutionBinding = new SmithyOperationBinding<
                 StopDurableExecutionInput,
                 StopDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                StopDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(StopDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema
             );
             this.TagResourceBinding = new SmithyOperationBinding<
                 TagResourceInput,
                 TagResourceOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                TagResourceSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(TagResourceSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema
             );
             this.UntagResourceBinding = new SmithyOperationBinding<
                 UntagResourceInput,
                 UntagResourceOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UntagResourceSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UntagResourceSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema
             );
             this.UpdateAliasBinding = new SmithyOperationBinding<
                 UpdateAliasInput,
                 UpdateAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema
             );
             this.UpdateCapacityProviderBinding = new SmithyOperationBinding<
                 UpdateCapacityProviderInput,
                 UpdateCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema
             );
             this.UpdateCodeSigningConfigBinding = new SmithyOperationBinding<
                 UpdateCodeSigningConfigInput,
                 UpdateCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema
             );
             this.UpdateEventSourceMappingBinding = new SmithyOperationBinding<
                 UpdateEventSourceMappingInput,
                 UpdateEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema
             );
             this.UpdateFunctionCodeBinding = new SmithyOperationBinding<
                 UpdateFunctionCodeInput,
                 UpdateFunctionCodeOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionCodeSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionCodeSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema
             );
             this.UpdateFunctionConfigurationBinding = new SmithyOperationBinding<
                 UpdateFunctionConfigurationInput,
                 UpdateFunctionConfigurationOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionConfigurationSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema
             );
             this.UpdateFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 UpdateFunctionEventInvokeConfigInput,
                 UpdateFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .UpdateFunctionEventInvokeConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .UpdateFunctionEventInvokeConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionEventInvokeConfigSchema.Schema
             );
             this.UpdateFunctionUrlConfigBinding = new SmithyOperationBinding<
                 UpdateFunctionUrlConfigInput,
                 UpdateFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema
             );
         }
         catch
@@ -3112,7 +4905,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     {
         config ??= new AWSGirApiServiceClientConfig();
         this.environment = SmithyHttpClientEnvironment.FromRuntime(
-            AWSGirApiServiceSchema.Schema,
+            global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema,
             runtime,
             config,
             static () => new RestJson1Protocol()
@@ -3126,874 +4919,1293 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
                 AddLayerVersionPermissionInput,
                 AddLayerVersionPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                AddLayerVersionPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddLayerVersionPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.AddLayerVersionPermissionSchema.Schema
             );
             this.AddPermissionBinding = new SmithyOperationBinding<
                 AddPermissionInput,
                 AddPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                AddPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.AddPermissionSchema.Schema
             );
             this.CheckpointDurableExecutionBinding = new SmithyOperationBinding<
                 CheckpointDurableExecutionInput,
                 CheckpointDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CheckpointDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CheckpointDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CheckpointDurableExecutionSchema.Schema
             );
             this.CreateAliasBinding = new SmithyOperationBinding<
                 CreateAliasInput,
                 CreateAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateAliasSchema.Schema
             );
             this.CreateCapacityProviderBinding = new SmithyOperationBinding<
                 CreateCapacityProviderInput,
                 CreateCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCapacityProviderSchema.Schema
             );
             this.CreateCodeSigningConfigBinding = new SmithyOperationBinding<
                 CreateCodeSigningConfigInput,
                 CreateCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateCodeSigningConfigSchema.Schema
             );
             this.CreateEventSourceMappingBinding = new SmithyOperationBinding<
                 CreateEventSourceMappingInput,
                 CreateEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateEventSourceMappingSchema.Schema
             );
             this.CreateFunctionBinding = new SmithyOperationBinding<
                 CreateFunctionInput,
                 CreateFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionSchema.Schema
             );
             this.CreateFunctionUrlConfigBinding = new SmithyOperationBinding<
                 CreateFunctionUrlConfigInput,
                 CreateFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                CreateFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.CreateFunctionUrlConfigSchema.Schema
             );
             this.DeleteAliasBinding = new SmithyOperationBinding<
                 DeleteAliasInput,
                 DeleteAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteAliasSchema.Schema
             );
             this.DeleteCapacityProviderBinding = new SmithyOperationBinding<
                 DeleteCapacityProviderInput,
                 DeleteCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCapacityProviderSchema.Schema
             );
             this.DeleteCodeSigningConfigBinding = new SmithyOperationBinding<
                 DeleteCodeSigningConfigInput,
                 DeleteCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteCodeSigningConfigSchema.Schema
             );
             this.DeleteEventSourceMappingBinding = new SmithyOperationBinding<
                 DeleteEventSourceMappingInput,
                 DeleteEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteEventSourceMappingSchema.Schema
             );
             this.DeleteFunctionBinding = new SmithyOperationBinding<
                 DeleteFunctionInput,
                 DeleteFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionSchema.Schema
             );
             this.DeleteFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionCodeSigningConfigInput,
                 DeleteFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteFunctionCodeSigningConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteFunctionCodeSigningConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionCodeSigningConfigSchema.Schema
             );
             this.DeleteFunctionConcurrencyBinding = new SmithyOperationBinding<
                 DeleteFunctionConcurrencyInput,
                 DeleteFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionConcurrencySchema.Schema
             );
             this.DeleteFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionEventInvokeConfigInput,
                 DeleteFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteFunctionEventInvokeConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteFunctionEventInvokeConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionEventInvokeConfigSchema.Schema
             );
             this.DeleteFunctionUrlConfigBinding = new SmithyOperationBinding<
                 DeleteFunctionUrlConfigInput,
                 DeleteFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteFunctionUrlConfigSchema.Schema
             );
             this.DeleteLayerVersionBinding = new SmithyOperationBinding<
                 DeleteLayerVersionInput,
                 DeleteLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteLayerVersionSchema.Schema
             );
             this.DeleteProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 DeleteProvisionedConcurrencyConfigInput,
                 DeleteProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .DeleteProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .DeleteProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteProvisionedConcurrencyConfigSchema.Schema
             );
             this.DeleteResourcePolicyBinding = new SmithyOperationBinding<
                 DeleteResourcePolicyInput,
                 DeleteResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                DeleteResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.DeleteResourcePolicySchema.Schema
             );
             this.GetAccountSettingsBinding = new SmithyOperationBinding<
                 GetAccountSettingsInput,
                 GetAccountSettingsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetAccountSettingsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAccountSettingsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetAccountSettingsSchema.Schema
             );
             this.GetAliasBinding = new SmithyOperationBinding<GetAliasInput, GetAliasOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetAliasSchema.Schema
             );
             this.GetCapacityProviderBinding = new SmithyOperationBinding<
                 GetCapacityProviderInput,
                 GetCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetCapacityProviderSchema.Schema
             );
             this.GetCodeSigningConfigBinding = new SmithyOperationBinding<
                 GetCodeSigningConfigInput,
                 GetCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetCodeSigningConfigSchema.Schema
             );
             this.GetDurableExecutionBinding = new SmithyOperationBinding<
                 GetDurableExecutionInput,
                 GetDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionSchema.Schema
             );
             this.GetDurableExecutionHistoryBinding = new SmithyOperationBinding<
                 GetDurableExecutionHistoryInput,
                 GetDurableExecutionHistoryOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionHistorySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionHistorySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionHistorySchema.Schema
             );
             this.GetDurableExecutionStateBinding = new SmithyOperationBinding<
                 GetDurableExecutionStateInput,
                 GetDurableExecutionStateOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetDurableExecutionStateSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDurableExecutionStateSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetDurableExecutionStateSchema.Schema
             );
             this.GetEventSourceMappingBinding = new SmithyOperationBinding<
                 GetEventSourceMappingInput,
                 GetEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetEventSourceMappingSchema.Schema
             );
             this.GetFunctionBinding = new SmithyOperationBinding<
                 GetFunctionInput,
                 GetFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionSchema.Schema
             );
             this.GetFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 GetFunctionCodeSigningConfigInput,
                 GetFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionCodeSigningConfigSchema.Schema
             );
             this.GetFunctionConcurrencyBinding = new SmithyOperationBinding<
                 GetFunctionConcurrencyInput,
                 GetFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConcurrencySchema.Schema
             );
             this.GetFunctionConfigurationBinding = new SmithyOperationBinding<
                 GetFunctionConfigurationInput,
                 GetFunctionConfigurationOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionConfigurationSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionConfigurationSchema.Schema
             );
             this.GetFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 GetFunctionEventInvokeConfigInput,
                 GetFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionEventInvokeConfigSchema.Schema
             );
             this.GetFunctionRecursionConfigBinding = new SmithyOperationBinding<
                 GetFunctionRecursionConfigInput,
                 GetFunctionRecursionConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionRecursionConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionRecursionConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionRecursionConfigSchema.Schema
             );
             this.GetFunctionScalingConfigBinding = new SmithyOperationBinding<
                 GetFunctionScalingConfigInput,
                 GetFunctionScalingConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionScalingConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionScalingConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionScalingConfigSchema.Schema
             );
             this.GetFunctionUrlConfigBinding = new SmithyOperationBinding<
                 GetFunctionUrlConfigInput,
                 GetFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetFunctionUrlConfigSchema.Schema
             );
             this.GetLayerVersionBinding = new SmithyOperationBinding<
                 GetLayerVersionInput,
                 GetLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionSchema.Schema
             );
             this.GetLayerVersionByArnBinding = new SmithyOperationBinding<
                 GetLayerVersionByArnInput,
                 GetLayerVersionByArnOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionByArnSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionByArnSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionByArnSchema.Schema
             );
             this.GetLayerVersionPolicyBinding = new SmithyOperationBinding<
                 GetLayerVersionPolicyInput,
                 GetLayerVersionPolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetLayerVersionPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetLayerVersionPolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetLayerVersionPolicySchema.Schema
             );
             this.GetPolicyBinding = new SmithyOperationBinding<GetPolicyInput, GetPolicyOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetPolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetPolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetPolicySchema.Schema
             );
             this.GetProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 GetProvisionedConcurrencyConfigInput,
                 GetProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .GetProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .GetProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetProvisionedConcurrencyConfigSchema.Schema
             );
             this.GetResourcePolicyBinding = new SmithyOperationBinding<
                 GetResourcePolicyInput,
                 GetResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetResourcePolicySchema.Schema
             );
             this.GetRuntimeManagementConfigBinding = new SmithyOperationBinding<
                 GetRuntimeManagementConfigInput,
                 GetRuntimeManagementConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                GetRuntimeManagementConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetRuntimeManagementConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.GetRuntimeManagementConfigSchema.Schema
             );
             this.InvokeBinding = new SmithyOperationBinding<InvokeInput, InvokeOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeSchema.Schema
             );
             this.InvokeAsyncBinding = new SmithyOperationBinding<
                 InvokeAsyncInput,
                 InvokeAsyncOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeAsyncSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeAsyncSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeAsyncSchema.Schema
             );
             this.InvokeWithResponseStreamBinding = new SmithyOperationBinding<
                 InvokeWithResponseStreamInput,
                 InvokeWithResponseStreamOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                InvokeWithResponseStreamSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(InvokeWithResponseStreamSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.InvokeWithResponseStreamSchema.Schema
             );
             this.ListAliasesBinding = new SmithyOperationBinding<
                 ListAliasesInput,
                 ListAliasesOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListAliasesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListAliasesSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListAliasesSchema.Schema
             );
             this.ListCapacityProvidersBinding = new SmithyOperationBinding<
                 ListCapacityProvidersInput,
                 ListCapacityProvidersOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListCapacityProvidersSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListCapacityProvidersSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListCapacityProvidersSchema.Schema
             );
             this.ListCodeSigningConfigsBinding = new SmithyOperationBinding<
                 ListCodeSigningConfigsInput,
                 ListCodeSigningConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListCodeSigningConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListCodeSigningConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListCodeSigningConfigsSchema.Schema
             );
             this.ListDurableExecutionsByFunctionBinding = new SmithyOperationBinding<
                 ListDurableExecutionsByFunctionInput,
                 ListDurableExecutionsByFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListDurableExecutionsByFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDurableExecutionsByFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListDurableExecutionsByFunctionSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListDurableExecutionsByFunctionSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListDurableExecutionsByFunctionSchema.Schema
             );
             this.ListEventSourceMappingsBinding = new SmithyOperationBinding<
                 ListEventSourceMappingsInput,
                 ListEventSourceMappingsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListEventSourceMappingsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListEventSourceMappingsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListEventSourceMappingsSchema.Schema
             );
             this.ListFunctionEventInvokeConfigsBinding = new SmithyOperationBinding<
                 ListFunctionEventInvokeConfigsInput,
                 ListFunctionEventInvokeConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionEventInvokeConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionEventInvokeConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionEventInvokeConfigsSchema.Schema
             );
             this.ListFunctionUrlConfigsBinding = new SmithyOperationBinding<
                 ListFunctionUrlConfigsInput,
                 ListFunctionUrlConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionUrlConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionUrlConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionUrlConfigsSchema.Schema
             );
             this.ListFunctionVersionsByCapacityProviderBinding = new SmithyOperationBinding<
                 ListFunctionVersionsByCapacityProviderInput,
                 ListFunctionVersionsByCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionVersionsByCapacityProviderSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionVersionsByCapacityProviderSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    ListFunctionVersionsByCapacityProviderSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListFunctionVersionsByCapacityProviderSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionVersionsByCapacityProviderSchema
+                    .Schema
             );
             this.ListFunctionsBinding = new SmithyOperationBinding<
                 ListFunctionsInput,
                 ListFunctionsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsSchema.Schema
             );
             this.ListFunctionsByCodeSigningConfigBinding = new SmithyOperationBinding<
                 ListFunctionsByCodeSigningConfigInput,
                 ListFunctionsByCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListFunctionsByCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListFunctionsByCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListFunctionsByCodeSigningConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListFunctionsByCodeSigningConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListFunctionsByCodeSigningConfigSchema.Schema
             );
             this.ListLayerVersionsBinding = new SmithyOperationBinding<
                 ListLayerVersionsInput,
                 ListLayerVersionsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListLayerVersionsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListLayerVersionsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayerVersionsSchema.Schema
             );
             this.ListLayersBinding = new SmithyOperationBinding<ListLayersInput, ListLayersOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListLayersSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListLayersSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListLayersSchema.Schema
             );
             this.ListProvisionedConcurrencyConfigsBinding = new SmithyOperationBinding<
                 ListProvisionedConcurrencyConfigsInput,
                 ListProvisionedConcurrencyConfigsOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListProvisionedConcurrencyConfigsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListProvisionedConcurrencyConfigsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .ListProvisionedConcurrencyConfigsSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .ListProvisionedConcurrencyConfigsSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListProvisionedConcurrencyConfigsSchema.Schema
             );
             this.ListTagsBinding = new SmithyOperationBinding<ListTagsInput, ListTagsOutput>(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListTagsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListTagsSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListTagsSchema.Schema
             );
             this.ListVersionsByFunctionBinding = new SmithyOperationBinding<
                 ListVersionsByFunctionInput,
                 ListVersionsByFunctionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                ListVersionsByFunctionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListVersionsByFunctionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.ListVersionsByFunctionSchema.Schema
             );
             this.PublishLayerVersionBinding = new SmithyOperationBinding<
                 PublishLayerVersionInput,
                 PublishLayerVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PublishLayerVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PublishLayerVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PublishLayerVersionSchema.Schema
             );
             this.PublishVersionBinding = new SmithyOperationBinding<
                 PublishVersionInput,
                 PublishVersionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PublishVersionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PublishVersionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PublishVersionSchema.Schema
             );
             this.PutFunctionCodeSigningConfigBinding = new SmithyOperationBinding<
                 PutFunctionCodeSigningConfigInput,
                 PutFunctionCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionCodeSigningConfigSchema.Schema
             );
             this.PutFunctionConcurrencyBinding = new SmithyOperationBinding<
                 PutFunctionConcurrencyInput,
                 PutFunctionConcurrencyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionConcurrencySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionConcurrencySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionConcurrencySchema.Schema
             );
             this.PutFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 PutFunctionEventInvokeConfigInput,
                 PutFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionEventInvokeConfigSchema.Schema
             );
             this.PutFunctionRecursionConfigBinding = new SmithyOperationBinding<
                 PutFunctionRecursionConfigInput,
                 PutFunctionRecursionConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionRecursionConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionRecursionConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionRecursionConfigSchema.Schema
             );
             this.PutFunctionScalingConfigBinding = new SmithyOperationBinding<
                 PutFunctionScalingConfigInput,
                 PutFunctionScalingConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutFunctionScalingConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutFunctionScalingConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutFunctionScalingConfigSchema.Schema
             );
             this.PutProvisionedConcurrencyConfigBinding = new SmithyOperationBinding<
                 PutProvisionedConcurrencyConfigInput,
                 PutProvisionedConcurrencyConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutProvisionedConcurrencyConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutProvisionedConcurrencyConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .PutProvisionedConcurrencyConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .PutProvisionedConcurrencyConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutProvisionedConcurrencyConfigSchema.Schema
             );
             this.PutResourcePolicyBinding = new SmithyOperationBinding<
                 PutResourcePolicyInput,
                 PutResourcePolicyOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutResourcePolicySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutResourcePolicySchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutResourcePolicySchema.Schema
             );
             this.PutRuntimeManagementConfigBinding = new SmithyOperationBinding<
                 PutRuntimeManagementConfigInput,
                 PutRuntimeManagementConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                PutRuntimeManagementConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PutRuntimeManagementConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.PutRuntimeManagementConfigSchema.Schema
             );
             this.RemoveLayerVersionPermissionBinding = new SmithyOperationBinding<
                 RemoveLayerVersionPermissionInput,
                 RemoveLayerVersionPermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                RemoveLayerVersionPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemoveLayerVersionPermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.RemoveLayerVersionPermissionSchema.Schema
             );
             this.RemovePermissionBinding = new SmithyOperationBinding<
                 RemovePermissionInput,
                 RemovePermissionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                RemovePermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemovePermissionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.RemovePermissionSchema.Schema
             );
             this.SendDurableExecutionCallbackFailureBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackFailureInput,
                 SendDurableExecutionCallbackFailureOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackFailureSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackFailureSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackFailureSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackFailureSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackFailureSchema
+                    .Schema
             );
             this.SendDurableExecutionCallbackHeartbeatBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackHeartbeatInput,
                 SendDurableExecutionCallbackHeartbeatOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackHeartbeatSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackHeartbeatSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackHeartbeatSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackHeartbeatSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackHeartbeatSchema
+                    .Schema
             );
             this.SendDurableExecutionCallbackSuccessBinding = new SmithyOperationBinding<
                 SendDurableExecutionCallbackSuccessInput,
                 SendDurableExecutionCallbackSuccessOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                SendDurableExecutionCallbackSuccessSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackSuccessSchema
+                    .Schema
+                    .Id,
                 serviceProtocol.ForClientOperation(
-                    SendDurableExecutionCallbackSuccessSchema.Schema
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .SendDurableExecutionCallbackSuccessSchema
+                        .Schema
                 ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .SendDurableExecutionCallbackSuccessSchema
+                    .Schema
             );
             this.StopDurableExecutionBinding = new SmithyOperationBinding<
                 StopDurableExecutionInput,
                 StopDurableExecutionOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                StopDurableExecutionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(StopDurableExecutionSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.StopDurableExecutionSchema.Schema
             );
             this.TagResourceBinding = new SmithyOperationBinding<
                 TagResourceInput,
                 TagResourceOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                TagResourceSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(TagResourceSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.TagResourceSchema.Schema
             );
             this.UntagResourceBinding = new SmithyOperationBinding<
                 UntagResourceInput,
                 UntagResourceOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UntagResourceSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UntagResourceSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UntagResourceSchema.Schema
             );
             this.UpdateAliasBinding = new SmithyOperationBinding<
                 UpdateAliasInput,
                 UpdateAliasOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateAliasSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateAliasSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateAliasSchema.Schema
             );
             this.UpdateCapacityProviderBinding = new SmithyOperationBinding<
                 UpdateCapacityProviderInput,
                 UpdateCapacityProviderOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateCapacityProviderSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateCapacityProviderSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCapacityProviderSchema.Schema
             );
             this.UpdateCodeSigningConfigBinding = new SmithyOperationBinding<
                 UpdateCodeSigningConfigInput,
                 UpdateCodeSigningConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateCodeSigningConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateCodeSigningConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateCodeSigningConfigSchema.Schema
             );
             this.UpdateEventSourceMappingBinding = new SmithyOperationBinding<
                 UpdateEventSourceMappingInput,
                 UpdateEventSourceMappingOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateEventSourceMappingSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateEventSourceMappingSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateEventSourceMappingSchema.Schema
             );
             this.UpdateFunctionCodeBinding = new SmithyOperationBinding<
                 UpdateFunctionCodeInput,
                 UpdateFunctionCodeOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionCodeSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionCodeSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionCodeSchema.Schema
             );
             this.UpdateFunctionConfigurationBinding = new SmithyOperationBinding<
                 UpdateFunctionConfigurationInput,
                 UpdateFunctionConfigurationOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionConfigurationSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionConfigurationSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionConfigurationSchema.Schema
             );
             this.UpdateFunctionEventInvokeConfigBinding = new SmithyOperationBinding<
                 UpdateFunctionEventInvokeConfigInput,
                 UpdateFunctionEventInvokeConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionEventInvokeConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionEventInvokeConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com
+                    .Amazonaws
+                    .Lambda
+                    .Schemas
+                    .UpdateFunctionEventInvokeConfigSchema
+                    .Schema
+                    .Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com
+                        .Amazonaws
+                        .Lambda
+                        .Schemas
+                        .UpdateFunctionEventInvokeConfigSchema
+                        .Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionEventInvokeConfigSchema.Schema
             );
             this.UpdateFunctionUrlConfigBinding = new SmithyOperationBinding<
                 UpdateFunctionUrlConfigInput,
                 UpdateFunctionUrlConfigOutput
             >(
-                AWSGirApiServiceSchema.Schema.Id,
-                UpdateFunctionUrlConfigSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UpdateFunctionUrlConfigSchema.Schema),
+                global::Com.Amazonaws.Lambda.Schemas.AWSGirApiServiceSchema.Schema.Id,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Lambda.Schemas.UpdateFunctionUrlConfigSchema.Schema
             );
         }
         catch
@@ -4028,6 +6240,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Adds permissions to the resource-based policy of a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Use this action to grant layer usage permission to other accounts. You can grant permission to a single account, all accounts in an organization, or all Amazon Web Services accounts. &lt;/p&gt; &lt;p&gt;To revoke permission, call &lt;a&gt;RemoveLayerVersionPermission&lt;/a&gt; with the statement ID that you specified when you added it.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To add permissions to a layer version
+    /// </para>
+    /// <para>
+    /// The following example grants permission for the account 223456789012 to use version 1 of a layer named my-layer.
+    /// </para>
+    /// <code>
+    /// var input = new AddLayerVersionPermissionInput(Action: &quot;lambda:GetLayerVersion&quot;, LayerName: &quot;my-layer&quot;, Principal: &quot;223456789012&quot;, StatementId: &quot;xaccount&quot;, VersionNumber: 1L);
+    /// var output = await client.AddLayerVersionPermissionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AddLayerVersionPermissionOutput(RevisionId: &quot;35d87451-f796-4a3f-a618-95a3671b0a0c&quot;, Statement: &quot;{\&quot;Sid\&quot;:\&quot;xaccount\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;arn:aws:iam::223456789012:root\&quot;},\&quot;Action\&quot;:\&quot;lambda:GetLayerVersion\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer:1\&quot;}&quot;);
+    /// </code>
+    /// </example>
     public Task<AddLayerVersionPermissionOutput> AddLayerVersionPermissionAsync(
         AddLayerVersionPermissionInput input,
         CancellationToken cancellationToken = default
@@ -4040,6 +6267,36 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Grants a &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying&quot;&gt;principal&lt;/a&gt; permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does not support adding policies to version $LATEST.&lt;/p&gt; &lt;p&gt;To grant permission to another account, specify the account ID as the &lt;code&gt;Principal&lt;/code&gt;. To grant permission to an organization defined in Organizations, specify the organization ID as the &lt;code&gt;PrincipalOrgID&lt;/code&gt;. For Amazon Web Services services, the principal is a domain-style identifier that the service defines, such as &lt;code&gt;s3.amazonaws.com&lt;/code&gt; or &lt;code&gt;sns.amazonaws.com&lt;/code&gt;. For Amazon Web Services services, you can also specify the ARN of the associated resource as the &lt;code&gt;SourceArn&lt;/code&gt;. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function.&lt;/p&gt; &lt;p&gt;This operation adds a statement to a resource-based permissions policy for the function. For more information about function policies, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;Using resource-based policies for Lambda&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To grant Amazon S3 permission to invoke a function
+    /// </para>
+    /// <para>
+    /// The following example adds permission for Amazon S3 to invoke a Lambda function named my-function for notifications from a bucket named my-bucket-1xpuxmplzrlbh in account 123456789012.
+    /// </para>
+    /// <code>
+    /// var input = new AddPermissionInput(Action: &quot;lambda:InvokeFunction&quot;, FunctionName: &quot;my-function&quot;, Principal: &quot;s3.amazonaws.com&quot;, StatementId: &quot;s3&quot;, SourceAccount: &quot;123456789012&quot;, SourceArn: &quot;arn:aws:s3:::my-bucket-1xpuxmplzrlbh/*&quot;);
+    /// var output = await client.AddPermissionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AddPermissionOutput(Statement: &quot;{\&quot;Sid\&quot;:\&quot;s3\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;Service\&quot;:\&quot;s3.amazonaws.com\&quot;},\&quot;Action\&quot;:\&quot;lambda:InvokeFunction\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:function:my-function\&quot;,\&quot;Condition\&quot;:{\&quot;StringEquals\&quot;:{\&quot;AWS:SourceAccount\&quot;:\&quot;123456789012\&quot;},\&quot;ArnLike\&quot;:{\&quot;AWS:SourceArn\&quot;:\&quot;arn:aws:s3:::my-bucket-1xpuxmplzrlbh\&quot;}}}&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To grant another account permission to invoke a function
+    /// </para>
+    /// <para>
+    /// The following example adds permission for account 223456789012 invoke a Lambda function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new AddPermissionInput(Action: &quot;lambda:InvokeFunction&quot;, FunctionName: &quot;my-function&quot;, Principal: &quot;223456789012&quot;, StatementId: &quot;xaccount&quot;);
+    /// var output = await client.AddPermissionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AddPermissionOutput(Statement: &quot;{\&quot;Sid\&quot;:\&quot;xaccount\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;arn:aws:iam::223456789012:root\&quot;},\&quot;Action\&quot;:\&quot;lambda:InvokeFunction\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:function:my-function\&quot;}&quot;);
+    /// </code>
+    /// </example>
     public Task<AddPermissionOutput> AddPermissionAsync(
         AddPermissionInput input,
         CancellationToken cancellationToken = default
@@ -4065,6 +6322,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt; for a Lambda function version. Use aliases to provide clients with a function identifier that you can update to invoke a different version.&lt;/p&gt; &lt;p&gt;You can also map an alias to split invocation requests between two versions. Use the &lt;code&gt;RoutingConfig&lt;/code&gt; parameter to specify a second version and the percentage of invocation requests that it receives.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create an alias for a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example creates an alias named LIVE that points to version 1 of the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new CreateAliasInput(FunctionName: &quot;my-function&quot;, FunctionVersion: &quot;1&quot;, Name: &quot;LIVE&quot;, Description: &quot;alias for live version of function&quot;);
+    /// var output = await client.CreateAliasAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateAliasOutput(AliasArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:LIVE&quot;, Description: &quot;alias for live version of function&quot;, FunctionVersion: &quot;1&quot;, Name: &quot;LIVE&quot;, RevisionId: &quot;873282ed-xmpl-4dc8-a069-d0c647e470c6&quot;);
+    /// </code>
+    /// </example>
     public Task<CreateAliasOutput> CreateAliasAsync(
         CreateAliasInput input,
         CancellationToken cancellationToken = default
@@ -4101,6 +6373,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and invokes the function.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a mapping between an event source and an AWS Lambda function
+    /// </para>
+    /// <para>
+    /// The following example creates a mapping between an SQS queue and the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new CreateEventSourceMappingInput(FunctionName: &quot;my-function&quot;, BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:my-queue&quot;);
+    /// var output = await client.CreateEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateEventSourceMappingOutput(BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:my-queue&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15692845203330000L), State: &quot;Creating&quot;, StateTransitionReason: &quot;USER_INITIATED&quot;, UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;);
+    /// </code>
+    /// </example>
     public Task<CreateEventSourceMappingOutput> CreateEventSourceMappingAsync(
         CreateEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -4113,6 +6400,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Creates a Lambda function. To create a function, you need a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html&quot;&gt;deployment package&lt;/a&gt; and an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role&quot;&gt;execution role&lt;/a&gt;. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use Amazon Web Services services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt;, then you set the package type to &lt;code&gt;Image&lt;/code&gt;. For a container image, the code property must include the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and runtime properties.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;, then you set the package type to &lt;code&gt;Zip&lt;/code&gt;. For a .zip file archive, the code property specifies the location of the .zip file. You must also specify the handler and runtime properties. The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;). If you do not specify the architecture, then the default value is &lt;code&gt;x86-64&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The &lt;code&gt;State&lt;/code&gt;, &lt;code&gt;StateReason&lt;/code&gt;, and &lt;code&gt;StateReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the function is ready to invoke. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the &lt;code&gt;Publish&lt;/code&gt; parameter to create version &lt;code&gt;1&lt;/code&gt; of your function from its initial configuration.&lt;/p&gt; &lt;p&gt;The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;. Function-level settings apply to both the unpublished and published versions of the function, and include tags (&lt;a&gt;TagResource&lt;/a&gt;) and per-function concurrency limits (&lt;a&gt;PutFunctionConcurrency&lt;/a&gt;).&lt;/p&gt; &lt;p&gt;You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with &lt;a&gt;UpdateFunctionCode&lt;/a&gt;, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set of signing profiles, which define the trusted publishers for this function.&lt;/p&gt; &lt;p&gt;If another Amazon Web Services account or an Amazon Web Services service invokes your function, use &lt;a&gt;AddPermission&lt;/a&gt; to grant permission by creating a resource-based Identity and Access Management (IAM) policy. You can grant permissions at the function level, on a version, or on an alias.&lt;/p&gt; &lt;p&gt;To invoke your function directly, use &lt;a&gt;Invoke&lt;/a&gt;. To invoke your function in response to events in other Amazon Web Services services, create an event source mapping (&lt;a&gt;CreateEventSourceMapping&lt;/a&gt;), or configure a function trigger in the other service. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html&quot;&gt;Invoking Lambda functions&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a function
+    /// </para>
+    /// <para>
+    /// The following example creates a function with a deployment package in Amazon S3 and enables X-Ray tracing and environment variable encryption.
+    /// </para>
+    /// <code>
+    /// var input = new CreateFunctionInput(Code: new FunctionCode(S3Bucket: &quot;my-bucket-1xpuxmplzrlbh&quot;, S3Key: &quot;function.zip&quot;), FunctionName: &quot;my-function&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new Environment(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, MemorySize: 256, Publish: true, Runtime: new Runtime(&quot;nodejs12.x&quot;), Tags: new Dictionary&lt;string, string&gt; { { &quot;DEPARTMENT&quot;, &quot;Assets&quot; } }, Timeout: 15, TracingConfig: new TracingConfig(Mode: new TracingMode(&quot;Active&quot;)));
+    /// var output = await client.CreateFunctionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new CreateFunctionOutput(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;1&quot;);
+    /// </code>
+    /// </example>
     public Task<CreateFunctionOutput> CreateFunctionAsync(
         CreateFunctionInput input,
         CancellationToken cancellationToken = default
@@ -4137,6 +6439,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Deletes a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a Lambda function alias
+    /// </para>
+    /// <para>
+    /// The following example deletes an alias named BLUE from a function named my-function
+    /// </para>
+    /// <code>
+    /// var input = new DeleteAliasInput(FunctionName: &quot;my-function&quot;, Name: &quot;BLUE&quot;);
+    /// var output = await client.DeleteAliasAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteAliasOutput> DeleteAliasAsync(
         DeleteAliasInput input,
         CancellationToken cancellationToken = default
@@ -4173,6 +6487,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Deletes an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html&quot;&gt;event source mapping&lt;/a&gt;. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When you delete an event source mapping, it enters a &lt;code&gt;Deleting&lt;/code&gt; state and might not be completely deleted for several seconds.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a Lambda function event source mapping
+    /// </para>
+    /// <para>
+    /// The following example deletes an event source mapping. To get a mapping's UUID, use ListEventSourceMappings.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteEventSourceMappingInput(UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// var output = await client.DeleteEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DeleteEventSourceMappingOutput(BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:my-queue&quot;, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), State: &quot;Enabled&quot;, StateTransitionReason: &quot;USER_INITIATED&quot;, UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// </code>
+    /// </example>
     public Task<DeleteEventSourceMappingOutput> DeleteEventSourceMappingAsync(
         DeleteEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -4185,6 +6514,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Deletes a Lambda function. To delete a specific function version, use the &lt;code&gt;Qualifier&lt;/code&gt; parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have explicit permissions for &lt;a&gt;DeleteAlias&lt;/a&gt;.&lt;/p&gt; &lt;note&gt; &lt;p&gt;A deleted Lambda function cannot be recovered. Ensure that you specify the correct function name and version before deleting.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;To delete Lambda event source mappings that invoke a function, use &lt;a&gt;DeleteEventSourceMapping&lt;/a&gt;. For Amazon Web Services services and resources that invoke your function directly, delete the trigger in the service where you originally configured it.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a version of a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example deletes version 1 of a Lambda function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteFunctionInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.DeleteFunctionAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteFunctionOutput> DeleteFunctionAsync(
         DeleteFunctionInput input,
         CancellationToken cancellationToken = default
@@ -4213,6 +6554,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Removes a concurrent execution limit from a function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove the reserved concurrent execution limit from a function
+    /// </para>
+    /// <para>
+    /// The following example deletes the reserved concurrent execution limit from a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteFunctionConcurrencyInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.DeleteFunctionConcurrencyAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteFunctionConcurrencyOutput> DeleteFunctionConcurrencyAsync(
         DeleteFunctionConcurrencyInput input,
         CancellationToken cancellationToken = default
@@ -4225,6 +6578,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Deletes the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete an asynchronous invocation configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes the asynchronous invocation configuration for the GREEN alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;GREEN&quot;);
+    /// var output = await client.DeleteFunctionEventInvokeConfigAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteFunctionEventInvokeConfigOutput> DeleteFunctionEventInvokeConfigAsync(
         DeleteFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -4253,6 +6618,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Deletes a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Deleted versions can no longer be viewed or added to functions. To avoid breaking functions, a copy of the version remains in Lambda until no functions refer to it.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a version of a Lambda layer
+    /// </para>
+    /// <para>
+    /// The following example deletes version 2 of a layer named my-layer.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteLayerVersionInput(LayerName: &quot;my-layer&quot;, VersionNumber: 2L);
+    /// var output = await client.DeleteLayerVersionAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteLayerVersionOutput> DeleteLayerVersionAsync(
         DeleteLayerVersionInput input,
         CancellationToken cancellationToken = default
@@ -4265,6 +6642,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Deletes the provisioned concurrency configuration for a function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete a provisioned concurrency configuration
+    /// </para>
+    /// <para>
+    /// The following example deletes the provisioned concurrency configuration for the GREEN alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new DeleteProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;GREEN&quot;);
+    /// var output = await client.DeleteProvisionedConcurrencyConfigAsync(input);
+    /// </code>
+    /// </example>
     public Task<DeleteProvisionedConcurrencyConfigOutput> DeleteProvisionedConcurrencyConfigAsync(
         DeleteProvisionedConcurrencyConfigInput input,
         CancellationToken cancellationToken = default
@@ -4293,6 +6682,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Retrieves details about your account's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/limits.html&quot;&gt;limits&lt;/a&gt; and usage in an Amazon Web Services Region.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get account settings
+    /// </para>
+    /// <para>
+    /// This operation takes no parameters and returns details about storage and concurrency quotas in the current Region.
+    /// </para>
+    /// <code>
+    /// var input = new GetAccountSettingsInput();
+    /// var output = await client.GetAccountSettingsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetAccountSettingsOutput(AccountLimit: new AccountLimit(CodeSizeUnzipped: 262144000L, CodeSizeZipped: 52428800L, ConcurrentExecutions: 1000, TotalCodeSize: 80530636800L, UnreservedConcurrentExecutions: 1000), AccountUsage: new AccountUsage(FunctionCount: 4L, TotalCodeSize: 9426L));
+    /// </code>
+    /// </example>
     public Task<GetAccountSettingsOutput> GetAccountSettingsAsync(
         GetAccountSettingsInput input,
         CancellationToken cancellationToken = default
@@ -4305,6 +6709,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns details about a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function alias
+    /// </para>
+    /// <para>
+    /// The following example returns details about an alias named BLUE for a function named my-function
+    /// </para>
+    /// <code>
+    /// var input = new GetAliasInput(FunctionName: &quot;my-function&quot;, Name: &quot;BLUE&quot;);
+    /// var output = await client.GetAliasAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetAliasOutput(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:BLUE&quot;, Description: &quot;Production environment BLUE.&quot;, FunctionVersion: &quot;3&quot;, Name: &quot;BLUE&quot;, RevisionId: &quot;594f41fb-xmpl-4c20-95c7-6ca5f2a92c93&quot;);
+    /// </code>
+    /// </example>
     public Task<GetAliasOutput> GetAliasAsync(
         GetAliasInput input,
         CancellationToken cancellationToken = default
@@ -4403,7 +6822,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -4463,7 +6882,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -4473,6 +6892,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns details about an event source mapping. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function's event source mapping
+    /// </para>
+    /// <para>
+    /// The following example returns details about an event source mapping. To get a mapping's UUID, use ListEventSourceMappings.
+    /// </para>
+    /// <code>
+    /// var input = new GetEventSourceMappingInput(UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// var output = await client.GetEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetEventSourceMappingOutput(BatchSize: 500, BisectBatchOnFunctionError: false, DestinationConfig: new DestinationConfig(), EventSourceArn: &quot;arn:aws:sqs:us-east-2:123456789012:mySQSqueue&quot;, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:myFunction&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), LastProcessingResult: &quot;No records processed&quot;, MaximumRecordAgeInSeconds: 604800, MaximumRetryAttempts: 10000, State: &quot;Creating&quot;, StateTransitionReason: &quot;User action&quot;, UUID: &quot;14e0db71-xmpl-4eb5-b481-8945cf9d10c2&quot;);
+    /// </code>
+    /// </example>
     public Task<GetEventSourceMappingOutput> GetEventSourceMappingAsync(
         GetEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -4485,6 +6919,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns information about the function or function version, with a link to download the deployment package that's valid for 10 minutes. If you specify a function version, only details that are specific to that version are returned.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example returns code and configuration details for version 1 of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.GetFunctionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionOutput(Code: new FunctionCodeLocation(Location: &quot;https://awslambda-us-west-2-tasks.s3.us-west-2.amazonaws.com/snapshots/123456789012/my-function-e7d9d1ed-xmpl-4f79-904a-4b87f2681f30?versionId=sH3TQwBOaUy...&quot;, RepositoryType: &quot;S3&quot;), Configuration: new FunctionConfiguration(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;$LATEST&quot;), Tags: new Dictionary&lt;string, string&gt; { { &quot;DEPARTMENT&quot;, &quot;Assets&quot; } });
+    /// </code>
+    /// </example>
     public Task<GetFunctionOutput> GetFunctionAsync(
         GetFunctionInput input,
         CancellationToken cancellationToken = default
@@ -4493,6 +6942,153 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
         ArgumentNullException.ThrowIfNull(input);
         return runtime.InvokeAsync(GetFunctionBinding, input, cancellationToken);
     }
+
+    /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunction API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionActiveV2Async(
+        GetFunctionInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    ) =>
+        WaitUntilFunctionActiveV2Async(
+            input,
+            new SmithyWaiterOptions(maxWaitTime),
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunction API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionActiveV2Async(
+        GetFunctionInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    ) =>
+        SmithyWaiter.WaitAsync(
+            "FunctionActiveV2",
+            GetFunctionAsync,
+            input,
+            AWSGirApiServiceWaiters.FunctionActiveV2,
+            TimeSpan.FromSeconds(1),
+            TimeSpan.FromSeconds(300),
+            options,
+            cancellationToken
+        );
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionExistsAsync(
+        GetFunctionInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    ) =>
+        WaitUntilFunctionExistsAsync(
+            input,
+            new SmithyWaiterOptions(maxWaitTime),
+            cancellationToken
+        );
+
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionExistsAsync(
+        GetFunctionInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    ) =>
+        SmithyWaiter.WaitAsync(
+            "FunctionExists",
+            GetFunctionAsync,
+            input,
+            AWSGirApiServiceWaiters.FunctionExists,
+            TimeSpan.FromSeconds(1),
+            TimeSpan.FromSeconds(20),
+            options,
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunction API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionUpdatedV2Async(
+        GetFunctionInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    ) =>
+        WaitUntilFunctionUpdatedV2Async(
+            input,
+            new SmithyWaiterOptions(maxWaitTime),
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunction API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionOutput>> WaitUntilFunctionUpdatedV2Async(
+        GetFunctionInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    ) =>
+        SmithyWaiter.WaitAsync(
+            "FunctionUpdatedV2",
+            GetFunctionAsync,
+            input,
+            AWSGirApiServiceWaiters.FunctionUpdatedV2,
+            TimeSpan.FromSeconds(1),
+            TimeSpan.FromSeconds(300),
+            options,
+            cancellationToken
+        );
 
     /// <summary>
     /// &lt;p&gt;Returns the code signing configuration for the specified function.&lt;/p&gt;
@@ -4509,6 +7105,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns details about the reserved concurrency configuration for a function. To set a concurrency limit for a function, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get the reserved concurrency setting for a function
+    /// </para>
+    /// <para>
+    /// The following example returns the reserved concurrency setting for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionConcurrencyInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.GetFunctionConcurrencyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionConcurrencyOutput(ReservedConcurrentExecutions: 250);
+    /// </code>
+    /// </example>
     public Task<GetFunctionConcurrencyOutput> GetFunctionConcurrencyAsync(
         GetFunctionConcurrencyInput input,
         CancellationToken cancellationToken = default
@@ -4521,6 +7132,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns the version-specific settings of a Lambda function or version. The output includes only options that can vary between versions of a function. To modify these settings, use &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To get all of a function's details, including function-level settings, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a Lambda function's event source mapping
+    /// </para>
+    /// <para>
+    /// The following example returns and configuration details for version 1 of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionConfigurationInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.GetFunctionConfigurationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionConfigurationOutput(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;$LATEST&quot;);
+    /// </code>
+    /// </example>
     public Task<GetFunctionConfigurationOutput> GetFunctionConfigurationAsync(
         GetFunctionConfigurationInput input,
         CancellationToken cancellationToken = default
@@ -4531,8 +7157,180 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionActiveAsync(
+        GetFunctionConfigurationInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    ) =>
+        WaitUntilFunctionActiveAsync(
+            input,
+            new SmithyWaiterOptions(maxWaitTime),
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the function's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new function creation.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionActiveAsync(
+        GetFunctionConfigurationInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    ) =>
+        SmithyWaiter.WaitAsync(
+            "FunctionActive",
+            GetFunctionConfigurationAsync,
+            input,
+            AWSGirApiServiceWaiters.FunctionActive,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(300),
+            options,
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunctionConfiguration API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionUpdatedAsync(
+        GetFunctionConfigurationInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    ) =>
+        WaitUntilFunctionUpdatedAsync(
+            input,
+            new SmithyWaiterOptions(maxWaitTime),
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the function's LastUpdateStatus to be Successful. This waiter uses GetFunctionConfiguration API. This should be used after function updates.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<SmithyWaiterResult<GetFunctionConfigurationOutput>> WaitUntilFunctionUpdatedAsync(
+        GetFunctionConfigurationInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    ) =>
+        SmithyWaiter.WaitAsync(
+            "FunctionUpdated",
+            GetFunctionConfigurationAsync,
+            input,
+            AWSGirApiServiceWaiters.FunctionUpdated,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(300),
+            options,
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the published version's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new version is published.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="maxWaitTime">
+    /// The longest the waiter polls before it times out.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<
+        SmithyWaiterResult<GetFunctionConfigurationOutput>
+    > WaitUntilPublishedVersionActiveAsync(
+        GetFunctionConfigurationInput input,
+        TimeSpan maxWaitTime,
+        CancellationToken cancellationToken = default
+    ) =>
+        WaitUntilPublishedVersionActiveAsync(
+            input,
+            new SmithyWaiterOptions(maxWaitTime),
+            cancellationToken
+        );
+
+    /// <summary>
+    /// Waits for the published version's State to be Active. This waiter uses GetFunctionConfiguration API. This should be used after new version is published.
+    /// </summary>
+    /// <param name="input">
+    /// The operation input every attempt sends.
+    /// </param>
+    /// <param name="options">
+    /// The maximum wait time, and overrides of the modeled delays between attempts.
+    /// </param>
+    /// <param name="cancellationToken">
+    /// Cancels the current attempt or delay.
+    /// </param>
+    public Task<
+        SmithyWaiterResult<GetFunctionConfigurationOutput>
+    > WaitUntilPublishedVersionActiveAsync(
+        GetFunctionConfigurationInput input,
+        SmithyWaiterOptions options,
+        CancellationToken cancellationToken = default
+    ) =>
+        SmithyWaiter.WaitAsync(
+            "PublishedVersionActive",
+            GetFunctionConfigurationAsync,
+            input,
+            AWSGirApiServiceWaiters.PublishedVersionActive,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(1560),
+            options,
+            cancellationToken
+        );
+
+    /// <summary>
     /// &lt;p&gt;Retrieves the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get an asynchronous invocation configuration
+    /// </para>
+    /// <para>
+    /// The following example returns the asynchronous invocation configuration for the BLUE alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.GetFunctionEventInvokeConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFunctionEventInvokeConfigOutput(DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(Destination: &quot;arn:aws:sqs:us-east-2:123456789012:failed-invocations&quot;), OnSuccess: new OnSuccess()), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:BLUE&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// </code>
+    /// </example>
     public Task<GetFunctionEventInvokeConfigOutput> GetFunctionEventInvokeConfigAsync(
         GetFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -4581,6 +7379,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get information about a Lambda layer version
+    /// </para>
+    /// <para>
+    /// The following example returns information for version 1 of a layer named my-layer.
+    /// </para>
+    /// <code>
+    /// var input = new GetLayerVersionInput(LayerName: &quot;my-layer&quot;, VersionNumber: 1L);
+    /// var output = await client.GetLayerVersionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetLayerVersionOutput(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, Content: new LayerVersionContentOutput(CodeSha256: &quot;tv9jJO+rPbXUUXuRKi7CwHzKtLDkDRJLB3cC3Z/ouXo=&quot;, CodeSize: 169L, Location: &quot;https://awslambda-us-east-2-layers.s3.us-east-2.amazonaws.com/snapshots/123456789012/my-layer-4aaa2fbb-ff77-4b0a-ad92-5b78a716a96a?versionId=27iWyA73cCAYqyH...&quot;), CreatedDate: &quot;2018-11-14T23:03:52.894+0000&quot;, Description: &quot;My Python layer&quot;, LayerArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer:1&quot;, LicenseInfo: &quot;MIT&quot;, Version: 1L);
+    /// </code>
+    /// </example>
     public Task<GetLayerVersionOutput> GetLayerVersionAsync(
         GetLayerVersionInput input,
         CancellationToken cancellationToken = default
@@ -4593,6 +7406,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get information about a Lambda layer version
+    /// </para>
+    /// <para>
+    /// The following example returns information about the layer version with the specified Amazon Resource Name (ARN).
+    /// </para>
+    /// <code>
+    /// var input = new GetLayerVersionByArnInput(Arn: &quot;arn:aws:lambda:ca-central-1:123456789012:layer:blank-python-lib:3&quot;);
+    /// var output = await client.GetLayerVersionByArnAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetLayerVersionByArnOutput(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.8&quot;) }, Content: new LayerVersionContentOutput(CodeSha256: &quot;6x+xmpl/M3BnQUk7gS9sGmfeFsR/npojXoA3fZUv4eU=&quot;, CodeSize: 9529009L, Location: &quot;https://awslambda-us-east-2-layers.s3.us-east-2.amazonaws.com/snapshots/123456789012/blank-python-lib-e5212378-xmpl-44ee-8398-9d8ec5113949?versionId=WbZnvf...&quot;), CreatedDate: &quot;2020-03-31T00:35:18.949+0000&quot;, Description: &quot;Dependencies for the blank-python sample app.&quot;, LayerArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-python-lib&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-python-lib:3&quot;, Version: 3L);
+    /// </code>
+    /// </example>
     public Task<GetLayerVersionByArnOutput> GetLayerVersionByArnAsync(
         GetLayerVersionByArnInput input,
         CancellationToken cancellationToken = default
@@ -4617,6 +7445,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based IAM policy&lt;/a&gt; for a function, version, or alias.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve a Lambda function policy
+    /// </para>
+    /// <para>
+    /// The following example returns the resource-based policy for version 1 of a Lambda function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new GetPolicyInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;1&quot;);
+    /// var output = await client.GetPolicyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetPolicyOutput(Policy: &quot;{\&quot;Version\&quot;:\&quot;2012-10-17\&quot;,\&quot;Id\&quot;:\&quot;default\&quot;,\&quot;Statement\&quot;:[{\&quot;Sid\&quot;:\&quot;xaccount\&quot;,\&quot;Effect\&quot;:\&quot;Allow\&quot;,\&quot;Principal\&quot;:{\&quot;AWS\&quot;:\&quot;arn:aws:iam::123456789012:root\&quot;},\&quot;Action\&quot;:\&quot;lambda:InvokeFunction\&quot;,\&quot;Resource\&quot;:\&quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:1\&quot;}]}&quot;, RevisionId: &quot;4843f2f6-7c59-4fda-b484-afd0bc0e22b8&quot;);
+    /// </code>
+    /// </example>
     public Task<GetPolicyOutput> GetPolicyAsync(
         GetPolicyInput input,
         CancellationToken cancellationToken = default
@@ -4629,6 +7472,36 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Retrieves the provisioned concurrency configuration for a function's alias or version.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To view a provisioned concurrency configuration
+    /// </para>
+    /// <para>
+    /// The following example displays details for the provisioned concurrency configuration for the BLUE alias of the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new GetProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.GetProvisionedConcurrencyConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetProvisionedConcurrencyConfigOutput(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, LastModified: &quot;2019-12-31T20:28:49+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;));
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To get a provisioned concurrency configuration
+    /// </para>
+    /// <para>
+    /// The following example returns details for the provisioned concurrency configuration for the BLUE alias of the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new GetProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.GetProvisionedConcurrencyConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetProvisionedConcurrencyConfigOutput(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, LastModified: &quot;2019-12-31T20:28:49+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;));
+    /// </code>
+    /// </example>
     public Task<GetProvisionedConcurrencyConfigOutput> GetProvisionedConcurrencyConfigAsync(
         GetProvisionedConcurrencyConfigInput input,
         CancellationToken cancellationToken = default
@@ -4669,6 +7542,36 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. By default, Lambda invokes your function synchronously (i.e. the&lt;code&gt;InvocationType&lt;/code&gt; is &lt;code&gt;RequestResponse&lt;/code&gt;). To invoke a function asynchronously, set &lt;code&gt;InvocationType&lt;/code&gt; to &lt;code&gt;Event&lt;/code&gt;. Lambda passes the &lt;code&gt;ClientContext&lt;/code&gt; object to your function for synchronous invocations only.&lt;/p&gt; &lt;p&gt;For synchronous invocations, the maximum payload size is 6 MB. For asynchronous invocations, the maximum payload size is 1 MB.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html&quot;&gt;synchronous invocation&lt;/a&gt;, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html&quot;&gt;execution log&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html&quot;&gt;trace&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html&quot;&gt;Error handling and automatic retries in Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt;, Lambda adds events to a queue before sending them to your function. If your function does not have enough capacity to keep up with the queue, events may be lost. Occasionally, your function may receive the same event multiple times, even if no error occurs. To retain events that were not processed, configure your function with a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq&quot;&gt;dead-letter queue&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;quota&lt;/a&gt; errors, or issues with your function's code and configuration. For example, Lambda returns &lt;code&gt;TooManyRequestsException&lt;/code&gt; if running the function would cause you to exceed a concurrency limit at either the account level (&lt;code&gt;ConcurrentInvocationLimitExceeded&lt;/code&gt;) or function level (&lt;code&gt;ReservedFunctionConcurrentInvocationLimitExceeded&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;For functions with a long timeout, your client might disconnect during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings.&lt;/p&gt; &lt;p&gt;This operation requires permission for the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html&quot;&gt;lambda:InvokeFunction&lt;/a&gt; action. For details on how to set up permissions for cross-account invocations, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke&quot;&gt;Granting function access to other accounts&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To invoke a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example invokes version 1 of a function named my-function with an empty event payload.
+    /// </para>
+    /// <code>
+    /// var input = new InvokeInput(FunctionName: &quot;my-function&quot;, DurableExecutionName: &quot;myExecution&quot;, InvocationType: new InvocationType(&quot;Event&quot;), Payload: Convert.FromBase64String(&quot;{}&quot;), Qualifier: &quot;1&quot;);
+    /// var output = await client.InvokeAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new InvokeOutput(Payload: Convert.FromBase64String(&quot;200 SUCCESS&quot;), StatusCode: 200);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To invoke a Lambda function asynchronously
+    /// </para>
+    /// <para>
+    /// The following example invokes version 1 of a function named my-function asynchronously.
+    /// </para>
+    /// <code>
+    /// var input = new InvokeInput(FunctionName: &quot;my-function&quot;, InvocationType: new InvocationType(&quot;Event&quot;), Payload: Convert.FromBase64String(&quot;{}&quot;), Qualifier: &quot;1&quot;);
+    /// var output = await client.InvokeAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new InvokeOutput(Payload: Convert.FromBase64String(&quot;&quot;), StatusCode: 202);
+    /// </code>
+    /// </example>
     public Task<InvokeOutput> InvokeAsync(
         InvokeInput input,
         CancellationToken cancellationToken = default
@@ -4681,6 +7584,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;note&gt; &lt;p&gt;For asynchronous function invocation, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;Invokes a function asynchronously.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The payload limit is 256KB. For larger payloads, for up to 1MB, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;note&gt; &lt;p&gt;If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing is turned on.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To invoke a Lambda function asynchronously
+    /// </para>
+    /// <para>
+    /// The following example invokes a Lambda function asynchronously
+    /// </para>
+    /// <code>
+    /// var input = new InvokeAsyncInput(FunctionName: &quot;my-function&quot;, InvokeArgs: new MemoryStream(Convert.FromBase64String(&quot;{}&quot;)));
+    /// var output = await client.InvokeAsyncAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new InvokeAsyncOutput(Status: 202);
+    /// </code>
+    /// </example>
     public Task<InvokeAsyncOutput> InvokeAsyncAsync(
         InvokeAsyncInput input,
         CancellationToken cancellationToken = default
@@ -4705,6 +7623,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list a function's aliases
+    /// </para>
+    /// <para>
+    /// The following example returns a list of aliases for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListAliasesInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListAliasesAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListAliasesOutput(Aliases: new AliasConfiguration[] { new AliasConfiguration(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:BETA&quot;, Description: &quot;Production environment BLUE.&quot;, FunctionVersion: &quot;2&quot;, Name: &quot;BLUE&quot;, RevisionId: &quot;a410117f-xmpl-494e-8035-7e204bb7933b&quot;, RoutingConfig: new AliasRoutingConfiguration(AdditionalVersionWeights: new Dictionary&lt;string, double&gt; { { &quot;1&quot;, 0.7d } })), new AliasConfiguration(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:LIVE&quot;, Description: &quot;Production environment GREEN.&quot;, FunctionVersion: &quot;1&quot;, Name: &quot;GREEN&quot;, RevisionId: &quot;21d40116-xmpl-40ba-9360-3ea284da1bb5&quot;) });
+    /// </code>
+    /// </example>
     public Task<ListAliasesOutput> ListAliasesAsync(
         ListAliasesInput input,
         CancellationToken cancellationToken = default
@@ -4752,7 +7685,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -4812,7 +7745,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -4872,7 +7805,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -4936,7 +7869,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -4946,6 +7879,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list the event source mappings for a function
+    /// </para>
+    /// <para>
+    /// The following example returns a list of the event source mappings for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListEventSourceMappingsInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListEventSourceMappingsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListEventSourceMappingsOutput(EventSourceMappings: new EventSourceMappingConfiguration[] { new EventSourceMappingConfiguration(BatchSize: 5, EventSourceArn: &quot;arn:aws:sqs:us-west-2:123456789012:mySQSqueue&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15692845203330000L), State: &quot;Enabled&quot;, StateTransitionReason: &quot;USER_INITIATED&quot;, UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;) });
+    /// </code>
+    /// </example>
     public Task<ListEventSourceMappingsOutput> ListEventSourceMappingsAsync(
         ListEventSourceMappingsInput input,
         CancellationToken cancellationToken = default
@@ -4996,7 +7944,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5006,6 +7954,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To view a list of asynchronous invocation configurations
+    /// </para>
+    /// <para>
+    /// The following example returns a list of asynchronous invocation configurations for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListFunctionEventInvokeConfigsInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListFunctionEventInvokeConfigsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListFunctionEventInvokeConfigsOutput(FunctionEventInvokeConfigs: new FunctionEventInvokeConfig[] { new FunctionEventInvokeConfig(FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:GREEN&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15778244067190000L), MaximumEventAgeInSeconds: 1800, MaximumRetryAttempts: 2), new FunctionEventInvokeConfig(FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:BLUE&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15778243966530000L), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0) });
+    /// </code>
+    /// </example>
     public Task<ListFunctionEventInvokeConfigsOutput> ListFunctionEventInvokeConfigsAsync(
         ListFunctionEventInvokeConfigsInput input,
         CancellationToken cancellationToken = default
@@ -5056,7 +8019,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5116,7 +8079,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5180,7 +8143,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5190,6 +8153,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a list of Lambda functions
+    /// </para>
+    /// <para>
+    /// This operation returns a list of Lambda functions.
+    /// </para>
+    /// <code>
+    /// var input = new ListFunctionsInput();
+    /// var output = await client.ListFunctionsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListFunctionsOutput(Functions: new FunctionConfiguration[] { new FunctionConfiguration(CodeSha256: &quot;dBG9m8SGdmlEjw/JYXlhhvCrAv5TxvXsbL/RMr0fT/I=&quot;, CodeSize: 294L, Description: &quot;&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:helloworld&quot;, FunctionName: &quot;helloworld&quot;, Handler: &quot;helloworld.handler&quot;, LastModified: &quot;2019-09-23T18:32:33.857+0000&quot;, MemorySize: 128, RevisionId: &quot;1718e831-badf-4253-9518-d0644210af7b&quot;, Role: &quot;arn:aws:iam::123456789012:role/service-role/MyTestFunction-role-zgur6bf4&quot;, Runtime: new Runtime(&quot;nodejs10.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;), new FunctionConfiguration(CodeSha256: &quot;sU0cJ2/hOZevwV/lTxCuQqK3gDZP3i8gUoqUUVRmY6E=&quot;, CodeSize: 266L, Description: &quot;&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, LastModified: &quot;2019-10-01T16:47:28.490+0000&quot;, MemorySize: 256, RevisionId: &quot;93017fc9-59cb-41dc-901b-4845ce4bf668&quot;, Role: &quot;arn:aws:iam::123456789012:role/service-role/helloWorldPython-role-uy3l9qyq&quot;, Runtime: new Runtime(&quot;nodejs10.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;, VpcConfig: new VpcConfigResponse(SecurityGroupIds: new string[] {  }, SubnetIds: new string[] {  }, VpcId: &quot;&quot;)) }, NextMarker: &quot;&quot;);
+    /// </code>
+    /// </example>
     public Task<ListFunctionsOutput> ListFunctionsAsync(
         ListFunctionsInput input,
         CancellationToken cancellationToken = default
@@ -5237,7 +8215,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5301,7 +8279,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5311,6 +8289,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list versions of a layer
+    /// </para>
+    /// <para>
+    /// The following example displays information about the versions for the layer named blank-java-lib
+    /// </para>
+    /// <code>
+    /// var input = new ListLayerVersionsInput(LayerName: &quot;blank-java-lib&quot;);
+    /// var output = await client.ListLayerVersionsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListLayerVersionsOutput(LayerVersions: new LayerVersionsListItem[] { new LayerVersionsListItem(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;java8&quot;) }, CreatedDate: &quot;2020-03-18T23:38:42.284+0000&quot;, Description: &quot;Dependencies for the blank-java sample app.&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:7&quot;, Version: 7L), new LayerVersionsListItem(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;java8&quot;) }, CreatedDate: &quot;2020-03-17T07:24:21.960+0000&quot;, Description: &quot;Dependencies for the blank-java sample app.&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:blank-java-lib:6&quot;, Version: 6L) });
+    /// </code>
+    /// </example>
     public Task<ListLayerVersionsOutput> ListLayerVersionsAsync(
         ListLayerVersionsInput input,
         CancellationToken cancellationToken = default
@@ -5358,7 +8351,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5368,6 +8361,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list the layers that are compatible with your function's runtime
+    /// </para>
+    /// <para>
+    /// The following example returns information about layers that are compatible with the Python 3.7 runtime.
+    /// </para>
+    /// <code>
+    /// var input = new ListLayersInput(CompatibleRuntime: new Runtime(&quot;python3.7&quot;));
+    /// var output = await client.ListLayersAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListLayersOutput(Layers: new LayersListItem[] { new LayersListItem(LatestMatchingVersion: new LayerVersionsListItem(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, CreatedDate: &quot;2018-11-15T00:37:46.592+0000&quot;, Description: &quot;My layer&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer:2&quot;, Version: 2L), LayerArn: &quot;arn:aws:lambda:us-east-2:123456789012:layer:my-layer&quot;, LayerName: &quot;my-layer&quot;) });
+    /// </code>
+    /// </example>
     public Task<ListLayersOutput> ListLayersAsync(
         ListLayersInput input,
         CancellationToken cancellationToken = default
@@ -5415,7 +8423,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5425,6 +8433,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get a list of provisioned concurrency configurations
+    /// </para>
+    /// <para>
+    /// The following example returns a list of provisioned concurrency configurations for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new ListProvisionedConcurrencyConfigsInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListProvisionedConcurrencyConfigsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListProvisionedConcurrencyConfigsOutput(ProvisionedConcurrencyConfigs: new ProvisionedConcurrencyConfigListItem[] { new ProvisionedConcurrencyConfigListItem(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:GREEN&quot;, LastModified: &quot;2019-12-31T20:29:00+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;)), new ProvisionedConcurrencyConfigListItem(AllocatedProvisionedConcurrentExecutions: 100, AvailableProvisionedConcurrentExecutions: 100, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:BLUE&quot;, LastModified: &quot;2019-12-31T20:28:49+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;READY&quot;)) });
+    /// </code>
+    /// </example>
     public Task<ListProvisionedConcurrencyConfigsOutput> ListProvisionedConcurrencyConfigsAsync(
         ListProvisionedConcurrencyConfigsInput input,
         CancellationToken cancellationToken = default
@@ -5479,7 +8502,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5489,6 +8512,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns a function, event source mapping, or code signing configuration's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt;. You can also view function tags with &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To retrieve the list of tags for a Lambda function
+    /// </para>
+    /// <para>
+    /// The following example displays the tags attached to the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new ListTagsInput(Resource: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;);
+    /// var output = await client.ListTagsAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListTagsOutput(Tags: new Dictionary&lt;string, string&gt; { { &quot;Category&quot;, &quot;Web Tools&quot; }, { &quot;Department&quot;, &quot;Sales&quot; } });
+    /// </code>
+    /// </example>
     public Task<ListTagsOutput> ListTagsAsync(
         ListTagsInput input,
         CancellationToken cancellationToken = default
@@ -5501,6 +8539,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To list versions of a function
+    /// </para>
+    /// <para>
+    /// The following example returns a list of versions of a function named my-function
+    /// </para>
+    /// <code>
+    /// var input = new ListVersionsByFunctionInput(FunctionName: &quot;my-function&quot;);
+    /// var output = await client.ListVersionsByFunctionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new ListVersionsByFunctionOutput(Versions: new FunctionConfiguration[] { new FunctionConfiguration(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, MemorySize: 256, RevisionId: &quot;850ca006-2d98-4ff4-86db-8766e9d32fe9&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 15, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;$LATEST&quot;), new FunctionConfiguration(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 31622400, RetentionPeriodInDays: 30), Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 5, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;1&quot;) });
+    /// </code>
+    /// </example>
     public Task<ListVersionsByFunctionOutput> ListVersionsByFunctionAsync(
         ListVersionsByFunctionInput input,
         CancellationToken cancellationToken = default
@@ -5551,7 +8604,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -5561,6 +8614,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt; from a ZIP archive. Each time you call &lt;code&gt;PublishLayerVersion&lt;/code&gt; with the same layer name, a new version is created.&lt;/p&gt; &lt;p&gt;Add layers to your function with &lt;a&gt;CreateFunction&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To create a Lambda layer version
+    /// </para>
+    /// <para>
+    /// The following example creates a new Python library layer version. The command retrieves the layer content a file named layer.zip in the specified S3 bucket.
+    /// </para>
+    /// <code>
+    /// var input = new PublishLayerVersionInput(Content: new LayerVersionContentInput(S3Bucket: &quot;lambda-layers-us-west-2-123456789012&quot;, S3Key: &quot;layer.zip&quot;), LayerName: &quot;my-layer&quot;, CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, Description: &quot;My Python layer&quot;, LicenseInfo: &quot;MIT&quot;);
+    /// var output = await client.PublishLayerVersionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PublishLayerVersionOutput(CompatibleRuntimes: new Runtime[] { new Runtime(&quot;python3.6&quot;), new Runtime(&quot;python3.7&quot;) }, Content: new LayerVersionContentOutput(CodeSha256: &quot;tv9jJO+rPbXUUXuRKi7CwHzKtLDkDRJLB3cC3Z/ouXo=&quot;, CodeSize: 169L, Location: &quot;https://awslambda-us-west-2-layers.s3.us-west-2.amazonaws.com/snapshots/123456789012/my-layer-4aaa2fbb-ff77-4b0a-ad92-5b78a716a96a?versionId=27iWyA73cCAYqyH...&quot;), CreatedDate: &quot;2018-11-14T23:03:52.894+0000&quot;, Description: &quot;My Python layer&quot;, LayerArn: &quot;arn:aws:lambda:us-west-2:123456789012:layer:my-layer&quot;, LayerVersionArn: &quot;arn:aws:lambda:us-west-2:123456789012:layer:my-layer:1&quot;, LicenseInfo: &quot;MIT&quot;, Version: 1L);
+    /// </code>
+    /// </example>
     public Task<PublishLayerVersionOutput> PublishLayerVersionAsync(
         PublishLayerVersionInput input,
         CancellationToken cancellationToken = default
@@ -5573,6 +8641,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Creates a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;version&lt;/a&gt; from the current code and configuration of a function. Use versions to create a snapshot of your function code and configuration that doesn't change.&lt;/p&gt; &lt;p&gt;Lambda doesn't publish a version if the function's configuration and code haven't changed since the last version. Use &lt;a&gt;UpdateFunctionCode&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt; to update the function before publishing a version.&lt;/p&gt; &lt;p&gt;Clients can invoke versions directly or with an alias. To create an alias, use &lt;a&gt;CreateAlias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To publish a version of a Lambda function
+    /// </para>
+    /// <para>
+    /// This operation publishes a version of a Lambda function
+    /// </para>
+    /// <code>
+    /// var input = new PublishVersionInput(FunctionName: &quot;myFunction&quot;, CodeSha256: &quot;&quot;, Description: &quot;&quot;);
+    /// var output = await client.PublishVersionAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PublishVersionOutput(CodeSha256: &quot;YFgDgEKG3ugvF1+pX64gV6tu9qNuIYNUdgJm8nCxsm4=&quot;, CodeSize: 5797206L, Description: &quot;Process image objects from Amazon S3.&quot;, Environment: new EnvironmentResponse(Variables: new Dictionary&lt;string, string&gt; { { &quot;BUCKET&quot;, &quot;my-bucket-1xpuxmplzrlbh&quot; }, { &quot;PREFIX&quot;, &quot;inbound&quot; } }), FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, KMSKeyArn: &quot;arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966&quot;, LastModified: &quot;2020-04-10T19:06:32.563+0000&quot;, LastUpdateStatus: new LastUpdateStatus(&quot;Successful&quot;), MemorySize: 256, RevisionId: &quot;b75dcd81-xmpl-48a8-a75a-93ba8b5b9727&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), State: new State(&quot;Active&quot;), Timeout: 5, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;Active&quot;)), Version: &quot;1&quot;);
+    /// </code>
+    /// </example>
     public Task<PublishVersionOutput> PublishVersionAsync(
         PublishVersionInput input,
         CancellationToken cancellationToken = default
@@ -5597,6 +8680,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Sets the maximum number of simultaneous executions for a function, and reserves capacity for that concurrency level.&lt;/p&gt; &lt;p&gt;Concurrency settings apply to the function as a whole, including all published versions and the unpublished version. Reserving concurrency both ensures that your function has capacity to process the specified number of events simultaneously, and prevents it from scaling beyond that level. Use &lt;a&gt;GetFunction&lt;/a&gt; to see the current setting for a function.&lt;/p&gt; &lt;p&gt;Use &lt;a&gt;GetAccountSettings&lt;/a&gt; to see your Regional concurrency limit. You can reserve concurrency for as many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for functions that aren't configured with a per-function limit. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html&quot;&gt;Lambda function scaling&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To configure a reserved concurrency limit for a function
+    /// </para>
+    /// <para>
+    /// The following example configures 100 reserved concurrent executions for the my-function function.
+    /// </para>
+    /// <code>
+    /// var input = new PutFunctionConcurrencyInput(FunctionName: &quot;my-function&quot;, ReservedConcurrentExecutions: 100);
+    /// var output = await client.PutFunctionConcurrencyAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutFunctionConcurrencyOutput(ReservedConcurrentExecutions: 100);
+    /// </code>
+    /// </example>
     public Task<PutFunctionConcurrencyOutput> PutFunctionConcurrencyAsync(
         PutFunctionConcurrencyInput input,
         CancellationToken cancellationToken = default
@@ -5609,6 +8707,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Configures options for &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt; on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use &lt;a&gt;UpdateFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To send an invocation record to a queue, topic, S3 bucket, function, or event bus, specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations&quot;&gt;destination&lt;/a&gt;. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue.&lt;/p&gt; &lt;note&gt; &lt;p&gt;S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To configure error handling for asynchronous invocation
+    /// </para>
+    /// <para>
+    /// The following example sets a maximum event age of one hour and disables retries for the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new PutFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// var output = await client.PutFunctionEventInvokeConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutFunctionEventInvokeConfigOutput(DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(), OnSuccess: new OnSuccess()), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:$LATEST&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// </code>
+    /// </example>
     public Task<PutFunctionEventInvokeConfigOutput> PutFunctionEventInvokeConfigAsync(
         PutFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -5645,6 +8758,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Adds a provisioned concurrency configuration to a function's alias or version.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To allocate provisioned concurrency
+    /// </para>
+    /// <para>
+    /// The following example allocates 100 provisioned concurrency for the BLUE alias of the specified function.
+    /// </para>
+    /// <code>
+    /// var input = new PutProvisionedConcurrencyConfigInput(FunctionName: &quot;my-function&quot;, ProvisionedConcurrentExecutions: 100, Qualifier: &quot;BLUE&quot;);
+    /// var output = await client.PutProvisionedConcurrencyConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new PutProvisionedConcurrencyConfigOutput(AllocatedProvisionedConcurrentExecutions: 0, LastModified: &quot;2019-11-21T19:32:12+0000&quot;, RequestedProvisionedConcurrentExecutions: 100, Status: new ProvisionedConcurrencyStatusEnum(&quot;IN_PROGRESS&quot;));
+    /// </code>
+    /// </example>
     public Task<PutProvisionedConcurrencyConfigOutput> PutProvisionedConcurrencyConfigAsync(
         PutProvisionedConcurrencyConfigInput input,
         CancellationToken cancellationToken = default
@@ -5685,6 +8813,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Removes a statement from the permissions policy for a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. For more information, see &lt;a&gt;AddLayerVersionPermission&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To delete layer-version permissions
+    /// </para>
+    /// <para>
+    /// The following example deletes permission for an account to configure a layer version.
+    /// </para>
+    /// <code>
+    /// var input = new RemoveLayerVersionPermissionInput(LayerName: &quot;my-layer&quot;, StatementId: &quot;xaccount&quot;, VersionNumber: 1L);
+    /// var output = await client.RemoveLayerVersionPermissionAsync(input);
+    /// </code>
+    /// </example>
     public Task<RemoveLayerVersionPermissionOutput> RemoveLayerVersionPermissionAsync(
         RemoveLayerVersionPermissionInput input,
         CancellationToken cancellationToken = default
@@ -5697,6 +8837,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Revokes function-use permission from an Amazon Web Services service or another Amazon Web Services account. You can get the ID of the statement from the output of &lt;a&gt;GetPolicy&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove a Lambda function's permissions
+    /// </para>
+    /// <para>
+    /// The following example removes a permissions statement named xaccount from the PROD alias of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new RemovePermissionInput(FunctionName: &quot;my-function&quot;, StatementId: &quot;xaccount&quot;, Qualifier: &quot;PROD&quot;);
+    /// var output = await client.RemovePermissionAsync(input);
+    /// </code>
+    /// </example>
     public Task<RemovePermissionOutput> RemovePermissionAsync(
         RemovePermissionInput input,
         CancellationToken cancellationToken = default
@@ -5769,6 +8921,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Adds &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; to a function, event source mapping, or code signing configuration.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To add tags to an existing Lambda function
+    /// </para>
+    /// <para>
+    /// The following example adds a tag with the key name DEPARTMENT and a value of 'Department A' to the specified Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new TagResourceInput(Resource: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, Tags: new Dictionary&lt;string, string&gt; { { &quot;DEPARTMENT&quot;, &quot;Department A&quot; } });
+    /// var output = await client.TagResourceAsync(input);
+    /// </code>
+    /// </example>
     public Task<TagResourceOutput> TagResourceAsync(
         TagResourceInput input,
         CancellationToken cancellationToken = default
@@ -5781,6 +8945,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Removes &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; from a function, event source mapping, or code signing configuration.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To remove tags from an existing Lambda function
+    /// </para>
+    /// <para>
+    /// The following example removes the tag with the key name DEPARTMENT tag from the my-function Lambda function.
+    /// </para>
+    /// <code>
+    /// var input = new UntagResourceInput(Resource: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function&quot;, TagKeys: new string[] { &quot;DEPARTMENT&quot; });
+    /// var output = await client.UntagResourceAsync(input);
+    /// </code>
+    /// </example>
     public Task<UntagResourceOutput> UntagResourceAsync(
         UntagResourceInput input,
         CancellationToken cancellationToken = default
@@ -5793,6 +8969,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Updates the configuration of a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a function alias
+    /// </para>
+    /// <para>
+    /// The following example updates the alias named BLUE to send 30% of traffic to version 2 and 70% to version 1.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateAliasInput(FunctionName: &quot;my-function&quot;, Name: &quot;BLUE&quot;, FunctionVersion: &quot;2&quot;, RoutingConfig: new AliasRoutingConfiguration(AdditionalVersionWeights: new Dictionary&lt;string, double&gt; { { &quot;1&quot;, 0.7d } }));
+    /// var output = await client.UpdateAliasAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateAliasOutput(AliasArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:my-function:BLUE&quot;, Description: &quot;Production environment BLUE.&quot;, FunctionVersion: &quot;2&quot;, Name: &quot;BLUE&quot;, RevisionId: &quot;594f41fb-xmpl-4c20-95c7-6ca5f2a92c93&quot;, RoutingConfig: new AliasRoutingConfiguration(AdditionalVersionWeights: new Dictionary&lt;string, double&gt; { { &quot;1&quot;, 0.7d } }));
+    /// </code>
+    /// </example>
     public Task<UpdateAliasOutput> UpdateAliasAsync(
         UpdateAliasInput input,
         CancellationToken cancellationToken = default
@@ -5829,6 +9020,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a Lambda function event source mapping
+    /// </para>
+    /// <para>
+    /// This operation updates a Lambda function event source mapping
+    /// </para>
+    /// <code>
+    /// var input = new UpdateEventSourceMappingInput(UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;, BatchSize: 123, Enabled: true, FunctionName: &quot;myFunction&quot;);
+    /// var output = await client.UpdateEventSourceMappingAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateEventSourceMappingOutput(BatchSize: 123, EventSourceArn: &quot;arn:aws:s3:::examplebucket/*&quot;, FunctionArn: &quot;arn:aws:lambda:us-west-2:123456789012:function:myFunction&quot;, LastModified: DateTimeOffset.Parse(&quot;2016-11-21T19:49:20.006Z&quot;, CultureInfo.InvariantCulture), LastProcessingResult: &quot;&quot;, State: &quot;&quot;, StateTransitionReason: &quot;&quot;, UUID: &quot;a1b2c3d4-5678-90ab-cdef-11111EXAMPLE&quot;);
+    /// </code>
+    /// </example>
     public Task<UpdateEventSourceMappingOutput> UpdateEventSourceMappingAsync(
         UpdateEventSourceMappingInput input,
         CancellationToken cancellationToken = default
@@ -5841,6 +9047,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html&quot;&gt;Configuring code signing for Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Image&lt;/code&gt;, then you must specify the code package in &lt;code&gt;ImageUri&lt;/code&gt; as the URI of a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt; in the Amazon ECR registry.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Zip&lt;/code&gt;, then you must specify the deployment package as a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;. Enter the Amazon S3 bucket and key of the code .zip file location. You can also provide the function code inline using the &lt;code&gt;ZipFile&lt;/code&gt; field.&lt;/p&gt; &lt;p&gt;The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function.&lt;/p&gt; &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a Lambda function's code
+    /// </para>
+    /// <para>
+    /// The following example replaces the code of the unpublished ($LATEST) version of a function named my-function with the contents of the specified zip file in Amazon S3.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateFunctionCodeInput(FunctionName: &quot;my-function&quot;, S3Bucket: &quot;my-bucket-1xpuxmplzrlbh&quot;, S3Key: &quot;function.zip&quot;);
+    /// var output = await client.UpdateFunctionCodeAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateFunctionCodeOutput(CodeSha256: &quot;PFn4S+er27qk+UuZSTKEQfNKG/XNn7QJs90mJgq6oH8=&quot;, CodeSize: 308L, Description: &quot;&quot;, FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, LastModified: &quot;2019-08-14T22:26:11.234+0000&quot;, MemorySize: 128, RevisionId: &quot;873282ed-xmpl-4dc8-a069-d0c647e470c6&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;);
+    /// </code>
+    /// </example>
     public Task<UpdateFunctionCodeOutput> UpdateFunctionCodeAsync(
         UpdateFunctionCodeInput input,
         CancellationToken cancellationToken = default
@@ -5853,6 +9074,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Modify the version-specific settings of a Lambda function.&lt;/p&gt; &lt;p&gt;When you update a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but you can still invoke it. The &lt;code&gt;LastUpdateStatus&lt;/code&gt;, &lt;code&gt;LastUpdateStatusReason&lt;/code&gt;, and &lt;code&gt;LastUpdateStatusReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the update is complete and the function is processing events with the new configuration. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version.&lt;/p&gt; &lt;p&gt;To configure function concurrency, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;. To grant invoke permissions to an Amazon Web Services account or Amazon Web Services service, use &lt;a&gt;AddPermission&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update a Lambda function's configuration
+    /// </para>
+    /// <para>
+    /// The following example modifies the memory size to be 256 MB for the unpublished ($LATEST) version of a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateFunctionConfigurationInput(FunctionName: &quot;my-function&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 3600, RetentionPeriodInDays: 45), MemorySize: 256);
+    /// var output = await client.UpdateFunctionConfigurationAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateFunctionConfigurationOutput(CodeSha256: &quot;PFn4S+er27qk+UuZSTKEQfNKG/XNn7QJs90mJgq6oH8=&quot;, CodeSize: 308L, Description: &quot;&quot;, DurableConfig: new DurableConfig(ExecutionTimeout: 3600, RetentionPeriodInDays: 45), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function&quot;, FunctionName: &quot;my-function&quot;, Handler: &quot;index.handler&quot;, LastModified: &quot;2019-08-14T22:26:11.234+0000&quot;, MemorySize: 256, RevisionId: &quot;873282ed-xmpl-4dc8-a069-d0c647e470c6&quot;, Role: &quot;arn:aws:iam::123456789012:role/lambda-role&quot;, Runtime: new Runtime(&quot;nodejs12.x&quot;), Timeout: 3, TracingConfig: new TracingConfigResponse(Mode: new TracingMode(&quot;PassThrough&quot;)), Version: &quot;$LATEST&quot;);
+    /// </code>
+    /// </example>
     public Task<UpdateFunctionConfigurationOutput> UpdateFunctionConfigurationAsync(
         UpdateFunctionConfigurationInput input,
         CancellationToken cancellationToken = default
@@ -5865,6 +9101,21 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     /// <summary>
     /// &lt;p&gt;Updates the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To update an asynchronous invocation configuration
+    /// </para>
+    /// <para>
+    /// The following example adds an on-failure destination to the existing asynchronous invocation configuration for a function named my-function.
+    /// </para>
+    /// <code>
+    /// var input = new UpdateFunctionEventInvokeConfigInput(FunctionName: &quot;my-function&quot;, DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(Destination: &quot;arn:aws:sqs:us-east-2:123456789012:destination&quot;)));
+    /// var output = await client.UpdateFunctionEventInvokeConfigAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new UpdateFunctionEventInvokeConfigOutput(DestinationConfig: new DestinationConfig(OnFailure: new OnFailure(Destination: &quot;arn:aws:sqs:us-east-2:123456789012:destination&quot;), OnSuccess: new OnSuccess()), FunctionArn: &quot;arn:aws:lambda:us-east-2:123456789012:function:my-function:$LATEST&quot;, LastModified: DateTimeOffset.UnixEpoch.AddTicks(15736878964930000L), MaximumEventAgeInSeconds: 3600, MaximumRetryAttempts: 0);
+    /// </code>
+    /// </example>
     public Task<UpdateFunctionEventInvokeConfigOutput> UpdateFunctionEventInvokeConfigAsync(
         UpdateFunctionEventInvokeConfigInput input,
         CancellationToken cancellationToken = default
@@ -5896,5 +9147,25 @@ public sealed class AWSGirApiServiceClientConfig : SmithyClientConfig
     public AWSGirApiServiceClientConfig() { }
 
     public AWSGirApiServiceClientConfig(AWSGirApiServiceClientConfig source)
-        : base(source) { }
+        : base(source)
+    {
+        Region = source.Region;
+        UseDualStack = source.UseDualStack;
+        UseFips = source.UseFips;
+    }
+
+    /// <summary>
+    /// The AWS region requests are sent to, such as us-east-1.
+    /// </summary>
+    public string? Region { get; set; }
+
+    /// <summary>
+    /// Whether to use dual-stack (IPv4 and IPv6) endpoints.
+    /// </summary>
+    public bool? UseDualStack { get; set; }
+
+    /// <summary>
+    /// Whether to use FIPS endpoints.
+    /// </summary>
+    public bool? UseFips { get; set; }
 }

@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class S3FilesConfigSchema
 {
@@ -14,54 +14,28 @@ public static partial class S3FilesConfigSchema
         public global::Com.Amazonaws.Lambda.DirectS3Read? DirectS3Read { get; set; }
     }
 
-    public static StructSchema<S3FilesConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.S3FilesConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<S3FilesConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.S3FilesConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#S3FilesConfig"),
-            [
-                new(
-                    "DirectS3Read",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies if a function reads from the file system for the lowest latency, or through Amazon S3 Files feature \"direct Amazon S3 bucket reads\" for the highest throughput. Valid values:</p> <ul> <li> <p> <code>AUTO</code> (default) – Direct reads are active for functions you configure with 512 MB or more of memory.</p> </li> <li> <p> <code>ENABLED</code> – Enforces all reads are directly from the Amazon S3 bucket, regardless of available memory (less than 512 MB).</p> </li> <li> <p> <code>DISABLED</code> – Routes all reads through the file system, regardless of memory configuration.</p> </li> </ul> <p>To use direct reads, you must grant the execution role the <code>s3:GetObject</code> and <code>s3:GetObjectVersion</code> permissions. If a direct read fails, Lambda automatically falls back to reading through the file system.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Setting controls how your function accesses data from an Amazon S3 file system.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("DirectS3Read", Target0)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.DirectS3Read?> Target0 =
-            Schemas.Nullable(DirectS3ReadSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(DirectS3ReadSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override S3FilesConfig Build(Builder builder) =>
-            new S3FilesConfig(builder.DirectS3Read);
+        public override global::Com.Amazonaws.Lambda.S3FilesConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.S3FilesConfig(builder.DirectS3Read);
 
         public override void SerializeMembers<TSerializer>(
-            S3FilesConfig value,
+            global::Com.Amazonaws.Lambda.S3FilesConfig value,
             ref TSerializer serializer
         )
         {

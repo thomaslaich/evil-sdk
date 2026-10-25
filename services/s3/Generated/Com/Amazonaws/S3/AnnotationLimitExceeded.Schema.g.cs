@@ -5,38 +5,34 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationLimitExceededSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<AnnotationLimitExceeded, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnnotationLimitExceeded,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnnotationLimitExceeded, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnnotationLimitExceeded, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnnotationLimitExceeded"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request would exceed the maximum number of annotations allowed per object.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnnotationLimitExceeded Build(Builder builder) =>
-            new AnnotationLimitExceeded(null);
+        public override global::Com.Amazonaws.S3.AnnotationLimitExceeded Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AnnotationLimitExceeded(null);
 
         public override void SerializeMembers<TSerializer>(
-            AnnotationLimitExceeded value,
+            global::Com.Amazonaws.S3.AnnotationLimitExceeded value,
             ref TSerializer serializer
         ) { }
 

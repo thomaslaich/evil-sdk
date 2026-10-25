@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TransitionDefaultMinimumObjectSizeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<TransitionDefaultMinimumObjectSize> Schema { get; } =
-        Schemas.StringEnum<TransitionDefaultMinimumObjectSize>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<TransitionDefaultMinimumObjectSize>(
             ShapeId.Parse("com.amazonaws.s3#TransitionDefaultMinimumObjectSize"),
             values: ["varies_by_storage_class", "all_storage_classes_128K"],
             traits:

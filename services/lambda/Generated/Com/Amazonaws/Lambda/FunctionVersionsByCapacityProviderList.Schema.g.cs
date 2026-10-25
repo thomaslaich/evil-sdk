@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionVersionsByCapacityProviderListSchema
 {
     public static ListSchema<
-        FunctionVersionsByCapacityProviderList,
-        FunctionVersionsByCapacityProviderListItem,
-        List<FunctionVersionsByCapacityProviderListItem>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem>,
+        global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem,
+        List<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            FunctionVersionsByCapacityProviderList,
-            FunctionVersionsByCapacityProviderListItem,
-            List<FunctionVersionsByCapacityProviderListItem>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem>,
+            global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem,
+            List<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem>
         >(
             ShapeId.Parse("com.amazonaws.lambda#FunctionVersionsByCapacityProviderList"),
             ShapeKind.List,
@@ -31,49 +31,42 @@ public static partial class FunctionVersionsByCapacityProviderListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)50) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(50m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionVersionsByCapacityProviderListItem> Target0 =
-            Schemas.Lazy(() => FunctionVersionsByCapacityProviderListItemSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                FunctionVersionsByCapacityProviderListItemSchema.Schema!
+            );
 
-        public override IEnumerable<FunctionVersionsByCapacityProviderListItem> GetElements(
-            FunctionVersionsByCapacityProviderList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> value
+        ) => value;
 
-        public override List<FunctionVersionsByCapacityProviderListItem> CreateTypedBuilder() =>
+        public override List<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> CreateTypedBuilder() =>
             new();
 
         public override void Add(
-            List<FunctionVersionsByCapacityProviderListItem> builder,
-            FunctionVersionsByCapacityProviderListItem value
+            List<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> builder,
+            global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem value
         ) => builder.Add(value);
 
-        public override FunctionVersionsByCapacityProviderList Build(
-            List<FunctionVersionsByCapacityProviderListItem> builder
-        ) => FunctionVersionsByCapacityProviderList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> Build(
+            List<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FunctionVersionsByCapacityProviderList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -92,7 +85,7 @@ public static partial class FunctionVersionsByCapacityProviderListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<FunctionVersionsByCapacityProviderListItem> builder,
+            List<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(

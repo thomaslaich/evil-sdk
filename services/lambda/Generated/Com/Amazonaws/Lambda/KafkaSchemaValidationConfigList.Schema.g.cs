@@ -6,63 +6,56 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class KafkaSchemaValidationConfigListSchema
 {
     public static ListSchema<
-        KafkaSchemaValidationConfigList,
-        KafkaSchemaValidationConfig,
-        List<KafkaSchemaValidationConfig>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig>,
+        global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig,
+        List<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            KafkaSchemaValidationConfigList,
-            KafkaSchemaValidationConfig,
-            List<KafkaSchemaValidationConfig>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig>,
+            global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig,
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig>
         >(
             ShapeId.Parse("com.amazonaws.lambda#KafkaSchemaValidationConfigList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<KafkaSchemaValidationConfig> Target0 =
-            Schemas.Lazy(() => KafkaSchemaValidationConfigSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                KafkaSchemaValidationConfigSchema.Schema!
+            );
 
-        public override IEnumerable<KafkaSchemaValidationConfig> GetElements(
-            KafkaSchemaValidationConfigList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> value
+        ) => value;
 
-        public override List<KafkaSchemaValidationConfig> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<KafkaSchemaValidationConfig> builder,
-            KafkaSchemaValidationConfig value
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> builder,
+            global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig value
         ) => builder.Add(value);
 
-        public override KafkaSchemaValidationConfigList Build(
-            List<KafkaSchemaValidationConfig> builder
-        ) => KafkaSchemaValidationConfigList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> Build(
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            KafkaSchemaValidationConfigList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -77,7 +70,7 @@ public static partial class KafkaSchemaValidationConfigListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<KafkaSchemaValidationConfig> builder,
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(KafkaSchemaValidationConfigSchema.Schema));
     }

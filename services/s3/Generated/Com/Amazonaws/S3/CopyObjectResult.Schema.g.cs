@@ -6,7 +6,7 @@ using System;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CopyObjectResultSchema
 {
@@ -27,219 +27,85 @@ public static partial class CopyObjectResultSchema
         public string? ChecksumXXHASH128 { get; set; }
     }
 
-    public static StructSchema<CopyObjectResult, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.CopyObjectResult, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CopyObjectResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CopyObjectResult, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CopyObjectResult"),
             [
-                new(
-                    "ETag",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Returns the ETag of the new object. The ETag reflects only changes to the contents of an object, not\n      its metadata.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "LastModified",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Creation date of the object.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumType",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The checksum type that is used to calculate the object’s checksum value. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumCRC32",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 32-bit <code>CRC32</code> checksum of the object. This checksum is only present if the checksum was uploaded\n    with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumCRC32C",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 32-bit <code>CRC32C</code> checksum of the object. This checksum is only present if the checksum was uploaded\n    with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumCRC64NVME",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>CRC64NVME</code> checksum of the object. This checksum is present\n      if the object being copied was uploaded with the <code>CRC64NVME</code> checksum algorithm, or if the\n      object was uploaded without a checksum (and Amazon S3 added the default checksum, <code>CRC64NVME</code>, to\n      the uploaded object). For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumSHA1",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 160-bit <code>SHA1</code> digest of the object. This checksum is only present if the checksum was uploaded\n    with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumSHA256",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 256-bit <code>SHA256</code> digest of the object. This checksum is only present if the checksum was uploaded\n    with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">\n    Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumSHA512",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 512-bit <code>SHA512</code> digest of the object. This checksum is only present\n      if the object was uploaded with the <code>SHA512</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumMD5",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 128-bit <code>MD5</code> digest of the object. This checksum is only present\n      if the object was uploaded with the <code>MD5</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumXXHASH64",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>XXHASH64</code> checksum of the object. This checksum is only present\n      if the object was uploaded with the <code>XXHASH64</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumXXHASH3",
-                    Target11,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>XXHASH3</code> checksum of the object. This checksum is only present\n      if the object was uploaded with the <code>XXHASH3</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumXXHASH128",
-                    Target12,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 128-bit <code>XXHASH128</code> checksum of the object. This checksum is only present\n      if the object was uploaded with the <code>XXHASH128</code> checksum algorithm. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ETag", Target0),
+                new("LastModified", Target1),
+                new("ChecksumType", Target2),
+                new("ChecksumCRC32", Target3),
+                new("ChecksumCRC32C", Target4),
+                new("ChecksumCRC64NVME", Target5),
+                new("ChecksumSHA1", Target6),
+                new("ChecksumSHA256", Target7),
+                new("ChecksumSHA512", Target8),
+                new("ChecksumMD5", Target9),
+                new("ChecksumXXHASH64", Target10),
+                new("ChecksumXXHASH3", Target11),
+                new("ChecksumXXHASH128", Target12),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for all response elements.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target2 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target12 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CopyObjectResult Build(Builder builder) =>
-            new CopyObjectResult(
+        public override global::Com.Amazonaws.S3.CopyObjectResult Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CopyObjectResult(
                 builder.ChecksumCRC32,
                 builder.ChecksumCRC32C,
                 builder.ChecksumCRC64NVME,
@@ -256,7 +122,7 @@ public static partial class CopyObjectResultSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CopyObjectResult value,
+            global::Com.Amazonaws.S3.CopyObjectResult value,
             ref TSerializer serializer
         )
         {

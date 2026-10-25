@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationTableConfigurationSchema
 {
     public sealed class Builder
     {
-        public AnnotationConfigurationState? ConfigurationState { get; set; }
-        public MetadataTableEncryptionConfiguration? EncryptionConfiguration { get; set; }
+        public global::Com.Amazonaws.S3.AnnotationConfigurationState? ConfigurationState { get; set; }
+        public global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration? EncryptionConfiguration { get; set; }
         public string? Role { get; set; }
     }
 
-    public static StructSchema<AnnotationTableConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnnotationTableConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnnotationTableConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnnotationTableConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnnotationTableConfiguration"),
             [
                 new(
@@ -31,55 +33,36 @@ public static partial class AnnotationTableConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The state of the annotation table. Valid values are <code>ENABLED</code> and <code>DISABLED</code>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new("EncryptionConfiguration", Target1),
-                new(
-                    "Role",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the IAM role used to manage the annotation table.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Role", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the configuration for the annotation table associated with a bucket's Amazon S3 Metadata\n      configuration. The annotation table is an Iceberg table that records annotation events for objects\n      in the bucket.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<AnnotationConfigurationState?> Target0 =
-            Schemas.Nullable(AnnotationConfigurationStateSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<MetadataTableEncryptionConfiguration?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => MetadataTableEncryptionConfigurationSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnnotationConfigurationState?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(AnnotationConfigurationStateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MetadataTableEncryptionConfigurationSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnnotationTableConfiguration Build(Builder builder) =>
-            new AnnotationTableConfiguration(
+        public override global::Com.Amazonaws.S3.AnnotationTableConfiguration Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.AnnotationTableConfiguration(
                 builder.ConfigurationState
                     ?? throw new MissingRequiredMemberException("ConfigurationState"),
                 builder.EncryptionConfiguration,
@@ -87,7 +70,7 @@ public static partial class AnnotationTableConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AnnotationTableConfiguration value,
+            global::Com.Amazonaws.S3.AnnotationTableConfiguration value,
             ref TSerializer serializer
         )
         {
@@ -127,8 +110,10 @@ public static partial class AnnotationTableConfigurationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? AnnotationConfigurationState.FromValue(value0)
-                                : default(AnnotationConfigurationState)
+                                ? global::Com.Amazonaws.S3.AnnotationConfigurationState.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.AnnotationConfigurationState)
                         );
                     break;
                 case 1:

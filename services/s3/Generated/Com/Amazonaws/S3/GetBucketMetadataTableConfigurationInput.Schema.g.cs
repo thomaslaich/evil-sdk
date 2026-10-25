@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetadataTableConfigurationInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class GetBucketMetadataTableConfigurationInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<GetBucketMetadataTableConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketMetadataTableConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketMetadataTableConfigurationInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class GetBucketMetadataTableConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The general purpose bucket that corresponds to the metadata table configuration that you want to\n      retrieve. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -60,12 +56,6 @@ public static partial class GetBucketMetadataTableConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The expected owner of the general purpose bucket that you want to retrieve the metadata table\n      configuration for. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -85,20 +75,26 @@ public static partial class GetBucketMetadataTableConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketMetadataTableConfigurationInput Build(Builder builder) =>
-            new GetBucketMetadataTableConfigurationInput(
+        public override global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketMetadataTableConfigurationInput value,
+            global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationInput value,
             ref TSerializer serializer
         )
         {

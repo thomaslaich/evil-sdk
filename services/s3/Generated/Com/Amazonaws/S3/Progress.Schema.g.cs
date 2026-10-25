@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ProgressSchema
 {
@@ -17,10 +17,11 @@ public static partial class ProgressSchema
         public long? BytesReturned { get; set; }
     }
 
-    public static StructSchema<Progress, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Progress, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Progress, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Progress, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Progress"),
             [
                 new(
@@ -31,10 +32,6 @@ public static partial class ProgressSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The current number of object bytes scanned.</p>")
                         ),
                     ]
                 ),
@@ -47,12 +44,6 @@ public static partial class ProgressSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The current number of uncompressed object bytes processed.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -64,42 +55,30 @@ public static partial class ProgressSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The current number of bytes of records payload data returned.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>This data type contains information about progress of an operation.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 = Schemas.Nullable(
-            Schemas.Long
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Progress Build(Builder builder) =>
-            new Progress(builder.BytesProcessed, builder.BytesReturned, builder.BytesScanned);
+        public override global::Com.Amazonaws.S3.Progress Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Progress(
+                builder.BytesProcessed,
+                builder.BytesReturned,
+                builder.BytesScanned
+            );
 
         public override void SerializeMembers<TSerializer>(
-            Progress value,
+            global::Com.Amazonaws.S3.Progress value,
             ref TSerializer serializer
         )
         {

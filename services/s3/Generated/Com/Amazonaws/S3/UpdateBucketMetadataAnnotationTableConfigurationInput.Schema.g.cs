@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataAnnotationTableConfigurationInputSchema
 {
@@ -15,17 +15,20 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
-        public AnnotationTableConfigurationUpdates? AnnotationTableConfiguration { get; set; }
+        public global::Com.Amazonaws.S3.AnnotationTableConfigurationUpdates? AnnotationTableConfiguration { get; set; }
         public string? ExpectedBucketOwner { get; set; }
     }
 
     public static StructSchema<
-        UpdateBucketMetadataAnnotationTableConfigurationInput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationInput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateBucketMetadataAnnotationTableConfigurationInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#UpdateBucketMetadataAnnotationTableConfigurationInput"),
             [
                 new(
@@ -34,12 +37,6 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket whose annotation table configuration to update.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -65,10 +62,6 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Base64-encoded MD5 digest of the message body.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -79,10 +72,6 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Checksum algorithm for the request payload.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -95,12 +84,6 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The annotation table configuration updates to apply.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -120,10 +103,6 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The account ID of the expected bucket owner.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -146,24 +125,32 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target2 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<AnnotationTableConfigurationUpdates?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => AnnotationTableConfigurationUpdatesSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnnotationTableConfigurationUpdates?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    AnnotationTableConfigurationUpdatesSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateBucketMetadataAnnotationTableConfigurationInput Build(
+        public override global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationInput Build(
             Builder builder
         ) =>
-            new UpdateBucketMetadataAnnotationTableConfigurationInput(
+            new global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationInput(
                 builder.AnnotationTableConfiguration
                     ?? throw new MissingRequiredMemberException("AnnotationTableConfiguration"),
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
@@ -173,7 +160,7 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationInpu
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateBucketMetadataAnnotationTableConfigurationInput value,
+            global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationInput value,
             ref TSerializer serializer
         )
         {

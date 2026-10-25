@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationListSchema
 {
     public static ListSchema<
-        AnnotationList,
-        AnnotationEntry,
-        List<AnnotationEntry>
+        IReadOnlyList<global::Com.Amazonaws.S3.AnnotationEntry>,
+        global::Com.Amazonaws.S3.AnnotationEntry,
+        List<global::Com.Amazonaws.S3.AnnotationEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<AnnotationList, AnnotationEntry, List<AnnotationEntry>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.AnnotationEntry>,
+            global::Com.Amazonaws.S3.AnnotationEntry,
+            List<global::Com.Amazonaws.S3.AnnotationEntry>
+        >(
             ShapeId.Parse("com.amazonaws.s3#AnnotationList"),
             ShapeKind.List,
             Target0,
@@ -25,26 +29,31 @@ public static partial class AnnotationListSchema
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("AnnotationEntry"))]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<AnnotationEntry> Target0 =
-            Schemas.Lazy(() => AnnotationEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnnotationEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => AnnotationEntrySchema.Schema!);
 
-        public override IEnumerable<AnnotationEntry> GetElements(AnnotationList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.AnnotationEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.AnnotationEntry> value
+        ) => value;
 
-        public override List<AnnotationEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.AnnotationEntry> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<AnnotationEntry> builder, AnnotationEntry value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.AnnotationEntry> builder,
+            global::Com.Amazonaws.S3.AnnotationEntry value
+        ) => builder.Add(value);
 
-        public override AnnotationList Build(List<AnnotationEntry> builder) =>
-            AnnotationList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.AnnotationEntry> Build(
+            List<global::Com.Amazonaws.S3.AnnotationEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            AnnotationList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.AnnotationEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -59,7 +68,7 @@ public static partial class AnnotationListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<AnnotationEntry> builder,
+            List<global::Com.Amazonaws.S3.AnnotationEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(AnnotationEntrySchema.Schema));
     }

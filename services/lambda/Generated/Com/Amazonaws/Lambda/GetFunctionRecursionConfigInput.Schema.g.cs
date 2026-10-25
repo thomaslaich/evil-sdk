@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetFunctionRecursionConfigInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetFunctionRecursionConfigInputSchema
         public string? FunctionName { get; set; }
     }
 
-    public static StructSchema<GetFunctionRecursionConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFunctionRecursionConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetFunctionRecursionConfigInput"),
             [
                 new(
@@ -29,10 +31,6 @@ public static partial class GetFunctionRecursionConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,8 +39,8 @@ public static partial class GetFunctionRecursionConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -56,10 +54,6 @@ public static partial class GetFunctionRecursionConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -69,10 +63,6 @@ public static partial class GetFunctionRecursionConfigInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetFunctionRecursionConfigRequest")
                 ),
@@ -80,17 +70,21 @@ public static partial class GetFunctionRecursionConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFunctionRecursionConfigInput Build(Builder builder) =>
-            new GetFunctionRecursionConfigInput(
+        public override global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetFunctionRecursionConfigInput value,
+            global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigInput value,
             ref TSerializer serializer
         )
         {

@@ -6,25 +6,27 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationTableConfigurationResultSchema
 {
     public sealed class Builder
     {
-        public AnnotationConfigurationState? ConfigurationState { get; set; }
+        public global::Com.Amazonaws.S3.AnnotationConfigurationState? ConfigurationState { get; set; }
         public string? TableStatus { get; set; }
-        public ErrorDetails? Error { get; set; }
+        public global::Com.Amazonaws.S3.ErrorDetails? Error { get; set; }
         public string? TableName { get; set; }
         public string? TableArn { get; set; }
         public string? Role { get; set; }
     }
 
-    public static StructSchema<AnnotationTableConfigurationResult, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnnotationTableConfigurationResult,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnnotationTableConfigurationResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnnotationTableConfigurationResult, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnnotationTableConfigurationResult"),
             [
                 new(
@@ -34,94 +36,49 @@ public static partial class AnnotationTableConfigurationResultSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The current configuration state of the annotation table.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "TableStatus",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The provisioning status of the annotation table. Possible values: <code>CREATING</code>, <code>BACKFILLING</code>, <code>ACTIVE</code>, <code>FAILED</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("TableStatus", Target1),
                 new("Error", Target2),
-                new(
-                    "TableName",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the annotation table.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "TableArn",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The ARN of the annotation table.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Role",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the IAM role associated with the annotation table.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("TableName", Target3),
+                new("TableArn", Target4),
+                new("Role", Target5),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the current state of the annotation table associated with a bucket's Amazon S3 Metadata\n      configuration, including its provisioning status and identifiers.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<AnnotationConfigurationState?> Target0 =
-            Schemas.Nullable(AnnotationConfigurationStateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnnotationConfigurationState?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(AnnotationConfigurationStateSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorDetails?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorDetailsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ErrorDetails?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorDetailsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnnotationTableConfigurationResult Build(Builder builder) =>
-            new AnnotationTableConfigurationResult(
+        public override global::Com.Amazonaws.S3.AnnotationTableConfigurationResult Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.AnnotationTableConfigurationResult(
                 builder.ConfigurationState
                     ?? throw new MissingRequiredMemberException("ConfigurationState"),
                 builder.Error,
@@ -132,7 +89,7 @@ public static partial class AnnotationTableConfigurationResultSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AnnotationTableConfigurationResult value,
+            global::Com.Amazonaws.S3.AnnotationTableConfigurationResult value,
             ref TSerializer serializer
         )
         {
@@ -192,8 +149,10 @@ public static partial class AnnotationTableConfigurationResultSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? AnnotationConfigurationState.FromValue(value0)
-                                : default(AnnotationConfigurationState)
+                                ? global::Com.Amazonaws.S3.AnnotationConfigurationState.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.AnnotationConfigurationState)
                         );
                     break;
                 case 1:

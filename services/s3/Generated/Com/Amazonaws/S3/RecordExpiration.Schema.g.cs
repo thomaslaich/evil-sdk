@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RecordExpirationSchema
 {
     public sealed class Builder
     {
-        public ExpirationState? Expiration { get; set; }
+        public global::Com.Amazonaws.S3.ExpirationState? Expiration { get; set; }
         public int? Days { get; set; }
     }
 
-    public static StructSchema<RecordExpiration, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.RecordExpiration, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RecordExpiration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RecordExpiration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RecordExpiration"),
             [
                 new(
@@ -28,12 +29,6 @@ public static partial class RecordExpirationSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      Specifies whether journal table record expiration is enabled or disabled.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,41 +44,27 @@ public static partial class RecordExpirationSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      If you enable journal table record expiration, you can set the number of days to retain your \n      journal table records. Journal table records must be retained for a minimum of 7 days. To set \n      this value, specify any whole number from <code>7</code> to <code>2147483647</code>. For example, \n      to retain your journal table records for one year, set this value to <code>365</code>.\n    </p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The journal table record expiration settings for a journal table in an S3 Metadata configuration.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ExpirationState?> Target0 =
-            Schemas.Nullable(ExpirationStateSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ExpirationState?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ExpirationStateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RecordExpiration Build(Builder builder) =>
-            new RecordExpiration(
+        public override global::Com.Amazonaws.S3.RecordExpiration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RecordExpiration(
                 builder.Expiration ?? throw new MissingRequiredMemberException("Expiration"),
                 builder.Days
             );
 
         public override void SerializeMembers<TSerializer>(
-            RecordExpiration value,
+            global::Com.Amazonaws.S3.RecordExpiration value,
             ref TSerializer serializer
         )
         {
@@ -111,8 +92,8 @@ public static partial class RecordExpirationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ExpirationState.FromValue(value0)
-                                : default(ExpirationState)
+                                ? global::Com.Amazonaws.S3.ExpirationState.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ExpirationState)
                         );
                     break;
                 case 1:

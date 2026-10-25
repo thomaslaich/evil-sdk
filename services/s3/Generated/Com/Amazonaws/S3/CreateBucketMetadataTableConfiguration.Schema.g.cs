@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateBucketMetadataTableConfigurationSchema
 {
     public static OperationSchema<
-        CreateBucketMetadataTableConfigurationInput,
-        CreateBucketMetadataTableConfigurationOutput
+        global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationInput,
+        global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#CreateBucketMetadataTableConfiguration"),
-            Schemas.Lazy(() => CreateBucketMetadataTableConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => CreateBucketMetadataTableConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateBucketMetadataTableConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateBucketMetadataTableConfigurationOutputSchema.Schema!
+            ),
             [],
             [
                 new Trait(
@@ -31,19 +35,13 @@ public static partial class CreateBucketMetadataTableConfigurationSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<important>\n            <p>\n        We recommend that you create your S3 Metadata configurations by using the V2 \n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a> API operation. We no longer recommend using the V1 \n        <code>CreateBucketMetadataTableConfiguration</code> API operation.\n      </p>\n            <p>If you created your S3 Metadata configuration before July 15, 2025, we recommend that you delete \n        and re-create your configuration by using <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a> so that you can expire journal table records and create \n        a live inventory table.</p>\n         </important>\n         <p>Creates a V1 S3 Metadata configuration for a general purpose bucket. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-overview.html\">Accelerating\n        data discovery with S3 Metadata</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>To use this operation, you must have the following permissions. For more information, see\n              <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-permissions.html\">Setting up permissions for configuring metadata tables</a> in the\n              <i>Amazon S3 User Guide</i>.</p>\n               <p>If you want to encrypt your metadata tables with server-side encryption with Key Management Service\n            (KMS) keys (SSE-KMS), you need additional permissions. For more\n            information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-permissions.html\">\n              Setting up permissions for configuring metadata tables</a> in the\n            <i>Amazon S3 User Guide</i>.</p>\n               <p>If you also want to integrate your table bucket with Amazon Web Services analytics services so that you can\n            query your metadata table, you need additional permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-integrating-aws.html\"> Integrating\n              Amazon S3 Tables with Amazon Web Services analytics services</a> in the\n            <i>Amazon S3 User Guide</i>.</p>\n               <ul>\n                  <li>\n                     <p>\n                        <code>s3:CreateBucketMetadataTableConfiguration</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:CreateNamespace</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:GetTable</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:CreateTable</code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>\n                        <code>s3tables:PutTablePolicy</code>\n                     </p>\n                  </li>\n               </ul>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>CreateBucketMetadataTableConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetadataTableConfiguration.html\">DeleteBucketMetadataTableConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetadataTableConfiguration.html\">GetBucketMetadataTableConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("POST") },
-                            { "uri", Document.From("/{Bucket}?metadataTable") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?metadataTable") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

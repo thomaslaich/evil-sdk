@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ConditionSchema
 {
@@ -15,61 +15,35 @@ public static partial class ConditionSchema
         public string? KeyPrefixEquals { get; set; }
     }
 
-    public static StructSchema<Condition, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Condition, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Condition, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Condition, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Condition"),
-            [
-                new(
-                    "HttpErrorCodeReturnedEquals",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The HTTP error code when the redirect is applied. In the event of an error, if the error code equals\n      this value, then the specified redirect is applied. Required when parent element <code>Condition</code>\n      is specified and sibling <code>KeyPrefixEquals</code> is not specified. If both are specified, then both\n      must be true for the redirect to be applied.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "KeyPrefixEquals",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The object key name prefix when the redirect is applied. For example, to redirect requests for\n        <code>ExamplePage.html</code>, the key prefix will be <code>ExamplePage.html</code>. To redirect\n      request for all pages with the prefix <code>docs/</code>, the key prefix will be <code>/docs</code>,\n      which identifies all objects in the <code>docs/</code> folder. Required when the parent element\n        <code>Condition</code> is specified and sibling <code>HttpErrorCodeReturnedEquals</code> is not\n      specified. If both conditions are specified, both must be true for the redirect to be applied.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for describing a condition that must be met for the specified redirect to apply. For\n      example, 1. If request is for pages in the <code>/docs</code> folder, redirect to the\n        <code>/documents</code> folder. 2. If request results in HTTP error 4xx, redirect request to another\n      host where you might process the error.</p>"
-                    )
-                ),
-            ]
+            [new("HttpErrorCodeReturnedEquals", Target0), new("KeyPrefixEquals", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Condition Build(Builder builder) =>
-            new Condition(builder.HttpErrorCodeReturnedEquals, builder.KeyPrefixEquals);
+        public override global::Com.Amazonaws.S3.Condition Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Condition(
+                builder.HttpErrorCodeReturnedEquals,
+                builder.KeyPrefixEquals
+            );
 
         public override void SerializeMembers<TSerializer>(
-            Condition value,
+            global::Com.Amazonaws.S3.Condition value,
             ref TSerializer serializer
         )
         {

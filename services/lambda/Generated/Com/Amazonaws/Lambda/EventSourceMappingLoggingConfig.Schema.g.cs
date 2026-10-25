@@ -5,64 +5,43 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventSourceMappingLoggingConfigSchema
 {
     public sealed class Builder
     {
-        public EventSourceMappingSystemLogLevel? SystemLogLevel { get; set; }
+        public global::Com.Amazonaws.Lambda.EventSourceMappingSystemLogLevel? SystemLogLevel { get; set; }
     }
 
-    public static StructSchema<EventSourceMappingLoggingConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.EventSourceMappingLoggingConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EventSourceMappingLoggingConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.EventSourceMappingLoggingConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#EventSourceMappingLoggingConfig"),
-            [
-                new(
-                    "SystemLogLevel",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The log level you want your event source mapping to use. Lambda event poller only sends system logs at the selected level of detail and lower, where <code>DEBUG</code> is the highest level and <code>WARN</code> is the lowest. For more information about these metrics, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/esm-logging.html\"> Event source mapping logging</a>. </p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. Use this configuration object to define the level of logs for your event source mapping. </p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("SystemLogLevel", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventSourceMappingSystemLogLevel?> Target0 =
-            Schemas.Nullable(EventSourceMappingSystemLogLevelSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventSourceMappingSystemLogLevel?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                EventSourceMappingSystemLogLevelSchema.Schema
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EventSourceMappingLoggingConfig Build(Builder builder) =>
-            new EventSourceMappingLoggingConfig(builder.SystemLogLevel);
+        public override global::Com.Amazonaws.Lambda.EventSourceMappingLoggingConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.EventSourceMappingLoggingConfig(
+                builder.SystemLogLevel
+            );
 
         public override void SerializeMembers<TSerializer>(
-            EventSourceMappingLoggingConfig value,
+            global::Com.Amazonaws.Lambda.EventSourceMappingLoggingConfig value,
             ref TSerializer serializer
         )
         {
@@ -89,8 +68,10 @@ public static partial class EventSourceMappingLoggingConfigSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? EventSourceMappingSystemLogLevel.FromValue(value0)
-                                : default(EventSourceMappingSystemLogLevel)
+                                ? global::Com.Amazonaws.Lambda.EventSourceMappingSystemLogLevel.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.Lambda.EventSourceMappingSystemLogLevel)
                         );
                     break;
             }

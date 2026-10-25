@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class JSONTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<JSONType> Schema { get; } =
-        Schemas.StringEnum<JSONType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<JSONType>(
             ShapeId.Parse("com.amazonaws.s3#JSONType"),
             values: ["DOCUMENT", "LINES"],
             traits:

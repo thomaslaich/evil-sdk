@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ArchiveStatusSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ArchiveStatus> Schema { get; } =
-        Schemas.StringEnum<ArchiveStatus>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ArchiveStatus>(
             ShapeId.Parse("com.amazonaws.s3#ArchiveStatus"),
             values: ["ARCHIVE_ACCESS", "DEEP_ARCHIVE_ACCESS"],
             traits:

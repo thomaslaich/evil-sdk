@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<EventType> Schema { get; } =
-        Schemas.StringEnum<EventType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<EventType>(
             ShapeId.Parse("com.amazonaws.lambda#EventType"),
             values:
             [
@@ -42,10 +41,6 @@ public static partial class EventTypeSchema
             ],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

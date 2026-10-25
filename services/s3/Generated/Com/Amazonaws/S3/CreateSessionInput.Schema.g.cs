@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateSessionInputSchema
 {
@@ -20,10 +20,13 @@ public static partial class CreateSessionInputSchema
         public bool? BucketKeyEnabled { get; set; }
     }
 
-    public static StructSchema<CreateSessionInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.CreateSessionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateSessionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CreateSessionInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CreateSessionInput"),
             [
                 new(
@@ -31,12 +34,6 @@ public static partial class CreateSessionInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the mode of the session that will be created, either <code>ReadWrite</code> or \n        <code>ReadOnly</code>. If no session mode is specified, the default behavior attempts to create \n        a session with the maximum allowable privilege. It will first attempt to create a \n        <code>ReadWrite</code> session, and if that is not allowed by permissions, it will attempt to create a \n        <code>ReadOnly</code> session. If neither session type is allowed, the request will return an Access Denied error. A\n        <code>ReadWrite</code> session is capable of executing all the Zonal endpoint API operations on a directory bucket. A\n        <code>ReadOnly</code> session is constrained to execute the following Zonal endpoint API operations:\n        <code>GetObject</code>, <code>HeadObject</code>, <code>ListObjectsV2</code>,\n        <code>GetObjectAttributes</code>, <code>ListParts</code>, and\n      <code>ListMultipartUploads</code>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-create-session-mode")
@@ -49,12 +46,6 @@ public static partial class CreateSessionInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket that you create a session for.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -80,12 +71,6 @@ public static partial class CreateSessionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm to use when you store objects in the directory bucket.</p>\n         <p>For directory buckets, there are only two supported options for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (<code>AES256</code>) and server-side encryption with KMS keys (SSE-KMS) (<code>aws:kms</code>). By default, Amazon S3 encrypts data with SSE-S3. \n         For more\n         information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html\">Protecting data with server-side encryption</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>S3 access points for Amazon FSx </b> - When accessing data stored in Amazon FSx\n      file systems using S3 access points, the only valid server side encryption option is <code>aws:fsx</code>. All\n      Amazon FSx file systems have encryption configured by default and are encrypted at rest. Data is\n      automatically encrypted before being written to the file system, and automatically decrypted as it is\n      read. These processes are handled transparently by Amazon FSx.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
                         ),
@@ -96,12 +81,6 @@ public static partial class CreateSessionInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If you specify <code>x-amz-server-side-encryption</code> with <code>aws:kms</code>, you must specify the <code>\n         x-amz-server-side-encryption-aws-kms-key-id</code> header with the ID (Key ID or Key ARN) of the KMS \n         symmetric encryption customer managed key to use. Otherwise, you get an HTTP <code>400 Bad Request</code> error. Only use the key ID or key ARN. The key alias format of the KMS key isn't supported. Also, if the KMS key doesn't exist in the same\n         account that't issuing the command, you must use the full Key ARN not the Key ID. </p>\n         <p>Your SSE-KMS configuration can only support 1 <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">customer managed key</a> per directory bucket's lifetime. \nThe <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed key</a> (<code>aws/s3</code>) isn't supported. \n</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-aws-kms-key-id")
@@ -117,12 +96,6 @@ public static partial class CreateSessionInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use for object encryption. The value of\n         this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs. \n         This value is stored as object metadata and automatically gets passed on\n         to Amazon Web Services KMS for future <code>GetObject</code> operations on\n         this object.</p>\n         <p>\n            <b>General purpose buckets</b> - This value must be explicitly added during <code>CopyObject</code> operations if you want an additional encryption context for your object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context\">Encryption context</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Directory buckets</b> - You can optionally provide an explicit encryption context value. The value must match the default encryption context - the bucket Amazon Resource Name (ARN). An additional encryption context value is not supported. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-context")
@@ -141,12 +114,6 @@ public static partial class CreateSessionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with\n         server-side encryption using KMS keys (SSE-KMS).</p>\n         <p>S3 Bucket Keys are always enabled for <code>GET</code> and <code>PUT</code> operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets  \nto directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a>, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops\">the Copy operation in Batch Operations</a>, or \n                            <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job\">the import jobs</a>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -168,23 +135,28 @@ public static partial class CreateSessionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SessionMode?> Target0 =
-            Schemas.Nullable(SessionModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(SessionModeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target2 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target5 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateSessionInput Build(Builder builder) =>
-            new CreateSessionInput(
+        public override global::Com.Amazonaws.S3.CreateSessionInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CreateSessionInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.BucketKeyEnabled,
                 builder.SSEKMSEncryptionContext,
@@ -194,7 +166,7 @@ public static partial class CreateSessionInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CreateSessionInput value,
+            global::Com.Amazonaws.S3.CreateSessionInput value,
             ref TSerializer serializer
         )
         {

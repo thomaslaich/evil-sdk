@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ExecutionDetailsSchema
 {
@@ -15,10 +15,13 @@ public static partial class ExecutionDetailsSchema
         public string? InputPayload { get; set; }
     }
 
-    public static StructSchema<ExecutionDetails, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ExecutionDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ExecutionDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ExecutionDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ExecutionDetails"),
             [
                 new(
@@ -27,18 +30,12 @@ public static partial class ExecutionDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The original input payload provided for the durable execution.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)6291456) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(6291456m) },
                                 }
                             )
                         ),
@@ -46,37 +43,24 @@ public static partial class ExecutionDetailsSchema
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Details about a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html\">durable execution</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ExecutionDetails Build(Builder builder) =>
-            new ExecutionDetails(builder.InputPayload);
+        public override global::Com.Amazonaws.Lambda.ExecutionDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ExecutionDetails(builder.InputPayload);
 
         public override void SerializeMembers<TSerializer>(
-            ExecutionDetails value,
+            global::Com.Amazonaws.Lambda.ExecutionDetails value,
             ref TSerializer serializer
         )
         {

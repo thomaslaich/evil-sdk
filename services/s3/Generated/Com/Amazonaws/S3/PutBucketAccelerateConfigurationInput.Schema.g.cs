@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAccelerateConfigurationInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
     }
 
-    public static StructSchema<PutBucketAccelerateConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketAccelerateConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAccelerateConfigurationInput"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket for which the accelerate configuration is set.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -63,12 +59,6 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for setting the transfer acceleration state.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -88,12 +78,6 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -104,12 +88,6 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum</code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>. For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>\n      parameter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -130,18 +108,26 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AccelerateConfiguration?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AccelerateConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AccelerateConfigurationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target3 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketAccelerateConfigurationInput Build(Builder builder) =>
-            new PutBucketAccelerateConfigurationInput(
+        public override global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationInput(
                 builder.AccelerateConfiguration
                     ?? throw new MissingRequiredMemberException("AccelerateConfiguration"),
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
@@ -150,7 +136,7 @@ public static partial class PutBucketAccelerateConfigurationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketAccelerateConfigurationInput value,
+            global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationInput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ErrorObjectSchema
 {
@@ -15,13 +15,14 @@ public static partial class ErrorObjectSchema
         public string? ErrorMessage { get; set; }
         public string? ErrorType { get; set; }
         public string? ErrorData { get; set; }
-        public StackTraceEntries? StackTrace { get; set; }
+        public IReadOnlyList<string>? StackTrace { get; set; }
     }
 
-    public static StructSchema<ErrorObject, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.ErrorObject, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ErrorObject, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ErrorObject, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ErrorObject"),
             [
                 new(
@@ -30,16 +31,8 @@ public static partial class ErrorObjectSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A human-readable error message.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -49,16 +42,8 @@ public static partial class ErrorObjectSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error type.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -68,60 +53,37 @@ public static partial class ErrorObjectSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Machine-readable error data.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "StackTrace",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Stack trace information for the error.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("StackTrace", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>An object that contains error information.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<StackTraceEntries?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => StackTraceEntriesSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StackTraceEntriesSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ErrorObject Build(Builder builder) =>
-            new ErrorObject(
+        public override global::Com.Amazonaws.Lambda.ErrorObject Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ErrorObject(
                 builder.ErrorData,
                 builder.ErrorMessage,
                 builder.ErrorType,
@@ -129,7 +91,7 @@ public static partial class ErrorObjectSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ErrorObject value,
+            global::Com.Amazonaws.Lambda.ErrorObject value,
             ref TSerializer serializer
         )
         {

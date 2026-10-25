@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DestinationConfigSchema
 {
@@ -15,73 +15,37 @@ public static partial class DestinationConfigSchema
         public global::Com.Amazonaws.Lambda.OnFailure? OnFailure { get; set; }
     }
 
-    public static StructSchema<DestinationConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DestinationConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DestinationConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DestinationConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DestinationConfig"),
-            [
-                new(
-                    "OnSuccess",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The destination configuration for successful invocations. Not supported in <code>CreateEventSourceMapping</code> or <code>UpdateEventSourceMapping</code>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "OnFailure",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The destination configuration for failed invocations.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A configuration object that specifies the destination of an event after Lambda processes it. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations\">Adding a destination</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("OnSuccess", Target0), new("OnFailure", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.OnSuccess?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => OnSuccessSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OnSuccessSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.OnFailure?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => OnFailureSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OnFailureSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DestinationConfig Build(Builder builder) =>
-            new DestinationConfig(builder.OnFailure, builder.OnSuccess);
+        public override global::Com.Amazonaws.Lambda.DestinationConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.DestinationConfig(
+                builder.OnFailure,
+                builder.OnSuccess
+            );
 
         public override void SerializeMembers<TSerializer>(
-            DestinationConfig value,
+            global::Com.Amazonaws.Lambda.DestinationConfig value,
             ref TSerializer serializer
         )
         {

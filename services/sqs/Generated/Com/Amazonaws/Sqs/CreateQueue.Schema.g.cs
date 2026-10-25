@@ -5,64 +5,68 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class CreateQueueSchema
 {
-    public static OperationSchema<CreateQueueInput, CreateQueueOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.CreateQueueInput,
+        global::Com.Amazonaws.Sqs.CreateQueueOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#CreateQueue"),
-            Schemas.Lazy(() => CreateQueueInputSchema.Schema!),
-            Schemas.Lazy(() => CreateQueueOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => CreateQueueInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => CreateQueueOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAttributeName"),
-                    Schemas.Lazy(() => InvalidAttributeNameSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidAttributeNameSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAttributeValue"),
-                    Schemas.Lazy(() => InvalidAttributeValueSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidAttributeValueSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDeletedRecently"),
-                    Schemas.Lazy(() => QueueDeletedRecentlySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        QueueDeletedRecentlySchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueNameExists"),
-                    Schemas.Lazy(() => QueueNameExistsSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueNameExistsSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Creates a new standard or FIFO queue. You can pass one or more attributes in\n            the request. Keep the following in mind:</p>\n         <ul>\n            <li>\n               <p>If you don't specify the <code>FifoQueue</code> attribute, Amazon SQS creates a standard queue.</p>\n               <note>\n                  <p>You can't change the queue type after you create it and you can't convert\n                        an existing standard queue into a FIFO queue. You must either create a new\n                        FIFO queue for your application or delete your existing standard queue and\n                        recreate it as a FIFO queue. For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-moving\">Moving From a standard queue to a FIFO queue</a> in the\n                            <i>Amazon SQS Developer Guide</i>. </p>\n               </note>\n            </li>\n            <li>\n               <p>If you don't provide a value for an attribute, the queue is created with the\n                    default value for the attribute.</p>\n            </li>\n            <li>\n               <p>If you delete a queue, you must wait at least 60 seconds before creating a\n                    queue with the same name.</p>\n            </li>\n         </ul>\n         <p>To successfully create a new queue, you must provide a queue name that adheres to the\n                <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/limits-queues.html\">limits\n                related to queues</a> and is unique within the scope of your queues.</p>\n         <note>\n            <p>After you create a queue, you must wait at least one second after the queue is\n                created to be able to use the queue.</p>\n         </note>\n         <p>To retrieve the URL of a queue, use the <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueUrl.html\">\n               <code>GetQueueUrl</code>\n            </a> action. This action only requires the <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html#API_CreateQueue_RequestSyntax\">\n               <code>QueueName</code>\n            </a> parameter.</p>\n         <p>When creating queues, keep the following points in mind:</p>\n         <ul>\n            <li>\n               <p>If you specify the name of an existing queue and provide the exact same names\n                    and values for all its attributes, the <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html\">\n                     <code>CreateQueue</code>\n                  </a> action will return the URL of the\n                    existing queue instead of creating a new one.</p>\n            </li>\n            <li>\n               <p>If you attempt to create a queue with a name that already exists but with\n                    different attribute names or values, the <code>CreateQueue</code> action will\n                    return an error. This ensures that existing queues are not inadvertently\n                    altered.</p>\n            </li>\n         </ul>\n         <note>\n            <p>Cross-account permissions don't apply to this action. For more information, \nsee <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name\">Grant \ncross-account permissions to a role and a username</a> in the <i>Amazon SQS Developer Guide</i>.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class ProvidedContextsListTypeSchema
 {
     public static ListSchema<
-        ProvidedContextsListType,
-        ProvidedContext,
-        List<ProvidedContext>
+        IReadOnlyList<global::Com.Amazonaws.Sts.ProvidedContext>,
+        global::Com.Amazonaws.Sts.ProvidedContext,
+        List<global::Com.Amazonaws.Sts.ProvidedContext>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<ProvidedContextsListType, ProvidedContext, List<ProvidedContext>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Sts.ProvidedContext>,
+            global::Com.Amazonaws.Sts.ProvidedContext,
+            List<global::Com.Amazonaws.Sts.ProvidedContext>
+        >(
             ShapeId.Parse("com.amazonaws.sts#ProvidedContextsListType"),
             ShapeKind.List,
             Target0,
@@ -27,8 +31,8 @@ public static partial class ProvidedContextsListTypeSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)5) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(5m) },
                         }
                     )
                 ),
@@ -36,26 +40,31 @@ public static partial class ProvidedContextsListTypeSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ProvidedContext> Target0 =
-            Schemas.Lazy(() => ProvidedContextSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.ProvidedContext> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ProvidedContextSchema.Schema!);
 
-        public override IEnumerable<ProvidedContext> GetElements(ProvidedContextsListType value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sts.ProvidedContext> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sts.ProvidedContext> value
+        ) => value;
 
-        public override List<ProvidedContext> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sts.ProvidedContext> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<ProvidedContext> builder, ProvidedContext value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Sts.ProvidedContext> builder,
+            global::Com.Amazonaws.Sts.ProvidedContext value
+        ) => builder.Add(value);
 
-        public override ProvidedContextsListType Build(List<ProvidedContext> builder) =>
-            ProvidedContextsListType.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sts.ProvidedContext> Build(
+            List<global::Com.Amazonaws.Sts.ProvidedContext> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ProvidedContextsListType value,
+            IReadOnlyList<global::Com.Amazonaws.Sts.ProvidedContext> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -70,7 +79,7 @@ public static partial class ProvidedContextsListTypeSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ProvidedContext> builder,
+            List<global::Com.Amazonaws.Sts.ProvidedContext> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ProvidedContextSchema.Schema));
     }

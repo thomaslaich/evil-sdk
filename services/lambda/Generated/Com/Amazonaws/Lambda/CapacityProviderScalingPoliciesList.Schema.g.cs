@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderScalingPoliciesListSchema
 {
     public static ListSchema<
-        CapacityProviderScalingPoliciesList,
-        TargetTrackingScalingPolicy,
-        List<TargetTrackingScalingPolicy>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy>,
+        global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy,
+        List<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            CapacityProviderScalingPoliciesList,
-            TargetTrackingScalingPolicy,
-            List<TargetTrackingScalingPolicy>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy>,
+            global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy,
+            List<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy>
         >(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderScalingPoliciesList"),
             ShapeKind.List,
@@ -31,48 +31,42 @@ public static partial class CapacityProviderScalingPoliciesListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)10) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(10m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<TargetTrackingScalingPolicy> Target0 =
-            Schemas.Lazy(() => TargetTrackingScalingPolicySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                TargetTrackingScalingPolicySchema.Schema!
+            );
 
-        public override IEnumerable<TargetTrackingScalingPolicy> GetElements(
-            CapacityProviderScalingPoliciesList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> value
+        ) => value;
 
-        public override List<TargetTrackingScalingPolicy> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<TargetTrackingScalingPolicy> builder,
-            TargetTrackingScalingPolicy value
+            List<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> builder,
+            global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy value
         ) => builder.Add(value);
 
-        public override CapacityProviderScalingPoliciesList Build(
-            List<TargetTrackingScalingPolicy> builder
-        ) => CapacityProviderScalingPoliciesList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> Build(
+            List<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            CapacityProviderScalingPoliciesList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -87,7 +81,7 @@ public static partial class CapacityProviderScalingPoliciesListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<TargetTrackingScalingPolicy> builder,
+            List<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(TargetTrackingScalingPolicySchema.Schema));
     }

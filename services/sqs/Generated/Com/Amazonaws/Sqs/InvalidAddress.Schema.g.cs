@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class InvalidAddressSchema
 {
@@ -15,10 +15,11 @@ public static partial class InvalidAddressSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<InvalidAddress, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.InvalidAddress, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidAddress, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.InvalidAddress, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
             [new("message", Target0)],
             [
@@ -28,29 +29,27 @@ public static partial class InvalidAddressSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("InvalidAddress") },
-                            { "httpResponseCode", Document.From((decimal)404) },
+                            { "httpResponseCode", Document.From(404m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified ID is invalid.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidAddress Build(Builder builder) =>
-            new InvalidAddress(builder.Message);
+        public override global::Com.Amazonaws.Sqs.InvalidAddress Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.InvalidAddress(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidAddress value,
+            global::Com.Amazonaws.Sqs.InvalidAddress value,
             ref TSerializer serializer
         )
         {

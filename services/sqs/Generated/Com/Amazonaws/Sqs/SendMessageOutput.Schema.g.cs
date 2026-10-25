@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageOutputSchema
 {
@@ -19,85 +19,22 @@ public static partial class SendMessageOutputSchema
         public string? SequenceNumber { get; set; }
     }
 
-    public static StructSchema<SendMessageOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.SendMessageOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendMessageOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.SendMessageOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageOutput"),
             [
-                new(
-                    "MD5OfMessageBody",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message body string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see <a href=\"https://www.ietf.org/rfc/rfc1321.txt\">RFC1321</a>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "MD5OfMessageAttributes",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message attribute string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see <a href=\"https://www.ietf.org/rfc/rfc1321.txt\">RFC1321</a>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "MD5OfMessageSystemAttributes",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message system attribute string. You can use this \nattribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "MessageId",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An attribute containing the <code>MessageId</code> of the message sent to the queue.\n            For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-message-identifiers.html\">Queue and Message Identifiers</a> in the <i>Amazon SQS Developer\n                Guide</i>. </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "SequenceNumber",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This parameter applies only to FIFO (first-in-first-out) queues.</p>\n         <p>The large, non-consecutive number that Amazon SQS assigns to each message.</p>\n         <p>The length of <code>SequenceNumber</code> is 128 bits. <code>SequenceNumber</code>\n            continues to increase for a particular <code>MessageGroupId</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("MD5OfMessageBody", Target0),
+                new("MD5OfMessageAttributes", Target1),
+                new("MD5OfMessageSystemAttributes", Target2),
+                new("MessageId", Target3),
+                new("SequenceNumber", Target4),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <code>MD5OfMessageBody</code> and <code>MessageId</code> elements.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -110,20 +47,30 @@ public static partial class SendMessageOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendMessageOutput Build(Builder builder) =>
-            new SendMessageOutput(
+        public override global::Com.Amazonaws.Sqs.SendMessageOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.SendMessageOutput(
                 builder.MD5OfMessageAttributes,
                 builder.MD5OfMessageBody,
                 builder.MD5OfMessageSystemAttributes,
@@ -132,7 +79,7 @@ public static partial class SendMessageOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            SendMessageOutput value,
+            global::Com.Amazonaws.Sqs.SendMessageOutput value,
             ref TSerializer serializer
         )
         {

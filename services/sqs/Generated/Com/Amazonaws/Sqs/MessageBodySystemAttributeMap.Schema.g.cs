@@ -4,24 +4,25 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageBodySystemAttributeMapSchema
 {
     public static MapSchema<
-        MessageBodySystemAttributeMap,
-        MessageSystemAttributeValue,
-        Dictionary<string, MessageSystemAttributeValue>
+        IReadOnlyDictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue>,
+        global::Com.Amazonaws.Sqs.MessageSystemAttributeValue,
+        Dictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : MapSchema<
-            MessageBodySystemAttributeMap,
-            MessageSystemAttributeValue,
-            Dictionary<string, MessageSystemAttributeValue>
+            IReadOnlyDictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue>,
+            global::Com.Amazonaws.Sqs.MessageSystemAttributeValue,
+            Dictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue>
         >(
             ShapeId.Parse("com.amazonaws.sqs#MessageBodySystemAttributeMap"),
             Target0,
@@ -31,32 +32,47 @@ public static partial class MessageBodySystemAttributeMapSchema
             MessageSystemAttributeNameForSendsSchema.Schema
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<MessageSystemAttributeValue> Target0 =
-            Schemas.Lazy(() => MessageSystemAttributeValueSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.MessageSystemAttributeValue> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                MessageSystemAttributeValueSchema.Schema!
+            );
 
-        public override IEnumerable<KeyValuePair<string, MessageSystemAttributeValue>> GetEntries(
-            MessageBodySystemAttributeMap value
-        ) => value.Values;
+        public override IEnumerable<
+            KeyValuePair<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue>
+        > GetEntries(
+            IReadOnlyDictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue> value
+        ) => value;
 
-        public override Dictionary<string, MessageSystemAttributeValue> CreateTypedBuilder() =>
-            new(StringComparer.Ordinal);
+        public override Dictionary<
+            string,
+            global::Com.Amazonaws.Sqs.MessageSystemAttributeValue
+        > CreateTypedBuilder() => new(StringComparer.Ordinal);
 
         public override void Add(
-            Dictionary<string, MessageSystemAttributeValue> builder,
+            Dictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue> builder,
             string key,
-            MessageSystemAttributeValue value
+            global::Com.Amazonaws.Sqs.MessageSystemAttributeValue value
         ) => builder[key] = value;
 
-        public override MessageBodySystemAttributeMap Build(
-            Dictionary<string, MessageSystemAttributeValue> builder
-        ) => MessageBodySystemAttributeMap.FromOwnedDictionary(builder);
+        public override IReadOnlyDictionary<
+            string,
+            global::Com.Amazonaws.Sqs.MessageSystemAttributeValue
+        > Build(
+            Dictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue> builder
+        ) =>
+            new ReadOnlyDictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue>(
+                builder
+            );
 
         public override void SerializeEntries<TSerializer>(
-            MessageBodySystemAttributeMap value,
+            IReadOnlyDictionary<
+                string,
+                global::Com.Amazonaws.Sqs.MessageSystemAttributeValue
+            > value,
             ref TSerializer serializer
         )
         {
-            foreach (var entry in value.Values)
+            foreach (var entry in value)
             {
                 serializer.WriteString(0, entry.Key);
                 if (entry.Value is { } entryValue)
@@ -71,7 +87,7 @@ public static partial class MessageBodySystemAttributeMapSchema
         }
 
         public override void DeserializeEntry<TDeserializer>(
-            Dictionary<string, MessageSystemAttributeValue> builder,
+            Dictionary<string, global::Com.Amazonaws.Sqs.MessageSystemAttributeValue> builder,
             string key,
             ref TDeserializer deserializer
         ) => builder[key] = deserializer.ReadStruct(MessageSystemAttributeValueSchema.Schema);

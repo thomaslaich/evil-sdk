@@ -5,38 +5,35 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectNotInActiveTierErrorSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<ObjectNotInActiveTierError, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ObjectNotInActiveTierError,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ObjectNotInActiveTierError, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ObjectNotInActiveTierError, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ObjectNotInActiveTierError"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The source object of the COPY action is not in the active tier and is only stored in Amazon S3\n      Glacier.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override ObjectNotInActiveTierError Build(Builder builder) =>
-            new ObjectNotInActiveTierError(null);
+        public override global::Com.Amazonaws.S3.ObjectNotInActiveTierError Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.ObjectNotInActiveTierError(null);
 
         public override void SerializeMembers<TSerializer>(
-            ObjectNotInActiveTierError value,
+            global::Com.Amazonaws.S3.ObjectNotInActiveTierError value,
             ref TSerializer serializer
         ) { }
 

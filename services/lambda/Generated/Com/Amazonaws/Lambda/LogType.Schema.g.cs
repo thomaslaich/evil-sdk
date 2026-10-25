@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LogTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<LogType> Schema { get; } =
-        Schemas.StringEnum<LogType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<LogType>(
             ShapeId.Parse("com.amazonaws.lambda#LogType"),
             values: ["None", "Tail"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

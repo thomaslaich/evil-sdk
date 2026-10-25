@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetCallerIdentityInputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<GetCallerIdentityInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetCallerIdentityInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetCallerIdentityInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetCallerIdentityInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetCallerIdentityInput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class GetCallerIdentityInputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetCallerIdentityInput Build(Builder builder) =>
-            new GetCallerIdentityInput();
+        public override global::Com.Amazonaws.Sts.GetCallerIdentityInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetCallerIdentityInput();
 
         public override void SerializeMembers<TSerializer>(
-            GetCallerIdentityInput value,
+            global::Com.Amazonaws.Sts.GetCallerIdentityInput value,
             ref TSerializer serializer
         ) { }
 

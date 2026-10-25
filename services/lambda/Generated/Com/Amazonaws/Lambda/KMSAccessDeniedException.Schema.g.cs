@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class KMSAccessDeniedExceptionSchema
 {
@@ -15,82 +15,42 @@ public static partial class KMSAccessDeniedExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<KMSAccessDeniedException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.KMSAccessDeniedException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<KMSAccessDeniedException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.KMSAccessDeniedException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#KMSAccessDeniedException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(
-                                new Document[]
-                                {
-                                    Document.From("feature:public"),
-                                    Document.From("feature:public"),
-                                }
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(
-                                new Document[]
-                                {
-                                    Document.From("feature:public"),
-                                    Document.From("feature:public"),
-                                }
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lambda couldn't decrypt the environment variables because KMS access was denied. Check the Lambda function's KMS permissions.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("server")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)502)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From("feature:public"),
-                            Document.From("feature:public"),
-                        }
-                    )
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(502m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override KMSAccessDeniedException Build(Builder builder) =>
-            new KMSAccessDeniedException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.KMSAccessDeniedException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.KMSAccessDeniedException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            KMSAccessDeniedException value,
+            global::Com.Amazonaws.Lambda.KMSAccessDeniedException value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetRuntimeManagementConfigOutputSchema
 {
@@ -17,44 +17,28 @@ public static partial class GetRuntimeManagementConfigOutputSchema
         public string? RuntimeVersionArn { get; set; }
     }
 
-    public static StructSchema<GetRuntimeManagementConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetRuntimeManagementConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetRuntimeManagementConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetRuntimeManagementConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetRuntimeManagementConfigOutput"),
             [
-                new(
-                    "UpdateRuntimeOn",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The current runtime update mode of the function.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("UpdateRuntimeOn", Target0),
                 new(
                     "FunctionArn",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Amazon Resource Name (ARN) of your function.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -64,10 +48,6 @@ public static partial class GetRuntimeManagementConfigOutputSchema
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST(\\.PUBLISHED)?|[a-zA-Z0-9-_]+))?$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -76,18 +56,12 @@ public static partial class GetRuntimeManagementConfigOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the runtime the function is configured to use. If the runtime update mode is <b>Manual</b>, the ARN is returned, otherwise <code>null</code> is returned.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)26) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(26m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -96,10 +70,6 @@ public static partial class GetRuntimeManagementConfigOutputSchema
                             Document.From(
                                 "^arn:(aws[a-zA-Z-]*):lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}::runtime:.+$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -110,10 +80,6 @@ public static partial class GetRuntimeManagementConfigOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetRuntimeManagementConfigResponse")
                 ),
@@ -121,23 +87,29 @@ public static partial class GetRuntimeManagementConfigOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.UpdateRuntimeOn?> Target0 =
-            Schemas.Nullable(UpdateRuntimeOnSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(UpdateRuntimeOnSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetRuntimeManagementConfigOutput Build(Builder builder) =>
-            new GetRuntimeManagementConfigOutput(
+        public override global::Com.Amazonaws.Lambda.GetRuntimeManagementConfigOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetRuntimeManagementConfigOutput(
                 builder.FunctionArn,
                 builder.RuntimeVersionArn,
                 builder.UpdateRuntimeOn
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetRuntimeManagementConfigOutput value,
+            global::Com.Amazonaws.Lambda.GetRuntimeManagementConfigOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DestinationSchema
 {
@@ -21,10 +21,11 @@ public static partial class DestinationSchema
         public global::Com.Amazonaws.S3.Metrics? Metrics { get; set; }
     }
 
-    public static StructSchema<Destination, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Destination, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Destination, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Destination, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Destination"),
             [
                 new(
@@ -34,125 +35,54 @@ public static partial class DestinationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The Amazon Resource Name (ARN) of the bucket where you want Amazon S3 to store the results.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Account",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Destination bucket owner account ID. In a cross-account scenario, if you direct Amazon S3 to change\n      replica ownership to the Amazon Web Services account that owns the destination bucket by specifying the\n        <code>AccessControlTranslation</code> property, this is the account ID of the destination bucket\n      owner. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-change-owner.html\">Replication Additional Configuration: Changing\n        the Replica Owner</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "StorageClass",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The storage class to use when replicating objects, such as S3 Standard or reduced redundancy. By\n      default, Amazon S3 uses the storage class of the source object to create the object replica. </p>\n         <p>For valid values, see the <code>StorageClass</code> element of the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTreplication.html\">PUT Bucket replication</a> action in the\n        <i>Amazon S3 API Reference</i>.</p>\n         <p>\n            <code>FSX_OPENZFS</code> is not an accepted value when replicating objects.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "AccessControlTranslation",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify this only in a cross-account scenario (where source and destination bucket owners are not\n      the same), and you want to change replica ownership to the Amazon Web Services account that owns the destination\n      bucket. If this is not specified in the replication configuration, the replicas are owned by same\n      Amazon Web Services account that owns the source object.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "EncryptionConfiguration",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container that provides information about encryption. If <code>SourceSelectionCriteria</code> is\n      specified, you must specify this element.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ReplicationTime",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> A container specifying S3 Replication Time Control (S3 RTC), including whether S3 RTC is enabled and the time when all\n      objects and operations on objects must be replicated. Must be specified together with a\n        <code>Metrics</code> block. </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Metrics",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> A container specifying replication metrics-related settings enabling replication metrics and\n      events. </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Account", Target1),
+                new("StorageClass", Target2),
+                new("AccessControlTranslation", Target3),
+                new("EncryptionConfiguration", Target4),
+                new("ReplicationTime", Target5),
+                new("Metrics", Target6),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies information about where to publish analysis or configuration results for an Amazon S3 bucket\n      and S3 Replication Time Control (S3 RTC).</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target2 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AccessControlTranslation?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => AccessControlTranslationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    AccessControlTranslationSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EncryptionConfiguration?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => EncryptionConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EncryptionConfigurationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationTime?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => ReplicationTimeSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ReplicationTimeSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Metrics?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetricsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => MetricsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Destination Build(Builder builder) =>
-            new Destination(
+        public override global::Com.Amazonaws.S3.Destination Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Destination(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.AccessControlTranslation,
                 builder.Account,
@@ -163,7 +93,7 @@ public static partial class DestinationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            Destination value,
+            global::Com.Amazonaws.S3.Destination value,
             ref TSerializer serializer
         )
         {

@@ -4,24 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectOwnershipSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ObjectOwnership> Schema { get; } =
-        Schemas.StringEnum<ObjectOwnership>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ObjectOwnership>(
             ShapeId.Parse("com.amazonaws.s3#ObjectOwnership"),
             values: ["BucketOwnerPreferred", "ObjectWriter", "BucketOwnerEnforced"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The container element for object ownership for a bucket's ownership controls.</p>\n         <p>\n            <code>BucketOwnerPreferred</code> - Objects uploaded to the bucket change ownership to the bucket\n      owner if the objects are uploaded with the <code>bucket-owner-full-control</code> canned ACL.</p>\n         <p>\n            <code>ObjectWriter</code> - The uploading account will own the object if the object is uploaded with\n      the <code>bucket-owner-full-control</code> canned ACL.</p>\n         <p>\n            <code>BucketOwnerEnforced</code> - Access control lists (ACLs) are disabled and no longer affect\n      permissions. The bucket owner automatically owns and has full control over every object in the bucket.\n      The bucket only accepts PUT requests that don't specify an ACL or specify bucket owner full control ACLs\n      (such as the predefined <code>bucket-owner-full-control</code> canned ACL or a custom ACL in XML format\n      that grants the same permissions).</p>\n         <p>By default, <code>ObjectOwnership</code> is set to <code>BucketOwnerEnforced</code> and ACLs are\n      disabled. We recommend keeping ACLs disabled, except in uncommon use cases where you must control access\n      for each object individually. For more information about S3 Object Ownership, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html\">Controlling\n        ownership of objects and disabling ACLs for your bucket</a> in the\n        <i>Amazon S3 User Guide</i>. </p>\n         <note>\n            <p>This functionality is not supported for directory buckets. Directory buckets use the bucket owner enforced setting for S3 Object Ownership.</p>\n         </note>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

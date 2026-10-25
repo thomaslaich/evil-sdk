@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.S3;
 
@@ -48,7 +49,7 @@ namespace Com.Amazonaws.S3;
 /// &lt;p&gt;Version ID of an object.&lt;/p&gt;
 /// </param>
 public sealed record class ObjectVersion(
-    ChecksumAlgorithmList? ChecksumAlgorithm = null,
+    IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm = null,
     global::Com.Amazonaws.S3.ChecksumType? ChecksumType = null,
     string? ETag = null,
     bool? IsLatest = null,

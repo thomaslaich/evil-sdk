@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAclInputSchema
 {
     public sealed class Builder
     {
-        public BucketCannedACL? ACL { get; set; }
+        public global::Com.Amazonaws.S3.BucketCannedACL? ACL { get; set; }
         public global::Com.Amazonaws.S3.AccessControlPolicy? AccessControlPolicy { get; set; }
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
@@ -25,10 +25,13 @@ public static partial class PutBucketAclInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<PutBucketAclInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketAclInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketAclInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketAclInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAclInput"),
             [
                 new(
@@ -36,10 +39,6 @@ public static partial class PutBucketAclInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The canned ACL to apply to the bucket.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-acl")
@@ -51,12 +50,6 @@ public static partial class PutBucketAclInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains the elements that set the ACL permissions for an object per grantee.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -73,10 +66,6 @@ public static partial class PutBucketAclInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The bucket to which to apply the ACL.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -102,12 +91,6 @@ public static partial class PutBucketAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded 128-bit <code>MD5</code> digest of the data. This header must be used as a\n      message integrity check to verify that the request body was not corrupted in transit. For more\n      information, go to <a href=\"http://www.ietf.org/rfc/rfc1864.txt\">RFC 1864.</a>\n         </p>\n         <p>For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -118,12 +101,6 @@ public static partial class PutBucketAclInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum</code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>. For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>\n      parameter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -136,12 +113,6 @@ public static partial class PutBucketAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-full-control")
                         ),
@@ -152,12 +123,6 @@ public static partial class PutBucketAclInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to list the objects in the bucket.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read")
@@ -170,10 +135,6 @@ public static partial class PutBucketAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Allows grantee to read the bucket ACL.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read-acp")
                         ),
@@ -184,12 +145,6 @@ public static partial class PutBucketAclInputSchema
                     Target8,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to create new objects in the bucket.</p>\n         <p>For the bucket and object owners of existing objects, also allows deletions and overwrites of those\n      objects.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write")
@@ -202,12 +157,6 @@ public static partial class PutBucketAclInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to write the ACL for the applicable bucket.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write-acp")
                         ),
@@ -218,12 +167,6 @@ public static partial class PutBucketAclInputSchema
                     Target10,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -243,33 +186,51 @@ public static partial class PutBucketAclInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketCannedACL?> Target0 =
-            Schemas.Nullable(BucketCannedACLSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketCannedACL?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketCannedACLSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AccessControlPolicy?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AccessControlPolicySchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AccessControlPolicySchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target4 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketAclInput Build(Builder builder) =>
-            new PutBucketAclInput(
+        public override global::Com.Amazonaws.S3.PutBucketAclInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketAclInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ACL,
                 builder.AccessControlPolicy,
@@ -284,7 +245,7 @@ public static partial class PutBucketAclInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketAclInput value,
+            global::Com.Amazonaws.S3.PutBucketAclInput value,
             ref TSerializer serializer
         )
         {
@@ -391,8 +352,8 @@ public static partial class PutBucketAclInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? BucketCannedACL.FromValue(value0)
-                                : default(BucketCannedACL)
+                                ? global::Com.Amazonaws.S3.BucketCannedACL.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.BucketCannedACL)
                         );
                     break;
                 case 1:

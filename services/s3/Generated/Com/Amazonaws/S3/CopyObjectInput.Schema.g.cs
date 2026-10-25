@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CopyObjectInputSchema
 {
     public sealed class Builder
     {
-        public ObjectCannedACL? ACL { get; set; }
+        public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public string? Bucket { get; set; }
         public string? CacheControl { get; set; }
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
@@ -34,7 +34,7 @@ public static partial class CopyObjectInputSchema
         public string? IfMatch { get; set; }
         public string? IfNoneMatch { get; set; }
         public string? Key { get; set; }
-        public global::Com.Amazonaws.S3.Metadata? Metadata { get; set; }
+        public IReadOnlyDictionary<string, string>? Metadata { get; set; }
         public global::Com.Amazonaws.S3.MetadataDirective? MetadataDirective { get; set; }
         public global::Com.Amazonaws.S3.TaggingDirective? TaggingDirective { get; set; }
         public global::Com.Amazonaws.S3.AnnotationDirective? AnnotationDirective { get; set; }
@@ -62,10 +62,11 @@ public static partial class CopyObjectInputSchema
         public string? ExpectedSourceBucketOwner { get; set; }
     }
 
-    public static StructSchema<CopyObjectInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.CopyObjectInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CopyObjectInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CopyObjectInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CopyObjectInput"),
             [
                 new(
@@ -73,12 +74,6 @@ public static partial class CopyObjectInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The canned access control list (ACL) to apply to the object.</p>\n         <p>When you copy an object, the ACL metadata is not preserved and is set to <code>private</code> by\n      default. Only the owner has full access control. To override the default ACL setting, specify a new ACL\n      when you generate a copy request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html\">Using ACLs</a>. </p>\n         <p>If the destination bucket that you're copying objects to uses the bucket owner enforced setting for\n      S3 Object Ownership, ACLs are disabled and no longer affect permissions. Buckets that use this setting\n      only accept <code>PUT</code> requests that don't specify an ACL or <code>PUT</code> requests that\n      specify bucket owner full control ACLs, such as the <code>bucket-owner-full-control</code> canned ACL or\n      an equivalent form of this ACL expressed in the XML format. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html\">Controlling ownership\n        of objects and disabling ACLs</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>If your destination bucket uses the bucket owner enforced setting for Object Ownership, all\n            objects written to the bucket by any account will be owned by the bucket owner.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-acl")
@@ -91,12 +86,6 @@ public static partial class CopyObjectInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the destination bucket.</p>\n         <p>\n            <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format <code>\n               <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming\n         restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming\n            rules</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>Copying objects across different Amazon Web Services Regions isn't supported when the source or destination\n        bucket is in Amazon Web Services Local Zones. The source and destination buckets must have the same parent Amazon Web Services Region.\n        Otherwise, you get an HTTP <code>400 Bad Request</code> error with the error code\n          <code>InvalidRequest</code>.</p>\n         </note>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>Object Lambda access points are not supported by directory buckets.</p>\n         </note>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts,\n      you must use the Outpost bucket access point ARN or the access point alias for the destination bucket.\n      You can only copy objects within the same Outpost bucket. It's not supported to copy objects across\n      different Amazon Web Services Outposts, between buckets on the same Outposts, or between Outposts buckets and any\n      other bucket types. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the\n        <i>S3 on Outposts guide</i>. When you use this action with S3 on Outposts through the REST\n      API, you must direct requests to the S3 on Outposts hostname, in the format\n          <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>.\n      The hostname isn't required when you use the Amazon Web Services CLI or SDKs. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -122,12 +111,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the caching behavior along the request/reply chain.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Cache-Control")
                         ),
@@ -138,12 +121,6 @@ public static partial class CopyObjectInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>When you copy an object, if the source object has a checksum, that checksum value will be copied to\n      the new object by default. If the <code>CopyObject</code> request does not include this\n        <code>x-amz-checksum-algorithm</code> header, the checksum algorithm will be copied from the source\n      object to the destination object (if it's present on the source object). You can optionally specify a\n      different checksum algorithm to use with the <code>x-amz-checksum-algorithm</code> header. Unrecognized\n      or unsupported values will respond with the HTTP status code <code>400 Bad Request</code>.</p>\n         <note>\n            <p>For directory buckets, when you use Amazon Web Services SDKs, <code>CRC32</code> is the default checksum algorithm that's used for performance.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-algorithm")
@@ -156,12 +133,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies presentational information for the object. Indicates whether an object should be displayed\n      in a web browser or downloaded as a file. It allows specifying the desired filename for the downloaded\n      file.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Disposition")
                         ),
@@ -172,12 +143,6 @@ public static partial class CopyObjectInputSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies what content encodings have been applied to the object and thus what decoding mechanisms\n      must be applied to obtain the media-type referenced by the Content-Type header field.</p>\n         <note>\n            <p>For directory buckets, only the <code>aws-chunked</code> value is supported in this header field.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Encoding")
@@ -190,10 +155,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The language the content is in.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Language")
                         ),
@@ -204,12 +165,6 @@ public static partial class CopyObjectInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A standard MIME type that describes the format of the object data.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Type")
@@ -222,12 +177,6 @@ public static partial class CopyObjectInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the source object for the copy operation. The source object can be up to 5 GB. If the\n      source object is an object that was uploaded by using a multipart upload, the object copy will be a\n      single part object after the source object is copied to the destination bucket.</p>\n         <p>You specify the value of the copy source in one of two formats, depending on whether you want to\n      access the source object through an <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html\">access point</a>:</p>\n         <ul>\n            <li>\n               <p>For objects not accessed through an access point, specify the name of the source bucket and the key of\n          the source object, separated by a slash (/). For example, to copy the object\n            <code>reports/january.pdf</code> from the general purpose bucket <code>awsexamplebucket</code>, use\n            <code>awsexamplebucket/reports/january.pdf</code>. The value must be URL-encoded. To copy the\n          object <code>reports/january.pdf</code> from the directory bucket\n            <code>awsexamplebucket--use1-az5--x-s3</code>, use\n            <code>awsexamplebucket--use1-az5--x-s3/reports/january.pdf</code>. The value must be\n          URL-encoded.</p>\n            </li>\n            <li>\n               <p>For objects accessed through access points, specify the Amazon Resource Name (ARN) of the object as accessed through the access point, in the format <code>arn:aws:s3:<Region>:<account-id>:accesspoint/<access-point-name>/object/<key></code>. For example, to copy the object <code>reports/january.pdf</code> through access point <code>my-access-point</code> owned by account <code>123456789012</code> in Region <code>us-west-2</code>, use the URL encoding of <code>arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf</code>. The value must be URL encoded.</p>\n               <note>\n                  <ul>\n                     <li>\n                        <p>Amazon S3 supports copy operations using Access points only when the source and destination buckets are in the same Amazon Web Services Region.</p>\n                     </li>\n                     <li>\n                        <p>Access points are not supported by directory buckets.</p>\n                     </li>\n                  </ul>\n               </note>\n               <p>Alternatively, for objects accessed through Amazon S3 on Outposts, specify the ARN of the object as accessed in the format <code>arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/object/<key></code>. For example, to copy the object <code>reports/january.pdf</code> through outpost <code>my-outpost</code> owned by account <code>123456789012</code> in Region <code>us-west-2</code>, use the URL encoding of <code>arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf</code>. The value must be URL-encoded.  </p>\n            </li>\n         </ul>\n         <p>If your source bucket versioning is enabled, the <code>x-amz-copy-source</code> header by default\n      identifies the current version of an object to copy. If the current version is a delete marker, Amazon S3\n      behaves as if the object was deleted. To copy a different version, use the <code>versionId</code> query\n      parameter. Specifically, append <code>?versionId=<version-id></code> to the value (for example,\n        <code>awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893</code>). If\n      you don't specify a version ID, Amazon S3 copies the latest version of the source object.</p>\n         <p>If you enable versioning on the destination bucket, Amazon S3 generates a unique version ID for the\n      copied object. This version ID is different from the version ID of the source object. Amazon S3 returns the\n      version ID of the copied object in the <code>x-amz-version-id</code> response header in the\n      response.</p>\n         <p>If you do not enable versioning or suspend it on the destination bucket, the version ID that Amazon S3\n      generates in the <code>x-amz-version-id</code> response header is always null.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - S3 Versioning isn't enabled and supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-copy-source")
@@ -257,12 +206,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Copies the object if its entity tag (ETag) matches the specified tag.</p>\n         <p> If both the <code>x-amz-copy-source-if-match</code> and\n        <code>x-amz-copy-source-if-unmodified-since</code> headers are present in the request and evaluate as\n      follows, Amazon S3 returns <code>200 OK</code> and copies the data:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-match</code> condition evaluates to true</p>\n            </li>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-unmodified-since</code> condition evaluates to false</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-copy-source-if-match")
                         ),
@@ -273,12 +216,6 @@ public static partial class CopyObjectInputSchema
                     Target10,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Copies the object if it has been modified since the specified time.</p>\n         <p>If both the <code>x-amz-copy-source-if-none-match</code> and\n        <code>x-amz-copy-source-if-modified-since</code> headers are present in the request and evaluate as\n      follows, Amazon S3 returns the <code>412 Precondition Failed</code> response code:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-none-match</code> condition evaluates to false</p>\n            </li>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-modified-since</code> condition evaluates to true</p>\n            </li>\n         </ul>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-copy-source-if-modified-since")
@@ -291,12 +228,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Copies the object if its entity tag (ETag) is different than the specified ETag.</p>\n         <p>If both the <code>x-amz-copy-source-if-none-match</code> and\n        <code>x-amz-copy-source-if-modified-since</code> headers are present in the request and evaluate as\n      follows, Amazon S3 returns the <code>412 Precondition Failed</code> response code:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-none-match</code> condition evaluates to false</p>\n            </li>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-modified-since</code> condition evaluates to true</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-copy-source-if-none-match")
                         ),
@@ -308,12 +239,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Copies the object if it hasn't been modified since the specified time.</p>\n         <p> If both the <code>x-amz-copy-source-if-match</code> and\n        <code>x-amz-copy-source-if-unmodified-since</code> headers are present in the request and evaluate as\n      follows, Amazon S3 returns <code>200 OK</code> and copies the data:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-match</code> condition evaluates to true</p>\n            </li>\n            <li>\n               <p>\n                  <code>x-amz-copy-source-if-unmodified-since</code> condition evaluates to false</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-copy-source-if-unmodified-since")
                         ),
@@ -324,12 +249,6 @@ public static partial class CopyObjectInputSchema
                     Target13,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time at which the object is no longer cacheable.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpHeader"), Document.From("Expires")),
                     ]
                 ),
@@ -338,12 +257,6 @@ public static partial class CopyObjectInputSchema
                     Target14,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-full-control")
@@ -356,12 +269,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to read the object data and its metadata.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read")
                         ),
@@ -372,12 +279,6 @@ public static partial class CopyObjectInputSchema
                     Target16,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to read the object ACL.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read-acp")
@@ -390,12 +291,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to write the ACL for the applicable object.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write-acp")
                         ),
@@ -407,12 +302,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Copies the object if the entity tag (ETag) of the destination object matches the specified\n      tag. If the ETag values do not match, the operation returns a <code>412 Precondition\n        Failed</code> error. If a concurrent operation occurs during the upload S3 returns a\n        <code>409 ConditionalRequestConflict</code> response. On a 409 failure you should fetch the\n      object's ETag and retry the upload.</p>\n         <p>Expects the ETag value as a string.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Match")
                         ),
@@ -423,12 +312,6 @@ public static partial class CopyObjectInputSchema
                     Target19,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Copies the object only if the object key name at the destination does not already exist in\n      the bucket specified. Otherwise, Amazon S3 returns a <code>412 Precondition Failed</code> error. If a\n      concurrent operation occurs during the upload S3 returns a <code>409 ConditionalRequestConflict</code>\n      response. On a 409 failure you should retry the upload.</p>\n         <p>Expects the '*' (asterisk) character.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-None-Match")
@@ -442,20 +325,13 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The key of the destination object.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -479,12 +355,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A map of metadata to store with the object in S3.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPrefixHeaders"),
                             Document.From("x-amz-meta-")
                         ),
@@ -495,12 +365,6 @@ public static partial class CopyObjectInputSchema
                     Target22,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the metadata is copied from the source object or replaced with metadata that's\n      provided in the request. When copying an object, you can preserve all metadata (the default) or specify\n      new metadata. If this header isn’t specified, <code>COPY</code> is the default behavior. </p>\n         <p>\n            <b>General purpose bucket</b> - For general purpose buckets, when you grant\n      permissions, you can use the <code>s3:x-amz-metadata-directive</code> condition key to enforce certain\n      metadata behavior when objects are uploaded. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html\">Amazon S3 condition key examples</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>\n               <code>x-amz-website-redirect-location</code> is unique to each object and is not copied when using\n        the <code>x-amz-metadata-directive</code> header. To copy the value, you must specify\n          <code>x-amz-website-redirect-location</code> in the request header.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-metadata-directive")
@@ -513,12 +377,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the object tag-set is copied from the source object or replaced with the tag-set\n      that's provided in the request.</p>\n         <p>The default value is <code>COPY</code>.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - For directory buckets in a <code>CopyObject</code> operation, only the empty tag-set is supported. Any requests that attempt to write non-empty tags into directory buckets will receive a <code>501 Not Implemented</code> status code. \nWhen the destination bucket is a directory bucket, you will receive a <code>501 Not Implemented</code> response in any of the following situations:</p>\n            <ul>\n               <li>\n                  <p>When you attempt to <code>COPY</code> the tag-set from an S3 source object that has non-empty tags.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a source object and set a non-empty value to <code>x-amz-tagging</code>.</p>\n               </li>\n               <li>\n                  <p>When you don't set the <code>x-amz-tagging-directive</code> header and the source object has non-empty tags. This is because the default value of <code>x-amz-tagging-directive</code> is <code>COPY</code>.</p>\n               </li>\n            </ul>\n            <p>Because only the empty tag-set is supported for directory buckets in a <code>CopyObject</code> operation, the following situations are allowed:</p>\n            <ul>\n               <li>\n                  <p>When you attempt to <code>COPY</code> the tag-set from a directory bucket source object that has no tags to a general purpose bucket. It copies an empty tag-set to the destination object.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a directory bucket source object and set the <code>x-amz-tagging</code> value of the directory bucket destination object to empty.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a general purpose bucket source object that has non-empty tags and set the <code>x-amz-tagging</code> value of the directory bucket destination object to empty.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a directory bucket source object and don't set the <code>x-amz-tagging</code> value of the directory bucket destination object. This is because the default value of <code>x-amz-tagging</code> is the empty value.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-tagging-directive")
                         ),
@@ -529,12 +387,6 @@ public static partial class CopyObjectInputSchema
                     Target24,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether you want to copy annotations from the source object or exclude them. If this\n      header isn't specified, <code>COPY</code> is the default behavior.</p>\n         <p>Valid Values: <code>COPY | EXCLUDE</code>\n         </p>\n         <p>You can specify this directive as either an HTTP header\n      (<code>x-amz-object-annotation-directive</code>) or as a query string parameter. Use the query\n      string form when generating presigned URLs that need to control annotation copy behavior.</p>\n         <p>When set to <code>COPY</code>, you must have <code>s3:GetObjectAnnotation</code> permission on\n      the source object and <code>s3:PutObjectAnnotation</code> permission on the destination. Each\n      annotation copied is billed as a separate PUT request. If annotations on the source are modified\n      during the copy, Amazon S3 returns a retryable error.</p>\n         <note>\n            <p>For directory buckets, annotations are not supported. Use <code>EXCLUDE</code> to copy\n      objects to directory buckets without errors. If you specify <code>COPY</code> for a directory\n      bucket, the request returns HTTP 501 (Not Implemented).</p>\n         </note>\n         <note>\n            <p>When you copy objects using multipart upload (for example, when the Amazon Web Services CLI or Amazon Web Services SDKs\n      use Transfer Manager for objects larger than approximately 8 MB), annotations are not copied by\n      default. To include annotations, specify <code>--copy-props default</code> in the Amazon Web Services CLI or the\n      equivalent SDK configuration. With this opt-in, the SDK reads source annotations, completes the\n      multipart upload, and then writes each annotation to the destination. Between the upload completion\n      and the last annotation write, the destination object exists without all its annotations.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-annotation-directive")
@@ -547,12 +399,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm used when storing this object in Amazon S3. Unrecognized or\n      unsupported values won’t write a destination object and will receive a <code>400 Bad Request</code>\n      response. </p>\n         <p>Amazon S3 automatically encrypts all new objects that are copied to an S3 bucket. When copying an object,\n      if you don't specify encryption information in your copy request, the encryption setting of the target\n      object is set to the default encryption configuration of the destination bucket. By default, all buckets\n      have a base level of encryption configuration that uses server-side encryption with Amazon S3 managed keys\n      (SSE-S3). If the destination bucket has a different default encryption configuration, Amazon S3 uses the\n      corresponding encryption key to encrypt the target object copy.</p>\n         <p>With server-side encryption, Amazon S3 encrypts your data as it writes your data to disks in its data\n      centers and decrypts the data when you access it. For more information about server-side encryption, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html\">Using Server-Side\n        Encryption</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>General purpose buckets </b>\n         </p>\n         <ul>\n            <li>\n               <p>For general purpose buckets, there are the following supported options for server-side encryption:\n          server-side encryption with Key Management Service (KMS) keys (SSE-KMS), dual-layer server-side encryption with\n          Amazon Web Services KMS keys (DSSE-KMS), and server-side encryption with customer-provided encryption keys\n          (SSE-C). Amazon S3 uses the corresponding KMS key, or a customer-provided key to encrypt the target\n          object copy.</p>\n            </li>\n            <li>\n               <p>When you perform a <code>CopyObject</code> operation, if you want to use a different type of\n          encryption setting for the target object, you can specify appropriate encryption-related headers to\n          encrypt the target object with an Amazon S3 managed key, a KMS key, or a customer-provided key. If the\n          encryption setting in your request is different from the default encryption configuration of the\n          destination bucket, the encryption setting in your request takes precedence. </p>\n            </li>\n         </ul>\n         <p>\n            <b>Directory buckets </b>\n         </p>\n         <ul>\n            <li>\n               <p>For directory buckets, there are only two supported options for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (<code>AES256</code>) and server-side encryption with KMS keys (SSE-KMS) (<code>aws:kms</code>). We recommend that the bucket's default encryption uses the desired encryption configuration and you don't override the bucket default encryption in your \n            <code>CreateSession</code> requests or <code>PUT</code> object requests. Then, new objects \n are automatically encrypted with the desired encryption settings. For more\n         information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html\">Protecting data with server-side encryption</a> in the <i>Amazon S3 User Guide</i>. For more information about the encryption overriding behaviors in directory buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-specifying-kms-encryption.html\">Specifying server-side encryption with KMS for new object uploads</a>.</p>\n            </li>\n            <li>\n               <p>To encrypt new object copies to a directory bucket with SSE-KMS, we recommend you specify\n          SSE-KMS as the directory bucket's default encryption configuration with a KMS key\n          (specifically, a <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">customer managed key</a>). The <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed key</a> (<code>aws/s3</code>) isn't supported. Your SSE-KMS configuration can\n          only support 1 <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">customer managed key</a> per\n          directory bucket for the lifetime of the bucket. After you specify a customer managed key for SSE-KMS, you\n          can't override the customer managed key for the bucket's SSE-KMS configuration. Then, when you\n          perform a <code>CopyObject</code> operation and want to specify server-side encryption settings for\n          new object copies with SSE-KMS in the encryption-related request headers, you must ensure the\n          encryption key is the same customer managed key that you specified for the directory bucket's default\n          encryption configuration.\n          </p>\n            </li>\n            <li>\n               <p>\n                  <b>S3 access points for Amazon FSx </b> - When accessing data stored in\n          Amazon FSx file systems using S3 access points, the only valid server side encryption option is\n            <code>aws:fsx</code>. All Amazon FSx file systems have encryption configured by default and are\n          encrypted at rest. Data is automatically encrypted before being written to the file system, and\n          automatically decrypted as it is read. These processes are handled transparently by Amazon FSx.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
                         ),
@@ -563,12 +409,6 @@ public static partial class CopyObjectInputSchema
                     Target26,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the <code>x-amz-storage-class</code> header is not used, the copied object will be stored in the\n        <code>STANDARD</code> Storage Class by default. The <code>STANDARD</code> storage class provides high\n      durability and high availability. Depending on performance needs, you can specify a different Storage\n      Class. </p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>Directory buckets </b> -\n            Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.  \nUnsupported storage class values won't write a destination object and will respond with the HTTP status code <code>400 Bad Request</code>.</p>\n               </li>\n               <li>\n                  <p>\n                     <b>Amazon S3 on Outposts </b> - S3 on Outposts only uses the\n              <code>OUTPOSTS</code> Storage Class.</p>\n               </li>\n            </ul>\n         </note>\n         <p>You can use the <code>CopyObject</code> action to change the storage class of an object that is\n      already stored in Amazon S3 by using the <code>x-amz-storage-class</code> header. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html\">Storage Classes</a>\n      in the <i>Amazon S3 User Guide</i>.</p>\n         <p>Before using an object as a source object for the copy operation, you must restore a copy of it if\n      it meets any of the following conditions:</p>\n         <ul>\n            <li>\n               <p>The storage class of the source object is <code>GLACIER</code> or\n          <code>DEEP_ARCHIVE</code>.</p>\n            </li>\n            <li>\n               <p>The storage class of the source object is <code>INTELLIGENT_TIERING</code> and it's <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering-overview.html#intel-tiering-tier-definition\">S3\n            Intelligent-Tiering access tier</a> is <code>Archive Access</code> or <code>Deep Archive\n            Access</code>.</p>\n            </li>\n         </ul>\n         <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html\">RestoreObject</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/CopyingObjectsExamples.html\">Copying Objects</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-storage-class")
@@ -581,12 +421,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the destination bucket is configured as a website, redirects requests for this object copy to\n      another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the\n      object metadata. This value is unique to each object and is not copied when using the\n        <code>x-amz-metadata-directive</code> header. Instead, you may opt to provide this header in\n      combination with the <code>x-amz-metadata-directive</code> header.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-website-redirect-location")
                         ),
@@ -598,12 +432,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the algorithm to use when encrypting the object (for example, <code>AES256</code>).</p>\n         <p>When you perform a <code>CopyObject</code> operation, if you want to use a different type of\n      encryption setting for the target object, you can specify appropriate encryption-related headers to\n      encrypt the target object with an Amazon S3 managed key, a KMS key, or a customer-provided key. If the\n      encryption setting in your request is different from the default encryption configuration of the\n      destination bucket, the encryption setting in your request takes precedence. </p>\n         <note>\n            <p>This functionality is not supported when the destination bucket is a directory bucket.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -614,12 +442,6 @@ public static partial class CopyObjectInputSchema
                     Target29,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is\n      used to store the object and then it is discarded. Amazon S3 does not store the encryption key. The key must\n      be appropriate for use with the algorithm specified in the\n        <code>x-amz-server-side-encryption-customer-algorithm</code> header.</p>\n         <note>\n            <p>This functionality is not supported when the destination bucket is a directory bucket.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key")
@@ -636,12 +458,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header\n      for a message integrity check to ensure that the encryption key was transmitted without error.</p>\n         <note>\n            <p>This functionality is not supported when the destination bucket is a directory bucket.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
                         ),
@@ -652,12 +468,6 @@ public static partial class CopyObjectInputSchema
                     Target31,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption. All GET and\n      PUT requests for an object protected by KMS will fail if they're not made via SSL or using SigV4. For\n      information about configuring any of the officially supported Amazon Web Services SDKs and Amazon Web Services CLI, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version\">Specifying\n        the Signature Version in Request Authentication</a> in the\n      <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Directory buckets</b> -\n      To encrypt data using SSE-KMS, it's recommended to specify the \n<code>x-amz-server-side-encryption</code> header to <code>aws:kms</code>. Then, the <code>x-amz-server-side-encryption-aws-kms-key-id</code> header implicitly uses \nthe bucket's default KMS customer managed key ID. If you want to explicitly set the <code>\n         x-amz-server-side-encryption-aws-kms-key-id</code> header, it must match the bucket's default customer managed key (using key ID or ARN, not alias). Your SSE-KMS configuration can only support 1 <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">customer managed key</a> per directory bucket's lifetime. \nThe <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed key</a> (<code>aws/s3</code>) isn't supported. \n                            \n Incorrect key specification results in an HTTP <code>400 Bad Request</code> error. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-aws-kms-key-id")
@@ -673,12 +483,6 @@ public static partial class CopyObjectInputSchema
                     Target32,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use for the\n      destination object encryption. The value of this header is a base64-encoded UTF-8 string holding JSON\n      with the encryption context key-value pairs.</p>\n         <p>\n            <b>General purpose buckets</b> - This value must be explicitly added to\n      specify encryption context for <code>CopyObject</code> requests if you want an additional encryption\n      context for your destination object. The additional encryption context of the source object won't be\n      copied to the destination object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context\">Encryption context</a>\n      in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Directory buckets</b> - You can optionally provide an explicit encryption context value. The value must match the default encryption context - the bucket Amazon Resource Name (ARN). An additional encryption context value is not supported. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-context")
@@ -699,12 +503,6 @@ public static partial class CopyObjectInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption\n      using Key Management Service (KMS) keys (SSE-KMS). If a target object uses SSE-KMS, you can enable an S3 Bucket Key\n      for the object.</p>\n         <p>Setting this header to <code>true</code> causes Amazon S3 to use an S3 Bucket Key for object encryption\n      with SSE-KMS. Specifying this header with a COPY action doesn’t affect bucket-level settings for S3\n      Bucket Key.</p>\n         <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html\">Amazon S3\n        Bucket Keys</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> -\n        S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets  \nto directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-bucket-key-enabled")
                         ),
@@ -715,12 +513,6 @@ public static partial class CopyObjectInputSchema
                     Target34,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the algorithm to use when decrypting the source object (for example,\n      <code>AES256</code>).</p>\n         <p>If the source object for the copy is stored in Amazon S3 using SSE-C, you must provide the necessary\n      encryption information in your request so that Amazon S3 can decrypt the object for copying.</p>\n         <note>\n            <p>This functionality is not supported when the source object is in a directory bucket.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From(
@@ -734,12 +526,6 @@ public static partial class CopyObjectInputSchema
                     Target35,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The\n      encryption key provided in this header must be the same one that was used when the source object was\n      created.</p>\n         <p>If the source object for the copy is stored in Amazon S3 using SSE-C, you must provide the necessary\n      encryption information in your request so that Amazon S3 can decrypt the object for copying.</p>\n         <note>\n            <p>This functionality is not supported when the source object is in a directory bucket.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-copy-source-server-side-encryption-customer-key")
@@ -755,12 +541,6 @@ public static partial class CopyObjectInputSchema
                     Target36,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header\n      for a message integrity check to ensure that the encryption key was transmitted without error.</p>\n         <p>If the source object for the copy is stored in Amazon S3 using SSE-C, you must provide the necessary\n      encryption information in your request so that Amazon S3 can decrypt the object for copying.</p>\n         <note>\n            <p>This functionality is not supported when the source object is in a directory bucket.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From(
@@ -786,12 +566,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tag-set for the object copy in the destination bucket. This value must be used in conjunction\n      with the <code>x-amz-tagging-directive</code> if you choose <code>REPLACE</code> for the\n        <code>x-amz-tagging-directive</code>. If you choose <code>COPY</code> for the\n        <code>x-amz-tagging-directive</code>, you don't need to set the <code>x-amz-tagging</code> header,\n      because the tag-set will be copied from the source object directly. The tag-set must be encoded as URL\n      Query parameters.</p>\n         <p>The default value is the empty value.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - For directory buckets in a <code>CopyObject</code> operation, only the empty tag-set is supported. Any requests that attempt to write non-empty tags into directory buckets will receive a <code>501 Not Implemented</code> status code. \nWhen the destination bucket is a directory bucket, you will receive a <code>501 Not Implemented</code> response in any of the following situations:</p>\n            <ul>\n               <li>\n                  <p>When you attempt to <code>COPY</code> the tag-set from an S3 source object that has non-empty tags.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a source object and set a non-empty value to <code>x-amz-tagging</code>.</p>\n               </li>\n               <li>\n                  <p>When you don't set the <code>x-amz-tagging-directive</code> header and the source object has non-empty tags. This is because the default value of <code>x-amz-tagging-directive</code> is <code>COPY</code>.</p>\n               </li>\n            </ul>\n            <p>Because only the empty tag-set is supported for directory buckets in a <code>CopyObject</code> operation, the following situations are allowed:</p>\n            <ul>\n               <li>\n                  <p>When you attempt to <code>COPY</code> the tag-set from a directory bucket source object that has no tags to a general purpose bucket. It copies an empty tag-set to the destination object.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a directory bucket source object and set the <code>x-amz-tagging</code> value of the directory bucket destination object to empty.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a general purpose bucket source object that has non-empty tags and set the <code>x-amz-tagging</code> value of the directory bucket destination object to empty.</p>\n               </li>\n               <li>\n                  <p>When you attempt to <code>REPLACE</code> the tag-set of a directory bucket source object and don't set the <code>x-amz-tagging</code> value of the directory bucket destination object. This is because the default value of <code>x-amz-tagging</code> is the empty value.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-tagging")
                         ),
@@ -803,12 +577,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Object Lock mode that you want to apply to the object copy.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-mode")
                         ),
@@ -819,12 +587,6 @@ public static partial class CopyObjectInputSchema
                     Target40,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when you want the Object Lock of the object copy to expire.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-retain-until-date")
@@ -841,12 +603,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether you want to apply a legal hold to the object copy.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-legal-hold")
                         ),
@@ -857,12 +613,6 @@ public static partial class CopyObjectInputSchema
                     Target42,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The event hold status to apply to the object copy. Set to <code>ON</code> to enable or\n      <code>OFF</code> to disable.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-event-hold")
@@ -877,12 +627,6 @@ public static partial class CopyObjectInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The event hold duration in days to apply to the object copy. You cannot specify a duration\n      in both days and years.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -900,12 +644,6 @@ public static partial class CopyObjectInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The event hold duration in years to apply to the object copy. You cannot specify a\n      duration in both days and years.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-event-hold-duration-years")
                         ),
@@ -917,12 +655,6 @@ public static partial class CopyObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected destination bucket owner. If the account ID that you provide does not match the actual owner of the destination bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -933,12 +665,6 @@ public static partial class CopyObjectInputSchema
                     Target46,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected source bucket owner. If the account ID that you provide does not match the actual owner of the source bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-source-expected-bucket-owner")
@@ -958,89 +684,151 @@ public static partial class CopyObjectInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectCannedACL?> Target0 =
-            Schemas.Nullable(ObjectCannedACLSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectCannedACL?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectCannedACLSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target3 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target10 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target12 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target14 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target15 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target16 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target17 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target18 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target19 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target20 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Metadata?> Target21 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetadataSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target21 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MetadataSchema.Schema!)
+        );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataDirective?> Target22 =
-            Schemas.Nullable(MetadataDirectiveSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(MetadataDirectiveSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TaggingDirective?> Target23 =
-            Schemas.Nullable(TaggingDirectiveSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(TaggingDirectiveSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnnotationDirective?> Target24 =
-            Schemas.Nullable(AnnotationDirectiveSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(AnnotationDirectiveSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target25 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target26 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target27 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target28 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target29 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target30 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target31 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target32 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target33 =
-            Schemas.Nullable(Schemas.Boolean);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target34 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target35 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target36 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target37 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target38 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockMode?> Target39 =
-            Schemas.Nullable(ObjectLockModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockModeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target40 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("date-time")
@@ -1048,24 +836,26 @@ public static partial class CopyObjectInputSchema
                 ])
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus?> Target41 =
-            Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockEventHold?> Target42 =
-            Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target43 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target44 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target43 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target44 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target45 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target46 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CopyObjectInput Build(Builder builder) =>
-            new CopyObjectInput(
+        public override global::Com.Amazonaws.S3.CopyObjectInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CopyObjectInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.CopySource ?? throw new MissingRequiredMemberException("CopySource"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
@@ -1116,7 +906,7 @@ public static partial class CopyObjectInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CopyObjectInput value,
+            global::Com.Amazonaws.S3.CopyObjectInput value,
             ref TSerializer serializer
         )
         {
@@ -1511,8 +1301,8 @@ public static partial class CopyObjectInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ObjectCannedACL.FromValue(value0)
-                                : default(ObjectCannedACL)
+                                ? global::Com.Amazonaws.S3.ObjectCannedACL.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ObjectCannedACL)
                         );
                     break;
                 case 1:

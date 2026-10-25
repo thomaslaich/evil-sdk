@@ -4,212 +4,90 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateFunctionCodeSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        UpdateFunctionCodeInput,
-        UpdateFunctionCodeOutput
+        global::Com.Amazonaws.Lambda.UpdateFunctionCodeInput,
+        global::Com.Amazonaws.Lambda.UpdateFunctionCodeOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#UpdateFunctionCode"),
-            Schemas.Lazy(() => UpdateFunctionCodeInputSchema.Schema!),
-            Schemas.Lazy(() => UpdateFunctionCodeOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => UpdateFunctionCodeInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => UpdateFunctionCodeOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#CodeSigningConfigNotFoundException"),
-                    Schemas.Lazy(() => CodeSigningConfigNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        CodeSigningConfigNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#CodeStorageExceededException"),
-                    Schemas.Lazy(() => CodeStorageExceededExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        CodeStorageExceededExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#CodeVerificationFailedException"),
-                    Schemas.Lazy(() => CodeVerificationFailedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        CodeVerificationFailedExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidCodeSignatureException"),
-                    Schemas.Lazy(() => InvalidCodeSignatureExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidCodeSignatureExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#PreconditionFailedException"),
-                    Schemas.Lazy(() => PreconditionFailedExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        PreconditionFailedExceptionSchema.Schema!
+                    ),
                     412
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceConflictException"),
-                    Schemas.Lazy(() => ResourceConflictExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceConflictExceptionSchema.Schema!
+                    ),
                     409
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to update the code of an AWS Lambda function"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_UpdateFunctionCode.html")
-                            },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "function",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html\">Configuring code signing for Lambda</a>.</p> <p>If the function's package type is <code>Image</code>, then you must specify the code package in <code>ImageUri</code> as the URI of a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html\">container image</a> in the Amazon ECR registry.</p> <p>If the function's package type is <code>Zip</code>, then you must specify the deployment package as a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip\">.zip file archive</a>. Enter the Amazon S3 bucket and key of the code .zip file location. You can also provide the function code inline using the <code>ZipFile</code> field.</p> <p>The code in the deployment package must be compatible with the target instruction set architecture of the function (<code>x86-64</code> or <code>arm64</code>).</p> <p>The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.</p> <note> <p>For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function.</p> </note>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example replaces the code of the unpublished ($LATEST) version of a function named my-function with the contents of the specified zip file in Amazon S3."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                                {
-                                                    "S3Bucket",
-                                                    Document.From("my-bucket-1xpuxmplzrlbh")
-                                                },
-                                                { "S3Key", Document.From("function.zip") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "CodeSha256",
-                                                    Document.From(
-                                                        "PFn4S+er27qk+UuZSTKEQfNKG/XNn7QJs90mJgq6oH8="
-                                                    )
-                                                },
-                                                { "CodeSize", Document.From((decimal)308) },
-                                                { "Description", Document.From("") },
-                                                {
-                                                    "FunctionArn",
-                                                    Document.From(
-                                                        "arn:aws:lambda:us-east-2:123456789012:function:my-function"
-                                                    )
-                                                },
-                                                { "FunctionName", Document.From("my-function") },
-                                                { "Handler", Document.From("index.handler") },
-                                                {
-                                                    "LastModified",
-                                                    Document.From("2019-08-14T22:26:11.234+0000")
-                                                },
-                                                { "MemorySize", Document.From((decimal)128) },
-                                                {
-                                                    "RevisionId",
-                                                    Document.From(
-                                                        "873282ed-xmpl-4dc8-a069-d0c647e470c6"
-                                                    )
-                                                },
-                                                {
-                                                    "Role",
-                                                    Document.From(
-                                                        "arn:aws:iam::123456789012:role/lambda-role"
-                                                    )
-                                                },
-                                                { "Runtime", Document.From("nodejs12.x") },
-                                                { "Timeout", Document.From((decimal)3) },
-                                                {
-                                                    "TracingConfig",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "Mode",
-                                                                Document.From("PassThrough")
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                                { "Version", Document.From("$LATEST") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From("To update a Lambda function's code")
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -217,17 +95,9 @@ public static partial class UpdateFunctionCodeSchema
                         {
                             { "method", Document.From("PUT") },
                             { "uri", Document.From("/2015-03-31/functions/{FunctionName}/code") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#suppress"),
-                    Document.From(new Document[] { Document.From("DefaultValueInUpdate") })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

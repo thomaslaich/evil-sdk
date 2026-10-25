@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataJournalTableConfigurationSchema
 {
     public static OperationSchema<
-        UpdateBucketMetadataJournalTableConfigurationInput,
-        UpdateBucketMetadataJournalTableConfigurationOutput
+        global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationInput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#UpdateBucketMetadataJournalTableConfiguration"),
-            Schemas.Lazy(() => UpdateBucketMetadataJournalTableConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => UpdateBucketMetadataJournalTableConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                UpdateBucketMetadataJournalTableConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                UpdateBucketMetadataJournalTableConfigurationOutputSchema.Schema!
+            ),
             [],
             [
                 new Trait(
@@ -31,19 +35,13 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Enables or disables journal table record expiration for an S3 Metadata configuration on a general \n      purpose bucket. For more information, see\n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-overview.html\">Accelerating\n        data discovery with S3 Metadata</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>To use this operation, you must have the <code>s3:UpdateBucketMetadataJournalTableConfiguration</code>\n            permission. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/metadata-tables-permissions.html\">Setting up permissions for\n              configuring metadata tables</a> in the <i>Amazon S3 User Guide</i>. </p>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>UpdateBucketMetadataJournalTableConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetadataConfiguration.html\">DeleteBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetadataConfiguration.html\">GetBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UpdateBucketMetadataInventoryTableConfiguration.html\">UpdateBucketMetadataInventoryTableConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?metadataJournalTable") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?metadataJournalTable") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

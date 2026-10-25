@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryS3BucketDestinationSchema
 {
@@ -14,43 +14,27 @@ public static partial class InventoryS3BucketDestinationSchema
     {
         public string? AccountId { get; set; }
         public string? Bucket { get; set; }
-        public InventoryFormat? Format { get; set; }
+        public global::Com.Amazonaws.S3.InventoryFormat? Format { get; set; }
         public string? Prefix { get; set; }
-        public InventoryEncryption? Encryption { get; set; }
+        public global::Com.Amazonaws.S3.InventoryEncryption? Encryption { get; set; }
     }
 
-    public static StructSchema<InventoryS3BucketDestination, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InventoryS3BucketDestination,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventoryS3BucketDestination, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventoryS3BucketDestination, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventoryS3BucketDestination"),
             [
-                new(
-                    "AccountId",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not\n      validated before exporting data. </p>\n         <note>\n            <p> Although this value is optional, we strongly recommend that you set it to help prevent problems\n        if the destination bucket ownership changes. </p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("AccountId", Target0),
                 new(
                     "Bucket",
                     Target1,
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the bucket where inventory results will be published.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -64,69 +48,42 @@ public static partial class InventoryS3BucketDestinationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the output format of the inventory results.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Prefix",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix that is prepended to all inventory results.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Encryption",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains the type of server-side encryption used to encrypt the inventory results.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target3),
+                new("Encryption", Target4),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where\n      S3 Inventory results are published.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryFormat?> Target2 =
-            Schemas.Nullable(InventoryFormatSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryFormat?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(InventoryFormatSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryEncryption?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryEncryptionSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryEncryption?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InventoryEncryptionSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventoryS3BucketDestination Build(Builder builder) =>
-            new InventoryS3BucketDestination(
+        public override global::Com.Amazonaws.S3.InventoryS3BucketDestination Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.InventoryS3BucketDestination(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Format ?? throw new MissingRequiredMemberException("Format"),
                 builder.AccountId,
@@ -135,7 +92,7 @@ public static partial class InventoryS3BucketDestinationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            InventoryS3BucketDestination value,
+            global::Com.Amazonaws.S3.InventoryS3BucketDestination value,
             ref TSerializer serializer
         )
         {
@@ -193,8 +150,8 @@ public static partial class InventoryS3BucketDestinationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value2
-                                ? InventoryFormat.FromValue(value2)
-                                : default(InventoryFormat)
+                                ? global::Com.Amazonaws.S3.InventoryFormat.FromValue(value2)
+                                : default(global::Com.Amazonaws.S3.InventoryFormat)
                         );
                     break;
                 case 3:

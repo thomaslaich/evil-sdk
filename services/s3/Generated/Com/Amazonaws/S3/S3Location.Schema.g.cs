@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class S3LocationSchema
 {
@@ -15,17 +15,18 @@ public static partial class S3LocationSchema
         public string? BucketName { get; set; }
         public string? Prefix { get; set; }
         public global::Com.Amazonaws.S3.Encryption? Encryption { get; set; }
-        public ObjectCannedACL? CannedACL { get; set; }
-        public Grants? AccessControlList { get; set; }
+        public global::Com.Amazonaws.S3.ObjectCannedACL? CannedACL { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Grant>? AccessControlList { get; set; }
         public global::Com.Amazonaws.S3.Tagging? Tagging { get; set; }
-        public global::Com.Amazonaws.S3.UserMetadata? UserMetadata { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.MetadataEntry>? UserMetadata { get; set; }
         public global::Com.Amazonaws.S3.StorageClass? StorageClass { get; set; }
     }
 
-    public static StructSchema<S3Location, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.S3Location, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<S3Location, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.S3Location, Builder>(
             ShapeId.Parse("com.amazonaws.s3#S3Location"),
             [
                 new(
@@ -34,12 +35,6 @@ public static partial class S3LocationSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket where the restore results will be placed.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -53,113 +48,54 @@ public static partial class S3LocationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix that is prepended to the restore results for this request.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
                 new("Encryption", Target2),
-                new(
-                    "CannedACL",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The canned ACL to apply to the restore results.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "AccessControlList",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of grants that control access to the staged results.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Tagging",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tag-set that is applied to the restore results.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "UserMetadata",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of metadata to store with the restore results in S3.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "StorageClass",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The class of storage used to store the restore results.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("CannedACL", Target3),
+                new("AccessControlList", Target4),
+                new("Tagging", Target5),
+                new("UserMetadata", Target6),
+                new("StorageClass", Target7),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Describes an Amazon S3 location that will receive the results of the restore request.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Encryption?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => EncryptionSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectCannedACL?> Target3 =
-            Schemas.Nullable(ObjectCannedACLSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<Grants?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => GrantsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EncryptionSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectCannedACL?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectCannedACLSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Grant>?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => GrantsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tagging?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => TaggingSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.UserMetadata?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => UserMetadataSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TaggingSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.MetadataEntry>?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => UserMetadataSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target7 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override S3Location Build(Builder builder) =>
-            new S3Location(
+        public override global::Com.Amazonaws.S3.S3Location Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.S3Location(
                 builder.BucketName ?? throw new MissingRequiredMemberException("BucketName"),
                 builder.Prefix ?? throw new MissingRequiredMemberException("Prefix"),
                 builder.AccessControlList,
@@ -171,7 +107,7 @@ public static partial class S3LocationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            S3Location value,
+            global::Com.Amazonaws.S3.S3Location value,
             ref TSerializer serializer
         )
         {
@@ -263,8 +199,8 @@ public static partial class S3LocationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value3
-                                ? ObjectCannedACL.FromValue(value3)
-                                : default(ObjectCannedACL)
+                                ? global::Com.Amazonaws.S3.ObjectCannedACL.FromValue(value3)
+                                : default(global::Com.Amazonaws.S3.ObjectCannedACL)
                         );
                     break;
                 case 4:

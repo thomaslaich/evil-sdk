@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EncryptionTypeListSchema
 {
     public static ListSchema<
-        EncryptionTypeList,
-        EncryptionType,
-        List<EncryptionType>
+        IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType>,
+        global::Com.Amazonaws.S3.EncryptionType,
+        List<global::Com.Amazonaws.S3.EncryptionType>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<EncryptionTypeList, EncryptionType, List<EncryptionType>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType>,
+            global::Com.Amazonaws.S3.EncryptionType,
+            List<global::Com.Amazonaws.S3.EncryptionType>
+        >(
             ShapeId.Parse("com.amazonaws.s3#EncryptionTypeList"),
             ShapeKind.List,
             Target0,
@@ -25,26 +29,30 @@ public static partial class EncryptionTypeListSchema
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("EncryptionType"))]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EncryptionType> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EncryptionType> Target0 =
             EncryptionTypeSchema.Schema;
 
-        public override IEnumerable<EncryptionType> GetElements(EncryptionTypeList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.EncryptionType> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType> value
+        ) => value;
 
-        public override List<EncryptionType> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.EncryptionType> CreateTypedBuilder() => new();
 
-        public override void Add(List<EncryptionType> builder, EncryptionType value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.EncryptionType> builder,
+            global::Com.Amazonaws.S3.EncryptionType value
+        ) => builder.Add(value);
 
-        public override EncryptionTypeList Build(List<EncryptionType> builder) =>
-            EncryptionTypeList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType> Build(
+            List<global::Com.Amazonaws.S3.EncryptionType> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            EncryptionTypeList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -52,14 +60,14 @@ public static partial class EncryptionTypeListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<EncryptionType> builder,
+            List<global::Com.Amazonaws.S3.EncryptionType> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? EncryptionType.FromValue(element)
-                        : default(EncryptionType)
+                        ? global::Com.Amazonaws.S3.EncryptionType.FromValue(element)
+                        : default(global::Com.Amazonaws.S3.EncryptionType)
                 )
             );
     }

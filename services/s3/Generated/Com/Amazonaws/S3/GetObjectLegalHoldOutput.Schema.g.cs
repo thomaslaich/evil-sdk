@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectLegalHoldOutputSchema
 {
     public sealed class Builder
     {
-        public ObjectLockLegalHold? LegalHold { get; set; }
+        public global::Com.Amazonaws.S3.ObjectLockLegalHold? LegalHold { get; set; }
     }
 
-    public static StructSchema<GetObjectLegalHoldOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectLegalHoldOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectLegalHoldOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectLegalHoldOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectLegalHoldOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class GetObjectLegalHoldOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The current legal hold status for the specified object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,16 +45,18 @@ public static partial class GetObjectLegalHoldOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectLockLegalHold?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ObjectLockLegalHoldSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockLegalHold?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectLockLegalHoldSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectLegalHoldOutput Build(Builder builder) =>
-            new GetObjectLegalHoldOutput(builder.LegalHold);
+        public override global::Com.Amazonaws.S3.GetObjectLegalHoldOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectLegalHoldOutput(builder.LegalHold);
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectLegalHoldOutput value,
+            global::Com.Amazonaws.S3.GetObjectLegalHoldOutput value,
             ref TSerializer serializer
         )
         {

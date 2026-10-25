@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataInventoryTableConfigurationOutputSchema
 {
     public sealed class Builder { }
 
     public static StructSchema<
-        UpdateBucketMetadataInventoryTableConfigurationOutput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateBucketMetadataInventoryTableConfigurationOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#UpdateBucketMetadataInventoryTableConfigurationOutput"),
             [],
             [
@@ -35,12 +38,12 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationOutpu
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateBucketMetadataInventoryTableConfigurationOutput Build(
+        public override global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationOutput Build(
             Builder builder
-        ) => new UpdateBucketMetadataInventoryTableConfigurationOutput();
+        ) => new global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            UpdateBucketMetadataInventoryTableConfigurationOutput value,
+            global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

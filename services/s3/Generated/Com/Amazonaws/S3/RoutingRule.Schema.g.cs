@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RoutingRuleSchema
 {
@@ -16,25 +16,14 @@ public static partial class RoutingRuleSchema
         public global::Com.Amazonaws.S3.Redirect? Redirect { get; set; }
     }
 
-    public static StructSchema<RoutingRule, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.RoutingRule, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RoutingRule, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RoutingRule, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RoutingRule"),
             [
-                new(
-                    "Condition",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container for describing a condition that must be met for the specified redirect to apply. For\n      example, 1. If request is for pages in the <code>/docs</code> folder, redirect to the\n        <code>/documents</code> folder. 2. If request results in HTTP error 4xx, redirect request to another\n      host where you might process the error.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Condition", Target0),
                 new(
                     "Redirect",
                     Target1,
@@ -42,43 +31,34 @@ public static partial class RoutingRuleSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for redirect information. You can redirect requests to another host, to another page, or\n      with another protocol. In the event of an error, you can specify a different error code to\n      return.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the redirect behavior and when a redirect is applied. For more information about routing\n      rules, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html#advanced-conditional-redirects\">Configuring\n        advanced conditional redirects</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Condition?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ConditionSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ConditionSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Redirect?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => RedirectSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RedirectSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RoutingRule Build(Builder builder) =>
-            new RoutingRule(
+        public override global::Com.Amazonaws.S3.RoutingRule Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RoutingRule(
                 builder.Redirect ?? throw new MissingRequiredMemberException("Redirect"),
                 builder.Condition
             );
 
         public override void SerializeMembers<TSerializer>(
-            RoutingRule value,
+            global::Com.Amazonaws.S3.RoutingRule value,
             ref TSerializer serializer
         )
         {

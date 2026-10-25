@@ -4,73 +4,38 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateCodeSigningConfigSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        CreateCodeSigningConfigInput,
-        CreateCodeSigningConfigOutput
+        global::Com.Amazonaws.Lambda.CreateCodeSigningConfigInput,
+        global::Com.Amazonaws.Lambda.CreateCodeSigningConfigOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#CreateCodeSigningConfig"),
-            Schemas.Lazy(() => CreateCodeSigningConfigInputSchema.Schema!),
-            Schemas.Lazy(() => CreateCodeSigningConfigOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateCodeSigningConfigInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CreateCodeSigningConfigOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#conditionKeys"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From("aws:TagKeys"),
-                            Document.From("aws:RequestTag/${TagKey}"),
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "createsResources",
-                                Document.From(
-                                    new Document[] { Document.From("code signing config") }
-                                )
-                            },
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to create an AWS Lambda code signing config"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_CreateCodeSigningConfig.html")
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Creates a code signing configuration. A <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html\">code signing configuration</a> defines a list of allowed signing profiles and defines the code-signing validation policy (action to be taken if deployment validation checks fail). </p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -78,13 +43,9 @@ public static partial class CreateCodeSigningConfigSchema
                         {
                             { "method", Document.From("POST") },
                             { "uri", Document.From("/2020-04-22/code-signing-configs") },
-                            { "code", Document.From((decimal)201) },
+                            { "code", Document.From(201m) },
                         }
                     )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

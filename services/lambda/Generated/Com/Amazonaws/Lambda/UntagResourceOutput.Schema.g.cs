@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UntagResourceOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<UntagResourceOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.UntagResourceOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UntagResourceOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.UntagResourceOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#UntagResourceOutput"),
             [],
             [
@@ -33,10 +35,11 @@ public static partial class UntagResourceOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override UntagResourceOutput Build(Builder builder) => new UntagResourceOutput();
+        public override global::Com.Amazonaws.Lambda.UntagResourceOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.UntagResourceOutput();
 
         public override void SerializeMembers<TSerializer>(
-            UntagResourceOutput value,
+            global::Com.Amazonaws.Lambda.UntagResourceOutput value,
             ref TSerializer serializer
         ) { }
 

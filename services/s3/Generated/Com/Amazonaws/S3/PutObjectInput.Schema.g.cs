@@ -8,13 +8,13 @@ using System.IO;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectInputSchema
 {
     public sealed class Builder
     {
-        public ObjectCannedACL? ACL { get; set; }
+        public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public Stream? Body { get; set; }
         public string? Bucket { get; set; }
         public string? CacheControl { get; set; }
@@ -44,7 +44,7 @@ public static partial class PutObjectInputSchema
         public string? GrantWriteACP { get; set; }
         public string? Key { get; set; }
         public long? WriteOffsetBytes { get; set; }
-        public global::Com.Amazonaws.S3.Metadata? Metadata { get; set; }
+        public IReadOnlyDictionary<string, string>? Metadata { get; set; }
         public global::Com.Amazonaws.S3.ServerSideEncryption? ServerSideEncryption { get; set; }
         public global::Com.Amazonaws.S3.StorageClass? StorageClass { get; set; }
         public string? WebsiteRedirectLocation { get; set; }
@@ -65,10 +65,11 @@ public static partial class PutObjectInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<PutObjectInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.PutObjectInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutObjectInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutObjectInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutObjectInput"),
             [
                 new(
@@ -76,12 +77,6 @@ public static partial class PutObjectInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The canned ACL to apply to the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL\">Canned ACL</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p>When adding a new object, you can use headers to grant ACL-based permissions to individual\n      Amazon Web Services accounts or to predefined groups defined by Amazon S3. These permissions are then added to the ACL on\n      the object. By default, all objects are private. Only the owner has full access control. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control\n        List (ACL) Overview</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-using-rest-api.html\">Managing ACLs Using the REST API</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p>If the bucket that you're uploading objects to uses the bucket owner enforced setting for S3 Object\n      Ownership, ACLs are disabled and no longer affect permissions. Buckets that use this setting only accept\n      PUT requests that don't specify an ACL or PUT requests that specify bucket owner full control ACLs, such\n      as the <code>bucket-owner-full-control</code> canned ACL or an equivalent form of this ACL expressed in\n      the XML format. PUT requests that contain other ACLs (for example, custom grants to certain\n      Amazon Web Services accounts) fail and return a <code>400</code> error with the error code\n        <code>AccessControlListNotSupported</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html\"> Controlling ownership of objects and\n        disabling ACLs</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-acl")
@@ -94,10 +89,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#default"), Document.From("")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Object data.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -114,12 +105,6 @@ public static partial class PutObjectInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The bucket name to which the PUT action was initiated. </p>\n         <p>\n            <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format <code>\n               <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming\n         restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming\n            rules</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>Object Lambda access points are not supported by directory buckets.</p>\n         </note>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the \n                     form <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -145,12 +130,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Can be used to specify caching behavior along the request/reply chain. For more information, see\n        <a href=\"http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9\">http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Cache-Control")
                         ),
@@ -161,12 +140,6 @@ public static partial class PutObjectInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies presentational information for the object. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc6266#section-4\">https://www.rfc-editor.org/rfc/rfc6266#section-4</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Disposition")
@@ -179,12 +152,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies what content encodings have been applied to the object and thus what decoding mechanisms\n      must be applied to obtain the media-type referenced by the Content-Type header field. For more\n      information, see <a href=\"https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding\">https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Encoding")
                         ),
@@ -195,10 +162,6 @@ public static partial class PutObjectInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The language the content is in.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Language")
@@ -215,12 +178,6 @@ public static partial class PutObjectInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Size of the body in bytes. This parameter is useful when the size of the body cannot be determined\n      automatically. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc9110.html#name-content-length\">https://www.rfc-editor.org/rfc/rfc9110.html#name-content-length</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Length")
                         ),
@@ -231,12 +188,6 @@ public static partial class PutObjectInputSchema
                     Target8,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded 128-bit <code>MD5</code> digest of the message (without the headers) according to\n      RFC 1864. This header can be used as a message integrity check to verify that the data is the same data\n      that was originally sent. Although it is optional, we recommend using the Content-MD5 mechanism as an\n      end-to-end integrity check. For more information about REST request authentication, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html\">REST\n      Authentication</a>.</p>\n         <note>\n            <p>The <code>Content-MD5</code> or <code>x-amz-sdk-checksum-algorithm</code> header is required for\n        any request to upload an object with a retention period configured using Amazon S3 Object Lock. For more\n        information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html#object-lock-put-object\">Uploading objects\n          to an Object Lock enabled bucket </a> in the <i>Amazon S3 User Guide</i>.</p>\n         </note>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
@@ -249,12 +200,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A standard MIME type describing the format of the contents. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type\">https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Type")
                         ),
@@ -265,12 +210,6 @@ public static partial class PutObjectInputSchema
                     Target10,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the object when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum-<i>algorithm</i>\n            </code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>.</p>\n         <p>For the <code>x-amz-checksum-<i>algorithm</i>\n            </code> header, replace <code>\n               <i>algorithm</i>\n            </code> with the supported algorithm from the following list: </p>\n         <ul>\n            <li>\n               <p>\n                  <code>CRC32</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>CRC32C</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>CRC64NVME</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>MD5</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA1</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA256</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA512</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH3</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH64</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH128</code>\n               </p>\n            </li>\n         </ul>\n         <p>For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If the individual checksum value you provide through <code>x-amz-checksum-<i>algorithm</i>\n            </code> doesn't match the checksum algorithm you set through <code>x-amz-sdk-checksum-algorithm</code>, Amazon S3 fails the request with a <code>BadDigest</code> error.</p>\n         <note>\n            <p>The <code>Content-MD5</code> or <code>x-amz-sdk-checksum-algorithm</code> header is required for\n        any request to upload an object with a retention period configured using Amazon S3 Object Lock. For more\n        information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html#object-lock-put-object\">Uploading objects\n          to an Object Lock enabled bucket </a> in the <i>Amazon S3 User Guide</i>.</p>\n         </note>\n         <p>For directory buckets, when you use Amazon Web Services SDKs, <code>CRC32</code> is the default checksum algorithm that's used for performance.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -283,12 +222,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 32-bit <code>CRC32</code> checksum of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32")
                         ),
@@ -299,12 +232,6 @@ public static partial class PutObjectInputSchema
                     Target12,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 32-bit <code>CRC32C</code> checksum of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc32c")
@@ -317,12 +244,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>CRC64NVME</code>\n      checksum of the object. The <code>CRC64NVME</code> checksum is always a full object checksum. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-crc64nvme")
                         ),
@@ -333,12 +254,6 @@ public static partial class PutObjectInputSchema
                     Target14,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 160-bit <code>SHA1</code> digest of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha1")
@@ -351,12 +266,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.\n    This header specifies the Base64 encoded, 256-bit <code>SHA256</code> digest of the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha256")
                         ),
@@ -367,12 +276,6 @@ public static partial class PutObjectInputSchema
                     Target16,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 512-bit <code>SHA512</code>\n      digest of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-sha512")
@@ -385,12 +288,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 128-bit <code>MD5</code>\n      digest of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-md5")
                         ),
@@ -401,12 +298,6 @@ public static partial class PutObjectInputSchema
                     Target18,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>XXHASH64</code>\n      checksum of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash64")
@@ -419,12 +310,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>XXHASH3</code>\n      checksum of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash3")
                         ),
@@ -436,12 +321,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 128-bit <code>XXHASH128</code>\n      checksum of the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-xxhash128")
                         ),
@@ -452,12 +331,6 @@ public static partial class PutObjectInputSchema
                     Target21,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time at which the object is no longer cacheable. For more information, see <a href=\"https://www.rfc-editor.org/rfc/rfc7234#section-5.3\">https://www.rfc-editor.org/rfc/rfc7234#section-5.3</a>.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpHeader"), Document.From("Expires")),
                     ]
                 ),
@@ -466,12 +339,6 @@ public static partial class PutObjectInputSchema
                     Target22,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches\n      the ETag of the object in S3. If the ETag values do not match, the operation returns a <code>412\n        Precondition Failed</code> error.</p>\n         <p>If a conflicting operation occurs during the upload S3 returns a <code>409\n        ConditionalRequestConflict</code> response. On a 409 failure you should fetch the object's ETag and\n      retry the upload.</p>\n         <p>Expects the ETag value as a string.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>, or <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html\">Conditional requests</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Match")
@@ -484,12 +351,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Uploads the object only if the object key name does not already exist in the bucket specified.\n      Otherwise, Amazon S3 returns a <code>412 Precondition Failed</code> error.</p>\n         <p>If a conflicting operation occurs during the upload S3 returns a <code>409\n        ConditionalRequestConflict</code> response. On a 409 failure you should retry the upload.</p>\n         <p>Expects the '*' (asterisk) character.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>, or <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html\">Conditional requests</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-None-Match")
                         ),
@@ -500,12 +361,6 @@ public static partial class PutObjectInputSchema
                     Target24,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-full-control")
@@ -518,12 +373,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to read the object data and its metadata.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read")
                         ),
@@ -535,12 +384,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to read the object ACL.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read-acp")
                         ),
@@ -551,12 +394,6 @@ public static partial class PutObjectInputSchema
                     Target27,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to write the ACL for the applicable object.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write-acp")
@@ -570,22 +407,13 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Object key for which the PUT action was initiated.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -613,12 +441,6 @@ public static partial class PutObjectInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Specifies the offset for appending data to existing objects in bytes. The offset must be equal to\n      the size of the existing object being appended to. If no object exists, setting this header to 0 will\n      create a new object. </p>\n         <note>\n            <p>This functionality is only supported for objects in the Amazon S3 Express One Zone storage class in\n        directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-write-offset-bytes")
                         ),
@@ -629,12 +451,6 @@ public static partial class PutObjectInputSchema
                     Target30,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A map of metadata to store with the object in S3.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPrefixHeaders"),
                             Document.From("x-amz-meta-")
@@ -647,12 +463,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm that was used when you store this object in Amazon S3 or\n      Amazon FSx.</p>\n         <ul>\n            <li>\n               <p>\n                  <b>General purpose buckets </b> - You have four mutually exclusive\n          options to protect data using server-side encryption in Amazon S3, depending on how you choose to manage\n          the encryption keys. Specifically, the encryption key options are Amazon S3 managed keys (SSE-S3),\n          Amazon Web Services KMS keys (SSE-KMS or DSSE-KMS), and customer-provided keys (SSE-C). Amazon S3 encrypts data with\n          server-side encryption by using Amazon S3 managed keys (SSE-S3) by default. You can optionally tell Amazon S3\n          to encrypt data at rest by using server-side encryption with other key options. For more\n          information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Using Server-Side Encryption</a> in\n          the <i>Amazon S3 User Guide</i>.</p>\n            </li>\n            <li>\n               <p>\n                  <b>Directory buckets </b> -\n          For directory buckets, there are only two supported options for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (<code>AES256</code>) and server-side encryption with KMS keys (SSE-KMS) (<code>aws:kms</code>). We recommend that the bucket's default encryption uses the desired encryption configuration and you don't override the bucket default encryption in your \n            <code>CreateSession</code> requests or <code>PUT</code> object requests. Then, new objects \n are automatically encrypted with the desired encryption settings. For more\n         information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html\">Protecting data with server-side encryption</a> in the <i>Amazon S3 User Guide</i>. For more information about the encryption overriding behaviors in directory buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-specifying-kms-encryption.html\">Specifying server-side encryption with KMS for new object uploads</a>. </p>\n               <p>In the Zonal endpoint API calls (except <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>) using the REST API, the encryption request headers must match the encryption settings that are specified in the <code>CreateSession</code> request. \n                            You can't override the values of the encryption settings (<code>x-amz-server-side-encryption</code>, <code>x-amz-server-side-encryption-aws-kms-key-id</code>, <code>x-amz-server-side-encryption-context</code>, and <code>x-amz-server-side-encryption-bucket-key-enabled</code>) that are specified in the <code>CreateSession</code> request. \n                            You don't need to explicitly specify these encryption settings values in Zonal endpoint API calls, and   \n                            Amazon S3 will use the encryption settings values from the <code>CreateSession</code> request to protect new objects in the directory bucket. \n                           </p>\n               <note>\n                  <p>When you use the CLI or the Amazon Web Services SDKs, for <code>CreateSession</code>, the session token refreshes automatically to avoid service interruptions when a session expires. The CLI or the Amazon Web Services SDKs use the bucket's default encryption configuration for the \n                            <code>CreateSession</code> request. It's not supported to override the encryption settings values in the <code>CreateSession</code> request. \n                            So in the Zonal endpoint API calls (except <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>), \n          the encryption request headers must match the default encryption configuration of the directory bucket.\n\n</p>\n               </note>\n            </li>\n            <li>\n               <p>\n                  <b>S3 access points for Amazon FSx </b> - When accessing data stored in\n          Amazon FSx file systems using S3 access points, the only valid server side encryption option is\n            <code>aws:fsx</code>. All Amazon FSx file systems have encryption configured by default and are\n          encrypted at rest. Data is automatically encrypted before being written to the file system, and\n          automatically decrypted as it is read. These processes are handled transparently by Amazon FSx.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
                         ),
@@ -663,12 +473,6 @@ public static partial class PutObjectInputSchema
                     Target32,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD\n      storage class provides high durability and high availability. Depending on performance needs, you can\n      specify a different Storage Class. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html\">Storage Classes</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in\n            Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in\n            Dedicated Local Zones.</p>\n               </li>\n               <li>\n                  <p>Amazon S3 on Outposts only uses the OUTPOSTS Storage Class.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-storage-class")
@@ -681,12 +485,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the bucket is configured as a website, redirects requests for this object to another object in\n      the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata. For\n      information about object metadata, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html\">Object Key and Metadata</a> in the <i>Amazon S3\n        User Guide</i>.</p>\n         <p>In the following example, the request header sets the redirect to an object (anotherPage.html) in\n      the same bucket:</p>\n         <p>\n            <code>x-amz-website-redirect-location: /anotherPage.html</code>\n         </p>\n         <p>In the following example, the request header sets the object redirect to another website:</p>\n         <p>\n            <code>x-amz-website-redirect-location: http://www.example.com/</code>\n         </p>\n         <p>For more information about website hosting in Amazon S3, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html\">Hosting Websites on Amazon S3</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html\">How to Configure Website Page\n        Redirects</a> in the <i>Amazon S3 User Guide</i>. </p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-website-redirect-location")
                         ),
@@ -698,12 +496,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the algorithm to use when encrypting the object (for example, <code>AES256</code>).</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -714,12 +506,6 @@ public static partial class PutObjectInputSchema
                     Target35,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is\n      used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must\n      be appropriate for use with the algorithm specified in the\n        <code>x-amz-server-side-encryption-customer-algorithm</code> header.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key")
@@ -736,12 +522,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header\n      for a message integrity check to ensure that the encryption key was transmitted without error.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
                         ),
@@ -752,12 +532,6 @@ public static partial class PutObjectInputSchema
                     Target37,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption. If the KMS key doesn't exist in the same\n         account that's issuing the command, you must use the full Key ARN not the Key ID.</p>\n         <p>\n            <b>General purpose buckets</b> - If you specify <code>x-amz-server-side-encryption</code> with <code>aws:kms</code> or <code>aws:kms:dsse</code>, this header specifies the ID (Key ID, Key ARN, or Key Alias) of the KMS \n         key to use. If you specify\n         <code>x-amz-server-side-encryption:aws:kms</code> or\n         <code>x-amz-server-side-encryption:aws:kms:dsse</code>, but do not provide <code>x-amz-server-side-encryption-aws-kms-key-id</code>, Amazon S3 uses the Amazon Web Services managed key\n         (<code>aws/s3</code>) to protect the data.</p>\n         <p>\n            <b>Directory buckets</b> - To encrypt data using SSE-KMS, it's recommended to specify the \n<code>x-amz-server-side-encryption</code> header to <code>aws:kms</code>. Then, the <code>x-amz-server-side-encryption-aws-kms-key-id</code> header implicitly uses \nthe bucket's default KMS customer managed key ID. If you want to explicitly set the <code>\n         x-amz-server-side-encryption-aws-kms-key-id</code> header, it must match the bucket's default customer managed key (using key ID or ARN, not alias). Your SSE-KMS configuration can only support 1 <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">customer managed key</a> per directory bucket's lifetime. \nThe <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed key</a> (<code>aws/s3</code>) isn't supported. \n                            \n Incorrect key specification results in an HTTP <code>400 Bad Request</code> error. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-aws-kms-key-id")
@@ -773,12 +547,6 @@ public static partial class PutObjectInputSchema
                     Target38,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use for object encryption. The value of\n         this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs. \n         This value is stored as object metadata and automatically gets passed on\n         to Amazon Web Services KMS for future <code>GetObject</code> operations on\n         this object.</p>\n         <p>\n            <b>General purpose buckets</b> - This value must be explicitly added during <code>CopyObject</code> operations if you want an additional encryption context for your object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context\">Encryption context</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Directory buckets</b> - You can optionally provide an explicit encryption context value. The value must match the default encryption context - the bucket Amazon Resource Name (ARN). An additional encryption context value is not supported. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-context")
@@ -797,12 +565,6 @@ public static partial class PutObjectInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with\n         server-side encryption using Key Management Service (KMS) keys (SSE-KMS).</p>\n         <p>\n            <b>General purpose buckets</b> - Setting this header to\n            <code>true</code> causes Amazon S3 to use an S3 Bucket Key for object encryption with\n         SSE-KMS. Also, specifying this header with a PUT action doesn't affect bucket-level settings for S3\n         Bucket Key.</p>\n         <p>\n            <b>Directory buckets</b> - S3 Bucket Keys are always enabled for <code>GET</code> and <code>PUT</code> operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets  \nto directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a>, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops\">the Copy operation in Batch Operations</a>, or \n                            <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job\">the import jobs</a>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -827,12 +589,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tag-set for the object. The tag-set must be encoded as URL Query parameters. (For example,\n      \"Key1=Value1\")</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-tagging")
                         ),
@@ -844,12 +600,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Object Lock mode that you want to apply to this object.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-mode")
                         ),
@@ -860,12 +610,6 @@ public static partial class PutObjectInputSchema
                     Target43,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when you want this object's Object Lock to expire. Must be formatted as a\n      timestamp parameter.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-retain-until-date")
@@ -882,12 +626,6 @@ public static partial class PutObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether a legal hold will be applied to this object. For more information about S3 Object\n      Lock, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Object Lock</a> in\n      the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-legal-hold")
                         ),
@@ -898,12 +636,6 @@ public static partial class PutObjectInputSchema
                     Target45,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the event hold status to apply to this object. Set to <code>ON</code> to enable or\n      <code>OFF</code> to disable.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-event-hold")
@@ -918,12 +650,6 @@ public static partial class PutObjectInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the event hold duration in days to apply to this object. You cannot specify a\n      duration in both days and years.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -941,12 +667,6 @@ public static partial class PutObjectInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the event hold duration in years to apply to this object. You cannot specify a\n      duration in both days and years.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-event-hold-duration-years")
                         ),
@@ -957,12 +677,6 @@ public static partial class PutObjectInputSchema
                     Target48,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -982,96 +696,165 @@ public static partial class PutObjectInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectCannedACL?> Target0 =
-            Schemas.Nullable(ObjectCannedACLSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectCannedACL?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectCannedACLSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<Stream?> Target1 =
-            Schemas.NullableReference(Schemas.StreamingBlob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.StreamingBlob
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target7 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target10 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target12 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target14 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target15 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target16 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target17 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target18 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target19 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target20 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target21 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target22 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target23 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target24 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target25 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target26 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target27 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target28 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<long?> Target29 =
-            Schemas.Nullable(Schemas.Long);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Metadata?> Target30 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetadataSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target30 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MetadataSchema.Schema!)
+        );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target31 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target32 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target33 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target34 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target35 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target36 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target37 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target38 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target39 =
-            Schemas.Nullable(Schemas.Boolean);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target40 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target41 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockMode?> Target42 =
-            Schemas.Nullable(ObjectLockModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockModeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target43 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("date-time")
@@ -1079,22 +862,22 @@ public static partial class PutObjectInputSchema
                 ])
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus?> Target44 =
-            Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockEventHold?> Target45 =
-            Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target46 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target47 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target46 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target47 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target48 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new() { Body = Stream.Null };
 
-        public override PutObjectInput Build(Builder builder) =>
-            new PutObjectInput(
+        public override global::Com.Amazonaws.S3.PutObjectInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutObjectInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ACL,
@@ -1147,7 +930,7 @@ public static partial class PutObjectInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutObjectInput value,
+            global::Com.Amazonaws.S3.PutObjectInput value,
             ref TSerializer serializer
         )
         {
@@ -1562,8 +1345,8 @@ public static partial class PutObjectInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ObjectCannedACL.FromValue(value0)
-                                : default(ObjectCannedACL)
+                                ? global::Com.Amazonaws.S3.ObjectCannedACL.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ObjectCannedACL)
                         );
                     break;
                 case 1:

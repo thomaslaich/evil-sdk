@@ -6,34 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectLockConfigurationSchema
 {
     public static OperationSchema<
-        GetObjectLockConfigurationInput,
-        GetObjectLockConfigurationOutput
+        global::Com.Amazonaws.S3.GetObjectLockConfigurationInput,
+        global::Com.Amazonaws.S3.GetObjectLockConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetObjectLockConfiguration"),
-            Schemas.Lazy(() => GetObjectLockConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => GetObjectLockConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetObjectLockConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetObjectLockConfigurationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Gets the Object Lock configuration for a bucket. The rule specified in the Object Lock configuration\n      will be applied by default to every new object placed in the specified bucket. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Locking Objects</a>.</p>\n         <p>The following action is related to <code>GetObjectLockConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html\">GetObjectAttributes</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?object-lock") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?object-lock") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListCapacityProvidersInputSchema
 {
     public sealed class Builder
     {
-        public CapacityProviderState? State { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderState? State { get; set; }
         public string? Marker { get; set; }
         public int? MaxItems { get; set; }
     }
 
-    public static StructSchema<ListCapacityProvidersInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListCapacityProvidersInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListCapacityProvidersInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListCapacityProvidersInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListCapacityProvidersInput"),
             [
                 new(
@@ -29,17 +31,7 @@ public static partial class ListCapacityProvidersInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Filter capacity providers by their current state.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("State")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -47,17 +39,7 @@ public static partial class ListCapacityProvidersInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Marker")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -69,26 +51,16 @@ public static partial class ListCapacityProvidersInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of capacity providers to return.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("MaxItems")),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)50) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(50m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -99,31 +71,34 @@ public static partial class ListCapacityProvidersInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#ListCapacityProvidersRequest")
                 ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderState?> Target0 =
-            Schemas.Nullable(CapacityProviderStateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderState?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(CapacityProviderStateSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListCapacityProvidersInput Build(Builder builder) =>
-            new ListCapacityProvidersInput(builder.Marker, builder.MaxItems, builder.State);
+        public override global::Com.Amazonaws.Lambda.ListCapacityProvidersInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListCapacityProvidersInput(
+                builder.Marker,
+                builder.MaxItems,
+                builder.State
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListCapacityProvidersInput value,
+            global::Com.Amazonaws.Lambda.ListCapacityProvidersInput value,
             ref TSerializer serializer
         )
         {
@@ -166,8 +141,10 @@ public static partial class ListCapacityProvidersInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? CapacityProviderState.FromValue(value0)
-                                : default(CapacityProviderState)
+                                ? global::Com.Amazonaws.Lambda.CapacityProviderState.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.Lambda.CapacityProviderState)
                         );
                     break;
                 case 1:

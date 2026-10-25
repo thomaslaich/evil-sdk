@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetadataTableConfigurationResultSchema
 {
@@ -15,11 +15,13 @@ public static partial class MetadataTableConfigurationResultSchema
         public global::Com.Amazonaws.S3.S3TablesDestinationResult? S3TablesDestinationResult { get; set; }
     }
 
-    public static StructSchema<MetadataTableConfigurationResult, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.MetadataTableConfigurationResult,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MetadataTableConfigurationResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.MetadataTableConfigurationResult, Builder>(
             ShapeId.Parse("com.amazonaws.s3#MetadataTableConfigurationResult"),
             [
                 new(
@@ -29,41 +31,34 @@ public static partial class MetadataTableConfigurationResultSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The destination information for the metadata table configuration. The destination table bucket must\n      be in the same Region and Amazon Web Services account as the general purpose bucket. The specified metadata table name\n      must be unique within the <code>aws_s3_metadata</code> namespace in the destination table bucket.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> The V1 S3 Metadata configuration for a general purpose bucket. The destination table bucket must be\n      in the same Region and Amazon Web Services account as the general purpose bucket. The specified metadata table name\n      must be unique within the <code>aws_s3_metadata</code> namespace in the destination table bucket.\n    </p>\n         <note>\n            <p>If you created your S3 Metadata configuration before July 15, 2025, we recommend that you delete \n        and re-create your configuration by using <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a> so that you can expire journal table records and create \n        a live inventory table.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.S3TablesDestinationResult?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => S3TablesDestinationResultSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    S3TablesDestinationResultSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MetadataTableConfigurationResult Build(Builder builder) =>
-            new MetadataTableConfigurationResult(
+        public override global::Com.Amazonaws.S3.MetadataTableConfigurationResult Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.MetadataTableConfigurationResult(
                 builder.S3TablesDestinationResult
                     ?? throw new MissingRequiredMemberException("S3TablesDestinationResult")
             );
 
         public override void SerializeMembers<TSerializer>(
-            MetadataTableConfigurationResult value,
+            global::Com.Amazonaws.S3.MetadataTableConfigurationResult value,
             ref TSerializer serializer
         )
         {

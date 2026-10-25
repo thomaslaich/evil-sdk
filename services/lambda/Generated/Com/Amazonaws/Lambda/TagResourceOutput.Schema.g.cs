@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TagResourceOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<TagResourceOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.TagResourceOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TagResourceOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TagResourceOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TagResourceOutput"),
             [],
             [
@@ -32,10 +35,11 @@ public static partial class TagResourceOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override TagResourceOutput Build(Builder builder) => new TagResourceOutput();
+        public override global::Com.Amazonaws.Lambda.TagResourceOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.TagResourceOutput();
 
         public override void SerializeMembers<TSerializer>(
-            TagResourceOutput value,
+            global::Com.Amazonaws.Lambda.TagResourceOutput value,
             ref TSerializer serializer
         ) { }
 

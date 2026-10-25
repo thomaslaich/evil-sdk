@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
 {
@@ -16,12 +16,15 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
     }
 
     public static StructSchema<
-        SendDurableExecutionCallbackHeartbeatInput,
+        global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatInput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendDurableExecutionCallbackHeartbeatInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#SendDurableExecutionCallbackHeartbeatInput"),
             [
                 new(
@@ -31,12 +34,6 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique identifier for the callback operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -45,8 +42,8 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -58,10 +55,6 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -69,10 +62,6 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -84,17 +73,21 @@ public static partial class SendDurableExecutionCallbackHeartbeatInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendDurableExecutionCallbackHeartbeatInput Build(Builder builder) =>
-            new SendDurableExecutionCallbackHeartbeatInput(
+        public override global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatInput(
                 builder.CallbackId ?? throw new MissingRequiredMemberException("CallbackId")
             );
 
         public override void SerializeMembers<TSerializer>(
-            SendDurableExecutionCallbackHeartbeatInput value,
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackHeartbeatInput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionsByCodeSigningConfigInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
         public int? MaxItems { get; set; }
     }
 
-    public static StructSchema<ListFunctionsByCodeSigningConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListFunctionsByCodeSigningConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionsByCodeSigningConfigInput"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The The Amazon Resource Name (ARN) of the code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -45,8 +41,8 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)200) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(200m) },
                                 }
                             )
                         ),
@@ -60,10 +56,6 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -71,17 +63,7 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Marker")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -93,24 +75,16 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Maximum number of items to return.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("MaxItems")),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -121,10 +95,6 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#ListFunctionsByCodeSigningConfigRequest")
                 ),
@@ -132,17 +102,22 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListFunctionsByCodeSigningConfigInput Build(Builder builder) =>
-            new ListFunctionsByCodeSigningConfigInput(
+        public override global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigInput(
                 builder.CodeSigningConfigArn
                     ?? throw new MissingRequiredMemberException("CodeSigningConfigArn"),
                 builder.Marker,
@@ -150,7 +125,7 @@ public static partial class ListFunctionsByCodeSigningConfigInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListFunctionsByCodeSigningConfigInput value,
+            global::Com.Amazonaws.Lambda.ListFunctionsByCodeSigningConfigInput value,
             ref TSerializer serializer
         )
         {

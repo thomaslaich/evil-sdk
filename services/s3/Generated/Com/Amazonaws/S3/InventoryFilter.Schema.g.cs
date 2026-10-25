@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryFilterSchema
 {
@@ -15,10 +15,11 @@ public static partial class InventoryFilterSchema
         public string? Prefix { get; set; }
     }
 
-    public static StructSchema<InventoryFilter, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.InventoryFilter, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventoryFilter, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventoryFilter, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventoryFilter"),
             [
                 new(
@@ -28,40 +29,29 @@ public static partial class InventoryFilterSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix that an object must have to be included in the inventory results.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies an S3 Inventory filter. The inventory only includes objects that meet the filter's\n      criteria.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventoryFilter Build(Builder builder) =>
-            new InventoryFilter(
+        public override global::Com.Amazonaws.S3.InventoryFilter Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InventoryFilter(
                 builder.Prefix ?? throw new MissingRequiredMemberException("Prefix")
             );
 
         public override void SerializeMembers<TSerializer>(
-            InventoryFilter value,
+            global::Com.Amazonaws.S3.InventoryFilter value,
             ref TSerializer serializer
         )
         {

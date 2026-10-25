@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeletePublicAccessBlockOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeletePublicAccessBlockOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeletePublicAccessBlockOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeletePublicAccessBlockOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeletePublicAccessBlockOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeletePublicAccessBlockOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeletePublicAccessBlockOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeletePublicAccessBlockOutput Build(Builder builder) =>
-            new DeletePublicAccessBlockOutput();
+        public override global::Com.Amazonaws.S3.DeletePublicAccessBlockOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.DeletePublicAccessBlockOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeletePublicAccessBlockOutput value,
+            global::Com.Amazonaws.S3.DeletePublicAccessBlockOutput value,
             ref TSerializer serializer
         ) { }
 

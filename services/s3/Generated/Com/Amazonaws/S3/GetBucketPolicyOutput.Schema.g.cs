@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketPolicyOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketPolicyOutputSchema
         public string? Policy { get; set; }
     }
 
-    public static StructSchema<GetBucketPolicyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketPolicyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketPolicyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketPolicyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketPolicyOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class GetBucketPolicyOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The bucket policy as a JSON document.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,15 +45,17 @@ public static partial class GetBucketPolicyOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketPolicyOutput Build(Builder builder) =>
-            new GetBucketPolicyOutput(builder.Policy);
+        public override global::Com.Amazonaws.S3.GetBucketPolicyOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketPolicyOutput(builder.Policy);
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketPolicyOutput value,
+            global::Com.Amazonaws.S3.GetBucketPolicyOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketOwnershipControlsOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketOwnershipControlsOutputSchema
         public global::Com.Amazonaws.S3.OwnershipControls? OwnershipControls { get; set; }
     }
 
-    public static StructSchema<GetBucketOwnershipControlsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketOwnershipControlsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketOwnershipControlsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketOwnershipControlsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketOwnershipControlsOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class GetBucketOwnershipControlsOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The <code>OwnershipControls</code> (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter)\n      currently in effect for this Amazon S3 bucket.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,15 +45,21 @@ public static partial class GetBucketOwnershipControlsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.OwnershipControls?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnershipControlsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnershipControlsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketOwnershipControlsOutput Build(Builder builder) =>
-            new GetBucketOwnershipControlsOutput(builder.OwnershipControls);
+        public override global::Com.Amazonaws.S3.GetBucketOwnershipControlsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketOwnershipControlsOutput(
+                builder.OwnershipControls
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketOwnershipControlsOutput value,
+            global::Com.Amazonaws.S3.GetBucketOwnershipControlsOutput value,
             ref TSerializer serializer
         )
         {

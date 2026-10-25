@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompletedMultipartUploadSchema
 {
     public sealed class Builder
     {
-        public CompletedPartList? Parts { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.CompletedPart>? Parts { get; set; }
     }
 
-    public static StructSchema<CompletedMultipartUpload, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.CompletedMultipartUpload,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CompletedMultipartUpload, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CompletedMultipartUpload, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CompletedMultipartUpload"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class CompletedMultipartUploadSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Array of CompletedPart data types.</p>\n         <p>If you do not supply a valid <code>Part</code> with your request, the service sends back an HTTP 400\n      response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,26 +37,21 @@ public static partial class CompletedMultipartUploadSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The container for the completed multipart upload details.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CompletedPartList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CompletedPartListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.CompletedPart>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CompletedPartListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CompletedMultipartUpload Build(Builder builder) =>
-            new CompletedMultipartUpload(builder.Parts);
+        public override global::Com.Amazonaws.S3.CompletedMultipartUpload Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CompletedMultipartUpload(builder.Parts);
 
         public override void SerializeMembers<TSerializer>(
-            CompletedMultipartUpload value,
+            global::Com.Amazonaws.S3.CompletedMultipartUpload value,
             ref TSerializer serializer
         )
         {

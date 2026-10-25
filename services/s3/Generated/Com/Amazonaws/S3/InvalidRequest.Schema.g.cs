@@ -5,36 +5,32 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InvalidRequestSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<InvalidRequest, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.InvalidRequest, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidRequest, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InvalidRequest, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InvalidRequest"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A parameter or header in your request isn't valid. For details, see the description of this API \n      operation.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidRequest Build(Builder builder) => new InvalidRequest(null);
+        public override global::Com.Amazonaws.S3.InvalidRequest Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InvalidRequest(null);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidRequest value,
+            global::Com.Amazonaws.S3.InvalidRequest value,
             ref TSerializer serializer
         ) { }
 

@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class PolicyDescriptorListTypeSchema
 {
     public static ListSchema<
-        PolicyDescriptorListType,
-        PolicyDescriptorType,
-        List<PolicyDescriptorType>
+        IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType>,
+        global::Com.Amazonaws.Sts.PolicyDescriptorType,
+        List<global::Com.Amazonaws.Sts.PolicyDescriptorType>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<PolicyDescriptorListType, PolicyDescriptorType, List<PolicyDescriptorType>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType>,
+            global::Com.Amazonaws.Sts.PolicyDescriptorType,
+            List<global::Com.Amazonaws.Sts.PolicyDescriptorType>
+        >(
             ShapeId.Parse("com.amazonaws.sts#policyDescriptorListType"),
             ShapeKind.List,
             Target0,
@@ -25,27 +29,31 @@ public static partial class PolicyDescriptorListTypeSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<PolicyDescriptorType> Target0 =
-            Schemas.Lazy(() => PolicyDescriptorTypeSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.PolicyDescriptorType> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PolicyDescriptorTypeSchema.Schema!);
 
-        public override IEnumerable<PolicyDescriptorType> GetElements(
-            PolicyDescriptorListType value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sts.PolicyDescriptorType> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType> value
+        ) => value;
 
-        public override List<PolicyDescriptorType> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sts.PolicyDescriptorType> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<PolicyDescriptorType> builder, PolicyDescriptorType value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Sts.PolicyDescriptorType> builder,
+            global::Com.Amazonaws.Sts.PolicyDescriptorType value
+        ) => builder.Add(value);
 
-        public override PolicyDescriptorListType Build(List<PolicyDescriptorType> builder) =>
-            PolicyDescriptorListType.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType> Build(
+            List<global::Com.Amazonaws.Sts.PolicyDescriptorType> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            PolicyDescriptorListType value,
+            IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -60,7 +68,7 @@ public static partial class PolicyDescriptorListTypeSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<PolicyDescriptorType> builder,
+            List<global::Com.Amazonaws.Sts.PolicyDescriptorType> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(PolicyDescriptorTypeSchema.Schema));
     }

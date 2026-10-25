@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketMetadataTableConfigurationOutputSchema
 {
     public sealed class Builder { }
 
     public static StructSchema<
-        DeleteBucketMetadataTableConfigurationOutput,
+        global::Com.Amazonaws.S3.DeleteBucketMetadataTableConfigurationOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketMetadataTableConfigurationOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.DeleteBucketMetadataTableConfigurationOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketMetadataTableConfigurationOutput"),
             [],
             [
@@ -35,11 +38,12 @@ public static partial class DeleteBucketMetadataTableConfigurationOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketMetadataTableConfigurationOutput Build(Builder builder) =>
-            new DeleteBucketMetadataTableConfigurationOutput();
+        public override global::Com.Amazonaws.S3.DeleteBucketMetadataTableConfigurationOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.DeleteBucketMetadataTableConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketMetadataTableConfigurationOutput value,
+            global::Com.Amazonaws.S3.DeleteBucketMetadataTableConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

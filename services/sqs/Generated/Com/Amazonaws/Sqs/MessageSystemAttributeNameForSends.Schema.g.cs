@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageSystemAttributeNameForSendsSchema
 {
     public static global::NSmithy.Core.Serde.Schema<MessageSystemAttributeNameForSends> Schema { get; } =
-        Schemas.StringEnum<MessageSystemAttributeNameForSends>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<MessageSystemAttributeNameForSends>(
             ShapeId.Parse("com.amazonaws.sqs#MessageSystemAttributeNameForSends"),
             values: ["AWSTraceHeader"],
             traits:

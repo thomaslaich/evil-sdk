@@ -5,49 +5,47 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class GetQueueUrlSchema
 {
-    public static OperationSchema<GetQueueUrlInput, GetQueueUrlOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.GetQueueUrlInput,
+        global::Com.Amazonaws.Sqs.GetQueueUrlOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#GetQueueUrl"),
-            Schemas.Lazy(() => GetQueueUrlInputSchema.Schema!),
-            Schemas.Lazy(() => GetQueueUrlOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetQueueUrlInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetQueueUrlOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <code>GetQueueUrl</code> API returns the URL of an existing Amazon SQS queue. This is\n            useful when you know the queue's name but need to retrieve its URL for further\n            operations.</p>\n         <p>To access a queue owned by another Amazon Web Services account, use the\n                <code>QueueOwnerAWSAccountId</code> parameter to specify the account ID of the\n            queue's owner. Note that the queue owner must grant you the necessary permissions to\n            access the queue. For more information about accessing shared queues, see the\n                    <code>\n               <a>AddPermission</a>\n            </code> API or <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-writing-an-sqs-policy.html#write-messages-to-shared-queue\">Allow developers to write messages to a shared queue</a> in the <i>Amazon SQS\n                Developer Guide</i>. </p>"
-                    )
-                ),
-            ]
+            null
         );
 }

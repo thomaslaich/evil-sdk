@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketCorsOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.S3.CORSRules? CORSRules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.CORSRule>? CORSRules { get; set; }
     }
 
-    public static StructSchema<GetBucketCorsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketCorsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketCorsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketCorsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketCorsOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class GetBucketCorsOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A set of origins and methods (cross-origin access that you want to allow). You can add up to 100\n      rules to the configuration.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -50,16 +46,18 @@ public static partial class GetBucketCorsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CORSRules?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CORSRulesSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.CORSRule>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CORSRulesSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketCorsOutput Build(Builder builder) =>
-            new GetBucketCorsOutput(builder.CORSRules);
+        public override global::Com.Amazonaws.S3.GetBucketCorsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketCorsOutput(builder.CORSRules);
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketCorsOutput value,
+            global::Com.Amazonaws.S3.GetBucketCorsOutput value,
             ref TSerializer serializer
         )
         {

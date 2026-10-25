@@ -5,52 +5,49 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class StartMessageMoveTaskSchema
 {
     public static OperationSchema<
-        StartMessageMoveTaskInput,
-        StartMessageMoveTaskOutput
+        global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput,
+        global::Com.Amazonaws.Sqs.StartMessageMoveTaskOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#StartMessageMoveTask"),
-            Schemas.Lazy(() => StartMessageMoveTaskInputSchema.Schema!),
-            Schemas.Lazy(() => StartMessageMoveTaskOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => StartMessageMoveTaskInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => StartMessageMoveTaskOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Starts an asynchronous task to move messages from a specified source queue to a\n            specified destination queue.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This action is currently limited to supporting message redrive from queues\n                        that are configured as <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html\">dead-letter queues (DLQs)</a> of other Amazon SQS queues only. Non-SQS\n                        queue sources of dead-letter queues, such as Lambda or Amazon SNS topics, are\n                        currently not supported.</p>\n               </li>\n               <li>\n                  <p>In dead-letter queues redrive context, the\n                            <code>StartMessageMoveTask</code> the source queue is the DLQ, while the\n                        destination queue can be the original source queue (from which the messages\n                        were driven to the dead-letter-queue), or a custom destination queue.</p>\n               </li>\n               <li>\n                  <p>Only one active message movement task is supported per queue at any given\n                        time.</p>\n               </li>\n            </ul>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionVersionsByCapacityProviderInputSchema
 {
@@ -18,12 +18,15 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
     }
 
     public static StructSchema<
-        ListFunctionVersionsByCapacityProviderInput,
+        global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderInput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListFunctionVersionsByCapacityProviderInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionVersionsByCapacityProviderInput"),
             [
                 new(
@@ -33,12 +36,6 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the capacity provider to list function versions for.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -47,8 +44,8 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -62,10 +59,6 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -73,17 +66,7 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Marker")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -95,26 +78,16 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of function versions to return in the response.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("MaxItems")),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)50) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(50m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -123,10 +96,6 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -138,17 +107,22 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListFunctionVersionsByCapacityProviderInput Build(Builder builder) =>
-            new ListFunctionVersionsByCapacityProviderInput(
+        public override global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderInput(
                 builder.CapacityProviderName
                     ?? throw new MissingRequiredMemberException("CapacityProviderName"),
                 builder.Marker,
@@ -156,7 +130,7 @@ public static partial class ListFunctionVersionsByCapacityProviderInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListFunctionVersionsByCapacityProviderInput value,
+            global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderInput value,
             ref TSerializer serializer
         )
         {

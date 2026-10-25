@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TenancyConfigSchema
 {
@@ -15,10 +15,13 @@ public static partial class TenancyConfigSchema
         public global::Com.Amazonaws.Lambda.TenantIsolationMode? TenantIsolationMode { get; set; }
     }
 
-    public static StructSchema<TenancyConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.TenancyConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TenancyConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TenancyConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TenancyConfig"),
             [
                 new(
@@ -28,49 +31,28 @@ public static partial class TenancyConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Tenant isolation mode allows for invocation to be sent to a corresponding execution environment dedicated to a specific tenant ID.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the tenant isolation mode configuration for a Lambda function. This allows you to configure specific tenant isolation strategies for your function invocations. Tenant isolation configuration cannot be modified after function creation.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.TenantIsolationMode?> Target0 =
-            Schemas.Nullable(TenantIsolationModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(TenantIsolationModeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TenancyConfig Build(Builder builder) =>
-            new TenancyConfig(
+        public override global::Com.Amazonaws.Lambda.TenancyConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.TenancyConfig(
                 builder.TenantIsolationMode
                     ?? throw new MissingRequiredMemberException("TenantIsolationMode")
             );
 
         public override void SerializeMembers<TSerializer>(
-            TenancyConfig value,
+            global::Com.Amazonaws.Lambda.TenancyConfig value,
             ref TSerializer serializer
         )
         {

@@ -6,38 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EventListSchema
 {
-    public static ListSchema<EventList, Event, List<Event>> Schema { get; } = new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.Event>,
+        global::Com.Amazonaws.S3.Event,
+        List<global::Com.Amazonaws.S3.Event>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<EventList, Event, List<Event>>(
-            ShapeId.Parse("com.amazonaws.s3#EventList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.Event>,
+            global::Com.Amazonaws.S3.Event,
+            List<global::Com.Amazonaws.S3.Event>
+        >(ShapeId.Parse("com.amazonaws.s3#EventList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Event> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Event> Target0 =
             EventSchema.Schema;
 
-        public override IEnumerable<Event> GetElements(EventList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.Event> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.Event> value
+        ) => value;
 
-        public override List<Event> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.Event> CreateTypedBuilder() => new();
 
-        public override void Add(List<Event> builder, Event value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.Event> builder,
+            global::Com.Amazonaws.S3.Event value
+        ) => builder.Add(value);
 
-        public override EventList Build(List<Event> builder) => EventList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.Event> Build(
+            List<global::Com.Amazonaws.S3.Event> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            EventList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.Event> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -45,14 +54,14 @@ public static partial class EventListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Event> builder,
+            List<global::Com.Amazonaws.S3.Event> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? Event.FromValue(element)
-                        : default(Event)
+                        ? global::Com.Amazonaws.S3.Event.FromValue(element)
+                        : default(global::Com.Amazonaws.S3.Event)
                 )
             );
     }

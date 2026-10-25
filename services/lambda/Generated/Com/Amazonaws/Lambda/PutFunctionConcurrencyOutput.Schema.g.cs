@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutFunctionConcurrencyOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class PutFunctionConcurrencyOutputSchema
         public int? ReservedConcurrentExecutions { get; set; }
     }
 
-    public static StructSchema<PutFunctionConcurrencyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PutFunctionConcurrencyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutFunctionConcurrencyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PutFunctionConcurrencyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PutFunctionConcurrencyOutput"),
             [
                 new(
@@ -32,23 +34,10 @@ public static partial class PutFunctionConcurrencyOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of concurrent executions that are reserved for this function. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html\">Managing Lambda reserved concurrency</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -59,27 +48,26 @@ public static partial class PutFunctionConcurrencyOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#Concurrency")
                 ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutFunctionConcurrencyOutput Build(Builder builder) =>
-            new PutFunctionConcurrencyOutput(builder.ReservedConcurrentExecutions);
+        public override global::Com.Amazonaws.Lambda.PutFunctionConcurrencyOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.PutFunctionConcurrencyOutput(
+                builder.ReservedConcurrentExecutions
+            );
 
         public override void SerializeMembers<TSerializer>(
-            PutFunctionConcurrencyOutput value,
+            global::Com.Amazonaws.Lambda.PutFunctionConcurrencyOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class StatsSchema
 {
@@ -17,10 +17,11 @@ public static partial class StatsSchema
         public long? BytesReturned { get; set; }
     }
 
-    public static StructSchema<Stats, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Stats, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Stats, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Stats, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Stats"),
             [
                 new(
@@ -31,10 +32,6 @@ public static partial class StatsSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The total number of object bytes scanned.</p>")
                         ),
                     ]
                 ),
@@ -47,12 +44,6 @@ public static partial class StatsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The total number of uncompressed object bytes processed.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -64,39 +55,32 @@ public static partial class StatsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The total number of bytes of records payload data returned.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for the stats details.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 = Schemas.Nullable(
-            Schemas.Long
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Stats Build(Builder builder) =>
-            new Stats(builder.BytesProcessed, builder.BytesReturned, builder.BytesScanned);
+        public override global::Com.Amazonaws.S3.Stats Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Stats(
+                builder.BytesProcessed,
+                builder.BytesReturned,
+                builder.BytesScanned
+            );
 
-        public override void SerializeMembers<TSerializer>(Stats value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.S3.Stats value,
+            ref TSerializer serializer
+        )
         {
             if (value.BytesScanned is { } value0)
             {

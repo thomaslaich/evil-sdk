@@ -6,41 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectListSchema
 {
-    public static ListSchema<ObjectList, Object, List<Object>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.Object>,
+        global::Com.Amazonaws.S3.Object,
+        List<global::Com.Amazonaws.S3.Object>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<ObjectList, Object, List<Object>>(
-            ShapeId.Parse("com.amazonaws.s3#ObjectList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.Object>,
+            global::Com.Amazonaws.S3.Object,
+            List<global::Com.Amazonaws.S3.Object>
+        >(ShapeId.Parse("com.amazonaws.s3#ObjectList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Object> Target0 = Schemas.Lazy(
-            () =>
-                ObjectSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Object> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectSchema.Schema!);
 
-        public override IEnumerable<Object> GetElements(ObjectList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.Object> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.Object> value
+        ) => value;
 
-        public override List<Object> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.Object> CreateTypedBuilder() => new();
 
-        public override void Add(List<Object> builder, Object value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.Object> builder,
+            global::Com.Amazonaws.S3.Object value
+        ) => builder.Add(value);
 
-        public override ObjectList Build(List<Object> builder) => ObjectList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.Object> Build(
+            List<global::Com.Amazonaws.S3.Object> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ObjectList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.Object> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -55,7 +61,7 @@ public static partial class ObjectListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Object> builder,
+            List<global::Com.Amazonaws.S3.Object> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ObjectSchema.Schema));
     }

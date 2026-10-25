@@ -6,80 +6,34 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AbortMultipartUploadSchema
 {
     public static OperationSchema<
-        AbortMultipartUploadInput,
-        AbortMultipartUploadOutput
+        global::Com.Amazonaws.S3.AbortMultipartUploadInput,
+        global::Com.Amazonaws.S3.AbortMultipartUploadOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#AbortMultipartUpload"),
-            Schemas.Lazy(() => AbortMultipartUploadInputSchema.Schema!),
-            Schemas.Lazy(() => AbortMultipartUploadOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => AbortMultipartUploadInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => AbortMultipartUploadOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchUpload"),
-                    Schemas.Lazy(() => NoSuchUploadSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchUploadSchema.Schema!),
                     404
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>This operation aborts a multipart upload. After a multipart upload is aborted, no additional parts\n      can be uploaded using that upload ID. The storage consumed by any previously uploaded parts will be\n      freed. However, if any part uploads are currently in progress, those part uploads might or might not\n      succeed. As a result, it might be necessary to abort a given multipart upload multiple times in order to\n      completely free all storage consumed by all parts. </p>\n         <p>To verify that all parts have been removed and prevent getting charged for the part storage, you\n      should call the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html\">ListParts</a> API operation and ensure that the parts list is empty.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> - If multipart uploads in a\n            directory bucket are in progress, you can't delete the bucket until all the in-progress multipart\n            uploads are aborted or completed. To delete these in-progress multipart uploads, use the\n              <code>ListMultipartUploads</code> operation to list the in-progress multipart uploads in the\n            bucket and use the <code>AbortMultipartUpload</code> operation to abort all the in-progress\n            multipart uploads. </p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> - For directory buckets, you must make requests for this API operation to the Zonal endpoint. These endpoints support virtual-hosted-style requests in the format <code>https://<i>amzn-s3-demo-bucket</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com/<i>key-name</i>\n                     </code>. Path-style requests are not supported. For more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the\n    <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n               </li>\n            </ul>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket permissions</b> - For information\n                about permissions required to use the multipart upload, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html\">Multipart Upload and Permissions</a> in\n                the <i>Amazon S3 User Guide</i>.</p>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket permissions</b> - To grant access to this API operation on a directory bucket, we recommend that you use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a> API operation for session-based authorization. Specifically, you grant the <code>s3express:CreateSession</code> permission to the directory bucket in a bucket policy or an IAM identity-based policy. Then, you make the <code>CreateSession</code> API call on the bucket to obtain a session token. With the session token in your request header, you can make API requests to this operation. After the session token expires, you make another <code>CreateSession</code> API call to generate a new session token for use. \nAmazon Web Services CLI or SDKs create session and refresh the session token automatically to avoid service interruptions when a session expires. For more information about authorization, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a>.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is <code>\n                     <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>.</p>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>AbortMultipartUpload</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html\">CreateMultipartUpload</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html\">UploadPart</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html\">CompleteMultipartUpload</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html\">ListParts</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html\">ListMultipartUploads</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To abort a multipart upload") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example aborts a multipart upload."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "Key", Document.From("bigobject") },
-                                                {
-                                                    "UploadId",
-                                                    Document.From(
-                                                        "xadcOB_7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--"
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(new Dictionary<string, Document> { })
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?x-id=AbortMultipartUpload") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/{Key+}?x-id=AbortMultipartUpload") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

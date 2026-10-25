@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class AddPermissionInputSchema
 {
@@ -14,14 +14,17 @@ public static partial class AddPermissionInputSchema
     {
         public string? QueueUrl { get; set; }
         public string? Label { get; set; }
-        public AWSAccountIdList? AWSAccountIds { get; set; }
-        public ActionNameList? Actions { get; set; }
+        public IReadOnlyList<string>? AWSAccountIds { get; set; }
+        public IReadOnlyList<string>? Actions { get; set; }
     }
 
-    public static StructSchema<AddPermissionInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.AddPermissionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AddPermissionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.AddPermissionInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#AddPermissionInput"),
             [
                 new(
@@ -30,12 +33,6 @@ public static partial class AddPermissionInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue to which permissions are added.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,12 +46,6 @@ public static partial class AddPermissionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique identification of the permission you're setting (for example,\n                <code>AliceSendMessage</code>). Maximum 80 characters. Allowed characters include\n            alphanumeric characters, hyphens (<code>-</code>), and underscores\n            (<code>_</code>).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -66,12 +57,6 @@ public static partial class AddPermissionInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Web Services account numbers of the <a href=\"https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P\">principals</a> who are to receive\n            permission. For information about locating the Amazon Web Services account identification, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html#sqs-api-request-authentication\">Your Amazon Web Services Identifiers</a> in the <i>Amazon SQS Developer\n            Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -93,12 +78,6 @@ public static partial class AddPermissionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The action the client wants to allow for the specified principal. Valid values: the\n            name of any action or <code>*</code>.</p>\n         <p>For more information about these actions, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-overview-of-managing-access.html\">Overview of Managing Access Permissions to Your Amazon Simple Queue Service\n                Resource</a> in the <i>Amazon SQS Developer Guide</i>.</p>\n         <p>Specifying <code>SendMessage</code>, <code>DeleteMessage</code>, or\n                <code>ChangeMessageVisibility</code> for <code>ActionName.n</code> also grants\n            permissions for the corresponding batch versions of those actions:\n                <code>SendMessageBatch</code>, <code>DeleteMessageBatch</code>, and\n                <code>ChangeMessageVisibilityBatch</code>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -111,7 +90,6 @@ public static partial class AddPermissionInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -124,18 +102,26 @@ public static partial class AddPermissionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<AWSAccountIdList?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => AWSAccountIdListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<ActionNameList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ActionNameListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AWSAccountIdListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ActionNameListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AddPermissionInput Build(Builder builder) =>
-            new AddPermissionInput(
+        public override global::Com.Amazonaws.Sqs.AddPermissionInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.AddPermissionInput(
                 builder.AWSAccountIds ?? throw new MissingRequiredMemberException("AWSAccountIds"),
                 builder.Actions ?? throw new MissingRequiredMemberException("Actions"),
                 builder.Label ?? throw new MissingRequiredMemberException("Label"),
@@ -143,7 +129,7 @@ public static partial class AddPermissionInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AddPermissionInput value,
+            global::Com.Amazonaws.Sqs.AddPermissionInput value,
             ref TSerializer serializer
         )
         {

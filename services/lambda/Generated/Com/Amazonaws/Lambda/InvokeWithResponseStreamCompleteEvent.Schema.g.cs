@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeWithResponseStreamCompleteEventSchema
 {
@@ -16,91 +16,44 @@ public static partial class InvokeWithResponseStreamCompleteEventSchema
         public string? LogResult { get; set; }
     }
 
-    public static StructSchema<InvokeWithResponseStreamCompleteEvent, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvokeWithResponseStreamCompleteEvent,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvokeWithResponseStreamCompleteEvent, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamCompleteEvent, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvokeWithResponseStreamCompleteEvent"),
-            [
-                new(
-                    "ErrorCode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>An error code.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ErrorDetails",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The details of any returned error.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "LogResult",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The last 4 KB of the execution log, which is base64-encoded.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A response confirming that the event stream is complete.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("ErrorCode", Target0), new("ErrorDetails", Target1), new("LogResult", Target2)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvokeWithResponseStreamCompleteEvent Build(Builder builder) =>
-            new InvokeWithResponseStreamCompleteEvent(
+        public override global::Com.Amazonaws.Lambda.InvokeWithResponseStreamCompleteEvent Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.InvokeWithResponseStreamCompleteEvent(
                 builder.ErrorCode,
                 builder.ErrorDetails,
                 builder.LogResult
             );
 
         public override void SerializeMembers<TSerializer>(
-            InvokeWithResponseStreamCompleteEvent value,
+            global::Com.Amazonaws.Lambda.InvokeWithResponseStreamCompleteEvent value,
             ref TSerializer serializer
         )
         {

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -129,6 +130,18 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// The &lt;code&gt;TokenCode&lt;/code&gt; is the time-based one-time password (TOTP) that the MFA device
     /// produces. &lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To assume a role
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRoleInput(RoleArn: &quot;arn:aws:iam::123456789012:role/demo&quot;, RoleSessionName: &quot;testAssumeRoleSession&quot;, ExternalId: &quot;123ABC&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Unicorn&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Team&quot;, Value: &quot;Automation&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;12345&quot;) }, TransitiveTagKeys: new string[] { &quot;Project&quot;, &quot;Cost-Center&quot; });
+    /// var output = await client.AssumeRoleAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRoleOutput(AssumedRoleUser: new AssumedRoleUser(Arn: &quot;arn:aws:sts::123456789012:assumed-role/demo/Bob&quot;, AssumedRoleId: &quot;ARO123EXAMPLE123:Bob&quot;), Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2011-07-15T23:28:33.359Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoDYXdzEPT//////////wEXAMPLEtc764bNrC9SAPBSM22wDOk4x4HIZ8j4FZTwdQWLWsKWHGBuFqwAeMicRXmxfpSPfIeoIYRqTflfKD8YUuwthAx7mSEI/qkPpKPi/kMcGdQrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz+scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA==&quot;), PackedPolicySize: 8);
+    /// </code>
+    /// </example>
     Task<AssumeRoleOutput> AssumeRoleAsync(
         AssumeRoleInput input,
         CancellationToken cancellationToken = default
@@ -269,6 +282,18 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// &lt;/li&gt;
     /// &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To assume a role using a SAML assertion
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRoleWithSAMLInput(PrincipalArn: &quot;arn:aws:iam::123456789012:saml-provider/SAML-test&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/TestSaml&quot;, SAMLAssertion: &quot;VERYLONGENCODEDASSERTIONEXAMPLExzYW1sOkF1ZGllbmNlPmJsYW5rPC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOlN1YmplY3Q+PHNhbWw6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ij5TYW1sRXhhbXBsZTwvc2FtbDpOYW1lSUQ+PHNhbWw6U3ViamVjdENvbmZpcm1hdGlvbiBNZXRob2Q9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjbTpiZWFyZXIiPjxzYW1sOlN1YmplY3RDb25maXJtYXRpb25EYXRhIE5vdE9uT3JBZnRlcj0iMjAxOS0xMS0wMVQyMDoyNTowNS4xNDVaIiBSZWNpcGllbnQ9Imh0dHBzOi8vc2lnbmluLmF3cy5hbWF6b24uY29tL3NhbWwiLz48L3NhbWw6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWw6U3ViamVjdD48c2FtbDpBdXRoblN0YXRlbWVudCBBdXRoPD94bWwgdmpSZXNwb25zZT4=&quot;, DurationSeconds: 3600);
+    /// var output = await client.AssumeRoleWithSAMLAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRoleWithSAMLOutput(AssumedRoleUser: new AssumedRoleUser(Arn: &quot;arn:aws:sts::123456789012:assumed-role/TestSaml&quot;, AssumedRoleId: &quot;ARO456EXAMPLE789:TestSaml&quot;), Audience: &quot;https://signin.aws.amazon.com/saml&quot;, Credentials: new Credentials(AccessKeyId: &quot;ASIAV3ZUEFP6EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2019-11-01T20:26:47Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;8P+SQvWIuLnKhh8d++jpw0nNmQRBZvNEXAMPLEKEY&quot;, SessionToken: &quot;IQoJb3JpZ2luX2VjEOz////////////////////wEXAMPLEtMSJHMEUCIDoKK3JH9uGQE1z0sINr5M4jk+Na8KHDcCYRVjJCZEvOAiEA3OvJGtw1EcViOleS2vhs8VdCKFJQWPQrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz+scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA==&quot;), Issuer: &quot;https://integ.example.com/idp/shibboleth&quot;, NameQualifier: &quot;SbdGOnUkh1i4+EXAMPLExL/jEvs=&quot;, PackedPolicySize: 6, Subject: &quot;SamlExample&quot;, SubjectType: &quot;transient&quot;);
+    /// </code>
+    /// </example>
     Task<AssumeRoleWithSAMLOutput> AssumeRoleWithSAMLAsync(
         AssumeRoleWithSAMLInput input,
         CancellationToken cancellationToken = default
@@ -394,6 +419,18 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// &lt;/li&gt;
     /// &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To assume a role as an OpenID Connect-federated user
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRoleWithWebIdentityInput(RoleArn: &quot;arn:aws:iam::123456789012:role/FederatedWebIdentityRole&quot;, RoleSessionName: &quot;app1&quot;, WebIdentityToken: &quot;Atza%7CIQEBLjAsAhRFiXuWpUXuRvQ9PZL3GMFcYevydwIUFAHZwXZXXXXXXXXJnrulxKDHwy87oGKPznh0D6bEQZTSCzyoCtL_8S07pLpr0zMbn6w1lfVZKNTBdDansFBmtGnIsIapjI6xKR02Yc_2bQ8LZbUXSGm6Ry6_BG7PrtLZtj_dfCTj92xNGed-CrKqjG7nPBjNIL016GGvuS5gSvPRUxWES3VYfm1wl7WTI7jn-Pcb6M-buCgHhFOzTQxod27L9CqnOLio7N3gZAGpsp6n1-AJBOCJckcyXe2c6uD0srOJeZlKUm2eTDVMf8IehDVI0r1QOnTV6KzzAI3OY87Vd_cVMQ&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, ProviderId: &quot;www.amazon.com&quot;);
+    /// var output = await client.AssumeRoleWithWebIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRoleWithWebIdentityOutput(AssumedRoleUser: new AssumedRoleUser(Arn: &quot;arn:aws:sts::123456789012:assumed-role/FederatedWebIdentityRole/app1&quot;, AssumedRoleId: &quot;AROACLKWSDQRAOEXAMPLE:app1&quot;), Audience: &quot;client.5498841531868486423.1548@apps.example.com&quot;, Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2014-10-24T23:00:23Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoDYXdzEE0a8ANXXXXXXXXNO1ewxE5TijQyp+IEXAMPLE&quot;), PackedPolicySize: 123, Provider: &quot;www.amazon.com&quot;, SubjectFromWebIdentityToken: &quot;amzn1.account.AF6RHO7KZU5XRVQJGXK6HEXAMPLE&quot;);
+    /// </code>
+    /// </example>
     Task<AssumeRoleWithWebIdentityOutput> AssumeRoleWithWebIdentityAsync(
         AssumeRoleWithWebIdentityInput input,
         CancellationToken cancellationToken = default
@@ -420,6 +457,21 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// policies&lt;/a&gt; (SCPs) to manage and limit permissions in your organization. See &lt;a href=&quot;https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_general.html&quot;&gt;General examples&lt;/a&gt; in the &lt;i&gt;Organizations User
     /// Guide&lt;/i&gt; for more information on SCPs.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To launch a privileged session
+    /// </para>
+    /// <para>
+    /// The following command retrieves a set of short-term credentials you can use to unlock an S3 bucket for a member account by removing the bucket policy.
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRootInput(TargetPrincipal: &quot;111122223333&quot;, TaskPolicyArn: new PolicyDescriptorType(Arn: &quot;arn:aws:iam::aws:policy/root-task/S3UnlockBucketPolicy&quot;), DurationSeconds: 900);
+    /// var output = await client.AssumeRootAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRootOutput(Credentials: new Credentials(AccessKeyId: &quot;ASIAJEXAMPLEXEG2JICEA&quot;, Expiration: DateTimeOffset.Parse(&quot;2024-11-15T00:05:07Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;9drTJvcXLB89EXAMPLELB8923FB892xMFI&quot;, SessionToken: &quot;AQoXdzELDDY//////////wEaoAK1wvxJY12r2IrDFT2IvAzTCn3zHoZ7YNtpiQLF0MqZye/qwjzP2iEXAMPLEbw/m3hsj8VBTkPORGvr9jM5sgP+w9IZWZnU+LWhmg+a5fDi2oTGUYcdg9uexQ4mtCHIHfi4citgqZTgco40Yqr4lIlo4V2b2Dyauk0eYFNebHtYlFVgAUj+7Indz3LU0aTWk1WKIjHmmMCIoTkyYp/k7kUG7moeEYKSitwQIi6Gjn+nyzM+PtoA3685ixzv0R7i5rjQi0YE0lf1oeie3bDiNHncmzosRM6SFiPzSvp6h/32xQuZsjcypmwsPSDtTPYcs0+YN/8BRi2/IcrxSpnWEXAMPLEXSDFTAQAM6Dl9zR0tXoybnlrZIwMLlMi1Kcgo5OytwU=&quot;), SourceIdentity: &quot;Alice&quot;);
+    /// </code>
+    /// </example>
     Task<AssumeRootOutput> AssumeRootAsync(
         AssumeRootInput input,
         CancellationToken cancellationToken = default
@@ -463,6 +515,18 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// &lt;/li&gt;
     /// &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To decode information about an authorization status of a request
+    /// </para>
+    /// <code>
+    /// var input = new DecodeAuthorizationMessageInput(EncodedMessage: &quot;&lt;encoded-message&gt;&quot;);
+    /// var output = await client.DecodeAuthorizationMessageAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DecodeAuthorizationMessageOutput(DecodedMessage: &quot;{\&quot;allowed\&quot;: \&quot;false\&quot;,\&quot;explicitDeny\&quot;: \&quot;false\&quot;,\&quot;matchedStatements\&quot;: \&quot;\&quot;,\&quot;failures\&quot;: \&quot;\&quot;,\&quot;context\&quot;: {\&quot;principal\&quot;: {\&quot;id\&quot;: \&quot;AIDACKCEVSQ6C2EXAMPLE\&quot;,\&quot;name\&quot;: \&quot;Bob\&quot;,\&quot;arn\&quot;: \&quot;arn:aws:iam::123456789012:user/Bob\&quot;},\&quot;action\&quot;: \&quot;ec2:StopInstances\&quot;,\&quot;resource\&quot;: \&quot;arn:aws:ec2:us-east-1:123456789012:instance/i-dd01c9bd\&quot;,\&quot;conditions\&quot;: [{\&quot;item\&quot;: {\&quot;key\&quot;: \&quot;ec2:Tenancy\&quot;,\&quot;values\&quot;: [\&quot;default\&quot;]},{\&quot;item\&quot;: {\&quot;key\&quot;: \&quot;ec2:ResourceTag/elasticbeanstalk:environment-name\&quot;,\&quot;values\&quot;: [\&quot;Default-Environment\&quot;]}},(Additional items ...)]}}&quot;);
+    /// </code>
+    /// </example>
     Task<DecodeAuthorizationMessageOutput> DecodeAuthorizationMessageAsync(
         DecodeAuthorizationMessageInput input,
         CancellationToken cancellationToken = default
@@ -504,6 +568,51 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// &lt;i&gt;IAM User Guide&lt;/i&gt;.&lt;/p&gt;
     /// &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get details about a calling IAM user
+    /// </para>
+    /// <para>
+    /// This example shows a request and response made with the credentials for a user named Alice in the AWS account 123456789012.
+    /// </para>
+    /// <code>
+    /// var input = new GetCallerIdentityInput();
+    /// var output = await client.GetCallerIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetCallerIdentityOutput(Account: &quot;123456789012&quot;, Arn: &quot;arn:aws:iam::123456789012:user/Alice&quot;, UserId: &quot;AKIAI44QH8DHBEXAMPLE&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To get details about a calling user federated with AssumeRole
+    /// </para>
+    /// <para>
+    /// This example shows a request and response made with temporary credentials created by AssumeRole. The name of the assumed role is my-role-name, and the RoleSessionName is set to my-role-session-name.
+    /// </para>
+    /// <code>
+    /// var input = new GetCallerIdentityInput();
+    /// var output = await client.GetCallerIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetCallerIdentityOutput(Account: &quot;123456789012&quot;, Arn: &quot;arn:aws:sts::123456789012:assumed-role/my-role-name/my-role-session-name&quot;, UserId: &quot;AKIAI44QH8DHBEXAMPLE:my-role-session-name&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To get details about a calling user federated with GetFederationToken
+    /// </para>
+    /// <para>
+    /// This example shows a request and response made with temporary credentials created by using GetFederationToken. The Name parameter is set to my-federated-user-name.
+    /// </para>
+    /// <code>
+    /// var input = new GetCallerIdentityInput();
+    /// var output = await client.GetCallerIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetCallerIdentityOutput(Account: &quot;123456789012&quot;, Arn: &quot;arn:aws:sts::123456789012:federated-user/my-federated-user-name&quot;, UserId: &quot;123456789012:my-federated-user-name&quot;);
+    /// </code>
+    /// </example>
     Task<GetCallerIdentityOutput> GetCallerIdentityAsync(
         GetCallerIdentityInput input,
         CancellationToken cancellationToken = default
@@ -611,6 +720,18 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// and &lt;code&gt;department&lt;/code&gt; are not saved as separate tags, and the session tag passed in
     /// the request takes precedence over the user tag.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get temporary credentials for a role by using GetFederationToken
+    /// </para>
+    /// <code>
+    /// var input = new GetFederationTokenInput(Name: &quot;testFedUserSession&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Pegasus&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;98765&quot;) });
+    /// var output = await client.GetFederationTokenAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFederationTokenOutput(Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2011-07-15T23:28:33.359Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoDYXdzEPT//////////wEXAMPLEtc764bNrC9SAPBSM22wDOk4x4HIZ8j4FZTwdQWLWsKWHGBuFqwAeMicRXmxfpSPfIeoIYRqTflfKD8YUuwthAx7mSEI/qkPpKPi/kMcGdQrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz+scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA==&quot;), FederatedUser: new FederatedUser(Arn: &quot;arn:aws:sts::123456789012:federated-user/Bob&quot;, FederatedUserId: &quot;123456789012:Bob&quot;), PackedPolicySize: 8);
+    /// </code>
+    /// </example>
     Task<GetFederationTokenOutput> GetFederationTokenAsync(
         GetFederationTokenInput input,
         CancellationToken cancellationToken = default
@@ -677,6 +798,18 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
     /// Credentials for Users in Untrusted Environments&lt;/a&gt; in the
     /// &lt;i&gt;IAM User Guide&lt;/i&gt;. &lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get temporary credentials for an IAM user or an AWS account
+    /// </para>
+    /// <code>
+    /// var input = new GetSessionTokenInput(DurationSeconds: 3600, SerialNumber: &quot;YourMFASerialNumber&quot;, TokenCode: &quot;123456&quot;);
+    /// var output = await client.GetSessionTokenAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetSessionTokenOutput(Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2011-07-11T19:55:29.611Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/LTo6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3zrkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtpZ3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE&quot;));
+    /// </code>
+    /// </example>
     Task<GetSessionTokenOutput> GetSessionTokenAsync(
         GetSessionTokenInput input,
         CancellationToken cancellationToken = default
@@ -770,126 +903,163 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     )
         : this(WithEndpoint(endpoint, config)) { }
 
-    private AWSSecurityTokenServiceV20110615Client(
+    public AWSSecurityTokenServiceV20110615Client(
         AWSSecurityTokenServiceV20110615ClientConfig config
     )
     {
         ArgumentNullException.ThrowIfNull(config);
         this.environment = SmithyHttpClientEnvironment.Create(
-            AWSSecurityTokenServiceV20110615Schema.Schema,
+            global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema,
             config,
             static () => new AwsQueryProtocol(),
             ModeledAuthSchemes,
             null,
-            null
+            null,
+            modeledEndpointResolver: endpoint => new AWSSecurityTokenServiceV20110615EndpointResolver(
+                config,
+                endpoint
+            )
         );
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
         try
         {
             this.AssumeRoleBinding = new SmithyOperationBinding<AssumeRoleInput, AssumeRoleOutput>(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema
             );
             this.AssumeRoleWithSAMLBinding = new SmithyOperationBinding<
                 AssumeRoleWithSAMLInput,
                 AssumeRoleWithSAMLOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleWithSAMLSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleWithSAMLSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema
+                ),
                 Array.Empty<string>(),
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema
             );
             this.AssumeRoleWithWebIdentityBinding = new SmithyOperationBinding<
                 AssumeRoleWithWebIdentityInput,
                 AssumeRoleWithWebIdentityOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleWithWebIdentitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleWithWebIdentitySchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema
+                ),
                 Array.Empty<string>(),
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema
             );
             this.AssumeRootBinding = new SmithyOperationBinding<AssumeRootInput, AssumeRootOutput>(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRootSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRootSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema
             );
             this.DecodeAuthorizationMessageBinding = new SmithyOperationBinding<
                 DecodeAuthorizationMessageInput,
                 DecodeAuthorizationMessageOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                DecodeAuthorizationMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DecodeAuthorizationMessageSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema
             );
             this.GetAccessKeyInfoBinding = new SmithyOperationBinding<
                 GetAccessKeyInfoInput,
                 GetAccessKeyInfoOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetAccessKeyInfoSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAccessKeyInfoSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema
             );
             this.GetCallerIdentityBinding = new SmithyOperationBinding<
                 GetCallerIdentityInput,
                 GetCallerIdentityOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetCallerIdentitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCallerIdentitySchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema
             );
             this.GetDelegatedAccessTokenBinding = new SmithyOperationBinding<
                 GetDelegatedAccessTokenInput,
                 GetDelegatedAccessTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetDelegatedAccessTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDelegatedAccessTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema
             );
             this.GetFederationTokenBinding = new SmithyOperationBinding<
                 GetFederationTokenInput,
                 GetFederationTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetFederationTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFederationTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema
             );
             this.GetSessionTokenBinding = new SmithyOperationBinding<
                 GetSessionTokenInput,
                 GetSessionTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetSessionTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetSessionTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema
             );
             this.GetWebIdentityTokenBinding = new SmithyOperationBinding<
                 GetWebIdentityTokenInput,
                 GetWebIdentityTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetWebIdentityTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetWebIdentityTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema
             );
         }
         catch
@@ -907,120 +1077,157 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
         ArgumentNullException.ThrowIfNull(httpClient);
         config ??= new AWSSecurityTokenServiceV20110615ClientConfig();
         this.environment = SmithyHttpClientEnvironment.Create(
-            AWSSecurityTokenServiceV20110615Schema.Schema,
+            global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema,
             config,
             static () => new AwsQueryProtocol(),
             ModeledAuthSchemes,
             null,
-            httpClient
+            httpClient,
+            modeledEndpointResolver: endpoint => new AWSSecurityTokenServiceV20110615EndpointResolver(
+                config,
+                endpoint
+            )
         );
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
         try
         {
             this.AssumeRoleBinding = new SmithyOperationBinding<AssumeRoleInput, AssumeRoleOutput>(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema
             );
             this.AssumeRoleWithSAMLBinding = new SmithyOperationBinding<
                 AssumeRoleWithSAMLInput,
                 AssumeRoleWithSAMLOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleWithSAMLSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleWithSAMLSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema
+                ),
                 Array.Empty<string>(),
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema
             );
             this.AssumeRoleWithWebIdentityBinding = new SmithyOperationBinding<
                 AssumeRoleWithWebIdentityInput,
                 AssumeRoleWithWebIdentityOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleWithWebIdentitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleWithWebIdentitySchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema
+                ),
                 Array.Empty<string>(),
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema
             );
             this.AssumeRootBinding = new SmithyOperationBinding<AssumeRootInput, AssumeRootOutput>(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRootSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRootSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema
             );
             this.DecodeAuthorizationMessageBinding = new SmithyOperationBinding<
                 DecodeAuthorizationMessageInput,
                 DecodeAuthorizationMessageOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                DecodeAuthorizationMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DecodeAuthorizationMessageSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema
             );
             this.GetAccessKeyInfoBinding = new SmithyOperationBinding<
                 GetAccessKeyInfoInput,
                 GetAccessKeyInfoOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetAccessKeyInfoSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAccessKeyInfoSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema
             );
             this.GetCallerIdentityBinding = new SmithyOperationBinding<
                 GetCallerIdentityInput,
                 GetCallerIdentityOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetCallerIdentitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCallerIdentitySchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema
             );
             this.GetDelegatedAccessTokenBinding = new SmithyOperationBinding<
                 GetDelegatedAccessTokenInput,
                 GetDelegatedAccessTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetDelegatedAccessTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDelegatedAccessTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema
             );
             this.GetFederationTokenBinding = new SmithyOperationBinding<
                 GetFederationTokenInput,
                 GetFederationTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetFederationTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFederationTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema
             );
             this.GetSessionTokenBinding = new SmithyOperationBinding<
                 GetSessionTokenInput,
                 GetSessionTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetSessionTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetSessionTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema
             );
             this.GetWebIdentityTokenBinding = new SmithyOperationBinding<
                 GetWebIdentityTokenInput,
                 GetWebIdentityTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetWebIdentityTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetWebIdentityTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema
             );
         }
         catch
@@ -1037,7 +1244,7 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     {
         config ??= new AWSSecurityTokenServiceV20110615ClientConfig();
         this.environment = SmithyHttpClientEnvironment.FromRuntime(
-            AWSSecurityTokenServiceV20110615Schema.Schema,
+            global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema,
             runtime,
             config,
             static () => new AwsQueryProtocol()
@@ -1047,108 +1254,141 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
         try
         {
             this.AssumeRoleBinding = new SmithyOperationBinding<AssumeRoleInput, AssumeRoleOutput>(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleSchema.Schema
             );
             this.AssumeRoleWithSAMLBinding = new SmithyOperationBinding<
                 AssumeRoleWithSAMLInput,
                 AssumeRoleWithSAMLOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleWithSAMLSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleWithSAMLSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema
+                ),
                 Array.Empty<string>(),
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithSAMLSchema.Schema
             );
             this.AssumeRoleWithWebIdentityBinding = new SmithyOperationBinding<
                 AssumeRoleWithWebIdentityInput,
                 AssumeRoleWithWebIdentityOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRoleWithWebIdentitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRoleWithWebIdentitySchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema
+                ),
                 Array.Empty<string>(),
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRoleWithWebIdentitySchema.Schema
             );
             this.AssumeRootBinding = new SmithyOperationBinding<AssumeRootInput, AssumeRootOutput>(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                AssumeRootSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AssumeRootSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.AssumeRootSchema.Schema
             );
             this.DecodeAuthorizationMessageBinding = new SmithyOperationBinding<
                 DecodeAuthorizationMessageInput,
                 DecodeAuthorizationMessageOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                DecodeAuthorizationMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DecodeAuthorizationMessageSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.DecodeAuthorizationMessageSchema.Schema
             );
             this.GetAccessKeyInfoBinding = new SmithyOperationBinding<
                 GetAccessKeyInfoInput,
                 GetAccessKeyInfoOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetAccessKeyInfoSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetAccessKeyInfoSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetAccessKeyInfoSchema.Schema
             );
             this.GetCallerIdentityBinding = new SmithyOperationBinding<
                 GetCallerIdentityInput,
                 GetCallerIdentityOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetCallerIdentitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetCallerIdentitySchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetCallerIdentitySchema.Schema
             );
             this.GetDelegatedAccessTokenBinding = new SmithyOperationBinding<
                 GetDelegatedAccessTokenInput,
                 GetDelegatedAccessTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetDelegatedAccessTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetDelegatedAccessTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetDelegatedAccessTokenSchema.Schema
             );
             this.GetFederationTokenBinding = new SmithyOperationBinding<
                 GetFederationTokenInput,
                 GetFederationTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetFederationTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetFederationTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetFederationTokenSchema.Schema
             );
             this.GetSessionTokenBinding = new SmithyOperationBinding<
                 GetSessionTokenInput,
                 GetSessionTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetSessionTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetSessionTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetSessionTokenSchema.Schema
             );
             this.GetWebIdentityTokenBinding = new SmithyOperationBinding<
                 GetWebIdentityTokenInput,
                 GetWebIdentityTokenOutput
             >(
-                AWSSecurityTokenServiceV20110615Schema.Schema.Id,
-                GetWebIdentityTokenSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetWebIdentityTokenSchema.Schema),
+                global::Com.Amazonaws.Sts.Schemas.AWSSecurityTokenServiceV20110615Schema.Schema.Id,
+                global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4", "aws.auth#sigv4a" },
-                null
+                null,
+                global::Com.Amazonaws.Sts.Schemas.GetWebIdentityTokenSchema.Schema
             );
         }
         catch
@@ -1269,6 +1509,18 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// The &lt;code&gt;TokenCode&lt;/code&gt; is the time-based one-time password (TOTP) that the MFA device
     /// produces. &lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To assume a role
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRoleInput(RoleArn: &quot;arn:aws:iam::123456789012:role/demo&quot;, RoleSessionName: &quot;testAssumeRoleSession&quot;, ExternalId: &quot;123ABC&quot;, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Unicorn&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Team&quot;, Value: &quot;Automation&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;12345&quot;) }, TransitiveTagKeys: new string[] { &quot;Project&quot;, &quot;Cost-Center&quot; });
+    /// var output = await client.AssumeRoleAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRoleOutput(AssumedRoleUser: new AssumedRoleUser(Arn: &quot;arn:aws:sts::123456789012:assumed-role/demo/Bob&quot;, AssumedRoleId: &quot;ARO123EXAMPLE123:Bob&quot;), Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2011-07-15T23:28:33.359Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoDYXdzEPT//////////wEXAMPLEtc764bNrC9SAPBSM22wDOk4x4HIZ8j4FZTwdQWLWsKWHGBuFqwAeMicRXmxfpSPfIeoIYRqTflfKD8YUuwthAx7mSEI/qkPpKPi/kMcGdQrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz+scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA==&quot;), PackedPolicySize: 8);
+    /// </code>
+    /// </example>
     public Task<AssumeRoleOutput> AssumeRoleAsync(
         AssumeRoleInput input,
         CancellationToken cancellationToken = default
@@ -1413,6 +1665,18 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// &lt;/li&gt;
     /// &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To assume a role using a SAML assertion
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRoleWithSAMLInput(PrincipalArn: &quot;arn:aws:iam::123456789012:saml-provider/SAML-test&quot;, RoleArn: &quot;arn:aws:iam::123456789012:role/TestSaml&quot;, SAMLAssertion: &quot;VERYLONGENCODEDASSERTIONEXAMPLExzYW1sOkF1ZGllbmNlPmJsYW5rPC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOlN1YmplY3Q+PHNhbWw6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ij5TYW1sRXhhbXBsZTwvc2FtbDpOYW1lSUQ+PHNhbWw6U3ViamVjdENvbmZpcm1hdGlvbiBNZXRob2Q9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjbTpiZWFyZXIiPjxzYW1sOlN1YmplY3RDb25maXJtYXRpb25EYXRhIE5vdE9uT3JBZnRlcj0iMjAxOS0xMS0wMVQyMDoyNTowNS4xNDVaIiBSZWNpcGllbnQ9Imh0dHBzOi8vc2lnbmluLmF3cy5hbWF6b24uY29tL3NhbWwiLz48L3NhbWw6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWw6U3ViamVjdD48c2FtbDpBdXRoblN0YXRlbWVudCBBdXRoPD94bWwgdmpSZXNwb25zZT4=&quot;, DurationSeconds: 3600);
+    /// var output = await client.AssumeRoleWithSAMLAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRoleWithSAMLOutput(AssumedRoleUser: new AssumedRoleUser(Arn: &quot;arn:aws:sts::123456789012:assumed-role/TestSaml&quot;, AssumedRoleId: &quot;ARO456EXAMPLE789:TestSaml&quot;), Audience: &quot;https://signin.aws.amazon.com/saml&quot;, Credentials: new Credentials(AccessKeyId: &quot;ASIAV3ZUEFP6EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2019-11-01T20:26:47Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;8P+SQvWIuLnKhh8d++jpw0nNmQRBZvNEXAMPLEKEY&quot;, SessionToken: &quot;IQoJb3JpZ2luX2VjEOz////////////////////wEXAMPLEtMSJHMEUCIDoKK3JH9uGQE1z0sINr5M4jk+Na8KHDcCYRVjJCZEvOAiEA3OvJGtw1EcViOleS2vhs8VdCKFJQWPQrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz+scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA==&quot;), Issuer: &quot;https://integ.example.com/idp/shibboleth&quot;, NameQualifier: &quot;SbdGOnUkh1i4+EXAMPLExL/jEvs=&quot;, PackedPolicySize: 6, Subject: &quot;SamlExample&quot;, SubjectType: &quot;transient&quot;);
+    /// </code>
+    /// </example>
     public Task<AssumeRoleWithSAMLOutput> AssumeRoleWithSAMLAsync(
         AssumeRoleWithSAMLInput input,
         CancellationToken cancellationToken = default
@@ -1542,6 +1806,18 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// &lt;/li&gt;
     /// &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To assume a role as an OpenID Connect-federated user
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRoleWithWebIdentityInput(RoleArn: &quot;arn:aws:iam::123456789012:role/FederatedWebIdentityRole&quot;, RoleSessionName: &quot;app1&quot;, WebIdentityToken: &quot;Atza%7CIQEBLjAsAhRFiXuWpUXuRvQ9PZL3GMFcYevydwIUFAHZwXZXXXXXXXXJnrulxKDHwy87oGKPznh0D6bEQZTSCzyoCtL_8S07pLpr0zMbn6w1lfVZKNTBdDansFBmtGnIsIapjI6xKR02Yc_2bQ8LZbUXSGm6Ry6_BG7PrtLZtj_dfCTj92xNGed-CrKqjG7nPBjNIL016GGvuS5gSvPRUxWES3VYfm1wl7WTI7jn-Pcb6M-buCgHhFOzTQxod27L9CqnOLio7N3gZAGpsp6n1-AJBOCJckcyXe2c6uD0srOJeZlKUm2eTDVMf8IehDVI0r1QOnTV6KzzAI3OY87Vd_cVMQ&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, ProviderId: &quot;www.amazon.com&quot;);
+    /// var output = await client.AssumeRoleWithWebIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRoleWithWebIdentityOutput(AssumedRoleUser: new AssumedRoleUser(Arn: &quot;arn:aws:sts::123456789012:assumed-role/FederatedWebIdentityRole/app1&quot;, AssumedRoleId: &quot;AROACLKWSDQRAOEXAMPLE:app1&quot;), Audience: &quot;client.5498841531868486423.1548@apps.example.com&quot;, Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2014-10-24T23:00:23Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoDYXdzEE0a8ANXXXXXXXXNO1ewxE5TijQyp+IEXAMPLE&quot;), PackedPolicySize: 123, Provider: &quot;www.amazon.com&quot;, SubjectFromWebIdentityToken: &quot;amzn1.account.AF6RHO7KZU5XRVQJGXK6HEXAMPLE&quot;);
+    /// </code>
+    /// </example>
     public Task<AssumeRoleWithWebIdentityOutput> AssumeRoleWithWebIdentityAsync(
         AssumeRoleWithWebIdentityInput input,
         CancellationToken cancellationToken = default
@@ -1572,6 +1848,21 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// policies&lt;/a&gt; (SCPs) to manage and limit permissions in your organization. See &lt;a href=&quot;https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_general.html&quot;&gt;General examples&lt;/a&gt; in the &lt;i&gt;Organizations User
     /// Guide&lt;/i&gt; for more information on SCPs.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To launch a privileged session
+    /// </para>
+    /// <para>
+    /// The following command retrieves a set of short-term credentials you can use to unlock an S3 bucket for a member account by removing the bucket policy.
+    /// </para>
+    /// <code>
+    /// var input = new AssumeRootInput(TargetPrincipal: &quot;111122223333&quot;, TaskPolicyArn: new PolicyDescriptorType(Arn: &quot;arn:aws:iam::aws:policy/root-task/S3UnlockBucketPolicy&quot;), DurationSeconds: 900);
+    /// var output = await client.AssumeRootAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new AssumeRootOutput(Credentials: new Credentials(AccessKeyId: &quot;ASIAJEXAMPLEXEG2JICEA&quot;, Expiration: DateTimeOffset.Parse(&quot;2024-11-15T00:05:07Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;9drTJvcXLB89EXAMPLELB8923FB892xMFI&quot;, SessionToken: &quot;AQoXdzELDDY//////////wEaoAK1wvxJY12r2IrDFT2IvAzTCn3zHoZ7YNtpiQLF0MqZye/qwjzP2iEXAMPLEbw/m3hsj8VBTkPORGvr9jM5sgP+w9IZWZnU+LWhmg+a5fDi2oTGUYcdg9uexQ4mtCHIHfi4citgqZTgco40Yqr4lIlo4V2b2Dyauk0eYFNebHtYlFVgAUj+7Indz3LU0aTWk1WKIjHmmMCIoTkyYp/k7kUG7moeEYKSitwQIi6Gjn+nyzM+PtoA3685ixzv0R7i5rjQi0YE0lf1oeie3bDiNHncmzosRM6SFiPzSvp6h/32xQuZsjcypmwsPSDtTPYcs0+YN/8BRi2/IcrxSpnWEXAMPLEXSDFTAQAM6Dl9zR0tXoybnlrZIwMLlMi1Kcgo5OytwU=&quot;), SourceIdentity: &quot;Alice&quot;);
+    /// </code>
+    /// </example>
     public Task<AssumeRootOutput> AssumeRootAsync(
         AssumeRootInput input,
         CancellationToken cancellationToken = default
@@ -1619,6 +1910,18 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// &lt;/li&gt;
     /// &lt;/ul&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To decode information about an authorization status of a request
+    /// </para>
+    /// <code>
+    /// var input = new DecodeAuthorizationMessageInput(EncodedMessage: &quot;&lt;encoded-message&gt;&quot;);
+    /// var output = await client.DecodeAuthorizationMessageAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new DecodeAuthorizationMessageOutput(DecodedMessage: &quot;{\&quot;allowed\&quot;: \&quot;false\&quot;,\&quot;explicitDeny\&quot;: \&quot;false\&quot;,\&quot;matchedStatements\&quot;: \&quot;\&quot;,\&quot;failures\&quot;: \&quot;\&quot;,\&quot;context\&quot;: {\&quot;principal\&quot;: {\&quot;id\&quot;: \&quot;AIDACKCEVSQ6C2EXAMPLE\&quot;,\&quot;name\&quot;: \&quot;Bob\&quot;,\&quot;arn\&quot;: \&quot;arn:aws:iam::123456789012:user/Bob\&quot;},\&quot;action\&quot;: \&quot;ec2:StopInstances\&quot;,\&quot;resource\&quot;: \&quot;arn:aws:ec2:us-east-1:123456789012:instance/i-dd01c9bd\&quot;,\&quot;conditions\&quot;: [{\&quot;item\&quot;: {\&quot;key\&quot;: \&quot;ec2:Tenancy\&quot;,\&quot;values\&quot;: [\&quot;default\&quot;]},{\&quot;item\&quot;: {\&quot;key\&quot;: \&quot;ec2:ResourceTag/elasticbeanstalk:environment-name\&quot;,\&quot;values\&quot;: [\&quot;Default-Environment\&quot;]}},(Additional items ...)]}}&quot;);
+    /// </code>
+    /// </example>
     public Task<DecodeAuthorizationMessageOutput> DecodeAuthorizationMessageAsync(
         DecodeAuthorizationMessageInput input,
         CancellationToken cancellationToken = default
@@ -1668,6 +1971,51 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// &lt;i&gt;IAM User Guide&lt;/i&gt;.&lt;/p&gt;
     /// &lt;/note&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get details about a calling IAM user
+    /// </para>
+    /// <para>
+    /// This example shows a request and response made with the credentials for a user named Alice in the AWS account 123456789012.
+    /// </para>
+    /// <code>
+    /// var input = new GetCallerIdentityInput();
+    /// var output = await client.GetCallerIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetCallerIdentityOutput(Account: &quot;123456789012&quot;, Arn: &quot;arn:aws:iam::123456789012:user/Alice&quot;, UserId: &quot;AKIAI44QH8DHBEXAMPLE&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To get details about a calling user federated with AssumeRole
+    /// </para>
+    /// <para>
+    /// This example shows a request and response made with temporary credentials created by AssumeRole. The name of the assumed role is my-role-name, and the RoleSessionName is set to my-role-session-name.
+    /// </para>
+    /// <code>
+    /// var input = new GetCallerIdentityInput();
+    /// var output = await client.GetCallerIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetCallerIdentityOutput(Account: &quot;123456789012&quot;, Arn: &quot;arn:aws:sts::123456789012:assumed-role/my-role-name/my-role-session-name&quot;, UserId: &quot;AKIAI44QH8DHBEXAMPLE:my-role-session-name&quot;);
+    /// </code>
+    /// </example>
+    /// <example>
+    /// <para>
+    /// To get details about a calling user federated with GetFederationToken
+    /// </para>
+    /// <para>
+    /// This example shows a request and response made with temporary credentials created by using GetFederationToken. The Name parameter is set to my-federated-user-name.
+    /// </para>
+    /// <code>
+    /// var input = new GetCallerIdentityInput();
+    /// var output = await client.GetCallerIdentityAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetCallerIdentityOutput(Account: &quot;123456789012&quot;, Arn: &quot;arn:aws:sts::123456789012:federated-user/my-federated-user-name&quot;, UserId: &quot;123456789012:my-federated-user-name&quot;);
+    /// </code>
+    /// </example>
     public Task<GetCallerIdentityOutput> GetCallerIdentityAsync(
         GetCallerIdentityInput input,
         CancellationToken cancellationToken = default
@@ -1783,6 +2131,18 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// and &lt;code&gt;department&lt;/code&gt; are not saved as separate tags, and the session tag passed in
     /// the request takes precedence over the user tag.&lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get temporary credentials for a role by using GetFederationToken
+    /// </para>
+    /// <code>
+    /// var input = new GetFederationTokenInput(Name: &quot;testFedUserSession&quot;, DurationSeconds: 3600, Policy: &quot;escaped-JSON-IAM-POLICY&quot;, Tags: new global::Com.Amazonaws.Sts.Tag[] { new global::Com.Amazonaws.Sts.Tag(Key: &quot;Project&quot;, Value: &quot;Pegasus&quot;), new global::Com.Amazonaws.Sts.Tag(Key: &quot;Cost-Center&quot;, Value: &quot;98765&quot;) });
+    /// var output = await client.GetFederationTokenAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetFederationTokenOutput(Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2011-07-15T23:28:33.359Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoDYXdzEPT//////////wEXAMPLEtc764bNrC9SAPBSM22wDOk4x4HIZ8j4FZTwdQWLWsKWHGBuFqwAeMicRXmxfpSPfIeoIYRqTflfKD8YUuwthAx7mSEI/qkPpKPi/kMcGdQrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz+scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA==&quot;), FederatedUser: new FederatedUser(Arn: &quot;arn:aws:sts::123456789012:federated-user/Bob&quot;, FederatedUserId: &quot;123456789012:Bob&quot;), PackedPolicySize: 8);
+    /// </code>
+    /// </example>
     public Task<GetFederationTokenOutput> GetFederationTokenAsync(
         GetFederationTokenInput input,
         CancellationToken cancellationToken = default
@@ -1853,6 +2213,18 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
     /// Credentials for Users in Untrusted Environments&lt;/a&gt; in the
     /// &lt;i&gt;IAM User Guide&lt;/i&gt;. &lt;/p&gt;
     /// </summary>
+    /// <example>
+    /// <para>
+    /// To get temporary credentials for an IAM user or an AWS account
+    /// </para>
+    /// <code>
+    /// var input = new GetSessionTokenInput(DurationSeconds: 3600, SerialNumber: &quot;YourMFASerialNumber&quot;, TokenCode: &quot;123456&quot;);
+    /// var output = await client.GetSessionTokenAsync(input);
+    ///
+    /// // Expected output:
+    /// var expectedOutput = new GetSessionTokenOutput(Credentials: new Credentials(AccessKeyId: &quot;AKIAIOSFODNN7EXAMPLE&quot;, Expiration: DateTimeOffset.Parse(&quot;2011-07-11T19:55:29.611Z&quot;, CultureInfo.InvariantCulture), SecretAccessKey: &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY&quot;, SessionToken: &quot;AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/LTo6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3zrkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtpZ3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE&quot;));
+    /// </code>
+    /// </example>
     public Task<GetSessionTokenOutput> GetSessionTokenAsync(
         GetSessionTokenInput input,
         CancellationToken cancellationToken = default
@@ -1887,5 +2259,31 @@ public sealed class AWSSecurityTokenServiceV20110615ClientConfig : SmithyClientC
     public AWSSecurityTokenServiceV20110615ClientConfig(
         AWSSecurityTokenServiceV20110615ClientConfig source
     )
-        : base(source) { }
+        : base(source)
+    {
+        Region = source.Region;
+        UseDualStack = source.UseDualStack;
+        UseFips = source.UseFips;
+        UseGlobalEndpoint = source.UseGlobalEndpoint;
+    }
+
+    /// <summary>
+    /// The AWS region requests are sent to, such as us-east-1.
+    /// </summary>
+    public string? Region { get; set; }
+
+    /// <summary>
+    /// Whether to use dual-stack (IPv4 and IPv6) endpoints.
+    /// </summary>
+    public bool? UseDualStack { get; set; }
+
+    /// <summary>
+    /// Whether to use FIPS endpoints.
+    /// </summary>
+    public bool? UseFips { get; set; }
+
+    /// <summary>
+    /// Whether us-east-1 requests use the global STS endpoint.
+    /// </summary>
+    public bool? UseGlobalEndpoint { get; set; }
 }

@@ -6,15 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CompatibleRuntimesSchema
 {
-    public static ListSchema<CompatibleRuntimes, Runtime, List<Runtime>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.Lambda.Runtime>,
+        global::Com.Amazonaws.Lambda.Runtime,
+        List<global::Com.Amazonaws.Lambda.Runtime>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<CompatibleRuntimes, Runtime, List<Runtime>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Runtime>,
+            global::Com.Amazonaws.Lambda.Runtime,
+            List<global::Com.Amazonaws.Lambda.Runtime>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#CompatibleRuntimes"),
             ShapeKind.List,
             Target0,
@@ -24,42 +31,39 @@ public static partial class CompatibleRuntimesSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)15) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(15m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Runtime> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Runtime> Target0 =
             RuntimeSchema.Schema;
 
-        public override IEnumerable<Runtime> GetElements(CompatibleRuntimes value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.Runtime> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Runtime> value
+        ) => value;
 
-        public override List<Runtime> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.Runtime> CreateTypedBuilder() => new();
 
-        public override void Add(List<Runtime> builder, Runtime value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.Runtime> builder,
+            global::Com.Amazonaws.Lambda.Runtime value
+        ) => builder.Add(value);
 
-        public override CompatibleRuntimes Build(List<Runtime> builder) =>
-            CompatibleRuntimes.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.Runtime> Build(
+            List<global::Com.Amazonaws.Lambda.Runtime> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            CompatibleRuntimes value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.Runtime> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -67,14 +71,14 @@ public static partial class CompatibleRuntimesSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Runtime> builder,
+            List<global::Com.Amazonaws.Lambda.Runtime> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? Runtime.FromValue(element)
-                        : default(Runtime)
+                        ? global::Com.Amazonaws.Lambda.Runtime.FromValue(element)
+                        : default(global::Com.Amazonaws.Lambda.Runtime)
                 )
             );
     }

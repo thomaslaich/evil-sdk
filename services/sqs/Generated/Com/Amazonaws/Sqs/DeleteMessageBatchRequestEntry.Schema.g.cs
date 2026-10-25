@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageBatchRequestEntrySchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteMessageBatchRequestEntrySchema
         public string? ReceiptHandle { get; set; }
     }
 
-    public static StructSchema<DeleteMessageBatchRequestEntry, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteMessageBatchRequestEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageBatchRequestEntry"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class DeleteMessageBatchRequestEntrySchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identifier for this particular receipt handle. This is used to communicate the\n            result.</p>\n         <note>\n            <p>The <code>Id</code>s of a batch request need to be unique within a request.</p>\n            <p>This identifier can have up to 80 characters. The following characters are accepted: alphanumeric characters, hyphens(-), and underscores (_).</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -48,39 +44,36 @@ public static partial class DeleteMessageBatchRequestEntrySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A receipt handle.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Encloses a receipt handle and an identifier for it.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteMessageBatchRequestEntry Build(Builder builder) =>
-            new DeleteMessageBatchRequestEntry(
+        public override global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry(
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.ReceiptHandle ?? throw new MissingRequiredMemberException("ReceiptHandle")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteMessageBatchRequestEntry value,
+            global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry value,
             ref TSerializer serializer
         )
         {

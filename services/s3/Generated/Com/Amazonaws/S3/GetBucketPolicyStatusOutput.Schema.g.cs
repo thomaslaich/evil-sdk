@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketPolicyStatusOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketPolicyStatusOutputSchema
         public global::Com.Amazonaws.S3.PolicyStatus? PolicyStatus { get; set; }
     }
 
-    public static StructSchema<GetBucketPolicyStatusOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketPolicyStatusOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketPolicyStatusOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketPolicyStatusOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketPolicyStatusOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class GetBucketPolicyStatusOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The policy status for the specified bucket.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,15 +45,18 @@ public static partial class GetBucketPolicyStatusOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.PolicyStatus?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => PolicyStatusSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => PolicyStatusSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketPolicyStatusOutput Build(Builder builder) =>
-            new GetBucketPolicyStatusOutput(builder.PolicyStatus);
+        public override global::Com.Amazonaws.S3.GetBucketPolicyStatusOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.GetBucketPolicyStatusOutput(builder.PolicyStatus);
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketPolicyStatusOutput value,
+            global::Com.Amazonaws.S3.GetBucketPolicyStatusOutput value,
             ref TSerializer serializer
         )
         {

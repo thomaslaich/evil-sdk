@@ -5,38 +5,34 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketAlreadyOwnedByYouSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<BucketAlreadyOwnedByYou, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.BucketAlreadyOwnedByYou,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BucketAlreadyOwnedByYou, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.BucketAlreadyOwnedByYou, Builder>(
             ShapeId.Parse("com.amazonaws.s3#BucketAlreadyOwnedByYou"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The bucket you tried to create already exists, and you own it. Amazon S3 returns this error in all Amazon Web Services\n      Regions except in the North Virginia Region. For legacy compatibility, if you re-create an existing\n      bucket that you already own in the North Virginia Region, Amazon S3 returns 200 OK and resets the bucket\n      access control lists (ACLs).</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)409)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(409m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override BucketAlreadyOwnedByYou Build(Builder builder) =>
-            new BucketAlreadyOwnedByYou(null);
+        public override global::Com.Amazonaws.S3.BucketAlreadyOwnedByYou Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.BucketAlreadyOwnedByYou(null);
 
         public override void SerializeMembers<TSerializer>(
-            BucketAlreadyOwnedByYou value,
+            global::Com.Amazonaws.S3.BucketAlreadyOwnedByYou value,
             ref TSerializer serializer
         ) { }
 

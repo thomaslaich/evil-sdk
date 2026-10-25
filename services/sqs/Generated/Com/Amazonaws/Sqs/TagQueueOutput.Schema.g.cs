@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class TagQueueOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<TagQueueOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.TagQueueOutput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TagQueueOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.TagQueueOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#TagQueueOutput"),
             [],
             [
@@ -32,10 +33,11 @@ public static partial class TagQueueOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override TagQueueOutput Build(Builder builder) => new TagQueueOutput();
+        public override global::Com.Amazonaws.Sqs.TagQueueOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.TagQueueOutput();
 
         public override void SerializeMembers<TSerializer>(
-            TagQueueOutput value,
+            global::Com.Amazonaws.Sqs.TagQueueOutput value,
             ref TSerializer serializer
         ) { }
 

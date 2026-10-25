@@ -6,58 +6,38 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SourceAccessConfigurationSchema
 {
     public sealed class Builder
     {
-        public SourceAccessType? Type { get; set; }
+        public global::Com.Amazonaws.Lambda.SourceAccessType? Type { get; set; }
         public string? URI { get; set; }
     }
 
-    public static StructSchema<SourceAccessConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SourceAccessConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SourceAccessConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.SourceAccessConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#SourceAccessConfiguration"),
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The type of authentication protocol, VPC components, or virtual host for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> – (Amazon MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>BASIC_AUTH</code> – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL/PLAIN authentication of your Apache Kafka brokers.</p> </li> <li> <p> <code>VPC_SUBNET</code> – (Self-managed Apache Kafka) The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your self-managed Apache Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> – (Self-managed Apache Kafka) The VPC security group used to manage access to your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> – (Amazon MSK, Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>VIRTUAL_HOST</code> –- (RabbitMQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source. This property cannot be specified in an UpdateEventSourceMapping API call.</p> </li> <li> <p> <code>CLIENT_CERTIFICATE_TLS_AUTH</code> – (Amazon MSK, self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.</p> </li> <li> <p> <code>SERVER_ROOT_CA_CERTIFICATE</code> – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers. </p> </li> <li> <p> <code>OAUTHBEARER_AUTH</code> – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the OAuth 2.0 credentials that Lambda uses for SASL/OAUTHBEARER authentication with your Apache Kafka brokers. For the contents of the secret, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret\">Configuring the OAuth secret</a>.</p> </li> <li> <p> <code>OAUTHBEARER_SCOPE</code> – (Self-managed Apache Kafka) The OAuth 2.0 scope that Lambda requests when it acquires an access token. The <code>URI</code> field holds the scope value, not a secret ARN. This type requires <code>OAUTHBEARER_AUTH</code>.</p> </li> <li> <p> <code>OAUTHBEARER_AUDIENCE</code> – (Self-managed Apache Kafka) The OAuth 2.0 audience that Lambda requests when it acquires an access token. The <code>URI</code> field holds the audience value, not a secret ARN. This type requires either <code>OAUTHBEARER_AUTH</code> or <code>IAM_OAUTHBEARER_AUTH</code>.</p> </li> <li> <p> <code>OAUTHBEARER_LOGICAL_CLUSTER</code> – (Self-managed Apache Kafka) The logical cluster identifier that Lambda sends to a Confluent Cloud broker. The <code>URI</code> field holds the identifier, not a secret ARN. This type requires <code>OAUTHBEARER_AUTH</code>.</p> </li> <li> <p> <code>OAUTHBEARER_IDENTITY_POOL</code> – (Self-managed Apache Kafka) The identity pool identifier that Lambda sends to a Confluent Cloud broker. The <code>URI</code> field holds the identifier, not a secret ARN. This type requires <code>OAUTHBEARER_AUTH</code>.</p> </li> <li> <p> <code>IAM_AUTH</code> – (Self-managed Apache Kafka) Authenticate with Identity and Access Management (IAM). Your function's execution role signs each connection, so there is no secret to provide. Omit the <code>URI</code> field for this type.</p> </li> <li> <p> <code>IAM_OAUTHBEARER_AUTH</code> – (Self-managed Apache Kafka) Authenticate with an Amazon Web Services web identity token over SASL/OAUTHBEARER. Lambda requests the token for your function's execution role, so there is no secret to provide. Omit the <code>URI</code> field for this type. This type requires <code>OAUTHBEARER_AUDIENCE</code> and does not support the other <code>OAUTHBEARER</code> types.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Type", Target0),
                 new(
                     "URI",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value for your chosen configuration in <code>Type</code>. For example: <code>\"URI\": \"arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName\"</code>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)200) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(200m) },
                                 }
                             )
                         ),
@@ -65,39 +45,27 @@ public static partial class SourceAccessConfigurationSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[ a-zA-Z0-9-\\/*:_+=.@-]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>To secure and define access to your event source, you can specify the authentication protocol, VPC components, or virtual host.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SourceAccessType?> Target0 =
-            Schemas.Nullable(SourceAccessTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SourceAccessType?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(SourceAccessTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SourceAccessConfiguration Build(Builder builder) =>
-            new SourceAccessConfiguration(builder.Type, builder.URI);
+        public override global::Com.Amazonaws.Lambda.SourceAccessConfiguration Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.SourceAccessConfiguration(builder.Type, builder.URI);
 
         public override void SerializeMembers<TSerializer>(
-            SourceAccessConfiguration value,
+            global::Com.Amazonaws.Lambda.SourceAccessConfiguration value,
             ref TSerializer serializer
         )
         {
@@ -132,8 +100,8 @@ public static partial class SourceAccessConfigurationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? SourceAccessType.FromValue(value0)
-                                : default(SourceAccessType)
+                                ? global::Com.Amazonaws.Lambda.SourceAccessType.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.SourceAccessType)
                         );
                     break;
                 case 1:

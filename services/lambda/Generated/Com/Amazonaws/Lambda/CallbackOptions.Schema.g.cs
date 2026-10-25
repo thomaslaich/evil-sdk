@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CallbackOptionsSchema
 {
@@ -16,10 +16,13 @@ public static partial class CallbackOptionsSchema
         public int? HeartbeatTimeoutSeconds { get; set; }
     }
 
-    public static StructSchema<CallbackOptions, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CallbackOptions,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CallbackOptions, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CallbackOptions, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CallbackOptions"),
             [
                 new(
@@ -31,26 +34,16 @@ public static partial class CallbackOptionsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The timeout for the callback operation in seconds. If not specified or set to 0, the callback has no timeout.</p>"
-                            )
-                        ),
+                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m)),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)99999999) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(99999999m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -63,59 +56,39 @@ public static partial class CallbackOptionsSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The heartbeat timeout for the callback operation, in seconds. If not specified or set to 0, heartbeat timeout is disabled.</p>"
-                            )
-                        ),
+                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m)),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)99999999) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(99999999m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration options for callback operations in durable executions, including timeout settings and retry behavior.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() =>
             new() { TimeoutSeconds = 0, HeartbeatTimeoutSeconds = 0 };
 
-        public override CallbackOptions Build(Builder builder) =>
-            new CallbackOptions(builder.HeartbeatTimeoutSeconds, builder.TimeoutSeconds);
+        public override global::Com.Amazonaws.Lambda.CallbackOptions Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.CallbackOptions(
+                builder.HeartbeatTimeoutSeconds,
+                builder.TimeoutSeconds
+            );
 
         public override void SerializeMembers<TSerializer>(
-            CallbackOptions value,
+            global::Com.Amazonaws.Lambda.CallbackOptions value,
             ref TSerializer serializer
         )
         {

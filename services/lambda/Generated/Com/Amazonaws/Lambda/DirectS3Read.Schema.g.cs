@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DirectS3ReadSchema
 {
     public static global::NSmithy.Core.Serde.Schema<DirectS3Read> Schema { get; } =
-        Schemas.StringEnum<DirectS3Read>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<DirectS3Read>(
             ShapeId.Parse("com.amazonaws.lambda#DirectS3Read"),
             values: ["ENABLED", "DISABLED", "AUTO"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

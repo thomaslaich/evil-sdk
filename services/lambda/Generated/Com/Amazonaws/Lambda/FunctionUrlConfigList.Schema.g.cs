@@ -6,55 +6,54 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionUrlConfigListSchema
 {
     public static ListSchema<
-        FunctionUrlConfigList,
-        FunctionUrlConfig,
-        List<FunctionUrlConfig>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionUrlConfig>,
+        global::Com.Amazonaws.Lambda.FunctionUrlConfig,
+        List<global::Com.Amazonaws.Lambda.FunctionUrlConfig>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<FunctionUrlConfigList, FunctionUrlConfig, List<FunctionUrlConfig>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionUrlConfig>,
+            global::Com.Amazonaws.Lambda.FunctionUrlConfig,
+            List<global::Com.Amazonaws.Lambda.FunctionUrlConfig>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#FunctionUrlConfigList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionUrlConfig> Target0 =
-            Schemas.Lazy(() => FunctionUrlConfigSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionUrlConfig> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionUrlConfigSchema.Schema!);
 
-        public override IEnumerable<FunctionUrlConfig> GetElements(FunctionUrlConfigList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.FunctionUrlConfig> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionUrlConfig> value
+        ) => value;
 
-        public override List<FunctionUrlConfig> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.FunctionUrlConfig> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<FunctionUrlConfig> builder, FunctionUrlConfig value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.FunctionUrlConfig> builder,
+            global::Com.Amazonaws.Lambda.FunctionUrlConfig value
+        ) => builder.Add(value);
 
-        public override FunctionUrlConfigList Build(List<FunctionUrlConfig> builder) =>
-            FunctionUrlConfigList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionUrlConfig> Build(
+            List<global::Com.Amazonaws.Lambda.FunctionUrlConfig> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FunctionUrlConfigList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionUrlConfig> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -69,7 +68,7 @@ public static partial class FunctionUrlConfigListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<FunctionUrlConfig> builder,
+            List<global::Com.Amazonaws.Lambda.FunctionUrlConfig> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(FunctionUrlConfigSchema.Schema));
     }

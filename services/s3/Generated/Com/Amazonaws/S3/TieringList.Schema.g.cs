@@ -6,42 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TieringListSchema
 {
-    public static ListSchema<TieringList, Tiering, List<Tiering>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.Tiering>,
+        global::Com.Amazonaws.S3.Tiering,
+        List<global::Com.Amazonaws.S3.Tiering>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<TieringList, Tiering, List<Tiering>>(
-            ShapeId.Parse("com.amazonaws.s3#TieringList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.Tiering>,
+            global::Com.Amazonaws.S3.Tiering,
+            List<global::Com.Amazonaws.S3.Tiering>
+        >(ShapeId.Parse("com.amazonaws.s3#TieringList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Tiering> Target0 = Schemas.Lazy(
-            () =>
-                TieringSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tiering> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TieringSchema.Schema!);
 
-        public override IEnumerable<Tiering> GetElements(TieringList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.Tiering> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.Tiering> value
+        ) => value;
 
-        public override List<Tiering> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.Tiering> CreateTypedBuilder() => new();
 
-        public override void Add(List<Tiering> builder, Tiering value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.Tiering> builder,
+            global::Com.Amazonaws.S3.Tiering value
+        ) => builder.Add(value);
 
-        public override TieringList Build(List<Tiering> builder) =>
-            TieringList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.Tiering> Build(
+            List<global::Com.Amazonaws.S3.Tiering> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            TieringList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.Tiering> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -56,7 +61,7 @@ public static partial class TieringListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Tiering> builder,
+            List<global::Com.Amazonaws.S3.Tiering> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(TieringSchema.Schema));
     }

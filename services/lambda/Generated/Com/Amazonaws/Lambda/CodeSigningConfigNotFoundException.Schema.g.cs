@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CodeSigningConfigNotFoundExceptionSchema
 {
@@ -15,62 +15,42 @@ public static partial class CodeSigningConfigNotFoundExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<CodeSigningConfigNotFoundException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CodeSigningConfigNotFoundException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CodeSigningConfigNotFoundException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CodeSigningConfigNotFoundException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CodeSigningConfigNotFoundException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified code signing configuration does not exist.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CodeSigningConfigNotFoundException Build(Builder builder) =>
-            new CodeSigningConfigNotFoundException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.CodeSigningConfigNotFoundException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CodeSigningConfigNotFoundException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            CodeSigningConfigNotFoundException value,
+            global::Com.Amazonaws.Lambda.CodeSigningConfigNotFoundException value,
             ref TSerializer serializer
         )
         {

@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class JournalTableConfigurationSchema
 {
     public sealed class Builder
     {
         public global::Com.Amazonaws.S3.RecordExpiration? RecordExpiration { get; set; }
-        public MetadataTableEncryptionConfiguration? EncryptionConfiguration { get; set; }
+        public global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration? EncryptionConfiguration { get; set; }
     }
 
-    public static StructSchema<JournalTableConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.JournalTableConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<JournalTableConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.JournalTableConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#JournalTableConfiguration"),
             [
                 new(
@@ -30,59 +32,38 @@ public static partial class JournalTableConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The journal table record expiration settings for the journal table.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "EncryptionConfiguration",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The encryption configuration for the journal table.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("EncryptionConfiguration", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The journal table configuration for an S3 Metadata configuration.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RecordExpiration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => RecordExpirationSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<MetadataTableEncryptionConfiguration?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => MetadataTableEncryptionConfigurationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RecordExpirationSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataTableEncryptionConfiguration?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MetadataTableEncryptionConfigurationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override JournalTableConfiguration Build(Builder builder) =>
-            new JournalTableConfiguration(
+        public override global::Com.Amazonaws.S3.JournalTableConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.JournalTableConfiguration(
                 builder.RecordExpiration
                     ?? throw new MissingRequiredMemberException("RecordExpiration"),
                 builder.EncryptionConfiguration
             );
 
         public override void SerializeMembers<TSerializer>(
-            JournalTableConfiguration value,
+            global::Com.Amazonaws.S3.JournalTableConfiguration value,
             ref TSerializer serializer
         )
         {

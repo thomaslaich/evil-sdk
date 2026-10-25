@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAnalyticsConfigurationOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketAnalyticsConfigurationOutputSchema
         public global::Com.Amazonaws.S3.AnalyticsConfiguration? AnalyticsConfiguration { get; set; }
     }
 
-    public static StructSchema<GetBucketAnalyticsConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketAnalyticsConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketAnalyticsConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketAnalyticsConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketAnalyticsConfigurationOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class GetBucketAnalyticsConfigurationOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The configuration and any analyses for the analytics filter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,15 +45,21 @@ public static partial class GetBucketAnalyticsConfigurationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsConfiguration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => AnalyticsConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AnalyticsConfigurationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketAnalyticsConfigurationOutput Build(Builder builder) =>
-            new GetBucketAnalyticsConfigurationOutput(builder.AnalyticsConfiguration);
+        public override global::Com.Amazonaws.S3.GetBucketAnalyticsConfigurationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketAnalyticsConfigurationOutput(
+                builder.AnalyticsConfiguration
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketAnalyticsConfigurationOutput value,
+            global::Com.Amazonaws.S3.GetBucketAnalyticsConfigurationOutput value,
             ref TSerializer serializer
         )
         {

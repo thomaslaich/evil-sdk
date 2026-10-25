@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SourceSelectionCriteriaSchema
 {
@@ -15,65 +15,37 @@ public static partial class SourceSelectionCriteriaSchema
         public global::Com.Amazonaws.S3.ReplicaModifications? ReplicaModifications { get; set; }
     }
 
-    public static StructSchema<SourceSelectionCriteria, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.SourceSelectionCriteria,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SourceSelectionCriteria, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SourceSelectionCriteria, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SourceSelectionCriteria"),
-            [
-                new(
-                    "SseKmsEncryptedObjects",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> A container for filter information for the selection of Amazon S3 objects encrypted with Amazon Web Services KMS. If\n      you include <code>SourceSelectionCriteria</code> in the replication configuration, this element is\n      required. </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ReplicaModifications",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A filter that you can specify for selections for modifications on replicas. Amazon S3 doesn't replicate\n      replica modifications by default. In the latest version of replication configuration (when\n        <code>Filter</code> is specified), you can specify this element and set the status to\n        <code>Enabled</code> to replicate modifications on replicas. </p>\n         <note>\n            <p> If you don't specify the <code>Filter</code> element, Amazon S3 assumes that the replication\n        configuration is the earlier version, V1. In the earlier version, this element is not allowed</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container that describes additional filters for identifying the source objects that you want to\n      replicate. You can choose to enable or disable the replication of these objects. Currently, Amazon S3\n      supports only the filter that you can specify for objects created with server-side encryption using a\n      customer managed key stored in Amazon Web Services Key Management Service (SSE-KMS).</p>"
-                    )
-                ),
-            ]
+            [new("SseKmsEncryptedObjects", Target0), new("ReplicaModifications", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SseKmsEncryptedObjects?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => SseKmsEncryptedObjectsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SseKmsEncryptedObjectsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicaModifications?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ReplicaModificationsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ReplicaModificationsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SourceSelectionCriteria Build(Builder builder) =>
-            new SourceSelectionCriteria(
+        public override global::Com.Amazonaws.S3.SourceSelectionCriteria Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SourceSelectionCriteria(
                 builder.ReplicaModifications,
                 builder.SseKmsEncryptedObjects
             );
 
         public override void SerializeMembers<TSerializer>(
-            SourceSelectionCriteria value,
+            global::Com.Amazonaws.S3.SourceSelectionCriteria value,
             ref TSerializer serializer
         )
         {

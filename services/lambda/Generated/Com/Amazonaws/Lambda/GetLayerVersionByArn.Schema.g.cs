@@ -4,190 +4,48 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetLayerVersionByArnSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        GetLayerVersionByArnInput,
-        GetLayerVersionByArnOutput
+        global::Com.Amazonaws.Lambda.GetLayerVersionByArnInput,
+        global::Com.Amazonaws.Lambda.GetLayerVersionByArnOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#GetLayerVersionByArn"),
-            Schemas.Lazy(() => GetLayerVersionByArnInputSchema.Schema!),
-            Schemas.Lazy(() => GetLayerVersionByArnOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetLayerVersionByArnInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetLayerVersionByArnOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            { "name", Document.From("GetLayerVersion") },
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to view details about a version of an AWS Lambda layer. Note this action also supports GetLayerVersionByArn API"
-                                )
-                            },
-                            { "relativeDocumentation", Document.From("API_GetLayerVersion.html") },
-                            {
-                                "resources",
-                                Document.From(
-                                    new Dictionary<string, Document>
-                                    {
-                                        {
-                                            "required",
-                                            Document.From(
-                                                new Dictionary<string, Document>
-                                                {
-                                                    {
-                                                        "layerVersion",
-                                                        Document.From(
-                                                            new Dictionary<string, Document> { }
-                                                        )
-                                                    },
-                                                }
-                                            )
-                                        },
-                                    }
-                                )
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns information about a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>, with a link to download the layer archive that's valid for 10 minutes.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns information about the layer version with the specified Amazon Resource Name (ARN)."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "Arn",
-                                                    Document.From(
-                                                        "arn:aws:lambda:ca-central-1:123456789012:layer:blank-python-lib:3"
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "CompatibleRuntimes",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From("python3.8"),
-                                                        }
-                                                    )
-                                                },
-                                                {
-                                                    "Content",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "CodeSha256",
-                                                                Document.From(
-                                                                    "6x+xmpl/M3BnQUk7gS9sGmfeFsR/npojXoA3fZUv4eU="
-                                                                )
-                                                            },
-                                                            {
-                                                                "CodeSize",
-                                                                Document.From((decimal)9529009)
-                                                            },
-                                                            {
-                                                                "Location",
-                                                                Document.From(
-                                                                    "https://awslambda-us-east-2-layers.s3.us-east-2.amazonaws.com/snapshots/123456789012/blank-python-lib-e5212378-xmpl-44ee-8398-9d8ec5113949?versionId=WbZnvf..."
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                                {
-                                                    "CreatedDate",
-                                                    Document.From("2020-03-31T00:35:18.949+0000")
-                                                },
-                                                {
-                                                    "Description",
-                                                    Document.From(
-                                                        "Dependencies for the blank-python sample app."
-                                                    )
-                                                },
-                                                {
-                                                    "LayerArn",
-                                                    Document.From(
-                                                        "arn:aws:lambda:us-east-2:123456789012:layer:blank-python-lib"
-                                                    )
-                                                },
-                                                {
-                                                    "LayerVersionArn",
-                                                    Document.From(
-                                                        "arn:aws:lambda:us-east-2:123456789012:layer:blank-python-lib:3"
-                                                    )
-                                                },
-                                                { "Version", Document.From((decimal)3) },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To get information about a Lambda layer version"
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -195,17 +53,13 @@ public static partial class GetLayerVersionByArnSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/2018-10-31/layers?find=LayerVersion") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

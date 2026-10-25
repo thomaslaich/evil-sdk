@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CSVOutputSchema
 {
@@ -18,103 +18,45 @@ public static partial class CSVOutputSchema
         public string? QuoteCharacter { get; set; }
     }
 
-    public static StructSchema<CSVOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.CSVOutput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CSVOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CSVOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CSVOutput"),
             [
-                new(
-                    "QuoteFields",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether to use quotation marks around output fields. </p>\n         <ul>\n            <li>\n               <p>\n                  <code>ALWAYS</code>: Always use quotation marks for output fields.</p>\n            </li>\n            <li>\n               <p>\n                  <code>ASNEEDED</code>: Use quotation marks for output fields when needed.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "QuoteEscapeCharacter",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The single character used for escaping the quote character inside an already escaped value.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "RecordDelimiter",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single character used to separate individual records in the output. Instead of the default value,\n      you can specify an arbitrary delimiter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "FieldDelimiter",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value used to separate individual fields in a record. You can specify an arbitrary\n      delimiter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "QuoteCharacter",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single character used for escaping when the field delimiter is part of the value. For example, if\n      the value is <code>a, b</code>, Amazon S3 wraps this field value in quotation marks, as follows: <code>\" a ,\n        b \"</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("QuoteFields", Target0),
+                new("QuoteEscapeCharacter", Target1),
+                new("RecordDelimiter", Target2),
+                new("FieldDelimiter", Target3),
+                new("QuoteCharacter", Target4),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Describes how uncompressed comma-separated values (CSV)-formatted results are formatted.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.QuoteFields?> Target0 =
-            Schemas.Nullable(QuoteFieldsSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(QuoteFieldsSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CSVOutput Build(Builder builder) =>
-            new CSVOutput(
+        public override global::Com.Amazonaws.S3.CSVOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CSVOutput(
                 builder.FieldDelimiter,
                 builder.QuoteCharacter,
                 builder.QuoteEscapeCharacter,
@@ -123,7 +65,7 @@ public static partial class CSVOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CSVOutput value,
+            global::Com.Amazonaws.S3.CSVOutput value,
             ref TSerializer serializer
         )
         {

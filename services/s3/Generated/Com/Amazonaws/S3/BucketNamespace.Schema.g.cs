@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketNamespaceSchema
 {
     public static global::NSmithy.Core.Serde.Schema<BucketNamespace> Schema { get; } =
-        Schemas.StringEnum<BucketNamespace>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<BucketNamespace>(
             ShapeId.Parse("com.amazonaws.s3#BucketNamespace"),
             values: ["account-regional", "global"],
             traits:

@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PropagateTagsModeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<PropagateTagsMode> Schema { get; } =
-        Schemas.StringEnum<PropagateTagsMode>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<PropagateTagsMode>(
             ShapeId.Parse("com.amazonaws.lambda#PropagateTagsMode"),
             values: ["None", "Explicit"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

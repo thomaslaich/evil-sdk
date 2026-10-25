@@ -6,172 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectTaggingSchema
 {
-    public static OperationSchema<GetObjectTaggingInput, GetObjectTaggingOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.GetObjectTaggingInput,
+        global::Com.Amazonaws.S3.GetObjectTaggingOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetObjectTagging"),
-            Schemas.Lazy(() => GetObjectTaggingInputSchema.Schema!),
-            Schemas.Lazy(() => GetObjectTaggingOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectTaggingInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectTaggingOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Returns the tag-set of an object. You send the GET request against the tagging subresource\n      associated with the object.</p>\n         <p>To use this operation, you must have permission to perform the <code>s3:GetObjectTagging</code>\n      action. By default, the GET action returns information about current version of an object. For a\n      versioned bucket, you can have multiple versions of an object in your bucket. To retrieve tags of any\n      other version, use the versionId query parameter. You also need permission for the\n        <code>s3:GetObjectVersionTagging</code> action.</p>\n         <p> By default, the bucket owner has this permission and can grant this permission to others.</p>\n         <p> For information about the Amazon S3 object tagging feature, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-tagging.html\">Object Tagging</a>.</p>\n         <p>The following actions are related to <code>GetObjectTagging</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html\">DeleteObjectTagging</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html\">GetObjectAttributes</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html\">PutObjectTagging</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To retrieve tag set of a specific object version"
-                                        )
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example retrieves tag set of an object. The request specifies object version."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "Key", Document.From("exampleobject") },
-                                                {
-                                                    "VersionId",
-                                                    Document.From(
-                                                        "ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI"
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "VersionId",
-                                                    Document.From(
-                                                        "ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI"
-                                                    )
-                                                },
-                                                {
-                                                    "TagSet",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "Value",
-                                                                        Document.From("Value1")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From("Key1")
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To retrieve tag set of an object") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example retrieves tag set of an object."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "Key", Document.From("HappyFace.jpg") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "VersionId", Document.From("null") },
-                                                {
-                                                    "TagSet",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "Value",
-                                                                        Document.From("Value4")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From("Key4")
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "Value",
-                                                                        Document.From("Value3")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From("Key3")
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?tagging") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?tagging") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

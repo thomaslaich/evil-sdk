@@ -4,8 +4,9 @@
 
 using NSmithy.Core;
 using NSmithy.Core.Serde;
+using System.Collections.Generic;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class WebsiteConfigurationSchema
 {
@@ -14,98 +15,36 @@ public static partial class WebsiteConfigurationSchema
         public global::Com.Amazonaws.S3.ErrorDocument? ErrorDocument { get; set; }
         public global::Com.Amazonaws.S3.IndexDocument? IndexDocument { get; set; }
         public global::Com.Amazonaws.S3.RedirectAllRequestsTo? RedirectAllRequestsTo { get; set; }
-        public global::Com.Amazonaws.S3.RoutingRules? RoutingRules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule>? RoutingRules { get; set; }
     }
 
-    public static StructSchema<WebsiteConfiguration, Builder> Schema { get; } =
+    public static StructSchema<global::Com.Amazonaws.S3.WebsiteConfiguration, Builder> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<WebsiteConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.WebsiteConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#WebsiteConfiguration"),
             [
-                new(
-                    "ErrorDocument",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the error document for the website.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "IndexDocument",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the index document for the website.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "RedirectAllRequestsTo",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The redirect behavior for every request to this bucket's website endpoint.</p>\n         <important>\n            <p>If you specify this property, you can't specify any other property.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "RoutingRules",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Rules that define when a redirect is applied and the redirect behavior.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ErrorDocument", Target0),
+                new("IndexDocument", Target1),
+                new("RedirectAllRequestsTo", Target2),
+                new("RoutingRules", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies website configuration parameters for an Amazon S3 bucket.</p>"
-                    )
-                ),
-            ]
-        )
+            null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ErrorDocument?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorDocumentSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IndexDocument?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => IndexDocumentSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RedirectAllRequestsTo?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => RedirectAllRequestsToSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RoutingRules?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => RoutingRulesSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ErrorDocument?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorDocumentSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IndexDocument?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => IndexDocumentSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RedirectAllRequestsTo?> Target2 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => RedirectAllRequestsToSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule>?> Target3 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => RoutingRulesSchema.Schema!));
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override WebsiteConfiguration Build(Builder builder) =>
-            new WebsiteConfiguration(
-                builder.ErrorDocument,
-                builder.IndexDocument,
-                builder.RedirectAllRequestsTo,
-                builder.RoutingRules
-            );
+        public override global::Com.Amazonaws.S3.WebsiteConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.WebsiteConfiguration(builder.ErrorDocument, builder.IndexDocument, builder.RedirectAllRequestsTo, builder.RoutingRules);
 
         public override void SerializeMembers<TSerializer>(
-            WebsiteConfiguration value,
-            ref TSerializer serializer
-        )
+            global::Com.Amazonaws.S3.WebsiteConfiguration value,
+            ref TSerializer serializer)
         {
             if (value.ErrorDocument is { } value0)
             {
@@ -144,8 +83,7 @@ public static partial class WebsiteConfigurationSchema
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        )
+            ref TDeserializer deserializer)
         {
             switch (index)
             {
@@ -156,9 +94,7 @@ public static partial class WebsiteConfigurationSchema
                     builder.IndexDocument = deserializer.ReadStruct(IndexDocumentSchema.Schema);
                     break;
                 case 2:
-                    builder.RedirectAllRequestsTo = deserializer.ReadStruct(
-                        RedirectAllRequestsToSchema.Schema
-                    );
+                    builder.RedirectAllRequestsTo = deserializer.ReadStruct(RedirectAllRequestsToSchema.Schema);
                     break;
                 case 3:
                     builder.RoutingRules = deserializer.ReadList(RoutingRulesSchema.Schema);

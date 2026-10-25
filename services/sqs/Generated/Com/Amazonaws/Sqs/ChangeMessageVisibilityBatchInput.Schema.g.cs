@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityBatchInputSchema
 {
     public sealed class Builder
     {
         public string? QueueUrl { get; set; }
-        public ChangeMessageVisibilityBatchRequestEntryList? Entries { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry>? Entries { get; set; }
     }
 
-    public static StructSchema<ChangeMessageVisibilityBatchInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChangeMessageVisibilityBatchInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityBatchInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class ChangeMessageVisibilityBatchInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue whose messages' visibility is changed.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,12 +43,6 @@ public static partial class ChangeMessageVisibilityBatchInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Lists the receipt handles of the messages for which the visibility timeout must be\n            changed.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -69,7 +59,6 @@ public static partial class ChangeMessageVisibilityBatchInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -82,22 +71,28 @@ public static partial class ChangeMessageVisibilityBatchInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ChangeMessageVisibilityBatchRequestEntryList?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => ChangeMessageVisibilityBatchRequestEntryListSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ChangeMessageVisibilityBatchRequestEntryListSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChangeMessageVisibilityBatchInput Build(Builder builder) =>
-            new ChangeMessageVisibilityBatchInput(
+        public override global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchInput(
                 builder.Entries ?? throw new MissingRequiredMemberException("Entries"),
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChangeMessageVisibilityBatchInput value,
+            global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchInput value,
             ref TSerializer serializer
         )
         {

@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionVersionSchema
 {
     public static global::NSmithy.Core.Serde.Schema<FunctionVersion> Schema { get; } =
-        Schemas.StringEnum<FunctionVersion>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<FunctionVersion>(
             ShapeId.Parse("com.amazonaws.lambda#FunctionVersion"),
             values: ["ALL"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

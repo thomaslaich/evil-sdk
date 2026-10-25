@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class OperationTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<OperationType> Schema { get; } =
-        Schemas.StringEnum<OperationType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<OperationType>(
             ShapeId.Parse("com.amazonaws.lambda#OperationType"),
             values: ["EXECUTION", "CONTEXT", "STEP", "WAIT", "CALLBACK", "CHAINED_INVOKE"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

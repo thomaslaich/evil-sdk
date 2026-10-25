@@ -6,19 +6,20 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class StatsEventSchema
 {
     public sealed class Builder
     {
-        public Stats? Details { get; set; }
+        public global::Com.Amazonaws.S3.Stats? Details { get; set; }
     }
 
-    public static StructSchema<StatsEvent, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.StatsEvent, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StatsEvent, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.StatsEvent, Builder>(
             ShapeId.Parse("com.amazonaws.s3#StatsEvent"),
             [
                 new(
@@ -27,33 +28,27 @@ public static partial class StatsEventSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Stats event details.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#eventPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for the Stats Event.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Stats?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => StatsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Stats?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StatsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StatsEvent Build(Builder builder) => new StatsEvent(builder.Details);
+        public override global::Com.Amazonaws.S3.StatsEvent Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.StatsEvent(builder.Details);
 
         public override void SerializeMembers<TSerializer>(
-            StatsEvent value,
+            global::Com.Amazonaws.S3.StatsEvent value,
             ref TSerializer serializer
         )
         {

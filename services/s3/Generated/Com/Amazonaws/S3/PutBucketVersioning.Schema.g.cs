@@ -6,18 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketVersioningSchema
 {
     public static OperationSchema<
-        PutBucketVersioningInput,
-        PutBucketVersioningOutput
+        global::Com.Amazonaws.S3.PutBucketVersioningInput,
+        global::Com.Amazonaws.S3.PutBucketVersioningOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketVersioning"),
-            Schemas.Lazy(() => PutBucketVersioningInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketVersioningOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketVersioningInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketVersioningOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -31,64 +31,13 @@ public static partial class PutBucketVersioningSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <note>\n            <p>When you enable versioning on a bucket for the first time, it might take a short amount of time\n        for the change to be fully propagated. While this change is propagating, you might encounter\n        intermittent <code>HTTP 404 NoSuchKey</code> errors for requests to objects created or updated after\n        enabling versioning. We recommend that you wait for 15 minutes after enabling versioning before\n        issuing write operations (<code>PUT</code> or <code>DELETE</code>) on objects in the bucket. </p>\n         </note>\n         <p>Sets the versioning state of an existing bucket.</p>\n         <p>You can set the versioning state with one of the following values:</p>\n         <p>\n            <b>Enabled</b>—Enables versioning for the objects in the bucket. All\n      objects added to the bucket receive a unique version ID.</p>\n         <p>\n            <b>Suspended</b>—Disables versioning for the objects in the bucket. All\n      objects added to the bucket receive the version ID null.</p>\n         <p>If the versioning state has never been set on a bucket, it has no versioning state; a <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html\">GetBucketVersioning</a> request does not return a versioning state value.</p>\n         <p>In order to enable MFA Delete, you must be the bucket owner. If you are the bucket owner and want to\n      enable MFA Delete in the bucket versioning configuration, you must include the <code>x-amz-mfa\n        request</code> header and the <code>Status</code> and the <code>MfaDelete</code> request elements in a\n      request to set the versioning state of the bucket.</p>\n         <important>\n            <p>If you have an object expiration lifecycle configuration in your non-versioned bucket and you want\n        to maintain the same permanent delete behavior when you enable versioning, you must add a noncurrent\n        expiration policy. The noncurrent expiration lifecycle configuration will manage the deletes of the\n        noncurrent object versions in the version-enabled bucket. (A version-enabled bucket maintains one\n        current and zero or more noncurrent object versions.) For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html#lifecycle-and-other-bucket-config\">Lifecycle and\n          Versioning</a>.</p>\n         </important>\n         <p>The following operations are related to <code>PutBucketVersioning</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html\">DeleteBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html\">GetBucketVersioning</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("Set versioning configuration on a bucket")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example sets versioning configuration on bucket. The configuration enables versioning on the bucket."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                {
-                                                    "VersioningConfiguration",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "MFADelete",
-                                                                Document.From("Disabled")
-                                                            },
-                                                            { "Status", Document.From("Enabled") },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?versioning") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?versioning") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

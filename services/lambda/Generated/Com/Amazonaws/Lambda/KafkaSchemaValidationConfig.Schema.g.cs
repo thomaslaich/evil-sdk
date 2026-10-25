@@ -5,64 +5,40 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class KafkaSchemaValidationConfigSchema
 {
     public sealed class Builder
     {
-        public KafkaSchemaValidationAttribute? Attribute { get; set; }
+        public global::Com.Amazonaws.Lambda.KafkaSchemaValidationAttribute? Attribute { get; set; }
     }
 
-    public static StructSchema<KafkaSchemaValidationConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<KafkaSchemaValidationConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#KafkaSchemaValidationConfig"),
-            [
-                new(
-                    "Attribute",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The attributes you want your schema registry to validate and filter for. If you selected <code>JSON</code> as the <code>EventRecordFormat</code>, Lambda also deserializes the selected message attributes. </p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specific schema validation configuration settings that tell Lambda the message attributes you want to validate and filter using your schema registry.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("Attribute", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<KafkaSchemaValidationAttribute?> Target0 =
-            Schemas.Nullable(KafkaSchemaValidationAttributeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.KafkaSchemaValidationAttribute?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                KafkaSchemaValidationAttributeSchema.Schema
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override KafkaSchemaValidationConfig Build(Builder builder) =>
-            new KafkaSchemaValidationConfig(builder.Attribute);
+        public override global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig(builder.Attribute);
 
         public override void SerializeMembers<TSerializer>(
-            KafkaSchemaValidationConfig value,
+            global::Com.Amazonaws.Lambda.KafkaSchemaValidationConfig value,
             ref TSerializer serializer
         )
         {
@@ -89,8 +65,10 @@ public static partial class KafkaSchemaValidationConfigSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? KafkaSchemaValidationAttribute.FromValue(value0)
-                                : default(KafkaSchemaValidationAttribute)
+                                ? global::Com.Amazonaws.Lambda.KafkaSchemaValidationAttribute.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.Lambda.KafkaSchemaValidationAttribute)
                         );
                     break;
             }

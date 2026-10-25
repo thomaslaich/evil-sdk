@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectSchema
 {
@@ -16,18 +16,19 @@ public static partial class ObjectSchema
         public string? Key { get; set; }
         public DateTimeOffset? LastModified { get; set; }
         public string? ETag { get; set; }
-        public ChecksumAlgorithmList? ChecksumAlgorithm { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm { get; set; }
         public global::Com.Amazonaws.S3.ChecksumType? ChecksumType { get; set; }
         public long? Size { get; set; }
-        public ObjectStorageClass? StorageClass { get; set; }
+        public global::Com.Amazonaws.S3.ObjectStorageClass? StorageClass { get; set; }
         public global::Com.Amazonaws.S3.Owner? Owner { get; set; }
         public global::Com.Amazonaws.S3.RestoreStatus? RestoreStatus { get; set; }
     }
 
-    public static StructSchema<Object, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Object, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Object, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Object, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Object"),
             [
                 new(
@@ -36,76 +37,27 @@ public static partial class ObjectSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name that you assign to an object. You use the object key to retrieve the object.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "LastModified",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Creation date of the object.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "ETag",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The entity tag is a hash of the object. The ETag reflects changes only to the contents of an object,\n      not its metadata. The ETag may or may not be an MD5 digest of the object data. Whether or not it is\n      depends on how the object was created and how it is encrypted as described below:</p>\n         <ul>\n            <li>\n               <p>Objects created by the PUT Object, POST Object, or Copy operation, or through the Amazon Web Services\n          Management Console, and are encrypted by SSE-S3 or plaintext, have ETags that are an MD5 digest of\n          their object data.</p>\n            </li>\n            <li>\n               <p>Objects created by the PUT Object, POST Object, or Copy operation, or through the Amazon Web Services\n          Management Console, and are encrypted by SSE-C or SSE-KMS, have ETags that are not an MD5 digest of\n          their object data.</p>\n            </li>\n            <li>\n               <p>If an object is created by either the Multipart Upload or Part Copy operation, the ETag is not\n          an MD5 digest, regardless of the method of encryption. If an object is larger than 16 MB, the Amazon Web Services\n          Management Console will upload or copy that object as a Multipart Upload, and therefore the ETag\n          will not be an MD5 digest.</p>\n            </li>\n         </ul>\n         <note>\n            <p>\n               <b>Directory buckets</b> - MD5 is not supported by directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("LastModified", Target1),
+                new("ETag", Target2),
                 new(
                     "ChecksumAlgorithm",
                     Target3,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The algorithm that was used to create a checksum of the object.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "ChecksumType",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The checksum type that is used to calculate the object’s checksum value. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking\n        object integrity</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ChecksumType", Target4),
                 new(
                     "Size",
                     Target5,
@@ -115,84 +67,50 @@ public static partial class ObjectSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Size in bytes of the object</p>")
-                        ),
                     ]
                 ),
-                new(
-                    "StorageClass",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The class of storage used to store the object.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> -\n        Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Owner",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The owner of the object</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - The bucket owner is returned as the\n        object owner.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "RestoreStatus",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the restoration status of an object. Objects in certain storage classes must be restored\n      before they can be retrieved. For more information about these storage classes and how to work with\n      archived objects, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html\">\n        Working with archived objects</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets. Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("StorageClass", Target6),
+                new("Owner", Target7),
+                new("RestoreStatus", Target8),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>An object consists of data and its descriptive metadata.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ChecksumAlgorithmList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ChecksumAlgorithmListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ChecksumAlgorithmListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target4 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target5 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectStorageClass?> Target6 =
-            Schemas.Nullable(ObjectStorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectStorageClass?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectStorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Owner?> Target7 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnerSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnerSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RestoreStatus?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => RestoreStatusSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RestoreStatusSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Object Build(Builder builder) =>
-            new Object(
+        public override global::Com.Amazonaws.S3.Object Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Object(
                 builder.ChecksumAlgorithm,
                 builder.ChecksumType,
                 builder.ETag,
@@ -204,7 +122,10 @@ public static partial class ObjectSchema
                 builder.StorageClass
             );
 
-        public override void SerializeMembers<TSerializer>(Object value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.S3.Object value,
+            ref TSerializer serializer
+        )
         {
             if (value.Key is { } value0)
             {
@@ -321,8 +242,8 @@ public static partial class ObjectSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value6
-                                ? ObjectStorageClass.FromValue(value6)
-                                : default(ObjectStorageClass)
+                                ? global::Com.Amazonaws.S3.ObjectStorageClass.FromValue(value6)
+                                : default(global::Com.Amazonaws.S3.ObjectStorageClass)
                         );
                     break;
                 case 7:

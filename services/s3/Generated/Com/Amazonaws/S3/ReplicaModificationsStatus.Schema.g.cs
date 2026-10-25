@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicaModificationsStatusSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ReplicaModificationsStatus> Schema { get; } =
-        Schemas.StringEnum<ReplicaModificationsStatus>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ReplicaModificationsStatus>(
             ShapeId.Parse("com.amazonaws.s3#ReplicaModificationsStatus"),
             values: ["Enabled", "Disabled"],
             traits:

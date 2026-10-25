@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateSessionOutputSchema
 {
@@ -16,14 +16,16 @@ public static partial class CreateSessionOutputSchema
         public string? SSEKMSKeyId { get; set; }
         public string? SSEKMSEncryptionContext { get; set; }
         public bool? BucketKeyEnabled { get; set; }
-        public SessionCredentials? Credentials { get; set; }
+        public global::Com.Amazonaws.S3.SessionCredentials? Credentials { get; set; }
     }
 
-    public static StructSchema<CreateSessionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.CreateSessionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateSessionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CreateSessionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CreateSessionOutput"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class CreateSessionOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm used when you store objects in the directory bucket.</p>\n         <note>\n            <p>When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side\n        encryption option is <code>aws:fsx</code>.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
@@ -48,12 +44,6 @@ public static partial class CreateSessionOutputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If you specify <code>x-amz-server-side-encryption</code> with <code>aws:kms</code>, this header indicates the ID of the KMS \n         symmetric encryption customer managed key that was used for object encryption.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-aws-kms-key-id")
@@ -69,12 +59,6 @@ public static partial class CreateSessionOutputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption. The value of\n         this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs. \n         This value is stored as object metadata and automatically gets\n         passed on to Amazon Web Services KMS for future <code>GetObject</code> \n         operations on this object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-context")
@@ -95,12 +79,6 @@ public static partial class CreateSessionOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether to use an S3 Bucket Key for server-side encryption\n         with KMS keys (SSE-KMS).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-bucket-key-enabled")
                         ),
@@ -112,12 +90,6 @@ public static partial class CreateSessionOutputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The established temporary security credentials for the created session.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -142,21 +114,26 @@ public static partial class CreateSessionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target0 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<SessionCredentials?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => SessionCredentialsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SessionCredentials?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SessionCredentialsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateSessionOutput Build(Builder builder) =>
-            new CreateSessionOutput(
+        public override global::Com.Amazonaws.S3.CreateSessionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CreateSessionOutput(
                 builder.Credentials ?? throw new MissingRequiredMemberException("Credentials"),
                 builder.BucketKeyEnabled,
                 builder.SSEKMSEncryptionContext,
@@ -165,7 +142,7 @@ public static partial class CreateSessionOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CreateSessionOutput value,
+            global::Com.Amazonaws.S3.CreateSessionOutput value,
             ref TSerializer serializer
         )
         {

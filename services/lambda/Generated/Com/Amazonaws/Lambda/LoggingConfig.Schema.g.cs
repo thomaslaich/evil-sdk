@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LoggingConfigSchema
 {
@@ -18,81 +18,30 @@ public static partial class LoggingConfigSchema
         public string? LogGroup { get; set; }
     }
 
-    public static StructSchema<LoggingConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.LoggingConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LoggingConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.LoggingConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#LoggingConfig"),
             [
-                new(
-                    "LogFormat",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The format in which Lambda sends your function's application and system logs to CloudWatch. Select between plain text and structured JSON.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "ApplicationLogLevel",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set this property to filter the application logs for your function that Lambda sends to CloudWatch. Lambda only sends application logs at the selected level of detail and lower, where <code>TRACE</code> is the highest level and <code>FATAL</code> is the lowest.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "SystemLogLevel",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set this property to filter the system logs for your function that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where <code>DEBUG</code> is the highest level and <code>WARN</code> is the lowest.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("LogFormat", Target0),
+                new("ApplicationLogLevel", Target1),
+                new("SystemLogLevel", Target2),
                 new(
                     "LogGroup",
                     Target3,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the Amazon CloudWatch log group the function sends logs to. By default, Lambda functions send logs to a default log group named <code>/aws/lambda/&lt;function name&gt;</code>. To use a different log group, enter an existing log group or enter a new log group name.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)512) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(512m) },
                                 }
                             )
                         ),
@@ -100,40 +49,27 @@ public static partial class LoggingConfigSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The function's Amazon CloudWatch Logs configuration settings.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.LogFormat?> Target0 =
-            Schemas.Nullable(LogFormatSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(LogFormatSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ApplicationLogLevel?> Target1 =
-            Schemas.Nullable(ApplicationLogLevelSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ApplicationLogLevelSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SystemLogLevel?> Target2 =
-            Schemas.Nullable(SystemLogLevelSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(SystemLogLevelSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LoggingConfig Build(Builder builder) =>
-            new LoggingConfig(
+        public override global::Com.Amazonaws.Lambda.LoggingConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.LoggingConfig(
                 builder.ApplicationLogLevel,
                 builder.LogFormat,
                 builder.LogGroup,
@@ -141,7 +77,7 @@ public static partial class LoggingConfigSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            LoggingConfig value,
+            global::Com.Amazonaws.Lambda.LoggingConfig value,
             ref TSerializer serializer
         )
         {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class StopDurableExecutionOutputSchema
 {
@@ -16,11 +16,13 @@ public static partial class StopDurableExecutionOutputSchema
         public DateTimeOffset? StopTimestamp { get; set; }
     }
 
-    public static StructSchema<StopDurableExecutionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.StopDurableExecutionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StopDurableExecutionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.StopDurableExecutionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#StopDurableExecutionOutput"),
             [
                 new(
@@ -30,18 +32,8 @@ public static partial class StopDurableExecutionOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The timestamp when the execution was stopped (ISO 8601 format).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -52,10 +44,6 @@ public static partial class StopDurableExecutionOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#StopDurableExecutionResponse")
                 ),
@@ -63,15 +51,21 @@ public static partial class StopDurableExecutionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target0 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StopDurableExecutionOutput Build(Builder builder) =>
-            new StopDurableExecutionOutput(builder.StopTimestamp.GetValueOrDefault());
+        public override global::Com.Amazonaws.Lambda.StopDurableExecutionOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.StopDurableExecutionOutput(
+                builder.StopTimestamp.GetValueOrDefault()
+            );
 
         public override void SerializeMembers<TSerializer>(
-            StopDurableExecutionOutput value,
+            global::Com.Amazonaws.Lambda.StopDurableExecutionOutput value,
             ref TSerializer serializer
         )
         {

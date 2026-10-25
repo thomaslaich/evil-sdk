@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ExecutionStartedDetailsSchema
 {
     public sealed class Builder
     {
-        public EventInput? Input { get; set; }
+        public global::Com.Amazonaws.Lambda.EventInput? Input { get; set; }
         public int? ExecutionTimeout { get; set; }
     }
 
-    public static StructSchema<ExecutionStartedDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ExecutionStartedDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ExecutionStartedDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ExecutionStartedDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ExecutionStartedDetails"),
             [
                 new(
@@ -30,18 +32,8 @@ public static partial class ExecutionStartedDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The input payload provided for the durable execution.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -56,59 +48,40 @@ public static partial class ExecutionStartedDetailsSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum amount of time that the durable execution is allowed to run, in seconds.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a durable execution that started.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventInput?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventInputSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventInput?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventInputSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ExecutionStartedDetails Build(Builder builder) =>
-            new ExecutionStartedDetails(
+        public override global::Com.Amazonaws.Lambda.ExecutionStartedDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ExecutionStartedDetails(
                 builder.ExecutionTimeout.GetValueOrDefault(),
                 builder.Input ?? throw new MissingRequiredMemberException("Input")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ExecutionStartedDetails value,
+            global::Com.Amazonaws.Lambda.ExecutionStartedDetails value,
             ref TSerializer serializer
         )
         {

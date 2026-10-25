@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PolicyStatusSchema
 {
@@ -15,10 +15,11 @@ public static partial class PolicyStatusSchema
         public bool? IsPublic { get; set; }
     }
 
-    public static StructSchema<PolicyStatus, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.PolicyStatus, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PolicyStatus, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PolicyStatus, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PolicyStatus"),
             [
                 new(
@@ -30,34 +31,23 @@ public static partial class PolicyStatusSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The policy status for this bucket. <code>TRUE</code> indicates that this bucket is public.\n        <code>FALSE</code> indicates that the bucket is not public.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("IsPublic")),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The container element for a bucket's policy status.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PolicyStatus Build(Builder builder) => new PolicyStatus(builder.IsPublic);
+        public override global::Com.Amazonaws.S3.PolicyStatus Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PolicyStatus(builder.IsPublic);
 
         public override void SerializeMembers<TSerializer>(
-            PolicyStatus value,
+            global::Com.Amazonaws.S3.PolicyStatus value,
             ref TSerializer serializer
         )
         {

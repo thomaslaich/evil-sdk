@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ScanRangeSchema
 {
@@ -16,10 +16,11 @@ public static partial class ScanRangeSchema
         public long? End { get; set; }
     }
 
-    public static StructSchema<ScanRange, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ScanRange, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ScanRange, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ScanRange, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ScanRange"),
             [
                 new(
@@ -30,12 +31,6 @@ public static partial class ScanRangeSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the start of the byte range. This parameter is optional. Valid values: non-negative\n      integers. The default value is 0. If only <code>start</code> is supplied, it means scan from that point\n      to the end of the file. For example,\n        <code><scanrange><start>50</start></scanrange></code> means scan from byte 50\n      until the end of the file.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -48,39 +43,24 @@ public static partial class ScanRangeSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the end of the byte range. This parameter is optional. Valid values: non-negative\n      integers. The default value is one less than the size of the object being queried. If only the End\n      parameter is supplied, it is interpreted to mean scan the last N bytes of the file. For example,\n        <code><scanrange><end>50</end></scanrange></code> means scan the last 50\n      bytes.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the byte range of the object to get the records from. A record is processed when its first\n      byte is contained by the range. This parameter is optional, but when specified, it must not be empty.\n      See RFC 2616, Section 14.35.1 about how to specify the start and end of the range.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ScanRange Build(Builder builder) =>
-            new ScanRange(builder.End, builder.Start);
+        public override global::Com.Amazonaws.S3.ScanRange Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ScanRange(builder.End, builder.Start);
 
         public override void SerializeMembers<TSerializer>(
-            ScanRange value,
+            global::Com.Amazonaws.S3.ScanRange value,
             ref TSerializer serializer
         )
         {

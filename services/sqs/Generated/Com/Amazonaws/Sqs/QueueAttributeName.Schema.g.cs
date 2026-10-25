@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class QueueAttributeNameSchema
 {
     public static global::NSmithy.Core.Serde.Schema<QueueAttributeName> Schema { get; } =
-        Schemas.StringEnum<QueueAttributeName>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<QueueAttributeName>(
             ShapeId.Parse("com.amazonaws.sqs#QueueAttributeName"),
             values:
             [

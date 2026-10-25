@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateMultipartUploadInputSchema
 {
     public sealed class Builder
     {
-        public ObjectCannedACL? ACL { get; set; }
+        public global::Com.Amazonaws.S3.ObjectCannedACL? ACL { get; set; }
         public string? Bucket { get; set; }
         public string? CacheControl { get; set; }
         public string? ContentDisposition { get; set; }
@@ -26,7 +26,7 @@ public static partial class CreateMultipartUploadInputSchema
         public string? GrantReadACP { get; set; }
         public string? GrantWriteACP { get; set; }
         public string? Key { get; set; }
-        public global::Com.Amazonaws.S3.Metadata? Metadata { get; set; }
+        public IReadOnlyDictionary<string, string>? Metadata { get; set; }
         public global::Com.Amazonaws.S3.ServerSideEncryption? ServerSideEncryption { get; set; }
         public global::Com.Amazonaws.S3.StorageClass? StorageClass { get; set; }
         public string? WebsiteRedirectLocation { get; set; }
@@ -49,11 +49,13 @@ public static partial class CreateMultipartUploadInputSchema
         public global::Com.Amazonaws.S3.ChecksumType? ChecksumType { get; set; }
     }
 
-    public static StructSchema<CreateMultipartUploadInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.CreateMultipartUploadInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateMultipartUploadInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CreateMultipartUploadInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CreateMultipartUploadInput"),
             [
                 new(
@@ -61,12 +63,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The canned ACL to apply to the object. Amazon S3 supports a set of predefined ACLs, known as\n        <i>canned ACLs</i>. Each canned ACL has a predefined set of grantees and permissions.\n      For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL\">Canned ACL</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p>By default, all objects are private. Only the owner has full access control. When uploading an\n      object, you can grant access permissions to individual Amazon Web Services accounts or to predefined groups defined by\n      Amazon S3. These permissions are then added to the access control list (ACL) on the new object. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html\">Using\n        ACLs</a>. One way to grant the permissions using the request headers is to specify a canned ACL\n      with the <code>x-amz-acl</code> request header.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-acl")
@@ -79,12 +75,6 @@ public static partial class CreateMultipartUploadInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket where the multipart upload is initiated and where the object is\n      uploaded.</p>\n         <p>\n            <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format <code>\n               <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming\n         restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming\n            rules</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>Object Lambda access points are not supported by directory buckets.</p>\n         </note>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the \n                     form <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -110,12 +100,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies caching behavior along the request/reply chain.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Cache-Control")
                         ),
@@ -126,12 +110,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies presentational information for the object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Disposition")
@@ -144,12 +122,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies what content encodings have been applied to the object and thus what decoding mechanisms\n      must be applied to obtain the media-type referenced by the Content-Type header field.</p>\n         <note>\n            <p>For directory buckets, only the <code>aws-chunked</code> value is supported in this header field.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Encoding")
                         ),
@@ -160,10 +132,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The language that the content is in.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Language")
@@ -176,12 +144,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A standard MIME type describing the format of the object data.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Type")
                         ),
@@ -192,12 +154,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time at which the object is no longer cacheable.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpHeader"), Document.From("Expires")),
                     ]
                 ),
@@ -206,12 +162,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target8,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify access permissions explicitly to give the grantee READ, READ_ACP, and WRITE_ACP permissions\n      on the object.</p>\n         <p>By default, all objects are private. Only the owner has full access control. When uploading an\n      object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or\n      groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control List (ACL)\n        Overview</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>You specify each grantee as a type=value pair, where the type is one of the following:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>id</code> – if the value specified is the canonical user ID of an Amazon Web Services account</p>\n            </li>\n            <li>\n               <p>\n                  <code>uri</code> – if you are granting permissions to a predefined group</p>\n            </li>\n            <li>\n               <p>\n                  <code>emailAddress</code> – if the value specified is the email address of an\n          Amazon Web Services account</p>\n               <note>\n                  <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                  <ul>\n                     <li>\n                        <p>US East (N. Virginia)</p>\n                     </li>\n                     <li>\n                        <p>US West (N. California)</p>\n                     </li>\n                     <li>\n                        <p> US West (Oregon)</p>\n                     </li>\n                     <li>\n                        <p> Asia Pacific (Singapore)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Sydney)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Tokyo)</p>\n                     </li>\n                     <li>\n                        <p>Europe (Ireland)</p>\n                     </li>\n                     <li>\n                        <p>South America (São Paulo)</p>\n                     </li>\n                  </ul>\n                  <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n               </note>\n            </li>\n         </ul>\n         <p>For example, the following <code>x-amz-grant-read</code> header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:</p>\n         <p>\n            <code>x-amz-grant-read: id=\"11112222333\", id=\"444455556666\" </code>\n         </p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-full-control")
@@ -224,12 +174,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify access permissions explicitly to allow grantee to read the object data and its\n      metadata.</p>\n         <p>By default, all objects are private. Only the owner has full access control. When uploading an\n      object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or\n      groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control List (ACL)\n        Overview</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>You specify each grantee as a type=value pair, where the type is one of the following:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>id</code> – if the value specified is the canonical user ID of an Amazon Web Services account</p>\n            </li>\n            <li>\n               <p>\n                  <code>uri</code> – if you are granting permissions to a predefined group</p>\n            </li>\n            <li>\n               <p>\n                  <code>emailAddress</code> – if the value specified is the email address of an\n          Amazon Web Services account</p>\n               <note>\n                  <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                  <ul>\n                     <li>\n                        <p>US East (N. Virginia)</p>\n                     </li>\n                     <li>\n                        <p>US West (N. California)</p>\n                     </li>\n                     <li>\n                        <p> US West (Oregon)</p>\n                     </li>\n                     <li>\n                        <p> Asia Pacific (Singapore)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Sydney)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Tokyo)</p>\n                     </li>\n                     <li>\n                        <p>Europe (Ireland)</p>\n                     </li>\n                     <li>\n                        <p>South America (São Paulo)</p>\n                     </li>\n                  </ul>\n                  <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n               </note>\n            </li>\n         </ul>\n         <p>For example, the following <code>x-amz-grant-read</code> header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:</p>\n         <p>\n            <code>x-amz-grant-read: id=\"11112222333\", id=\"444455556666\" </code>\n         </p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read")
                         ),
@@ -241,12 +185,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify access permissions explicitly to allows grantee to read the object ACL.</p>\n         <p>By default, all objects are private. Only the owner has full access control. When uploading an\n      object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or\n      groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control List (ACL)\n        Overview</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>You specify each grantee as a type=value pair, where the type is one of the following:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>id</code> – if the value specified is the canonical user ID of an Amazon Web Services account</p>\n            </li>\n            <li>\n               <p>\n                  <code>uri</code> – if you are granting permissions to a predefined group</p>\n            </li>\n            <li>\n               <p>\n                  <code>emailAddress</code> – if the value specified is the email address of an\n          Amazon Web Services account</p>\n               <note>\n                  <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                  <ul>\n                     <li>\n                        <p>US East (N. Virginia)</p>\n                     </li>\n                     <li>\n                        <p>US West (N. California)</p>\n                     </li>\n                     <li>\n                        <p> US West (Oregon)</p>\n                     </li>\n                     <li>\n                        <p> Asia Pacific (Singapore)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Sydney)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Tokyo)</p>\n                     </li>\n                     <li>\n                        <p>Europe (Ireland)</p>\n                     </li>\n                     <li>\n                        <p>South America (São Paulo)</p>\n                     </li>\n                  </ul>\n                  <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n               </note>\n            </li>\n         </ul>\n         <p>For example, the following <code>x-amz-grant-read</code> header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:</p>\n         <p>\n            <code>x-amz-grant-read: id=\"11112222333\", id=\"444455556666\" </code>\n         </p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read-acp")
                         ),
@@ -257,12 +195,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target11,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify access permissions explicitly to allows grantee to allow grantee to write the ACL for the\n      applicable object.</p>\n         <p>By default, all objects are private. Only the owner has full access control. When uploading an\n      object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or\n      groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control List (ACL)\n        Overview</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>You specify each grantee as a type=value pair, where the type is one of the following:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>id</code> – if the value specified is the canonical user ID of an Amazon Web Services account</p>\n            </li>\n            <li>\n               <p>\n                  <code>uri</code> – if you are granting permissions to a predefined group</p>\n            </li>\n            <li>\n               <p>\n                  <code>emailAddress</code> – if the value specified is the email address of an\n          Amazon Web Services account</p>\n               <note>\n                  <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                  <ul>\n                     <li>\n                        <p>US East (N. Virginia)</p>\n                     </li>\n                     <li>\n                        <p>US West (N. California)</p>\n                     </li>\n                     <li>\n                        <p> US West (Oregon)</p>\n                     </li>\n                     <li>\n                        <p> Asia Pacific (Singapore)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Sydney)</p>\n                     </li>\n                     <li>\n                        <p>Asia Pacific (Tokyo)</p>\n                     </li>\n                     <li>\n                        <p>Europe (Ireland)</p>\n                     </li>\n                     <li>\n                        <p>South America (São Paulo)</p>\n                     </li>\n                  </ul>\n                  <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n               </note>\n            </li>\n         </ul>\n         <p>For example, the following <code>x-amz-grant-read</code> header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:</p>\n         <p>\n            <code>x-amz-grant-read: id=\"11112222333\", id=\"444455556666\" </code>\n         </p>\n         <note>\n            <ul>\n               <li>\n                  <p>This functionality is not supported for directory buckets.</p>\n               </li>\n               <li>\n                  <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write-acp")
@@ -276,22 +208,13 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Object key for which the multipart upload is to be initiated.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -315,12 +238,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A map of metadata to store with the object in S3.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPrefixHeaders"),
                             Document.From("x-amz-meta-")
                         ),
@@ -331,12 +248,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target14,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.</p>\n         <ul>\n            <li>\n               <p>\n                  <b>Directory buckets </b> -\n          For directory buckets, there are only two supported options for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (<code>AES256</code>) and server-side encryption with KMS keys (SSE-KMS) (<code>aws:kms</code>). We recommend that the bucket's default encryption uses the desired encryption configuration and you don't override the bucket default encryption in your \n            <code>CreateSession</code> requests or <code>PUT</code> object requests. Then, new objects \n are automatically encrypted with the desired encryption settings. For more\n         information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html\">Protecting data with server-side encryption</a> in the <i>Amazon S3 User Guide</i>. For more information about the encryption overriding behaviors in directory buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-specifying-kms-encryption.html\">Specifying server-side encryption with KMS for new object uploads</a>. </p>\n               <p>In the Zonal endpoint API calls (except <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>) using the REST API, the encryption request headers must match the encryption settings that are specified in the <code>CreateSession</code> request. \n                            You can't override the values of the encryption settings (<code>x-amz-server-side-encryption</code>, <code>x-amz-server-side-encryption-aws-kms-key-id</code>, <code>x-amz-server-side-encryption-context</code>, and <code>x-amz-server-side-encryption-bucket-key-enabled</code>) that are specified in the <code>CreateSession</code> request. \n                            You don't need to explicitly specify these encryption settings values in Zonal endpoint API calls, and   \n                            Amazon S3 will use the encryption settings values from the <code>CreateSession</code> request to protect new objects in the directory bucket. \n                           </p>\n               <note>\n                  <p>When you use the CLI or the Amazon Web Services SDKs, for <code>CreateSession</code>, the session token refreshes automatically to avoid service interruptions when a session expires. The CLI or the Amazon Web Services SDKs use the bucket's default encryption configuration for the \n                            <code>CreateSession</code> request. It's not supported to override the encryption settings values in the <code>CreateSession</code> request. \n                            So in the Zonal endpoint API calls (except <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>), \n          the encryption request headers must match the default encryption configuration of the directory bucket.\n\n</p>\n               </note>\n            </li>\n            <li>\n               <p>\n                  <b>S3 access points for Amazon FSx </b> - When accessing data stored in\n          Amazon FSx file systems using S3 access points, the only valid server side encryption option is\n            <code>aws:fsx</code>. All Amazon FSx file systems have encryption configured by default and are\n          encrypted at rest. Data is automatically encrypted before being written to the file system, and\n          automatically decrypted as it is read. These processes are handled transparently by Amazon FSx.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption")
@@ -349,12 +260,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD\n      storage class provides high durability and high availability. Depending on performance needs, you can\n      specify a different Storage Class. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html\">Storage Classes</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in\n            Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in\n            Dedicated Local Zones.</p>\n               </li>\n               <li>\n                  <p>Amazon S3 on Outposts only uses the OUTPOSTS Storage Class.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-storage-class")
                         ),
@@ -365,12 +270,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target16,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the bucket is configured as a website, redirects requests for this object to another object in\n      the same bucket or to an external URL. Amazon S3 stores the value of this header in the object\n      metadata.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-website-redirect-location")
@@ -383,12 +282,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the algorithm to use when encrypting the object (for example, AES256).</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -399,12 +292,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target18,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is\n      used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must\n      be appropriate for use with the algorithm specified in the\n        <code>x-amz-server-side-encryption-customer-algorithm</code> header.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key")
@@ -421,12 +308,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321. Amazon S3\n      uses this header for a message integrity check to ensure that the encryption key was transmitted without\n      error.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
                         ),
@@ -437,12 +318,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target20,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption. If the KMS key doesn't exist in the same\n         account that's issuing the command, you must use the full Key ARN not the Key ID.</p>\n         <p>\n            <b>General purpose buckets</b> - If you specify <code>x-amz-server-side-encryption</code> with <code>aws:kms</code> or <code>aws:kms:dsse</code>, this header specifies the ID (Key ID, Key ARN, or Key Alias) of the KMS \n         key to use. If you specify\n         <code>x-amz-server-side-encryption:aws:kms</code> or\n         <code>x-amz-server-side-encryption:aws:kms:dsse</code>, but do not provide <code>x-amz-server-side-encryption-aws-kms-key-id</code>, Amazon S3 uses the Amazon Web Services managed key\n         (<code>aws/s3</code>) to protect the data.</p>\n         <p>\n            <b>Directory buckets</b> - To encrypt data using SSE-KMS, it's recommended to specify the \n<code>x-amz-server-side-encryption</code> header to <code>aws:kms</code>. Then, the <code>x-amz-server-side-encryption-aws-kms-key-id</code> header implicitly uses \nthe bucket's default KMS customer managed key ID. If you want to explicitly set the <code>\n         x-amz-server-side-encryption-aws-kms-key-id</code> header, it must match the bucket's default customer managed key (using key ID or ARN, not alias). Your SSE-KMS configuration can only support 1 <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk\">customer managed key</a> per directory bucket's lifetime. \nThe <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">Amazon Web Services managed key</a> (<code>aws/s3</code>) isn't supported. \n                            \n Incorrect key specification results in an HTTP <code>400 Bad Request</code> error. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-aws-kms-key-id")
@@ -458,12 +333,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target21,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the Amazon Web Services KMS Encryption Context to use for object encryption. The value of\n         this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs.</p>\n         <p>\n            <b>Directory buckets</b> - You can optionally provide an explicit encryption context value. The value must match the default encryption context - the bucket Amazon Resource Name (ARN). An additional encryption context value is not supported. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-context")
@@ -482,12 +351,6 @@ public static partial class CreateMultipartUploadInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with\n         server-side encryption using Key Management Service (KMS) keys (SSE-KMS).</p>\n         <p>\n            <b>General purpose buckets</b> - Setting this header to\n            <code>true</code> causes Amazon S3 to use an S3 Bucket Key for object encryption with\n         SSE-KMS. Also, specifying this header with a PUT action doesn't affect bucket-level settings for S3\n         Bucket Key.</p>\n         <p>\n            <b>Directory buckets</b> - S3 Bucket Keys are always enabled for <code>GET</code> and <code>PUT</code> operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets  \nto directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a>, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops\">the Copy operation in Batch Operations</a>, or \n                            <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job\">the import jobs</a>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -512,12 +375,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tag-set for the object. The tag-set must be encoded as URL Query parameters.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-tagging")
                         ),
@@ -529,12 +386,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the Object Lock mode that you want to apply to the uploaded object.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-mode")
                         ),
@@ -545,12 +396,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target26,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the date and time when you want the Object Lock to expire.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-retain-until-date")
@@ -567,12 +412,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether you want to apply a legal hold to the uploaded object.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-legal-hold")
                         ),
@@ -583,12 +422,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target28,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the event hold status to apply to the uploaded object. Set to <code>ON</code> to enable\n      or <code>OFF</code> to disable.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-event-hold")
@@ -603,12 +436,6 @@ public static partial class CreateMultipartUploadInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the event hold duration in days to apply to the uploaded object. You cannot\n      specify a duration in both days and years.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -626,12 +453,6 @@ public static partial class CreateMultipartUploadInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the event hold duration in years to apply to the uploaded object. You cannot\n      specify a duration in both days and years.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-lock-event-hold-duration-years")
                         ),
@@ -642,12 +463,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target31,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -660,12 +475,6 @@ public static partial class CreateMultipartUploadInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-algorithm")
                         ),
@@ -676,12 +485,6 @@ public static partial class CreateMultipartUploadInputSchema
                     Target33,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value. For\n      more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-type")
@@ -701,61 +504,103 @@ public static partial class CreateMultipartUploadInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectCannedACL?> Target0 =
-            Schemas.Nullable(ObjectCannedACLSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectCannedACL?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectCannedACLSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target12 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Metadata?> Target13 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetadataSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target13 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MetadataSchema.Schema!)
+        );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target14 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target15 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target16 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target17 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target18 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target19 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target20 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target21 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target22 =
-            Schemas.Nullable(Schemas.Boolean);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target23 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target24 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockMode?> Target25 =
-            Schemas.Nullable(ObjectLockModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockModeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target26 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("date-time")
@@ -763,26 +608,28 @@ public static partial class CreateMultipartUploadInputSchema
                 ])
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus?> Target27 =
-            Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockEventHold?> Target28 =
-            Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target29 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target30 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockEventHoldSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target29 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target30 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target31 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target32 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target33 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateMultipartUploadInput Build(Builder builder) =>
-            new CreateMultipartUploadInput(
+        public override global::Com.Amazonaws.S3.CreateMultipartUploadInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.CreateMultipartUploadInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ACL,
@@ -820,7 +667,7 @@ public static partial class CreateMultipartUploadInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CreateMultipartUploadInput value,
+            global::Com.Amazonaws.S3.CreateMultipartUploadInput value,
             ref TSerializer serializer
         )
         {
@@ -1111,8 +958,8 @@ public static partial class CreateMultipartUploadInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ObjectCannedACL.FromValue(value0)
-                                : default(ObjectCannedACL)
+                                ? global::Com.Amazonaws.S3.ObjectCannedACL.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ObjectCannedACL)
                         );
                     break;
                 case 1:

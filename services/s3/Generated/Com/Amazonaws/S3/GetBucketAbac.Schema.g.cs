@@ -6,31 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAbacSchema
 {
-    public static OperationSchema<GetBucketAbacInput, GetBucketAbacOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.GetBucketAbacInput,
+        global::Com.Amazonaws.S3.GetBucketAbacOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketAbac"),
-            Schemas.Lazy(() => GetBucketAbacInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketAbacOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketAbacInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketAbacOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns the attribute-based access control (ABAC) property of the general purpose bucket. If ABAC is enabled on your bucket, you can use tags on the bucket for access control. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging-enable-abac.html\">Enabling ABAC in general purpose buckets</a>.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?abac") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?abac") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

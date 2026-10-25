@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationTimeSchema
 {
     public sealed class Builder
     {
-        public ReplicationTimeStatus? Status { get; set; }
-        public ReplicationTimeValue? Time { get; set; }
+        public global::Com.Amazonaws.S3.ReplicationTimeStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.ReplicationTimeValue? Time { get; set; }
     }
 
-    public static StructSchema<ReplicationTime, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ReplicationTime, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReplicationTime, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ReplicationTime, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ReplicationTime"),
             [
                 new(
@@ -28,12 +29,6 @@ public static partial class ReplicationTimeSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Specifies whether the replication time is enabled. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,43 +42,32 @@ public static partial class ReplicationTimeSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> A container specifying the time by which replication should be complete for all objects and\n      operations on objects. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> A container specifying S3 Replication Time Control (S3 RTC) related information, including whether S3 RTC is enabled and\n      the time when all objects and operations on objects must be replicated. Must be specified together with\n      a <code>Metrics</code> block. </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ReplicationTimeStatus?> Target0 =
-            Schemas.Nullable(ReplicationTimeStatusSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<ReplicationTimeValue?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ReplicationTimeValueSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationTimeStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ReplicationTimeStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationTimeValue?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ReplicationTimeValueSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReplicationTime Build(Builder builder) =>
-            new ReplicationTime(
+        public override global::Com.Amazonaws.S3.ReplicationTime Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ReplicationTime(
                 builder.Status ?? throw new MissingRequiredMemberException("Status"),
                 builder.Time ?? throw new MissingRequiredMemberException("Time")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ReplicationTime value,
+            global::Com.Amazonaws.S3.ReplicationTime value,
             ref TSerializer serializer
         )
         {
@@ -111,8 +95,8 @@ public static partial class ReplicationTimeSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ReplicationTimeStatus.FromValue(value0)
-                                : default(ReplicationTimeStatus)
+                                ? global::Com.Amazonaws.S3.ReplicationTimeStatus.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ReplicationTimeStatus)
                         );
                     break;
                 case 1:

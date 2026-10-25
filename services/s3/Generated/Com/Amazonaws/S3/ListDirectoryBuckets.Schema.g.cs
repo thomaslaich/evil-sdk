@@ -6,26 +6,20 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListDirectoryBucketsSchema
 {
     public static OperationSchema<
-        ListDirectoryBucketsInput,
-        ListDirectoryBucketsOutput
+        global::Com.Amazonaws.S3.ListDirectoryBucketsInput,
+        global::Com.Amazonaws.S3.ListDirectoryBucketsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#ListDirectoryBuckets"),
-            Schemas.Lazy(() => ListDirectoryBucketsInputSchema.Schema!),
-            Schemas.Lazy(() => ListDirectoryBucketsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListDirectoryBucketsInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListDirectoryBucketsOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns a list of all Amazon S3 directory buckets owned by the authenticated sender of the request. For\n      more information about directory buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html\">Directory buckets</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>\n               <b>Directory buckets </b> - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format <code>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i>\n               </code>. Virtual-hosted-style requests aren't supported. \nFor more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the\n    <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>You must have the <code>s3express:ListAllMyDirectoryBuckets</code> permission in\n            an IAM identity-based policy instead of a bucket policy. Cross-account access to this API operation isn't supported. This operation can only be performed by the Amazon Web Services account that owns the resource.\n            For more information about directory bucket policies and permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html\">Amazon Web Services Identity and Access Management (IAM) for S3 Express One Zone</a> in the <i>Amazon S3 User Guide</i>.</p>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is\n                <code>s3express-control.<i>region</i>.amazonaws.com</code>.</p>\n            </dd>\n         </dl>\n         <note>\n            <p> The <code>BucketRegion</code> response element is not part of the\n          <code>ListDirectoryBuckets</code> Response Syntax.</p>\n         </note>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -33,7 +27,7 @@ public static partial class ListDirectoryBucketsSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/?x-id=ListDirectoryBuckets") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketInventoryConfigurationOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketInventoryConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketInventoryConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketInventoryConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketInventoryConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketInventoryConfigurationOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class PutBucketInventoryConfigurationOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketInventoryConfigurationOutput Build(Builder builder) =>
-            new PutBucketInventoryConfigurationOutput();
+        public override global::Com.Amazonaws.S3.PutBucketInventoryConfigurationOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.PutBucketInventoryConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketInventoryConfigurationOutput value,
+            global::Com.Amazonaws.S3.PutBucketInventoryConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

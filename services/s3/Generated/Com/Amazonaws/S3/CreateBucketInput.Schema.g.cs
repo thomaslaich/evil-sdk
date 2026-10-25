@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateBucketInputSchema
 {
     public sealed class Builder
     {
-        public BucketCannedACL? ACL { get; set; }
+        public global::Com.Amazonaws.S3.BucketCannedACL? ACL { get; set; }
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.CreateBucketConfiguration? CreateBucketConfiguration { get; set; }
         public string? GrantFullControl { get; set; }
@@ -25,10 +25,13 @@ public static partial class CreateBucketInputSchema
         public global::Com.Amazonaws.S3.BucketNamespace? BucketNamespace { get; set; }
     }
 
-    public static StructSchema<CreateBucketInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.CreateBucketInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateBucketInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CreateBucketInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CreateBucketInput"),
             [
                 new(
@@ -36,12 +39,6 @@ public static partial class CreateBucketInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The canned ACL to apply to the bucket.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-acl")
@@ -54,12 +51,6 @@ public static partial class CreateBucketInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket to create.</p>\n         <p>\n            <b>General purpose buckets</b> - For information about bucket naming\n         restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html\">Bucket naming\n            rules</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use path-style requests in the format <code>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i>\n            </code>. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming rules</a> in the <i>Amazon S3 User Guide</i>\n         </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -85,10 +76,6 @@ public static partial class CreateBucketInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The configuration information for the bucket.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -104,12 +91,6 @@ public static partial class CreateBucketInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-full-control")
                         ),
@@ -120,12 +101,6 @@ public static partial class CreateBucketInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to list the objects in the bucket.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read")
@@ -138,12 +113,6 @@ public static partial class CreateBucketInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to read the bucket ACL.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-read-acp")
                         ),
@@ -155,12 +124,6 @@ public static partial class CreateBucketInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to create new objects in the bucket.</p>\n         <p>For the bucket and object owners of existing objects, also allows deletions and overwrites of those\n      objects.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write")
                         ),
@@ -171,12 +134,6 @@ public static partial class CreateBucketInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Allows grantee to write the ACL for the applicable bucket.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-grant-write-acp")
@@ -191,12 +148,6 @@ public static partial class CreateBucketInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether you want S3 Object Lock to be enabled for the new bucket.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -221,12 +172,6 @@ public static partial class CreateBucketInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the namespace where you want to create your general purpose bucket. When you create a\n    general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to\n    create a bucket in your account regional namespace. Your account regional namespace is a subdivision of\n    the global namespace that only your account can create buckets in. For more information on bucket\n    namespaces, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/gpbucketnamespaces.html\">Namespaces for general purpose buckets</a>.</p>\n         <p>General purpose buckets in your account regional namespace must follow a specific naming convention. These\n    buckets consist of a bucket name prefix that you create, and a suffix that contains your 12-digit Amazon Web Services\n    Account ID, the Amazon Web Services Region code, and ends with <code>-an</code>. Bucket names must follow the format\n    <code>bucket-name-prefix-accountId-region-an</code> (for example,\n    <code>amzn-s3-demo-bucket-111122223333-us-west-2-an</code>). For information about bucket naming\n    restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html#account-regional-naming-rules\">Account regional namespace naming rules</a>\n    in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-bucket-namespace")
                         ),
@@ -245,34 +190,49 @@ public static partial class CreateBucketInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketCannedACL?> Target0 =
-            Schemas.Nullable(BucketCannedACLSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketCannedACL?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketCannedACLSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CreateBucketConfiguration?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => CreateBucketConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CreateBucketConfigurationSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target8 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectOwnership?> Target9 =
-            Schemas.Nullable(ObjectOwnershipSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectOwnershipSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketNamespace?> Target10 =
-            Schemas.Nullable(BucketNamespaceSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketNamespaceSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateBucketInput Build(Builder builder) =>
-            new CreateBucketInput(
+        public override global::Com.Amazonaws.S3.CreateBucketInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CreateBucketInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ACL,
                 builder.BucketNamespace,
@@ -287,7 +247,7 @@ public static partial class CreateBucketInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CreateBucketInput value,
+            global::Com.Amazonaws.S3.CreateBucketInput value,
             ref TSerializer serializer
         )
         {
@@ -394,8 +354,8 @@ public static partial class CreateBucketInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? BucketCannedACL.FromValue(value0)
-                                : default(BucketCannedACL)
+                                ? global::Com.Amazonaws.S3.BucketCannedACL.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.BucketCannedACL)
                         );
                     break;
                 case 1:

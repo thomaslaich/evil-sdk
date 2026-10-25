@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectTaggingSchema
 {
-    public static OperationSchema<PutObjectTaggingInput, PutObjectTaggingOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.PutObjectTaggingInput,
+        global::Com.Amazonaws.S3.PutObjectTaggingOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutObjectTagging"),
-            Schemas.Lazy(() => PutObjectTaggingInputSchema.Schema!),
-            Schemas.Lazy(() => PutObjectTaggingOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutObjectTaggingInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutObjectTaggingOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -28,114 +31,13 @@ public static partial class PutObjectTaggingSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Sets the supplied tag-set to an object that already exists in a bucket. A tag is a key-value pair.\n      For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html\">Object Tagging</a>.</p>\n         <p>You can associate tags with an object by sending a PUT request against the tagging subresource that\n      is associated with the object. You can retrieve tags by sending a GET request. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html\">GetObjectTagging</a>.</p>\n         <p>For tagging-related restrictions related to characters and encodings, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html\">Tag\n        Restrictions</a>. Note that Amazon S3 limits the maximum number of tags to 10 tags per object.</p>\n         <p>To use this operation, you must have permission to perform the <code>s3:PutObjectTagging</code>\n      action. By default, the bucket owner has this permission and can grant this permission to others.</p>\n         <p>To put tags of any other version, use the <code>versionId</code> query parameter. You also need\n      permission for the <code>s3:PutObjectVersionTagging</code> action.</p>\n         <p>\n            <code>PutObjectTagging</code> has the following special errors. For more Amazon S3 errors see, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html\">Error Responses</a>.</p>\n         <ul>\n            <li>\n               <p>\n                  <code>InvalidTag</code> - The tag provided was not a valid tag. This error can occur if\n          the tag did not pass input validation. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html\">Object Tagging</a>.</p>\n            </li>\n            <li>\n               <p>\n                  <code>MalformedXML</code> - The XML provided does not match the schema.</p>\n            </li>\n            <li>\n               <p>\n                  <code>OperationAborted</code> - A conflicting conditional action is currently in progress\n          against this resource. Please try again.</p>\n            </li>\n            <li>\n               <p>\n                  <code>InternalError</code> - The service was unable to apply the provided tag to the\n          object.</p>\n            </li>\n         </ul>\n         <p>The following operations are related to <code>PutObjectTagging</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html\">GetObjectTagging</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html\">DeleteObjectTagging</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To add tags to an existing object") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example adds tags to an existing object."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "Key", Document.From("HappyFace.jpg") },
-                                                {
-                                                    "Tagging",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "TagSet",
-                                                                Document.From(
-                                                                    new Document[]
-                                                                    {
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Key",
-                                                                                    Document.From(
-                                                                                        "Key3"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Value",
-                                                                                    Document.From(
-                                                                                        "Value3"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Key",
-                                                                                    Document.From(
-                                                                                        "Key4"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Value",
-                                                                                    Document.From(
-                                                                                        "Value4"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "VersionId", Document.From("null") },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?tagging") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?tagging") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

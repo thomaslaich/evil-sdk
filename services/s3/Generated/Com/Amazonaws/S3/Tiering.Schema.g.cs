@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TieringSchema
 {
     public sealed class Builder
     {
         public int? Days { get; set; }
-        public IntelligentTieringAccessTier? AccessTier { get; set; }
+        public global::Com.Amazonaws.S3.IntelligentTieringAccessTier? AccessTier { get; set; }
     }
 
-    public static StructSchema<Tiering, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Tiering, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Tiering, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Tiering, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Tiering"),
             [
                 new(
@@ -31,12 +32,6 @@ public static partial class TieringSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of consecutive days of no access after which an object will be eligible to be\n      transitioned to the corresponding tier. The minimum number of days specified for Archive Access tier\n      must be at least 90 days and Deep Archive Access tier must be at least 180 days. The maximum can be up to\n      2 years (730 days).</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
@@ -51,44 +46,30 @@ public static partial class TieringSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>S3 Intelligent-Tiering access tier. See <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access\">Storage class for\n        automatically optimizing frequently and infrequently accessed objects</a> for a list of access\n      tiers in the S3 Intelligent-Tiering storage class.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The S3 Intelligent-Tiering storage class is designed to optimize storage costs by automatically\n      moving data to the most cost-effective storage access tier, without additional operational\n      overhead.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<IntelligentTieringAccessTier?> Target1 =
-            Schemas.Nullable(IntelligentTieringAccessTierSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringAccessTier?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(IntelligentTieringAccessTierSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Tiering Build(Builder builder) =>
-            new Tiering(
+        public override global::Com.Amazonaws.S3.Tiering Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Tiering(
                 builder.AccessTier ?? throw new MissingRequiredMemberException("AccessTier"),
                 builder.Days.GetValueOrDefault()
             );
 
         public override void SerializeMembers<TSerializer>(
-            Tiering value,
+            global::Com.Amazonaws.S3.Tiering value,
             ref TSerializer serializer
         )
         {
@@ -112,8 +93,10 @@ public static partial class TieringSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? IntelligentTieringAccessTier.FromValue(value1)
-                                : default(IntelligentTieringAccessTier)
+                                ? global::Com.Amazonaws.S3.IntelligentTieringAccessTier.FromValue(
+                                    value1
+                                )
+                                : default(global::Com.Amazonaws.S3.IntelligentTieringAccessTier)
                         );
                     break;
             }

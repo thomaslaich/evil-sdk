@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutPublicAccessBlockOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutPublicAccessBlockOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutPublicAccessBlockOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutPublicAccessBlockOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutPublicAccessBlockOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutPublicAccessBlockOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class PutPublicAccessBlockOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutPublicAccessBlockOutput Build(Builder builder) =>
-            new PutPublicAccessBlockOutput();
+        public override global::Com.Amazonaws.S3.PutPublicAccessBlockOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.PutPublicAccessBlockOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutPublicAccessBlockOutput value,
+            global::Com.Amazonaws.S3.PutPublicAccessBlockOutput value,
             ref TSerializer serializer
         ) { }
 

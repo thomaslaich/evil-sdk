@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class WaitSucceededDetailsSchema
 {
@@ -15,11 +15,13 @@ public static partial class WaitSucceededDetailsSchema
         public int? Duration { get; set; }
     }
 
-    public static StructSchema<WaitSucceededDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.WaitSucceededDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<WaitSucceededDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.WaitSucceededDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#WaitSucceededDetails"),
             [
                 new(
@@ -32,48 +34,27 @@ public static partial class WaitSucceededDetailsSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The wait duration, in seconds.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a wait operation that succeeded.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override WaitSucceededDetails Build(Builder builder) =>
-            new WaitSucceededDetails(builder.Duration);
+        public override global::Com.Amazonaws.Lambda.WaitSucceededDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.WaitSucceededDetails(builder.Duration);
 
         public override void SerializeMembers<TSerializer>(
-            WaitSucceededDetails value,
+            global::Com.Amazonaws.Lambda.WaitSucceededDetails value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityBatchResultEntrySchema
 {
@@ -15,11 +15,13 @@ public static partial class ChangeMessageVisibilityBatchResultEntrySchema
         public string? Id { get; set; }
     }
 
-    public static StructSchema<ChangeMessageVisibilityBatchResultEntry, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChangeMessageVisibilityBatchResultEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityBatchResultEntry"),
             [
                 new(
@@ -29,40 +31,31 @@ public static partial class ChangeMessageVisibilityBatchResultEntrySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Represents a message whose visibility timeout has been changed successfully.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Encloses the <code>Id</code> of an entry in <code>\n               <a>ChangeMessageVisibilityBatch</a>.</code>\n         </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChangeMessageVisibilityBatchResultEntry Build(Builder builder) =>
-            new ChangeMessageVisibilityBatchResultEntry(
+        public override global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry(
                 builder.Id ?? throw new MissingRequiredMemberException("Id")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChangeMessageVisibilityBatchResultEntry value,
+            global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchResultEntry value,
             ref TSerializer serializer
         )
         {

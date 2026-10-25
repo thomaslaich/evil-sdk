@@ -5,36 +5,31 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class StepStartedDetailsSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<StepStartedDetails, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.StepStartedDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StepStartedDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.StepStartedDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#StepStartedDetails"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a step that has started.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override StepStartedDetails Build(Builder builder) => new StepStartedDetails();
+        public override global::Com.Amazonaws.Lambda.StepStartedDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.StepStartedDetails();
 
         public override void SerializeMembers<TSerializer>(
-            StepStartedDetails value,
+            global::Com.Amazonaws.Lambda.StepStartedDetails value,
             ref TSerializer serializer
         ) { }
 

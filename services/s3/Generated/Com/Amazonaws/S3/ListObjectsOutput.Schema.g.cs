@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectsOutputSchema
 {
@@ -15,20 +15,23 @@ public static partial class ListObjectsOutputSchema
         public bool? IsTruncated { get; set; }
         public string? Marker { get; set; }
         public string? NextMarker { get; set; }
-        public ObjectList? Contents { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Object>? Contents { get; set; }
         public string? Name { get; set; }
         public string? Prefix { get; set; }
         public string? Delimiter { get; set; }
         public int? MaxKeys { get; set; }
-        public CommonPrefixList? CommonPrefixes { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.CommonPrefix>? CommonPrefixes { get; set; }
         public global::Com.Amazonaws.S3.EncodingType? EncodingType { get; set; }
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<ListObjectsOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListObjectsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListObjectsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListObjectsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListObjectsOutput"),
             [
                 new(
@@ -40,90 +43,24 @@ public static partial class ListObjectsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A flag that indicates whether Amazon S3 returned all of the results that satisfied the search\n      criteria.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "Marker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates where in the bucket listing begins. Marker is included in the response if it was sent with\n      the request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextMarker",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When the response is truncated (the <code>IsTruncated</code> element value in the response is\n        <code>true</code>), you can use the key name in this field as the <code>marker</code> parameter in the\n      subsequent request to get the next set of objects. Amazon S3 lists objects in alphabetical order. </p>\n         <note>\n            <p>This element is returned only if you have the <code>delimiter</code> request parameter specified.\n        If the response does not include the <code>NextMarker</code> element and it is truncated, you can use\n        the value of the last <code>Key</code> element in the response as the <code>marker</code> parameter in\n        the subsequent request to get the next set of object keys.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Marker", Target1),
+                new("NextMarker", Target2),
                 new(
                     "Contents",
                     Target3,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Metadata about each object returned.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Name",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The bucket name.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Prefix",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Keys that begin with the indicated prefix.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Delimiter",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Causes keys that contain the same string between the prefix and the first occurrence of the\n      delimiter to be rolled up into a single result element in the <code>CommonPrefixes</code> collection.\n      These rolled-up keys are not returned elsewhere in the response. Each rolled-up result counts as only\n      one return against the <code>MaxKeys</code> value.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Name", Target4),
+                new("Prefix", Target5),
+                new("Delimiter", Target6),
                 new(
                     "MaxKeys",
                     Target7,
@@ -133,12 +70,6 @@ public static partial class ListObjectsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of keys returned in the response body.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -147,30 +78,12 @@ public static partial class ListObjectsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>All of the keys (up to 1,000) rolled up in a common prefix count as a single return when calculating\n      the number of returns. </p>\n         <p>A response can contain <code>CommonPrefixes</code> only if you specify a delimiter.</p>\n         <p>\n            <code>CommonPrefixes</code> contains all (if there are any) keys between <code>Prefix</code> and the\n      next occurrence of the string specified by the delimiter.</p>\n         <p>\n            <code>CommonPrefixes</code> lists keys that act like subdirectories in the directory specified by\n        <code>Prefix</code>.</p>\n         <p>For example, if the prefix is <code>notes/</code> and the delimiter is a slash (<code>/</code>), as\n      in <code>notes/summer/july</code>, the common prefix is <code>notes/summer/</code>. All of the keys that\n      roll up into a common prefix count as a single return when calculating the number of returns.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "EncodingType",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Encoding type used by Amazon S3 to encode the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html\">object keys</a> in the response. Responses are\n      encoded only in UTF-8. An object key can contain any Unicode character. However, the XML 1.0 parser\n      can't parse certain characters, such as characters with an ASCII value from 0 to 10. For characters that\n      aren't supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the\n      response. For more information about characters to avoid in object key names, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines\">Object key\n        naming guidelines</a>.</p>\n         <note>\n            <p>When using the URL encoding type, non-ASCII characters that are used in an object's key name will\n        be percent-encoded according to UTF-8 code values. For example, the object\n          <code>test_file(3).png</code> will appear as <code>test_file%283%29.png</code>.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("EncodingType", Target9),
                 new(
                     "RequestCharged",
                     Target10,
@@ -192,35 +105,47 @@ public static partial class ListObjectsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ObjectListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Object>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<CommonPrefixList?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => CommonPrefixListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.CommonPrefix>?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CommonPrefixListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EncodingType?> Target9 =
-            Schemas.Nullable(EncodingTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(EncodingTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target10 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListObjectsOutput Build(Builder builder) =>
-            new ListObjectsOutput(
+        public override global::Com.Amazonaws.S3.ListObjectsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ListObjectsOutput(
                 builder.CommonPrefixes,
                 builder.Contents,
                 builder.Delimiter,
@@ -235,7 +160,7 @@ public static partial class ListObjectsOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListObjectsOutput value,
+            global::Com.Amazonaws.S3.ListObjectsOutput value,
             ref TSerializer serializer
         )
         {

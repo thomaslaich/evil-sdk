@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateObjectEncryptionInputSchema
 {
@@ -22,11 +22,13 @@ public static partial class UpdateObjectEncryptionInputSchema
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
     }
 
-    public static StructSchema<UpdateObjectEncryptionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.UpdateObjectEncryptionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateObjectEncryptionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.UpdateObjectEncryptionInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#UpdateObjectEncryptionInput"),
             [
                 new(
@@ -35,12 +37,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The name of the general purpose bucket that contains the specified object key name.\n    </p>\n         <p>When you use this operation with an access point attached to a general purpose bucket, you \n      must either provide the alias of the access point in place of the bucket name or you must specify \n      the access point Amazon Resource Name (ARN). When using the access point ARN, you must direct \n      requests to the access point hostname. The access point hostname takes the form \n      <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com</code>. \n      When using this operation with an access point through the Amazon Web Services SDKs, you provide the access point \n      ARN in place of the bucket name. For more information about access point ARNs, see \n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-naming.html\">\n        Referencing access points</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -67,22 +63,13 @@ public static partial class UpdateObjectEncryptionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The key name of the object that you want to update the server-side encryption type for.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -97,12 +84,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The version ID of the object that you want to update the server-side encryption type for.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("versionId")
                         ),
@@ -114,12 +95,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The updated server-side encryption type for this object. The <code>UpdateObjectEncryption</code> \n      operation supports the SSE-S3 and SSE-KMS encryption types.\n    </p>\n         <p>Valid Values: <code>SSES3</code> | <code>SSEKMS</code>\n         </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -147,12 +122,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The account ID of the expected bucket owner. If the account ID that you provide doesn't match the \n      actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> \n      (access denied).\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -164,12 +133,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The MD5 hash for the request body. For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.\n   </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -180,12 +143,6 @@ public static partial class UpdateObjectEncryptionInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      Indicates the algorithm used to create the checksum for the object when you use an Amazon Web Services SDK. This header \n      doesn't provide any additional functionality if you don't use the SDK. When you send this header, \n      there must be a corresponding <code>x-amz-checksum</code> or <code>x-amz-trailer</code> header sent. \n      Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>. For more \n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">\n        Checking object integrity </a> in the <i>Amazon S3 User Guide</i>.  \n    </p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code> \n      parameter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -206,26 +163,40 @@ public static partial class UpdateObjectEncryptionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectEncryption?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ObjectEncryptionSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectEncryptionSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target4 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target7 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateObjectEncryptionInput Build(Builder builder) =>
-            new UpdateObjectEncryptionInput(
+        public override global::Com.Amazonaws.S3.UpdateObjectEncryptionInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.UpdateObjectEncryptionInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ObjectEncryption
@@ -238,7 +209,7 @@ public static partial class UpdateObjectEncryptionInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateObjectEncryptionInput value,
+            global::Com.Amazonaws.S3.UpdateObjectEncryptionInput value,
             ref TSerializer serializer
         )
         {

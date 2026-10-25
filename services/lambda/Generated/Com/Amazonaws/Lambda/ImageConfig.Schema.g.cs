@@ -6,111 +6,71 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ImageConfigSchema
 {
     public sealed class Builder
     {
-        public StringList? EntryPoint { get; set; }
-        public StringList? Command { get; set; }
+        public IReadOnlyList<string>? EntryPoint { get; set; }
+        public IReadOnlyList<string>? Command { get; set; }
         public string? WorkingDirectory { get; set; }
     }
 
-    public static StructSchema<ImageConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.ImageConfig, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ImageConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ImageConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ImageConfig"),
             [
-                new(
-                    "EntryPoint",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the entry point to their application, which is typically the location of the runtime executable.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Command",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies parameters that you want to pass in with ENTRYPOINT.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("EntryPoint", Target0),
+                new("Command", Target1),
                 new(
                     "WorkingDirectory",
                     Target2,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies the working directory.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)1000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(1000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration values that override the container image Dockerfile settings. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms\">Container image settings</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<StringList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => StringListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<StringList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => StringListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StringListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StringListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ImageConfig Build(Builder builder) =>
-            new ImageConfig(builder.Command, builder.EntryPoint, builder.WorkingDirectory);
+        public override global::Com.Amazonaws.Lambda.ImageConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ImageConfig(
+                builder.Command,
+                builder.EntryPoint,
+                builder.WorkingDirectory
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ImageConfig value,
+            global::Com.Amazonaws.Lambda.ImageConfig value,
             ref TSerializer serializer
         )
         {

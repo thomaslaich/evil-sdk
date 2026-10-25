@@ -74,9 +74,9 @@ public abstract partial record class InvokeWithResponseStreamResponseEvent
 
         return this switch
         {
-            InvokeComplete value => invokeComplete(value.Value),
-            PayloadChunk value => payloadChunk(value.Value),
-            Unknown value => unknown(value.Tag, value.Value),
+            InvokeComplete variant => invokeComplete(variant.Value),
+            PayloadChunk variant => payloadChunk(variant.Value),
+            Unknown variant => unknown(variant.Tag, variant.Value),
             _ => throw new InvalidOperationException("Unknown union variant."),
         };
     }

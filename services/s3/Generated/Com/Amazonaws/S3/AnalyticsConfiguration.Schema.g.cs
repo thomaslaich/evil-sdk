@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsConfigurationSchema
 {
     public sealed class Builder
     {
         public string? Id { get; set; }
-        public AnalyticsFilter? Filter { get; set; }
+        public global::Com.Amazonaws.S3.AnalyticsFilter? Filter { get; set; }
         public global::Com.Amazonaws.S3.StorageClassAnalysis? StorageClassAnalysis { get; set; }
     }
 
-    public static StructSchema<AnalyticsConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnalyticsConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnalyticsConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnalyticsConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnalyticsConfiguration"),
             [
                 new(
@@ -31,30 +33,12 @@ public static partial class AnalyticsConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID that identifies the analytics configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Filter",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The filter used to describe a set of objects for analyses. A filter must have exactly one prefix,\n      one tag, or one conjunction (AnalyticsAndOperator). If no filter is provided, all objects will be\n      considered in any analysis.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Filter", Target1),
                 new(
                     "StorageClassAnalysis",
                     Target2,
@@ -62,39 +46,32 @@ public static partial class AnalyticsConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Contains data related to access patterns to be collected and made available to analyze the\n      tradeoffs between different storage classes. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the configuration and any analyses for the analytics filter of an Amazon S3 bucket.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<AnalyticsFilter?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AnalyticsFilterSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsFilter?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AnalyticsFilterSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClassAnalysis?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => StorageClassAnalysisSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StorageClassAnalysisSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnalyticsConfiguration Build(Builder builder) =>
-            new AnalyticsConfiguration(
+        public override global::Com.Amazonaws.S3.AnalyticsConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AnalyticsConfiguration(
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.StorageClassAnalysis
                     ?? throw new MissingRequiredMemberException("StorageClassAnalysis"),
@@ -102,7 +79,7 @@ public static partial class AnalyticsConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AnalyticsConfiguration value,
+            global::Com.Amazonaws.S3.AnalyticsConfiguration value,
             ref TSerializer serializer
         )
         {

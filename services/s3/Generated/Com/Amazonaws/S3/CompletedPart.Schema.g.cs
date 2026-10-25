@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompletedPartSchema
 {
@@ -26,153 +26,24 @@ public static partial class CompletedPartSchema
         public int? PartNumber { get; set; }
     }
 
-    public static StructSchema<CompletedPart, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.CompletedPart, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CompletedPart, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CompletedPart, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CompletedPart"),
             [
-                new(
-                    "ETag",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Entity tag returned when the part was uploaded.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumCRC32",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 32-bit <code>CRC32</code> checksum of the part. This checksum is present if the\n      multipart upload request was created with the <code>CRC32</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumCRC32C",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 32-bit <code>CRC32C</code> checksum of the part. This checksum is present if the\n      multipart upload request was created with the <code>CRC32C</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumCRC64NVME",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>CRC64NVME</code> checksum of the part. This checksum is present if\n      the multipart upload request was created with the <code>CRC64NVME</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumSHA1",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 160-bit <code>SHA1</code> checksum of the part. This checksum is present if the\n      multipart upload request was created with the <code>SHA1</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumSHA256",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 256-bit <code>SHA256</code> checksum of the part. This checksum is present if\n      the multipart upload request was created with the <code>SHA256</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumSHA512",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 512-bit <code>SHA512</code> digest of the part. This checksum is present if\n      the multipart upload request was created with the <code>SHA512</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumMD5",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 128-bit <code>MD5</code> digest of the part. This checksum is present if\n      the multipart upload request was created with the <code>MD5</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumXXHASH64",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>XXHASH64</code> checksum of the part. This checksum is present if\n      the multipart upload request was created with the <code>XXHASH64</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumXXHASH3",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 64-bit <code>XXHASH3</code> checksum of the part. This checksum is present if\n      the multipart upload request was created with the <code>XXHASH3</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumXXHASH128",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Base64 encoded, 128-bit <code>XXHASH128</code> checksum of the part. This checksum is present if\n      the multipart upload request was created with the <code>XXHASH128</code> checksum algorithm. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ETag", Target0),
+                new("ChecksumCRC32", Target1),
+                new("ChecksumCRC32C", Target2),
+                new("ChecksumCRC64NVME", Target3),
+                new("ChecksumSHA1", Target4),
+                new("ChecksumSHA256", Target5),
+                new("ChecksumSHA512", Target6),
+                new("ChecksumMD5", Target7),
+                new("ChecksumXXHASH64", Target8),
+                new("ChecksumXXHASH3", Target9),
+                new("ChecksumXXHASH128", Target10),
                 new(
                     "PartNumber",
                     Target11,
@@ -182,53 +53,63 @@ public static partial class CompletedPartSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Part number that identifies the part. This is a positive integer between 1 and 10,000.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>General purpose buckets</b> - In\n              <code>CompleteMultipartUpload</code>, when a additional checksum (including\n              <code>x-amz-checksum-crc32</code>, <code>x-amz-checksum-crc32c</code>,\n              <code>x-amz-checksum-sha1</code>, or <code>x-amz-checksum-sha256</code>) is applied to each\n            part, the <code>PartNumber</code> must start at 1 and the part numbers must be consecutive.\n            Otherwise, Amazon S3 generates an HTTP <code>400 Bad Request</code> status code and an\n              <code>InvalidPartOrder</code> error code.</p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> - In\n              <code>CompleteMultipartUpload</code>, the <code>PartNumber</code> must start at 1 and the part\n            numbers must be consecutive.</p>\n               </li>\n            </ul>\n         </note>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details of the parts that were uploaded.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target11 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target11 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CompletedPart Build(Builder builder) =>
-            new CompletedPart(
+        public override global::Com.Amazonaws.S3.CompletedPart Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CompletedPart(
                 builder.ChecksumCRC32,
                 builder.ChecksumCRC32C,
                 builder.ChecksumCRC64NVME,
@@ -244,7 +125,7 @@ public static partial class CompletedPartSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CompletedPart value,
+            global::Com.Amazonaws.S3.CompletedPart value,
             ref TSerializer serializer
         )
         {

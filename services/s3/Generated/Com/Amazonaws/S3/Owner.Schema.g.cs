@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class OwnerSchema
 {
@@ -15,53 +15,34 @@ public static partial class OwnerSchema
         public string? ID { get; set; }
     }
 
-    public static StructSchema<Owner, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Owner, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Owner, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Owner, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Owner"),
-            [
-                new(
-                    "DisplayName",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p></p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "ID",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Container for the ID of the owner.</p>")
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for the owner's display name and ID.</p>")
-                ),
-            ]
+            [new("DisplayName", Target0), new("ID", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Owner Build(Builder builder) => new Owner(builder.DisplayName, builder.ID);
+        public override global::Com.Amazonaws.S3.Owner Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Owner(builder.DisplayName, builder.ID);
 
-        public override void SerializeMembers<TSerializer>(Owner value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.S3.Owner value,
+            ref TSerializer serializer
+        )
         {
             if (value.DisplayName is { } value0)
             {

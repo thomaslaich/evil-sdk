@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketAnalyticsConfigurationInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class DeleteBucketAnalyticsConfigurationInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<DeleteBucketAnalyticsConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketAnalyticsConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketAnalyticsConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketAnalyticsConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketAnalyticsConfigurationInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class DeleteBucketAnalyticsConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket from which an analytics configuration is deleted.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -61,12 +57,6 @@ public static partial class DeleteBucketAnalyticsConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID that identifies the analytics configuration.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
@@ -79,12 +69,6 @@ public static partial class DeleteBucketAnalyticsConfigurationInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -105,23 +89,31 @@ public static partial class DeleteBucketAnalyticsConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketAnalyticsConfigurationInput Build(Builder builder) =>
-            new DeleteBucketAnalyticsConfigurationInput(
+        public override global::Com.Amazonaws.S3.DeleteBucketAnalyticsConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.DeleteBucketAnalyticsConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketAnalyticsConfigurationInput value,
+            global::Com.Amazonaws.S3.DeleteBucketAnalyticsConfigurationInput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketInventoryConfigurationOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketInventoryConfigurationOutputSchema
         public global::Com.Amazonaws.S3.InventoryConfiguration? InventoryConfiguration { get; set; }
     }
 
-    public static StructSchema<GetBucketInventoryConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketInventoryConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketInventoryConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketInventoryConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketInventoryConfigurationOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class GetBucketInventoryConfigurationOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies the inventory configuration.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,15 +45,21 @@ public static partial class GetBucketInventoryConfigurationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryConfiguration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InventoryConfigurationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketInventoryConfigurationOutput Build(Builder builder) =>
-            new GetBucketInventoryConfigurationOutput(builder.InventoryConfiguration);
+        public override global::Com.Amazonaws.S3.GetBucketInventoryConfigurationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketInventoryConfigurationOutput(
+                builder.InventoryConfiguration
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketInventoryConfigurationOutput value,
+            global::Com.Amazonaws.S3.GetBucketInventoryConfigurationOutput value,
             ref TSerializer serializer
         )
         {

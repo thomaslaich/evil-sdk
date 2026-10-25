@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class FilterRuleNameSchema
 {
     public static global::NSmithy.Core.Serde.Schema<FilterRuleName> Schema { get; } =
-        Schemas.StringEnum<FilterRuleName>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<FilterRuleName>(
             ShapeId.Parse("com.amazonaws.s3#FilterRuleName"),
             values: ["prefix", "suffix"],
             traits:

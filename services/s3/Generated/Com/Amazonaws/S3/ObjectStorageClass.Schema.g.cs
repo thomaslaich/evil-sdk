@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectStorageClassSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ObjectStorageClass> Schema { get; } =
-        Schemas.StringEnum<ObjectStorageClass>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ObjectStorageClass>(
             ShapeId.Parse("com.amazonaws.s3#ObjectStorageClass"),
             values:
             [

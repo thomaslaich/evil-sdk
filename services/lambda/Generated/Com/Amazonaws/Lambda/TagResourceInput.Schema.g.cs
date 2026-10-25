@@ -6,20 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TagResourceInputSchema
 {
     public sealed class Builder
     {
         public string? Resource { get; set; }
-        public global::Com.Amazonaws.Lambda.Tags? Tags { get; set; }
+        public IReadOnlyDictionary<string, string>? Tags { get; set; }
     }
 
-    public static StructSchema<TagResourceInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.TagResourceInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TagResourceInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TagResourceInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TagResourceInput"),
             [
                 new(
@@ -29,10 +32,6 @@ public static partial class TagResourceInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The resource's Amazon Resource Name (ARN).</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,8 +40,8 @@ public static partial class TagResourceInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -56,10 +55,6 @@ public static partial class TagResourceInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -69,16 +64,8 @@ public static partial class TagResourceInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of tags to apply to the resource.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -89,10 +76,6 @@ public static partial class TagResourceInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#TagResourceRequest")
                 ),
@@ -100,20 +83,26 @@ public static partial class TagResourceInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Tags?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagsSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TagResourceInput Build(Builder builder) =>
-            new TagResourceInput(
+        public override global::Com.Amazonaws.Lambda.TagResourceInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.TagResourceInput(
                 builder.Resource ?? throw new MissingRequiredMemberException("Resource"),
                 builder.Tags ?? throw new MissingRequiredMemberException("Tags")
             );
 
         public override void SerializeMembers<TSerializer>(
-            TagResourceInput value,
+            global::Com.Amazonaws.Lambda.TagResourceInput value,
             ref TSerializer serializer
         )
         {

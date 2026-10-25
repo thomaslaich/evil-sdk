@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAclSchema
 {
-    public static OperationSchema<PutBucketAclInput, PutBucketAclOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.PutBucketAclInput,
+        global::Com.Amazonaws.S3.PutBucketAclOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAcl"),
-            Schemas.Lazy(() => PutBucketAclInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketAclOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketAclInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketAclOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -28,60 +31,13 @@ public static partial class PutBucketAclSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<important>\n            <p>End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025, \n the request will receive an <code>HTTP 405</code> (Method Not Allowed) error.</p>\n            <p>This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).</p>\n         </important>\n         <note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Sets the permissions on an existing bucket using access control lists (ACL). For more information,\n      see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html\">Using ACLs</a>. To\n      set the ACL of a bucket, you must have the <code>WRITE_ACP</code> permission.</p>\n         <p>You can use one of the following two ways to set a bucket's permissions:</p>\n         <ul>\n            <li>\n               <p>Specify the ACL in the request body</p>\n            </li>\n            <li>\n               <p>Specify permissions using request headers</p>\n            </li>\n         </ul>\n         <note>\n            <p>You cannot specify access permission using both the body and the request headers.</p>\n         </note>\n         <p>Depending on your application needs, you may choose to set the ACL on a bucket using either the\n      request body or the headers. For example, if you have an existing application that updates a bucket ACL\n      using the request body, then you can continue to use that approach.</p>\n         <important>\n            <p>If your bucket uses the bucket owner enforced setting for S3 Object Ownership, ACLs are disabled\n        and no longer affect permissions. You must use policies to grant access to your bucket and the objects\n        in it. Requests to set ACLs or update ACLs fail and return the\n          <code>AccessControlListNotSupported</code> error code. Requests to read ACLs are still supported.\n        For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html\">Controlling object ownership</a> in\n        the <i>Amazon S3 User Guide</i>.</p>\n         </important>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>You can set access permissions by using one of the following methods:</p>\n               <ul>\n                  <li>\n                     <p>Specify a canned ACL with the <code>x-amz-acl</code> request header. Amazon S3 supports a set\n                of predefined ACLs, known as <i>canned ACLs</i>. Each canned ACL has a\n                predefined set of grantees and permissions. Specify the canned ACL name as the value of\n                  <code>x-amz-acl</code>. If you use this header, you cannot use other access control-specific\n                headers in your request. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL\">Canned ACL</a>.</p>\n                  </li>\n                  <li>\n                     <p>Specify access permissions explicitly with the <code>x-amz-grant-read</code>,\n                  <code>x-amz-grant-read-acp</code>, <code>x-amz-grant-write-acp</code>, and\n                  <code>x-amz-grant-full-control</code> headers. When using these headers, you specify\n                explicit access permissions and grantees (Amazon Web Services accounts or Amazon S3 groups) who will receive the\n                permission. If you use these ACL-specific headers, you cannot use the <code>x-amz-acl</code>\n                header to set a canned ACL. These parameters map to the set of permissions that Amazon S3 supports\n                in an ACL. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control List (ACL)\n                Overview</a>.</p>\n                     <p>You specify each grantee as a type=value pair, where the type is one of the\n                following:</p>\n                     <ul>\n                        <li>\n                           <p>\n                              <code>id</code> – if the value specified is the canonical user ID of an\n                    Amazon Web Services account</p>\n                        </li>\n                        <li>\n                           <p>\n                              <code>uri</code> – if you are granting permissions to a predefined group</p>\n                        </li>\n                        <li>\n                           <p>\n                              <code>emailAddress</code> – if the value specified is the email address of an\n                    Amazon Web Services account</p>\n                           <note>\n                              <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                              <ul>\n                                 <li>\n                                    <p>US East (N. Virginia)</p>\n                                 </li>\n                                 <li>\n                                    <p>US West (N. California)</p>\n                                 </li>\n                                 <li>\n                                    <p> US West (Oregon)</p>\n                                 </li>\n                                 <li>\n                                    <p> Asia Pacific (Singapore)</p>\n                                 </li>\n                                 <li>\n                                    <p>Asia Pacific (Sydney)</p>\n                                 </li>\n                                 <li>\n                                    <p>Asia Pacific (Tokyo)</p>\n                                 </li>\n                                 <li>\n                                    <p>Europe (Ireland)</p>\n                                 </li>\n                                 <li>\n                                    <p>South America (São Paulo)</p>\n                                 </li>\n                              </ul>\n                              <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n                           </note>\n                        </li>\n                     </ul>\n                     <p>For example, the following <code>x-amz-grant-write</code> header grants create, overwrite,\n                and delete objects permission to LogDelivery group predefined by Amazon S3 and two Amazon Web Services accounts\n                identified by their email addresses.</p>\n                     <p>\n                        <code>x-amz-grant-write: uri=\"http://acs.amazonaws.com/groups/s3/LogDelivery\",\n                  id=\"111122223333\", id=\"555566667777\" </code>\n                     </p>\n                  </li>\n               </ul>\n               <p>You can use either a canned ACL or specify access permissions explicitly. You cannot do\n            both.</p>\n            </dd>\n            <dt>Grantee Values</dt>\n            <dd>\n               <p>You can specify the person (grantee) to whom you're assigning access rights (using request\n            elements) in the following ways. For examples of how to specify these grantee values in JSON\n            format, see the Amazon Web Services CLI example in <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html\"> Enabling Amazon S3 server\n              access logging</a> in the <i>Amazon S3 User Guide</i>.</p>\n               <ul>\n                  <li>\n                     <p>By the person's ID:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"CanonicalUser\"><ID><>ID<></ID><DisplayName><>GranteesEmail<></DisplayName>\n                  </Grantee></code>\n                     </p>\n                     <p>DisplayName is optional and ignored in the request</p>\n                  </li>\n                  <li>\n                     <p>By URI:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"Group\"><URI><>http://acs.amazonaws.com/groups/global/AuthenticatedUsers<></URI></Grantee></code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>By Email address:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"AmazonCustomerByEmail\"><EmailAddress><>Grantees@email.com<></EmailAddress>&</Grantee></code>\n                     </p>\n                     <p>The grantee is resolved to the CanonicalUser and, in a response to a GET Object acl\n                request, appears as the CanonicalUser. </p>\n                     <note>\n                        <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                        <ul>\n                           <li>\n                              <p>US East (N. Virginia)</p>\n                           </li>\n                           <li>\n                              <p>US West (N. California)</p>\n                           </li>\n                           <li>\n                              <p> US West (Oregon)</p>\n                           </li>\n                           <li>\n                              <p> Asia Pacific (Singapore)</p>\n                           </li>\n                           <li>\n                              <p>Asia Pacific (Sydney)</p>\n                           </li>\n                           <li>\n                              <p>Asia Pacific (Tokyo)</p>\n                           </li>\n                           <li>\n                              <p>Europe (Ireland)</p>\n                           </li>\n                           <li>\n                              <p>South America (São Paulo)</p>\n                           </li>\n                        </ul>\n                        <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n                     </note>\n                  </li>\n               </ul>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>PutBucketAcl</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html\">DeleteBucket</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html\">GetObjectAcl</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("Put bucket acl") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example replaces existing ACL on a bucket. The ACL grants the bucket owner (specified using the owner ID) and write permission to the LogDelivery group. Because this is a replace operation, you must specify all the grants in your request. To incrementally add or remove ACL grants, you might use the console."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                {
-                                                    "GrantFullControl",
-                                                    Document.From(
-                                                        "id=examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484"
-                                                    )
-                                                },
-                                                {
-                                                    "GrantWrite",
-                                                    Document.From(
-                                                        "uri=http://acs.amazonaws.com/groups/s3/LogDelivery"
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?acl") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?acl") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

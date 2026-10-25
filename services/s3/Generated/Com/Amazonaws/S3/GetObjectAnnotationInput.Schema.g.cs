@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectAnnotationInputSchema
 {
@@ -21,11 +21,13 @@ public static partial class GetObjectAnnotationInputSchema
         public global::Com.Amazonaws.S3.ChecksumMode? ChecksumMode { get; set; }
     }
 
-    public static StructSchema<GetObjectAnnotationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectAnnotationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectAnnotationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectAnnotationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectAnnotationInput"),
             [
                 new(
@@ -34,10 +36,6 @@ public static partial class GetObjectAnnotationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the bucket that contains the object.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -64,20 +62,13 @@ public static partial class GetObjectAnnotationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The object key.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -102,12 +93,6 @@ public static partial class GetObjectAnnotationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the annotation to retrieve.</p>\n         <p>Length Constraints: Minimum length of 1. Maximum length of 512 bytes.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("annotationName")
                         ),
@@ -122,10 +107,6 @@ public static partial class GetObjectAnnotationInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The version ID of the object.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("versionId")
@@ -149,12 +130,6 @@ public static partial class GetObjectAnnotationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the bucket is owned by a different account, the request fails with an HTTP 403 (Access Denied) error.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -165,12 +140,6 @@ public static partial class GetObjectAnnotationInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set to <code>ENABLED</code> to validate the checksum of the annotation payload on retrieval.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-mode")
@@ -191,24 +160,34 @@ public static partial class GetObjectAnnotationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target4 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumMode?> Target6 =
-            Schemas.Nullable(ChecksumModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumModeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectAnnotationInput Build(Builder builder) =>
-            new GetObjectAnnotationInput(
+        public override global::Com.Amazonaws.S3.GetObjectAnnotationInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectAnnotationInput(
                 builder.AnnotationName
                     ?? throw new MissingRequiredMemberException("AnnotationName"),
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
@@ -220,7 +199,7 @@ public static partial class GetObjectAnnotationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectAnnotationInput value,
+            global::Com.Amazonaws.S3.GetObjectAnnotationInput value,
             ref TSerializer serializer
         )
         {

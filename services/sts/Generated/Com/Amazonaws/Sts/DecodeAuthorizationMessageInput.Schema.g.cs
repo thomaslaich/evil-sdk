@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class DecodeAuthorizationMessageInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class DecodeAuthorizationMessageInputSchema
         public string? EncodedMessage { get; set; }
     }
 
-    public static StructSchema<DecodeAuthorizationMessageInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.DecodeAuthorizationMessageInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DecodeAuthorizationMessageInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.DecodeAuthorizationMessageInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#DecodeAuthorizationMessageInput"),
             [
                 new(
@@ -29,18 +31,12 @@ public static partial class DecodeAuthorizationMessageInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The encoded message that was returned with the response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10240) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10240m) },
                                 }
                             )
                         ),
@@ -64,17 +60,21 @@ public static partial class DecodeAuthorizationMessageInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DecodeAuthorizationMessageInput Build(Builder builder) =>
-            new DecodeAuthorizationMessageInput(
+        public override global::Com.Amazonaws.Sts.DecodeAuthorizationMessageInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sts.DecodeAuthorizationMessageInput(
                 builder.EncodedMessage ?? throw new MissingRequiredMemberException("EncodedMessage")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DecodeAuthorizationMessageInput value,
+            global::Com.Amazonaws.Sts.DecodeAuthorizationMessageInput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketLifecycleConfigurationInputSchema
 {
@@ -14,16 +14,18 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
     {
         public string? Bucket { get; set; }
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
-        public BucketLifecycleConfiguration? LifecycleConfiguration { get; set; }
+        public global::Com.Amazonaws.S3.BucketLifecycleConfiguration? LifecycleConfiguration { get; set; }
         public string? ExpectedBucketOwner { get; set; }
         public global::Com.Amazonaws.S3.TransitionDefaultMinimumObjectSize? TransitionDefaultMinimumObjectSize { get; set; }
     }
 
-    public static StructSchema<PutBucketLifecycleConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketLifecycleConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketLifecycleConfigurationInput"),
             [
                 new(
@@ -32,12 +34,6 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket for which to set the configuration.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -63,12 +59,6 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum</code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>. For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>\n      parameter.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
                         ),
@@ -79,12 +69,6 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for lifecycle rules. You can add as many as 1,000 rules.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -101,12 +85,6 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -117,12 +95,6 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates which default minimum object size behavior is applied to the lifecycle\n      configuration.</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>\n         <ul>\n            <li>\n               <p>\n                  <code>all_storage_classes_128K</code> - Objects smaller than 128 KB will not transition to\n          any storage class by default. </p>\n            </li>\n            <li>\n               <p>\n                  <code>varies_by_storage_class</code> - Objects smaller than 128 KB will transition to Glacier\n          Flexible Retrieval or Glacier Deep Archive storage classes. By default, all other storage classes\n          will prevent transitions smaller than 128 KB. </p>\n            </li>\n         </ul>\n         <p>To customize the minimum object size for any transition you can add a filter that specifies a custom\n        <code>ObjectSizeGreaterThan</code> or <code>ObjectSizeLessThan</code> in the body of your transition\n      rule. Custom filters always take precedence over the default transition behavior.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-transition-default-minimum-object-size")
@@ -143,22 +115,32 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target1 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketLifecycleConfiguration?> Target2 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => BucketLifecycleConfigurationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketLifecycleConfiguration?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    BucketLifecycleConfigurationSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TransitionDefaultMinimumObjectSize?> Target4 =
-            Schemas.Nullable(TransitionDefaultMinimumObjectSizeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                TransitionDefaultMinimumObjectSizeSchema.Schema
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketLifecycleConfigurationInput Build(Builder builder) =>
-            new PutBucketLifecycleConfigurationInput(
+        public override global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ChecksumAlgorithm,
                 builder.ExpectedBucketOwner,
@@ -167,7 +149,7 @@ public static partial class PutBucketLifecycleConfigurationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketLifecycleConfigurationInput value,
+            global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationInput value,
             ref TSerializer serializer
         )
         {

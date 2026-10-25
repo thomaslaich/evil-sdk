@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteQueueInputSchema
 {
@@ -15,10 +15,13 @@ public static partial class DeleteQueueInputSchema
         public string? QueueUrl { get; set; }
     }
 
-    public static StructSchema<DeleteQueueInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.DeleteQueueInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteQueueInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.DeleteQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteQueueInput"),
             [
                 new(
@@ -28,12 +31,6 @@ public static partial class DeleteQueueInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue to delete.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,7 +38,6 @@ public static partial class DeleteQueueInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -54,17 +50,19 @@ public static partial class DeleteQueueInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteQueueInput Build(Builder builder) =>
-            new DeleteQueueInput(
+        public override global::Com.Amazonaws.Sqs.DeleteQueueInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.DeleteQueueInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteQueueInput value,
+            global::Com.Amazonaws.Sqs.DeleteQueueInput value,
             ref TSerializer serializer
         )
         {

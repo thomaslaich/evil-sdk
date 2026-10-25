@@ -5,49 +5,47 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class RemovePermissionSchema
 {
-    public static OperationSchema<RemovePermissionInput, RemovePermissionOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.RemovePermissionInput,
+        global::Com.Amazonaws.Sqs.RemovePermissionOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#RemovePermission"),
-            Schemas.Lazy(() => RemovePermissionInputSchema.Schema!),
-            Schemas.Lazy(() => RemovePermissionOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => RemovePermissionInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => RemovePermissionOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Revokes any permissions in the queue policy that matches the specified\n                <code>Label</code> parameter.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>Only the owner of a queue can remove permissions from it.</p>\n               </li>\n               <li>\n                  <p>Cross-account permissions don't apply to this action. For more information, \nsee <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name\">Grant \ncross-account permissions to a role and a username</a> in the <i>Amazon SQS Developer Guide</i>.</p>\n               </li>\n               <li>\n                  <p>To remove the ability to change queue permissions, you must deny permission to the <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetQueueAttributes</code> actions in your IAM policy.</p>\n               </li>\n            </ul>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

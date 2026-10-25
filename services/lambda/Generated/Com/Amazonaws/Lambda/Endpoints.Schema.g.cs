@@ -4,21 +4,26 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EndpointsSchema
 {
     public static MapSchema<
-        Endpoints,
-        EndpointLists,
-        Dictionary<string, EndpointLists>
+        IReadOnlyDictionary<string, IReadOnlyList<string>>,
+        IReadOnlyList<string>,
+        Dictionary<string, IReadOnlyList<string>>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : MapSchema<Endpoints, EndpointLists, Dictionary<string, EndpointLists>>(
+        : MapSchema<
+            IReadOnlyDictionary<string, IReadOnlyList<string>>,
+            IReadOnlyList<string>,
+            Dictionary<string, IReadOnlyList<string>>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#Endpoints"),
             Target0,
             [
@@ -27,56 +32,43 @@ public static partial class EndpointsSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)2) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(2m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
+            null,
+            null,
             EndPointTypeSchema.Schema
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EndpointLists> Target0 =
-            Schemas.Lazy(() => EndpointListsSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => EndpointListsSchema.Schema!);
 
-        public override IEnumerable<KeyValuePair<string, EndpointLists>> GetEntries(
-            Endpoints value
-        ) => value.Values;
+        public override IEnumerable<KeyValuePair<string, IReadOnlyList<string>>> GetEntries(
+            IReadOnlyDictionary<string, IReadOnlyList<string>> value
+        ) => value;
 
-        public override Dictionary<string, EndpointLists> CreateTypedBuilder() =>
+        public override Dictionary<string, IReadOnlyList<string>> CreateTypedBuilder() =>
             new(StringComparer.Ordinal);
 
         public override void Add(
-            Dictionary<string, EndpointLists> builder,
+            Dictionary<string, IReadOnlyList<string>> builder,
             string key,
-            EndpointLists value
+            IReadOnlyList<string> value
         ) => builder[key] = value;
 
-        public override Endpoints Build(Dictionary<string, EndpointLists> builder) =>
-            Endpoints.FromOwnedDictionary(builder);
+        public override IReadOnlyDictionary<string, IReadOnlyList<string>> Build(
+            Dictionary<string, IReadOnlyList<string>> builder
+        ) => new ReadOnlyDictionary<string, IReadOnlyList<string>>(builder);
 
         public override void SerializeEntries<TSerializer>(
-            Endpoints value,
+            IReadOnlyDictionary<string, IReadOnlyList<string>> value,
             ref TSerializer serializer
         )
         {
-            foreach (var entry in value.Values)
+            foreach (var entry in value)
             {
                 serializer.WriteString(0, entry.Key);
                 if (entry.Value is { } entryValue)
@@ -91,7 +83,7 @@ public static partial class EndpointsSchema
         }
 
         public override void DeserializeEntry<TDeserializer>(
-            Dictionary<string, EndpointLists> builder,
+            Dictionary<string, IReadOnlyList<string>> builder,
             string key,
             ref TDeserializer deserializer
         ) => builder[key] = deserializer.ReadList(EndpointListsSchema.Schema);

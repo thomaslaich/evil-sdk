@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class QueueDeletedRecentlySchema
 {
@@ -15,11 +15,13 @@ public static partial class QueueDeletedRecentlySchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<QueueDeletedRecently, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.QueueDeletedRecently,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<QueueDeletedRecently, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.QueueDeletedRecently, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#QueueDeletedRecently"),
             [new("message", Target0)],
             [
@@ -32,31 +34,27 @@ public static partial class QueueDeletedRecentlySchema
                                 "code",
                                 Document.From("AWS.SimpleQueueService.QueueDeletedRecently")
                             },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>You must wait 60 seconds after deleting a queue before you can create another queue\n            with the same name.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override QueueDeletedRecently Build(Builder builder) =>
-            new QueueDeletedRecently(builder.Message);
+        public override global::Com.Amazonaws.Sqs.QueueDeletedRecently Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.QueueDeletedRecently(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            QueueDeletedRecently value,
+            global::Com.Amazonaws.Sqs.QueueDeletedRecently value,
             ref TSerializer serializer
         )
         {

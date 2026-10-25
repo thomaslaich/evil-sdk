@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class IDPRejectedClaimExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class IDPRejectedClaimExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<IDPRejectedClaimException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.IDPRejectedClaimException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<IDPRejectedClaimException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.IDPRejectedClaimException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#IDPRejectedClaimException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class IDPRejectedClaimExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("IDPRejectedClaim") },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The identity provider (IdP) reported that authentication failed. This might be because\n            the claim is invalid.</p>\n         <p>If this error is returned for the <code>AssumeRoleWithWebIdentity</code> operation, it\n            can also mean that the claim has expired or has been explicitly revoked. </p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override IDPRejectedClaimException Build(Builder builder) =>
-            new IDPRejectedClaimException(builder.Message);
+        public override global::Com.Amazonaws.Sts.IDPRejectedClaimException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.IDPRejectedClaimException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            IDPRejectedClaimException value,
+            global::Com.Amazonaws.Sts.IDPRejectedClaimException value,
             ref TSerializer serializer
         )
         {

@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class WriteGetObjectResponseOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<WriteGetObjectResponseOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.WriteGetObjectResponseOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<WriteGetObjectResponseOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.WriteGetObjectResponseOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#WriteGetObjectResponseOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class WriteGetObjectResponseOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override WriteGetObjectResponseOutput Build(Builder builder) =>
-            new WriteGetObjectResponseOutput();
+        public override global::Com.Amazonaws.S3.WriteGetObjectResponseOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.WriteGetObjectResponseOutput();
 
         public override void SerializeMembers<TSerializer>(
-            WriteGetObjectResponseOutput value,
+            global::Com.Amazonaws.S3.WriteGetObjectResponseOutput value,
             ref TSerializer serializer
         ) { }
 

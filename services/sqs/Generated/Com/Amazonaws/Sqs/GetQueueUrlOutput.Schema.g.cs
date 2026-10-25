@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class GetQueueUrlOutputSchema
 {
@@ -15,31 +15,16 @@ public static partial class GetQueueUrlOutputSchema
         public string? QueueUrl { get; set; }
     }
 
-    public static StructSchema<GetQueueUrlOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.GetQueueUrlOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetQueueUrlOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.GetQueueUrlOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#GetQueueUrlOutput"),
+            [new("QueueUrl", Target0)],
             [
-                new(
-                    "QueueUrl",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The URL of the queue.</p>")
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-responses.html\">Interpreting Responses</a> in the <i>Amazon SQS Developer\n            Guide</i>.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -52,15 +37,17 @@ public static partial class GetQueueUrlOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetQueueUrlOutput Build(Builder builder) =>
-            new GetQueueUrlOutput(builder.QueueUrl);
+        public override global::Com.Amazonaws.Sqs.GetQueueUrlOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.GetQueueUrlOutput(builder.QueueUrl);
 
         public override void SerializeMembers<TSerializer>(
-            GetQueueUrlOutput value,
+            global::Com.Amazonaws.Sqs.GetQueueUrlOutput value,
             ref TSerializer serializer
         )
         {

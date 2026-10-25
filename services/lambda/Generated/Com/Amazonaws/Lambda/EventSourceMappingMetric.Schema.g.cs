@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventSourceMappingMetricSchema
 {
     public static global::NSmithy.Core.Serde.Schema<EventSourceMappingMetric> Schema { get; } =
-        Schemas.StringEnum<EventSourceMappingMetric>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<EventSourceMappingMetric>(
             ShapeId.Parse("com.amazonaws.lambda#EventSourceMappingMetric"),
             values: ["EventCount", "ErrorCount", "KafkaMetrics"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

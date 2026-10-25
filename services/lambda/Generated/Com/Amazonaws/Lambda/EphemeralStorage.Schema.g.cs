@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EphemeralStorageSchema
 {
@@ -15,10 +15,13 @@ public static partial class EphemeralStorageSchema
         public int? Size { get; set; }
     }
 
-    public static StructSchema<EphemeralStorage, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.EphemeralStorage,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EphemeralStorage, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.EphemeralStorage, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#EphemeralStorage"),
             [
                 new(
@@ -32,18 +35,12 @@ public static partial class EphemeralStorageSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The size of the function's <code>/tmp</code> directory.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)512) },
-                                    { "max", Document.From((decimal)32768) },
+                                    { "min", Document.From(512m) },
+                                    { "max", Document.From(32768m) },
                                 }
                             )
                         ),
@@ -51,38 +48,22 @@ public static partial class EphemeralStorageSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The size of the function's <code>/tmp</code> directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage\">Configuring ephemeral storage (console)</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override EphemeralStorage Build(Builder builder) =>
-            new EphemeralStorage(builder.Size.GetValueOrDefault());
+        public override global::Com.Amazonaws.Lambda.EphemeralStorage Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.EphemeralStorage(builder.Size.GetValueOrDefault());
 
         public override void SerializeMembers<TSerializer>(
-            EphemeralStorage value,
+            global::Com.Amazonaws.Lambda.EphemeralStorage value,
             ref TSerializer serializer
         )
         {

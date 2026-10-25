@@ -6,64 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionEventInvokeConfigsOutputSchema
 {
     public sealed class Builder
     {
-        public FunctionEventInvokeConfigList? FunctionEventInvokeConfigs { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig>? FunctionEventInvokeConfigs { get; set; }
         public string? NextMarker { get; set; }
     }
 
-    public static StructSchema<ListFunctionEventInvokeConfigsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListFunctionEventInvokeConfigsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListFunctionEventInvokeConfigsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListFunctionEventInvokeConfigsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionEventInvokeConfigsOutput"),
-            [
-                new(
-                    "FunctionEventInvokeConfigs",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of configurations.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "NextMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("FunctionEventInvokeConfigs", Target0), new("NextMarker", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -72,23 +37,29 @@ public static partial class ListFunctionEventInvokeConfigsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionEventInvokeConfigList?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => FunctionEventInvokeConfigListSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionEventInvokeConfig>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    FunctionEventInvokeConfigListSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListFunctionEventInvokeConfigsOutput Build(Builder builder) =>
-            new ListFunctionEventInvokeConfigsOutput(
+        public override global::Com.Amazonaws.Lambda.ListFunctionEventInvokeConfigsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListFunctionEventInvokeConfigsOutput(
                 builder.FunctionEventInvokeConfigs,
                 builder.NextMarker
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListFunctionEventInvokeConfigsOutput value,
+            global::Com.Amazonaws.Lambda.ListFunctionEventInvokeConfigsOutput value,
             ref TSerializer serializer
         )
         {

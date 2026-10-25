@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectVersionsOutputSchema
 {
@@ -17,22 +17,24 @@ public static partial class ListObjectVersionsOutputSchema
         public string? VersionIdMarker { get; set; }
         public string? NextKeyMarker { get; set; }
         public string? NextVersionIdMarker { get; set; }
-        public ObjectVersionList? Versions { get; set; }
-        public global::Com.Amazonaws.S3.DeleteMarkers? DeleteMarkers { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ObjectVersion>? Versions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.DeleteMarkerEntry>? DeleteMarkers { get; set; }
         public string? Name { get; set; }
         public string? Prefix { get; set; }
         public string? Delimiter { get; set; }
         public int? MaxKeys { get; set; }
-        public CommonPrefixList? CommonPrefixes { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.CommonPrefix>? CommonPrefixes { get; set; }
         public global::Com.Amazonaws.S3.EncodingType? EncodingType { get; set; }
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<ListObjectVersionsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListObjectVersionsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListObjectVersionsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListObjectVersionsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListObjectVersionsOutput"),
             [
                 new(
@@ -44,75 +46,17 @@ public static partial class ListObjectVersionsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A flag that indicates whether Amazon S3 returned all of the results that satisfied the search criteria.\n      If your results were truncated, you can make a follow-up paginated request by using the\n        <code>NextKeyMarker</code> and <code>NextVersionIdMarker</code> response parameters as a starting\n      place in another request to return the rest of the results.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "KeyMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Marks the last key returned in a truncated response.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "VersionIdMarker",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Marks the last version of the key returned in a truncated response.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextKeyMarker",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When the number of responses exceeds the value of <code>MaxKeys</code>, <code>NextKeyMarker</code>\n      specifies the first key not returned that satisfies the search criteria. Use this value for the\n      key-marker request parameter in a subsequent request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextVersionIdMarker",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When the number of responses exceeds the value of <code>MaxKeys</code>,\n        <code>NextVersionIdMarker</code> specifies the first object version not returned that satisfies the\n      search criteria. Use this value for the <code>version-id-marker</code> request parameter in a subsequent\n      request.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("KeyMarker", Target1),
+                new("VersionIdMarker", Target2),
+                new("NextKeyMarker", Target3),
+                new("NextVersionIdMarker", Target4),
                 new(
                     "Versions",
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Container for version information.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -126,12 +70,6 @@ public static partial class ListObjectVersionsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for an object that is a delete marker. To learn more about delete markers, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html\">Working with delete\n        markers</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -141,43 +79,9 @@ public static partial class ListObjectVersionsOutputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Name",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The bucket name.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Prefix",
-                    Target8,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Selects objects that start with the value supplied by this parameter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Delimiter",
-                    Target9,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The delimiter grouping the included keys. A delimiter is a character that you specify to group keys.\n      All keys that contain the same string between the prefix and the first occurrence of the delimiter are\n      grouped under a single result element in <code>CommonPrefixes</code>. These groups are counted as one\n      result against the <code>max-keys</code> limitation. These keys are not returned elsewhere in the\n      response.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Name", Target7),
+                new("Prefix", Target8),
+                new("Delimiter", Target9),
                 new(
                     "MaxKeys",
                     Target10,
@@ -187,12 +91,6 @@ public static partial class ListObjectVersionsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the maximum number of objects to return.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -201,30 +99,12 @@ public static partial class ListObjectVersionsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>All of the keys rolled up into a common prefix count as a single return when calculating the number\n      of returns.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "EncodingType",
-                    Target12,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Encoding type used by Amazon S3 to encode object key names in the XML response.</p>\n         <p>If you specify the <code>encoding-type</code> request parameter, Amazon S3 includes this element in the\n      response, and returns encoded key name values in the following response elements:</p>\n         <p>\n            <code>KeyMarker, NextKeyMarker, Prefix, Key</code>, and <code>Delimiter</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("EncodingType", Target12),
                 new(
                     "RequestCharged",
                     Target13,
@@ -246,41 +126,59 @@ public static partial class ListObjectVersionsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectVersionList?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => ObjectVersionListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.DeleteMarkers?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => DeleteMarkersSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ObjectVersion>?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectVersionListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.DeleteMarkerEntry>?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteMarkersSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target10 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<CommonPrefixList?> Target11 =
-            Schemas.NullableReference(Schemas.Lazy(() => CommonPrefixListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target10 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.CommonPrefix>?> Target11 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CommonPrefixListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EncodingType?> Target12 =
-            Schemas.Nullable(EncodingTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(EncodingTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target13 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListObjectVersionsOutput Build(Builder builder) =>
-            new ListObjectVersionsOutput(
+        public override global::Com.Amazonaws.S3.ListObjectVersionsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ListObjectVersionsOutput(
                 builder.CommonPrefixes,
                 builder.DeleteMarkers,
                 builder.Delimiter,
@@ -298,7 +196,7 @@ public static partial class ListObjectVersionsOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListObjectVersionsOutput value,
+            global::Com.Amazonaws.S3.ListObjectVersionsOutput value,
             ref TSerializer serializer
         )
         {

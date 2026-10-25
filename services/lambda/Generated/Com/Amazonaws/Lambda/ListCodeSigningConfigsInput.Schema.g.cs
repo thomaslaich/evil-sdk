@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListCodeSigningConfigsInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class ListCodeSigningConfigsInputSchema
         public int? MaxItems { get; set; }
     }
 
-    public static StructSchema<ListCodeSigningConfigsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListCodeSigningConfigsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListCodeSigningConfigsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListCodeSigningConfigsInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListCodeSigningConfigsInput"),
             [
                 new(
@@ -28,17 +30,7 @@ public static partial class ListCodeSigningConfigsInputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Marker")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -50,24 +42,16 @@ public static partial class ListCodeSigningConfigsInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Maximum number of items to return.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("MaxItems")),
                         new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -78,10 +62,6 @@ public static partial class ListCodeSigningConfigsInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#ListCodeSigningConfigsRequest")
                 ),
@@ -89,18 +69,24 @@ public static partial class ListCodeSigningConfigsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListCodeSigningConfigsInput Build(Builder builder) =>
-            new ListCodeSigningConfigsInput(builder.Marker, builder.MaxItems);
+        public override global::Com.Amazonaws.Lambda.ListCodeSigningConfigsInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListCodeSigningConfigsInput(
+                builder.Marker,
+                builder.MaxItems
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListCodeSigningConfigsInput value,
+            global::Com.Amazonaws.Lambda.ListCodeSigningConfigsInput value,
             ref TSerializer serializer
         )
         {

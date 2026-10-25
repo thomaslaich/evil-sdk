@@ -4,60 +4,43 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListCapacityProvidersSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        ListCapacityProvidersInput,
-        ListCapacityProvidersOutput
+        global::Com.Amazonaws.Lambda.ListCapacityProvidersInput,
+        global::Com.Amazonaws.Lambda.ListCapacityProvidersOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#ListCapacityProviders"),
-            Schemas.Lazy(() => ListCapacityProvidersInputSchema.Schema!),
-            Schemas.Lazy(() => ListCapacityProvidersOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListCapacityProvidersInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListCapacityProvidersOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to retrieve a list of AWS Lambda capacity providers"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_ListCapacityProviders.html")
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Returns a list of capacity providers in your account.</p>")
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -65,7 +48,7 @@ public static partial class ListCapacityProvidersSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/2025-11-30/capacity-providers") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
@@ -84,10 +67,6 @@ public static partial class ListCapacityProvidersSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

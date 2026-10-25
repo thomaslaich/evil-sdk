@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ExecutionStatusListSchema
 {
     public static ListSchema<
-        ExecutionStatusList,
-        ExecutionStatus,
-        List<ExecutionStatus>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.ExecutionStatus>,
+        global::Com.Amazonaws.Lambda.ExecutionStatus,
+        List<global::Com.Amazonaws.Lambda.ExecutionStatus>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<ExecutionStatusList, ExecutionStatus, List<ExecutionStatus>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.ExecutionStatus>,
+            global::Com.Amazonaws.Lambda.ExecutionStatus,
+            List<global::Com.Amazonaws.Lambda.ExecutionStatus>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ExecutionStatusList"),
             ShapeKind.List,
             Target0,
@@ -27,44 +31,40 @@ public static partial class ExecutionStatusListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)10) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(10m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ExecutionStatus> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ExecutionStatus> Target0 =
             ExecutionStatusSchema.Schema;
 
-        public override IEnumerable<ExecutionStatus> GetElements(ExecutionStatusList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.ExecutionStatus> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.ExecutionStatus> value
+        ) => value;
 
-        public override List<ExecutionStatus> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.ExecutionStatus> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<ExecutionStatus> builder, ExecutionStatus value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.ExecutionStatus> builder,
+            global::Com.Amazonaws.Lambda.ExecutionStatus value
+        ) => builder.Add(value);
 
-        public override ExecutionStatusList Build(List<ExecutionStatus> builder) =>
-            ExecutionStatusList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.ExecutionStatus> Build(
+            List<global::Com.Amazonaws.Lambda.ExecutionStatus> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ExecutionStatusList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.ExecutionStatus> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -72,14 +72,14 @@ public static partial class ExecutionStatusListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ExecutionStatus> builder,
+            List<global::Com.Amazonaws.Lambda.ExecutionStatus> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? ExecutionStatus.FromValue(element)
-                        : default(ExecutionStatus)
+                        ? global::Com.Amazonaws.Lambda.ExecutionStatus.FromValue(element)
+                        : default(global::Com.Amazonaws.Lambda.ExecutionStatus)
                 )
             );
     }

@@ -6,55 +6,54 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class OperationUpdatesSchema
 {
     public static ListSchema<
-        OperationUpdates,
-        OperationUpdate,
-        List<OperationUpdate>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.OperationUpdate>,
+        global::Com.Amazonaws.Lambda.OperationUpdate,
+        List<global::Com.Amazonaws.Lambda.OperationUpdate>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<OperationUpdates, OperationUpdate, List<OperationUpdate>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.OperationUpdate>,
+            global::Com.Amazonaws.Lambda.OperationUpdate,
+            List<global::Com.Amazonaws.Lambda.OperationUpdate>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#OperationUpdates"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<OperationUpdate> Target0 =
-            Schemas.Lazy(() => OperationUpdateSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.OperationUpdate> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => OperationUpdateSchema.Schema!);
 
-        public override IEnumerable<OperationUpdate> GetElements(OperationUpdates value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.OperationUpdate> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.OperationUpdate> value
+        ) => value;
 
-        public override List<OperationUpdate> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.OperationUpdate> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<OperationUpdate> builder, OperationUpdate value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.OperationUpdate> builder,
+            global::Com.Amazonaws.Lambda.OperationUpdate value
+        ) => builder.Add(value);
 
-        public override OperationUpdates Build(List<OperationUpdate> builder) =>
-            OperationUpdates.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.OperationUpdate> Build(
+            List<global::Com.Amazonaws.Lambda.OperationUpdate> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            OperationUpdates value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.OperationUpdate> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -69,7 +68,7 @@ public static partial class OperationUpdatesSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<OperationUpdate> builder,
+            List<global::Com.Amazonaws.Lambda.OperationUpdate> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(OperationUpdateSchema.Schema));
     }

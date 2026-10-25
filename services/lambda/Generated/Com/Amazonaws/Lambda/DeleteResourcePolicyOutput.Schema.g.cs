@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteResourcePolicyOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteResourcePolicyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteResourcePolicyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteResourcePolicyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteResourcePolicyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteResourcePolicyOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteResourcePolicyOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteResourcePolicyOutput Build(Builder builder) =>
-            new DeleteResourcePolicyOutput();
+        public override global::Com.Amazonaws.Lambda.DeleteResourcePolicyOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.DeleteResourcePolicyOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteResourcePolicyOutput value,
+            global::Com.Amazonaws.Lambda.DeleteResourcePolicyOutput value,
             ref TSerializer serializer
         ) { }
 

@@ -6,49 +6,33 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketInventoryConfigurationsOutputSchema
 {
     public sealed class Builder
     {
         public string? ContinuationToken { get; set; }
-        public global::Com.Amazonaws.S3.InventoryConfigurationList? InventoryConfigurationList { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.InventoryConfiguration>? InventoryConfigurationList { get; set; }
         public bool? IsTruncated { get; set; }
         public string? NextContinuationToken { get; set; }
     }
 
-    public static StructSchema<ListBucketInventoryConfigurationsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListBucketInventoryConfigurationsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListBucketInventoryConfigurationsOutput"),
             [
-                new(
-                    "ContinuationToken",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If sent in the request, the marker that is used as a starting point for this inventory configuration\n      list response.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ContinuationToken", Target0),
                 new(
                     "InventoryConfigurationList",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The list of inventory configurations for a bucket.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -68,27 +52,9 @@ public static partial class ListBucketInventoryConfigurationsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Tells whether the returned list of inventory configurations is complete. A value of true indicates\n      that the list is not complete and the NextContinuationToken is provided for a subsequent request.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "NextContinuationToken",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The marker used to continue this inventory configuration listing. Use the\n        <code>NextContinuationToken</code> from this response to continue the listing in a subsequent request.\n      The continuation token is an opaque value that Amazon S3 understands.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("NextContinuationToken", Target3),
             ],
             [
                 new Trait(
@@ -103,19 +69,28 @@ public static partial class ListBucketInventoryConfigurationsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryConfigurationList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => InventoryConfigurationListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.InventoryConfiguration>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    InventoryConfigurationListSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListBucketInventoryConfigurationsOutput Build(Builder builder) =>
-            new ListBucketInventoryConfigurationsOutput(
+        public override global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsOutput(
                 builder.ContinuationToken,
                 builder.InventoryConfigurationList,
                 builder.IsTruncated,
@@ -123,7 +98,7 @@ public static partial class ListBucketInventoryConfigurationsOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListBucketInventoryConfigurationsOutput value,
+            global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsOutput value,
             ref TSerializer serializer
         )
         {

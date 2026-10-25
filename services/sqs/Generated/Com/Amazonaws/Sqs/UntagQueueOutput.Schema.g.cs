@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class UntagQueueOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<UntagQueueOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.UntagQueueOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UntagQueueOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.UntagQueueOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#UntagQueueOutput"),
             [],
             [
@@ -32,10 +35,11 @@ public static partial class UntagQueueOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override UntagQueueOutput Build(Builder builder) => new UntagQueueOutput();
+        public override global::Com.Amazonaws.Sqs.UntagQueueOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.UntagQueueOutput();
 
         public override void SerializeMembers<TSerializer>(
-            UntagQueueOutput value,
+            global::Com.Amazonaws.Sqs.UntagQueueOutput value,
             ref TSerializer serializer
         ) { }
 

@@ -5,59 +5,59 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageSchema
 {
-    public static OperationSchema<DeleteMessageInput, DeleteMessageOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.DeleteMessageInput,
+        global::Com.Amazonaws.Sqs.DeleteMessageOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessage"),
-            Schemas.Lazy(() => DeleteMessageInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteMessageOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteMessageInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteMessageOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidIdFormat"),
-                    Schemas.Lazy(() => InvalidIdFormatSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidIdFormatSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#ReceiptHandleIsInvalid"),
-                    Schemas.Lazy(() => ReceiptHandleIsInvalidSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ReceiptHandleIsInvalidSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Deletes the specified message from the specified queue. To select the message to\n            delete, use the <code>ReceiptHandle</code> of the message (<i>not</i> the\n                <code>MessageId</code> which you receive when you send the message). Amazon SQS can\n            delete a message from a queue even if a visibility timeout setting causes the message to\n            be locked by another consumer. Amazon SQS automatically deletes messages left in a queue\n            longer than the retention period configured for the queue. </p>\n         <note>\n            <p>Each time you receive a message, meaning when a consumer retrieves a message from\n                the queue, it comes with a unique <code>ReceiptHandle</code>. If you receive the\n                same message more than once, you will get a different <code>ReceiptHandle</code>\n                each time. When you want to delete a message using the <code>DeleteMessage</code>\n                action, you must use the <code>ReceiptHandle</code> from the most recent time you\n                received the message. If you use an old <code>ReceiptHandle</code>, the request will\n                succeed, but the message might not be deleted. </p>\n            <p>For standard queues, it is possible to receive a message even after you\n                delete it. This might happen on rare occasions if one of the servers which stores a\n                copy of the message is unavailable when you send the request to delete the message.\n                The copy remains on the server and might be returned to you during a subsequent\n                receive request. You should ensure that your application is idempotent, so that\n                receiving a message more than once does not cause issues.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

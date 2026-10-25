@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageBatchRequestEntryListSchema
 {
     public static ListSchema<
-        DeleteMessageBatchRequestEntryList,
-        DeleteMessageBatchRequestEntry,
-        List<DeleteMessageBatchRequestEntry>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry>,
+        global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry,
+        List<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            DeleteMessageBatchRequestEntryList,
-            DeleteMessageBatchRequestEntry,
-            List<DeleteMessageBatchRequestEntry>
+            IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry>,
+            global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry,
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry>
         >(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageBatchRequestEntryList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class DeleteMessageBatchRequestEntryListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<DeleteMessageBatchRequestEntry> Target0 =
-            Schemas.Lazy(() => DeleteMessageBatchRequestEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteMessageBatchRequestEntrySchema.Schema!
+            );
 
-        public override IEnumerable<DeleteMessageBatchRequestEntry> GetElements(
-            DeleteMessageBatchRequestEntryList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> value
+        ) => value;
 
-        public override List<DeleteMessageBatchRequestEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<DeleteMessageBatchRequestEntry> builder,
-            DeleteMessageBatchRequestEntry value
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> builder,
+            global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry value
         ) => builder.Add(value);
 
-        public override DeleteMessageBatchRequestEntryList Build(
-            List<DeleteMessageBatchRequestEntry> builder
-        ) => DeleteMessageBatchRequestEntryList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> Build(
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            DeleteMessageBatchRequestEntryList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -67,7 +70,7 @@ public static partial class DeleteMessageBatchRequestEntryListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<DeleteMessageBatchRequestEntry> builder,
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(DeleteMessageBatchRequestEntrySchema.Schema));
     }

@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectTaggingOutputSchema
 {
     public sealed class Builder
     {
         public string? VersionId { get; set; }
-        public global::Com.Amazonaws.S3.TagSet? TagSet { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tag>? TagSet { get; set; }
     }
 
-    public static StructSchema<GetObjectTaggingOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectTaggingOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectTaggingOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectTaggingOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectTaggingOutput"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class GetObjectTaggingOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The versionId of the object for which you got the tagging information.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-version-id")
@@ -46,10 +42,6 @@ public static partial class GetObjectTaggingOutputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Contains the tag set.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -67,20 +59,24 @@ public static partial class GetObjectTaggingOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TagSet?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSetSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tag>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSetSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectTaggingOutput Build(Builder builder) =>
-            new GetObjectTaggingOutput(
+        public override global::Com.Amazonaws.S3.GetObjectTaggingOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectTaggingOutput(
                 builder.TagSet ?? throw new MissingRequiredMemberException("TagSet"),
                 builder.VersionId
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectTaggingOutput value,
+            global::Com.Amazonaws.S3.GetObjectTaggingOutput value,
             ref TSerializer serializer
         )
         {

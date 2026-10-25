@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ScalingConfigSchema
 {
@@ -15,10 +15,13 @@ public static partial class ScalingConfigSchema
         public int? MaximumConcurrency { get; set; }
     }
 
-    public static StructSchema<ScalingConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ScalingConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ScalingConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ScalingConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ScalingConfig"),
             [
                 new(
@@ -31,53 +34,31 @@ public static partial class ScalingConfigSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Limits the number of concurrent instances that the Amazon SQS event source can invoke.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)1000) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(1000m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>(Amazon SQS only) The scaling configuration for the event source. To remove the configuration, pass an empty value.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ScalingConfig Build(Builder builder) =>
-            new ScalingConfig(builder.MaximumConcurrency);
+        public override global::Com.Amazonaws.Lambda.ScalingConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ScalingConfig(builder.MaximumConcurrency);
 
         public override void SerializeMembers<TSerializer>(
-            ScalingConfig value,
+            global::Com.Amazonaws.Lambda.ScalingConfig value,
             ref TSerializer serializer
         )
         {

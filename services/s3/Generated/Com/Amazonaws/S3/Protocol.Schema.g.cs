@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ProtocolSchema
 {
     public static global::NSmithy.Core.Serde.Schema<Protocol> Schema { get; } =
-        Schemas.StringEnum<Protocol>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<Protocol>(
             ShapeId.Parse("com.amazonaws.s3#Protocol"),
             values: ["http", "https"],
             traits:

@@ -6,23 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetWebIdentityTokenInputSchema
 {
     public sealed class Builder
     {
-        public WebIdentityTokenAudienceListType? Audience { get; set; }
+        public IReadOnlyList<string>? Audience { get; set; }
         public int? DurationSeconds { get; set; }
         public string? SigningAlgorithm { get; set; }
-        public TagListType? Tags { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sts.Tag>? Tags { get; set; }
     }
 
-    public static StructSchema<GetWebIdentityTokenInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetWebIdentityTokenInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetWebIdentityTokenInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetWebIdentityTokenInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetWebIdentityTokenInput"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class GetWebIdentityTokenInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The intended recipient of the web identity token. This value populates the\n            <code>aud</code> claim in the JWT and should identify the service or application that\n         will validate and use the token. The external service should verify this claim to ensure the token was intended for their use.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -53,18 +49,12 @@ public static partial class GetWebIdentityTokenInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The duration, in seconds, for which the JSON Web Token (JWT) will remain valid. \n         The value can range from 60 seconds (1 minute) to 3600 seconds (1 hour). If not specified, \n         the default duration is 300 seconds (5 minutes). The token is designed to be short-lived and \n         should be used for proof of identity, then exchanged for credentials or short-lived tokens in the external service.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)60) },
-                                    { "max", Document.From((decimal)3600) },
+                                    { "min", Document.From(60m) },
+                                    { "max", Document.From(3600m) },
                                 }
                             )
                         ),
@@ -77,18 +67,12 @@ public static partial class GetWebIdentityTokenInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The cryptographic algorithm to use for signing the JSON Web Token (JWT). Valid values are \n         RS256 (RSA with SHA-256) and ES384 (ECDSA using P-384 curve with SHA-384). </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)5) },
-                                    { "max", Document.From((decimal)5) },
+                                    { "min", Document.From(5m) },
+                                    { "max", Document.From(5m) },
                                 }
                             )
                         ),
@@ -98,19 +82,7 @@ public static partial class GetWebIdentityTokenInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An optional list of tags to include in the JSON Web Token (JWT). These tags are added as custom \n         claims to the JWT and can be used by the downstream service for authorization decisions. </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Tags", Target3),
             ],
             [
                 new Trait(
@@ -124,22 +96,27 @@ public static partial class GetWebIdentityTokenInputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<WebIdentityTokenAudienceListType?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => WebIdentityTokenAudienceListTypeSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    WebIdentityTokenAudienceListTypeSchema.Schema!
+                )
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagListType?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagListTypeSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sts.Tag>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagListTypeSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetWebIdentityTokenInput Build(Builder builder) =>
-            new GetWebIdentityTokenInput(
+        public override global::Com.Amazonaws.Sts.GetWebIdentityTokenInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetWebIdentityTokenInput(
                 builder.Audience ?? throw new MissingRequiredMemberException("Audience"),
                 builder.SigningAlgorithm
                     ?? throw new MissingRequiredMemberException("SigningAlgorithm"),
@@ -148,7 +125,7 @@ public static partial class GetWebIdentityTokenInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetWebIdentityTokenInput value,
+            global::Com.Amazonaws.Sts.GetWebIdentityTokenInput value,
             ref TSerializer serializer
         )
         {

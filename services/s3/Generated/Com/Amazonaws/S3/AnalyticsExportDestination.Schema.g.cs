@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsExportDestinationSchema
 {
     public sealed class Builder
     {
-        public AnalyticsS3BucketDestination? S3BucketDestination { get; set; }
+        public global::Com.Amazonaws.S3.AnalyticsS3BucketDestination? S3BucketDestination { get; set; }
     }
 
-    public static StructSchema<AnalyticsExportDestination, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnalyticsExportDestination,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnalyticsExportDestination, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnalyticsExportDestination, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnalyticsExportDestination"),
             [
                 new(
@@ -29,39 +31,34 @@ public static partial class AnalyticsExportDestinationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A destination signifying output to an S3 bucket.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Where to publish the analytics results.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<AnalyticsS3BucketDestination?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => AnalyticsS3BucketDestinationSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsS3BucketDestination?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    AnalyticsS3BucketDestinationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnalyticsExportDestination Build(Builder builder) =>
-            new AnalyticsExportDestination(
+        public override global::Com.Amazonaws.S3.AnalyticsExportDestination Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.AnalyticsExportDestination(
                 builder.S3BucketDestination
                     ?? throw new MissingRequiredMemberException("S3BucketDestination")
             );
 
         public override void SerializeMembers<TSerializer>(
-            AnalyticsExportDestination value,
+            global::Com.Amazonaws.S3.AnalyticsExportDestination value,
             ref TSerializer serializer
         )
         {

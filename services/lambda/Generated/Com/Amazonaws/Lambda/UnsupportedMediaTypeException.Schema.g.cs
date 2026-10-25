@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UnsupportedMediaTypeExceptionSchema
 {
@@ -15,64 +15,42 @@ public static partial class UnsupportedMediaTypeExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<UnsupportedMediaTypeException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.UnsupportedMediaTypeException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UnsupportedMediaTypeException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.UnsupportedMediaTypeException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#UnsupportedMediaTypeException"),
+            [new("Type", Target0), new("message", Target1)],
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The content type of the <code>Invoke</code> request body is not JSON.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)415)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(415m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UnsupportedMediaTypeException Build(Builder builder) =>
-            new UnsupportedMediaTypeException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.UnsupportedMediaTypeException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.UnsupportedMediaTypeException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            UnsupportedMediaTypeException value,
+            global::Com.Amazonaws.Lambda.UnsupportedMediaTypeException value,
             ref TSerializer serializer
         )
         {

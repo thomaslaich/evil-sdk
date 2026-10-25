@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class JWTPayloadSizeExceededExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class JWTPayloadSizeExceededExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<JWTPayloadSizeExceededException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.JWTPayloadSizeExceededException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<JWTPayloadSizeExceededException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.JWTPayloadSizeExceededException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#JWTPayloadSizeExceededException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class JWTPayloadSizeExceededExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("JWTPayloadSizeExceededException") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The requested token payload size exceeds the maximum allowed size. Reduce the number of request tags included in the <code>GetWebIdentityToken</code> API call to reduce the token payload size.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override JWTPayloadSizeExceededException Build(Builder builder) =>
-            new JWTPayloadSizeExceededException(builder.Message);
+        public override global::Com.Amazonaws.Sts.JWTPayloadSizeExceededException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.JWTPayloadSizeExceededException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            JWTPayloadSizeExceededException value,
+            global::Com.Amazonaws.Sts.JWTPayloadSizeExceededException value,
             ref TSerializer serializer
         )
         {

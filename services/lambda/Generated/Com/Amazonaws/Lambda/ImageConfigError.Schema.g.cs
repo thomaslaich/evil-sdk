@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ImageConfigErrorSchema
 {
@@ -16,71 +16,47 @@ public static partial class ImageConfigErrorSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<ImageConfigError, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ImageConfigError,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ImageConfigError, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ImageConfigError, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ImageConfigError"),
             [
-                new(
-                    "ErrorCode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Error code.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("ErrorCode", Target0),
                 new(
                     "Message",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Error message.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Error response to <code>GetFunctionConfiguration</code>.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ImageConfigError Build(Builder builder) =>
-            new ImageConfigError(builder.ErrorCode, builder.Message);
+        public override global::Com.Amazonaws.Lambda.ImageConfigError Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ImageConfigError(builder.ErrorCode, builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            ImageConfigError value,
+            global::Com.Amazonaws.Lambda.ImageConfigError value,
             ref TSerializer serializer
         )
         {

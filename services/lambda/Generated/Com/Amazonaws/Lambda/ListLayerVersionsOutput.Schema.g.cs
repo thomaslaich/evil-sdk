@@ -6,64 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListLayerVersionsOutputSchema
 {
     public sealed class Builder
     {
         public string? NextMarker { get; set; }
-        public LayerVersionsList? LayerVersions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.LayerVersionsListItem>? LayerVersions { get; set; }
     }
 
-    public static StructSchema<ListLayerVersionsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListLayerVersionsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListLayerVersionsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListLayerVersionsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListLayerVersionsOutput"),
-            [
-                new(
-                    "NextMarker",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A pagination token returned when the response doesn't contain all versions.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "LayerVersions",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of versions.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("NextMarker", Target0), new("LayerVersions", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -73,17 +38,26 @@ public static partial class ListLayerVersionsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<LayerVersionsList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => LayerVersionsListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.LayerVersionsListItem>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => LayerVersionsListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListLayerVersionsOutput Build(Builder builder) =>
-            new ListLayerVersionsOutput(builder.LayerVersions, builder.NextMarker);
+        public override global::Com.Amazonaws.Lambda.ListLayerVersionsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListLayerVersionsOutput(
+                builder.LayerVersions,
+                builder.NextMarker
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListLayerVersionsOutput value,
+            global::Com.Amazonaws.Lambda.ListLayerVersionsOutput value,
             ref TSerializer serializer
         )
         {

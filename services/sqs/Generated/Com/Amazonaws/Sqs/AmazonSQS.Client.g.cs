@@ -992,16 +992,17 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
     public AmazonSQSClient(Uri endpoint, AmazonSQSClientConfig? config = null)
         : this(WithEndpoint(endpoint, config)) { }
 
-    private AmazonSQSClient(AmazonSQSClientConfig config)
+    public AmazonSQSClient(AmazonSQSClientConfig config)
     {
         ArgumentNullException.ThrowIfNull(config);
         this.environment = SmithyHttpClientEnvironment.Create(
-            AmazonSQSSchema.Schema,
+            global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema,
             config,
             static () => new AwsJson10Protocol(),
             ModeledAuthSchemes,
             null,
-            null
+            null,
+            modeledEndpointResolver: endpoint => new AmazonSQSEndpointResolver(config, endpoint)
         );
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
@@ -1011,219 +1012,288 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
                 AddPermissionInput,
                 AddPermissionOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                AddPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddPermissionSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema
             );
             this.CancelMessageMoveTaskBinding = new SmithyOperationBinding<
                 CancelMessageMoveTaskInput,
                 CancelMessageMoveTaskOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                CancelMessageMoveTaskSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CancelMessageMoveTaskSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema
             );
             this.ChangeMessageVisibilityBinding = new SmithyOperationBinding<
                 ChangeMessageVisibilityInput,
                 ChangeMessageVisibilityOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ChangeMessageVisibilitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ChangeMessageVisibilitySchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema
             );
             this.ChangeMessageVisibilityBatchBinding = new SmithyOperationBinding<
                 ChangeMessageVisibilityBatchInput,
                 ChangeMessageVisibilityBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ChangeMessageVisibilityBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ChangeMessageVisibilityBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema
             );
             this.CreateQueueBinding = new SmithyOperationBinding<
                 CreateQueueInput,
                 CreateQueueOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                CreateQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema
             );
             this.DeleteMessageBinding = new SmithyOperationBinding<
                 DeleteMessageInput,
                 DeleteMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema
             );
             this.DeleteMessageBatchBinding = new SmithyOperationBinding<
                 DeleteMessageBatchInput,
                 DeleteMessageBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteMessageBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteMessageBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema
             );
             this.DeleteQueueBinding = new SmithyOperationBinding<
                 DeleteQueueInput,
                 DeleteQueueOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema
             );
             this.GetQueueAttributesBinding = new SmithyOperationBinding<
                 GetQueueAttributesInput,
                 GetQueueAttributesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                GetQueueAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetQueueAttributesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema
             );
             this.GetQueueUrlBinding = new SmithyOperationBinding<
                 GetQueueUrlInput,
                 GetQueueUrlOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                GetQueueUrlSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetQueueUrlSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema
             );
             this.ListDeadLetterSourceQueuesBinding = new SmithyOperationBinding<
                 ListDeadLetterSourceQueuesInput,
                 ListDeadLetterSourceQueuesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListDeadLetterSourceQueuesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDeadLetterSourceQueuesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema
             );
             this.ListMessageMoveTasksBinding = new SmithyOperationBinding<
                 ListMessageMoveTasksInput,
                 ListMessageMoveTasksOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListMessageMoveTasksSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListMessageMoveTasksSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema
             );
             this.ListQueueTagsBinding = new SmithyOperationBinding<
                 ListQueueTagsInput,
                 ListQueueTagsOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListQueueTagsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListQueueTagsSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema
             );
             this.ListQueuesBinding = new SmithyOperationBinding<ListQueuesInput, ListQueuesOutput>(
-                AmazonSQSSchema.Schema.Id,
-                ListQueuesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListQueuesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema
             );
             this.PurgeQueueBinding = new SmithyOperationBinding<PurgeQueueInput, PurgeQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                PurgeQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PurgeQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema
             );
             this.ReceiveMessageBinding = new SmithyOperationBinding<
                 ReceiveMessageInput,
                 ReceiveMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ReceiveMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ReceiveMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema
             );
             this.RemovePermissionBinding = new SmithyOperationBinding<
                 RemovePermissionInput,
                 RemovePermissionOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                RemovePermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemovePermissionSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema
             );
             this.SendMessageBinding = new SmithyOperationBinding<
                 SendMessageInput,
                 SendMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SendMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SendMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema
             );
             this.SendMessageBatchBinding = new SmithyOperationBinding<
                 SendMessageBatchInput,
                 SendMessageBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SendMessageBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SendMessageBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema
             );
             this.SetQueueAttributesBinding = new SmithyOperationBinding<
                 SetQueueAttributesInput,
                 SetQueueAttributesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SetQueueAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SetQueueAttributesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema
             );
             this.StartMessageMoveTaskBinding = new SmithyOperationBinding<
                 StartMessageMoveTaskInput,
                 StartMessageMoveTaskOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                StartMessageMoveTaskSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(StartMessageMoveTaskSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema
             );
             this.TagQueueBinding = new SmithyOperationBinding<TagQueueInput, TagQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                TagQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(TagQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema
             );
             this.UntagQueueBinding = new SmithyOperationBinding<UntagQueueInput, UntagQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                UntagQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UntagQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema
             );
         }
         catch
@@ -1238,12 +1308,13 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
         ArgumentNullException.ThrowIfNull(httpClient);
         config ??= new AmazonSQSClientConfig();
         this.environment = SmithyHttpClientEnvironment.Create(
-            AmazonSQSSchema.Schema,
+            global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema,
             config,
             static () => new AwsJson10Protocol(),
             ModeledAuthSchemes,
             null,
-            httpClient
+            httpClient,
+            modeledEndpointResolver: endpoint => new AmazonSQSEndpointResolver(config, endpoint)
         );
         this.runtime = environment.Runtime;
         var serviceProtocol = environment.ServiceProtocol;
@@ -1253,219 +1324,288 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
                 AddPermissionInput,
                 AddPermissionOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                AddPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddPermissionSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema
             );
             this.CancelMessageMoveTaskBinding = new SmithyOperationBinding<
                 CancelMessageMoveTaskInput,
                 CancelMessageMoveTaskOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                CancelMessageMoveTaskSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CancelMessageMoveTaskSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema
             );
             this.ChangeMessageVisibilityBinding = new SmithyOperationBinding<
                 ChangeMessageVisibilityInput,
                 ChangeMessageVisibilityOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ChangeMessageVisibilitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ChangeMessageVisibilitySchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema
             );
             this.ChangeMessageVisibilityBatchBinding = new SmithyOperationBinding<
                 ChangeMessageVisibilityBatchInput,
                 ChangeMessageVisibilityBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ChangeMessageVisibilityBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ChangeMessageVisibilityBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema
             );
             this.CreateQueueBinding = new SmithyOperationBinding<
                 CreateQueueInput,
                 CreateQueueOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                CreateQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema
             );
             this.DeleteMessageBinding = new SmithyOperationBinding<
                 DeleteMessageInput,
                 DeleteMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema
             );
             this.DeleteMessageBatchBinding = new SmithyOperationBinding<
                 DeleteMessageBatchInput,
                 DeleteMessageBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteMessageBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteMessageBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema
             );
             this.DeleteQueueBinding = new SmithyOperationBinding<
                 DeleteQueueInput,
                 DeleteQueueOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema
             );
             this.GetQueueAttributesBinding = new SmithyOperationBinding<
                 GetQueueAttributesInput,
                 GetQueueAttributesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                GetQueueAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetQueueAttributesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema
             );
             this.GetQueueUrlBinding = new SmithyOperationBinding<
                 GetQueueUrlInput,
                 GetQueueUrlOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                GetQueueUrlSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetQueueUrlSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema
             );
             this.ListDeadLetterSourceQueuesBinding = new SmithyOperationBinding<
                 ListDeadLetterSourceQueuesInput,
                 ListDeadLetterSourceQueuesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListDeadLetterSourceQueuesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDeadLetterSourceQueuesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema
             );
             this.ListMessageMoveTasksBinding = new SmithyOperationBinding<
                 ListMessageMoveTasksInput,
                 ListMessageMoveTasksOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListMessageMoveTasksSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListMessageMoveTasksSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema
             );
             this.ListQueueTagsBinding = new SmithyOperationBinding<
                 ListQueueTagsInput,
                 ListQueueTagsOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListQueueTagsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListQueueTagsSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema
             );
             this.ListQueuesBinding = new SmithyOperationBinding<ListQueuesInput, ListQueuesOutput>(
-                AmazonSQSSchema.Schema.Id,
-                ListQueuesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListQueuesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema
             );
             this.PurgeQueueBinding = new SmithyOperationBinding<PurgeQueueInput, PurgeQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                PurgeQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PurgeQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema
             );
             this.ReceiveMessageBinding = new SmithyOperationBinding<
                 ReceiveMessageInput,
                 ReceiveMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ReceiveMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ReceiveMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema
             );
             this.RemovePermissionBinding = new SmithyOperationBinding<
                 RemovePermissionInput,
                 RemovePermissionOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                RemovePermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemovePermissionSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema
             );
             this.SendMessageBinding = new SmithyOperationBinding<
                 SendMessageInput,
                 SendMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SendMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SendMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema
             );
             this.SendMessageBatchBinding = new SmithyOperationBinding<
                 SendMessageBatchInput,
                 SendMessageBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SendMessageBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SendMessageBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema
             );
             this.SetQueueAttributesBinding = new SmithyOperationBinding<
                 SetQueueAttributesInput,
                 SetQueueAttributesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SetQueueAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SetQueueAttributesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema
             );
             this.StartMessageMoveTaskBinding = new SmithyOperationBinding<
                 StartMessageMoveTaskInput,
                 StartMessageMoveTaskOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                StartMessageMoveTaskSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(StartMessageMoveTaskSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema
             );
             this.TagQueueBinding = new SmithyOperationBinding<TagQueueInput, TagQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                TagQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(TagQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema
             );
             this.UntagQueueBinding = new SmithyOperationBinding<UntagQueueInput, UntagQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                UntagQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UntagQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema
             );
         }
         catch
@@ -1479,7 +1619,7 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
     {
         config ??= new AmazonSQSClientConfig();
         this.environment = SmithyHttpClientEnvironment.FromRuntime(
-            AmazonSQSSchema.Schema,
+            global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema,
             runtime,
             config,
             static () => new AwsJson10Protocol()
@@ -1492,219 +1632,288 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
                 AddPermissionInput,
                 AddPermissionOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                AddPermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(AddPermissionSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.AddPermissionSchema.Schema
             );
             this.CancelMessageMoveTaskBinding = new SmithyOperationBinding<
                 CancelMessageMoveTaskInput,
                 CancelMessageMoveTaskOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                CancelMessageMoveTaskSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CancelMessageMoveTaskSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.CancelMessageMoveTaskSchema.Schema
             );
             this.ChangeMessageVisibilityBinding = new SmithyOperationBinding<
                 ChangeMessageVisibilityInput,
                 ChangeMessageVisibilityOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ChangeMessageVisibilitySchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ChangeMessageVisibilitySchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilitySchema.Schema
             );
             this.ChangeMessageVisibilityBatchBinding = new SmithyOperationBinding<
                 ChangeMessageVisibilityBatchInput,
                 ChangeMessageVisibilityBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ChangeMessageVisibilityBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ChangeMessageVisibilityBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ChangeMessageVisibilityBatchSchema.Schema
             );
             this.CreateQueueBinding = new SmithyOperationBinding<
                 CreateQueueInput,
                 CreateQueueOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                CreateQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(CreateQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.CreateQueueSchema.Schema
             );
             this.DeleteMessageBinding = new SmithyOperationBinding<
                 DeleteMessageInput,
                 DeleteMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageSchema.Schema
             );
             this.DeleteMessageBatchBinding = new SmithyOperationBinding<
                 DeleteMessageBatchInput,
                 DeleteMessageBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteMessageBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteMessageBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteMessageBatchSchema.Schema
             );
             this.DeleteQueueBinding = new SmithyOperationBinding<
                 DeleteQueueInput,
                 DeleteQueueOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                DeleteQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(DeleteQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.DeleteQueueSchema.Schema
             );
             this.GetQueueAttributesBinding = new SmithyOperationBinding<
                 GetQueueAttributesInput,
                 GetQueueAttributesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                GetQueueAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetQueueAttributesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueAttributesSchema.Schema
             );
             this.GetQueueUrlBinding = new SmithyOperationBinding<
                 GetQueueUrlInput,
                 GetQueueUrlOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                GetQueueUrlSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(GetQueueUrlSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.GetQueueUrlSchema.Schema
             );
             this.ListDeadLetterSourceQueuesBinding = new SmithyOperationBinding<
                 ListDeadLetterSourceQueuesInput,
                 ListDeadLetterSourceQueuesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListDeadLetterSourceQueuesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListDeadLetterSourceQueuesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListDeadLetterSourceQueuesSchema.Schema
             );
             this.ListMessageMoveTasksBinding = new SmithyOperationBinding<
                 ListMessageMoveTasksInput,
                 ListMessageMoveTasksOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListMessageMoveTasksSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListMessageMoveTasksSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListMessageMoveTasksSchema.Schema
             );
             this.ListQueueTagsBinding = new SmithyOperationBinding<
                 ListQueueTagsInput,
                 ListQueueTagsOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ListQueueTagsSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListQueueTagsSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueueTagsSchema.Schema
             );
             this.ListQueuesBinding = new SmithyOperationBinding<ListQueuesInput, ListQueuesOutput>(
-                AmazonSQSSchema.Schema.Id,
-                ListQueuesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ListQueuesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ListQueuesSchema.Schema
             );
             this.PurgeQueueBinding = new SmithyOperationBinding<PurgeQueueInput, PurgeQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                PurgeQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(PurgeQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.PurgeQueueSchema.Schema
             );
             this.ReceiveMessageBinding = new SmithyOperationBinding<
                 ReceiveMessageInput,
                 ReceiveMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                ReceiveMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(ReceiveMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.ReceiveMessageSchema.Schema
             );
             this.RemovePermissionBinding = new SmithyOperationBinding<
                 RemovePermissionInput,
                 RemovePermissionOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                RemovePermissionSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(RemovePermissionSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.RemovePermissionSchema.Schema
             );
             this.SendMessageBinding = new SmithyOperationBinding<
                 SendMessageInput,
                 SendMessageOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SendMessageSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SendMessageSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageSchema.Schema
             );
             this.SendMessageBatchBinding = new SmithyOperationBinding<
                 SendMessageBatchInput,
                 SendMessageBatchOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SendMessageBatchSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SendMessageBatchSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SendMessageBatchSchema.Schema
             );
             this.SetQueueAttributesBinding = new SmithyOperationBinding<
                 SetQueueAttributesInput,
                 SetQueueAttributesOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                SetQueueAttributesSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(SetQueueAttributesSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.SetQueueAttributesSchema.Schema
             );
             this.StartMessageMoveTaskBinding = new SmithyOperationBinding<
                 StartMessageMoveTaskInput,
                 StartMessageMoveTaskOutput
             >(
-                AmazonSQSSchema.Schema.Id,
-                StartMessageMoveTaskSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(StartMessageMoveTaskSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.StartMessageMoveTaskSchema.Schema
             );
             this.TagQueueBinding = new SmithyOperationBinding<TagQueueInput, TagQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                TagQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(TagQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.TagQueueSchema.Schema
             );
             this.UntagQueueBinding = new SmithyOperationBinding<UntagQueueInput, UntagQueueOutput>(
-                AmazonSQSSchema.Schema.Id,
-                UntagQueueSchema.Schema.Id,
-                serviceProtocol.ForClientOperation(UntagQueueSchema.Schema),
+                global::Com.Amazonaws.Sqs.Schemas.AmazonSQSSchema.Schema.Id,
+                global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema.Id,
+                serviceProtocol.ForClientOperation(
+                    global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema
+                ),
                 new string[] { "aws.auth#sigv4" },
-                null
+                null,
+                global::Com.Amazonaws.Sqs.Schemas.UntagQueueSchema.Schema
             );
         }
         catch
@@ -2179,7 +2388,7 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -2336,7 +2545,7 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
             {
                 continue;
             }
-            foreach (var item in items.Values)
+            foreach (var item in items)
             {
                 yield return item;
             }
@@ -2642,5 +2851,25 @@ public sealed class AmazonSQSClientConfig : SmithyClientConfig
     public AmazonSQSClientConfig() { }
 
     public AmazonSQSClientConfig(AmazonSQSClientConfig source)
-        : base(source) { }
+        : base(source)
+    {
+        Region = source.Region;
+        UseDualStack = source.UseDualStack;
+        UseFips = source.UseFips;
+    }
+
+    /// <summary>
+    /// The AWS region requests are sent to, such as us-east-1.
+    /// </summary>
+    public string? Region { get; set; }
+
+    /// <summary>
+    /// Whether to use dual-stack (IPv4 and IPv6) endpoints.
+    /// </summary>
+    public bool? UseDualStack { get; set; }
+
+    /// <summary>
+    /// Whether to use FIPS endpoints.
+    /// </summary>
+    public bool? UseFips { get; set; }
 }

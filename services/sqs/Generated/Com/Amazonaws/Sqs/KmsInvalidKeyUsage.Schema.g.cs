@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class KmsInvalidKeyUsageSchema
 {
@@ -15,10 +15,13 @@ public static partial class KmsInvalidKeyUsageSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<KmsInvalidKeyUsage, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.KmsInvalidKeyUsage,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<KmsInvalidKeyUsage, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.KmsInvalidKeyUsage, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#KmsInvalidKeyUsage"),
             [new("message", Target0)],
             [
@@ -28,31 +31,27 @@ public static partial class KmsInvalidKeyUsageSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("KMS.InvalidKeyUsageException") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request was rejected for one of the following reasons:</p>\n         <ul>\n            <li>\n               <p>The KeyUsage value of the KMS key is incompatible with the API\n                    operation.</p>\n            </li>\n            <li>\n               <p>The encryption algorithm or signing algorithm specified for the operation is\n                    incompatible with the type of key material in the KMS key (KeySpec).</p>\n            </li>\n         </ul>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override KmsInvalidKeyUsage Build(Builder builder) =>
-            new KmsInvalidKeyUsage(builder.Message);
+        public override global::Com.Amazonaws.Sqs.KmsInvalidKeyUsage Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.KmsInvalidKeyUsage(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            KmsInvalidKeyUsage value,
+            global::Com.Amazonaws.Sqs.KmsInvalidKeyUsage value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class WaitDetailsSchema
 {
@@ -15,52 +15,28 @@ public static partial class WaitDetailsSchema
         public DateTimeOffset? ScheduledEndTimestamp { get; set; }
     }
 
-    public static StructSchema<WaitDetails, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.WaitDetails, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<WaitDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.WaitDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#WaitDetails"),
-            [
-                new(
-                    "ScheduledEndTimestamp",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the wait operation is scheduled to complete, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a wait operation.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("ScheduledEndTimestamp", Target0)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target0 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override WaitDetails Build(Builder builder) =>
-            new WaitDetails(builder.ScheduledEndTimestamp);
+        public override global::Com.Amazonaws.Lambda.WaitDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.WaitDetails(builder.ScheduledEndTimestamp);
 
         public override void SerializeMembers<TSerializer>(
-            WaitDetails value,
+            global::Com.Amazonaws.Lambda.WaitDetails value,
             ref TSerializer serializer
         )
         {

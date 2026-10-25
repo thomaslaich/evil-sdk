@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeletedObjectSchema
 {
@@ -18,10 +18,11 @@ public static partial class DeletedObjectSchema
         public string? DeleteMarkerVersionId { get; set; }
     }
 
-    public static StructSchema<DeletedObject, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.DeletedObject, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeletedObject, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeletedObject, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeletedObject"),
             [
                 new(
@@ -30,33 +31,14 @@ public static partial class DeletedObjectSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the deleted object.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "VersionId",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version ID of the deleted object.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("VersionId", Target1),
                 new(
                     "DeleteMarker",
                     Target2,
@@ -66,50 +48,32 @@ public static partial class DeletedObjectSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether the specified object version that was permanently deleted was (true) or was not\n      (false) a delete marker before deletion. In a simple DELETE, this header indicates whether (true) or not\n      (false) the current version of the object is a delete marker. To learn more about delete markers, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html\">Working with delete\n        markers</a>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "DeleteMarkerVersionId",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version ID of the delete marker created as a result of the DELETE operation. If you delete a\n      specific object version, the value returned by this header is the version ID of the object version\n      deleted.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("DeleteMarkerVersionId", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Information about the deleted object.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeletedObject Build(Builder builder) =>
-            new DeletedObject(
+        public override global::Com.Amazonaws.S3.DeletedObject Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeletedObject(
                 builder.DeleteMarker,
                 builder.DeleteMarkerVersionId,
                 builder.Key,
@@ -117,7 +81,7 @@ public static partial class DeletedObjectSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeletedObject value,
+            global::Com.Amazonaws.S3.DeletedObject value,
             ref TSerializer serializer
         )
         {

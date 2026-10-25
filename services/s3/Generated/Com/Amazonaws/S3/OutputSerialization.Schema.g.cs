@@ -5,70 +5,44 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class OutputSerializationSchema
 {
     public sealed class Builder
     {
-        public CSVOutput? CSV { get; set; }
-        public JSONOutput? JSON { get; set; }
+        public global::Com.Amazonaws.S3.CSVOutput? CSV { get; set; }
+        public global::Com.Amazonaws.S3.JSONOutput? JSON { get; set; }
     }
 
-    public static StructSchema<OutputSerialization, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.OutputSerialization,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OutputSerialization, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.OutputSerialization, Builder>(
             ShapeId.Parse("com.amazonaws.s3#OutputSerialization"),
-            [
-                new(
-                    "CSV",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the serialization of CSV-encoded Select results.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "JSON",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies JSON as request's output serialization format.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Describes how results of the Select job are serialized.</p>")
-                ),
-            ]
+            [new("CSV", Target0), new("JSON", Target1)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CSVOutput?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CSVOutputSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<JSONOutput?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => JSONOutputSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CSVOutput?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CSVOutputSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.JSONOutput?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => JSONOutputSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OutputSerialization Build(Builder builder) =>
-            new OutputSerialization(builder.CSV, builder.JSON);
+        public override global::Com.Amazonaws.S3.OutputSerialization Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.OutputSerialization(builder.CSV, builder.JSON);
 
         public override void SerializeMembers<TSerializer>(
-            OutputSerialization value,
+            global::Com.Amazonaws.S3.OutputSerialization value,
             ref TSerializer serializer
         )
         {

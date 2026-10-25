@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvocationCompletedDetailsSchema
 {
@@ -16,14 +16,16 @@ public static partial class InvocationCompletedDetailsSchema
         public DateTimeOffset? StartTimestamp { get; set; }
         public DateTimeOffset? EndTimestamp { get; set; }
         public string? RequestId { get; set; }
-        public EventError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.EventError? Error { get; set; }
     }
 
-    public static StructSchema<InvocationCompletedDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvocationCompletedDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvocationCompletedDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvocationCompletedDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvocationCompletedDetails"),
             [
                 new(
@@ -33,18 +35,8 @@ public static partial class InvocationCompletedDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the invocation started, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -55,18 +47,8 @@ public static partial class InvocationCompletedDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the invocation ended, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -77,60 +59,39 @@ public static partial class InvocationCompletedDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The request ID for the invocation.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "Error",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Details about the invocation failure.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Error", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a function invocation that completed.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target0 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<EventError?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventErrorSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventError?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvocationCompletedDetails Build(Builder builder) =>
-            new InvocationCompletedDetails(
+        public override global::Com.Amazonaws.Lambda.InvocationCompletedDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.InvocationCompletedDetails(
                 builder.EndTimestamp.GetValueOrDefault(),
                 builder.RequestId ?? throw new MissingRequiredMemberException("RequestId"),
                 builder.StartTimestamp.GetValueOrDefault(),
@@ -138,7 +99,7 @@ public static partial class InvocationCompletedDetailsSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            InvocationCompletedDetails value,
+            global::Com.Amazonaws.Lambda.InvocationCompletedDetails value,
             ref TSerializer serializer
         )
         {

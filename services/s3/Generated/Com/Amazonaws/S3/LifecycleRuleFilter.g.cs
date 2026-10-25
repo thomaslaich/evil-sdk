@@ -32,10 +32,4 @@ namespace Com.Amazonaws.S3;
 /// lifecycle configurations.&lt;/p&gt;
 /// &lt;/note&gt;
 /// </param>
-public sealed record class LifecycleRuleFilter(
-    LifecycleRuleAndOperator? And = null,
-    long? ObjectSizeGreaterThan = null,
-    long? ObjectSizeLessThan = null,
-    string? Prefix = null,
-    global::Com.Amazonaws.S3.Tag? Tag = null
-);
+public sealed record class LifecycleRuleFilter(LifecycleRuleAndOperator? And = null, long? ObjectSizeGreaterThan = null, long? ObjectSizeLessThan = null, string? Prefix = null, global::Com.Amazonaws.S3.Tag? Tag = null);

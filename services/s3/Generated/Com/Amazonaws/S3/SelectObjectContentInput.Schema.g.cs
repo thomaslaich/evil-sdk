@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SelectObjectContentInputSchema
 {
@@ -26,11 +26,13 @@ public static partial class SelectObjectContentInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<SelectObjectContentInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.SelectObjectContentInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SelectObjectContentInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SelectObjectContentInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SelectObjectContentInput"),
             [
                 new(
@@ -39,10 +41,6 @@ public static partial class SelectObjectContentInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The S3 bucket.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -69,20 +67,13 @@ public static partial class SelectObjectContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The object key.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -97,12 +88,6 @@ public static partial class SelectObjectContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption (SSE) algorithm used to encrypt the object. This parameter is needed only when the object was created \n    using a checksum algorithm. For more information,\n    see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html\">Protecting data using SSE-C keys</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -113,12 +98,6 @@ public static partial class SelectObjectContentInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption (SSE) customer managed key. This parameter is needed only when the object was created using a checksum algorithm. \n    For more information, see\n    <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html\">Protecting data using SSE-C keys</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key")
@@ -135,12 +114,6 @@ public static partial class SelectObjectContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The MD5 server-side encryption (SSE) customer managed key. This parameter is needed only when the object was created using a checksum \n    algorithm. For more information,\n    see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html\">Protecting data using SSE-C keys</a> in the\n    <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
                         ),
@@ -152,10 +125,6 @@ public static partial class SelectObjectContentInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The expression that is used to query the object.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -169,42 +138,18 @@ public static partial class SelectObjectContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The type of the provided expression (for example, SQL).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "RequestProgress",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies if periodic request progress information should be enabled.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("RequestProgress", Target7),
                 new(
                     "InputSerialization",
                     Target8,
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the format of the data in the object that is being queried.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -218,41 +163,17 @@ public static partial class SelectObjectContentInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the format of the data that you want Amazon S3 to return in response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "ScanRange",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the byte range of the object to get the records from. A record is processed when its first\n      byte is contained by the range. This parameter is optional, but when specified, it must not be empty.\n      See RFC 2616, Section 14.35.1 about how to specify the start and end of the range.</p>\n         <p>\n            <code>ScanRange</code>may be used in the following ways:</p>\n         <ul>\n            <li>\n               <p>\n                  <code><scanrange><start>50</start><end>100</end></scanrange></code>\n          - process only the records starting between the bytes 50 and 100 (inclusive, counting from\n          zero)</p>\n            </li>\n            <li>\n               <p>\n                  <code><scanrange><start>50</start></scanrange></code> - process only the\n          records starting after the byte 50</p>\n            </li>\n            <li>\n               <p>\n                  <code><scanrange><end>50</end></scanrange></code> - process only the\n          records within the last 50 bytes of the file.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ScanRange", Target10),
                 new(
                     "ExpectedBucketOwner",
                     Target11,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -261,12 +182,6 @@ public static partial class SelectObjectContentInputSchema
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>Learn Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3\n        Select can continue to use the feature as usual. <a href=\"http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/\">Learn more</a>\n            </p>\n         </note>\n         <p>Request to filter the contents of an Amazon S3 object based on a simple Structured Query Language (SQL)\n      statement. In the request, along with the SQL expression, you must specify a data serialization format\n      (JSON or CSV) of the object. Amazon S3 uses this to parse object data into records. It returns only records\n      that match the specified SQL expression. You must also specify the data serialization format for the\n      response. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html\">S3Select API Documentation</a>.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -279,34 +194,56 @@ public static partial class SelectObjectContentInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ExpressionType?> Target6 =
-            Schemas.Nullable(ExpressionTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ExpressionTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestProgress?> Target7 =
-            Schemas.NullableReference(Schemas.Lazy(() => RequestProgressSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestProgressSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InputSerialization?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => InputSerializationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InputSerializationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.OutputSerialization?> Target9 =
-            Schemas.NullableReference(Schemas.Lazy(() => OutputSerializationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OutputSerializationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ScanRange?> Target10 =
-            Schemas.NullableReference(Schemas.Lazy(() => ScanRangeSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ScanRangeSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SelectObjectContentInput Build(Builder builder) =>
-            new SelectObjectContentInput(
+        public override global::Com.Amazonaws.S3.SelectObjectContentInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SelectObjectContentInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Expression ?? throw new MissingRequiredMemberException("Expression"),
                 builder.ExpressionType
@@ -325,7 +262,7 @@ public static partial class SelectObjectContentInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            SelectObjectContentInput value,
+            global::Com.Amazonaws.S3.SelectObjectContentInput value,
             ref TSerializer serializer
         )
         {

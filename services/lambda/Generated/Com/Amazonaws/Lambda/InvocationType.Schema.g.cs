@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvocationTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<InvocationType> Schema { get; } =
-        Schemas.StringEnum<InvocationType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<InvocationType>(
             ShapeId.Parse("com.amazonaws.lambda#InvocationType"),
             values: ["Event", "RequestResponse", "DryRun"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

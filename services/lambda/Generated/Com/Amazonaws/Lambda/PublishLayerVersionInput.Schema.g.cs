@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PublishLayerVersionInputSchema
 {
@@ -14,17 +14,19 @@ public static partial class PublishLayerVersionInputSchema
     {
         public string? LayerName { get; set; }
         public string? Description { get; set; }
-        public LayerVersionContentInput? Content { get; set; }
-        public global::Com.Amazonaws.Lambda.CompatibleArchitectures? CompatibleArchitectures { get; set; }
-        public global::Com.Amazonaws.Lambda.CompatibleRuntimes? CompatibleRuntimes { get; set; }
+        public global::Com.Amazonaws.Lambda.LayerVersionContentInput? Content { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.Architecture>? CompatibleArchitectures { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.Runtime>? CompatibleRuntimes { get; set; }
         public string? LicenseInfo { get; set; }
     }
 
-    public static StructSchema<PublishLayerVersionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PublishLayerVersionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PublishLayerVersionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PublishLayerVersionInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PublishLayerVersionInput"),
             [
                 new(
@@ -34,12 +36,6 @@ public static partial class PublishLayerVersionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or Amazon Resource Name (ARN) of the layer.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -48,8 +44,8 @@ public static partial class PublishLayerVersionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -63,10 +59,6 @@ public static partial class PublishLayerVersionInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -75,22 +67,14 @@ public static partial class PublishLayerVersionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The description of the version.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -101,79 +85,29 @@ public static partial class PublishLayerVersionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The function layer archive.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "CompatibleArchitectures",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of compatible <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html\">instruction set architectures</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "CompatibleRuntimes",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of compatible <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">function runtimes</a>. Used for filtering with <a>ListLayers</a> and <a>ListLayerVersions</a>.</p> <p>The following list includes deprecated runtimes. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy\">Runtime deprecation policy</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("CompatibleArchitectures", Target3),
+                new("CompatibleRuntimes", Target4),
                 new(
                     "LicenseInfo",
                     Target5,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The layer's software license. It can be any of the following:</p> <ul> <li> <p>An <a href=\"https://spdx.org/licenses/\">SPDX license identifier</a>. For example, <code>MIT</code>.</p> </li> <li> <p>The URL of a license hosted on the internet. For example, <code>https://opensource.org/licenses/MIT</code>.</p> </li> <li> <p>The full text of the license.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)512) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(512m) },
                                 }
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^.*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -183,10 +117,6 @@ public static partial class PublishLayerVersionInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#PublishLayerVersionRequest")
                 ),
@@ -194,22 +124,38 @@ public static partial class PublishLayerVersionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<LayerVersionContentInput?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => LayerVersionContentInputSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CompatibleArchitectures?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => CompatibleArchitecturesSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CompatibleRuntimes?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => CompatibleRuntimesSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.LayerVersionContentInput?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    LayerVersionContentInputSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.Architecture>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CompatibleArchitecturesSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.Runtime>?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CompatibleRuntimesSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PublishLayerVersionInput Build(Builder builder) =>
-            new PublishLayerVersionInput(
+        public override global::Com.Amazonaws.Lambda.PublishLayerVersionInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.PublishLayerVersionInput(
                 builder.Content ?? throw new MissingRequiredMemberException("Content"),
                 builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
                 builder.CompatibleArchitectures,
@@ -219,7 +165,7 @@ public static partial class PublishLayerVersionInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PublishLayerVersionInput value,
+            global::Com.Amazonaws.Lambda.PublishLayerVersionInput value,
             ref TSerializer serializer
         )
         {

@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageBatchOutputSchema
 {
     public sealed class Builder
     {
-        public SendMessageBatchResultEntryList? Successful { get; set; }
-        public BatchResultErrorEntryList? Failed { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchResultEntry>? Successful { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.BatchResultErrorEntry>? Failed { get; set; }
     }
 
-    public static StructSchema<SendMessageBatchOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.SendMessageBatchOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendMessageBatchOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.SendMessageBatchOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageBatchOutput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class SendMessageBatchOutputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of <code>\n               <a>SendMessageBatchResultEntry</a>\n            </code> items.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -56,12 +52,6 @@ public static partial class SendMessageBatchOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of <code>\n               <a>BatchResultErrorEntry</a>\n            </code> items with error\n            details about each message that can't be enqueued.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -78,12 +68,6 @@ public static partial class SendMessageBatchOutputSchema
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>For each message in the batch, the response contains a <code>\n               <a>SendMessageBatchResultEntry</a>\n            </code> tag if the message succeeds or a\n                    <code>\n               <a>BatchResultErrorEntry</a>\n            </code> tag if the message\n            fails.</p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
                 ),
@@ -94,23 +78,29 @@ public static partial class SendMessageBatchOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SendMessageBatchResultEntryList?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => SendMessageBatchResultEntryListSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchResultEntry>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    SendMessageBatchResultEntryListSchema.Schema!
+                )
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<BatchResultErrorEntryList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => BatchResultErrorEntryListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.BatchResultErrorEntry>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    BatchResultErrorEntryListSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendMessageBatchOutput Build(Builder builder) =>
-            new SendMessageBatchOutput(
+        public override global::Com.Amazonaws.Sqs.SendMessageBatchOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.SendMessageBatchOutput(
                 builder.Failed ?? throw new MissingRequiredMemberException("Failed"),
                 builder.Successful ?? throw new MissingRequiredMemberException("Successful")
             );
 
         public override void SerializeMembers<TSerializer>(
-            SendMessageBatchOutput value,
+            global::Com.Amazonaws.Sqs.SendMessageBatchOutput value,
             ref TSerializer serializer
         )
         {

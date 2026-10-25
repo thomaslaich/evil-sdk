@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderScalingModeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<CapacityProviderScalingMode> Schema { get; } =
-        Schemas.StringEnum<CapacityProviderScalingMode>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<CapacityProviderScalingMode>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderScalingMode"),
             values: ["Auto", "Manual"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

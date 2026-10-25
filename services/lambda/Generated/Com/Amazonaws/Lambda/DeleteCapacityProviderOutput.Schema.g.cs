@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteCapacityProviderOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class DeleteCapacityProviderOutputSchema
         public global::Com.Amazonaws.Lambda.CapacityProvider? CapacityProvider { get; set; }
     }
 
-    public static StructSchema<DeleteCapacityProviderOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteCapacityProviderOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteCapacityProviderOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteCapacityProviderOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteCapacityProviderOutput"),
             [
                 new(
@@ -29,16 +31,8 @@ public static partial class DeleteCapacityProviderOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Information about the deleted capacity provider.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -49,10 +43,6 @@ public static partial class DeleteCapacityProviderOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteCapacityProviderResponse")
                 ),
@@ -60,18 +50,22 @@ public static partial class DeleteCapacityProviderOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProvider?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CapacityProviderSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CapacityProviderSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteCapacityProviderOutput Build(Builder builder) =>
-            new DeleteCapacityProviderOutput(
+        public override global::Com.Amazonaws.Lambda.DeleteCapacityProviderOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DeleteCapacityProviderOutput(
                 builder.CapacityProvider
                     ?? throw new MissingRequiredMemberException("CapacityProvider")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteCapacityProviderOutput value,
+            global::Com.Amazonaws.Lambda.DeleteCapacityProviderOutput value,
             ref TSerializer serializer
         )
         {

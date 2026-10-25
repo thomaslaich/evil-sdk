@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DocumentDBEventSourceConfigSchema
 {
@@ -17,11 +17,13 @@ public static partial class DocumentDBEventSourceConfigSchema
         public global::Com.Amazonaws.Lambda.FullDocument? FullDocument { get; set; }
     }
 
-    public static StructSchema<DocumentDBEventSourceConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DocumentDBEventSourceConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DocumentDBEventSourceConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DocumentDBEventSourceConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DocumentDBEventSourceConfig"),
             [
                 new(
@@ -30,28 +32,18 @@ public static partial class DocumentDBEventSourceConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The name of the database to consume within the DocumentDB cluster. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)63) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(63m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[^ /\\.$\\x22]*$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -61,18 +53,12 @@ public static partial class DocumentDBEventSourceConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The name of the collection to consume within the database. If you do not specify a collection, Lambda consumes all collections. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)57) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(57m) },
                                 }
                             )
                         ),
@@ -80,62 +66,37 @@ public static partial class DocumentDBEventSourceConfigSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(^(?!(system\\x2e)))(^[_a-zA-Z0-9])([^$]*)$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "FullDocument",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Determines what DocumentDB sends to your event stream during document update operations. If set to UpdateLookup, DocumentDB sends a delta describing the changes, along with a copy of the entire document. Otherwise, DocumentDB sends only a partial document that contains the changes. </p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("FullDocument", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> Specific configuration settings for a DocumentDB event source. </p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FullDocument?> Target2 =
-            Schemas.Nullable(FullDocumentSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(FullDocumentSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DocumentDBEventSourceConfig Build(Builder builder) =>
-            new DocumentDBEventSourceConfig(
+        public override global::Com.Amazonaws.Lambda.DocumentDBEventSourceConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DocumentDBEventSourceConfig(
                 builder.CollectionName,
                 builder.DatabaseName,
                 builder.FullDocument
             );
 
         public override void SerializeMembers<TSerializer>(
-            DocumentDBEventSourceConfig value,
+            global::Com.Amazonaws.Lambda.DocumentDBEventSourceConfig value,
             ref TSerializer serializer
         )
         {

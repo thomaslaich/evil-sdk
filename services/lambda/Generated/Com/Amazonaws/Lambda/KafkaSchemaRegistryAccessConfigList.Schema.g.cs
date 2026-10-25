@@ -6,63 +6,56 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class KafkaSchemaRegistryAccessConfigListSchema
 {
     public static ListSchema<
-        KafkaSchemaRegistryAccessConfigList,
-        KafkaSchemaRegistryAccessConfig,
-        List<KafkaSchemaRegistryAccessConfig>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig>,
+        global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig,
+        List<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            KafkaSchemaRegistryAccessConfigList,
-            KafkaSchemaRegistryAccessConfig,
-            List<KafkaSchemaRegistryAccessConfig>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig>,
+            global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig,
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig>
         >(
             ShapeId.Parse("com.amazonaws.lambda#KafkaSchemaRegistryAccessConfigList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<KafkaSchemaRegistryAccessConfig> Target0 =
-            Schemas.Lazy(() => KafkaSchemaRegistryAccessConfigSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                KafkaSchemaRegistryAccessConfigSchema.Schema!
+            );
 
-        public override IEnumerable<KafkaSchemaRegistryAccessConfig> GetElements(
-            KafkaSchemaRegistryAccessConfigList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> value
+        ) => value;
 
-        public override List<KafkaSchemaRegistryAccessConfig> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<KafkaSchemaRegistryAccessConfig> builder,
-            KafkaSchemaRegistryAccessConfig value
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> builder,
+            global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig value
         ) => builder.Add(value);
 
-        public override KafkaSchemaRegistryAccessConfigList Build(
-            List<KafkaSchemaRegistryAccessConfig> builder
-        ) => KafkaSchemaRegistryAccessConfigList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> Build(
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            KafkaSchemaRegistryAccessConfigList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -81,7 +74,7 @@ public static partial class KafkaSchemaRegistryAccessConfigListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<KafkaSchemaRegistryAccessConfig> builder,
+            List<global::Com.Amazonaws.Lambda.KafkaSchemaRegistryAccessConfig> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(KafkaSchemaRegistryAccessConfigSchema.Schema));
     }

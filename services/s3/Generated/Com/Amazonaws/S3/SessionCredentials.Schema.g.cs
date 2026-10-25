@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SessionCredentialsSchema
 {
@@ -19,10 +19,13 @@ public static partial class SessionCredentialsSchema
         public DateTimeOffset? Expiration { get; set; }
     }
 
-    public static StructSchema<SessionCredentials, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.SessionCredentials,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SessionCredentials, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SessionCredentials, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SessionCredentials"),
             [
                 new(
@@ -31,12 +34,6 @@ public static partial class SessionCredentialsSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A unique identifier that's associated with a secret access key. The access key ID and the secret\n      access key are used together to sign programmatic Amazon Web Services requests cryptographically. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -53,12 +50,6 @@ public static partial class SessionCredentialsSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A key that's used with the access key ID to cryptographically sign programmatic Amazon Web Services requests.\n      Signing a request identifies the sender and prevents the request from being altered. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -80,12 +71,6 @@ public static partial class SessionCredentialsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A part of the temporary security credentials. The session token is used to validate the temporary\n      security credentials.\n      \n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -106,12 +91,6 @@ public static partial class SessionCredentialsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Temporary security credentials expire after a specified interval. After temporary credentials\n      expire, any calls that you make with those credentials will fail. So you must generate a new set of\n      temporary credentials. Temporary credentials cannot be extended or refreshed beyond the original\n      specified interval.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -119,29 +98,30 @@ public static partial class SessionCredentialsSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The established temporary security credentials of the session.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - These session credentials are only\n        supported for the authentication and authorization of Zonal endpoint API operations on directory buckets.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target3 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SessionCredentials Build(Builder builder) =>
-            new SessionCredentials(
+        public override global::Com.Amazonaws.S3.SessionCredentials Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SessionCredentials(
                 builder.AccessKeyId ?? throw new MissingRequiredMemberException("AccessKeyId"),
                 builder.Expiration.GetValueOrDefault(),
                 builder.SecretAccessKey
@@ -150,7 +130,7 @@ public static partial class SessionCredentialsSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            SessionCredentials value,
+            global::Com.Amazonaws.S3.SessionCredentials value,
             ref TSerializer serializer
         )
         {

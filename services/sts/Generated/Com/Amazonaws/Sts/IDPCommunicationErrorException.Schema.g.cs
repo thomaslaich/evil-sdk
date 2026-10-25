@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class IDPCommunicationErrorExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class IDPCommunicationErrorExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<IDPCommunicationErrorException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.IDPCommunicationErrorException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<IDPCommunicationErrorException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.IDPCommunicationErrorException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#IDPCommunicationErrorException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class IDPCommunicationErrorExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("IDPCommunicationError") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request could not be fulfilled because the identity provider (IDP) that was asked\n            to verify the incoming identity token could not be reached. This is often a transient\n            error caused by network conditions. Retry the request a limited number of times so that\n            you don't exceed the request rate. If the error persists, the identity provider might be\n            down or not responding.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override IDPCommunicationErrorException Build(Builder builder) =>
-            new IDPCommunicationErrorException(builder.Message);
+        public override global::Com.Amazonaws.Sts.IDPCommunicationErrorException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.IDPCommunicationErrorException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            IDPCommunicationErrorException value,
+            global::Com.Amazonaws.Sts.IDPCommunicationErrorException value,
             ref TSerializer serializer
         )
         {

@@ -6,117 +6,38 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetFunctionOutputSchema
 {
     public sealed class Builder
     {
-        public FunctionConfiguration? Configuration { get; set; }
-        public FunctionCodeLocation? Code { get; set; }
-        public global::Com.Amazonaws.Lambda.Tags? Tags { get; set; }
+        public global::Com.Amazonaws.Lambda.FunctionConfiguration? Configuration { get; set; }
+        public global::Com.Amazonaws.Lambda.FunctionCodeLocation? Code { get; set; }
+        public IReadOnlyDictionary<string, string>? Tags { get; set; }
         public global::Com.Amazonaws.Lambda.TagsError? TagsError { get; set; }
         public global::Com.Amazonaws.Lambda.Concurrency? Concurrency { get; set; }
     }
 
-    public static StructSchema<GetFunctionOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetFunctionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFunctionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetFunctionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetFunctionOutput"),
             [
-                new(
-                    "Configuration",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The configuration of the function or version.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Code",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The deployment package of the function or version.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Tags",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/tagging.html\">tags</a>. Lambda returns tag data only if you have explicit allow permissions for <a href=\"https://docs.aws.amazon.com/lambda/latest/api/API_ListTags.html\">lambda:ListTags</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "TagsError",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object that contains details about an error related to retrieving tags.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Concurrency",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html\">reserved concurrency</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Configuration", Target0),
+                new("Code", Target1),
+                new("Tags", Target2),
+                new("TagsError", Target3),
+                new("Concurrency", Target4),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -125,21 +46,33 @@ public static partial class GetFunctionOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionConfiguration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionConfigurationSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionCodeLocation?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionCodeLocationSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Tags?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionConfiguration?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionConfigurationSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionCodeLocation?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionCodeLocationSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target2 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagsSchema.Schema!)
+        );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.TagsError?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagsErrorSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagsErrorSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Concurrency?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => ConcurrencySchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ConcurrencySchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFunctionOutput Build(Builder builder) =>
-            new GetFunctionOutput(
+        public override global::Com.Amazonaws.Lambda.GetFunctionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.GetFunctionOutput(
                 builder.Code,
                 builder.Concurrency,
                 builder.Configuration,
@@ -148,7 +81,7 @@ public static partial class GetFunctionOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetFunctionOutput value,
+            global::Com.Amazonaws.Lambda.GetFunctionOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketCorsOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteBucketCorsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketCorsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketCorsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketCorsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketCorsOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class DeleteBucketCorsOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketCorsOutput Build(Builder builder) =>
-            new DeleteBucketCorsOutput();
+        public override global::Com.Amazonaws.S3.DeleteBucketCorsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeleteBucketCorsOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketCorsOutput value,
+            global::Com.Amazonaws.S3.DeleteBucketCorsOutput value,
             ref TSerializer serializer
         ) { }
 

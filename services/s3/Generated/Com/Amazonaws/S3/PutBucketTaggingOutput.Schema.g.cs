@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketTaggingOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketTaggingOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketTaggingOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketTaggingOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketTaggingOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketTaggingOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class PutBucketTaggingOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketTaggingOutput Build(Builder builder) =>
-            new PutBucketTaggingOutput();
+        public override global::Com.Amazonaws.S3.PutBucketTaggingOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketTaggingOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketTaggingOutput value,
+            global::Com.Amazonaws.S3.PutBucketTaggingOutput value,
             ref TSerializer serializer
         ) { }
 

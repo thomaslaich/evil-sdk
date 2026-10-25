@@ -5,56 +5,37 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AccelerateConfigurationSchema
 {
     public sealed class Builder
     {
-        public BucketAccelerateStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.BucketAccelerateStatus? Status { get; set; }
     }
 
-    public static StructSchema<AccelerateConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AccelerateConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AccelerateConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AccelerateConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AccelerateConfiguration"),
-            [
-                new(
-                    "Status",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the transfer acceleration status of the bucket.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configures the transfer acceleration state for an Amazon S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html\">Amazon S3 Transfer\n        Acceleration</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            [new("Status", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketAccelerateStatus?> Target0 =
-            Schemas.Nullable(BucketAccelerateStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketAccelerateStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketAccelerateStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AccelerateConfiguration Build(Builder builder) =>
-            new AccelerateConfiguration(builder.Status);
+        public override global::Com.Amazonaws.S3.AccelerateConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AccelerateConfiguration(builder.Status);
 
         public override void SerializeMembers<TSerializer>(
-            AccelerateConfiguration value,
+            global::Com.Amazonaws.S3.AccelerateConfiguration value,
             ref TSerializer serializer
         )
         {
@@ -81,8 +62,8 @@ public static partial class AccelerateConfigurationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? BucketAccelerateStatus.FromValue(value0)
-                                : default(BucketAccelerateStatus)
+                                ? global::Com.Amazonaws.S3.BucketAccelerateStatus.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.BucketAccelerateStatus)
                         );
                     break;
             }

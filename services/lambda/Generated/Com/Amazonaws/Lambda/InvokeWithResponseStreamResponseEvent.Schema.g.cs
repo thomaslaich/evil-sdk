@@ -6,89 +6,52 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeWithResponseStreamResponseEventSchema
 {
-    public static UnionSchema<InvokeWithResponseStreamResponseEvent> Schema { get; } =
+    public static UnionSchema<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : UnionSchema<InvokeWithResponseStreamResponseEvent>(
+        : UnionSchema<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent>(
             ShapeId.Parse("com.amazonaws.lambda#InvokeWithResponseStreamResponseEvent"),
+            [new("InvokeComplete", Target0), new("PayloadChunk", Target1)],
             [
-                new(
-                    "InvokeComplete",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object that's returned when the stream has ended and all the payload chunks have been returned.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "PayloadChunk",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A chunk of the streamed response payload.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>An object that includes a chunk of the response payload. When the stream has ended, Lambda includes a <code>InvokeComplete</code> object.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#streaming"),
                     Document.From(new Dictionary<string, Document> { })
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<InvokeWithResponseStreamCompleteEvent> Target0 =
-            Schemas.Lazy(() => InvokeWithResponseStreamCompleteEventSchema.Schema!);
-        private static readonly global::NSmithy.Core.Serde.Schema<InvokeResponseStreamUpdate> Target1 =
-            Schemas.Lazy(() => InvokeResponseStreamUpdateSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamCompleteEvent> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                InvokeWithResponseStreamCompleteEventSchema.Schema!
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.InvokeResponseStreamUpdate> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => InvokeResponseStreamUpdateSchema.Schema!);
 
-        public override int CaseOf(InvokeWithResponseStreamResponseEvent value) =>
+        public override int CaseOf(
+            global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent value
+        ) =>
             value switch
             {
-                InvokeWithResponseStreamResponseEvent.InvokeComplete => 0,
-                InvokeWithResponseStreamResponseEvent.PayloadChunk => 1,
+                global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent.InvokeComplete =>
+                    0,
+                global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent.PayloadChunk =>
+                    1,
                 _ => throw NoCaseMatched(),
             };
 
         public override void SerializeCase<TSerializer>(
-            InvokeWithResponseStreamResponseEvent value,
+            global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent value,
             ref TSerializer serializer
         )
         {
             switch (value)
             {
-                case InvokeWithResponseStreamResponseEvent.InvokeComplete @case:
+                case global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent.InvokeComplete @case:
                     if (@case.Value is { } value0)
                     {
                         serializer.WriteStruct(
@@ -102,7 +65,7 @@ public static partial class InvokeWithResponseStreamResponseEventSchema
                         serializer.WriteNull(0);
                     }
                     break;
-                case InvokeWithResponseStreamResponseEvent.PayloadChunk @case:
+                case global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent.PayloadChunk @case:
                     if (@case.Value is { } value1)
                     {
                         serializer.WriteStruct(1, value1, InvokeResponseStreamUpdateSchema.Schema);
@@ -117,18 +80,24 @@ public static partial class InvokeWithResponseStreamResponseEventSchema
             }
         }
 
-        public override InvokeWithResponseStreamResponseEvent DeserializeCase<TDeserializer>(
+        public override global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent DeserializeCase<TDeserializer>(
             int index,
             ref TDeserializer deserializer
         ) =>
             index switch
             {
-                0 => new InvokeWithResponseStreamResponseEvent.InvokeComplete(
-                    (deserializer.ReadStruct(InvokeWithResponseStreamCompleteEventSchema.Schema))!
-                ),
-                1 => new InvokeWithResponseStreamResponseEvent.PayloadChunk(
-                    (deserializer.ReadStruct(InvokeResponseStreamUpdateSchema.Schema))!
-                ),
+                0 =>
+                    new global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent.InvokeComplete(
+                        (
+                            deserializer.ReadStruct(
+                                InvokeWithResponseStreamCompleteEventSchema.Schema
+                            )
+                        )!
+                    ),
+                1 =>
+                    new global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent.PayloadChunk(
+                        (deserializer.ReadStruct(InvokeResponseStreamUpdateSchema.Schema))!
+                    ),
                 _ => throw NoCaseMatched(),
             };
     }

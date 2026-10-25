@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.S3;
 
@@ -33,7 +34,7 @@ public sealed record class AnnotationEntry(
     string AnnotationName,
     DateTimeOffset LastModified,
     long Size,
-    ChecksumAlgorithmList? ChecksumAlgorithm = null,
+    IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm = null,
     string? ETag = null,
     global::Com.Amazonaws.S3.ReplicationStatus? ReplicationStatus = null
 );

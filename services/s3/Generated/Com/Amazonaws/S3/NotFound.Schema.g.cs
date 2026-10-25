@@ -5,33 +5,29 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NotFoundSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<NotFound, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.NotFound, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NotFound, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NotFound, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NotFound"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified content does not exist.</p>")
-                ),
-                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-            ]
+            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client"))]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override NotFound Build(Builder builder) => new NotFound(null);
+        public override global::Com.Amazonaws.S3.NotFound Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.NotFound(null);
 
         public override void SerializeMembers<TSerializer>(
-            NotFound value,
+            global::Com.Amazonaws.S3.NotFound value,
             ref TSerializer serializer
         ) { }
 

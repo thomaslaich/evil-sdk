@@ -4,24 +4,39 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TagsSchema
 {
-    public static MapSchema<Tags, string, Dictionary<string, string>> Schema { get; } =
-        new GeneratedSchema();
+    public static MapSchema<
+        IReadOnlyDictionary<string, string>,
+        string,
+        Dictionary<string, string>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : MapSchema<Tags, string, Dictionary<string, string>>(
+        : MapSchema<IReadOnlyDictionary<string, string>, string, Dictionary<string, string>>(
             ShapeId.Parse("com.amazonaws.lambda#Tags"),
             Target0,
+            null,
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
+                    ShapeId.Parse("smithy.api#length"),
+                    Document.From(
+                        new Dictionary<string, Document>
+                        {
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(128m) },
+                        }
+                    )
+                ),
+                new Trait(
+                    ShapeId.Parse("smithy.api#pattern"),
+                    Document.From("^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$")
                 ),
             ],
             [
@@ -30,8 +45,8 @@ public static partial class TagsSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)128) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(256m) },
                         }
                     )
                 ),
@@ -39,38 +54,19 @@ public static partial class TagsSchema
                     ShapeId.Parse("smithy.api#pattern"),
                     Document.From("^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$")
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#length"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)256) },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#pattern"),
-                    Document.From("^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            Schemas.String
+            global::NSmithy.Core.Serde.Schemas.String
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<KeyValuePair<string, string>> GetEntries(Tags value) =>
-            value.Values;
+        public override IEnumerable<KeyValuePair<string, string>> GetEntries(
+            IReadOnlyDictionary<string, string> value
+        ) => value;
 
         public override Dictionary<string, string> CreateTypedBuilder() =>
             new(StringComparer.Ordinal);
@@ -78,12 +74,16 @@ public static partial class TagsSchema
         public override void Add(Dictionary<string, string> builder, string key, string value) =>
             builder[key] = value;
 
-        public override Tags Build(Dictionary<string, string> builder) =>
-            Tags.FromOwnedDictionary(builder);
+        public override IReadOnlyDictionary<string, string> Build(
+            Dictionary<string, string> builder
+        ) => new ReadOnlyDictionary<string, string>(builder);
 
-        public override void SerializeEntries<TSerializer>(Tags value, ref TSerializer serializer)
+        public override void SerializeEntries<TSerializer>(
+            IReadOnlyDictionary<string, string> value,
+            ref TSerializer serializer
+        )
         {
-            foreach (var entry in value.Values)
+            foreach (var entry in value)
             {
                 serializer.WriteString(0, entry.Key);
                 if (entry.Value is { } entryValue)

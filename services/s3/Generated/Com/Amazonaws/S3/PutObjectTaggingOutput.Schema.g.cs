@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectTaggingOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class PutObjectTaggingOutputSchema
         public string? VersionId { get; set; }
     }
 
-    public static StructSchema<PutObjectTaggingOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutObjectTaggingOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutObjectTaggingOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutObjectTaggingOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutObjectTaggingOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class PutObjectTaggingOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The versionId of the object the tag-set was added to.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-version-id")
@@ -49,15 +45,17 @@ public static partial class PutObjectTaggingOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutObjectTaggingOutput Build(Builder builder) =>
-            new PutObjectTaggingOutput(builder.VersionId);
+        public override global::Com.Amazonaws.S3.PutObjectTaggingOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutObjectTaggingOutput(builder.VersionId);
 
         public override void SerializeMembers<TSerializer>(
-            PutObjectTaggingOutput value,
+            global::Com.Amazonaws.S3.PutObjectTaggingOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderLoggingConfigSchema
 {
@@ -16,48 +16,28 @@ public static partial class CapacityProviderLoggingConfigSchema
         public string? LogGroup { get; set; }
     }
 
-    public static StructSchema<CapacityProviderLoggingConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CapacityProviderLoggingConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CapacityProviderLoggingConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CapacityProviderLoggingConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderLoggingConfig"),
             [
-                new(
-                    "SystemLogLevel",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set this property to filter the system logs for your capacity provider that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where <code>DEBUG</code> is the highest level and <code>WARN</code> is the lowest.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("SystemLogLevel", Target0),
                 new(
                     "LogGroup",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the Amazon CloudWatch log group the capacity provider sends logs to. By default, Lambda capacity providers send logs to a default log group named <code>/aws/lambda/capacity-provider/&lt;capacity provider name&gt;</code>. To use a different log group, enter an existing log group or enter a new log group name.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)512) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(512m) },
                                 }
                             )
                         ),
@@ -65,39 +45,31 @@ public static partial class CapacityProviderLoggingConfigSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\.\\-_/#A-Za-z0-9]+$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The capacity provider's Amazon CloudWatch Logs configuration settings.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SystemLogLevel?> Target0 =
-            Schemas.Nullable(SystemLogLevelSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(SystemLogLevelSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CapacityProviderLoggingConfig Build(Builder builder) =>
-            new CapacityProviderLoggingConfig(builder.LogGroup, builder.SystemLogLevel);
+        public override global::Com.Amazonaws.Lambda.CapacityProviderLoggingConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CapacityProviderLoggingConfig(
+                builder.LogGroup,
+                builder.SystemLogLevel
+            );
 
         public override void SerializeMembers<TSerializer>(
-            CapacityProviderLoggingConfig value,
+            global::Com.Amazonaws.Lambda.CapacityProviderLoggingConfig value,
             ref TSerializer serializer
         )
         {

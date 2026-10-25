@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FilterCriteriaErrorSchema
 {
@@ -16,11 +16,13 @@ public static partial class FilterCriteriaErrorSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<FilterCriteriaError, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.FilterCriteriaError,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<FilterCriteriaError, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.FilterCriteriaError, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#FilterCriteriaError"),
             [
                 new(
@@ -29,28 +31,18 @@ public static partial class FilterCriteriaErrorSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The KMS exception that resulted from filter criteria encryption or decryption.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)10) },
-                                    { "max", Document.From((decimal)50) },
+                                    { "min", Document.From(10m) },
+                                    { "max", Document.From(50m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[A-Za-z]+Exception$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -60,53 +52,41 @@ public static partial class FilterCriteriaErrorSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error message.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)10) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(10m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From(".*")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>An object that contains details about an error related to filter criteria encryption.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override FilterCriteriaError Build(Builder builder) =>
-            new FilterCriteriaError(builder.ErrorCode, builder.Message);
+        public override global::Com.Amazonaws.Lambda.FilterCriteriaError Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.FilterCriteriaError(
+                builder.ErrorCode,
+                builder.Message
+            );
 
         public override void SerializeMembers<TSerializer>(
-            FilterCriteriaError value,
+            global::Com.Amazonaws.Lambda.FilterCriteriaError value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListMultipartUploadsOutputSchema
 {
@@ -21,108 +21,28 @@ public static partial class ListMultipartUploadsOutputSchema
         public string? NextUploadIdMarker { get; set; }
         public int? MaxUploads { get; set; }
         public bool? IsTruncated { get; set; }
-        public MultipartUploadList? Uploads { get; set; }
-        public CommonPrefixList? CommonPrefixes { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.MultipartUpload>? Uploads { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.CommonPrefix>? CommonPrefixes { get; set; }
         public global::Com.Amazonaws.S3.EncodingType? EncodingType { get; set; }
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<ListMultipartUploadsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListMultipartUploadsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListMultipartUploadsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListMultipartUploadsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListMultipartUploadsOutput"),
             [
-                new(
-                    "Bucket",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket to which the multipart upload was initiated. Does not return the access point ARN or\n      access point alias if used.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "KeyMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The key at or after which the listing began.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "UploadIdMarker",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Together with key-marker, specifies the multipart upload after which listing should begin. If\n      key-marker is not specified, the upload-id-marker parameter is ignored. Otherwise, any multipart uploads\n      for a key equal to the key-marker might be included in the list only if they have an upload ID\n      lexicographically greater than the specified <code>upload-id-marker</code>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextKeyMarker",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When a list is truncated, this element specifies the value that should be used for the key-marker\n      request parameter in a subsequent request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Prefix",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When a prefix is provided in the request, this field contains the specified prefix. The result\n      contains only keys starting with the specified prefix.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter (<code>/</code>) are supported.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Delimiter",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains the delimiter you specified in the request. If you don't specify a delimiter in your\n      request, this element is absent from the response.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - For directory buckets, <code>/</code> is the only supported delimiter.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextUploadIdMarker",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When a list is truncated, this element specifies the value that should be used for the\n        <code>upload-id-marker</code> request parameter in a subsequent request.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Bucket", Target0),
+                new("KeyMarker", Target1),
+                new("UploadIdMarker", Target2),
+                new("NextKeyMarker", Target3),
+                new("Prefix", Target4),
+                new("Delimiter", Target5),
+                new("NextUploadIdMarker", Target6),
                 new(
                     "MaxUploads",
                     Target7,
@@ -131,12 +51,6 @@ public static partial class ListMultipartUploadsOutputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Maximum number of multipart uploads that could have been included in the response.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -149,12 +63,6 @@ public static partial class ListMultipartUploadsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether the returned list of multipart uploads is truncated. A value of true indicates\n      that the list was truncated. The list can be truncated if the number of multipart uploads exceeds the\n      limit allowed or specified by max uploads.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -162,12 +70,6 @@ public static partial class ListMultipartUploadsOutputSchema
                     Target9,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for elements related to a particular multipart upload. A response can contain zero or more\n        <code>Upload</code> elements.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -181,30 +83,12 @@ public static partial class ListMultipartUploadsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If you specify a delimiter in the request, then the result returns each distinct key prefix\n      containing the delimiter in a <code>CommonPrefixes</code> element. The distinct key prefixes are\n      returned in the <code>Prefix</code> child element.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter (<code>/</code>) are supported.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "EncodingType",
-                    Target11,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Encoding type used by Amazon S3 to encode object keys in the response.</p>\n         <p>If you specify the <code>encoding-type</code> request parameter, Amazon S3 includes this element in the\n      response, and returns encoded key name values in the following response elements:</p>\n         <p>\n            <code>Delimiter</code>, <code>KeyMarker</code>, <code>Prefix</code>, <code>NextKeyMarker</code>,\n        <code>Key</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("EncodingType", Target11),
                 new(
                     "RequestCharged",
                     Target12,
@@ -230,38 +114,56 @@ public static partial class ListMultipartUploadsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target8 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<MultipartUploadList?> Target9 =
-            Schemas.NullableReference(Schemas.Lazy(() => MultipartUploadListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<CommonPrefixList?> Target10 =
-            Schemas.NullableReference(Schemas.Lazy(() => CommonPrefixListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.MultipartUpload>?> Target9 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => MultipartUploadListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.CommonPrefix>?> Target10 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CommonPrefixListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EncodingType?> Target11 =
-            Schemas.Nullable(EncodingTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(EncodingTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target12 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListMultipartUploadsOutput Build(Builder builder) =>
-            new ListMultipartUploadsOutput(
+        public override global::Com.Amazonaws.S3.ListMultipartUploadsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ListMultipartUploadsOutput(
                 builder.Bucket,
                 builder.CommonPrefixes,
                 builder.Delimiter,
@@ -278,7 +180,7 @@ public static partial class ListMultipartUploadsOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListMultipartUploadsOutput value,
+            global::Com.Amazonaws.S3.ListMultipartUploadsOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRootOutputSchema
 {
@@ -18,43 +18,28 @@ public static partial class AssumeRootOutputSchema
         public int? SessionTokenSize { get; set; }
     }
 
-    public static StructSchema<AssumeRootOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.AssumeRootOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AssumeRootOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.AssumeRootOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#AssumeRootOutput"),
             [
-                new(
-                    "Credentials",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The temporary security credentials, which include an access key ID, a secret access key,\n         and a security token.</p>\n         <note>\n            <p>The size of the security token that STS API operations return is not fixed. We\n        strongly recommend that you make no assumptions about the maximum size.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Credentials", Target0),
                 new(
                     "SourceIdentity",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The source identity specified by the principal that is calling the\n            <code>AssumeRoot</code> operation.</p>\n         <p>You can use the <code>aws:SourceIdentity</code> condition key to control access based on\n         the value of source identity. For more information about using source identity, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">Monitor and control\n            actions taken with assumed roles</a> in the\n         <i>IAM User Guide</i>.</p>\n         <p>The regex used to validate this parameter is a string of characters consisting of upper-\n         and lower-case alphanumeric characters with no spaces. You can also include underscores or\n         any of the following characters: =,.@-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -74,18 +59,9 @@ public static partial class AssumeRootOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The percentage (0-100) of the maximum allowed session token size that the returned session\n    token consumes."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -100,18 +76,9 @@ public static partial class AssumeRootOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The size, in bytes, of the session token returned in the Credentials for this response."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -130,20 +97,22 @@ public static partial class AssumeRootOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Credentials?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CredentialsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CredentialsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AssumeRootOutput Build(Builder builder) =>
-            new AssumeRootOutput(
+        public override global::Com.Amazonaws.Sts.AssumeRootOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.AssumeRootOutput(
                 builder.Credentials,
                 builder.SessionTokenSize,
                 builder.SessionTokenUtilization,
@@ -151,7 +120,7 @@ public static partial class AssumeRootOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AssumeRootOutput value,
+            global::Com.Amazonaws.Sts.AssumeRootOutput value,
             ref TSerializer serializer
         )
         {

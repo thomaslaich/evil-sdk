@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectVersionsInputSchema
 {
@@ -21,14 +21,16 @@ public static partial class ListObjectVersionsInputSchema
         public string? VersionIdMarker { get; set; }
         public string? ExpectedBucketOwner { get; set; }
         public global::Com.Amazonaws.S3.RequestPayer? RequestPayer { get; set; }
-        public OptionalObjectAttributesList? OptionalObjectAttributes { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.OptionalObjectAttributes>? OptionalObjectAttributes { get; set; }
     }
 
-    public static StructSchema<ListObjectVersionsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListObjectVersionsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListObjectVersionsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListObjectVersionsInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListObjectVersionsInput"),
             [
                 new(
@@ -37,10 +39,6 @@ public static partial class ListObjectVersionsInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The bucket name that contains the objects. </p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -66,12 +64,6 @@ public static partial class ListObjectVersionsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A delimiter is a character that you specify to group keys. All keys that contain the same string\n      between the <code>prefix</code> and the first occurrence of the delimiter are grouped under a single\n      result element in <code>CommonPrefixes</code>. These groups are counted as one result against the\n        <code>max-keys</code> limitation. These keys are not returned elsewhere in the response.</p>\n         <p>\n            <code>CommonPrefixes</code> is filtered out from results if it is not lexicographically greater than\n      the key-marker.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("delimiter")
                         ),
@@ -94,12 +86,6 @@ public static partial class ListObjectVersionsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the key to start with when listing objects in a bucket.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("key-marker")
                         ),
@@ -114,12 +100,6 @@ public static partial class ListObjectVersionsInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000\n      key names. The response might contain fewer keys but will never contain more. If additional keys satisfy\n      the search criteria, but were not returned because <code>max-keys</code> was exceeded, the response\n      contains <code><isTruncated>true</isTruncated></code>. To return the additional keys, see\n        <code>key-marker</code> and <code>version-id-marker</code>.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("max-keys")),
                     ]
                 ),
@@ -128,12 +108,6 @@ public static partial class ListObjectVersionsInputSchema
                     Target5,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Use this parameter to select only those keys that begin with the specified prefix. You can use\n      prefixes to separate a bucket into different groupings of keys. (You can think of using\n        <code>prefix</code> to make groups in the same way that you'd use a folder in a file system.) You can\n      use <code>prefix</code> with <code>delimiter</code> to roll up numerous objects into a single result\n      under <code>CommonPrefixes</code>. </p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("prefix")),
                         new Trait(
                             ShapeId.Parse("smithy.rules#contextParam"),
@@ -152,12 +126,6 @@ public static partial class ListObjectVersionsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the object version you want to start listing from.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("version-id-marker")
                         ),
@@ -168,12 +136,6 @@ public static partial class ListObjectVersionsInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -197,12 +159,6 @@ public static partial class ListObjectVersionsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the optional fields that you want returned in the response. Fields that you do not specify\n      are not returned.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-optional-object-attributes")
                         ),
@@ -222,33 +178,46 @@ public static partial class ListObjectVersionsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EncodingType?> Target2 =
-            Schemas.Nullable(EncodingTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(EncodingTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target8 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<OptionalObjectAttributesList?> Target9 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => OptionalObjectAttributesListSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.OptionalObjectAttributes>?> Target9 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    OptionalObjectAttributesListSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListObjectVersionsInput Build(Builder builder) =>
-            new ListObjectVersionsInput(
+        public override global::Com.Amazonaws.S3.ListObjectVersionsInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ListObjectVersionsInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Delimiter,
                 builder.EncodingType,
@@ -262,7 +231,7 @@ public static partial class ListObjectVersionsInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListObjectVersionsInput value,
+            global::Com.Amazonaws.S3.ListObjectVersionsInput value,
             ref TSerializer serializer
         )
         {

@@ -6,47 +6,31 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsAndOperatorSchema
 {
     public sealed class Builder
     {
         public string? Prefix { get; set; }
-        public TagSet? Tags { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tag>? Tags { get; set; }
     }
 
-    public static StructSchema<AnalyticsAndOperator, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnalyticsAndOperator,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnalyticsAndOperator, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnalyticsAndOperator, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnalyticsAndOperator"),
             [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix to use when evaluating an AND predicate: The prefix that an object must have to be\n      included in the metrics results.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target0),
                 new(
                     "Tags",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The list of tags to use when evaluating an AND predicate.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -55,28 +39,25 @@ public static partial class AnalyticsAndOperatorSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The\n      operator must have at least two predicates in any combination, and an object must match all of the\n      predicates for the filter to apply.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagSet?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSetSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tag>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSetSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnalyticsAndOperator Build(Builder builder) =>
-            new AnalyticsAndOperator(builder.Prefix, builder.Tags);
+        public override global::Com.Amazonaws.S3.AnalyticsAndOperator Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AnalyticsAndOperator(builder.Prefix, builder.Tags);
 
         public override void SerializeMembers<TSerializer>(
-            AnalyticsAndOperator value,
+            global::Com.Amazonaws.S3.AnalyticsAndOperator value,
             ref TSerializer serializer
         )
         {

@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationConfigurationSchema
 {
     public sealed class Builder
     {
         public string? Role { get; set; }
-        public ReplicationRules? Rules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ReplicationRule>? Rules { get; set; }
     }
 
-    public static StructSchema<ReplicationConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ReplicationConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReplicationConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ReplicationConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ReplicationConfiguration"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class ReplicationConfigurationSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that Amazon S3 assumes when replicating\n      objects. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-how-setup.html\">How to Set Up Replication</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -48,12 +44,6 @@ public static partial class ReplicationConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container for one or more replication rules. A replication configuration must have at least one\n      rule and can contain a maximum of 1,000 rules. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -65,31 +55,28 @@ public static partial class ReplicationConfigurationSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for replication rules. You can add up to 1,000 rules. The maximum size of a replication\n      configuration is 2 MB.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ReplicationRules?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ReplicationRulesSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ReplicationRule>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ReplicationRulesSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReplicationConfiguration Build(Builder builder) =>
-            new ReplicationConfiguration(
+        public override global::Com.Amazonaws.S3.ReplicationConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ReplicationConfiguration(
                 builder.Role ?? throw new MissingRequiredMemberException("Role"),
                 builder.Rules ?? throw new MissingRequiredMemberException("Rules")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ReplicationConfiguration value,
+            global::Com.Amazonaws.S3.ReplicationConfiguration value,
             ref TSerializer serializer
         )
         {

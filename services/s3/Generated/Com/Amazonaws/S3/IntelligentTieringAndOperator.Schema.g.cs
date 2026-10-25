@@ -6,47 +6,31 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class IntelligentTieringAndOperatorSchema
 {
     public sealed class Builder
     {
         public string? Prefix { get; set; }
-        public TagSet? Tags { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tag>? Tags { get; set; }
     }
 
-    public static StructSchema<IntelligentTieringAndOperator, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.IntelligentTieringAndOperator,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<IntelligentTieringAndOperator, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.IntelligentTieringAndOperator, Builder>(
             ShapeId.Parse("com.amazonaws.s3#IntelligentTieringAndOperator"),
             [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object key name prefix that identifies the subset of objects to which the configuration\n      applies.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target0),
                 new(
                     "Tags",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>All of these tags must exist in the object's tag set in order for the configuration to apply.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -55,28 +39,30 @@ public static partial class IntelligentTieringAndOperatorSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for specifying S3 Intelligent-Tiering filters. The filters determine the subset of\n      objects to which the rule applies.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagSet?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSetSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tag>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSetSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override IntelligentTieringAndOperator Build(Builder builder) =>
-            new IntelligentTieringAndOperator(builder.Prefix, builder.Tags);
+        public override global::Com.Amazonaws.S3.IntelligentTieringAndOperator Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.IntelligentTieringAndOperator(
+                builder.Prefix,
+                builder.Tags
+            );
 
         public override void SerializeMembers<TSerializer>(
-            IntelligentTieringAndOperator value,
+            global::Com.Amazonaws.S3.IntelligentTieringAndOperator value,
             ref TSerializer serializer
         )
         {

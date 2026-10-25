@@ -6,19 +6,20 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class S3KeyFilterSchema
 {
     public sealed class Builder
     {
-        public FilterRuleList? FilterRules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.FilterRule>? FilterRules { get; set; }
     }
 
-    public static StructSchema<S3KeyFilter, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.S3KeyFilter, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<S3KeyFilter, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.S3KeyFilter, Builder>(
             ShapeId.Parse("com.amazonaws.s3#S3KeyFilter"),
             [
                 new(
@@ -34,25 +35,21 @@ public static partial class S3KeyFilterSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for object key name prefix and suffix filtering rules.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FilterRuleList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => FilterRuleListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.FilterRule>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FilterRuleListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override S3KeyFilter Build(Builder builder) => new S3KeyFilter(builder.FilterRules);
+        public override global::Com.Amazonaws.S3.S3KeyFilter Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.S3KeyFilter(builder.FilterRules);
 
         public override void SerializeMembers<TSerializer>(
-            S3KeyFilter value,
+            global::Com.Amazonaws.S3.S3KeyFilter value,
             ref TSerializer serializer
         )
         {

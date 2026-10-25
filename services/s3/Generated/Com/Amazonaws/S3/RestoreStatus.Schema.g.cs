@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RestoreStatusSchema
 {
@@ -17,10 +17,11 @@ public static partial class RestoreStatusSchema
         public DateTimeOffset? RestoreExpiryDate { get; set; }
     }
 
-    public static StructSchema<RestoreStatus, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.RestoreStatus, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RestoreStatus, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RestoreStatus, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RestoreStatus"),
             [
                 new(
@@ -32,51 +33,30 @@ public static partial class RestoreStatusSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the object is currently being restored. If the object restoration is in progress,\n      the header returns the value <code>TRUE</code>. For example:</p>\n         <p>\n            <code>x-amz-optional-object-attributes: IsRestoreInProgress=\"true\"</code>\n         </p>\n         <p>If the object restoration has completed, the header returns the value <code>FALSE</code>. For\n      example:</p>\n         <p>\n            <code>x-amz-optional-object-attributes: IsRestoreInProgress=\"false\",\n        RestoreExpiryDate=\"2012-12-21T00:00:00.000Z\"</code>\n         </p>\n         <p>If the object hasn't been restored, there is no header response.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "RestoreExpiryDate",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates when the restored copy will expire. This value is populated only if the object has already\n      been restored. For example:</p>\n         <p>\n            <code>x-amz-optional-object-attributes: IsRestoreInProgress=\"false\",\n        RestoreExpiryDate=\"2012-12-21T00:00:00.000Z\"</code>\n         </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("RestoreExpiryDate", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the restoration status of an object. Objects in certain storage classes must be restored\n      before they can be retrieved. For more information about these storage classes and how to work with\n      archived objects, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html\">\n        Working with archived objects</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets. Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RestoreStatus Build(Builder builder) =>
-            new RestoreStatus(builder.IsRestoreInProgress, builder.RestoreExpiryDate);
+        public override global::Com.Amazonaws.S3.RestoreStatus Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RestoreStatus(
+                builder.IsRestoreInProgress,
+                builder.RestoreExpiryDate
+            );
 
         public override void SerializeMembers<TSerializer>(
-            RestoreStatus value,
+            global::Com.Amazonaws.S3.RestoreStatus value,
             ref TSerializer serializer
         )
         {

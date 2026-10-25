@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListDeadLetterSourceQueuesOutputSchema
 {
     public sealed class Builder
     {
-        public QueueUrlList? QueueUrls { get; set; }
+        public IReadOnlyList<string>? QueueUrls { get; set; }
         public string? NextToken { get; set; }
     }
 
-    public static StructSchema<ListDeadLetterSourceQueuesOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListDeadLetterSourceQueuesOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListDeadLetterSourceQueuesOutput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class ListDeadLetterSourceQueuesOutputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of source queue URLs that have the <code>RedrivePolicy</code> queue attribute\n            configured with a dead-letter queue.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -46,25 +42,9 @@ public static partial class ListDeadLetterSourceQueuesOutputSchema
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("QueueUrl")),
                     ]
                 ),
-                new(
-                    "NextToken",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Pagination token to include in the next request. Token value is <code>null</code> if\n            there are no additional results to request, or if you did not set\n                <code>MaxResults</code> in the request.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("NextToken", Target1),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A list of your dead letter source queues.</p>")
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -76,21 +56,27 @@ public static partial class ListDeadLetterSourceQueuesOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<QueueUrlList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => QueueUrlListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueUrlListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListDeadLetterSourceQueuesOutput Build(Builder builder) =>
-            new ListDeadLetterSourceQueuesOutput(
+        public override global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesOutput(
                 builder.QueueUrls ?? throw new MissingRequiredMemberException("queueUrls"),
                 builder.NextToken
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListDeadLetterSourceQueuesOutput value,
+            global::Com.Amazonaws.Sqs.ListDeadLetterSourceQueuesOutput value,
             ref TSerializer serializer
         )
         {

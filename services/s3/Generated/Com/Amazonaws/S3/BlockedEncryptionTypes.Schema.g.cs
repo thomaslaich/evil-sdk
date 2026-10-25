@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BlockedEncryptionTypesSchema
 {
     public sealed class Builder
     {
-        public EncryptionTypeList? EncryptionType { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType>? EncryptionType { get; set; }
     }
 
-    public static StructSchema<BlockedEncryptionTypes, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.BlockedEncryptionTypes,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BlockedEncryptionTypes, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.BlockedEncryptionTypes, Builder>(
             ShapeId.Parse("com.amazonaws.s3#BlockedEncryptionTypes"),
             [
                 new(
@@ -28,38 +30,27 @@ public static partial class BlockedEncryptionTypesSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The object encryption type that you want to block or unblock for an Amazon S3 general purpose bucket.</p>\n         <note>\n            <p>Currently, this parameter only supports blocking or unblocking server side encryption with customer-provided keys (SSE-C). For more information about SSE-C, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html\">Using server-side encryption with customer-provided keys (SSE-C)</a>.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A bucket-level setting for Amazon S3 general purpose buckets used to prevent the upload of new objects encrypted with the specified server-side encryption type. For example, blocking an encryption type will block <code>PutObject</code>, <code>CopyObject</code>, <code>PostObject</code>, multipart upload, and replication requests to the bucket for objects with the specified encryption type. However, you can continue to read and list any pre-existing objects already encrypted with the specified encryption type. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/blocking-unblocking-s3-c-encryption-gpb.html\">Blocking or unblocking SSE-C for a general purpose bucket</a>.</p>\n         <p>This data type is used with the following actions:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html\">PutBucketEncryption</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html\">GetBucketEncryption</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html\">DeleteBucketEncryption</a>\n               </p>\n            </li>\n         </ul>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>You must have the <code>s3:PutEncryptionConfiguration</code> permission to block or unblock an encryption type for a bucket. </p>\n               <p>You must have the <code>s3:GetEncryptionConfiguration</code> permission to view a bucket's encryption type. </p>\n            </dd>\n         </dl>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EncryptionTypeList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EncryptionTypeListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EncryptionTypeListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override BlockedEncryptionTypes Build(Builder builder) =>
-            new BlockedEncryptionTypes(builder.EncryptionType);
+        public override global::Com.Amazonaws.S3.BlockedEncryptionTypes Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.BlockedEncryptionTypes(builder.EncryptionType);
 
         public override void SerializeMembers<TSerializer>(
-            BlockedEncryptionTypes value,
+            global::Com.Amazonaws.S3.BlockedEncryptionTypes value,
             ref TSerializer serializer
         )
         {

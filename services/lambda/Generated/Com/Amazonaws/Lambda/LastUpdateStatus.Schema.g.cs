@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LastUpdateStatusSchema
 {
     public static global::NSmithy.Core.Serde.Schema<LastUpdateStatus> Schema { get; } =
-        Schemas.StringEnum<LastUpdateStatus>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<LastUpdateStatus>(
             ShapeId.Parse("com.amazonaws.lambda#LastUpdateStatus"),
             values: ["Successful", "Failed", "InProgress"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

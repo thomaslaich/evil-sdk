@@ -6,18 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectLegalHoldSchema
 {
     public static OperationSchema<
-        PutObjectLegalHoldInput,
-        PutObjectLegalHoldOutput
+        global::Com.Amazonaws.S3.PutObjectLegalHoldInput,
+        global::Com.Amazonaws.S3.PutObjectLegalHoldOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutObjectLegalHold"),
-            Schemas.Lazy(() => PutObjectLegalHoldInputSchema.Schema!),
-            Schemas.Lazy(() => PutObjectLegalHoldOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutObjectLegalHoldInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutObjectLegalHoldOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -31,19 +31,13 @@ public static partial class PutObjectLegalHoldSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Applies a legal hold configuration to the specified object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Locking Objects</a>.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?legal-hold") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?legal-hold") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

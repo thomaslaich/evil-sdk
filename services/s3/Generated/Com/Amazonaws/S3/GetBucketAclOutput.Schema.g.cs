@@ -6,42 +6,31 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAclOutputSchema
 {
     public sealed class Builder
     {
         public global::Com.Amazonaws.S3.Owner? Owner { get; set; }
-        public global::Com.Amazonaws.S3.Grants? Grants { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Grant>? Grants { get; set; }
     }
 
-    public static StructSchema<GetBucketAclOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketAclOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketAclOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketAclOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketAclOutput"),
             [
-                new(
-                    "Owner",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Container for the bucket owner's ID.</p>")
-                        ),
-                    ]
-                ),
+                new("Owner", Target0),
                 new(
                     "Grants",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of grants.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlName"),
                             Document.From("AccessControlList")
@@ -62,17 +51,21 @@ public static partial class GetBucketAclOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Owner?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnerSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Grants?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => GrantsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnerSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Grant>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => GrantsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketAclOutput Build(Builder builder) =>
-            new GetBucketAclOutput(builder.Grants, builder.Owner);
+        public override global::Com.Amazonaws.S3.GetBucketAclOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketAclOutput(builder.Grants, builder.Owner);
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketAclOutput value,
+            global::Com.Amazonaws.S3.GetBucketAclOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListMessageMoveTasksResultEntryListSchema
 {
     public static ListSchema<
-        ListMessageMoveTasksResultEntryList,
-        ListMessageMoveTasksResultEntry,
-        List<ListMessageMoveTasksResultEntry>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry>,
+        global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry,
+        List<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            ListMessageMoveTasksResultEntryList,
-            ListMessageMoveTasksResultEntry,
-            List<ListMessageMoveTasksResultEntry>
+            IReadOnlyList<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry>,
+            global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry,
+            List<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry>
         >(
             ShapeId.Parse("com.amazonaws.sqs#ListMessageMoveTasksResultEntryList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class ListMessageMoveTasksResultEntryListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ListMessageMoveTasksResultEntry> Target0 =
-            Schemas.Lazy(() => ListMessageMoveTasksResultEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListMessageMoveTasksResultEntrySchema.Schema!
+            );
 
-        public override IEnumerable<ListMessageMoveTasksResultEntry> GetElements(
-            ListMessageMoveTasksResultEntryList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> value
+        ) => value;
 
-        public override List<ListMessageMoveTasksResultEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<ListMessageMoveTasksResultEntry> builder,
-            ListMessageMoveTasksResultEntry value
+            List<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> builder,
+            global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry value
         ) => builder.Add(value);
 
-        public override ListMessageMoveTasksResultEntryList Build(
-            List<ListMessageMoveTasksResultEntry> builder
-        ) => ListMessageMoveTasksResultEntryList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> Build(
+            List<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ListMessageMoveTasksResultEntryList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -71,7 +74,7 @@ public static partial class ListMessageMoveTasksResultEntryListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ListMessageMoveTasksResultEntry> builder,
+            List<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ListMessageMoveTasksResultEntrySchema.Schema));
     }

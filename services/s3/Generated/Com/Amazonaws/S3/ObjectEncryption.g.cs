@@ -50,8 +50,8 @@ public abstract partial record class ObjectEncryption
 
         return this switch
         {
-            SSEKMS value => sSEKMS(value.Value),
-            Unknown value => unknown(value.Tag, value.Value),
+            SSEKMS variant => sSEKMS(variant.Value),
+            Unknown variant => unknown(variant.Tag, variant.Value),
             _ => throw new InvalidOperationException("Unknown union variant."),
         };
     }

@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ContextSucceededDetailsSchema
 {
     public sealed class Builder
     {
-        public EventResult? Result { get; set; }
+        public global::Com.Amazonaws.Lambda.EventResult? Result { get; set; }
     }
 
-    public static StructSchema<ContextSucceededDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ContextSucceededDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ContextSucceededDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ContextSucceededDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ContextSucceededDetails"),
             [
                 new(
@@ -29,46 +31,31 @@ public static partial class ContextSucceededDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The JSON response payload from the successful context.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a context that succeeded.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventResult?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventResultSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventResult?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventResultSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ContextSucceededDetails Build(Builder builder) =>
-            new ContextSucceededDetails(
+        public override global::Com.Amazonaws.Lambda.ContextSucceededDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ContextSucceededDetails(
                 builder.Result ?? throw new MissingRequiredMemberException("Result")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ContextSucceededDetails value,
+            global::Com.Amazonaws.Lambda.ContextSucceededDetails value,
             ref TSerializer serializer
         )
         {

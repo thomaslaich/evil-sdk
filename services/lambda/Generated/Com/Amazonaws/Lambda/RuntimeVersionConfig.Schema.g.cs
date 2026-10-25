@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RuntimeVersionConfigSchema
 {
     public sealed class Builder
     {
         public string? RuntimeVersionArn { get; set; }
-        public RuntimeVersionError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.RuntimeVersionError? Error { get; set; }
     }
 
-    public static StructSchema<RuntimeVersionConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.RuntimeVersionConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RuntimeVersionConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.RuntimeVersionConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#RuntimeVersionConfig"),
             [
                 new(
@@ -29,18 +31,12 @@ public static partial class RuntimeVersionConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the runtime version you want the function to use.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)26) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(26m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -50,54 +46,32 @@ public static partial class RuntimeVersionConfigSchema
                                 "^arn:(aws[a-zA-Z-]*):lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}::runtime:.+$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "Error",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Error response when Lambda is unable to retrieve the runtime version for a function.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Error", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The ARN of the runtime and any errors that occured.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<RuntimeVersionError?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => RuntimeVersionErrorSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.RuntimeVersionError?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RuntimeVersionErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RuntimeVersionConfig Build(Builder builder) =>
-            new RuntimeVersionConfig(builder.Error, builder.RuntimeVersionArn);
+        public override global::Com.Amazonaws.Lambda.RuntimeVersionConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.RuntimeVersionConfig(
+                builder.Error,
+                builder.RuntimeVersionArn
+            );
 
         public override void SerializeMembers<TSerializer>(
-            RuntimeVersionConfig value,
+            global::Com.Amazonaws.Lambda.RuntimeVersionConfig value,
             ref TSerializer serializer
         )
         {

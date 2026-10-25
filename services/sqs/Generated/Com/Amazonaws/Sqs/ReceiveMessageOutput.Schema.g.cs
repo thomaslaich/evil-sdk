@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ReceiveMessageOutputSchema
 {
     public sealed class Builder
     {
-        public MessageList? Messages { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.Message>? Messages { get; set; }
     }
 
-    public static StructSchema<ReceiveMessageOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ReceiveMessageOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReceiveMessageOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ReceiveMessageOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ReceiveMessageOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class ReceiveMessageOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of messages.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -40,10 +38,6 @@ public static partial class ReceiveMessageOutputSchema
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A list of received messages.</p>")
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -55,16 +49,18 @@ public static partial class ReceiveMessageOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<MessageList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => MessageListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.Message>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => MessageListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReceiveMessageOutput Build(Builder builder) =>
-            new ReceiveMessageOutput(builder.Messages);
+        public override global::Com.Amazonaws.Sqs.ReceiveMessageOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.ReceiveMessageOutput(builder.Messages);
 
         public override void SerializeMembers<TSerializer>(
-            ReceiveMessageOutput value,
+            global::Com.Amazonaws.Sqs.ReceiveMessageOutput value,
             ref TSerializer serializer
         )
         {

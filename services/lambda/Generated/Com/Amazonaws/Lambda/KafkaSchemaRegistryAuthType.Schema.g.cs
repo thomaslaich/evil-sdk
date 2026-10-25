@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class KafkaSchemaRegistryAuthTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<KafkaSchemaRegistryAuthType> Schema { get; } =
-        Schemas.StringEnum<KafkaSchemaRegistryAuthType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<KafkaSchemaRegistryAuthType>(
             ShapeId.Parse("com.amazonaws.lambda#KafkaSchemaRegistryAuthType"),
             values:
             [
@@ -22,10 +21,6 @@ public static partial class KafkaSchemaRegistryAuthTypeSchema
             ],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

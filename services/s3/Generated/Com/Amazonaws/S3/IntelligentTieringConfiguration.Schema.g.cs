@@ -6,23 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class IntelligentTieringConfigurationSchema
 {
     public sealed class Builder
     {
         public string? Id { get; set; }
-        public IntelligentTieringFilter? Filter { get; set; }
-        public IntelligentTieringStatus? Status { get; set; }
-        public TieringList? Tierings { get; set; }
+        public global::Com.Amazonaws.S3.IntelligentTieringFilter? Filter { get; set; }
+        public global::Com.Amazonaws.S3.IntelligentTieringStatus? Status { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tiering>? Tierings { get; set; }
     }
 
-    public static StructSchema<IntelligentTieringConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.IntelligentTieringConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<IntelligentTieringConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.IntelligentTieringConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#IntelligentTieringConfiguration"),
             [
                 new(
@@ -32,40 +34,18 @@ public static partial class IntelligentTieringConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID used to identify the S3 Intelligent-Tiering configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Filter",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies a bucket filter. The configuration only includes objects that meet the filter's\n      criteria.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Filter", Target1),
                 new(
                     "Status",
                     Target2,
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies the status of the configuration.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -79,12 +59,6 @@ public static partial class IntelligentTieringConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the S3 Intelligent-Tiering storage class tier of the configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -96,29 +70,32 @@ public static partial class IntelligentTieringConfigurationSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the S3 Intelligent-Tiering configuration for an Amazon S3 bucket.</p>\n         <p>For information about the S3 Intelligent-Tiering storage class, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access\">Storage class for\n        automatically optimizing frequently and infrequently accessed objects</a>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<IntelligentTieringFilter?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => IntelligentTieringFilterSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<IntelligentTieringStatus?> Target2 =
-            Schemas.Nullable(IntelligentTieringStatusSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<TieringList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => TieringListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringFilter?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    IntelligentTieringFilterSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringStatus?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(IntelligentTieringStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tiering>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TieringListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override IntelligentTieringConfiguration Build(Builder builder) =>
-            new IntelligentTieringConfiguration(
+        public override global::Com.Amazonaws.S3.IntelligentTieringConfiguration Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.IntelligentTieringConfiguration(
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.Status ?? throw new MissingRequiredMemberException("Status"),
                 builder.Tierings ?? throw new MissingRequiredMemberException("Tierings"),
@@ -126,7 +103,7 @@ public static partial class IntelligentTieringConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            IntelligentTieringConfiguration value,
+            global::Com.Amazonaws.S3.IntelligentTieringConfiguration value,
             ref TSerializer serializer
         )
         {
@@ -176,8 +153,10 @@ public static partial class IntelligentTieringConfigurationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value2
-                                ? IntelligentTieringStatus.FromValue(value2)
-                                : default(IntelligentTieringStatus)
+                                ? global::Com.Amazonaws.S3.IntelligentTieringStatus.FromValue(
+                                    value2
+                                )
+                                : default(global::Com.Amazonaws.S3.IntelligentTieringStatus)
                         );
                     break;
                 case 3:

@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketLocationSchema
 {
-    public static OperationSchema<GetBucketLocationInput, GetBucketLocationOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.GetBucketLocationInput,
+        global::Com.Amazonaws.S3.GetBucketLocationOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketLocation"),
-            Schemas.Lazy(() => GetBucketLocationInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketLocationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketLocationInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketLocationOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -22,60 +25,13 @@ public static partial class GetBucketLocationSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<important>\n            <p>Using the <code>GetBucketLocation</code> operation is no longer a best practice. To return the \n        Region that a bucket resides in, we recommend that you use the \n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html\">HeadBucket</a> \n        operation instead. For backward compatibility, Amazon S3 continues to support the \n        <code>GetBucketLocation</code> operation.</p>\n         </important>\n         <p>Returns the Region the bucket resides in. You set the bucket's Region using the\n        <code>LocationConstraint</code> request parameter in a <code>CreateBucket</code> request. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>.</p>\n         <note>\n            <p>In a bucket's home Region, calls to the <code>GetBucketLocation</code> operation are governed \n        by the bucket's policy. In other Regions, the bucket policy doesn't apply, which means that \n        cross-account access won't be authorized. However, calls to the <code>HeadBucket</code> operation \n        always return the bucket’s location through an HTTP response header, whether access to the bucket \n        is authorized or not. Therefore, we recommend using the <code>HeadBucket</code> operation for \n        bucket Region discovery and to avoid using the <code>GetBucketLocation</code> operation.</p>\n         </note>\n         <p>When you use this API operation with an access point, provide the alias of the access point in place of the bucket name.</p>\n         <p>When you use this API operation with an Object Lambda access point, provide the alias of the Object Lambda access point in place of the bucket name. \nIf the Object Lambda access point alias in a request is not valid, the error code <code>InvalidAccessPointAliasError</code> is returned. \nFor more information about <code>InvalidAccessPointAliasError</code>, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList\">List of\n            Error Codes</a>.</p>\n         <note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>The following operations are related to <code>GetBucketLocation</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To get bucket location") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns bucket location."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "LocationConstraint",
-                                                    Document.From("us-west-2")
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?location") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?location") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

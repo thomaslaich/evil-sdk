@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.Lambda;
 
@@ -104,7 +105,7 @@ public sealed record class CreateEventSourceMappingInput(
     bool? Enabled = null,
     string? EventSourceArn = null,
     global::Com.Amazonaws.Lambda.FilterCriteria? FilterCriteria = null,
-    FunctionResponseTypeList? FunctionResponseTypes = null,
+    IReadOnlyList<FunctionResponseType>? FunctionResponseTypes = null,
     string? KMSKeyArn = null,
     EventSourceMappingLoggingConfig? LoggingConfig = null,
     int? MaximumBatchingWindowInSeconds = null,
@@ -113,15 +114,15 @@ public sealed record class CreateEventSourceMappingInput(
     EventSourceMappingMetricsConfig? MetricsConfig = null,
     int? ParallelizationFactor = null,
     global::Com.Amazonaws.Lambda.ProvisionedPollerConfig? ProvisionedPollerConfig = null,
-    global::Com.Amazonaws.Lambda.Queues? Queues = null,
+    IReadOnlyList<string>? Queues = null,
     global::Com.Amazonaws.Lambda.ScalingConfig? ScalingConfig = null,
     global::Com.Amazonaws.Lambda.SelfManagedEventSource? SelfManagedEventSource = null,
     global::Com.Amazonaws.Lambda.SelfManagedKafkaEventSourceConfig? SelfManagedKafkaEventSourceConfig =
         null,
-    global::Com.Amazonaws.Lambda.SourceAccessConfigurations? SourceAccessConfigurations = null,
+    IReadOnlyList<SourceAccessConfiguration>? SourceAccessConfigurations = null,
     EventSourcePosition? StartingPosition = null,
     DateTimeOffset? StartingPositionTimestamp = null,
-    global::Com.Amazonaws.Lambda.Tags? Tags = null,
-    global::Com.Amazonaws.Lambda.Topics? Topics = null,
+    IReadOnlyDictionary<string, string>? Tags = null,
+    IReadOnlyList<string>? Topics = null,
     int? TumblingWindowInSeconds = null
 );

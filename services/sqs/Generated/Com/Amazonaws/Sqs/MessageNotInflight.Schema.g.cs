@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageNotInflightSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<MessageNotInflight, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.MessageNotInflight,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MessageNotInflight, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.MessageNotInflight, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#MessageNotInflight"),
             [],
             [
@@ -25,25 +28,22 @@ public static partial class MessageNotInflightSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("AWS.SimpleQueueService.MessageNotInflight") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified message isn't in flight.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override MessageNotInflight Build(Builder builder) => new MessageNotInflight(null);
+        public override global::Com.Amazonaws.Sqs.MessageNotInflight Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.MessageNotInflight(null);
 
         public override void SerializeMembers<TSerializer>(
-            MessageNotInflight value,
+            global::Com.Amazonaws.Sqs.MessageNotInflight value,
             ref TSerializer serializer
         ) { }
 

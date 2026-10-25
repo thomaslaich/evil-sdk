@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageSystemAttributeListSchema
 {
     public static ListSchema<
-        MessageSystemAttributeList,
-        MessageSystemAttributeName,
-        List<MessageSystemAttributeName>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.MessageSystemAttributeName>,
+        global::Com.Amazonaws.Sqs.MessageSystemAttributeName,
+        List<global::Com.Amazonaws.Sqs.MessageSystemAttributeName>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            MessageSystemAttributeList,
-            MessageSystemAttributeName,
-            List<MessageSystemAttributeName>
+            IReadOnlyList<global::Com.Amazonaws.Sqs.MessageSystemAttributeName>,
+            global::Com.Amazonaws.Sqs.MessageSystemAttributeName,
+            List<global::Com.Amazonaws.Sqs.MessageSystemAttributeName>
         >(
             ShapeId.Parse("com.amazonaws.sqs#MessageSystemAttributeList"),
             ShapeKind.List,
@@ -29,30 +29,31 @@ public static partial class MessageSystemAttributeListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<MessageSystemAttributeName> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> Target0 =
             MessageSystemAttributeNameSchema.Schema;
 
-        public override IEnumerable<MessageSystemAttributeName> GetElements(
-            MessageSystemAttributeList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> value
+        ) => value;
 
-        public override List<MessageSystemAttributeName> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<MessageSystemAttributeName> builder,
-            MessageSystemAttributeName value
+            List<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> builder,
+            global::Com.Amazonaws.Sqs.MessageSystemAttributeName value
         ) => builder.Add(value);
 
-        public override MessageSystemAttributeList Build(
-            List<MessageSystemAttributeName> builder
-        ) => MessageSystemAttributeList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> Build(
+            List<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            MessageSystemAttributeList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -60,14 +61,14 @@ public static partial class MessageSystemAttributeListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<MessageSystemAttributeName> builder,
+            List<global::Com.Amazonaws.Sqs.MessageSystemAttributeName> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? MessageSystemAttributeName.FromValue(element)
-                        : default(MessageSystemAttributeName)
+                        ? global::Com.Amazonaws.Sqs.MessageSystemAttributeName.FromValue(element)
+                        : default(global::Com.Amazonaws.Sqs.MessageSystemAttributeName)
                 )
             );
     }

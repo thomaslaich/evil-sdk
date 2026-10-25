@@ -6,32 +6,27 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LayerListSchema
 {
-    public static ListSchema<LayerList, string, List<string>> Schema { get; } =
+    public static ListSchema<IReadOnlyList<string>, string, List<string>> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<LayerList, string, List<string>>(
+        : ListSchema<IReadOnlyList<string>, string, List<string>>(
             ShapeId.Parse("com.amazonaws.lambda#LayerList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
+            null,
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#length"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)2048) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(2048m) },
                         }
                     )
                 ),
@@ -41,29 +36,29 @@ public static partial class LayerListSchema
                         "^((arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:layer:[a-zA-Z0-9-_]+:[0-9]+)|(arn:[a-zA-Z0-9-]+:lambda:::awslayer:[a-zA-Z0-9-_]+))$"
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<string> GetElements(LayerList value) => value.Values;
+        public override IEnumerable<string> GetElements(IReadOnlyList<string> value) => value;
 
         public override List<string> CreateTypedBuilder() => new();
 
         public override void Add(List<string> builder, string value) => builder.Add(value);
 
-        public override LayerList Build(List<string> builder) => LayerList.FromOwnedList(builder);
+        public override IReadOnlyList<string> Build(List<string> builder) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            LayerList value,
+            IReadOnlyList<string> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

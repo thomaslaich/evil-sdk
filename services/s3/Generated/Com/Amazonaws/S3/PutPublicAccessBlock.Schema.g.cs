@@ -6,18 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutPublicAccessBlockSchema
 {
     public static OperationSchema<
-        PutPublicAccessBlockInput,
-        PutPublicAccessBlockOutput
+        global::Com.Amazonaws.S3.PutPublicAccessBlockInput,
+        global::Com.Amazonaws.S3.PutPublicAccessBlockOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutPublicAccessBlock"),
-            Schemas.Lazy(() => PutPublicAccessBlockInputSchema.Schema!),
-            Schemas.Lazy(() => PutPublicAccessBlockOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutPublicAccessBlockInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutPublicAccessBlockOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -31,19 +31,13 @@ public static partial class PutPublicAccessBlockSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon S3 bucket. To use this\n      operation, you must have the <code>s3:PutBucketPublicAccessBlock</code> permission. For more information\n      about Amazon S3 permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html\">Specifying Permissions in a\n      Policy</a>.</p>\n         <important>\n            <p>When Amazon S3 evaluates the <code>PublicAccessBlock</code> configuration for a bucket or an\n        object, it checks the <code>PublicAccessBlock</code> configuration for both the bucket (or\n        the bucket that contains the object) and the bucket owner's account. Account-level settings\n        automatically inherit from organization-level policies when present. If the\n          <code>PublicAccessBlock</code> configurations are different between the bucket and the\n        account, Amazon S3 uses the most restrictive combination of the bucket-level and account-level\n        settings.</p>\n         </important>\n         <p>For more information about when Amazon S3 considers a bucket or an object public, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status\">The Meaning of \"Public\"</a>.</p>\n         <p>The following operations are related to <code>PutPublicAccessBlock</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetPublicAccessBlock.html\">GetPublicAccessBlock</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html\">DeletePublicAccessBlock</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicyStatus.html\">GetBucketPolicyStatus</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\">Using Amazon S3 Block Public Access</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?publicAccessBlock") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?publicAccessBlock") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

@@ -6,63 +6,56 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventSourceMappingsListSchema
 {
     public static ListSchema<
-        EventSourceMappingsList,
-        EventSourceMappingConfiguration,
-        List<EventSourceMappingConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration>,
+        global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration,
+        List<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            EventSourceMappingsList,
-            EventSourceMappingConfiguration,
-            List<EventSourceMappingConfiguration>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration>,
+            global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration,
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration>
         >(
             ShapeId.Parse("com.amazonaws.lambda#EventSourceMappingsList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventSourceMappingConfiguration> Target0 =
-            Schemas.Lazy(() => EventSourceMappingConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                EventSourceMappingConfigurationSchema.Schema!
+            );
 
-        public override IEnumerable<EventSourceMappingConfiguration> GetElements(
-            EventSourceMappingsList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> value
+        ) => value;
 
-        public override List<EventSourceMappingConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<EventSourceMappingConfiguration> builder,
-            EventSourceMappingConfiguration value
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> builder,
+            global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration value
         ) => builder.Add(value);
 
-        public override EventSourceMappingsList Build(
-            List<EventSourceMappingConfiguration> builder
-        ) => EventSourceMappingsList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> Build(
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            EventSourceMappingsList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -81,7 +74,7 @@ public static partial class EventSourceMappingsListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<EventSourceMappingConfiguration> builder,
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(EventSourceMappingConfigurationSchema.Schema));
     }

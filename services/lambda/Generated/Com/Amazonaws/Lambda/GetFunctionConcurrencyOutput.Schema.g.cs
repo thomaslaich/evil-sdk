@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetFunctionConcurrencyOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetFunctionConcurrencyOutputSchema
         public int? ReservedConcurrentExecutions { get; set; }
     }
 
-    public static StructSchema<GetFunctionConcurrencyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetFunctionConcurrencyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFunctionConcurrencyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetFunctionConcurrencyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetFunctionConcurrencyOutput"),
             [
                 new(
@@ -32,23 +34,10 @@ public static partial class GetFunctionConcurrencyOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of simultaneous executions that are reserved for the function.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -59,27 +48,26 @@ public static partial class GetFunctionConcurrencyOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetFunctionConcurrencyResponse")
                 ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFunctionConcurrencyOutput Build(Builder builder) =>
-            new GetFunctionConcurrencyOutput(builder.ReservedConcurrentExecutions);
+        public override global::Com.Amazonaws.Lambda.GetFunctionConcurrencyOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetFunctionConcurrencyOutput(
+                builder.ReservedConcurrentExecutions
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetFunctionConcurrencyOutput value,
+            global::Com.Amazonaws.Lambda.GetFunctionConcurrencyOutput value,
             ref TSerializer serializer
         )
         {

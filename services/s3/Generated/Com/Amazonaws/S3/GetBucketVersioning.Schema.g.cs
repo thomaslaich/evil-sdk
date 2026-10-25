@@ -6,76 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketVersioningSchema
 {
     public static OperationSchema<
-        GetBucketVersioningInput,
-        GetBucketVersioningOutput
+        global::Com.Amazonaws.S3.GetBucketVersioningInput,
+        global::Com.Amazonaws.S3.GetBucketVersioningOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketVersioning"),
-            Schemas.Lazy(() => GetBucketVersioningInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketVersioningOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketVersioningInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketVersioningOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Returns the versioning state of a bucket.</p>\n         <p>To retrieve the versioning state of a bucket, you must be the bucket owner.</p>\n         <p>This implementation also returns the MFA Delete status of the versioning state. If the MFA Delete\n      status is <code>enabled</code>, the bucket owner must use an authentication device to change the\n      versioning state of the bucket.</p>\n         <p>The following operations are related to <code>GetBucketVersioning</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html\">PutObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html\">DeleteObject</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("To get bucket versioning configuration")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example retrieves bucket versioning configuration."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Status", Document.From("Enabled") },
-                                                { "MFADelete", Document.From("Disabled") },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?versioning") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?versioning") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

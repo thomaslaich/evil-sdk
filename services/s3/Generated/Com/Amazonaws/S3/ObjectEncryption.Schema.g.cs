@@ -5,14 +5,15 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectEncryptionSchema
 {
-    public static UnionSchema<ObjectEncryption> Schema { get; } = new GeneratedSchema();
+    public static UnionSchema<global::Com.Amazonaws.S3.ObjectEncryption> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : UnionSchema<ObjectEncryption>(
+        : UnionSchema<global::Com.Amazonaws.S3.ObjectEncryption>(
             ShapeId.Parse("com.amazonaws.s3#ObjectEncryption"),
             [
                 new(
@@ -20,44 +21,31 @@ public static partial class ObjectEncryptionSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      Specifies to update the object encryption type to server-side encryption with Key Management Service (KMS) keys \n      (SSE-KMS). \n    </p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SSE-KMS")),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The updated server-side encryption type for this object. The <code>UpdateObjectEncryption</code> \n      operation supports the SSE-S3 and SSE-KMS encryption types.\n    </p>\n         <p>Valid Values: <code>SSES3</code> | <code>SSEKMS</code>\n         </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SSEKMSEncryption> Target0 =
-            Schemas.Lazy(() => SSEKMSEncryptionSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SSEKMSEncryption> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => SSEKMSEncryptionSchema.Schema!);
 
-        public override int CaseOf(ObjectEncryption value) =>
+        public override int CaseOf(global::Com.Amazonaws.S3.ObjectEncryption value) =>
             value switch
             {
-                ObjectEncryption.SSEKMS => 0,
+                global::Com.Amazonaws.S3.ObjectEncryption.SSEKMS => 0,
                 _ => throw NoCaseMatched(),
             };
 
         public override void SerializeCase<TSerializer>(
-            ObjectEncryption value,
+            global::Com.Amazonaws.S3.ObjectEncryption value,
             ref TSerializer serializer
         )
         {
             switch (value)
             {
-                case ObjectEncryption.SSEKMS @case:
+                case global::Com.Amazonaws.S3.ObjectEncryption.SSEKMS @case:
                     if (@case.Value is { } value0)
                     {
                         serializer.WriteStruct(0, value0, SSEKMSEncryptionSchema.Schema);
@@ -72,13 +60,13 @@ public static partial class ObjectEncryptionSchema
             }
         }
 
-        public override ObjectEncryption DeserializeCase<TDeserializer>(
+        public override global::Com.Amazonaws.S3.ObjectEncryption DeserializeCase<TDeserializer>(
             int index,
             ref TDeserializer deserializer
         ) =>
             index switch
             {
-                0 => new ObjectEncryption.SSEKMS(
+                0 => new global::Com.Amazonaws.S3.ObjectEncryption.SSEKMS(
                     (deserializer.ReadStruct(SSEKMSEncryptionSchema.Schema))!
                 ),
                 _ => throw NoCaseMatched(),

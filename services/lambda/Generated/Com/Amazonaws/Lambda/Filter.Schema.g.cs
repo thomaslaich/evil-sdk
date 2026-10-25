@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FilterSchema
 {
@@ -15,10 +15,11 @@ public static partial class FilterSchema
         public string? Pattern { get; set; }
     }
 
-    public static StructSchema<Filter, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.Filter, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Filter, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.Filter, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#Filter"),
             [
                 new(
@@ -27,18 +28,12 @@ public static partial class FilterSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> A filter pattern. For more information on the syntax of a filter pattern, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax\"> Filter rule syntax</a>. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)4096) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(4096m) },
                                 }
                             )
                         ),
@@ -46,35 +41,26 @@ public static partial class FilterSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\s\\S]*$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> A structure within a <code>FilterCriteria</code> object that defines an event filtering pattern. </p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Filter Build(Builder builder) => new Filter(builder.Pattern);
+        public override global::Com.Amazonaws.Lambda.Filter Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.Filter(builder.Pattern);
 
-        public override void SerializeMembers<TSerializer>(Filter value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.Lambda.Filter value,
+            ref TSerializer serializer
+        )
         {
             if (value.Pattern is { } value0)
             {

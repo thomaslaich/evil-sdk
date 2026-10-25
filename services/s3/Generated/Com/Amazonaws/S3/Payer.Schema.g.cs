@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PayerSchema
 {
     public static global::NSmithy.Core.Serde.Schema<Payer> Schema { get; } =
-        Schemas.StringEnum<Payer>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<Payer>(
             ShapeId.Parse("com.amazonaws.s3#Payer"),
             values: ["Requester", "BucketOwner"],
             traits:

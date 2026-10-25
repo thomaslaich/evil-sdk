@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RequestProgressSchema
 {
@@ -15,10 +15,11 @@ public static partial class RequestProgressSchema
         public bool? Enabled { get; set; }
     }
 
-    public static StructSchema<RequestProgress, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.RequestProgress, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RequestProgress, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RequestProgress, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RequestProgress"),
             [
                 new(
@@ -30,36 +31,22 @@ public static partial class RequestProgressSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether periodic QueryProgress frames should be sent. Valid values: TRUE, FALSE. Default\n      value: FALSE.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Container for specifying if periodic <code>QueryProgress</code> messages should be sent.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RequestProgress Build(Builder builder) =>
-            new RequestProgress(builder.Enabled);
+        public override global::Com.Amazonaws.S3.RequestProgress Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RequestProgress(builder.Enabled);
 
         public override void SerializeMembers<TSerializer>(
-            RequestProgress value,
+            global::Com.Amazonaws.S3.RequestProgress value,
             ref TSerializer serializer
         )
         {

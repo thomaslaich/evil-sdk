@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetadataTableConfigurationOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketMetadataTableConfigurationOutputSchema
         public global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult? GetBucketMetadataTableConfigurationResult { get; set; }
     }
 
-    public static StructSchema<GetBucketMetadataTableConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketMetadataTableConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketMetadataTableConfigurationOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class GetBucketMetadataTableConfigurationOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The metadata table configuration for the general purpose bucket. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,19 +45,23 @@ public static partial class GetBucketMetadataTableConfigurationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationResult?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => GetBucketMetadataTableConfigurationResultSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    GetBucketMetadataTableConfigurationResultSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketMetadataTableConfigurationOutput Build(Builder builder) =>
-            new GetBucketMetadataTableConfigurationOutput(
+        public override global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationOutput(
                 builder.GetBucketMetadataTableConfigurationResult
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketMetadataTableConfigurationOutput value,
+            global::Com.Amazonaws.S3.GetBucketMetadataTableConfigurationOutput value,
             ref TSerializer serializer
         )
         {

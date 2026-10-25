@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RenameObjectInputSchema
 {
@@ -27,10 +27,13 @@ public static partial class RenameObjectInputSchema
         public string? ClientToken { get; set; }
     }
 
-    public static StructSchema<RenameObjectInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.RenameObjectInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RenameObjectInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RenameObjectInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RenameObjectInput"),
             [
                 new(
@@ -39,12 +42,6 @@ public static partial class RenameObjectInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The bucket name of the directory bucket containing the object.</p>\n         <p> You must use virtual-hosted-style requests in the format\n        <code>Bucket-name.s3express-zone-id.region-code.amazonaws.com</code>. Path-style requests are not\n      supported. Directory bucket names must be unique in the chosen Availability Zone. Bucket names must\n      follow the format <code>bucket-base-name--zone-id--x-s3 </code> (for example,\n        <code>amzn-s3-demo-bucket--usw2-az1--x-s3</code>). For information about bucket naming restrictions, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming rules</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -71,20 +68,13 @@ public static partial class RenameObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Key name of the object to rename.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -109,12 +99,6 @@ public static partial class RenameObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the source for the rename operation. The value must be URL encoded.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-rename-source")
                         ),
@@ -134,12 +118,6 @@ public static partial class RenameObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Renames the object only if the ETag (entity tag) value provided during the operation matches the\n      ETag of the object in S3. The <code>If-Match</code> header field makes the request method conditional on\n      ETags. If the ETag values do not match, the operation returns a <code>412 Precondition Failed</code>\n      error.</p>\n         <p>Expects the ETag value as a string.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Match")
                         ),
@@ -150,12 +128,6 @@ public static partial class RenameObjectInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Renames the object only if the destination does not already exist in the specified directory\n      bucket. If the object does exist when you send a request with <code>If-None-Match:*</code>, the S3 API\n      will return a <code>412 Precondition Failed</code> error, preventing an overwrite. The\n        <code>If-None-Match</code> header prevents overwrites of existing data by validating that there's not\n      an object with the same key name already in your directory bucket.</p>\n         <p> Expects the <code>*</code> character (asterisk).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-None-Match")
@@ -168,12 +140,6 @@ public static partial class RenameObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Renames the object if the destination exists and if it has been modified since the specified\n      time.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Modified-Since")
                         ),
@@ -184,12 +150,6 @@ public static partial class RenameObjectInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Renames the object if it hasn't been modified since the specified time.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Unmodified-Since")
@@ -202,12 +162,6 @@ public static partial class RenameObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Renames the object if the source exists and if its entity tag (ETag) matches the specified ETag.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-rename-source-if-match")
                         ),
@@ -219,12 +173,6 @@ public static partial class RenameObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Renames the object if the source exists and if its entity tag (ETag) is different than the specified\n      ETag. If an asterisk (<code>*</code>) character is provided, the operation will fail and return a\n        <code>412 Precondition Failed</code> error. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-rename-source-if-none-match")
                         ),
@@ -235,12 +183,6 @@ public static partial class RenameObjectInputSchema
                     Target9,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Renames the object if the source exists and if it has been modified since the specified time.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-rename-source-if-modified-since")
@@ -257,12 +199,6 @@ public static partial class RenameObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Renames the object if the source exists and hasn't been modified since the specified time.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-rename-source-if-unmodified-since")
                         ),
@@ -277,12 +213,6 @@ public static partial class RenameObjectInputSchema
                     Target11,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> A unique string with a max of 64 ASCII characters in the ASCII range of 33 - 126.</p>\n         <note>\n            <p>\n               <code>RenameObject</code> supports idempotency using a client token. To make an idempotent API request\n        using <code>RenameObject</code>, specify a client token in the request. You should not reuse the same\n        client token for other API requests. If you retry a request that completed successfully using the same\n        client token and the same parameters, the retry succeeds without performing any further actions. If\n        you retry a successful request using the same client token, but one or more of the parameters are\n        different, the retry fails and an <code>IdempotentParameterMismatch</code> error is returned. </p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-client-token")
@@ -307,26 +237,44 @@ public static partial class RenameObjectInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target5 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target6 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target9 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("http-date")
@@ -334,8 +282,8 @@ public static partial class RenameObjectInputSchema
                 ])
             );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target10 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("http-date")
@@ -343,12 +291,14 @@ public static partial class RenameObjectInputSchema
                 ])
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RenameObjectInput Build(Builder builder) =>
-            new RenameObjectInput(
+        public override global::Com.Amazonaws.S3.RenameObjectInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RenameObjectInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.RenameSource ?? throw new MissingRequiredMemberException("RenameSource"),
@@ -364,7 +314,7 @@ public static partial class RenameObjectInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            RenameObjectInput value,
+            global::Com.Amazonaws.S3.RenameObjectInput value,
             ref TSerializer serializer
         )
         {

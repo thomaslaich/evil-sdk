@@ -4,21 +4,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageSystemAttributeMapSchema
 {
     public static MapSchema<
-        MessageSystemAttributeMap,
+        IReadOnlyDictionary<string, string>,
         string,
         Dictionary<string, string>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : MapSchema<MessageSystemAttributeMap, string, Dictionary<string, string>>(
+        : MapSchema<IReadOnlyDictionary<string, string>, string, Dictionary<string, string>>(
             ShapeId.Parse("com.amazonaws.sqs#MessageSystemAttributeMap"),
             Target0,
             null,
@@ -27,11 +28,15 @@ public static partial class MessageSystemAttributeMapSchema
             MessageSystemAttributeNameSchema.Schema
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
         public override IEnumerable<KeyValuePair<string, string>> GetEntries(
-            MessageSystemAttributeMap value
-        ) => value.Values;
+            IReadOnlyDictionary<string, string> value
+        ) => value;
 
         public override Dictionary<string, string> CreateTypedBuilder() =>
             new(StringComparer.Ordinal);
@@ -39,15 +44,16 @@ public static partial class MessageSystemAttributeMapSchema
         public override void Add(Dictionary<string, string> builder, string key, string value) =>
             builder[key] = value;
 
-        public override MessageSystemAttributeMap Build(Dictionary<string, string> builder) =>
-            MessageSystemAttributeMap.FromOwnedDictionary(builder);
+        public override IReadOnlyDictionary<string, string> Build(
+            Dictionary<string, string> builder
+        ) => new ReadOnlyDictionary<string, string>(builder);
 
         public override void SerializeEntries<TSerializer>(
-            MessageSystemAttributeMap value,
+            IReadOnlyDictionary<string, string> value,
             ref TSerializer serializer
         )
         {
-            foreach (var entry in value.Values)
+            foreach (var entry in value)
             {
                 serializer.WriteString(0, entry.Key);
                 if (entry.Value is { } entryValue)

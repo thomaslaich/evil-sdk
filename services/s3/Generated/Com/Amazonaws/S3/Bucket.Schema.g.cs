@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketSchema
 {
@@ -19,67 +19,28 @@ public static partial class BucketSchema
         public string? BucketArn { get; set; }
     }
 
-    public static StructSchema<Bucket, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Bucket, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Bucket, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Bucket, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Bucket"),
             [
-                new(
-                    "Name",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the bucket.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "CreationDate",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Date the bucket was created. This date can change when making changes to your bucket, such as\n      editing its bucket policy.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "BucketRegion",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n            <code>BucketRegion</code> indicates the Amazon Web Services region where the bucket is located. If the request\n      contains at least one valid parameter, it is included in the response.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Name", Target0),
+                new("CreationDate", Target1),
+                new("BucketRegion", Target2),
                 new(
                     "BucketArn",
                     Target3,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services resources across all\n      of Amazon Web Services.</p>\n         <note>\n            <p>This parameter is only supported for S3 directory buckets. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-tagging.html\">Using tags with\n          directory buckets</a>.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
@@ -90,29 +51,40 @@ public static partial class BucketSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p> In terms of implementation, a Bucket is a resource. </p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Bucket Build(Builder builder) =>
-            new Bucket(builder.BucketArn, builder.BucketRegion, builder.CreationDate, builder.Name);
+        public override global::Com.Amazonaws.S3.Bucket Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Bucket(
+                builder.BucketArn,
+                builder.BucketRegion,
+                builder.CreationDate,
+                builder.Name
+            );
 
-        public override void SerializeMembers<TSerializer>(Bucket value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.S3.Bucket value,
+            ref TSerializer serializer
+        )
         {
             if (value.Name is { } value0)
             {

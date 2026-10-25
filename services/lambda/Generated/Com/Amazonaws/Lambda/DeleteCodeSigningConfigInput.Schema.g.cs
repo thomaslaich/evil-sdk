@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteCodeSigningConfigInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class DeleteCodeSigningConfigInputSchema
         public string? CodeSigningConfigArn { get; set; }
     }
 
-    public static StructSchema<DeleteCodeSigningConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteCodeSigningConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteCodeSigningConfigInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class DeleteCodeSigningConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The The Amazon Resource Name (ARN) of the code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -43,8 +39,8 @@ public static partial class DeleteCodeSigningConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)200) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(200m) },
                                 }
                             )
                         ),
@@ -58,10 +54,6 @@ public static partial class DeleteCodeSigningConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -71,10 +63,6 @@ public static partial class DeleteCodeSigningConfigInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteCodeSigningConfigRequest")
                 ),
@@ -82,18 +70,22 @@ public static partial class DeleteCodeSigningConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteCodeSigningConfigInput Build(Builder builder) =>
-            new DeleteCodeSigningConfigInput(
+        public override global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigInput(
                 builder.CodeSigningConfigArn
                     ?? throw new MissingRequiredMemberException("CodeSigningConfigArn")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteCodeSigningConfigInput value,
+            global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigInput value,
             ref TSerializer serializer
         )
         {

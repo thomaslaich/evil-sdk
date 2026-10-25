@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class RemovePermissionInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class RemovePermissionInputSchema
         public string? Label { get; set; }
     }
 
-    public static StructSchema<RemovePermissionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.RemovePermissionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RemovePermissionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.RemovePermissionInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#RemovePermissionInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class RemovePermissionInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue from which permissions are removed.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -48,12 +44,6 @@ public static partial class RemovePermissionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identification of the permission to remove. This is the label added using the\n                    <code>\n               <a>AddPermission</a>\n            </code> action.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -61,7 +51,6 @@ public static partial class RemovePermissionInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -74,20 +63,24 @@ public static partial class RemovePermissionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RemovePermissionInput Build(Builder builder) =>
-            new RemovePermissionInput(
+        public override global::Com.Amazonaws.Sqs.RemovePermissionInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.RemovePermissionInput(
                 builder.Label ?? throw new MissingRequiredMemberException("Label"),
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
             );
 
         public override void SerializeMembers<TSerializer>(
-            RemovePermissionInput value,
+            global::Com.Amazonaws.Sqs.RemovePermissionInput value,
             ref TSerializer serializer
         )
         {

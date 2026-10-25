@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetResourcePolicyOutputSchema
 {
@@ -16,11 +16,13 @@ public static partial class GetResourcePolicyOutputSchema
         public string? RevisionId { get; set; }
     }
 
-    public static StructSchema<GetResourcePolicyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetResourcePolicyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetResourcePolicyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetResourcePolicyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetResourcePolicyOutput"),
             [
                 new(
@@ -29,28 +31,18 @@ public static partial class GetResourcePolicyOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The resource-based policy attached to the Lambda resource you specified.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)20480) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(20480m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\s\\S]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -60,18 +52,12 @@ public static partial class GetResourcePolicyOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The revision ID of the policy. Pass this value as the <code>RevisionId</code> in a <a>PutResourcePolicy</a> or <a>DeleteResourcePolicy</a> request. Doing so ensures the operation acts on the expected version of the policy.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)36) },
-                                    { "max", Document.From((decimal)36) },
+                                    { "min", Document.From(36m) },
+                                    { "max", Document.From(36m) },
                                 }
                             )
                         ),
@@ -80,10 +66,6 @@ public static partial class GetResourcePolicyOutputSchema
                             Document.From(
                                 "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -94,10 +76,6 @@ public static partial class GetResourcePolicyOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetResourcePolicyResponse")
                 ),
@@ -105,17 +83,26 @@ public static partial class GetResourcePolicyOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetResourcePolicyOutput Build(Builder builder) =>
-            new GetResourcePolicyOutput(builder.Policy, builder.RevisionId);
+        public override global::Com.Amazonaws.Lambda.GetResourcePolicyOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetResourcePolicyOutput(
+                builder.Policy,
+                builder.RevisionId
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetResourcePolicyOutput value,
+            global::Com.Amazonaws.Lambda.GetResourcePolicyOutput value,
             ref TSerializer serializer
         )
         {

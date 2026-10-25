@@ -5,38 +5,34 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EncryptionTypeMismatchSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<EncryptionTypeMismatch, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.EncryptionTypeMismatch,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EncryptionTypeMismatch, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.EncryptionTypeMismatch, Builder>(
             ShapeId.Parse("com.amazonaws.s3#EncryptionTypeMismatch"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> The existing object was created with a different encryption type. Subsequent write requests must\n      include the appropriate encryption parameters in the request or while creating the session. </p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override EncryptionTypeMismatch Build(Builder builder) =>
-            new EncryptionTypeMismatch(null);
+        public override global::Com.Amazonaws.S3.EncryptionTypeMismatch Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.EncryptionTypeMismatch(null);
 
         public override void SerializeMembers<TSerializer>(
-            EncryptionTypeMismatch value,
+            global::Com.Amazonaws.S3.EncryptionTypeMismatch value,
             ref TSerializer serializer
         ) { }
 

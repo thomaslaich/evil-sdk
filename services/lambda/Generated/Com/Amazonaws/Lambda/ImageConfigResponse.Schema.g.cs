@@ -5,84 +5,47 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ImageConfigResponseSchema
 {
     public sealed class Builder
     {
         public global::Com.Amazonaws.Lambda.ImageConfig? ImageConfig { get; set; }
-        public ImageConfigError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.ImageConfigError? Error { get; set; }
     }
 
-    public static StructSchema<ImageConfigResponse, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ImageConfigResponse,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ImageConfigResponse, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ImageConfigResponse, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ImageConfigResponse"),
-            [
-                new(
-                    "ImageConfig",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Configuration values that override the container image Dockerfile.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Error",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Error response to <code>GetFunctionConfiguration</code>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Response to a <code>GetFunctionConfiguration</code> request.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("ImageConfig", Target0), new("Error", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ImageConfig?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ImageConfigSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<ImageConfigError?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ImageConfigErrorSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ImageConfigSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ImageConfigError?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ImageConfigErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ImageConfigResponse Build(Builder builder) =>
-            new ImageConfigResponse(builder.Error, builder.ImageConfig);
+        public override global::Com.Amazonaws.Lambda.ImageConfigResponse Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ImageConfigResponse(
+                builder.Error,
+                builder.ImageConfig
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ImageConfigResponse value,
+            global::Com.Amazonaws.Lambda.ImageConfigResponse value,
             ref TSerializer serializer
         )
         {

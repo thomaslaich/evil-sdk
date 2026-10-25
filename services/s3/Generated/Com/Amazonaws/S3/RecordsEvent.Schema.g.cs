@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RecordsEventSchema
 {
@@ -15,10 +15,11 @@ public static partial class RecordsEventSchema
         public byte[]? Payload { get; set; }
     }
 
-    public static StructSchema<RecordsEvent, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.RecordsEvent, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RecordsEvent, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RecordsEvent, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RecordsEvent"),
             [
                 new(
@@ -27,35 +28,27 @@ public static partial class RecordsEventSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The byte array of partial, one or more result records. S3 Select doesn't guarantee that a record\n      will be self-contained in one record frame. To ensure continuous streaming of data, S3 Select might\n      split the same record across multiple record frames instead of aggregating the results in memory. Some\n      S3 clients (for example, the SDK for Java) handle this behavior by creating a\n        <code>ByteStream</code> out of the response by default. Other clients might not handle this behavior\n      by default. In those cases, you must aggregate the results on the client side and parse the\n      response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#eventPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The container for the records event.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<byte[]?> Target0 =
-            Schemas.NullableReference(Schemas.Blob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Blob
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RecordsEvent Build(Builder builder) => new RecordsEvent(builder.Payload);
+        public override global::Com.Amazonaws.S3.RecordsEvent Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RecordsEvent(builder.Payload);
 
         public override void SerializeMembers<TSerializer>(
-            RecordsEvent value,
+            global::Com.Amazonaws.S3.RecordsEvent value,
             ref TSerializer serializer
         )
         {

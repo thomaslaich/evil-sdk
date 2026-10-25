@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TenantIsolationModeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<TenantIsolationMode> Schema { get; } =
-        Schemas.StringEnum<TenantIsolationMode>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<TenantIsolationMode>(
             ShapeId.Parse("com.amazonaws.lambda#TenantIsolationMode"),
             values: ["PER_TENANT"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

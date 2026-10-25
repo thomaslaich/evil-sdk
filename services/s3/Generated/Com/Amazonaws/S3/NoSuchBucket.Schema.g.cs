@@ -5,34 +5,32 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoSuchBucketSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<NoSuchBucket, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.NoSuchBucket, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NoSuchBucket, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NoSuchBucket, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NoSuchBucket"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified bucket does not exist.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override NoSuchBucket Build(Builder builder) => new NoSuchBucket(null);
+        public override global::Com.Amazonaws.S3.NoSuchBucket Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.NoSuchBucket(null);
 
         public override void SerializeMembers<TSerializer>(
-            NoSuchBucket value,
+            global::Com.Amazonaws.S3.NoSuchBucket value,
             ref TSerializer serializer
         ) { }
 

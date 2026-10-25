@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionCodeSigningConfigOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteFunctionCodeSigningConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteFunctionCodeSigningConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteFunctionCodeSigningConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteFunctionCodeSigningConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionCodeSigningConfigOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteFunctionCodeSigningConfigOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteFunctionCodeSigningConfigOutput Build(Builder builder) =>
-            new DeleteFunctionCodeSigningConfigOutput();
+        public override global::Com.Amazonaws.Lambda.DeleteFunctionCodeSigningConfigOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.DeleteFunctionCodeSigningConfigOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteFunctionCodeSigningConfigOutput value,
+            global::Com.Amazonaws.Lambda.DeleteFunctionCodeSigningConfigOutput value,
             ref TSerializer serializer
         ) { }
 

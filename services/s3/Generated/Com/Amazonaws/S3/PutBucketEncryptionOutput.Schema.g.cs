@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketEncryptionOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketEncryptionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketEncryptionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketEncryptionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketEncryptionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketEncryptionOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class PutBucketEncryptionOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketEncryptionOutput Build(Builder builder) =>
-            new PutBucketEncryptionOutput();
+        public override global::Com.Amazonaws.S3.PutBucketEncryptionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketEncryptionOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketEncryptionOutput value,
+            global::Com.Amazonaws.S3.PutBucketEncryptionOutput value,
             ref TSerializer serializer
         ) { }
 

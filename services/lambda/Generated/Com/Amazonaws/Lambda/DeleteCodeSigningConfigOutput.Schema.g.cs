@@ -6,27 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteCodeSigningConfigOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteCodeSigningConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteCodeSigningConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteCodeSigningConfigOutput"),
             [],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -37,11 +35,12 @@ public static partial class DeleteCodeSigningConfigOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteCodeSigningConfigOutput Build(Builder builder) =>
-            new DeleteCodeSigningConfigOutput();
+        public override global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteCodeSigningConfigOutput value,
+            global::Com.Amazonaws.Lambda.DeleteCodeSigningConfigOutput value,
             ref TSerializer serializer
         ) { }
 

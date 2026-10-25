@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionVersionLatestPublishedSchema
 {
     public static global::NSmithy.Core.Serde.Schema<FunctionVersionLatestPublished> Schema { get; } =
-        Schemas.StringEnum<FunctionVersionLatestPublished>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<FunctionVersionLatestPublished>(
             ShapeId.Parse("com.amazonaws.lambda#FunctionVersionLatestPublished"),
             values: ["LATEST_PUBLISHED"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

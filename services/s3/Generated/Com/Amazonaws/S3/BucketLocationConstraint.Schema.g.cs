@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketLocationConstraintSchema
 {
     public static global::NSmithy.Core.Serde.Schema<BucketLocationConstraint> Schema { get; } =
-        Schemas.StringEnum<BucketLocationConstraint>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<BucketLocationConstraint>(
             ShapeId.Parse("com.amazonaws.s3#BucketLocationConstraint"),
             values:
             [

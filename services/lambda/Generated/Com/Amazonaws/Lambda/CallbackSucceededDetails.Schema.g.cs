@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CallbackSucceededDetailsSchema
 {
     public sealed class Builder
     {
-        public EventResult? Result { get; set; }
+        public global::Com.Amazonaws.Lambda.EventResult? Result { get; set; }
     }
 
-    public static StructSchema<CallbackSucceededDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CallbackSucceededDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CallbackSucceededDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CallbackSucceededDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CallbackSucceededDetails"),
             [
                 new(
@@ -29,48 +31,31 @@ public static partial class CallbackSucceededDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The response payload from the successful operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains details about a successfully completed callback operation, including the result data and completion timestamp.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventResult?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventResultSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventResult?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventResultSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CallbackSucceededDetails Build(Builder builder) =>
-            new CallbackSucceededDetails(
+        public override global::Com.Amazonaws.Lambda.CallbackSucceededDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CallbackSucceededDetails(
                 builder.Result ?? throw new MissingRequiredMemberException("Result")
             );
 
         public override void SerializeMembers<TSerializer>(
-            CallbackSucceededDetails value,
+            global::Com.Amazonaws.Lambda.CallbackSucceededDetails value,
             ref TSerializer serializer
         )
         {

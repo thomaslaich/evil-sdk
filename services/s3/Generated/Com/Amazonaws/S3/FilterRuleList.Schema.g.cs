@@ -6,47 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class FilterRuleListSchema
 {
-    public static ListSchema<FilterRuleList, FilterRule, List<FilterRule>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.FilterRule>,
+        global::Com.Amazonaws.S3.FilterRule,
+        List<global::Com.Amazonaws.S3.FilterRule>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<FilterRuleList, FilterRule, List<FilterRule>>(
-            ShapeId.Parse("com.amazonaws.s3#FilterRuleList"),
-            ShapeKind.List,
-            Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A list of containers for the key-value pair that defines the criteria for the filter rule.</p>"
-                    )
-                ),
-            ],
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.FilterRule>,
+            global::Com.Amazonaws.S3.FilterRule,
+            List<global::Com.Amazonaws.S3.FilterRule>
+        >(ShapeId.Parse("com.amazonaws.s3#FilterRuleList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FilterRule> Target0 =
-            Schemas.Lazy(() => FilterRuleSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.FilterRule> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => FilterRuleSchema.Schema!);
 
-        public override IEnumerable<FilterRule> GetElements(FilterRuleList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.FilterRule> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.FilterRule> value
+        ) => value;
 
-        public override List<FilterRule> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.FilterRule> CreateTypedBuilder() => new();
 
-        public override void Add(List<FilterRule> builder, FilterRule value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.FilterRule> builder,
+            global::Com.Amazonaws.S3.FilterRule value
+        ) => builder.Add(value);
 
-        public override FilterRuleList Build(List<FilterRule> builder) =>
-            FilterRuleList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.FilterRule> Build(
+            List<global::Com.Amazonaws.S3.FilterRule> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FilterRuleList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.FilterRule> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -61,7 +61,7 @@ public static partial class FilterRuleListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<FilterRule> builder,
+            List<global::Com.Amazonaws.S3.FilterRule> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(FilterRuleSchema.Schema));
     }

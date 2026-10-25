@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetadataEntrySchema
 {
@@ -15,55 +15,32 @@ public static partial class MetadataEntrySchema
         public string? Value { get; set; }
     }
 
-    public static StructSchema<MetadataEntry, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.MetadataEntry, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MetadataEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.MetadataEntry, Builder>(
             ShapeId.Parse("com.amazonaws.s3#MetadataEntry"),
-            [
-                new(
-                    "Name",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Name of the object.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Value",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Value of the object.</p>")
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>A metadata key-value pair to store with an object.</p>")
-                ),
-            ]
+            [new("Name", Target0), new("Value", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MetadataEntry Build(Builder builder) =>
-            new MetadataEntry(builder.Name, builder.Value);
+        public override global::Com.Amazonaws.S3.MetadataEntry Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.MetadataEntry(builder.Name, builder.Value);
 
         public override void SerializeMembers<TSerializer>(
-            MetadataEntry value,
+            global::Com.Amazonaws.S3.MetadataEntry value,
             ref TSerializer serializer
         )
         {

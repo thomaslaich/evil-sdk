@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsS3ExportFileFormatSchema
 {
     public static global::NSmithy.Core.Serde.Schema<AnalyticsS3ExportFileFormat> Schema { get; } =
-        Schemas.StringEnum<AnalyticsS3ExportFileFormat>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<AnalyticsS3ExportFileFormat>(
             ShapeId.Parse("com.amazonaws.s3#AnalyticsS3ExportFileFormat"),
             values: ["CSV"],
             traits:

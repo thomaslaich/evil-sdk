@@ -6,45 +6,48 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteMarkersSchema
 {
     public static ListSchema<
-        DeleteMarkers,
-        DeleteMarkerEntry,
-        List<DeleteMarkerEntry>
+        IReadOnlyList<global::Com.Amazonaws.S3.DeleteMarkerEntry>,
+        global::Com.Amazonaws.S3.DeleteMarkerEntry,
+        List<global::Com.Amazonaws.S3.DeleteMarkerEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<DeleteMarkers, DeleteMarkerEntry, List<DeleteMarkerEntry>>(
-            ShapeId.Parse("com.amazonaws.s3#DeleteMarkers"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.DeleteMarkerEntry>,
+            global::Com.Amazonaws.S3.DeleteMarkerEntry,
+            List<global::Com.Amazonaws.S3.DeleteMarkerEntry>
+        >(ShapeId.Parse("com.amazonaws.s3#DeleteMarkers"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<DeleteMarkerEntry> Target0 =
-            Schemas.Lazy(() => DeleteMarkerEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.DeleteMarkerEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteMarkerEntrySchema.Schema!);
 
-        public override IEnumerable<DeleteMarkerEntry> GetElements(DeleteMarkers value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.DeleteMarkerEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.DeleteMarkerEntry> value
+        ) => value;
 
-        public override List<DeleteMarkerEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.DeleteMarkerEntry> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<DeleteMarkerEntry> builder, DeleteMarkerEntry value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.DeleteMarkerEntry> builder,
+            global::Com.Amazonaws.S3.DeleteMarkerEntry value
+        ) => builder.Add(value);
 
-        public override DeleteMarkers Build(List<DeleteMarkerEntry> builder) =>
-            DeleteMarkers.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.DeleteMarkerEntry> Build(
+            List<global::Com.Amazonaws.S3.DeleteMarkerEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            DeleteMarkers value,
+            IReadOnlyList<global::Com.Amazonaws.S3.DeleteMarkerEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -59,7 +62,7 @@ public static partial class DeleteMarkersSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<DeleteMarkerEntry> builder,
+            List<global::Com.Amazonaws.S3.DeleteMarkerEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(DeleteMarkerEntrySchema.Schema));
     }

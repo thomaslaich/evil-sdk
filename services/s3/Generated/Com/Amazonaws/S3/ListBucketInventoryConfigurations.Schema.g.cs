@@ -6,26 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketInventoryConfigurationsSchema
 {
     public static OperationSchema<
-        ListBucketInventoryConfigurationsInput,
-        ListBucketInventoryConfigurationsOutput
+        global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsInput,
+        global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#ListBucketInventoryConfigurations"),
-            Schemas.Lazy(() => ListBucketInventoryConfigurationsInputSchema.Schema!),
-            Schemas.Lazy(() => ListBucketInventoryConfigurationsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListBucketInventoryConfigurationsInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListBucketInventoryConfigurationsOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns a list of S3 Inventory configurations for the bucket. You can have up to 1,000 inventory\n      configurations per bucket.</p>\n         <p>This action supports list pagination and does not return more than 100 configurations at a time.\n      Always check the <code>IsTruncated</code> element in the response. If there are no more configurations\n      to list, <code>IsTruncated</code> is set to false. If there are more configurations to list,\n        <code>IsTruncated</code> is set to true, and there is a value in <code>NextContinuationToken</code>.\n      You use the <code>NextContinuationToken</code> value to continue the pagination of the list by passing\n      the value in continuation-token in the request to <code>GET</code> the next page.</p>\n         <note>\n            <p>\n               <b>Directory buckets </b> - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format <code>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i>\n               </code>. Virtual-hosted-style requests aren't supported. \nFor more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the\n    <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>To use this operation, you must have permissions to perform the\n              <code>s3:GetInventoryConfiguration</code> action. The bucket owner has this permission by default. The\n            bucket owner can grant this permission to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\">Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access Permissions to Your Amazon S3\n              Resources</a>.</p>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket permissions</b> - The\n\t                   <code>s3:GetInventoryConfiguration</code> permission is required in a policy. For more information\n\t                 about general purpose buckets permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html\">Using Bucket Policies and User\n\t                   Policies</a> in the <i>Amazon S3 User Guide</i>.</p>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket permissions</b> - To grant access to\n\t                 this API operation, you must have the <code>s3express:GetInventoryConfiguration</code> permission in\n\t                 an IAM identity-based policy instead of a bucket policy.\n\t                 For more information about directory bucket policies and permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html\">Amazon Web Services Identity and Access Management (IAM) for S3 Express One Zone</a> in the <i>Amazon S3 User Guide</i>.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is <code>s3express-control.<i>region-code</i>.amazonaws.com</code>.</p>\n            </dd>\n         </dl>\n         <p>For information about the Amazon S3 inventory feature, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html\">Amazon S3 Inventory</a>\n         </p>\n         <p>The following operations are related to <code>ListBucketInventoryConfigurations</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketInventoryConfiguration.html\">GetBucketInventoryConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketInventoryConfiguration.html\">DeleteBucketInventoryConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html\">PutBucketInventoryConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -34,11 +32,9 @@ public static partial class ListBucketInventoryConfigurationsSchema
                             { "method", Document.From("GET") },
                             {
                                 "uri",
-                                Document.From(
-                                    "/{Bucket}?inventory&x-id=ListBucketInventoryConfigurations"
-                                )
+                                Document.From("/?inventory&x-id=ListBucketInventoryConfigurations")
                             },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

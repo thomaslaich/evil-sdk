@@ -8,7 +8,7 @@ using System.IO;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class WriteGetObjectResponseInputSchema
 {
@@ -44,7 +44,7 @@ public static partial class WriteGetObjectResponseInputSchema
         public string? Expiration { get; set; }
         public DateTimeOffset? LastModified { get; set; }
         public int? MissingMeta { get; set; }
-        public global::Com.Amazonaws.S3.Metadata? Metadata { get; set; }
+        public IReadOnlyDictionary<string, string>? Metadata { get; set; }
         public global::Com.Amazonaws.S3.ObjectLockMode? ObjectLockMode { get; set; }
         public global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus? ObjectLockLegalHoldStatus { get; set; }
         public DateTimeOffset? ObjectLockRetainUntilDate { get; set; }
@@ -62,11 +62,13 @@ public static partial class WriteGetObjectResponseInputSchema
         public bool? BucketKeyEnabled { get; set; }
     }
 
-    public static StructSchema<WriteGetObjectResponseInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.WriteGetObjectResponseInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<WriteGetObjectResponseInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.WriteGetObjectResponseInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#WriteGetObjectResponseInput"),
             [
                 new(
@@ -75,10 +77,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Route prefix to the HTTP URL generated.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#hostLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -100,12 +98,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single use encrypted token that maps <code>WriteGetObjectResponse</code> to the end user\n        <code>GetObject</code> request.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-request-token")
                         ),
@@ -121,10 +113,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(ShapeId.Parse("smithy.api#default"), Document.From("")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The object data.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -145,12 +133,6 @@ public static partial class WriteGetObjectResponseInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The integer status code for an HTTP response of a corresponding <code>GetObject</code> request. The\n      following is a list of status codes.</p>\n         <ul>\n            <li>\n               <p>\n                  <code>200 - OK</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>206 - Partial Content</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>304 - Not Modified</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>400 - Bad Request</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>401 - Unauthorized</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>403 - Forbidden</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>404 - Not Found</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>405 - Method Not Allowed</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>409 - Conflict</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>411 - Length Required</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>412 - Precondition Failed</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>416 - Range Not Satisfiable</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>500 - Internal Server Error</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>503 - Service Unavailable</code>\n               </p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-status")
                         ),
@@ -161,12 +143,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A string that uniquely identifies an error condition. Returned in the <Code> tag of the error\n      XML response for a corresponding <code>GetObject</code> call. Cannot be used with a successful\n        <code>StatusCode</code> header or when the transformed object is provided in the body. All error codes\n      from S3 are sentence-cased. The regular expression (regex) value is\n      <code>\"^[A-Z][a-zA-Z]+$\"</code>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-error-code")
@@ -179,12 +155,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Contains a generic description of the error condition. Returned in the <Message> tag of the\n      error XML response for a corresponding <code>GetObject</code> call. Cannot be used with a successful\n        <code>StatusCode</code> header or when the transformed object is provided in body.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-error-message")
                         ),
@@ -195,10 +165,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Indicates that a range of bytes was specified.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-accept-ranges")
@@ -211,12 +177,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies caching behavior along the request/reply chain.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Cache-Control")
                         ),
@@ -227,12 +187,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target8,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies presentational information for the object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Content-Disposition")
@@ -245,12 +199,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies what content encodings have been applied to the object and thus what decoding mechanisms\n      must be applied to obtain the media-type referenced by the Content-Type header field.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Content-Encoding")
                         ),
@@ -261,10 +209,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target10,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The language the content is in.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Content-Language")
@@ -281,10 +225,6 @@ public static partial class WriteGetObjectResponseInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The size of the content body in bytes.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Length")
                         ),
@@ -295,12 +235,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target12,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The portion of the object returned in the response.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Content-Range")
@@ -313,12 +247,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A standard MIME type describing the format of the object data.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Content-Type")
                         ),
@@ -329,12 +257,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target14,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This specifies the Base64 encoded, 32-bit <code>CRC32</code> checksum of the\n      object returned by the Object Lambda function. This may not match the checksum for the object stored in\n      Amazon S3. Amazon S3 will perform validation of the checksum values only when the original <code>GetObject</code>\n      request required checksum validation. For more information about checksums, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object\n        integrity</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>Only one checksum header can be specified at a time. If you supply multiple checksum headers, this\n      request will fail.</p>\n         <p></p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-crc32")
@@ -347,12 +269,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This specifies the Base64 encoded, 32-bit <code>CRC32C</code> checksum of the\n      object returned by the Object Lambda function. This may not match the checksum for the object stored in\n      Amazon S3. Amazon S3 will perform validation of the checksum values only when the original <code>GetObject</code>\n      request required checksum validation. For more information about checksums, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object\n        integrity</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>Only one checksum header can be specified at a time. If you supply multiple checksum headers, this\n      request will fail.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-crc32c")
                         ),
@@ -363,12 +279,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target16,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>CRC64NVME</code>\n      checksum of the part. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-crc64nvme")
@@ -381,12 +291,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This specifies the Base64 encoded, 160-bit <code>SHA1</code> digest of the\n      object returned by the Object Lambda function. This may not match the checksum for the object stored in\n      Amazon S3. Amazon S3 will perform validation of the checksum values only when the original <code>GetObject</code>\n      request required checksum validation. For more information about checksums, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object\n        integrity</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>Only one checksum header can be specified at a time. If you supply multiple checksum headers, this\n      request will fail.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-sha1")
                         ),
@@ -397,12 +301,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target18,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This specifies the Base64 encoded, 256-bit <code>SHA256</code> digest of the\n      object returned by the Object Lambda function. This may not match the checksum for the object stored in\n      Amazon S3. Amazon S3 will perform validation of the checksum values only when the original <code>GetObject</code>\n      request required checksum validation. For more information about checksums, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object\n        integrity</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>Only one checksum header can be specified at a time. If you supply multiple checksum headers, this\n      request will fail.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-sha256")
@@ -415,12 +313,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 512-bit <code>SHA512</code>\n      digest of the part. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-sha512")
                         ),
@@ -431,12 +323,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target20,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 128-bit <code>MD5</code>\n      digest of the part. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-md5")
@@ -449,12 +335,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>XXHASH64</code>\n      checksum of the part. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-xxhash64")
                         ),
@@ -466,12 +346,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 64-bit <code>XXHASH3</code>\n      checksum of the part. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-xxhash3")
                         ),
@@ -482,12 +356,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target23,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header can be used as a data integrity check to verify that the data received is the same data\n      that was originally sent. This header specifies the Base64 encoded, 128-bit <code>XXHASH128</code>\n      checksum of the part. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-checksum-xxhash128")
@@ -504,12 +372,6 @@ public static partial class WriteGetObjectResponseInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether an object stored in Amazon S3 is (<code>true</code>) or is not (<code>false</code>) a\n      delete marker. To learn more about delete markers, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html\">Working with delete markers</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-delete-marker")
                         ),
@@ -520,12 +382,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target25,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An opaque identifier assigned by a web server to a specific version of a resource found at a URL.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-ETag")
@@ -538,12 +394,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time at which the object is no longer cacheable.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Expires")
                         ),
@@ -555,12 +405,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the object expiration is configured (see PUT Bucket lifecycle), the response includes this\n      header. It includes the <code>expiry-date</code> and <code>rule-id</code> key-value pairs that provide\n      the object expiration information. The value of the <code>rule-id</code> is URL-encoded. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-expiration")
                         ),
@@ -571,12 +415,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target28,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time that the object was last modified.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-Last-Modified")
@@ -593,12 +431,6 @@ public static partial class WriteGetObjectResponseInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set to the number of metadata entries not returned in <code>x-amz-meta</code> headers. This can\n      happen if you create metadata using an API like SOAP that supports more flexible metadata than the REST\n      API. For example, using SOAP, you can create metadata whose values are not legal HTTP headers.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-missing-meta")
                         ),
@@ -609,12 +441,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target30,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A map of metadata to store with the object in S3.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPrefixHeaders"),
                             Document.From("x-amz-meta-")
@@ -627,12 +453,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether an object stored in Amazon S3 has Object Lock enabled. For more information about S3\n      Object Lock, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html\">Object\n        Lock</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-object-lock-mode")
                         ),
@@ -644,12 +464,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether an object stored in Amazon S3 has an active legal hold.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-object-lock-legal-hold")
                         ),
@@ -660,12 +474,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target33,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when Object Lock is configured to expire.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-object-lock-retain-until-date")
@@ -686,10 +494,6 @@ public static partial class WriteGetObjectResponseInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The count of parts this object has.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-mp-parts-count")
                         ),
@@ -700,12 +504,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target35,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates if request involves bucket that is either a source or destination in a Replication rule.\n      For more information about S3 Replication, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html\">Replication</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-replication-status")
@@ -729,12 +527,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Provides information about object restoration operation and expiration time of the restored object\n      copy.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-restore")
                         ),
@@ -746,12 +538,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> The server-side encryption algorithm used when storing requested object in Amazon S3 or Amazon FSx.</p>\n         <note>\n            <p>When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side\n        encryption option is <code>aws:fsx</code>.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-server-side-encryption")
                         ),
@@ -762,12 +548,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target39,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Encryption algorithm used if server-side encryption with a customer-provided encryption key was\n      specified for object stored in Amazon S3.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From(
@@ -781,12 +561,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target40,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> If present, specifies the ID (Key ID, Key ARN, or Key Alias) of the Amazon Web Services Key Management Service\n      (Amazon Web Services KMS) symmetric encryption customer managed key that was used for stored in Amazon S3 object. </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From(
@@ -805,12 +579,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> 128-bit MD5 digest of customer-provided encryption key used in Amazon S3 to encrypt data stored in S3.\n      For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html\">Protecting data using\n        server-side encryption with customer-provided encryption keys (SSE-C)</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From(
                                 "x-amz-fwd-header-x-amz-server-side-encryption-customer-key-MD5"
@@ -823,12 +591,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target42,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Provides storage class information of the object. Amazon S3 returns this header for all objects except\n      for S3 Standard storage class objects.</p>\n         <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html\">Storage Classes</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-storage-class")
@@ -845,10 +607,6 @@ public static partial class WriteGetObjectResponseInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The number of tags, if any, on the object.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-tagging-count")
                         ),
@@ -859,12 +617,6 @@ public static partial class WriteGetObjectResponseInputSchema
                     Target44,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An ID used to reference a specific version of the object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-fwd-header-x-amz-version-id")
@@ -879,12 +631,6 @@ public static partial class WriteGetObjectResponseInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Indicates whether the object stored in Amazon S3 uses an S3 bucket key for server-side encryption with\n      Amazon Web Services KMS (SSE-KMS).</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -908,113 +654,177 @@ public static partial class WriteGetObjectResponseInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<Stream?> Target2 =
-            Schemas.NullableReference(Schemas.StreamingBlob);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.StreamingBlob
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<long?> Target11 =
-            Schemas.Nullable(Schemas.Long);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target12 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target14 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target15 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target16 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target17 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target18 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target19 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target20 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target21 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target22 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target23 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target24 =
-            Schemas.Nullable(Schemas.Boolean);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target25 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target26 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target27 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target28 =
-            Schemas.Nullable(Schemas.Timestamp);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target29 = Schemas.Nullable(
-            Schemas.Integer
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target29 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target30 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MetadataSchema.Schema!)
         );
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Metadata?> Target30 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetadataSchema.Schema!));
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockMode?> Target31 =
-            Schemas.Nullable(ObjectLockModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockModeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockLegalHoldStatus?> Target32 =
-            Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockLegalHoldStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target33 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("date-time")
                     ),
                 ])
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target34 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target34 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationStatus?> Target35 =
-            Schemas.Nullable(ReplicationStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ReplicationStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target36 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target37 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target38 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target39 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target40 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target41 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target42 =
-            Schemas.Nullable(StorageClassSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target43 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target43 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target44 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target45 =
-            Schemas.Nullable(Schemas.Boolean);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new() { Body = Stream.Null };
 
-        public override WriteGetObjectResponseInput Build(Builder builder) =>
-            new WriteGetObjectResponseInput(
+        public override global::Com.Amazonaws.S3.WriteGetObjectResponseInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.WriteGetObjectResponseInput(
                 builder.RequestRoute ?? throw new MissingRequiredMemberException("RequestRoute"),
                 builder.RequestToken ?? throw new MissingRequiredMemberException("RequestToken"),
                 builder.AcceptRanges,
@@ -1064,7 +874,7 @@ public static partial class WriteGetObjectResponseInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            WriteGetObjectResponseInput value,
+            global::Com.Amazonaws.S3.WriteGetObjectResponseInput value,
             ref TSerializer serializer
         )
         {

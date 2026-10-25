@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class PurgeQueueOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PurgeQueueOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.PurgeQueueOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PurgeQueueOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.PurgeQueueOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#PurgeQueueOutput"),
             [],
             [
@@ -32,10 +35,11 @@ public static partial class PurgeQueueOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PurgeQueueOutput Build(Builder builder) => new PurgeQueueOutput();
+        public override global::Com.Amazonaws.Sqs.PurgeQueueOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.PurgeQueueOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PurgeQueueOutput value,
+            global::Com.Amazonaws.Sqs.PurgeQueueOutput value,
             ref TSerializer serializer
         ) { }
 

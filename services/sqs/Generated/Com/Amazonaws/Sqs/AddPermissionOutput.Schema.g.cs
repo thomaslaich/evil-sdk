@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class AddPermissionOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<AddPermissionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.AddPermissionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AddPermissionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.AddPermissionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#AddPermissionOutput"),
             [],
             [
@@ -33,10 +35,11 @@ public static partial class AddPermissionOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override AddPermissionOutput Build(Builder builder) => new AddPermissionOutput();
+        public override global::Com.Amazonaws.Sqs.AddPermissionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.AddPermissionOutput();
 
         public override void SerializeMembers<TSerializer>(
-            AddPermissionOutput value,
+            global::Com.Amazonaws.Sqs.AddPermissionOutput value,
             ref TSerializer serializer
         ) { }
 

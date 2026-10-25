@@ -6,57 +6,48 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionListSchema
 {
     public static ListSchema<
-        FunctionList,
-        FunctionConfiguration,
-        List<FunctionConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration>,
+        global::Com.Amazonaws.Lambda.FunctionConfiguration,
+        List<global::Com.Amazonaws.Lambda.FunctionConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<FunctionList, FunctionConfiguration, List<FunctionConfiguration>>(
-            ShapeId.Parse("com.amazonaws.lambda#FunctionList"),
-            ShapeKind.List,
-            Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration>,
+            global::Com.Amazonaws.Lambda.FunctionConfiguration,
+            List<global::Com.Amazonaws.Lambda.FunctionConfiguration>
+        >(ShapeId.Parse("com.amazonaws.lambda#FunctionList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionConfiguration> Target0 =
-            Schemas.Lazy(() => FunctionConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionConfigurationSchema.Schema!);
 
-        public override IEnumerable<FunctionConfiguration> GetElements(FunctionList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.FunctionConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration> value
+        ) => value;
 
-        public override List<FunctionConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.FunctionConfiguration> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<FunctionConfiguration> builder,
-            FunctionConfiguration value
+            List<global::Com.Amazonaws.Lambda.FunctionConfiguration> builder,
+            global::Com.Amazonaws.Lambda.FunctionConfiguration value
         ) => builder.Add(value);
 
-        public override FunctionList Build(List<FunctionConfiguration> builder) =>
-            FunctionList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration> Build(
+            List<global::Com.Amazonaws.Lambda.FunctionConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            FunctionList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -71,7 +62,7 @@ public static partial class FunctionListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<FunctionConfiguration> builder,
+            List<global::Com.Amazonaws.Lambda.FunctionConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(FunctionConfigurationSchema.Schema));
     }

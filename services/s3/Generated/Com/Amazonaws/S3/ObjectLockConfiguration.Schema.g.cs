@@ -5,72 +5,45 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockConfigurationSchema
 {
     public sealed class Builder
     {
         public global::Com.Amazonaws.S3.ObjectLockEnabled? ObjectLockEnabled { get; set; }
-        public ObjectLockRule? Rule { get; set; }
+        public global::Com.Amazonaws.S3.ObjectLockRule? Rule { get; set; }
     }
 
-    public static StructSchema<ObjectLockConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ObjectLockConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ObjectLockConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ObjectLockConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ObjectLockConfiguration"),
-            [
-                new(
-                    "ObjectLockEnabled",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether this bucket has an Object Lock configuration enabled. Enable\n        <code>ObjectLockEnabled</code> when you apply <code>ObjectLockConfiguration</code> to a bucket.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Rule",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the Object Lock rule for the specified object. Enable the this rule when you apply\n        <code>ObjectLockConfiguration</code> to a bucket. Bucket settings require both a mode and a period.\n      The period can be either <code>Days</code> or <code>Years</code> but you must select one. You cannot\n      specify <code>Days</code> and <code>Years</code> at the same time.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The container element for Object Lock configuration parameters.</p>"
-                    )
-                ),
-            ]
+            [new("ObjectLockEnabled", Target0), new("Rule", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockEnabled?> Target0 =
-            Schemas.Nullable(ObjectLockEnabledSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectLockRule?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ObjectLockRuleSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockEnabledSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockRule?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectLockRuleSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ObjectLockConfiguration Build(Builder builder) =>
-            new ObjectLockConfiguration(builder.ObjectLockEnabled, builder.Rule);
+        public override global::Com.Amazonaws.S3.ObjectLockConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ObjectLockConfiguration(
+                builder.ObjectLockEnabled,
+                builder.Rule
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ObjectLockConfiguration value,
+            global::Com.Amazonaws.S3.ObjectLockConfiguration value,
             ref TSerializer serializer
         )
         {

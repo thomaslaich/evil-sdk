@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataJournalTableConfigurationOutputSchema
 {
     public sealed class Builder { }
 
     public static StructSchema<
-        UpdateBucketMetadataJournalTableConfigurationOutput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateBucketMetadataJournalTableConfigurationOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#UpdateBucketMetadataJournalTableConfigurationOutput"),
             [],
             [
@@ -35,12 +38,12 @@ public static partial class UpdateBucketMetadataJournalTableConfigurationOutputS
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateBucketMetadataJournalTableConfigurationOutput Build(
+        public override global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationOutput Build(
             Builder builder
-        ) => new UpdateBucketMetadataJournalTableConfigurationOutput();
+        ) => new global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            UpdateBucketMetadataJournalTableConfigurationOutput value,
+            global::Com.Amazonaws.S3.UpdateBucketMetadataJournalTableConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

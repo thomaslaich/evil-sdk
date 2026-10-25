@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteObjectTaggingOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class DeleteObjectTaggingOutputSchema
         public string? VersionId { get; set; }
     }
 
-    public static StructSchema<DeleteObjectTaggingOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteObjectTaggingOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteObjectTaggingOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteObjectTaggingOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteObjectTaggingOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class DeleteObjectTaggingOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The versionId of the object the tag-set was removed from.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-version-id")
@@ -49,15 +45,17 @@ public static partial class DeleteObjectTaggingOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteObjectTaggingOutput Build(Builder builder) =>
-            new DeleteObjectTaggingOutput(builder.VersionId);
+        public override global::Com.Amazonaws.S3.DeleteObjectTaggingOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeleteObjectTaggingOutput(builder.VersionId);
 
         public override void SerializeMembers<TSerializer>(
-            DeleteObjectTaggingOutput value,
+            global::Com.Amazonaws.S3.DeleteObjectTaggingOutput value,
             ref TSerializer serializer
         )
         {

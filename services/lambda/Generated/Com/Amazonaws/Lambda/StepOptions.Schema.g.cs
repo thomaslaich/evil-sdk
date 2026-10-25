@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class StepOptionsSchema
 {
@@ -15,10 +15,11 @@ public static partial class StepOptionsSchema
         public int? NextAttemptDelaySeconds { get; set; }
     }
 
-    public static StructSchema<StepOptions, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.StepOptions, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StepOptions, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.StepOptions, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#StepOptions"),
             [
                 new(
@@ -31,51 +32,31 @@ public static partial class StepOptionsSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The delay in seconds before the next retry attempt.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)31622400) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(31622400m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Configuration options for a step operation.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StepOptions Build(Builder builder) =>
-            new StepOptions(builder.NextAttemptDelaySeconds);
+        public override global::Com.Amazonaws.Lambda.StepOptions Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.StepOptions(builder.NextAttemptDelaySeconds);
 
         public override void SerializeMembers<TSerializer>(
-            StepOptions value,
+            global::Com.Amazonaws.Lambda.StepOptions value,
             ref TSerializer serializer
         )
         {

@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class QueueConfigurationListSchema
 {
     public static ListSchema<
-        QueueConfigurationList,
-        QueueConfiguration,
-        List<QueueConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.S3.QueueConfiguration>,
+        global::Com.Amazonaws.S3.QueueConfiguration,
+        List<global::Com.Amazonaws.S3.QueueConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<QueueConfigurationList, QueueConfiguration, List<QueueConfiguration>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.QueueConfiguration>,
+            global::Com.Amazonaws.S3.QueueConfiguration,
+            List<global::Com.Amazonaws.S3.QueueConfiguration>
+        >(
             ShapeId.Parse("com.amazonaws.s3#QueueConfigurationList"),
             ShapeKind.List,
             Target0,
@@ -25,26 +29,31 @@ public static partial class QueueConfigurationListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<QueueConfiguration> Target0 =
-            Schemas.Lazy(() => QueueConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.QueueConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueConfigurationSchema.Schema!);
 
-        public override IEnumerable<QueueConfiguration> GetElements(QueueConfigurationList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.QueueConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.QueueConfiguration> value
+        ) => value;
 
-        public override List<QueueConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.QueueConfiguration> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<QueueConfiguration> builder, QueueConfiguration value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.QueueConfiguration> builder,
+            global::Com.Amazonaws.S3.QueueConfiguration value
+        ) => builder.Add(value);
 
-        public override QueueConfigurationList Build(List<QueueConfiguration> builder) =>
-            QueueConfigurationList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.QueueConfiguration> Build(
+            List<global::Com.Amazonaws.S3.QueueConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            QueueConfigurationList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.QueueConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -59,7 +68,7 @@ public static partial class QueueConfigurationListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<QueueConfiguration> builder,
+            List<global::Com.Amazonaws.S3.QueueConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(QueueConfigurationSchema.Schema));
     }

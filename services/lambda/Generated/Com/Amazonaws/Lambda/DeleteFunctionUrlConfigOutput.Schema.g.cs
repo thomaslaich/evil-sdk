@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionUrlConfigOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteFunctionUrlConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteFunctionUrlConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionUrlConfigOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteFunctionUrlConfigOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteFunctionUrlConfigOutput Build(Builder builder) =>
-            new DeleteFunctionUrlConfigOutput();
+        public override global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteFunctionUrlConfigOutput value,
+            global::Com.Amazonaws.Lambda.DeleteFunctionUrlConfigOutput value,
             ref TSerializer serializer
         ) { }
 

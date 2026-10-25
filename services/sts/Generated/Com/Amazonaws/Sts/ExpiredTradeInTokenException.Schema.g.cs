@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class ExpiredTradeInTokenExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class ExpiredTradeInTokenExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<ExpiredTradeInTokenException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.ExpiredTradeInTokenException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ExpiredTradeInTokenException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.ExpiredTradeInTokenException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#ExpiredTradeInTokenException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,28 @@ public static partial class ExpiredTradeInTokenExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("ExpiredTradeInTokenException") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The trade-in token provided in the request has expired and can no longer be exchanged\n            for credentials. Request a new token and retry the operation.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ExpiredTradeInTokenException Build(Builder builder) =>
-            new ExpiredTradeInTokenException(builder.Message);
+        public override global::Com.Amazonaws.Sts.ExpiredTradeInTokenException Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sts.ExpiredTradeInTokenException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            ExpiredTradeInTokenException value,
+            global::Com.Amazonaws.Sts.ExpiredTradeInTokenException value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CSVInputSchema
 {
@@ -21,90 +21,19 @@ public static partial class CSVInputSchema
         public bool? AllowQuotedRecordDelimiter { get; set; }
     }
 
-    public static StructSchema<CSVInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.CSVInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CSVInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CSVInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CSVInput"),
             [
-                new(
-                    "FileHeaderInfo",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the first line of input. Valid values are:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>NONE</code>: First line is not a header.</p>\n            </li>\n            <li>\n               <p>\n                  <code>IGNORE</code>: First line is a header, but you can't use the header values to indicate the\n          column in an expression. You can use column position (such as _1, _2, …) to indicate the column\n            (<code>SELECT s._1 FROM OBJECT s</code>).</p>\n            </li>\n            <li>\n               <p>\n                  <code>Use</code>: First line is a header, and you can use the header value to identify a column\n          in an expression (<code>SELECT \"name\" FROM OBJECT</code>). </p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Comments",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single character used to indicate that a row should be ignored when the character is present at\n      the start of that row. You can specify any character to indicate a comment line. The default character\n      is <code>#</code>.</p>\n         <p>Default: <code>#</code>\n         </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "QuoteEscapeCharacter",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single character used for escaping the quotation mark character inside an already escaped value.\n      For example, the value <code>\"\"\" a , b \"\"\"</code> is parsed as <code>\" a , b \"</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "RecordDelimiter",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single character used to separate individual records in the input. Instead of the default value,\n      you can specify an arbitrary delimiter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "FieldDelimiter",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single character used to separate individual fields in a record. You can specify an arbitrary\n      delimiter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "QuoteCharacter",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A single character used for escaping when the field delimiter is part of the value. For example, if\n      the value is <code>a, b</code>, Amazon S3 wraps this field value in quotation marks, as follows: <code>\" a ,\n        b \"</code>.</p>\n         <p>Type: String</p>\n         <p>Default: <code>\"</code>\n         </p>\n         <p>Ancestors: <code>CSV</code>\n         </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("FileHeaderInfo", Target0),
+                new("Comments", Target1),
+                new("QuoteEscapeCharacter", Target2),
+                new("RecordDelimiter", Target3),
+                new("FieldDelimiter", Target4),
+                new("QuoteCharacter", Target5),
                 new(
                     "AllowQuotedRecordDelimiter",
                     Target6,
@@ -114,45 +43,41 @@ public static partial class CSVInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies that CSV field values may contain quoted record delimiters and such records should be\n      allowed. Default value is FALSE. Setting this value to TRUE may lower performance.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Describes how an uncompressed comma-separated values (CSV)-formatted input object is\n      formatted.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.FileHeaderInfo?> Target0 =
-            Schemas.Nullable(FileHeaderInfoSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(FileHeaderInfoSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target6 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CSVInput Build(Builder builder) =>
-            new CSVInput(
+        public override global::Com.Amazonaws.S3.CSVInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CSVInput(
                 builder.AllowQuotedRecordDelimiter,
                 builder.Comments,
                 builder.FieldDelimiter,
@@ -163,7 +88,7 @@ public static partial class CSVInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CSVInput value,
+            global::Com.Amazonaws.S3.CSVInput value,
             ref TSerializer serializer
         )
         {

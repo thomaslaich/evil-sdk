@@ -5,58 +5,41 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class StorageClassAnalysisSchema
 {
     public sealed class Builder
     {
-        public StorageClassAnalysisDataExport? DataExport { get; set; }
+        public global::Com.Amazonaws.S3.StorageClassAnalysisDataExport? DataExport { get; set; }
     }
 
-    public static StructSchema<StorageClassAnalysis, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.StorageClassAnalysis,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StorageClassAnalysis, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.StorageClassAnalysis, Builder>(
             ShapeId.Parse("com.amazonaws.s3#StorageClassAnalysis"),
-            [
-                new(
-                    "DataExport",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies how data related to the storage class analysis for an Amazon S3 bucket should be\n      exported.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies data related to access patterns to be collected and made available to analyze the\n      tradeoffs between different storage classes for an Amazon S3 bucket.</p>"
-                    )
-                ),
-            ]
+            [new("DataExport", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<StorageClassAnalysisDataExport?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => StorageClassAnalysisDataExportSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClassAnalysisDataExport?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    StorageClassAnalysisDataExportSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StorageClassAnalysis Build(Builder builder) =>
-            new StorageClassAnalysis(builder.DataExport);
+        public override global::Com.Amazonaws.S3.StorageClassAnalysis Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.StorageClassAnalysis(builder.DataExport);
 
         public override void SerializeMembers<TSerializer>(
-            StorageClassAnalysis value,
+            global::Com.Amazonaws.S3.StorageClassAnalysis value,
             ref TSerializer serializer
         )
         {

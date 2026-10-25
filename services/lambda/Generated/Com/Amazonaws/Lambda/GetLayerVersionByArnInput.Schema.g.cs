@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetLayerVersionByArnInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetLayerVersionByArnInputSchema
         public string? Arn { get; set; }
     }
 
-    public static StructSchema<GetLayerVersionByArnInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetLayerVersionByArnInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetLayerVersionByArnInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetLayerVersionByArnInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetLayerVersionByArnInput"),
             [
                 new(
@@ -28,18 +30,14 @@ public static partial class GetLayerVersionByArnInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The ARN of the layer version.</p>")
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("Arn")),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -53,10 +51,6 @@ public static partial class GetLayerVersionByArnInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -66,10 +60,6 @@ public static partial class GetLayerVersionByArnInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetLayerVersionByArnRequest")
                 ),
@@ -77,17 +67,21 @@ public static partial class GetLayerVersionByArnInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetLayerVersionByArnInput Build(Builder builder) =>
-            new GetLayerVersionByArnInput(
+        public override global::Com.Amazonaws.Lambda.GetLayerVersionByArnInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetLayerVersionByArnInput(
                 builder.Arn ?? throw new MissingRequiredMemberException("Arn")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetLayerVersionByArnInput value,
+            global::Com.Amazonaws.Lambda.GetLayerVersionByArnInput value,
             ref TSerializer serializer
         )
         {

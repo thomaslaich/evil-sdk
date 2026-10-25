@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectLockConfigurationOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class PutObjectLockConfigurationOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<PutObjectLockConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutObjectLockConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutObjectLockConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutObjectLockConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutObjectLockConfigurationOutput"),
             [
                 new(
@@ -43,15 +45,16 @@ public static partial class PutObjectLockConfigurationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target0 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutObjectLockConfigurationOutput Build(Builder builder) =>
-            new PutObjectLockConfigurationOutput(builder.RequestCharged);
+        public override global::Com.Amazonaws.S3.PutObjectLockConfigurationOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.PutObjectLockConfigurationOutput(builder.RequestCharged);
 
         public override void SerializeMembers<TSerializer>(
-            PutObjectLockConfigurationOutput value,
+            global::Com.Amazonaws.S3.PutObjectLockConfigurationOutput value,
             ref TSerializer serializer
         )
         {

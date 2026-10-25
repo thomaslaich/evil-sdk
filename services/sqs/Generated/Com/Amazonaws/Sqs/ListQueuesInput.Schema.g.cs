@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListQueuesInputSchema
 {
@@ -17,38 +17,15 @@ public static partial class ListQueuesInputSchema
         public int? MaxResults { get; set; }
     }
 
-    public static StructSchema<ListQueuesInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.ListQueuesInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListQueuesInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListQueuesInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListQueuesInput"),
             [
-                new(
-                    "QueueNamePrefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A string to use for filtering the list results. Only those queues whose name begins\n            with the specified string are returned.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextToken",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Pagination token to request the next set of results.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("QueueNamePrefix", Target0),
+                new("NextToken", Target1),
                 new(
                     "MaxResults",
                     Target2,
@@ -58,17 +35,10 @@ public static partial class ListQueuesInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Maximum number of results to include in the response. Value range is 1 to 1000. You\n            must set <code>MaxResults</code> to receive a value for <code>NextToken</code> in the\n            response.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -81,20 +51,27 @@ public static partial class ListQueuesInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListQueuesInput Build(Builder builder) =>
-            new ListQueuesInput(builder.MaxResults, builder.NextToken, builder.QueueNamePrefix);
+        public override global::Com.Amazonaws.Sqs.ListQueuesInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.ListQueuesInput(
+                builder.MaxResults,
+                builder.NextToken,
+                builder.QueueNamePrefix
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListQueuesInput value,
+            global::Com.Amazonaws.Sqs.ListQueuesInput value,
             ref TSerializer serializer
         )
         {

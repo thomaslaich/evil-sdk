@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetricsConfigurationListSchema
 {
     public static ListSchema<
-        MetricsConfigurationList,
-        MetricsConfiguration,
-        List<MetricsConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.S3.MetricsConfiguration>,
+        global::Com.Amazonaws.S3.MetricsConfiguration,
+        List<global::Com.Amazonaws.S3.MetricsConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<MetricsConfigurationList, MetricsConfiguration, List<MetricsConfiguration>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.MetricsConfiguration>,
+            global::Com.Amazonaws.S3.MetricsConfiguration,
+            List<global::Com.Amazonaws.S3.MetricsConfiguration>
+        >(
             ShapeId.Parse("com.amazonaws.s3#MetricsConfigurationList"),
             ShapeKind.List,
             Target0,
@@ -25,27 +29,31 @@ public static partial class MetricsConfigurationListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<MetricsConfiguration> Target0 =
-            Schemas.Lazy(() => MetricsConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetricsConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MetricsConfigurationSchema.Schema!);
 
-        public override IEnumerable<MetricsConfiguration> GetElements(
-            MetricsConfigurationList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.MetricsConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.MetricsConfiguration> value
+        ) => value;
 
-        public override List<MetricsConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.MetricsConfiguration> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<MetricsConfiguration> builder, MetricsConfiguration value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.MetricsConfiguration> builder,
+            global::Com.Amazonaws.S3.MetricsConfiguration value
+        ) => builder.Add(value);
 
-        public override MetricsConfigurationList Build(List<MetricsConfiguration> builder) =>
-            MetricsConfigurationList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.MetricsConfiguration> Build(
+            List<global::Com.Amazonaws.S3.MetricsConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            MetricsConfigurationList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.MetricsConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -60,7 +68,7 @@ public static partial class MetricsConfigurationListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<MetricsConfiguration> builder,
+            List<global::Com.Amazonaws.S3.MetricsConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(MetricsConfigurationSchema.Schema));
     }

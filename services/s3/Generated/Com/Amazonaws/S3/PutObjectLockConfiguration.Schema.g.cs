@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectLockConfigurationSchema
 {
     public static OperationSchema<
-        PutObjectLockConfigurationInput,
-        PutObjectLockConfigurationOutput
+        global::Com.Amazonaws.S3.PutObjectLockConfigurationInput,
+        global::Com.Amazonaws.S3.PutObjectLockConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutObjectLockConfiguration"),
-            Schemas.Lazy(() => PutObjectLockConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => PutObjectLockConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutObjectLockConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutObjectLockConfigurationOutputSchema.Schema!
+            ),
             [],
             [
                 new Trait(
@@ -31,19 +35,13 @@ public static partial class PutObjectLockConfigurationSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock\n      configuration will be applied by default to every new object placed in the specified bucket. For more\n      information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Locking\n        Objects</a>. </p>\n         <note>\n            <ul>\n               <li>\n                  <p>The <code>DefaultRetention</code> settings require both a mode and a period.</p>\n               </li>\n               <li>\n                  <p>The <code>DefaultRetention</code> period can be either <code>Days</code> or <code>Years</code>\n            but you must select one. You cannot specify <code>Days</code> and <code>Years</code> at the same\n            time.</p>\n               </li>\n               <li>\n                  <p>You can enable Object Lock for new or existing buckets. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html\">Configuring\n              Object Lock</a>.</p>\n               </li>\n            </ul>\n         </note>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?object-lock") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?object-lock") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

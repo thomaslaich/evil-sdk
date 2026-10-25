@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class IndexDocumentSchema
 {
@@ -15,10 +15,11 @@ public static partial class IndexDocumentSchema
         public string? Suffix { get; set; }
     }
 
-    public static StructSchema<IndexDocument, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.IndexDocument, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<IndexDocument, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.IndexDocument, Builder>(
             ShapeId.Parse("com.amazonaws.s3#IndexDocument"),
             [
                 new(
@@ -28,36 +29,29 @@ public static partial class IndexDocumentSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A suffix that is appended to a request that is for a directory on the website endpoint. (For\n      example, if the suffix is <code>index.html</code> and you make a request to\n        <code>samplebucket/images/</code>, the data that is returned will be for the object with the key name\n        <code>images/index.html</code>.) The suffix must not be empty and must not include a slash\n      character.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for the <code>Suffix</code> element.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override IndexDocument Build(Builder builder) =>
-            new IndexDocument(builder.Suffix ?? throw new MissingRequiredMemberException("Suffix"));
+        public override global::Com.Amazonaws.S3.IndexDocument Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.IndexDocument(
+                builder.Suffix ?? throw new MissingRequiredMemberException("Suffix")
+            );
 
         public override void SerializeMembers<TSerializer>(
-            IndexDocument value,
+            global::Com.Amazonaws.S3.IndexDocument value,
             ref TSerializer serializer
         )
         {

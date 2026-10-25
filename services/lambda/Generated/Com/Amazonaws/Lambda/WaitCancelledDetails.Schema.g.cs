@@ -5,62 +5,39 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class WaitCancelledDetailsSchema
 {
     public sealed class Builder
     {
-        public EventError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.EventError? Error { get; set; }
     }
 
-    public static StructSchema<WaitCancelledDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.WaitCancelledDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<WaitCancelledDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.WaitCancelledDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#WaitCancelledDetails"),
-            [
-                new(
-                    "Error",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Details about why the wait operation was cancelled.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a wait operation that was cancelled.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("Error", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventError?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventErrorSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventError?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override WaitCancelledDetails Build(Builder builder) =>
-            new WaitCancelledDetails(builder.Error);
+        public override global::Com.Amazonaws.Lambda.WaitCancelledDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.WaitCancelledDetails(builder.Error);
 
         public override void SerializeMembers<TSerializer>(
-            WaitCancelledDetails value,
+            global::Com.Amazonaws.Lambda.WaitCancelledDetails value,
             ref TSerializer serializer
         )
         {

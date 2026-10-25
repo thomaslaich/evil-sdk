@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeWithResponseStreamInputSchema
 {
@@ -18,14 +18,16 @@ public static partial class InvokeWithResponseStreamInputSchema
         public string? Qualifier { get; set; }
         public byte[]? Payload { get; set; }
         public string? TenantId { get; set; }
-        public ResponseStreamingInvocationType? InvocationType { get; set; }
+        public global::Com.Amazonaws.Lambda.ResponseStreamingInvocationType? InvocationType { get; set; }
     }
 
-    public static StructSchema<InvokeWithResponseStreamInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvokeWithResponseStreamInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvokeWithResponseStreamInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvokeWithResponseStreamInput"),
             [
                 new(
@@ -35,12 +37,6 @@ public static partial class InvokeWithResponseStreamInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -49,8 +45,8 @@ public static partial class InvokeWithResponseStreamInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -64,10 +60,6 @@ public static partial class InvokeWithResponseStreamInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -76,18 +68,8 @@ public static partial class InvokeWithResponseStreamInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set to <code>Tail</code> to include the execution log in the response. Applies to synchronously invoked functions only.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("X-Amz-Log-Type")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -97,18 +79,8 @@ public static partial class InvokeWithResponseStreamInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the context object.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("X-Amz-Client-Context")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -118,10 +90,6 @@ public static partial class InvokeWithResponseStreamInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The alias name.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("Qualifier")
                         ),
@@ -130,18 +98,14 @@ public static partial class InvokeWithResponseStreamInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^\\$(LATEST(\\.PUBLISHED)?)|[a-zA-Z0-9-_$]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -151,22 +115,12 @@ public static partial class InvokeWithResponseStreamInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The JSON that you want to provide to your Lambda function as input.</p> <p>You can enter the JSON directly. For example, <code>--payload '{ \"key\": \"value\" }'</code>. You can also specify a file path. For example, <code>--payload file://payload.json</code>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -176,12 +130,6 @@ public static partial class InvokeWithResponseStreamInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identifier of the tenant in a multi-tenant Lambda function.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("X-Amz-Tenant-Id")
                         ),
@@ -190,18 +138,14 @@ public static partial class InvokeWithResponseStreamInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[a-zA-Z0-9\\._:\\/=+\\-@ ]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -211,18 +155,8 @@ public static partial class InvokeWithResponseStreamInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Use one of the following options:</p> <ul> <li> <p> <code>RequestResponse</code> (default) – Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API operation response includes the function response and additional data.</p> </li> <li> <p> <code>DryRun</code> – Validate parameter values and verify that the IAM user or role has permission to invoke the function.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("X-Amz-Invocation-Type")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -233,10 +167,6 @@ public static partial class InvokeWithResponseStreamInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#InvokeWithResponseStreamRequest")
                 ),
@@ -244,24 +174,38 @@ public static partial class InvokeWithResponseStreamInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.LogType?> Target1 =
-            Schemas.Nullable(LogTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(LogTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<byte[]?> Target4 =
-            Schemas.NullableReference(Schemas.Blob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Blob
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ResponseStreamingInvocationType?> Target6 =
-            Schemas.Nullable(ResponseStreamingInvocationTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ResponseStreamingInvocationType?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                ResponseStreamingInvocationTypeSchema.Schema
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvokeWithResponseStreamInput Build(Builder builder) =>
-            new InvokeWithResponseStreamInput(
+        public override global::Com.Amazonaws.Lambda.InvokeWithResponseStreamInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.InvokeWithResponseStreamInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.ClientContext,
                 builder.InvocationType,
@@ -272,7 +216,7 @@ public static partial class InvokeWithResponseStreamInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            InvokeWithResponseStreamInput value,
+            global::Com.Amazonaws.Lambda.InvokeWithResponseStreamInput value,
             ref TSerializer serializer
         )
         {
@@ -371,8 +315,10 @@ public static partial class InvokeWithResponseStreamInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value6
-                                ? ResponseStreamingInvocationType.FromValue(value6)
-                                : default(ResponseStreamingInvocationType)
+                                ? global::Com.Amazonaws.Lambda.ResponseStreamingInvocationType.FromValue(
+                                    value6
+                                )
+                                : default(global::Com.Amazonaws.Lambda.ResponseStreamingInvocationType)
                         );
                     break;
             }

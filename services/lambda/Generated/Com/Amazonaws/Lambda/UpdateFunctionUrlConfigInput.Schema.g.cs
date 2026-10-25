@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateFunctionUrlConfigInputSchema
 {
@@ -14,16 +14,18 @@ public static partial class UpdateFunctionUrlConfigInputSchema
     {
         public string? FunctionName { get; set; }
         public string? Qualifier { get; set; }
-        public FunctionUrlAuthType? AuthType { get; set; }
+        public global::Com.Amazonaws.Lambda.FunctionUrlAuthType? AuthType { get; set; }
         public global::Com.Amazonaws.Lambda.Cors? Cors { get; set; }
         public global::Com.Amazonaws.Lambda.InvokeMode? InvokeMode { get; set; }
     }
 
-    public static StructSchema<UpdateFunctionUrlConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.UpdateFunctionUrlConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateFunctionUrlConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.UpdateFunctionUrlConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#UpdateFunctionUrlConfigInput"),
             [
                 new(
@@ -33,12 +35,6 @@ public static partial class UpdateFunctionUrlConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -47,8 +43,8 @@ public static partial class UpdateFunctionUrlConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -62,10 +58,6 @@ public static partial class UpdateFunctionUrlConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -73,10 +65,6 @@ public static partial class UpdateFunctionUrlConfigInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The alias name.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("Qualifier")
@@ -86,8 +74,8 @@ public static partial class UpdateFunctionUrlConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
@@ -95,72 +83,16 @@ public static partial class UpdateFunctionUrlConfigInputSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^((?!^\\d+$)^[0-9a-zA-Z-_]+$)$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "AuthType",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The type of authentication that your function URL uses. Set to <code>AWS_IAM</code> if you want to restrict access to authenticated users only. Set to <code>NONE</code> if you want to bypass IAM authentication to create a public endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html\">Control access to Lambda function URLs</a>.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Cors",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\">cross-origin resource sharing (CORS)</a> settings for your function URL.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "InvokeMode",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Use one of the following options:</p> <ul> <li> <p> <code>BUFFERED</code> – This is the default option. Lambda invokes your function using the <code>Invoke</code> API operation. Invocation results are available when the payload is complete. The maximum payload size is 6 MB.</p> </li> <li> <p> <code>RESPONSE_STREAM</code> – Your function streams payload results as they become available. Lambda invokes your function using the <code>InvokeWithResponseStream</code> API operation. The maximum response payload size is 200 MB.</p> </li> </ul>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("AuthType", Target2),
+                new("Cors", Target3),
+                new("InvokeMode", Target4),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -170,20 +102,28 @@ public static partial class UpdateFunctionUrlConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionUrlAuthType?> Target2 =
-            Schemas.Nullable(FunctionUrlAuthTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.FunctionUrlAuthType?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(FunctionUrlAuthTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Cors?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => CorsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CorsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.InvokeMode?> Target4 =
-            Schemas.Nullable(InvokeModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(InvokeModeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateFunctionUrlConfigInput Build(Builder builder) =>
-            new UpdateFunctionUrlConfigInput(
+        public override global::Com.Amazonaws.Lambda.UpdateFunctionUrlConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.UpdateFunctionUrlConfigInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.AuthType,
                 builder.Cors,
@@ -192,7 +132,7 @@ public static partial class UpdateFunctionUrlConfigInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateFunctionUrlConfigInput value,
+            global::Com.Amazonaws.Lambda.UpdateFunctionUrlConfigInput value,
             ref TSerializer serializer
         )
         {
@@ -257,8 +197,8 @@ public static partial class UpdateFunctionUrlConfigInputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value2
-                                ? FunctionUrlAuthType.FromValue(value2)
-                                : default(FunctionUrlAuthType)
+                                ? global::Com.Amazonaws.Lambda.FunctionUrlAuthType.FromValue(value2)
+                                : default(global::Com.Amazonaws.Lambda.FunctionUrlAuthType)
                         );
                     break;
                 case 3:

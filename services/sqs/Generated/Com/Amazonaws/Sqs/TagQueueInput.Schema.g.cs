@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class TagQueueInputSchema
 {
     public sealed class Builder
     {
         public string? QueueUrl { get; set; }
-        public TagMap? Tags { get; set; }
+        public IReadOnlyDictionary<string, string>? Tags { get; set; }
     }
 
-    public static StructSchema<TagQueueInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.TagQueueInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TagQueueInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.TagQueueInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#TagQueueInput"),
             [
                 new(
@@ -28,10 +29,6 @@ public static partial class TagQueueInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The URL of the queue.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -44,12 +41,6 @@ public static partial class TagQueueInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The list of tags to be added to the specified queue.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -75,20 +66,26 @@ public static partial class TagQueueInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagMap?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagMapSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagMapSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TagQueueInput Build(Builder builder) =>
-            new TagQueueInput(
+        public override global::Com.Amazonaws.Sqs.TagQueueInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.TagQueueInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.Tags ?? throw new MissingRequiredMemberException("Tags")
             );
 
         public override void SerializeMembers<TSerializer>(
-            TagQueueInput value,
+            global::Com.Amazonaws.Sqs.TagQueueInput value,
             ref TSerializer serializer
         )
         {

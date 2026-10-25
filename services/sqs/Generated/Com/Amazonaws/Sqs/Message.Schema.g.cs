@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageSchema
 {
@@ -16,78 +16,30 @@ public static partial class MessageSchema
         public string? ReceiptHandle { get; set; }
         public string? MD5OfBody { get; set; }
         public string? Body { get; set; }
-        public MessageSystemAttributeMap? Attributes { get; set; }
+        public IReadOnlyDictionary<string, string>? Attributes { get; set; }
         public string? MD5OfMessageAttributes { get; set; }
-        public MessageBodyAttributeMap? MessageAttributes { get; set; }
+        public IReadOnlyDictionary<
+            string,
+            global::Com.Amazonaws.Sqs.MessageAttributeValue
+        >? MessageAttributes { get; set; }
     }
 
-    public static StructSchema<Message, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.Message, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Message, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.Message, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#Message"),
             [
-                new(
-                    "MessageId",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A unique identifier for the message. A <code>MessageId</code>is considered unique\n            across all Amazon Web Services accounts for an extended period of time.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ReceiptHandle",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An identifier associated with the act of receiving the message. A new receipt handle\n            is returned every time you receive a message. When deleting a message, you provide the\n            last received receipt handle to delete the message.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "MD5OfBody",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message body string.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Body",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The message's contents (not URL-encoded).</p>")
-                        ),
-                    ]
-                ),
+                new("MessageId", Target0),
+                new("ReceiptHandle", Target1),
+                new("MD5OfBody", Target2),
+                new("Body", Target3),
                 new(
                     "Attributes",
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A map of the attributes requested in <code>\n               <a>ReceiveMessage</a>\n            </code> to\n            their respective values. Supported attributes:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>ApproximateReceiveCount</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>ApproximateFirstReceiveTimestamp</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>MessageDeduplicationId</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>MessageGroupId</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SenderId</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SentTimestamp</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SequenceNumber</code>\n               </p>\n            </li>\n         </ul>\n         <p>\n            <code>ApproximateFirstReceiveTimestamp</code> and <code>SentTimestamp</code> are each\n            returned as an integer representing the <a href=\"http://en.wikipedia.org/wiki/Unix_time\">epoch time</a> in\n            milliseconds.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -95,30 +47,12 @@ public static partial class MessageSchema
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("Attribute")),
                     ]
                 ),
-                new(
-                    "MD5OfMessageAttributes",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An MD5 digest of the non-URL-encoded message attribute string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see <a href=\"https://www.ietf.org/rfc/rfc1321.txt\">RFC1321</a>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("MD5OfMessageAttributes", Target5),
                 new(
                     "MessageAttributes",
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Each message attribute consists of a <code>Name</code>, <code>Type</code>, \nand <code>Value</code>. For more information, see \n<a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes\">Amazon SQS \nmessage attributes</a> in the <i>Amazon SQS Developer Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -130,33 +64,46 @@ public static partial class MessageSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>An Amazon SQS message.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<MessageSystemAttributeMap?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => MessageSystemAttributeMapSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target4 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MessageSystemAttributeMapSchema.Schema!)
+        );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<MessageBodyAttributeMap?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => MessageBodyAttributeMapSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            global::Com.Amazonaws.Sqs.MessageAttributeValue
+        >?> Target6 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MessageBodyAttributeMapSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Message Build(Builder builder) =>
-            new Message(
+        public override global::Com.Amazonaws.Sqs.Message Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.Message(
                 builder.Attributes,
                 builder.Body,
                 builder.MD5OfBody,
@@ -167,7 +114,7 @@ public static partial class MessageSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            Message value,
+            global::Com.Amazonaws.Sqs.Message value,
             ref TSerializer serializer
         )
         {

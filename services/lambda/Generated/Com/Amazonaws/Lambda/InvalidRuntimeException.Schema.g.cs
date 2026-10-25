@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvalidRuntimeExceptionSchema
 {
@@ -15,64 +15,39 @@ public static partial class InvalidRuntimeExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<InvalidRuntimeException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvalidRuntimeException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidRuntimeException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvalidRuntimeException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvalidRuntimeException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The runtime or runtime version specified is not supported.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("server")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)502)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(502m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidRuntimeException Build(Builder builder) =>
-            new InvalidRuntimeException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.InvalidRuntimeException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.InvalidRuntimeException(builder.Message, builder.Type);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidRuntimeException value,
+            global::Com.Amazonaws.Lambda.InvalidRuntimeException value,
             ref TSerializer serializer
         )
         {

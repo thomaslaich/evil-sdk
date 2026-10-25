@@ -5,54 +5,54 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class PurgeQueueSchema
 {
-    public static OperationSchema<PurgeQueueInput, PurgeQueueOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.PurgeQueueInput,
+        global::Com.Amazonaws.Sqs.PurgeQueueOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#PurgeQueue"),
-            Schemas.Lazy(() => PurgeQueueInputSchema.Schema!),
-            Schemas.Lazy(() => PurgeQueueOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PurgeQueueInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PurgeQueueOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#PurgeQueueInProgress"),
-                    Schemas.Lazy(() => PurgeQueueInProgressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        PurgeQueueInProgressSchema.Schema!
+                    ),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Deletes available messages in a queue (including in-flight messages) specified by the\n                <code>QueueURL</code> parameter.</p>\n         <important>\n            <p>When you use the <code>PurgeQueue</code> action, you can't retrieve any messages\n                deleted from a queue.</p>\n            <p>The message deletion process takes up to 60 seconds. We recommend waiting for 60\n                seconds regardless of your queue's size. </p>\n         </important>\n         <p>Messages sent to the queue <i>before</i> you call\n                <code>PurgeQueue</code> might be received but are deleted within the next\n            minute.</p>\n         <p>Messages sent to the queue <i>after</i> you call <code>PurgeQueue</code>\n            might be deleted while the queue is being purged.</p>"
-                    )
-                ),
-            ]
+            null
         );
 }

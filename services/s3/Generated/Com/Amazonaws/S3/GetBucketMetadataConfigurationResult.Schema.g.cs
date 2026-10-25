@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetadataConfigurationResultSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketMetadataConfigurationResultSchema
         public global::Com.Amazonaws.S3.MetadataConfigurationResult? MetadataConfigurationResult { get; set; }
     }
 
-    public static StructSchema<GetBucketMetadataConfigurationResult, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketMetadataConfigurationResult,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketMetadataConfigurationResult, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketMetadataConfigurationResult, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketMetadataConfigurationResult"),
             [
                 new(
@@ -29,43 +31,34 @@ public static partial class GetBucketMetadataConfigurationResultSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The metadata configuration for a general purpose bucket.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The S3 Metadata configuration for a general purpose bucket.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataConfigurationResult?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => MetadataConfigurationResultSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MetadataConfigurationResultSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketMetadataConfigurationResult Build(Builder builder) =>
-            new GetBucketMetadataConfigurationResult(
+        public override global::Com.Amazonaws.S3.GetBucketMetadataConfigurationResult Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketMetadataConfigurationResult(
                 builder.MetadataConfigurationResult
                     ?? throw new MissingRequiredMemberException("MetadataConfigurationResult")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketMetadataConfigurationResult value,
+            global::Com.Amazonaws.S3.GetBucketMetadataConfigurationResult value,
             ref TSerializer serializer
         )
         {

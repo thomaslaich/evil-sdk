@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ExecutionStoppedDetailsSchema
 {
     public sealed class Builder
     {
-        public EventError? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.EventError? Error { get; set; }
     }
 
-    public static StructSchema<ExecutionStoppedDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ExecutionStoppedDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ExecutionStoppedDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ExecutionStoppedDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ExecutionStoppedDetails"),
             [
                 new(
@@ -29,46 +31,31 @@ public static partial class ExecutionStoppedDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Details about why the execution stopped.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Details about a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html\">durable execution</a> that stopped.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventError?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventErrorSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventError?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventErrorSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ExecutionStoppedDetails Build(Builder builder) =>
-            new ExecutionStoppedDetails(
+        public override global::Com.Amazonaws.Lambda.ExecutionStoppedDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ExecutionStoppedDetails(
                 builder.Error ?? throw new MissingRequiredMemberException("Error")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ExecutionStoppedDetails value,
+            global::Com.Amazonaws.Lambda.ExecutionStoppedDetails value,
             ref TSerializer serializer
         )
         {

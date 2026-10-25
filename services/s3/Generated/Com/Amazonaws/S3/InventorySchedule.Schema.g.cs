@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryScheduleSchema
 {
     public sealed class Builder
     {
-        public InventoryFrequency? Frequency { get; set; }
+        public global::Com.Amazonaws.S3.InventoryFrequency? Frequency { get; set; }
     }
 
-    public static StructSchema<InventorySchedule, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InventorySchedule,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InventorySchedule, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InventorySchedule, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InventorySchedule"),
             [
                 new(
@@ -28,40 +31,27 @@ public static partial class InventoryScheduleSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies how frequently inventory results are produced.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the schedule for generating S3 Inventory results.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryFrequency?> Target0 =
-            Schemas.Nullable(InventoryFrequencySchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryFrequency?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(InventoryFrequencySchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InventorySchedule Build(Builder builder) =>
-            new InventorySchedule(
+        public override global::Com.Amazonaws.S3.InventorySchedule Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InventorySchedule(
                 builder.Frequency ?? throw new MissingRequiredMemberException("Frequency")
             );
 
         public override void SerializeMembers<TSerializer>(
-            InventorySchedule value,
+            global::Com.Amazonaws.S3.InventorySchedule value,
             ref TSerializer serializer
         )
         {
@@ -81,8 +71,8 @@ public static partial class InventoryScheduleSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? InventoryFrequency.FromValue(value0)
-                                : default(InventoryFrequency)
+                                ? global::Com.Amazonaws.S3.InventoryFrequency.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.InventoryFrequency)
                         );
                     break;
             }

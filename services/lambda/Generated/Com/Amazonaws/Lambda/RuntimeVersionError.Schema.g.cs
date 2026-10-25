@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RuntimeVersionErrorSchema
 {
@@ -16,74 +16,50 @@ public static partial class RuntimeVersionErrorSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<RuntimeVersionError, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.RuntimeVersionError,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RuntimeVersionError, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.RuntimeVersionError, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#RuntimeVersionError"),
             [
-                new(
-                    "ErrorCode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error code.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("ErrorCode", Target0),
                 new(
                     "Message",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The error message.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Any error returned when the runtime version information for the function could not be retrieved.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RuntimeVersionError Build(Builder builder) =>
-            new RuntimeVersionError(builder.ErrorCode, builder.Message);
+        public override global::Com.Amazonaws.Lambda.RuntimeVersionError Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.RuntimeVersionError(
+                builder.ErrorCode,
+                builder.Message
+            );
 
         public override void SerializeMembers<TSerializer>(
-            RuntimeVersionError value,
+            global::Com.Amazonaws.Lambda.RuntimeVersionError value,
             ref TSerializer serializer
         )
         {

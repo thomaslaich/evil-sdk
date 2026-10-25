@@ -5,36 +5,35 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectAlreadyInActiveTierErrorSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<ObjectAlreadyInActiveTierError, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ObjectAlreadyInActiveTierError,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ObjectAlreadyInActiveTierError, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ObjectAlreadyInActiveTierError, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ObjectAlreadyInActiveTierError"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>This action is not allowed against this storage tier.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override ObjectAlreadyInActiveTierError Build(Builder builder) =>
-            new ObjectAlreadyInActiveTierError(null);
+        public override global::Com.Amazonaws.S3.ObjectAlreadyInActiveTierError Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.ObjectAlreadyInActiveTierError(null);
 
         public override void SerializeMembers<TSerializer>(
-            ObjectAlreadyInActiveTierError value,
+            global::Com.Amazonaws.S3.ObjectAlreadyInActiveTierError value,
             ref TSerializer serializer
         ) { }
 

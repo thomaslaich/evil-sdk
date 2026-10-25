@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteMessageOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.DeleteMessageOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteMessageOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.DeleteMessageOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageOutput"),
             [],
             [
@@ -33,10 +35,11 @@ public static partial class DeleteMessageOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteMessageOutput Build(Builder builder) => new DeleteMessageOutput();
+        public override global::Com.Amazonaws.Sqs.DeleteMessageOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.DeleteMessageOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteMessageOutput value,
+            global::Com.Amazonaws.Sqs.DeleteMessageOutput value,
             ref TSerializer serializer
         ) { }
 

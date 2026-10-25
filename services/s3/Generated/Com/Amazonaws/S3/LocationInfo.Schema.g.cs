@@ -5,71 +5,40 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class LocationInfoSchema
 {
     public sealed class Builder
     {
-        public LocationType? Type { get; set; }
+        public global::Com.Amazonaws.S3.LocationType? Type { get; set; }
         public string? Name { get; set; }
     }
 
-    public static StructSchema<LocationInfo, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.LocationInfo, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LocationInfo, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.LocationInfo, Builder>(
             ShapeId.Parse("com.amazonaws.s3#LocationInfo"),
-            [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The type of location where the bucket will be created.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Name",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the location where the bucket will be created.</p>\n         <p>For directory buckets, the name of the location is the Zone ID of the Availability Zone (AZ) or Local Zone (LZ) where\n      the bucket will be created. An example AZ ID value is <code>usw2-az1</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the location where the bucket will be created.</p>\n         <p>For directory buckets, the location type is Availability Zone or Local Zone. For more information about\n      directory buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html\">Working with\n        directory buckets</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is only supported by directory buckets.</p>\n         </note>"
-                    )
-                ),
-            ]
+            [new("Type", Target0), new("Name", Target1)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<LocationType?> Target0 =
-            Schemas.Nullable(LocationTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.LocationType?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(LocationTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LocationInfo Build(Builder builder) =>
-            new LocationInfo(builder.Name, builder.Type);
+        public override global::Com.Amazonaws.S3.LocationInfo Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.LocationInfo(builder.Name, builder.Type);
 
         public override void SerializeMembers<TSerializer>(
-            LocationInfo value,
+            global::Com.Amazonaws.S3.LocationInfo value,
             ref TSerializer serializer
         )
         {
@@ -104,8 +73,8 @@ public static partial class LocationInfoSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? LocationType.FromValue(value0)
-                                : default(LocationType)
+                                ? global::Com.Amazonaws.S3.LocationType.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.LocationType)
                         );
                     break;
                 case 1:

@@ -5,71 +5,40 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class FilterRuleSchema
 {
     public sealed class Builder
     {
-        public FilterRuleName? Name { get; set; }
+        public global::Com.Amazonaws.S3.FilterRuleName? Name { get; set; }
         public string? Value { get; set; }
     }
 
-    public static StructSchema<FilterRule, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.FilterRule, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<FilterRule, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.FilterRule, Builder>(
             ShapeId.Parse("com.amazonaws.s3#FilterRule"),
-            [
-                new(
-                    "Name",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The object key name prefix or suffix identifying one or more objects to which the filtering rule\n      applies. The maximum length is 1,024 characters. Overlapping prefixes and suffixes are not supported.\n      For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html\">Configuring Event Notifications</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Value",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The value that the filter searches for in object key names.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the Amazon S3 object key name to filter on. An object key name is the name assigned to an\n      object in your Amazon S3 bucket. You specify whether to filter on the suffix or prefix of the object key\n      name. A prefix is a specific string of characters at the beginning of an object key name, which you can\n      use to organize objects. For example, you can start the key names of related objects with a prefix, such\n      as <code>2023-</code> or <code>engineering/</code>. Then, you can use <code>FilterRule</code> to find\n      objects in a bucket with key names that have the same prefix. A suffix is similar to a prefix, but it is\n      at the end of the object key name instead of at the beginning.</p>"
-                    )
-                ),
-            ]
+            [new("Name", Target0), new("Value", Target1)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<FilterRuleName?> Target0 =
-            Schemas.Nullable(FilterRuleNameSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.FilterRuleName?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(FilterRuleNameSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override FilterRule Build(Builder builder) =>
-            new FilterRule(builder.Name, builder.Value);
+        public override global::Com.Amazonaws.S3.FilterRule Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.FilterRule(builder.Name, builder.Value);
 
         public override void SerializeMembers<TSerializer>(
-            FilterRule value,
+            global::Com.Amazonaws.S3.FilterRule value,
             ref TSerializer serializer
         )
         {
@@ -104,8 +73,8 @@ public static partial class FilterRuleSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? FilterRuleName.FromValue(value0)
-                                : default(FilterRuleName)
+                                ? global::Com.Amazonaws.S3.FilterRuleName.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.FilterRuleName)
                         );
                     break;
                 case 1:

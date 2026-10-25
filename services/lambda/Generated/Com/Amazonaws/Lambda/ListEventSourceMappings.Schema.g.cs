@@ -4,161 +4,52 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListEventSourceMappingsSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        ListEventSourceMappingsInput,
-        ListEventSourceMappingsOutput
+        global::Com.Amazonaws.Lambda.ListEventSourceMappingsInput,
+        global::Com.Amazonaws.Lambda.ListEventSourceMappingsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#ListEventSourceMappings"),
-            Schemas.Lazy(() => ListEventSourceMappingsInputSchema.Schema!),
-            Schemas.Lazy(() => ListEventSourceMappingsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListEventSourceMappingsInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListEventSourceMappingsOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ResourceNotFoundException"),
-                    Schemas.Lazy(() => ResourceNotFoundExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        ResourceNotFoundExceptionSchema.Schema!
+                    ),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to retrieve a list of AWS Lambda event source mappings"
-                                )
-                            },
-                            {
-                                "relativeDocumentation",
-                                Document.From("API_ListEventSourceMappings.html")
-                            },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lists event source mappings. Specify an <code>EventSourceArn</code> to show only event source mappings for a single event source.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns a list of the event source mappings for a function named my-function."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "FunctionName", Document.From("my-function") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "EventSourceMappings",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "BatchSize",
-                                                                        Document.From((decimal)5)
-                                                                    },
-                                                                    {
-                                                                        "EventSourceArn",
-                                                                        Document.From(
-                                                                            "arn:aws:sqs:us-west-2:123456789012:mySQSqueue"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "FunctionArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-west-2:123456789012:function:my-function"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LastModified",
-                                                                        Document.From(
-                                                                            (decimal)
-                                                                                1.569284520333E9
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "State",
-                                                                        Document.From("Enabled")
-                                                                    },
-                                                                    {
-                                                                        "StateTransitionReason",
-                                                                        Document.From(
-                                                                            "USER_INITIATED"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "UUID",
-                                                                        Document.From(
-                                                                            "a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"
-                                                                        )
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To list the event source mappings for a function"
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -166,7 +57,7 @@ public static partial class ListEventSourceMappingsSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/2015-03-31/event-source-mappings") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
@@ -182,10 +73,6 @@ public static partial class ListEventSourceMappingsSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

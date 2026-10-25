@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageInputSchema
 {
@@ -16,10 +16,13 @@ public static partial class DeleteMessageInputSchema
         public string? ReceiptHandle { get; set; }
     }
 
-    public static StructSchema<DeleteMessageInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.DeleteMessageInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteMessageInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.DeleteMessageInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageInput"),
             [
                 new(
@@ -28,12 +31,6 @@ public static partial class DeleteMessageInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue from which messages are deleted.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,12 +44,6 @@ public static partial class DeleteMessageInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The receipt handle associated with the message to delete.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -60,7 +51,6 @@ public static partial class DeleteMessageInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -73,20 +63,24 @@ public static partial class DeleteMessageInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteMessageInput Build(Builder builder) =>
-            new DeleteMessageInput(
+        public override global::Com.Amazonaws.Sqs.DeleteMessageInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.DeleteMessageInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.ReceiptHandle ?? throw new MissingRequiredMemberException("ReceiptHandle")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteMessageInput value,
+            global::Com.Amazonaws.Sqs.DeleteMessageInput value,
             ref TSerializer serializer
         )
         {

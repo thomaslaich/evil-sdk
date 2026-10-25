@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetricsStatusSchema
 {
     public static global::NSmithy.Core.Serde.Schema<MetricsStatus> Schema { get; } =
-        Schemas.StringEnum<MetricsStatus>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<MetricsStatus>(
             ShapeId.Parse("com.amazonaws.s3#MetricsStatus"),
             values: ["Enabled", "Disabled"],
             traits:

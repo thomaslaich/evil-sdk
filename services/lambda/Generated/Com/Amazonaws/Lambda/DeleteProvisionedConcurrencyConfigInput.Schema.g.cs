@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteProvisionedConcurrencyConfigInputSchema
 {
@@ -16,11 +16,16 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
         public string? Qualifier { get; set; }
     }
 
-    public static StructSchema<DeleteProvisionedConcurrencyConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteProvisionedConcurrencyConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteProvisionedConcurrencyConfigInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.DeleteProvisionedConcurrencyConfigInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#DeleteProvisionedConcurrencyConfigInput"),
             [
                 new(
@@ -30,12 +35,6 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +43,8 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -59,10 +58,6 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -72,10 +67,6 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The version number or alias name.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("Qualifier")
                         ),
@@ -84,8 +75,8 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)128) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(128m) },
                                 }
                             )
                         ),
@@ -97,10 +88,6 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -110,10 +97,6 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteProvisionedConcurrencyConfigRequest")
                 ),
@@ -121,20 +104,26 @@ public static partial class DeleteProvisionedConcurrencyConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteProvisionedConcurrencyConfigInput Build(Builder builder) =>
-            new DeleteProvisionedConcurrencyConfigInput(
+        public override global::Com.Amazonaws.Lambda.DeleteProvisionedConcurrencyConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DeleteProvisionedConcurrencyConfigInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.Qualifier ?? throw new MissingRequiredMemberException("Qualifier")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteProvisionedConcurrencyConfigInput value,
+            global::Com.Amazonaws.Lambda.DeleteProvisionedConcurrencyConfigInput value,
             ref TSerializer serializer
         )
         {

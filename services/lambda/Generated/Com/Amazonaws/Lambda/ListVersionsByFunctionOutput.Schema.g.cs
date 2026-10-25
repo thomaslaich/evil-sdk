@@ -6,64 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListVersionsByFunctionOutputSchema
 {
     public sealed class Builder
     {
         public string? NextMarker { get; set; }
-        public FunctionList? Versions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration>? Versions { get; set; }
     }
 
-    public static StructSchema<ListVersionsByFunctionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListVersionsByFunctionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListVersionsByFunctionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListVersionsByFunctionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListVersionsByFunctionOutput"),
-            [
-                new(
-                    "NextMarker",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Versions",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of Lambda function versions.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("NextMarker", Target0), new("Versions", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -73,17 +38,26 @@ public static partial class ListVersionsByFunctionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => FunctionListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionConfiguration>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FunctionListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListVersionsByFunctionOutput Build(Builder builder) =>
-            new ListVersionsByFunctionOutput(builder.NextMarker, builder.Versions);
+        public override global::Com.Amazonaws.Lambda.ListVersionsByFunctionOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListVersionsByFunctionOutput(
+                builder.NextMarker,
+                builder.Versions
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListVersionsByFunctionOutput value,
+            global::Com.Amazonaws.Lambda.ListVersionsByFunctionOutput value,
             ref TSerializer serializer
         )
         {

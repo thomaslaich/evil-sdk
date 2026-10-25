@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutFunctionRecursionConfigInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class PutFunctionRecursionConfigInputSchema
         public global::Com.Amazonaws.Lambda.RecursiveLoop? RecursiveLoop { get; set; }
     }
 
-    public static StructSchema<PutFunctionRecursionConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutFunctionRecursionConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PutFunctionRecursionConfigInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class PutFunctionRecursionConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +40,8 @@ public static partial class PutFunctionRecursionConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -59,10 +55,6 @@ public static partial class PutFunctionRecursionConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -72,18 +64,8 @@ public static partial class PutFunctionRecursionConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If you set your function's recursive loop detection configuration to <code>Allow</code>, Lambda doesn't take any action when it detects your function being invoked as part of a recursive loop. We recommend that you only use this setting if your design intentionally uses a Lambda function to write data back to the same Amazon Web Services resource that invokes it.</p> <p>If you set your function's recursive loop detection configuration to <code>Terminate</code>, Lambda stops your function being invoked and notifies you when it detects your function being invoked as part of a recursive loop.</p> <p>By default, Lambda sets your function's configuration to <code>Terminate</code>.</p> <important> <p>If your design intentionally uses a Lambda function to write data back to the same Amazon Web Services resource that invokes the function, then use caution and implement suitable guard rails to prevent unexpected charges being billed to your Amazon Web Services account. To learn more about best practices for using recursive invocation patterns, see <a href=\"https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/recursive-runaway\">Recursive patterns that cause run-away Lambda functions</a> in Serverless Land.</p> </important>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -94,10 +76,6 @@ public static partial class PutFunctionRecursionConfigInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#PutFunctionRecursionConfigRequest")
                 ),
@@ -105,20 +83,24 @@ public static partial class PutFunctionRecursionConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.RecursiveLoop?> Target1 =
-            Schemas.Nullable(RecursiveLoopSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RecursiveLoopSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutFunctionRecursionConfigInput Build(Builder builder) =>
-            new PutFunctionRecursionConfigInput(
+        public override global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName"),
                 builder.RecursiveLoop ?? throw new MissingRequiredMemberException("RecursiveLoop")
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutFunctionRecursionConfigInput value,
+            global::Com.Amazonaws.Lambda.PutFunctionRecursionConfigInput value,
             ref TSerializer serializer
         )
         {

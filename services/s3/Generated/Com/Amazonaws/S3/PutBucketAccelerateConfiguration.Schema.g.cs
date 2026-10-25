@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAccelerateConfigurationSchema
 {
     public static OperationSchema<
-        PutBucketAccelerateConfigurationInput,
-        PutBucketAccelerateConfigurationOutput
+        global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationInput,
+        global::Com.Amazonaws.S3.PutBucketAccelerateConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAccelerateConfiguration"),
-            Schemas.Lazy(() => PutBucketAccelerateConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketAccelerateConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutBucketAccelerateConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutBucketAccelerateConfigurationOutputSchema.Schema!
+            ),
             [],
             [
                 new Trait(
@@ -30,19 +34,13 @@ public static partial class PutBucketAccelerateConfigurationSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Sets the accelerate configuration of an existing bucket. Amazon S3 Transfer Acceleration is a\n      bucket-level feature that enables you to perform faster data transfers to Amazon S3.</p>\n         <p> To use this operation, you must have permission to perform the\n        <code>s3:PutAccelerateConfiguration</code> action. The bucket owner has this permission by default.\n      The bucket owner can grant this permission to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\">Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access Permissions to Your Amazon S3\n        Resources</a>.</p>\n         <p> The Transfer Acceleration state of a bucket can be set to one of the following two values:</p>\n         <ul>\n            <li>\n               <p> Enabled – Enables accelerated data transfers to the bucket.</p>\n            </li>\n            <li>\n               <p> Suspended – Disables accelerated data transfers to the bucket.</p>\n            </li>\n         </ul>\n         <p>The <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAccelerateConfiguration.html\">GetBucketAccelerateConfiguration</a> action returns the transfer acceleration state of a\n      bucket.</p>\n         <p>After setting the Transfer Acceleration state of a bucket to Enabled, it might take up to thirty\n      minutes before the data transfer rates to the bucket increase.</p>\n         <p> The name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain\n      periods (\".\").</p>\n         <p> For more information about transfer acceleration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html\">Transfer Acceleration</a>.</p>\n         <p>The following operations are related to <code>PutBucketAccelerateConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAccelerateConfiguration.html\">GetBucketAccelerateConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html\">CreateBucket</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?accelerate") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?accelerate") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

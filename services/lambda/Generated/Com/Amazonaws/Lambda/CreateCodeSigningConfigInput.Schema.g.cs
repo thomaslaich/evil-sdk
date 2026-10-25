@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CreateCodeSigningConfigInputSchema
 {
@@ -15,14 +15,16 @@ public static partial class CreateCodeSigningConfigInputSchema
         public string? Description { get; set; }
         public global::Com.Amazonaws.Lambda.AllowedPublishers? AllowedPublishers { get; set; }
         public global::Com.Amazonaws.Lambda.CodeSigningPolicies? CodeSigningPolicies { get; set; }
-        public global::Com.Amazonaws.Lambda.Tags? Tags { get; set; }
+        public IReadOnlyDictionary<string, string>? Tags { get; set; }
     }
 
-    public static StructSchema<CreateCodeSigningConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CreateCodeSigningConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateCodeSigningConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CreateCodeSigningConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CreateCodeSigningConfigInput"),
             [
                 new(
@@ -31,24 +33,14 @@ public static partial class CreateCodeSigningConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Descriptive name for this code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -59,64 +51,18 @@ public static partial class CreateCodeSigningConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Signing profiles for this code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "CodeSigningPolicies",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The code signing policies define the actions to take if the validation checks fail. </p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Tags",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of tags to add to the code signing configuration.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("CodeSigningPolicies", Target2),
+                new("Tags", Target3),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -126,18 +72,30 @@ public static partial class CreateCodeSigningConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.AllowedPublishers?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AllowedPublishersSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AllowedPublishersSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CodeSigningPolicies?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => CodeSigningPoliciesSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Tags?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CodeSigningPoliciesSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyDictionary<
+            string,
+            string
+        >?> Target3 = global::NSmithy.Core.Serde.Schemas.NullableReference(
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagsSchema.Schema!)
+        );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateCodeSigningConfigInput Build(Builder builder) =>
-            new CreateCodeSigningConfigInput(
+        public override global::Com.Amazonaws.Lambda.CreateCodeSigningConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CreateCodeSigningConfigInput(
                 builder.AllowedPublishers
                     ?? throw new MissingRequiredMemberException("AllowedPublishers"),
                 builder.CodeSigningPolicies,
@@ -146,7 +104,7 @@ public static partial class CreateCodeSigningConfigInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CreateCodeSigningConfigInput value,
+            global::Com.Amazonaws.Lambda.CreateCodeSigningConfigInput value,
             ref TSerializer serializer
         )
         {

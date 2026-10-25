@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class CancelMessageMoveTaskOutputSchema
 {
@@ -15,26 +15,19 @@ public static partial class CancelMessageMoveTaskOutputSchema
         public long? ApproximateNumberOfMessagesMoved { get; set; }
     }
 
-    public static StructSchema<CancelMessageMoveTaskOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.CancelMessageMoveTaskOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CancelMessageMoveTaskOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.CancelMessageMoveTaskOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#CancelMessageMoveTaskOutput"),
             [
                 new(
                     "ApproximateNumberOfMessagesMoved",
                     Target0,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The approximate number of messages already moved to the destination queue.</p>"
-                            )
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
             ],
             [
@@ -49,18 +42,21 @@ public static partial class CancelMessageMoveTaskOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 = Schemas.Nullable(
-            Schemas.Long
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() =>
             new() { ApproximateNumberOfMessagesMoved = 0L };
 
-        public override CancelMessageMoveTaskOutput Build(Builder builder) =>
-            new CancelMessageMoveTaskOutput(builder.ApproximateNumberOfMessagesMoved);
+        public override global::Com.Amazonaws.Sqs.CancelMessageMoveTaskOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.CancelMessageMoveTaskOutput(
+                builder.ApproximateNumberOfMessagesMoved
+            );
 
         public override void SerializeMembers<TSerializer>(
-            CancelMessageMoveTaskOutput value,
+            global::Com.Amazonaws.Sqs.CancelMessageMoveTaskOutput value,
             ref TSerializer serializer
         )
         {

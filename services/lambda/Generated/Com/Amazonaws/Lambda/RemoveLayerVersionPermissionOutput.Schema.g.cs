@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RemoveLayerVersionPermissionOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<RemoveLayerVersionPermissionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RemoveLayerVersionPermissionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#RemoveLayerVersionPermissionOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class RemoveLayerVersionPermissionOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override RemoveLayerVersionPermissionOutput Build(Builder builder) =>
-            new RemoveLayerVersionPermissionOutput();
+        public override global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionOutput();
 
         public override void SerializeMembers<TSerializer>(
-            RemoveLayerVersionPermissionOutput value,
+            global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionOutput value,
             ref TSerializer serializer
         ) { }
 

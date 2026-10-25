@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketPolicyStatusInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class GetBucketPolicyStatusInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<GetBucketPolicyStatusInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketPolicyStatusInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketPolicyStatusInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketPolicyStatusInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketPolicyStatusInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class GetBucketPolicyStatusInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the Amazon S3 bucket whose policy status you want to retrieve.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -60,12 +56,6 @@ public static partial class GetBucketPolicyStatusInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -85,20 +75,26 @@ public static partial class GetBucketPolicyStatusInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketPolicyStatusInput Build(Builder builder) =>
-            new GetBucketPolicyStatusInput(
+        public override global::Com.Amazonaws.S3.GetBucketPolicyStatusInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketPolicyStatusInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketPolicyStatusInput value,
+            global::Com.Amazonaws.S3.GetBucketPolicyStatusInput value,
             ref TSerializer serializer
         )
         {

@@ -6,15 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TargetGrantsSchema
 {
-    public static ListSchema<TargetGrants, TargetGrant, List<TargetGrant>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.TargetGrant>,
+        global::Com.Amazonaws.S3.TargetGrant,
+        List<global::Com.Amazonaws.S3.TargetGrant>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<TargetGrants, TargetGrant, List<TargetGrant>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.TargetGrant>,
+            global::Com.Amazonaws.S3.TargetGrant,
+            List<global::Com.Amazonaws.S3.TargetGrant>
+        >(
             ShapeId.Parse("com.amazonaws.s3#TargetGrants"),
             ShapeKind.List,
             Target0,
@@ -22,25 +29,30 @@ public static partial class TargetGrantsSchema
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("Grant"))]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<TargetGrant> Target0 =
-            Schemas.Lazy(() => TargetGrantSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TargetGrant> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TargetGrantSchema.Schema!);
 
-        public override IEnumerable<TargetGrant> GetElements(TargetGrants value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.TargetGrant> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.TargetGrant> value
+        ) => value;
 
-        public override List<TargetGrant> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.TargetGrant> CreateTypedBuilder() => new();
 
-        public override void Add(List<TargetGrant> builder, TargetGrant value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.TargetGrant> builder,
+            global::Com.Amazonaws.S3.TargetGrant value
+        ) => builder.Add(value);
 
-        public override TargetGrants Build(List<TargetGrant> builder) =>
-            TargetGrants.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.TargetGrant> Build(
+            List<global::Com.Amazonaws.S3.TargetGrant> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            TargetGrants value,
+            IReadOnlyList<global::Com.Amazonaws.S3.TargetGrant> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -55,7 +67,7 @@ public static partial class TargetGrantsSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<TargetGrant> builder,
+            List<global::Com.Amazonaws.S3.TargetGrant> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(TargetGrantSchema.Schema));
     }

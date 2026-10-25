@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class QuoteFieldsSchema
 {
     public static global::NSmithy.Core.Serde.Schema<QuoteFields> Schema { get; } =
-        Schemas.StringEnum<QuoteFields>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<QuoteFields>(
             ShapeId.Parse("com.amazonaws.s3#QuoteFields"),
             values: ["ALWAYS", "ASNEEDED"],
             traits:

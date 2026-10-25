@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteEventSourceMappingInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class DeleteEventSourceMappingInputSchema
         public string? UUID { get; set; }
     }
 
-    public static StructSchema<DeleteEventSourceMappingInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteEventSourceMappingInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteEventSourceMappingInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteEventSourceMappingInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteEventSourceMappingInput"),
             [
                 new(
@@ -29,10 +31,6 @@ public static partial class DeleteEventSourceMappingInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The identifier of the event source mapping.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,18 +39,14 @@ public static partial class DeleteEventSourceMappingInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)36) },
-                                    { "max", Document.From((decimal)36) },
+                                    { "min", Document.From(36m) },
+                                    { "max", Document.From(36m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -63,10 +57,6 @@ public static partial class DeleteEventSourceMappingInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteEventSourceMappingRequest")
                 ),
@@ -74,17 +64,21 @@ public static partial class DeleteEventSourceMappingInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteEventSourceMappingInput Build(Builder builder) =>
-            new DeleteEventSourceMappingInput(
+        public override global::Com.Amazonaws.Lambda.DeleteEventSourceMappingInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DeleteEventSourceMappingInput(
                 builder.UUID ?? throw new MissingRequiredMemberException("UUID")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteEventSourceMappingInput value,
+            global::Com.Amazonaws.Lambda.DeleteEventSourceMappingInput value,
             ref TSerializer serializer
         )
         {

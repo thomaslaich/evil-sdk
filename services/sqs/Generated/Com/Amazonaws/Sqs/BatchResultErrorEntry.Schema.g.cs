@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class BatchResultErrorEntrySchema
 {
@@ -18,11 +18,13 @@ public static partial class BatchResultErrorEntrySchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<BatchResultErrorEntry, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.BatchResultErrorEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BatchResultErrorEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.BatchResultErrorEntry, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#BatchResultErrorEntry"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class BatchResultErrorEntrySchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The <code>Id</code> of an entry in a batch request.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -51,12 +47,6 @@ public static partial class BatchResultErrorEntrySchema
                     [
                         new Trait(ShapeId.Parse("smithy.api#default"), Document.From(false)),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the error happened due to the caller of the batch API action.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -69,55 +59,35 @@ public static partial class BatchResultErrorEntrySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An error code representing why the action failed on this entry.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Message",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A message explaining why the action failed on this entry.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Message", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Gives a detailed description of the result of an action on each entry in the\n            request.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new() { SenderFault = false };
 
-        public override BatchResultErrorEntry Build(Builder builder) =>
-            new BatchResultErrorEntry(
+        public override global::Com.Amazonaws.Sqs.BatchResultErrorEntry Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.BatchResultErrorEntry(
                 builder.Code ?? throw new MissingRequiredMemberException("Code"),
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.Message,
@@ -125,7 +95,7 @@ public static partial class BatchResultErrorEntrySchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            BatchResultErrorEntry value,
+            global::Com.Amazonaws.Sqs.BatchResultErrorEntry value,
             ref TSerializer serializer
         )
         {

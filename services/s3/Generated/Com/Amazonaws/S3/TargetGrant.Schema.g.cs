@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TargetGrantSchema
 {
     public sealed class Builder
     {
         public global::Com.Amazonaws.S3.Grantee? Grantee { get; set; }
-        public BucketLogsPermission? Permission { get; set; }
+        public global::Com.Amazonaws.S3.BucketLogsPermission? Permission { get; set; }
     }
 
-    public static StructSchema<TargetGrant, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.TargetGrant, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TargetGrant, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.TargetGrant, Builder>(
             ShapeId.Parse("com.amazonaws.s3#TargetGrant"),
             [
                 new(
@@ -27,12 +28,6 @@ public static partial class TargetGrantSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for the person being granted permissions.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlNamespace"),
                             Document.From(
@@ -48,42 +43,25 @@ public static partial class TargetGrantSchema
                         ),
                     ]
                 ),
-                new(
-                    "Permission",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Logging permissions assigned to the grantee for the bucket.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Permission", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Container for granting information.</p>\n         <p>Buckets that use the bucket owner enforced setting for Object Ownership don't support target grants.\n      For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-general\">Permissions server access log delivery</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Grantee?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => GranteeSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketLogsPermission?> Target1 =
-            Schemas.Nullable(BucketLogsPermissionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => GranteeSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketLogsPermission?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketLogsPermissionSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TargetGrant Build(Builder builder) =>
-            new TargetGrant(builder.Grantee, builder.Permission);
+        public override global::Com.Amazonaws.S3.TargetGrant Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.TargetGrant(builder.Grantee, builder.Permission);
 
         public override void SerializeMembers<TSerializer>(
-            TargetGrant value,
+            global::Com.Amazonaws.S3.TargetGrant value,
             ref TSerializer serializer
         )
         {
@@ -121,8 +99,8 @@ public static partial class TargetGrantSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? BucketLogsPermission.FromValue(value1)
-                                : default(BucketLogsPermission)
+                                ? global::Com.Amazonaws.S3.BucketLogsPermission.FromValue(value1)
+                                : default(global::Com.Amazonaws.S3.BucketLogsPermission)
                         );
                     break;
             }

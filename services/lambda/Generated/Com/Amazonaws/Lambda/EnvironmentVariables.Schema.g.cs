@@ -4,31 +4,28 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EnvironmentVariablesSchema
 {
     public static MapSchema<
-        EnvironmentVariables,
+        IReadOnlyDictionary<string, string>,
         string,
         Dictionary<string, string>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : MapSchema<EnvironmentVariables, string, Dictionary<string, string>>(
+        : MapSchema<IReadOnlyDictionary<string, string>, string, Dictionary<string, string>>(
             ShapeId.Parse("com.amazonaws.lambda#EnvironmentVariables"),
             Target0,
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#sensitive"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ],
             [
@@ -40,29 +37,25 @@ public static partial class EnvironmentVariablesSchema
                     ShapeId.Parse("smithy.api#sensitive"),
                     Document.From(new Dictionary<string, Document> { })
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#sensitive"),
                     Document.From(new Dictionary<string, Document> { })
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            Schemas.String
+            global::NSmithy.Core.Serde.Schemas.String
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
         public override IEnumerable<KeyValuePair<string, string>> GetEntries(
-            EnvironmentVariables value
-        ) => value.Values;
+            IReadOnlyDictionary<string, string> value
+        ) => value;
 
         public override Dictionary<string, string> CreateTypedBuilder() =>
             new(StringComparer.Ordinal);
@@ -70,15 +63,16 @@ public static partial class EnvironmentVariablesSchema
         public override void Add(Dictionary<string, string> builder, string key, string value) =>
             builder[key] = value;
 
-        public override EnvironmentVariables Build(Dictionary<string, string> builder) =>
-            EnvironmentVariables.FromOwnedDictionary(builder);
+        public override IReadOnlyDictionary<string, string> Build(
+            Dictionary<string, string> builder
+        ) => new ReadOnlyDictionary<string, string>(builder);
 
         public override void SerializeEntries<TSerializer>(
-            EnvironmentVariables value,
+            IReadOnlyDictionary<string, string> value,
             ref TSerializer serializer
         )
         {
-            foreach (var entry in value.Values)
+            foreach (var entry in value)
             {
                 serializer.WriteString(0, entry.Key);
                 if (entry.Value is { } entryValue)

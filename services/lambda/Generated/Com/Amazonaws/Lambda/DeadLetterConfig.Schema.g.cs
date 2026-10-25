@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeadLetterConfigSchema
 {
@@ -15,10 +15,13 @@ public static partial class DeadLetterConfigSchema
         public string? TargetArn { get; set; }
     }
 
-    public static StructSchema<DeadLetterConfig, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeadLetterConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeadLetterConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeadLetterConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeadLetterConfig"),
             [
                 new(
@@ -27,18 +30,12 @@ public static partial class DeadLetterConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -46,37 +43,24 @@ public static partial class DeadLetterConfigSchema
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()$")
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-dlq\">dead-letter queue</a> for failed asynchronous invocations.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeadLetterConfig Build(Builder builder) =>
-            new DeadLetterConfig(builder.TargetArn);
+        public override global::Com.Amazonaws.Lambda.DeadLetterConfig Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.DeadLetterConfig(builder.TargetArn);
 
         public override void SerializeMembers<TSerializer>(
-            DeadLetterConfig value,
+            global::Com.Amazonaws.Lambda.DeadLetterConfig value,
             ref TSerializer serializer
         )
         {

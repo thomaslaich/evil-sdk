@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateCodeSigningConfigOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class UpdateCodeSigningConfigOutputSchema
         public global::Com.Amazonaws.Lambda.CodeSigningConfig? CodeSigningConfig { get; set; }
     }
 
-    public static StructSchema<UpdateCodeSigningConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateCodeSigningConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#UpdateCodeSigningConfigOutput"),
             [
                 new(
@@ -29,16 +31,8 @@ public static partial class UpdateCodeSigningConfigOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The code signing configuration</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -49,10 +43,6 @@ public static partial class UpdateCodeSigningConfigOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#UpdateCodeSigningConfigResponse")
                 ),
@@ -60,18 +50,22 @@ public static partial class UpdateCodeSigningConfigOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CodeSigningConfig?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CodeSigningConfigSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CodeSigningConfigSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateCodeSigningConfigOutput Build(Builder builder) =>
-            new UpdateCodeSigningConfigOutput(
+        public override global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigOutput(
                 builder.CodeSigningConfig
                     ?? throw new MissingRequiredMemberException("CodeSigningConfig")
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateCodeSigningConfigOutput value,
+            global::Com.Amazonaws.Lambda.UpdateCodeSigningConfigOutput value,
             ref TSerializer serializer
         )
         {

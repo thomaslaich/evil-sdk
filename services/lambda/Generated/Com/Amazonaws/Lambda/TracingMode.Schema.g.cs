@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TracingModeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<TracingMode> Schema { get; } =
-        Schemas.StringEnum<TracingMode>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<TracingMode>(
             ShapeId.Parse("com.amazonaws.lambda#TracingMode"),
             values: ["Active", "PassThrough"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

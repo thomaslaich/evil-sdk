@@ -6,48 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutFunctionScalingConfigOutputSchema
 {
     public sealed class Builder
     {
-        public State? FunctionState { get; set; }
+        public global::Com.Amazonaws.Lambda.State? FunctionState { get; set; }
     }
 
-    public static StructSchema<PutFunctionScalingConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PutFunctionScalingConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutFunctionScalingConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PutFunctionScalingConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PutFunctionScalingConfigOutput"),
-            [
-                new(
-                    "FunctionState",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The current state of the function after applying the scaling configuration.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("FunctionState", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -56,16 +36,17 @@ public static partial class PutFunctionScalingConfigOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<State?> Target0 =
-            Schemas.Nullable(StateSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.State?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(StateSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutFunctionScalingConfigOutput Build(Builder builder) =>
-            new PutFunctionScalingConfigOutput(builder.FunctionState);
+        public override global::Com.Amazonaws.Lambda.PutFunctionScalingConfigOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.PutFunctionScalingConfigOutput(builder.FunctionState);
 
         public override void SerializeMembers<TSerializer>(
-            PutFunctionScalingConfigOutput value,
+            global::Com.Amazonaws.Lambda.PutFunctionScalingConfigOutput value,
             ref TSerializer serializer
         )
         {
@@ -92,8 +73,8 @@ public static partial class PutFunctionScalingConfigOutputSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? State.FromValue(value0)
-                                : default(State)
+                                ? global::Com.Amazonaws.Lambda.State.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.State)
                         );
                     break;
             }

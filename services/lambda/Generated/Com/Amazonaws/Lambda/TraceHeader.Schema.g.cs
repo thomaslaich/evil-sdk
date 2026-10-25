@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TraceHeaderSchema
 {
@@ -15,10 +15,11 @@ public static partial class TraceHeaderSchema
         public string? XAmznTraceId { get; set; }
     }
 
-    public static StructSchema<TraceHeader, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.TraceHeader, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TraceHeader, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TraceHeader, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TraceHeader"),
             [
                 new(
@@ -27,49 +28,33 @@ public static partial class TraceHeaderSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The X-Ray trace header associated with the durable execution.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)8192) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(8192m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Contains trace headers for the Lambda durable execution.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TraceHeader Build(Builder builder) => new TraceHeader(builder.XAmznTraceId);
+        public override global::Com.Amazonaws.Lambda.TraceHeader Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.TraceHeader(builder.XAmznTraceId);
 
         public override void SerializeMembers<TSerializer>(
-            TraceHeader value,
+            global::Com.Amazonaws.Lambda.TraceHeader value,
             ref TSerializer serializer
         )
         {

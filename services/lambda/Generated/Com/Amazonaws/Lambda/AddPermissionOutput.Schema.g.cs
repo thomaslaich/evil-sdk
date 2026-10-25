@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AddPermissionOutputSchema
 {
@@ -15,39 +15,19 @@ public static partial class AddPermissionOutputSchema
         public string? Statement { get; set; }
     }
 
-    public static StructSchema<AddPermissionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.AddPermissionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AddPermissionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.AddPermissionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#AddPermissionOutput"),
-            [
-                new(
-                    "Statement",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The permission statement that's added to the function policy.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Statement", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -57,15 +37,17 @@ public static partial class AddPermissionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AddPermissionOutput Build(Builder builder) =>
-            new AddPermissionOutput(builder.Statement);
+        public override global::Com.Amazonaws.Lambda.AddPermissionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.AddPermissionOutput(builder.Statement);
 
         public override void SerializeMembers<TSerializer>(
-            AddPermissionOutput value,
+            global::Com.Amazonaws.Lambda.AddPermissionOutput value,
             ref TSerializer serializer
         )
         {

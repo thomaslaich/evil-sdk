@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ErrorDocumentSchema
 {
@@ -15,10 +15,11 @@ public static partial class ErrorDocumentSchema
         public string? Key { get; set; }
     }
 
-    public static StructSchema<ErrorDocument, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ErrorDocument, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ErrorDocument, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ErrorDocument, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ErrorDocument"),
             [
                 new(
@@ -28,18 +29,9 @@ public static partial class ErrorDocumentSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The object key name to use when a 4XX class error occurs.</p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -49,24 +41,23 @@ public static partial class ErrorDocumentSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The error information.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ErrorDocument Build(Builder builder) =>
-            new ErrorDocument(builder.Key ?? throw new MissingRequiredMemberException("Key"));
+        public override global::Com.Amazonaws.S3.ErrorDocument Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ErrorDocument(
+                builder.Key ?? throw new MissingRequiredMemberException("Key")
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ErrorDocument value,
+            global::Com.Amazonaws.S3.ErrorDocument value,
             ref TSerializer serializer
         )
         {

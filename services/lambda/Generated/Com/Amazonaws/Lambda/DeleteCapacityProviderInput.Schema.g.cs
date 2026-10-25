@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteCapacityProviderInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class DeleteCapacityProviderInputSchema
         public string? CapacityProviderName { get; set; }
     }
 
-    public static StructSchema<DeleteCapacityProviderInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteCapacityProviderInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteCapacityProviderInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteCapacityProviderInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteCapacityProviderInput"),
             [
                 new(
@@ -29,10 +31,6 @@ public static partial class DeleteCapacityProviderInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the capacity provider to delete.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,8 +39,8 @@ public static partial class DeleteCapacityProviderInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -56,10 +54,6 @@ public static partial class DeleteCapacityProviderInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -69,10 +63,6 @@ public static partial class DeleteCapacityProviderInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#DeleteCapacityProviderRequest")
                 ),
@@ -80,18 +70,22 @@ public static partial class DeleteCapacityProviderInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteCapacityProviderInput Build(Builder builder) =>
-            new DeleteCapacityProviderInput(
+        public override global::Com.Amazonaws.Lambda.DeleteCapacityProviderInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.DeleteCapacityProviderInput(
                 builder.CapacityProviderName
                     ?? throw new MissingRequiredMemberException("CapacityProviderName")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteCapacityProviderInput value,
+            global::Com.Amazonaws.Lambda.DeleteCapacityProviderInput value,
             ref TSerializer serializer
         )
         {

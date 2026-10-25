@@ -6,42 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeletedObjectsSchema
 {
-    public static ListSchema<DeletedObjects, DeletedObject, List<DeletedObject>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.DeletedObject>,
+        global::Com.Amazonaws.S3.DeletedObject,
+        List<global::Com.Amazonaws.S3.DeletedObject>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<DeletedObjects, DeletedObject, List<DeletedObject>>(
-            ShapeId.Parse("com.amazonaws.s3#DeletedObjects"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.DeletedObject>,
+            global::Com.Amazonaws.S3.DeletedObject,
+            List<global::Com.Amazonaws.S3.DeletedObject>
+        >(ShapeId.Parse("com.amazonaws.s3#DeletedObjects"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<DeletedObject> Target0 =
-            Schemas.Lazy(() => DeletedObjectSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.DeletedObject> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeletedObjectSchema.Schema!);
 
-        public override IEnumerable<DeletedObject> GetElements(DeletedObjects value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.DeletedObject> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.DeletedObject> value
+        ) => value;
 
-        public override List<DeletedObject> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.DeletedObject> CreateTypedBuilder() => new();
 
-        public override void Add(List<DeletedObject> builder, DeletedObject value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.DeletedObject> builder,
+            global::Com.Amazonaws.S3.DeletedObject value
+        ) => builder.Add(value);
 
-        public override DeletedObjects Build(List<DeletedObject> builder) =>
-            DeletedObjects.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.DeletedObject> Build(
+            List<global::Com.Amazonaws.S3.DeletedObject> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            DeletedObjects value,
+            IReadOnlyList<global::Com.Amazonaws.S3.DeletedObject> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -56,7 +61,7 @@ public static partial class DeletedObjectsSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<DeletedObject> builder,
+            List<global::Com.Amazonaws.S3.DeletedObject> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(DeletedObjectSchema.Schema));
     }

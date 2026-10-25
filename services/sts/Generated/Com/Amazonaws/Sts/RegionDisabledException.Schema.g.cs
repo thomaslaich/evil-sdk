@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class RegionDisabledExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class RegionDisabledExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<RegionDisabledException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.RegionDisabledException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RegionDisabledException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.RegionDisabledException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#RegionDisabledException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,27 @@ public static partial class RegionDisabledExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("RegionDisabledException") },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>STS is not activated in the requested region for the account that is being asked to\n            generate credentials. The account administrator must use the IAM console to activate\n            STS in that region. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html#sts-regions-activate-deactivate\">Activating and Deactivating STS in an Amazon Web Services Region</a> in the <i>IAM\n                User Guide</i>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RegionDisabledException Build(Builder builder) =>
-            new RegionDisabledException(builder.Message);
+        public override global::Com.Amazonaws.Sts.RegionDisabledException Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.RegionDisabledException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            RegionDisabledException value,
+            global::Com.Amazonaws.Sts.RegionDisabledException value,
             ref TSerializer serializer
         )
         {

@@ -6,16 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteAliasOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteAliasOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteAliasOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteAliasOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteAliasOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteAliasOutput"),
             [],
             [
@@ -32,10 +35,11 @@ public static partial class DeleteAliasOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteAliasOutput Build(Builder builder) => new DeleteAliasOutput();
+        public override global::Com.Amazonaws.Lambda.DeleteAliasOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.DeleteAliasOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteAliasOutput value,
+            global::Com.Amazonaws.Lambda.DeleteAliasOutput value,
             ref TSerializer serializer
         ) { }
 

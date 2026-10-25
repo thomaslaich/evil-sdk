@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ChecksumTypeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ChecksumType> Schema { get; } =
-        Schemas.StringEnum<ChecksumType>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ChecksumType>(
             ShapeId.Parse("com.amazonaws.s3#ChecksumType"),
             values: ["COMPOSITE", "FULL_OBJECT"],
             traits:

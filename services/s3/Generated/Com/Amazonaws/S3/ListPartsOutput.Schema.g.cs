@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListPartsOutputSchema
 {
@@ -22,7 +22,7 @@ public static partial class ListPartsOutputSchema
         public string? NextPartNumberMarker { get; set; }
         public int? MaxParts { get; set; }
         public bool? IsTruncated { get; set; }
-        public global::Com.Amazonaws.S3.Parts? Parts { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Part>? Parts { get; set; }
         public global::Com.Amazonaws.S3.Initiator? Initiator { get; set; }
         public global::Com.Amazonaws.S3.Owner? Owner { get; set; }
         public global::Com.Amazonaws.S3.StorageClass? StorageClass { get; set; }
@@ -31,10 +31,11 @@ public static partial class ListPartsOutputSchema
         public global::Com.Amazonaws.S3.ChecksumType? ChecksumType { get; set; }
     }
 
-    public static StructSchema<ListPartsOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ListPartsOutput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListPartsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListPartsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListPartsOutput"),
             [
                 new(
@@ -42,12 +43,6 @@ public static partial class ListPartsOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the bucket has a lifecycle rule configured with an action to abort incomplete multipart uploads\n      and the prefix in the lifecycle rule matches the object name in the request, then the response includes\n      this header indicating when the initiated multipart upload will become eligible for abort operation. For\n      more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config\">Aborting\n        Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration</a>.</p>\n         <p>The response will also include the <code>x-amz-abort-rule-id</code> header that will provide the ID\n      of the lifecycle configuration rule that defines this action.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-abort-date")
@@ -60,91 +55,28 @@ public static partial class ListPartsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This header is returned along with the <code>x-amz-abort-date</code> header. It identifies\n      applicable lifecycle configuration rule that defines the action to abort incomplete multipart\n      uploads.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-abort-rule-id")
                         ),
                     ]
                 ),
-                new(
-                    "Bucket",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket to which the multipart upload was initiated. Does not return the access point ARN or\n      access point alias if used.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Bucket", Target2),
                 new(
                     "Key",
                     Target3,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Object key for which the multipart upload was initiated.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "UploadId",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Upload ID identifying the multipart upload whose parts are being listed.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "PartNumberMarker",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the part after which listing should begin. Only parts with higher part numbers will be\n      listed.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextPartNumberMarker",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When a list is truncated, this element specifies the last part in the list, as well as the value to\n      use for the <code>part-number-marker</code> request parameter in a subsequent request.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("UploadId", Target4),
+                new("PartNumberMarker", Target5),
+                new("NextPartNumberMarker", Target6),
                 new(
                     "MaxParts",
                     Target7,
@@ -153,12 +85,6 @@ public static partial class ListPartsOutputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Maximum number of parts that were allowed in the response.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -171,12 +97,6 @@ public static partial class ListPartsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Indicates whether the returned list of parts is truncated. A true value indicates that the list was\n      truncated. A list can be truncated if the number of parts exceeds the limit returned in the MaxParts\n      element.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -185,57 +105,15 @@ public static partial class ListPartsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for elements related to a particular part. A response can contain zero or more\n        <code>Part</code> elements.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("Part")),
                     ]
                 ),
-                new(
-                    "Initiator",
-                    Target10,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container element that identifies who initiated the multipart upload. If the initiator is an\n      Amazon Web Services account, this element provides the same information as the <code>Owner</code> element. If the\n      initiator is an IAM User, this element provides the user ARN.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Owner",
-                    Target11,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container element that identifies the object owner, after the object is created. If multipart upload\n      is initiated by an IAM user, this element provides the parent account ID.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - The bucket owner is returned as the\n        object owner for all the parts.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "StorageClass",
-                    Target12,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The class of storage used to store the uploaded object.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> -\n        Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Initiator", Target10),
+                new("Owner", Target11),
+                new("StorageClass", Target12),
                 new(
                     "RequestCharged",
                     Target13,
@@ -247,32 +125,8 @@ public static partial class ListPartsOutputSchema
                         ),
                     ]
                 ),
-                new(
-                    "ChecksumAlgorithm",
-                    Target14,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The algorithm that was used to create a checksum of the object.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ChecksumType",
-                    Target15,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The checksum type, which determines how part-level checksums are combined to create an object-level\n      checksum for multipart objects. You can use this header response to verify that the checksum type that\n      is received is the same checksum type that was specified in <code>CreateMultipartUpload</code> request.\n      For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity in the Amazon S3\n        User Guide</a>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ChecksumAlgorithm", Target14),
+                new("ChecksumType", Target15),
             ],
             [
                 new Trait(
@@ -284,44 +138,62 @@ public static partial class ListPartsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target0 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target8 = Schemas.Nullable(
-            Schemas.Boolean
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Parts?> Target9 =
-            Schemas.NullableReference(Schemas.Lazy(() => PartsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target7 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Part>?> Target9 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => PartsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Initiator?> Target10 =
-            Schemas.NullableReference(Schemas.Lazy(() => InitiatorSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InitiatorSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Owner?> Target11 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnerSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnerSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target12 =
-            Schemas.Nullable(StorageClassSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target13 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target14 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumType?> Target15 =
-            Schemas.Nullable(ChecksumTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumTypeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListPartsOutput Build(Builder builder) =>
-            new ListPartsOutput(
+        public override global::Com.Amazonaws.S3.ListPartsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ListPartsOutput(
                 builder.AbortDate,
                 builder.AbortRuleId,
                 builder.Bucket,
@@ -341,7 +213,7 @@ public static partial class ListPartsOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListPartsOutput value,
+            global::Com.Amazonaws.S3.ListPartsOutput value,
             ref TSerializer serializer
         )
         {

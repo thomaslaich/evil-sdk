@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetCapacityProviderInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetCapacityProviderInputSchema
         public string? CapacityProviderName { get; set; }
     }
 
-    public static StructSchema<GetCapacityProviderInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetCapacityProviderInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetCapacityProviderInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetCapacityProviderInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetCapacityProviderInput"),
             [
                 new(
@@ -29,10 +31,6 @@ public static partial class GetCapacityProviderInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the capacity provider to retrieve.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -41,8 +39,8 @@ public static partial class GetCapacityProviderInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -56,10 +54,6 @@ public static partial class GetCapacityProviderInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -69,10 +63,6 @@ public static partial class GetCapacityProviderInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetCapacityProviderRequest")
                 ),
@@ -80,18 +70,22 @@ public static partial class GetCapacityProviderInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetCapacityProviderInput Build(Builder builder) =>
-            new GetCapacityProviderInput(
+        public override global::Com.Amazonaws.Lambda.GetCapacityProviderInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetCapacityProviderInput(
                 builder.CapacityProviderName
                     ?? throw new MissingRequiredMemberException("CapacityProviderName")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetCapacityProviderInput value,
+            global::Com.Amazonaws.Lambda.GetCapacityProviderInput value,
             ref TSerializer serializer
         )
         {

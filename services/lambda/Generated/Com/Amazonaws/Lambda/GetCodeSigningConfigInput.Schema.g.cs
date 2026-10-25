@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetCodeSigningConfigInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetCodeSigningConfigInputSchema
         public string? CodeSigningConfigArn { get; set; }
     }
 
-    public static StructSchema<GetCodeSigningConfigInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetCodeSigningConfigInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetCodeSigningConfigInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetCodeSigningConfigInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetCodeSigningConfigInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class GetCodeSigningConfigInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The The Amazon Resource Name (ARN) of the code signing configuration. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -43,8 +39,8 @@ public static partial class GetCodeSigningConfigInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)200) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(200m) },
                                 }
                             )
                         ),
@@ -58,10 +54,6 @@ public static partial class GetCodeSigningConfigInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -71,10 +63,6 @@ public static partial class GetCodeSigningConfigInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetCodeSigningConfigRequest")
                 ),
@@ -82,18 +70,22 @@ public static partial class GetCodeSigningConfigInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetCodeSigningConfigInput Build(Builder builder) =>
-            new GetCodeSigningConfigInput(
+        public override global::Com.Amazonaws.Lambda.GetCodeSigningConfigInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetCodeSigningConfigInput(
                 builder.CodeSigningConfigArn
                     ?? throw new MissingRequiredMemberException("CodeSigningConfigArn")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetCodeSigningConfigInput value,
+            global::Com.Amazonaws.Lambda.GetCodeSigningConfigInput value,
             ref TSerializer serializer
         )
         {

@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TopicsSchema
 {
-    public static ListSchema<Topics, string, List<string>> Schema { get; } = new GeneratedSchema();
+    public static ListSchema<IReadOnlyList<string>, string, List<string>> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<Topics, string, List<string>>(
+        : ListSchema<IReadOnlyList<string>, string, List<string>>(
             ShapeId.Parse("com.amazonaws.lambda#Topics"),
             ShapeKind.List,
             Target0,
@@ -23,14 +24,10 @@ public static partial class TopicsSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)1) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(1m) },
                         }
                     )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ],
             [
@@ -39,8 +36,8 @@ public static partial class TopicsSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)249) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(249m) },
                         }
                     )
                 ),
@@ -48,29 +45,29 @@ public static partial class TopicsSchema
                     ShapeId.Parse("smithy.api#pattern"),
                     Document.From("^[^.]([a-zA-Z0-9\\-_.]+)$")
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<string> GetElements(Topics value) => value.Values;
+        public override IEnumerable<string> GetElements(IReadOnlyList<string> value) => value;
 
         public override List<string> CreateTypedBuilder() => new();
 
         public override void Add(List<string> builder, string value) => builder.Add(value);
 
-        public override Topics Build(List<string> builder) => Topics.FromOwnedList(builder);
+        public override IReadOnlyList<string> Build(List<string> builder) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            Topics value,
+            IReadOnlyList<string> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

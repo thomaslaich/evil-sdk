@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SendDurableExecutionCallbackSuccessInputSchema
 {
@@ -16,11 +16,16 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
         public byte[]? Result { get; set; }
     }
 
-    public static StructSchema<SendDurableExecutionCallbackSuccessInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackSuccessInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendDurableExecutionCallbackSuccessInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackSuccessInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#SendDurableExecutionCallbackSuccessInput"),
             [
                 new(
@@ -30,12 +35,6 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The unique identifier for the callback operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +43,8 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -57,10 +56,6 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -68,12 +63,6 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The result data from the successful callback operation. Maximum size is 256 KB.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -83,18 +72,14 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)1048576) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(1048576m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -105,10 +90,6 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#SendDurableExecutionCallbackSuccessRequest")
                 ),
@@ -116,20 +97,26 @@ public static partial class SendDurableExecutionCallbackSuccessInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<byte[]?> Target1 =
-            Schemas.NullableReference(Schemas.Blob);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Blob
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendDurableExecutionCallbackSuccessInput Build(Builder builder) =>
-            new SendDurableExecutionCallbackSuccessInput(
+        public override global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackSuccessInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackSuccessInput(
                 builder.CallbackId ?? throw new MissingRequiredMemberException("CallbackId"),
                 builder.Result
             );
 
         public override void SerializeMembers<TSerializer>(
-            SendDurableExecutionCallbackSuccessInput value,
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackSuccessInput value,
             ref TSerializer serializer
         )
         {

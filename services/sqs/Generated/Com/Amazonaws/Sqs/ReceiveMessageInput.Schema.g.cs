@@ -6,27 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ReceiveMessageInputSchema
 {
     public sealed class Builder
     {
         public string? QueueUrl { get; set; }
-        public AttributeNameList? AttributeNames { get; set; }
-        public MessageSystemAttributeList? MessageSystemAttributeNames { get; set; }
-        public MessageAttributeNameList? MessageAttributeNames { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName>? AttributeNames { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.MessageSystemAttributeName>? MessageSystemAttributeNames { get; set; }
+        public IReadOnlyList<string>? MessageAttributeNames { get; set; }
         public int? MaxNumberOfMessages { get; set; }
         public int? VisibilityTimeout { get; set; }
         public int? WaitTimeSeconds { get; set; }
         public string? ReceiveRequestAttemptId { get; set; }
     }
 
-    public static StructSchema<ReceiveMessageInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ReceiveMessageInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReceiveMessageInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ReceiveMessageInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ReceiveMessageInput"),
             [
                 new(
@@ -35,12 +37,6 @@ public static partial class ReceiveMessageInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue from which messages are received.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -52,26 +48,6 @@ public static partial class ReceiveMessageInputSchema
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "message",
-                                        Document.From(
-                                            "AttributeNames has been replaced by MessageSystemAttributeNames"
-                                        )
-                                    },
-                                }
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<important>\n            <p>This parameter has been discontinued but will be supported for backward\n                compatibility. To provide attribute names, you are encouraged to use\n                    <code>MessageSystemAttributeNames</code>. </p>\n         </important>\n         <p>A list of attributes that need to be returned along with each message. These\n            attributes include:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>All</code> – Returns all values.</p>\n            </li>\n            <li>\n               <p>\n                  <code>ApproximateFirstReceiveTimestamp</code> – Returns the time the\n                    message was first received from the queue (<a href=\"http://en.wikipedia.org/wiki/Unix_time\">epoch time</a> in\n                    milliseconds).</p>\n            </li>\n            <li>\n               <p>\n                  <code>ApproximateReceiveCount</code> – Returns the number of times a\n                    message has been received across all queues but not deleted.</p>\n            </li>\n            <li>\n               <p>\n                  <code>AWSTraceHeader</code> – Returns the X-Ray trace\n                    header string. </p>\n            </li>\n            <li>\n               <p>\n                  <code>SenderId</code>\n               </p>\n               <ul>\n                  <li>\n                     <p>For a user, returns the user ID, for example\n                                <code>ABCDEFGHI1JKLMNOPQ23R</code>.</p>\n                  </li>\n                  <li>\n                     <p>For an IAM role, returns the IAM role ID, for example\n                                <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.</p>\n                  </li>\n               </ul>\n            </li>\n            <li>\n               <p>\n                  <code>SentTimestamp</code> – Returns the time the message was sent to the\n                    queue (<a href=\"http://en.wikipedia.org/wiki/Unix_time\">epoch time</a> in\n                    milliseconds).</p>\n            </li>\n            <li>\n               <p>\n                  <code>SqsManagedSseEnabled</code> – Enables server-side queue encryption\n                    using SQS owned encryption keys. Only one server-side encryption option is\n                    supported per queue (for example, <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html\">SSE-KMS</a> or <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html\">SSE-SQS</a>).</p>\n            </li>\n            <li>\n               <p>\n                  <code>MessageDeduplicationId</code> – Returns the value provided by the\n                    producer that calls the <code>\n                     <a>SendMessage</a>\n                  </code>\n                    action.</p>\n            </li>\n            <li>\n               <p>\n                  <code>MessageGroupId</code> – Returns the value provided by the\n                    producer that calls the <code>\n                     <a>SendMessage</a>\n                  </code> action.\n                    </p>\n            </li>\n            <li>\n               <p>\n                  <code>SequenceNumber</code> – Returns the value provided by\n                    Amazon SQS.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -88,12 +64,6 @@ public static partial class ReceiveMessageInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of attributes that need to be returned along with each message. These\n            attributes include:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>All</code> – Returns all values.</p>\n            </li>\n            <li>\n               <p>\n                  <code>ApproximateFirstReceiveTimestamp</code> – Returns the time the\n                    message was first received from the queue (<a href=\"http://en.wikipedia.org/wiki/Unix_time\">epoch time</a> in\n                    milliseconds).</p>\n            </li>\n            <li>\n               <p>\n                  <code>ApproximateReceiveCount</code> – Returns the number of times a\n                    message has been received across all queues but not deleted.</p>\n            </li>\n            <li>\n               <p>\n                  <code>AWSTraceHeader</code> – Returns the X-Ray trace\n                    header string. </p>\n            </li>\n            <li>\n               <p>\n                  <code>SenderId</code>\n               </p>\n               <ul>\n                  <li>\n                     <p>For a user, returns the user ID, for example\n                                <code>ABCDEFGHI1JKLMNOPQ23R</code>.</p>\n                  </li>\n                  <li>\n                     <p>For an IAM role, returns the IAM role ID, for example\n                                <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.</p>\n                  </li>\n               </ul>\n            </li>\n            <li>\n               <p>\n                  <code>SentTimestamp</code> – Returns the time the message was sent to the\n                    queue (<a href=\"http://en.wikipedia.org/wiki/Unix_time\">epoch time</a> in\n                    milliseconds).</p>\n            </li>\n            <li>\n               <p>\n                  <code>SqsManagedSseEnabled</code> – Enables server-side queue encryption\n                    using SQS owned encryption keys. Only one server-side encryption option is\n                    supported per queue (for example, <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html\">SSE-KMS</a> or <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html\">SSE-SQS</a>).</p>\n            </li>\n            <li>\n               <p>\n                  <code>MessageDeduplicationId</code> – Returns the value provided by the\n                    producer that calls the <code>\n                     <a>SendMessage</a>\n                  </code>\n                    action.</p>\n            </li>\n            <li>\n               <p>\n                  <code>MessageGroupId</code> – Returns the value provided by the\n                    producer that calls the <code>\n                     <a>SendMessage</a>\n                  </code> action.</p>\n            </li>\n            <li>\n               <p>\n                  <code>SequenceNumber</code> – Returns the value provided by\n                    Amazon SQS.</p>\n            </li>\n         </ul>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -108,12 +78,6 @@ public static partial class ReceiveMessageInputSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the message attribute, where <i>N</i> is the index.</p>\n         <ul>\n            <li>\n               <p>The name can contain alphanumeric characters and the underscore\n                        (<code>_</code>), hyphen (<code>-</code>), and period\n                    (<code>.</code>).</p>\n            </li>\n            <li>\n               <p>The name is case-sensitive and must be unique among all attribute names for\n                    the message.</p>\n            </li>\n            <li>\n               <p>The name must not start with AWS-reserved prefixes such as <code>AWS.</code>\n                    or <code>Amazon.</code> (or any casing variants).</p>\n            </li>\n            <li>\n               <p>The name must not start or end with a period (<code>.</code>), and it should\n                    not have periods in succession (<code>..</code>).</p>\n            </li>\n            <li>\n               <p>The name can be up to 256 characters long.</p>\n            </li>\n         </ul>\n         <p>When using <code>ReceiveMessage</code>, you can send a list of attribute names to\n            receive, or you can return all of the attributes by specifying <code>All</code> or\n                <code>.*</code> in your request. You can also use all message attributes starting\n            with a prefix, for example <code>bar.*</code>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -133,12 +97,6 @@ public static partial class ReceiveMessageInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of messages to return. Amazon SQS never returns more messages than this\n            value (however, fewer messages might be returned). Valid values: 1 to 10. Default:\n            1.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
@@ -149,12 +107,6 @@ public static partial class ReceiveMessageInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The duration (in seconds) that the received messages are hidden from subsequent\n            retrieve requests after being retrieved by a <code>ReceiveMessage</code> request. If not\n            specified, the default visibility timeout for the queue is used, which is 30\n            seconds.</p>\n         <p>Understanding <code>VisibilityTimeout</code>:</p>\n         <ul>\n            <li>\n               <p>When a message is received from a queue, it becomes temporarily invisible to\n                    other consumers for the duration of the visibility timeout. This prevents\n                    multiple consumers from processing the same message simultaneously. If the\n                    message is not deleted or its visibility timeout is not extended before the\n                    timeout expires, it becomes visible again and can be retrieved by other\n                    consumers.</p>\n            </li>\n            <li>\n               <p>Setting an appropriate visibility timeout is crucial. If it's too short, the\n                    message might become visible again before processing is complete, leading to\n                    duplicate processing. If it's too long, it delays the reprocessing of messages\n                    if the initial processing fails.</p>\n            </li>\n            <li>\n               <p>You can adjust the visibility timeout using the\n                        <code>--visibility-timeout</code> parameter in the\n                        <code>receive-message</code> command to match the processing time required\n                    by your application.</p>\n            </li>\n            <li>\n               <p>A message that isn't deleted or a message whose visibility isn't extended\n                    before the visibility timeout expires counts as a failed receive. Depending on\n                    the configuration of the queue, the message might be sent to the dead-letter\n                    queue.</p>\n            </li>\n         </ul>\n         <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html\">Visibility Timeout</a> in the <i>Amazon SQS Developer\n            Guide</i>.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -167,33 +119,11 @@ public static partial class ReceiveMessageInputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The duration (in seconds) for which the call waits for a message to arrive in the\n            queue before returning. If a message is available, the call returns sooner than\n                <code>WaitTimeSeconds</code>. If no messages are available and the wait time\n            expires, the call does not return a message list. If you are using the Java SDK, it\n            returns a <code>ReceiveMessageResponse</code> object, which has a empty list instead of\n            a Null object.</p>\n         <important>\n            <p>To avoid HTTP errors, ensure that the HTTP response timeout for\n                    <code>ReceiveMessage</code> requests is longer than the\n                    <code>WaitTimeSeconds</code> parameter. For example, with the Java SDK, you can\n                set HTTP transport settings using the <a href=\"https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/nio/netty/NettyNioAsyncHttpClient.html\"> NettyNioAsyncHttpClient</a> for asynchronous clients, or the <a href=\"https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.html\"> ApacheHttpClient</a> for synchronous clients. </p>\n         </important>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "ReceiveRequestAttemptId",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>This parameter applies only to FIFO (first-in-first-out) queues.</p>\n         <p>The token used for deduplication of <code>ReceiveMessage</code> calls. If a networking\n            issue occurs after a <code>ReceiveMessage</code> action, and instead of a response you\n            receive a generic error, it is possible to retry the same action with an identical\n                <code>ReceiveRequestAttemptId</code> to retrieve the same set of messages, even if\n            their visibility timeout has not yet expired.</p>\n         <ul>\n            <li>\n               <p>You can use <code>ReceiveRequestAttemptId</code> only for 5 minutes after a\n                        <code>ReceiveMessage</code> action.</p>\n            </li>\n            <li>\n               <p>When you set <code>FifoQueue</code>, a caller of the\n                        <code>ReceiveMessage</code> action can provide a\n                        <code>ReceiveRequestAttemptId</code> explicitly.</p>\n            </li>\n            <li>\n               <p>It is possible to retry the <code>ReceiveMessage</code> action with the same\n                        <code>ReceiveRequestAttemptId</code> if none of the messages have been\n                    modified (deleted or had their visibility changes).</p>\n            </li>\n            <li>\n               <p>During a visibility timeout, subsequent calls with the same\n                        <code>ReceiveRequestAttemptId</code> return the same messages and receipt\n                    handles. If a retry occurs within the deduplication interval, it resets the\n                    visibility timeout. For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html\">Visibility Timeout</a> in the <i>Amazon SQS Developer\n                        Guide</i>.</p>\n               <important>\n                  <p>If a caller of the <code>ReceiveMessage</code> action still processes\n                        messages when the visibility timeout expires and messages become visible,\n                        another worker consuming from the same queue can receive the same messages\n                        and therefore process duplicates. Also, if a consumer whose message\n                        processing time is longer than the visibility timeout tries to delete the\n                        processed messages, the action fails with an error.</p>\n                  <p>To mitigate this effect, ensure that your application observes a safe\n                        threshold before the visibility timeout expires and extend the visibility\n                        timeout as necessary.</p>\n               </important>\n            </li>\n            <li>\n               <p>While messages with a particular <code>MessageGroupId</code> are invisible, \n                no more messages belonging to the same <code>MessageGroupId</code> are returned \n                until the visibility timeout expires. You can still receive messages \n                with another <code>MessageGroupId</code> from your FIFO queue as long as they are visible.</p>\n            </li>\n            <li>\n               <p>If a caller of <code>ReceiveMessage</code> can't track the\n                        <code>ReceiveRequestAttemptId</code>, no retries work until the original\n                    visibility timeout expires. As a result, delays might occur but the messages in\n                    the queue remain in a strict order.</p>\n            </li>\n         </ul>\n         <p>The maximum length of <code>ReceiveRequestAttemptId</code> is 128 characters.\n                <code>ReceiveRequestAttemptId</code> can contain alphanumeric characters\n                (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation\n                (<code>!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~</code>).</p>\n         <p>For best practices of using <code>ReceiveRequestAttemptId</code>, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-receiverequestattemptid-request-parameter.html\">Using the ReceiveRequestAttemptId Request Parameter</a> in the <i>Amazon SQS\n                Developer Guide</i>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ReceiveRequestAttemptId", Target7),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Retrieves one or more messages from a specified queue.</p>")
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -206,29 +136,40 @@ public static partial class ReceiveMessageInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<AttributeNameList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AttributeNameListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<MessageSystemAttributeList?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => MessageSystemAttributeListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<MessageAttributeNameList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => MessageAttributeNameListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target6 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AttributeNameListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.MessageSystemAttributeName>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MessageSystemAttributeListSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MessageAttributeNameListSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReceiveMessageInput Build(Builder builder) =>
-            new ReceiveMessageInput(
+        public override global::Com.Amazonaws.Sqs.ReceiveMessageInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.ReceiveMessageInput(
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl"),
                 builder.AttributeNames,
                 builder.MaxNumberOfMessages,
@@ -240,7 +181,7 @@ public static partial class ReceiveMessageInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ReceiveMessageInput value,
+            global::Com.Amazonaws.Sqs.ReceiveMessageInput value,
             ref TSerializer serializer
         )
         {

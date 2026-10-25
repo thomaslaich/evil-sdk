@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListTagsInputSchema
 {
@@ -15,10 +15,13 @@ public static partial class ListTagsInputSchema
         public string? Resource { get; set; }
     }
 
-    public static StructSchema<ListTagsInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListTagsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListTagsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListTagsInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListTagsInput"),
             [
                 new(
@@ -28,12 +31,6 @@ public static partial class ListTagsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The resource's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to function aliases or versions.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -42,8 +39,8 @@ public static partial class ListTagsInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -57,10 +54,6 @@ public static partial class ListTagsInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -70,10 +63,6 @@ public static partial class ListTagsInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#ListTagsRequest")
                 ),
@@ -81,17 +70,19 @@ public static partial class ListTagsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListTagsInput Build(Builder builder) =>
-            new ListTagsInput(
+        public override global::Com.Amazonaws.Lambda.ListTagsInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ListTagsInput(
                 builder.Resource ?? throw new MissingRequiredMemberException("Resource")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListTagsInput value,
+            global::Com.Amazonaws.Lambda.ListTagsInput value,
             ref TSerializer serializer
         )
         {

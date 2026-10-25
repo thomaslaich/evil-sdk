@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutObjectAclSchema
 {
-    public static OperationSchema<PutObjectAclInput, PutObjectAclOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.PutObjectAclInput,
+        global::Com.Amazonaws.S3.PutObjectAclOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutObjectAcl"),
-            Schemas.Lazy(() => PutObjectAclInputSchema.Schema!),
-            Schemas.Lazy(() => PutObjectAclOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutObjectAclInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutObjectAclOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchKey"),
-                    Schemas.Lazy(() => NoSuchKeySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchKeySchema.Schema!),
                     404
                 ),
             ],
@@ -34,74 +37,13 @@ public static partial class PutObjectAclSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<important>\n            <p>End of support notice: As of October 1, 2025, Amazon S3 has discontinued support for Email Grantee Access Control Lists (ACLs). If you attempt to use an Email Grantee ACL in a request after October 1, 2025, \n the request will receive an <code>HTTP 405</code> (Method Not Allowed) error.</p>\n            <p>This change affects the following Amazon Web Services Regions: US East (N. Virginia), US West (N. California), US West (Oregon), Asia Pacific (Singapore), Asia Pacific (Sydney), Asia Pacific (Tokyo), Europe (Ireland), and South America (São Paulo).</p>\n         </important>\n         <note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Uses the <code>acl</code> subresource to set the access control list (ACL) permissions for a new or\n      existing object in an S3 bucket. You must have the <code>WRITE_ACP</code> permission to set the ACL of\n      an object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions\">What permissions can I grant?</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n         <p>Depending on your application needs, you can choose to set the ACL on an object using either the\n      request body or the headers. For example, if you have an existing application that updates a bucket ACL\n      using the request body, you can continue to use that approach. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control List (ACL)\n        Overview</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <important>\n            <p>If your bucket uses the bucket owner enforced setting for S3 Object Ownership, ACLs are disabled\n        and no longer affect permissions. You must use policies to grant access to your bucket and the objects\n        in it. Requests to set ACLs or update ACLs fail and return the\n          <code>AccessControlListNotSupported</code> error code. Requests to read ACLs are still supported.\n        For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html\">Controlling object ownership</a> in\n        the <i>Amazon S3 User Guide</i>.</p>\n         </important>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p>You can set access permissions using one of the following methods:</p>\n               <ul>\n                  <li>\n                     <p>Specify a canned ACL with the <code>x-amz-acl</code> request header. Amazon S3 supports a set\n                of predefined ACLs, known as canned ACLs. Each canned ACL has a predefined set of grantees and\n                permissions. Specify the canned ACL name as the value of <code>x-amz-ac</code>l. If you use\n                this header, you cannot use other access control-specific headers in your request. For more\n                information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL\">Canned ACL</a>.</p>\n                  </li>\n                  <li>\n                     <p>Specify access permissions explicitly with the <code>x-amz-grant-read</code>,\n                  <code>x-amz-grant-read-acp</code>, <code>x-amz-grant-write-acp</code>, and\n                  <code>x-amz-grant-full-control</code> headers. When using these headers, you specify\n                explicit access permissions and grantees (Amazon Web Services accounts or Amazon S3 groups) who will receive the\n                permission. If you use these ACL-specific headers, you cannot use <code>x-amz-acl</code>\n                header to set a canned ACL. These parameters map to the set of permissions that Amazon S3 supports\n                in an ACL. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html\">Access Control List (ACL)\n                Overview</a>.</p>\n                     <p>You specify each grantee as a type=value pair, where the type is one of the\n                following:</p>\n                     <ul>\n                        <li>\n                           <p>\n                              <code>id</code> – if the value specified is the canonical user ID of an\n                    Amazon Web Services account</p>\n                        </li>\n                        <li>\n                           <p>\n                              <code>uri</code> – if you are granting permissions to a predefined group</p>\n                        </li>\n                        <li>\n                           <p>\n                              <code>emailAddress</code> – if the value specified is the email address of an\n                    Amazon Web Services account</p>\n                           <note>\n                              <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                              <ul>\n                                 <li>\n                                    <p>US East (N. Virginia)</p>\n                                 </li>\n                                 <li>\n                                    <p>US West (N. California)</p>\n                                 </li>\n                                 <li>\n                                    <p> US West (Oregon)</p>\n                                 </li>\n                                 <li>\n                                    <p> Asia Pacific (Singapore)</p>\n                                 </li>\n                                 <li>\n                                    <p>Asia Pacific (Sydney)</p>\n                                 </li>\n                                 <li>\n                                    <p>Asia Pacific (Tokyo)</p>\n                                 </li>\n                                 <li>\n                                    <p>Europe (Ireland)</p>\n                                 </li>\n                                 <li>\n                                    <p>South America (São Paulo)</p>\n                                 </li>\n                              </ul>\n                              <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n                           </note>\n                        </li>\n                     </ul>\n                     <p>For example, the following <code>x-amz-grant-read</code> header grants list objects\n                permission to the two Amazon Web Services accounts identified by their email addresses.</p>\n                     <p>\n                        <code>x-amz-grant-read: emailAddress=\"xyz@amazon.com\", emailAddress=\"abc@amazon.com\"\n                </code>\n                     </p>\n                  </li>\n               </ul>\n               <p>You can use either a canned ACL or specify access permissions explicitly. You cannot do\n            both.</p>\n            </dd>\n            <dt>Grantee Values</dt>\n            <dd>\n               <p>You can specify the person (grantee) to whom you're assigning access rights (using request\n            elements) in the following ways. For examples of how to specify these grantee values in JSON\n            format, see the Amazon Web Services CLI example in <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html\"> Enabling Amazon S3 server\n              access logging</a> in the <i>Amazon S3 User Guide</i>.</p>\n               <ul>\n                  <li>\n                     <p>By the person's ID:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"CanonicalUser\"><ID><>ID<></ID><DisplayName><>GranteesEmail<></DisplayName>\n                  </Grantee></code>\n                     </p>\n                     <p>DisplayName is optional and ignored in the request.</p>\n                  </li>\n                  <li>\n                     <p>By URI:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"Group\"><URI><>http://acs.amazonaws.com/groups/global/AuthenticatedUsers<></URI></Grantee></code>\n                     </p>\n                  </li>\n                  <li>\n                     <p>By Email address:</p>\n                     <p>\n                        <code><Grantee xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n                  xsi:type=\"AmazonCustomerByEmail\"><EmailAddress><>Grantees@email.com<></EmailAddress>lt;/Grantee></code>\n                     </p>\n                     <p>The grantee is resolved to the CanonicalUser and, in a response to a GET Object acl\n                request, appears as the CanonicalUser.</p>\n                     <note>\n                        <p>Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: </p>\n                        <ul>\n                           <li>\n                              <p>US East (N. Virginia)</p>\n                           </li>\n                           <li>\n                              <p>US West (N. California)</p>\n                           </li>\n                           <li>\n                              <p> US West (Oregon)</p>\n                           </li>\n                           <li>\n                              <p> Asia Pacific (Singapore)</p>\n                           </li>\n                           <li>\n                              <p>Asia Pacific (Sydney)</p>\n                           </li>\n                           <li>\n                              <p>Asia Pacific (Tokyo)</p>\n                           </li>\n                           <li>\n                              <p>Europe (Ireland)</p>\n                           </li>\n                           <li>\n                              <p>South America (São Paulo)</p>\n                           </li>\n                        </ul>\n                        <p>For a list of all the Amazon S3 supported Regions and endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>\n                     </note>\n                  </li>\n               </ul>\n            </dd>\n            <dt>Versioning</dt>\n            <dd>\n               <p>The ACL of an object is set at the object version level. By default, PUT sets the ACL of the\n            current version of an object. To set the ACL of a different version, use the\n              <code>versionId</code> subresource.</p>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>PutObjectAcl</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html\">CopyObject</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("To grant permissions using object ACL")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example adds grants to an object ACL. The first permission grants user1 and user2 FULL_CONTROL and the AllUsers group READ permission."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "AccessControlPolicy",
-                                                    Document.From(
-                                                        new Dictionary<string, Document> { }
-                                                    )
-                                                },
-                                                { "Bucket", Document.From("examplebucket") },
-                                                {
-                                                    "GrantFullControl",
-                                                    Document.From(
-                                                        "emailaddress=user1@example.com,emailaddress=user2@example.com"
-                                                    )
-                                                },
-                                                {
-                                                    "GrantRead",
-                                                    Document.From(
-                                                        "uri=http://acs.amazonaws.com/groups/global/AllUsers"
-                                                    )
-                                                },
-                                                { "Key", Document.From("HappyFace.jpg") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(new Dictionary<string, Document> { })
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?acl") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?acl") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

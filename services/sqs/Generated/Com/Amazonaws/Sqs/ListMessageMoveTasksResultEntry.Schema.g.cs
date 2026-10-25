@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListMessageMoveTasksResultEntrySchema
 {
@@ -23,65 +23,19 @@ public static partial class ListMessageMoveTasksResultEntrySchema
         public long? StartedTimestamp { get; set; }
     }
 
-    public static StructSchema<ListMessageMoveTasksResultEntry, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListMessageMoveTasksResultEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListMessageMoveTasksResultEntry"),
             [
-                new(
-                    "TaskHandle",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An identifier associated with a message movement task. When this field is returned in\n            the response of the <code>ListMessageMoveTasks</code> action, it is only populated for\n            tasks that are in RUNNING status.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Status",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The status of the message movement task. Possible values are: RUNNING, COMPLETED,\n            CANCELLING, CANCELLED, and FAILED.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "SourceArn",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the queue that contains the messages to be moved to another queue.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "DestinationArn",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the destination queue if it has been specified in the\n                <code>StartMessageMoveTask</code> request. If a <code>DestinationArn</code> has not\n            been specified in the <code>StartMessageMoveTask</code> request, this field value will\n            be NULL.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("TaskHandle", Target0),
+                new("Status", Target1),
+                new("SourceArn", Target2),
+                new("DestinationArn", Target3),
                 new(
                     "MaxNumberOfMessagesPerSecond",
                     Target4,
@@ -91,27 +45,12 @@ public static partial class ListMessageMoveTasksResultEntrySchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of messages to be moved per second (the message movement rate), if it has\n            been specified in the <code>StartMessageMoveTask</code> request. If a\n                <code>MaxNumberOfMessagesPerSecond</code> has not been specified in the\n                <code>StartMessageMoveTask</code> request, this field value will be NULL.</p>"
-                            )
-                        ),
                     ]
                 ),
                 new(
                     "ApproximateNumberOfMessagesMoved",
                     Target5,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The approximate number of messages already moved to the destination queue.</p>"
-                            )
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
                 new(
                     "ApproximateNumberOfMessagesToMove",
@@ -122,78 +61,54 @@ public static partial class ListMessageMoveTasksResultEntrySchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of messages to be moved from the source queue. This number is obtained at\n            the time of starting the message movement task and is only included after the message\n            movement task is selected to start.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "FailureReason",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The task failure reason (only included if the task status is FAILED).</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("FailureReason", Target7),
                 new(
                     "StartedTimestamp",
                     Target8,
-                    traits:
-                    [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The timestamp of starting the message movement task.</p>"
-                            )
-                        ),
-                    ]
+                    traits: [new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m))]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Contains the details of a message movement task. </p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target5 = Schemas.Nullable(
-            Schemas.Long
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target6 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target8 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() =>
             new() { ApproximateNumberOfMessagesMoved = 0L, StartedTimestamp = 0L };
 
-        public override ListMessageMoveTasksResultEntry Build(Builder builder) =>
-            new ListMessageMoveTasksResultEntry(
+        public override global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry(
                 builder.ApproximateNumberOfMessagesMoved,
                 builder.ApproximateNumberOfMessagesToMove,
                 builder.DestinationArn,
@@ -206,7 +121,7 @@ public static partial class ListMessageMoveTasksResultEntrySchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListMessageMoveTasksResultEntry value,
+            global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry value,
             ref TSerializer serializer
         )
         {

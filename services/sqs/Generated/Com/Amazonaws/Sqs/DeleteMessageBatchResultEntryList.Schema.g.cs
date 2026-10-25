@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageBatchResultEntryListSchema
 {
     public static ListSchema<
-        DeleteMessageBatchResultEntryList,
-        DeleteMessageBatchResultEntry,
-        List<DeleteMessageBatchResultEntry>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry>,
+        global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry,
+        List<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            DeleteMessageBatchResultEntryList,
-            DeleteMessageBatchResultEntry,
-            List<DeleteMessageBatchResultEntry>
+            IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry>,
+            global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry,
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry>
         >(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageBatchResultEntryList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class DeleteMessageBatchResultEntryListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<DeleteMessageBatchResultEntry> Target0 =
-            Schemas.Lazy(() => DeleteMessageBatchResultEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteMessageBatchResultEntrySchema.Schema!
+            );
 
-        public override IEnumerable<DeleteMessageBatchResultEntry> GetElements(
-            DeleteMessageBatchResultEntryList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> value
+        ) => value;
 
-        public override List<DeleteMessageBatchResultEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<DeleteMessageBatchResultEntry> builder,
-            DeleteMessageBatchResultEntry value
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> builder,
+            global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry value
         ) => builder.Add(value);
 
-        public override DeleteMessageBatchResultEntryList Build(
-            List<DeleteMessageBatchResultEntry> builder
-        ) => DeleteMessageBatchResultEntryList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> Build(
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            DeleteMessageBatchResultEntryList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -67,7 +70,7 @@ public static partial class DeleteMessageBatchResultEntryListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<DeleteMessageBatchResultEntry> builder,
+            List<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(DeleteMessageBatchResultEntrySchema.Schema));
     }

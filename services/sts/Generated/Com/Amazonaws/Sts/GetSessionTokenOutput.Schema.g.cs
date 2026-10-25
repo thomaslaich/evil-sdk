@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetSessionTokenOutputSchema
 {
@@ -17,26 +17,16 @@ public static partial class GetSessionTokenOutputSchema
         public int? SessionTokenSize { get; set; }
     }
 
-    public static StructSchema<GetSessionTokenOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetSessionTokenOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetSessionTokenOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetSessionTokenOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetSessionTokenOutput"),
             [
-                new(
-                    "Credentials",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The temporary security credentials, which include an access key ID, a secret access key,\n         and a security (or session) token.</p>\n         <note>\n            <p>The size of the security token that STS API operations return is not fixed. We\n        strongly recommend that you make no assumptions about the maximum size.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Credentials", Target0),
                 new(
                     "SessionTokenUtilization",
                     Target1,
@@ -47,18 +37,9 @@ public static partial class GetSessionTokenOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The percentage (0-100) of the maximum allowed session token size that the returned session\n    token consumes."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -73,30 +54,15 @@ public static partial class GetSessionTokenOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The size, in bytes, of the session token returned in the Credentials for this response."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the response to a successful <a>GetSessionToken</a> request,\n      including temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. </p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -109,25 +75,25 @@ public static partial class GetSessionTokenOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Credentials?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CredentialsSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CredentialsSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetSessionTokenOutput Build(Builder builder) =>
-            new GetSessionTokenOutput(
+        public override global::Com.Amazonaws.Sts.GetSessionTokenOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetSessionTokenOutput(
                 builder.Credentials,
                 builder.SessionTokenSize,
                 builder.SessionTokenUtilization
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetSessionTokenOutput value,
+            global::Com.Amazonaws.Sts.GetSessionTokenOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetFunctionRecursionConfigOutputSchema
 {
@@ -15,39 +15,19 @@ public static partial class GetFunctionRecursionConfigOutputSchema
         public global::Com.Amazonaws.Lambda.RecursiveLoop? RecursiveLoop { get; set; }
     }
 
-    public static StructSchema<GetFunctionRecursionConfigOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFunctionRecursionConfigOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetFunctionRecursionConfigOutput"),
-            [
-                new(
-                    "RecursiveLoop",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If your function's recursive loop detection configuration is <code>Allow</code>, Lambda doesn't take any action when it detects your function being invoked as part of a recursive loop.</p> <p>If your function's recursive loop detection configuration is <code>Terminate</code>, Lambda stops your function being invoked and notifies you when it detects your function being invoked as part of a recursive loop.</p> <p>By default, Lambda sets your function's configuration to <code>Terminate</code>. You can update this configuration using the <a>PutFunctionRecursionConfig</a> action.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("RecursiveLoop", Target0)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -57,15 +37,19 @@ public static partial class GetFunctionRecursionConfigOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.RecursiveLoop?> Target0 =
-            Schemas.Nullable(RecursiveLoopSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RecursiveLoopSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFunctionRecursionConfigOutput Build(Builder builder) =>
-            new GetFunctionRecursionConfigOutput(builder.RecursiveLoop);
+        public override global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigOutput(
+                builder.RecursiveLoop
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetFunctionRecursionConfigOutput value,
+            global::Com.Amazonaws.Lambda.GetFunctionRecursionConfigOutput value,
             ref TSerializer serializer
         )
         {

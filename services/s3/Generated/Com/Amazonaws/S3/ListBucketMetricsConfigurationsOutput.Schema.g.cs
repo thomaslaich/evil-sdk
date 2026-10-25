@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketMetricsConfigurationsOutputSchema
 {
@@ -15,14 +15,16 @@ public static partial class ListBucketMetricsConfigurationsOutputSchema
         public bool? IsTruncated { get; set; }
         public string? ContinuationToken { get; set; }
         public string? NextContinuationToken { get; set; }
-        public global::Com.Amazonaws.S3.MetricsConfigurationList? MetricsConfigurationList { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.MetricsConfiguration>? MetricsConfigurationList { get; set; }
     }
 
-    public static StructSchema<ListBucketMetricsConfigurationsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListBucketMetricsConfigurationsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListBucketMetricsConfigurationsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListBucketMetricsConfigurationsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListBucketMetricsConfigurationsOutput"),
             [
                 new(
@@ -34,49 +36,15 @@ public static partial class ListBucketMetricsConfigurationsOutputSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether the returned list of metrics configurations is complete. A value of true indicates\n      that the list is not complete and the NextContinuationToken will be provided for a subsequent\n      request.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "ContinuationToken",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The marker that is used as a starting point for this metrics configuration list response. This value\n      is present if it was sent in the request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "NextContinuationToken",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The marker used to continue a metrics configuration listing that has been truncated. Use the\n        <code>NextContinuationToken</code> from a previously truncated list response to continue the listing.\n      The continuation token is an opaque value that Amazon S3 understands.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ContinuationToken", Target1),
+                new("NextContinuationToken", Target2),
                 new(
                     "MetricsConfigurationList",
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The list of metrics configurations for a bucket.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -100,20 +68,29 @@ public static partial class ListBucketMetricsConfigurationsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetricsConfigurationList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetricsConfigurationListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.MetricsConfiguration>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    MetricsConfigurationListSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListBucketMetricsConfigurationsOutput Build(Builder builder) =>
-            new ListBucketMetricsConfigurationsOutput(
+        public override global::Com.Amazonaws.S3.ListBucketMetricsConfigurationsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ListBucketMetricsConfigurationsOutput(
                 builder.ContinuationToken,
                 builder.IsTruncated,
                 builder.MetricsConfigurationList,
@@ -121,7 +98,7 @@ public static partial class ListBucketMetricsConfigurationsOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListBucketMetricsConfigurationsOutput value,
+            global::Com.Amazonaws.S3.ListBucketMetricsConfigurationsOutput value,
             ref TSerializer serializer
         )
         {

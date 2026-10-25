@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class TooManyEntriesInBatchRequestSchema
 {
@@ -15,11 +15,13 @@ public static partial class TooManyEntriesInBatchRequestSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<TooManyEntriesInBatchRequest, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.TooManyEntriesInBatchRequest,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TooManyEntriesInBatchRequest, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.TooManyEntriesInBatchRequest, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#TooManyEntriesInBatchRequest"),
             [new("message", Target0)],
             [
@@ -32,31 +34,28 @@ public static partial class TooManyEntriesInBatchRequestSchema
                                 "code",
                                 Document.From("AWS.SimpleQueueService.TooManyEntriesInBatchRequest")
                             },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The batch request contains more entries than permissible. For Amazon SQS, the\n            maximum number of entries you can include in a single <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html\">SendMessageBatch</a>, <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessageBatch.html\">DeleteMessageBatch</a>, or <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibilityBatch.html\">ChangeMessageVisibilityBatch</a> request is 10.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TooManyEntriesInBatchRequest Build(Builder builder) =>
-            new TooManyEntriesInBatchRequest(builder.Message);
+        public override global::Com.Amazonaws.Sqs.TooManyEntriesInBatchRequest Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sqs.TooManyEntriesInBatchRequest(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            TooManyEntriesInBatchRequest value,
+            global::Com.Amazonaws.Sqs.TooManyEntriesInBatchRequest value,
             ref TSerializer serializer
         )
         {

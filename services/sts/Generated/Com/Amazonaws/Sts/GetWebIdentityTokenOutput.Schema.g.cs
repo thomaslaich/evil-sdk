@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetWebIdentityTokenOutputSchema
 {
@@ -17,11 +17,13 @@ public static partial class GetWebIdentityTokenOutputSchema
         public DateTimeOffset? Expiration { get; set; }
     }
 
-    public static StructSchema<GetWebIdentityTokenOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetWebIdentityTokenOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetWebIdentityTokenOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetWebIdentityTokenOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetWebIdentityTokenOutput"),
             [
                 new(
@@ -30,30 +32,12 @@ public static partial class GetWebIdentityTokenOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A signed JSON Web Token (JWT) that represents the caller's Amazon Web Services identity. The token contains \n         standard JWT claims such as subject, audience, expiration time, and additional identity attributes \n         added by STS as custom claims. You can also add your own custom claims to the token by passing tags \n         as request parameters to the <code>GetWebIdentityToken</code> API. The token is signed using the specified signing \n         algorithm and can be verified using the verification keys available at the issuer's JWKS endpoint.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Expiration",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time when the web identity token expires, in UTC. The expiration is\n         determined by adding the <code>DurationSeconds</code> value to the time the token was\n         issued. After this time, the token should no longer be considered valid.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Expiration", Target1),
             ],
             [
                 new Trait(
@@ -68,17 +52,26 @@ public static partial class GetWebIdentityTokenOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetWebIdentityTokenOutput Build(Builder builder) =>
-            new GetWebIdentityTokenOutput(builder.Expiration, builder.WebIdentityToken);
+        public override global::Com.Amazonaws.Sts.GetWebIdentityTokenOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sts.GetWebIdentityTokenOutput(
+                builder.Expiration,
+                builder.WebIdentityToken
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetWebIdentityTokenOutput value,
+            global::Com.Amazonaws.Sts.GetWebIdentityTokenOutput value,
             ref TSerializer serializer
         )
         {

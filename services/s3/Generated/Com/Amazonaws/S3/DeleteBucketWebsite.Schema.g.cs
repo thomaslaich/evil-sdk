@@ -6,66 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketWebsiteSchema
 {
     public static OperationSchema<
-        DeleteBucketWebsiteInput,
-        DeleteBucketWebsiteOutput
+        global::Com.Amazonaws.S3.DeleteBucketWebsiteInput,
+        global::Com.Amazonaws.S3.DeleteBucketWebsiteOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketWebsite"),
-            Schemas.Lazy(() => DeleteBucketWebsiteInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteBucketWebsiteOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteBucketWebsiteInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteBucketWebsiteOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>This action removes the website configuration for a bucket. Amazon S3 returns a <code>200 OK</code>\n      response upon successfully deleting a website configuration on the specified bucket. You will get a\n        <code>200 OK</code> response if the website configuration you are trying to delete does not exist on\n      the bucket. Amazon S3 returns a <code>404</code> response if the bucket specified in the request does not\n      exist.</p>\n         <p>This DELETE action requires the <code>S3:DeleteBucketWebsite</code> permission. By default, only the\n      bucket owner can delete the website configuration attached to a bucket. However, bucket owners can grant\n      other users permission to delete the website configuration by writing a bucket policy granting them the\n        <code>S3:DeleteBucketWebsite</code> permission. </p>\n         <p>For more information about hosting websites, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html\">Hosting Websites on Amazon S3</a>. </p>\n         <p>The following operations are related to <code>DeleteBucketWebsite</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketWebsite.html\">GetBucketWebsite</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html\">PutBucketWebsite</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("To delete bucket website configuration")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example deletes bucket website configuration."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}?website") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/?website") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

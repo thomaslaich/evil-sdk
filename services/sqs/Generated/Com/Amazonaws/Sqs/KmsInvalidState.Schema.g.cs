@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class KmsInvalidStateSchema
 {
@@ -15,10 +15,11 @@ public static partial class KmsInvalidStateSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<KmsInvalidState, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.KmsInvalidState, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<KmsInvalidState, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.KmsInvalidState, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#KmsInvalidState"),
             [new("message", Target0)],
             [
@@ -28,31 +29,27 @@ public static partial class KmsInvalidStateSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("KMS.InvalidStateException") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request was rejected because the state of the specified resource is not valid for\n            this request.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override KmsInvalidState Build(Builder builder) =>
-            new KmsInvalidState(builder.Message);
+        public override global::Com.Amazonaws.Sqs.KmsInvalidState Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.KmsInvalidState(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            KmsInvalidState value,
+            global::Com.Amazonaws.Sqs.KmsInvalidState value,
             ref TSerializer serializer
         )
         {

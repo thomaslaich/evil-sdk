@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.Lambda;
 
@@ -120,7 +121,7 @@ public sealed record class EventSourceMappingConfiguration(
     global::Com.Amazonaws.Lambda.FilterCriteria? FilterCriteria = null,
     global::Com.Amazonaws.Lambda.FilterCriteriaError? FilterCriteriaError = null,
     string? FunctionArn = null,
-    FunctionResponseTypeList? FunctionResponseTypes = null,
+    IReadOnlyList<FunctionResponseType>? FunctionResponseTypes = null,
     string? KMSKeyArn = null,
     DateTimeOffset? LastModified = null,
     string? LastProcessingResult = null,
@@ -131,17 +132,17 @@ public sealed record class EventSourceMappingConfiguration(
     EventSourceMappingMetricsConfig? MetricsConfig = null,
     int? ParallelizationFactor = null,
     global::Com.Amazonaws.Lambda.ProvisionedPollerConfig? ProvisionedPollerConfig = null,
-    global::Com.Amazonaws.Lambda.Queues? Queues = null,
+    IReadOnlyList<string>? Queues = null,
     global::Com.Amazonaws.Lambda.ScalingConfig? ScalingConfig = null,
     global::Com.Amazonaws.Lambda.SelfManagedEventSource? SelfManagedEventSource = null,
     global::Com.Amazonaws.Lambda.SelfManagedKafkaEventSourceConfig? SelfManagedKafkaEventSourceConfig =
         null,
-    global::Com.Amazonaws.Lambda.SourceAccessConfigurations? SourceAccessConfigurations = null,
+    IReadOnlyList<SourceAccessConfiguration>? SourceAccessConfigurations = null,
     EventSourcePosition? StartingPosition = null,
     DateTimeOffset? StartingPositionTimestamp = null,
     string? State = null,
     string? StateTransitionReason = null,
-    global::Com.Amazonaws.Lambda.Topics? Topics = null,
+    IReadOnlyList<string>? Topics = null,
     int? TumblingWindowInSeconds = null,
     string? UUID = null
 );

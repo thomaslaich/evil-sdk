@@ -6,63 +6,56 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ProvisionedConcurrencyConfigListSchema
 {
     public static ListSchema<
-        ProvisionedConcurrencyConfigList,
-        ProvisionedConcurrencyConfigListItem,
-        List<ProvisionedConcurrencyConfigListItem>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem>,
+        global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem,
+        List<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            ProvisionedConcurrencyConfigList,
-            ProvisionedConcurrencyConfigListItem,
-            List<ProvisionedConcurrencyConfigListItem>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem>,
+            global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem,
+            List<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem>
         >(
             ShapeId.Parse("com.amazonaws.lambda#ProvisionedConcurrencyConfigList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ProvisionedConcurrencyConfigListItem> Target0 =
-            Schemas.Lazy(() => ProvisionedConcurrencyConfigListItemSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ProvisionedConcurrencyConfigListItemSchema.Schema!
+            );
 
-        public override IEnumerable<ProvisionedConcurrencyConfigListItem> GetElements(
-            ProvisionedConcurrencyConfigList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> value
+        ) => value;
 
-        public override List<ProvisionedConcurrencyConfigListItem> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<ProvisionedConcurrencyConfigListItem> builder,
-            ProvisionedConcurrencyConfigListItem value
+            List<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> builder,
+            global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem value
         ) => builder.Add(value);
 
-        public override ProvisionedConcurrencyConfigList Build(
-            List<ProvisionedConcurrencyConfigListItem> builder
-        ) => ProvisionedConcurrencyConfigList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> Build(
+            List<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ProvisionedConcurrencyConfigList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -81,7 +74,7 @@ public static partial class ProvisionedConcurrencyConfigListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ProvisionedConcurrencyConfigListItem> builder,
+            List<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(deserializer.ReadStruct(ProvisionedConcurrencyConfigListItemSchema.Schema));

@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoncurrentVersionTransitionSchema
 {
     public sealed class Builder
     {
         public int? NoncurrentDays { get; set; }
-        public TransitionStorageClass? StorageClass { get; set; }
+        public global::Com.Amazonaws.S3.TransitionStorageClass? StorageClass { get; set; }
         public int? NewerNoncurrentVersions { get; set; }
     }
 
-    public static StructSchema<NoncurrentVersionTransition, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.NoncurrentVersionTransition,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NoncurrentVersionTransition, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NoncurrentVersionTransition, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NoncurrentVersionTransition"),
             [
                 new(
@@ -33,25 +35,9 @@ public static partial class NoncurrentVersionTransitionSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action.\n      For information about the noncurrent days calculations, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations\">How Amazon S3 Calculates\n        How Long an Object Has Been Noncurrent</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "StorageClass",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The class of storage used to store the object.</p>")
-                        ),
-                    ]
-                ),
+                new("StorageClass", Target1),
                 new(
                     "NewerNoncurrentVersions",
                     Target2,
@@ -61,45 +47,32 @@ public static partial class NoncurrentVersionTransitionSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies how many noncurrent versions Amazon S3 will retain in the same storage class before\n      transitioning objects. You can specify up to 100 noncurrent versions to retain. Amazon S3 will transition any\n      additional noncurrent versions beyond the specified number to retain. For more information about\n      noncurrent versions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html\">Lifecycle configuration elements</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Container for the transition rule that describes when noncurrent objects transition to the\n        <code>STANDARD_IA</code>, <code>ONEZONE_IA</code>, <code>INTELLIGENT_TIERING</code>,\n        <code>GLACIER_IR</code>, <code>GLACIER</code>, or <code>DEEP_ARCHIVE</code> storage class. If your\n      bucket is versioning-enabled (or versioning is suspended), you can set this action to request that Amazon S3\n      transition noncurrent object versions to the <code>STANDARD_IA</code>, <code>ONEZONE_IA</code>,\n        <code>INTELLIGENT_TIERING</code>, <code>GLACIER_IR</code>, <code>GLACIER</code>, or\n        <code>DEEP_ARCHIVE</code> storage class at a specific period in the object's lifetime.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<TransitionStorageClass?> Target1 =
-            Schemas.Nullable(TransitionStorageClassSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TransitionStorageClass?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(TransitionStorageClassSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override NoncurrentVersionTransition Build(Builder builder) =>
-            new NoncurrentVersionTransition(
+        public override global::Com.Amazonaws.S3.NoncurrentVersionTransition Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.NoncurrentVersionTransition(
                 builder.NewerNoncurrentVersions,
                 builder.NoncurrentDays,
                 builder.StorageClass
             );
 
         public override void SerializeMembers<TSerializer>(
-            NoncurrentVersionTransition value,
+            global::Com.Amazonaws.S3.NoncurrentVersionTransition value,
             ref TSerializer serializer
         )
         {
@@ -147,8 +120,8 @@ public static partial class NoncurrentVersionTransitionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? TransitionStorageClass.FromValue(value1)
-                                : default(TransitionStorageClass)
+                                ? global::Com.Amazonaws.S3.TransitionStorageClass.FromValue(value1)
+                                : default(global::Com.Amazonaws.S3.TransitionStorageClass)
                         );
                     break;
                 case 2:

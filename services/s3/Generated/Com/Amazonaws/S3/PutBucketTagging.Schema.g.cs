@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketTaggingSchema
 {
-    public static OperationSchema<PutBucketTaggingInput, PutBucketTaggingOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.PutBucketTaggingInput,
+        global::Com.Amazonaws.S3.PutBucketTaggingOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketTagging"),
-            Schemas.Lazy(() => PutBucketTaggingInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketTaggingOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketTaggingInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketTaggingOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -28,104 +31,13 @@ public static partial class PutBucketTaggingSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Sets the tags for a general purpose bucket if attribute based access control (ABAC) is not enabled for the bucket. When you <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging-enable-abac.html\">enable ABAC for a general purpose bucket</a>, you can no longer use this operation for that bucket and must use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_TagResource.html\">TagResource</a> or <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UntagResource.html\">UntagResource</a> operations instead.</p>\n         <p>Use tags to organize your Amazon Web Services bill to reflect your own cost structure. To do this, sign up to get\n      your Amazon Web Services account bill with tag key values included. Then, to see the cost of combined resources,\n      organize your billing information according to resources with the same tag key values. For example, you\n      can tag several resources with a specific application name, and then organize your billing information\n      to see the total cost of that application across several services. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html\">Cost Allocation and\n        Tagging</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CostAllocTagging.html\">Using Cost Allocation in Amazon S3 Bucket Tags</a>.</p>\n         <note>\n            <p> When this operation sets the tags for a bucket, it will overwrite any current tags the bucket\n        already has. You cannot use this operation to add tags to an existing list of tags.</p>\n         </note>\n         <p>To use this operation, you must have permissions to perform the <code>s3:PutBucketTagging</code>\n      action. The bucket owner has this permission by default and can grant this permission to others. For\n      more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\">Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access Permissions to Your Amazon S3\n        Resources</a>.</p>\n         <p>\n            <code>PutBucketTagging</code> has the following special errors. For more Amazon S3 errors see, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html\">Error Responses</a>.</p>\n         <ul>\n            <li>\n               <p>\n                  <code>InvalidTag</code> - The tag provided was not a valid tag. This error can occur if\n          the tag did not pass input validation. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/CostAllocTagging.html\">Using Cost Allocation in Amazon S3 Bucket\n            Tags</a>.</p>\n            </li>\n            <li>\n               <p>\n                  <code>MalformedXML</code> - The XML provided does not match the schema.</p>\n            </li>\n            <li>\n               <p>\n                  <code>OperationAborted</code> - A conflicting conditional action is currently in progress\n          against this resource. Please try again.</p>\n            </li>\n            <li>\n               <p>\n                  <code>InternalError</code> - The service was unable to apply the provided tag to the\n          bucket.</p>\n            </li>\n         </ul>\n         <p>The following operations are related to <code>PutBucketTagging</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html\">GetBucketTagging</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html\">DeleteBucketTagging</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("Set tags on a bucket") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example sets tags on a bucket. Any existing tags are replaced."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                {
-                                                    "Tagging",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "TagSet",
-                                                                Document.From(
-                                                                    new Document[]
-                                                                    {
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Key",
-                                                                                    Document.From(
-                                                                                        "Key1"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Value",
-                                                                                    Document.From(
-                                                                                        "Value1"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Key",
-                                                                                    Document.From(
-                                                                                        "Key2"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Value",
-                                                                                    Document.From(
-                                                                                        "Value2"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?tagging") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?tagging") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

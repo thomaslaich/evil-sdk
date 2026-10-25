@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketEncryptionOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketEncryptionOutputSchema
         public global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration? ServerSideEncryptionConfiguration { get; set; }
     }
 
-    public static StructSchema<GetBucketEncryptionOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketEncryptionOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketEncryptionOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketEncryptionOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketEncryptionOutput"),
             [
                 new(
@@ -43,17 +45,21 @@ public static partial class GetBucketEncryptionOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryptionConfiguration?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => ServerSideEncryptionConfigurationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ServerSideEncryptionConfigurationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketEncryptionOutput Build(Builder builder) =>
-            new GetBucketEncryptionOutput(builder.ServerSideEncryptionConfiguration);
+        public override global::Com.Amazonaws.S3.GetBucketEncryptionOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketEncryptionOutput(
+                builder.ServerSideEncryptionConfiguration
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketEncryptionOutput value,
+            global::Com.Amazonaws.S3.GetBucketEncryptionOutput value,
             ref TSerializer serializer
         )
         {

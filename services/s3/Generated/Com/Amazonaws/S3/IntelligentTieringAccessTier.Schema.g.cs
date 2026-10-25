@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class IntelligentTieringAccessTierSchema
 {
     public static global::NSmithy.Core.Serde.Schema<IntelligentTieringAccessTier> Schema { get; } =
-        Schemas.StringEnum<IntelligentTieringAccessTier>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<IntelligentTieringAccessTier>(
             ShapeId.Parse("com.amazonaws.s3#IntelligentTieringAccessTier"),
             values: ["ARCHIVE_ACCESS", "DEEP_ARCHIVE_ACCESS"],
             traits:

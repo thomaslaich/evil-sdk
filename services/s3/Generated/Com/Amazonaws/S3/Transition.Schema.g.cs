@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TransitionSchema
 {
@@ -15,13 +15,14 @@ public static partial class TransitionSchema
     {
         public DateTimeOffset? Date { get; set; }
         public int? Days { get; set; }
-        public TransitionStorageClass? StorageClass { get; set; }
+        public global::Com.Amazonaws.S3.TransitionStorageClass? StorageClass { get; set; }
     }
 
-    public static StructSchema<Transition, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Transition, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Transition, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Transition, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Transition"),
             [
                 new(
@@ -29,12 +30,6 @@ public static partial class TransitionSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates when objects are transitioned to the specified storage class. The date value must be in\n      ISO 8601 format. The time is always midnight UTC.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#timestampFormat"),
                             Document.From("date-time")
@@ -50,60 +45,38 @@ public static partial class TransitionSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the number of days after creation when objects are transitioned to the specified storage\n      class. The value can be <code>0</code> or any positive integer. Be aware that some storage classes have a\n      minimum storage duration and that you're charged for transitioning objects before their minimum storage\n      duration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-configuration-constraints\"> Constraints and considerations for transitions</a> in the <i>Amazon S3 User\n        Guide</i>.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "StorageClass",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The storage class to which you want the object to transition.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("StorageClass", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies when an object transitions to a specified storage class. For more information about Amazon S3\n      lifecycle configuration rules, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html\">Transitioning Objects Using\n        Amazon S3 Lifecycle</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target0 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("date-time")
                     ),
                 ])
             );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<TransitionStorageClass?> Target2 =
-            Schemas.Nullable(TransitionStorageClassSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TransitionStorageClass?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(TransitionStorageClassSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Transition Build(Builder builder) =>
-            new Transition(builder.Date, builder.Days, builder.StorageClass);
+        public override global::Com.Amazonaws.S3.Transition Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Transition(
+                builder.Date,
+                builder.Days,
+                builder.StorageClass
+            );
 
         public override void SerializeMembers<TSerializer>(
-            Transition value,
+            global::Com.Amazonaws.S3.Transition value,
             ref TSerializer serializer
         )
         {
@@ -152,8 +125,8 @@ public static partial class TransitionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value2
-                                ? TransitionStorageClass.FromValue(value2)
-                                : default(TransitionStorageClass)
+                                ? global::Com.Amazonaws.S3.TransitionStorageClass.FromValue(value2)
+                                : default(global::Com.Amazonaws.S3.TransitionStorageClass)
                         );
                     break;
             }

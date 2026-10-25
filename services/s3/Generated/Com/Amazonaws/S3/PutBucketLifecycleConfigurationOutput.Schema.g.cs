@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketLifecycleConfigurationOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class PutBucketLifecycleConfigurationOutputSchema
         public global::Com.Amazonaws.S3.TransitionDefaultMinimumObjectSize? TransitionDefaultMinimumObjectSize { get; set; }
     }
 
-    public static StructSchema<PutBucketLifecycleConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketLifecycleConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketLifecycleConfigurationOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class PutBucketLifecycleConfigurationOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates which default minimum object size behavior is applied to the lifecycle\n      configuration.</p>\n         <note>\n            <p>This parameter applies to general purpose buckets only. It is not supported for directory bucket\n        lifecycle configurations.</p>\n         </note>\n         <ul>\n            <li>\n               <p>\n                  <code>all_storage_classes_128K</code> - Objects smaller than 128 KB will not transition to\n          any storage class by default. </p>\n            </li>\n            <li>\n               <p>\n                  <code>varies_by_storage_class</code> - Objects smaller than 128 KB will transition to Glacier\n          Flexible Retrieval or Glacier Deep Archive storage classes. By default, all other storage classes\n          will prevent transitions smaller than 128 KB. </p>\n            </li>\n         </ul>\n         <p>To customize the minimum object size for any transition you can add a filter that specifies a custom\n        <code>ObjectSizeGreaterThan</code> or <code>ObjectSizeLessThan</code> in the body of your transition\n      rule. Custom filters always take precedence over the default transition behavior.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-transition-default-minimum-object-size")
@@ -49,15 +45,21 @@ public static partial class PutBucketLifecycleConfigurationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TransitionDefaultMinimumObjectSize?> Target0 =
-            Schemas.Nullable(TransitionDefaultMinimumObjectSizeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                TransitionDefaultMinimumObjectSizeSchema.Schema
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketLifecycleConfigurationOutput Build(Builder builder) =>
-            new PutBucketLifecycleConfigurationOutput(builder.TransitionDefaultMinimumObjectSize);
+        public override global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationOutput(
+                builder.TransitionDefaultMinimumObjectSize
+            );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketLifecycleConfigurationOutput value,
+            global::Com.Amazonaws.S3.PutBucketLifecycleConfigurationOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class OnSuccessSchema
 {
@@ -15,10 +15,11 @@ public static partial class OnSuccessSchema
         public string? Destination { get; set; }
     }
 
-    public static StructSchema<OnSuccess, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.OnSuccess, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OnSuccess, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.OnSuccess, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#OnSuccess"),
             [
                 new(
@@ -27,18 +28,12 @@ public static partial class OnSuccessSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the destination resource.</p> <note> <p>Amazon SNS destinations have a message size limit of 256 KB. If the combined size of the function request and response payload exceeds the limit, Lambda will drop the payload when sending <code>OnFailure</code> event to the destination. For details on this behavior, refer to <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html\">Retaining records of asynchronous invocations</a>.</p> </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)350) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(350m) },
                                 }
                             )
                         ),
@@ -48,36 +43,24 @@ public static partial class OnSuccessSchema
                                 "^$|kafka://([^.]([a-zA-Z0-9\\-_.]{0,248}))|arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:((eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)$"
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A destination for events that were processed successfully.</p> <p>To retain records of successful <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations\">asynchronous invocations</a>, you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function, or Amazon EventBridge event bus as the destination.</p> <note> <p> <code>OnSuccess</code> is not supported in <code>CreateEventSourceMapping</code> or <code>UpdateEventSourceMapping</code> requests.</p> </note>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OnSuccess Build(Builder builder) => new OnSuccess(builder.Destination);
+        public override global::Com.Amazonaws.Lambda.OnSuccess Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.OnSuccess(builder.Destination);
 
         public override void SerializeMembers<TSerializer>(
-            OnSuccess value,
+            global::Com.Amazonaws.Lambda.OnSuccess value,
             ref TSerializer serializer
         )
         {

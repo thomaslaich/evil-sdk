@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventSourcePositionSchema
 {
     public static global::NSmithy.Core.Serde.Schema<EventSourcePosition> Schema { get; } =
-        Schemas.StringEnum<EventSourcePosition>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<EventSourcePosition>(
             ShapeId.Parse("com.amazonaws.lambda#EventSourcePosition"),
             values: ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

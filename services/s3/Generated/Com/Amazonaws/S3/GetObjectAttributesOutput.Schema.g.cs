@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectAttributesOutputSchema
 {
@@ -19,16 +19,18 @@ public static partial class GetObjectAttributesOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
         public string? ETag { get; set; }
         public global::Com.Amazonaws.S3.Checksum? Checksum { get; set; }
-        public GetObjectAttributesParts? ObjectParts { get; set; }
+        public global::Com.Amazonaws.S3.GetObjectAttributesParts? ObjectParts { get; set; }
         public global::Com.Amazonaws.S3.StorageClass? StorageClass { get; set; }
         public long? ObjectSize { get; set; }
     }
 
-    public static StructSchema<GetObjectAttributesOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetObjectAttributesOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetObjectAttributesOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetObjectAttributesOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetObjectAttributesOutput"),
             [
                 new(
@@ -39,12 +41,6 @@ public static partial class GetObjectAttributesOutputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the object retrieved was (<code>true</code>) or was not (<code>false</code>) a\n      delete marker. If <code>false</code>, this response header does not appear in the response. To learn\n      more about delete markers, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html\">Working with delete markers</a>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -58,10 +54,6 @@ public static partial class GetObjectAttributesOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Date and time when the object was last modified.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Last-Modified")
                         ),
@@ -72,12 +64,6 @@ public static partial class GetObjectAttributesOutputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version ID of the object.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-version-id")
@@ -95,56 +81,10 @@ public static partial class GetObjectAttributesOutputSchema
                         ),
                     ]
                 ),
-                new(
-                    "ETag",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An ETag is an opaque identifier assigned by a web server to a specific version of a resource found\n      at a URL.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Checksum",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The checksum or digest of the object.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "ObjectParts",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A collection of parts associated with a multipart upload.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "StorageClass",
-                    Target7,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Provides the storage class information of the object. Amazon S3 returns this header for all objects\n      except for S3 Standard storage class objects.</p>\n         <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html\">Storage Classes</a>.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> -\n        Directory buckets only support <code>EXPRESS_ONEZONE</code> (the S3 Express One Zone storage class) in Availability Zones and <code>ONEZONE_IA</code> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ETag", Target4),
+                new("Checksum", Target5),
+                new("ObjectParts", Target6),
+                new("StorageClass", Target7),
                 new(
                     "ObjectSize",
                     Target8,
@@ -153,10 +93,6 @@ public static partial class GetObjectAttributesOutputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The size of the object in bytes.</p>")
                         ),
                     ]
                 ),
@@ -173,31 +109,41 @@ public static partial class GetObjectAttributesOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target3 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Checksum?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => ChecksumSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<GetObjectAttributesParts?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => GetObjectAttributesPartsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ChecksumSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.GetObjectAttributesParts?> Target6 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    GetObjectAttributesPartsSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StorageClass?> Target7 =
-            Schemas.Nullable(StorageClassSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target8 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(StorageClassSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target8 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetObjectAttributesOutput Build(Builder builder) =>
-            new GetObjectAttributesOutput(
+        public override global::Com.Amazonaws.S3.GetObjectAttributesOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetObjectAttributesOutput(
                 builder.Checksum,
                 builder.DeleteMarker,
                 builder.ETag,
@@ -210,7 +156,7 @@ public static partial class GetObjectAttributesOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetObjectAttributesOutput value,
+            global::Com.Amazonaws.S3.GetObjectAttributesOutput value,
             ref TSerializer serializer
         )
         {

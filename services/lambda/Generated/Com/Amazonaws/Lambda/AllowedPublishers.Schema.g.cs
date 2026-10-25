@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AllowedPublishersSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.Lambda.SigningProfileVersionArns? SigningProfileVersionArns { get; set; }
+        public IReadOnlyList<string>? SigningProfileVersionArns { get; set; }
     }
 
-    public static StructSchema<AllowedPublishers, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.AllowedPublishers,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AllowedPublishers, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.AllowedPublishers, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#AllowedPublishers"),
             [
                 new(
@@ -28,47 +31,32 @@ public static partial class AllowedPublishersSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) for each of the signing profiles. A signing profile defines a trusted user who can sign a code package. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>List of signing profiles that can sign a code package. </p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SigningProfileVersionArns?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => SigningProfileVersionArnsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    SigningProfileVersionArnsSchema.Schema!
+                )
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AllowedPublishers Build(Builder builder) =>
-            new AllowedPublishers(
+        public override global::Com.Amazonaws.Lambda.AllowedPublishers Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.AllowedPublishers(
                 builder.SigningProfileVersionArns
                     ?? throw new MissingRequiredMemberException("SigningProfileVersionArns")
             );
 
         public override void SerializeMembers<TSerializer>(
-            AllowedPublishers value,
+            global::Com.Amazonaws.Lambda.AllowedPublishers value,
             ref TSerializer serializer
         )
         {

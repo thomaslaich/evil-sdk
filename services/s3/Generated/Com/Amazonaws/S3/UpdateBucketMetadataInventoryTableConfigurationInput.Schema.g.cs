@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataInventoryTableConfigurationInputSchema
 {
@@ -15,17 +15,20 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
         public string? Bucket { get; set; }
         public string? ContentMD5 { get; set; }
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
-        public InventoryTableConfigurationUpdates? InventoryTableConfiguration { get; set; }
+        public global::Com.Amazonaws.S3.InventoryTableConfigurationUpdates? InventoryTableConfiguration { get; set; }
         public string? ExpectedBucketOwner { get; set; }
     }
 
     public static StructSchema<
-        UpdateBucketMetadataInventoryTableConfigurationInput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationInput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateBucketMetadataInventoryTableConfigurationInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#UpdateBucketMetadataInventoryTableConfigurationInput"),
             [
                 new(
@@ -34,12 +37,6 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The general purpose bucket that corresponds to the metadata configuration that you want to \n      enable or disable an inventory table for.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -65,12 +62,6 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The <code>Content-MD5</code> header for the inventory table configuration.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-MD5")
                         ),
@@ -81,12 +72,6 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The checksum algorithm to use with your inventory table configuration.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -99,12 +84,6 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The contents of your inventory table configuration.      \n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -124,12 +103,6 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The expected owner of the general purpose bucket that corresponds to the metadata table \n      configuration that you want to enable or disable an inventory table for.\n    </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -152,24 +125,32 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target2 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<InventoryTableConfigurationUpdates?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => InventoryTableConfigurationUpdatesSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryTableConfigurationUpdates?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    InventoryTableConfigurationUpdatesSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateBucketMetadataInventoryTableConfigurationInput Build(
+        public override global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationInput Build(
             Builder builder
         ) =>
-            new UpdateBucketMetadataInventoryTableConfigurationInput(
+            new global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.InventoryTableConfiguration
                     ?? throw new MissingRequiredMemberException("InventoryTableConfiguration"),
@@ -179,7 +160,7 @@ public static partial class UpdateBucketMetadataInventoryTableConfigurationInput
             );
 
         public override void SerializeMembers<TSerializer>(
-            UpdateBucketMetadataInventoryTableConfigurationInput value,
+            global::Com.Amazonaws.S3.UpdateBucketMetadataInventoryTableConfigurationInput value,
             ref TSerializer serializer
         )
         {

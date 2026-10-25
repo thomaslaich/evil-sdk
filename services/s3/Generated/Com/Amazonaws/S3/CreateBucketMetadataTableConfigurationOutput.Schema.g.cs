@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CreateBucketMetadataTableConfigurationOutputSchema
 {
     public sealed class Builder { }
 
     public static StructSchema<
-        CreateBucketMetadataTableConfigurationOutput,
+        global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CreateBucketMetadataTableConfigurationOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#CreateBucketMetadataTableConfigurationOutput"),
             [],
             [
@@ -35,11 +38,12 @@ public static partial class CreateBucketMetadataTableConfigurationOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override CreateBucketMetadataTableConfigurationOutput Build(Builder builder) =>
-            new CreateBucketMetadataTableConfigurationOutput();
+        public override global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            CreateBucketMetadataTableConfigurationOutput value,
+            global::Com.Amazonaws.S3.CreateBucketMetadataTableConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

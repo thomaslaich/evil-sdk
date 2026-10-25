@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PartitionedPrefixSchema
 {
@@ -14,47 +14,28 @@ public static partial class PartitionedPrefixSchema
         public global::Com.Amazonaws.S3.PartitionDateSource? PartitionDateSource { get; set; }
     }
 
-    public static StructSchema<PartitionedPrefix, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PartitionedPrefix,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PartitionedPrefix, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PartitionedPrefix, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PartitionedPrefix"),
-            [
-                new(
-                    "PartitionDateSource",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the partition date source for the partitioned prefix. <code>PartitionDateSource</code> can\n      be <code>EventTime</code> or <code>DeliveryTime</code>.</p>\n         <p>For <code>DeliveryTime</code>, the time in the log file names corresponds to the delivery time for\n      the log files. </p>\n         <p> For <code>EventTime</code>, The logs delivered are for a specific day only. The year, month, and\n      day correspond to the day on which the event occurred, and the hour, minutes and seconds are set to 00\n      in the key.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Amazon S3 keys for log objects are partitioned in the following format:</p>\n         <p>\n            <code>[DestinationPrefix][SourceAccountId]/[SourceRegion]/[SourceBucket]/[YYYY]/[MM]/[DD]/[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]</code>\n         </p>\n         <p>PartitionedPrefix defaults to EventTime delivery when server access logs are delivered.</p>"
-                    )
-                ),
-                new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("PartitionedPrefix")),
-            ]
+            [new("PartitionDateSource", Target0)],
+            [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("PartitionedPrefix"))]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.PartitionDateSource?> Target0 =
-            Schemas.Nullable(PartitionDateSourceSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(PartitionDateSourceSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PartitionedPrefix Build(Builder builder) =>
-            new PartitionedPrefix(builder.PartitionDateSource);
+        public override global::Com.Amazonaws.S3.PartitionedPrefix Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PartitionedPrefix(builder.PartitionDateSource);
 
         public override void SerializeMembers<TSerializer>(
-            PartitionedPrefix value,
+            global::Com.Amazonaws.S3.PartitionedPrefix value,
             ref TSerializer serializer
         )
         {

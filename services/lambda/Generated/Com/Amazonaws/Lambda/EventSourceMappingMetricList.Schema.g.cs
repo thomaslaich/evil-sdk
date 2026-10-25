@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class EventSourceMappingMetricListSchema
 {
     public static ListSchema<
-        EventSourceMappingMetricList,
-        EventSourceMappingMetric,
-        List<EventSourceMappingMetric>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingMetric>,
+        global::Com.Amazonaws.Lambda.EventSourceMappingMetric,
+        List<global::Com.Amazonaws.Lambda.EventSourceMappingMetric>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            EventSourceMappingMetricList,
-            EventSourceMappingMetric,
-            List<EventSourceMappingMetric>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingMetric>,
+            global::Com.Amazonaws.Lambda.EventSourceMappingMetric,
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingMetric>
         >(
             ShapeId.Parse("com.amazonaws.lambda#EventSourceMappingMetricList"),
             ShapeKind.List,
@@ -31,48 +31,40 @@ public static partial class EventSourceMappingMetricListSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)3) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(3m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventSourceMappingMetric> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> Target0 =
             EventSourceMappingMetricSchema.Schema;
 
-        public override IEnumerable<EventSourceMappingMetric> GetElements(
-            EventSourceMappingMetricList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> value
+        ) => value;
 
-        public override List<EventSourceMappingMetric> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<EventSourceMappingMetric> builder,
-            EventSourceMappingMetric value
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> builder,
+            global::Com.Amazonaws.Lambda.EventSourceMappingMetric value
         ) => builder.Add(value);
 
-        public override EventSourceMappingMetricList Build(
-            List<EventSourceMappingMetric> builder
-        ) => EventSourceMappingMetricList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> Build(
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            EventSourceMappingMetricList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -80,14 +72,14 @@ public static partial class EventSourceMappingMetricListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<EventSourceMappingMetric> builder,
+            List<global::Com.Amazonaws.Lambda.EventSourceMappingMetric> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? EventSourceMappingMetric.FromValue(element)
-                        : default(EventSourceMappingMetric)
+                        ? global::Com.Amazonaws.Lambda.EventSourceMappingMetric.FromValue(element)
+                        : default(global::Com.Amazonaws.Lambda.EventSourceMappingMetric)
                 )
             );
     }

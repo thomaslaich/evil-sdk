@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationEntrySchema
 {
@@ -16,15 +16,16 @@ public static partial class AnnotationEntrySchema
         public string? AnnotationName { get; set; }
         public DateTimeOffset? LastModified { get; set; }
         public string? ETag { get; set; }
-        public ChecksumAlgorithmList? ChecksumAlgorithm { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm { get; set; }
         public long? Size { get; set; }
         public global::Com.Amazonaws.S3.ReplicationStatus? ReplicationStatus { get; set; }
     }
 
-    public static StructSchema<AnnotationEntry, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.AnnotationEntry, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnnotationEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnnotationEntry, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnnotationEntry"),
             [
                 new(
@@ -33,10 +34,6 @@ public static partial class AnnotationEntrySchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the annotation.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -50,37 +47,17 @@ public static partial class AnnotationEntrySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time the annotation was last modified.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "ETag",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The entity tag of the annotation.</p>")
-                        ),
-                    ]
-                ),
+                new("ETag", Target2),
                 new(
                     "ChecksumAlgorithm",
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The checksum algorithm used for the annotation.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -98,55 +75,41 @@ public static partial class AnnotationEntrySchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The size of the annotation payload, in bytes.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "ReplicationStatus",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The replication status of the annotation.</p>")
-                        ),
-                    ]
-                ),
+                new("ReplicationStatus", Target5),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Describes a single annotation attached to an object, including its name, last modified time,\n      size, ETag, checksum algorithm, and replication status. Returned in the response from\n      <code>ListObjectAnnotations</code>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target1 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ChecksumAlgorithmList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ChecksumAlgorithmListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target4 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ChecksumAlgorithmListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationStatus?> Target5 =
-            Schemas.Nullable(ReplicationStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ReplicationStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnnotationEntry Build(Builder builder) =>
-            new AnnotationEntry(
+        public override global::Com.Amazonaws.S3.AnnotationEntry Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.AnnotationEntry(
                 builder.AnnotationName
                     ?? throw new MissingRequiredMemberException("AnnotationName"),
                 builder.LastModified.GetValueOrDefault(),
@@ -157,7 +120,7 @@ public static partial class AnnotationEntrySchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AnnotationEntry value,
+            global::Com.Amazonaws.S3.AnnotationEntry value,
             ref TSerializer serializer
         )
         {

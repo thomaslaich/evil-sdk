@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InitiatorSchema
 {
@@ -15,61 +15,32 @@ public static partial class InitiatorSchema
         public string? DisplayName { get; set; }
     }
 
-    public static StructSchema<Initiator, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Initiator, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Initiator, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Initiator, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Initiator"),
-            [
-                new(
-                    "ID",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the principal is an Amazon Web Services account, it provides the Canonical User ID. If the principal is an\n      IAM User, it provides a user ARN value.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - If the principal is an Amazon Web Services account,\n        it provides the Amazon Web Services account ID. If the principal is an IAM User, it provides a user ARN\n        value.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "DisplayName",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p></p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Container element that identifies who initiated the multipart upload. </p>"
-                    )
-                ),
-            ]
+            [new("ID", Target0), new("DisplayName", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Initiator Build(Builder builder) =>
-            new Initiator(builder.DisplayName, builder.ID);
+        public override global::Com.Amazonaws.S3.Initiator Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Initiator(builder.DisplayName, builder.ID);
 
         public override void SerializeMembers<TSerializer>(
-            Initiator value,
+            global::Com.Amazonaws.S3.Initiator value,
             ref TSerializer serializer
         )
         {

@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class BatchResultErrorEntryListSchema
 {
     public static ListSchema<
-        BatchResultErrorEntryList,
-        BatchResultErrorEntry,
-        List<BatchResultErrorEntry>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.BatchResultErrorEntry>,
+        global::Com.Amazonaws.Sqs.BatchResultErrorEntry,
+        List<global::Com.Amazonaws.Sqs.BatchResultErrorEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<BatchResultErrorEntryList, BatchResultErrorEntry, List<BatchResultErrorEntry>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Sqs.BatchResultErrorEntry>,
+            global::Com.Amazonaws.Sqs.BatchResultErrorEntry,
+            List<global::Com.Amazonaws.Sqs.BatchResultErrorEntry>
+        >(
             ShapeId.Parse("com.amazonaws.sqs#BatchResultErrorEntryList"),
             ShapeKind.List,
             Target0,
@@ -25,29 +29,31 @@ public static partial class BatchResultErrorEntryListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<BatchResultErrorEntry> Target0 =
-            Schemas.Lazy(() => BatchResultErrorEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => BatchResultErrorEntrySchema.Schema!);
 
-        public override IEnumerable<BatchResultErrorEntry> GetElements(
-            BatchResultErrorEntryList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> value
+        ) => value;
 
-        public override List<BatchResultErrorEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<BatchResultErrorEntry> builder,
-            BatchResultErrorEntry value
+            List<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> builder,
+            global::Com.Amazonaws.Sqs.BatchResultErrorEntry value
         ) => builder.Add(value);
 
-        public override BatchResultErrorEntryList Build(List<BatchResultErrorEntry> builder) =>
-            BatchResultErrorEntryList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> Build(
+            List<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            BatchResultErrorEntryList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -62,7 +68,7 @@ public static partial class BatchResultErrorEntryListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<BatchResultErrorEntry> builder,
+            List<global::Com.Amazonaws.Sqs.BatchResultErrorEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(BatchResultErrorEntrySchema.Schema));
     }

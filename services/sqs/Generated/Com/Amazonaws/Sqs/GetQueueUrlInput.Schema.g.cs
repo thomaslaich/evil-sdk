@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class GetQueueUrlInputSchema
 {
@@ -16,10 +16,13 @@ public static partial class GetQueueUrlInputSchema
         public string? QueueOwnerAWSAccountId { get; set; }
     }
 
-    public static StructSchema<GetQueueUrlInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.GetQueueUrlInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetQueueUrlInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.GetQueueUrlInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#GetQueueUrlInput"),
             [
                 new(
@@ -29,38 +32,14 @@ public static partial class GetQueueUrlInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Required) The name of the queue for which you want to fetch the URL. The name can be\n            up to 80 characters long and can include alphanumeric characters, hyphens (-), and\n            underscores (_). Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "QueueOwnerAWSAccountId",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>(Optional) The Amazon Web Services account ID of the account that created the queue. This is only\n            required when you are attempting to access a queue owned by another\n            Amazon Web Services account.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("QueueOwnerAWSAccountId", Target1),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Retrieves the URL of an existing queue based on its name and, optionally, the Amazon Web Services\n            account ID. </p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -73,20 +52,24 @@ public static partial class GetQueueUrlInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetQueueUrlInput Build(Builder builder) =>
-            new GetQueueUrlInput(
+        public override global::Com.Amazonaws.Sqs.GetQueueUrlInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.GetQueueUrlInput(
                 builder.QueueName ?? throw new MissingRequiredMemberException("QueueName"),
                 builder.QueueOwnerAWSAccountId
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetQueueUrlInput value,
+            global::Com.Amazonaws.Sqs.GetQueueUrlInput value,
             ref TSerializer serializer
         )
         {

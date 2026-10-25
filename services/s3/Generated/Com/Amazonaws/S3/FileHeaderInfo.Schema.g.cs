@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class FileHeaderInfoSchema
 {
     public static global::NSmithy.Core.Serde.Schema<FileHeaderInfo> Schema { get; } =
-        Schemas.StringEnum<FileHeaderInfo>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<FileHeaderInfo>(
             ShapeId.Parse("com.amazonaws.s3#FileHeaderInfo"),
             values: ["USE", "IGNORE", "NONE"],
             traits:

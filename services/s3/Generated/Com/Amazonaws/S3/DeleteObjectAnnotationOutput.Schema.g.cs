@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteObjectAnnotationOutputSchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteObjectAnnotationOutputSchema
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
     }
 
-    public static StructSchema<DeleteObjectAnnotationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteObjectAnnotationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteObjectAnnotationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteObjectAnnotationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteObjectAnnotationOutput"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class DeleteObjectAnnotationOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version ID of the object that the annotation was deleted from.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-object-version-id")
@@ -61,17 +57,24 @@ public static partial class DeleteObjectAnnotationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target1 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteObjectAnnotationOutput Build(Builder builder) =>
-            new DeleteObjectAnnotationOutput(builder.ObjectVersionId, builder.RequestCharged);
+        public override global::Com.Amazonaws.S3.DeleteObjectAnnotationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.DeleteObjectAnnotationOutput(
+                builder.ObjectVersionId,
+                builder.RequestCharged
+            );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteObjectAnnotationOutput value,
+            global::Com.Amazonaws.S3.DeleteObjectAnnotationOutput value,
             ref TSerializer serializer
         )
         {

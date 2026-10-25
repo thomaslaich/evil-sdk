@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetResourcePolicyInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetResourcePolicyInputSchema
         public string? ResourceArn { get; set; }
     }
 
-    public static StructSchema<GetResourcePolicyInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetResourcePolicyInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetResourcePolicyInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetResourcePolicyInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetResourcePolicyInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class GetResourcePolicyInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the Lambda resource you want to retrieve the policy for. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -43,8 +39,8 @@ public static partial class GetResourcePolicyInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)256) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(256m) },
                                 }
                             )
                         ),
@@ -58,10 +54,6 @@ public static partial class GetResourcePolicyInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -71,10 +63,6 @@ public static partial class GetResourcePolicyInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetResourcePolicyRequest")
                 ),
@@ -82,17 +70,21 @@ public static partial class GetResourcePolicyInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetResourcePolicyInput Build(Builder builder) =>
-            new GetResourcePolicyInput(
+        public override global::Com.Amazonaws.Lambda.GetResourcePolicyInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetResourcePolicyInput(
                 builder.ResourceArn ?? throw new MissingRequiredMemberException("ResourceArn")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetResourcePolicyInput value,
+            global::Com.Amazonaws.Lambda.GetResourcePolicyInput value,
             ref TSerializer serializer
         )
         {

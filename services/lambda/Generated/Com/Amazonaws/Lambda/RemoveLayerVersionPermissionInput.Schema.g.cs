@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class RemoveLayerVersionPermissionInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class RemoveLayerVersionPermissionInputSchema
         public string? RevisionId { get; set; }
     }
 
-    public static StructSchema<RemoveLayerVersionPermissionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RemoveLayerVersionPermissionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#RemoveLayerVersionPermissionInput"),
             [
                 new(
@@ -32,12 +34,6 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or Amazon Resource Name (ARN) of the layer.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -46,8 +42,8 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -60,10 +56,6 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -79,20 +71,12 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                         ),
                         new Trait(ShapeId.Parse("smithy.api#default")),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The version number.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -103,12 +87,6 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The identifier that was specified when the statement was added.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -117,8 +95,8 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)100) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(100m) },
                                 }
                             )
                         ),
@@ -130,10 +108,6 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -142,18 +116,8 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("RevisionId")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -165,10 +129,6 @@ public static partial class RemoveLayerVersionPermissionInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#RemoveLayerVersionPermissionRequest")
                 ),
@@ -176,19 +136,26 @@ public static partial class RemoveLayerVersionPermissionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 = Schemas.Nullable(
-            Schemas.Long
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<long?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Long);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RemoveLayerVersionPermissionInput Build(Builder builder) =>
-            new RemoveLayerVersionPermissionInput(
+        public override global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionInput(
                 builder.LayerName ?? throw new MissingRequiredMemberException("LayerName"),
                 builder.StatementId ?? throw new MissingRequiredMemberException("StatementId"),
                 builder.RevisionId,
@@ -196,7 +163,7 @@ public static partial class RemoveLayerVersionPermissionInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            RemoveLayerVersionPermissionInput value,
+            global::Com.Amazonaws.Lambda.RemoveLayerVersionPermissionInput value,
             ref TSerializer serializer
         )
         {

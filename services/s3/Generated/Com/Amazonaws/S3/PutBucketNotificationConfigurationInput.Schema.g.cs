@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketNotificationConfigurationInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class PutBucketNotificationConfigurationInputSchema
         public bool? SkipDestinationValidation { get; set; }
     }
 
-    public static StructSchema<PutBucketNotificationConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketNotificationConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketNotificationConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketNotificationConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketNotificationConfigurationInput"),
             [
                 new(
@@ -31,10 +33,6 @@ public static partial class PutBucketNotificationConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The name of the bucket.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -80,12 +78,6 @@ public static partial class PutBucketNotificationConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -99,12 +91,6 @@ public static partial class PutBucketNotificationConfigurationInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Skips validation of Amazon SQS, Amazon SNS, and Lambda destinations.\n      True or false value.</p>"
-                            )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
@@ -126,19 +112,28 @@ public static partial class PutBucketNotificationConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.NotificationConfiguration?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => NotificationConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    NotificationConfigurationSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketNotificationConfigurationInput Build(Builder builder) =>
-            new PutBucketNotificationConfigurationInput(
+        public override global::Com.Amazonaws.S3.PutBucketNotificationConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketNotificationConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.NotificationConfiguration
                     ?? throw new MissingRequiredMemberException("NotificationConfiguration"),
@@ -147,7 +142,7 @@ public static partial class PutBucketNotificationConfigurationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketNotificationConfigurationInput value,
+            global::Com.Amazonaws.S3.PutBucketNotificationConfigurationInput value,
             ref TSerializer serializer
         )
         {

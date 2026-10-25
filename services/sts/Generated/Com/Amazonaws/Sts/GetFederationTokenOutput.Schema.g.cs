@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetFederationTokenOutputSchema
 {
@@ -19,39 +19,17 @@ public static partial class GetFederationTokenOutputSchema
         public int? SessionTokenSize { get; set; }
     }
 
-    public static StructSchema<GetFederationTokenOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetFederationTokenOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFederationTokenOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetFederationTokenOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetFederationTokenOutput"),
             [
-                new(
-                    "Credentials",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The temporary security credentials, which include an access key ID, a secret access key,\n         and a security (or session) token.</p>\n         <note>\n            <p>The size of the security token that STS API operations return is not fixed. We\n        strongly recommend that you make no assumptions about the maximum size.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "FederatedUser",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Identifiers for the federated user associated with the credentials (such as\n            <code>arn:aws:sts::123456789012:federated-user/Bob</code> or\n            <code>123456789012:Bob</code>). You can use the federated user's ARN in your\n         resource-based policies, such as an Amazon S3 bucket policy. </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Credentials", Target0),
+                new("FederatedUser", Target1),
                 new(
                     "PackedPolicySize",
                     Target2,
@@ -62,33 +40,9 @@ public static partial class GetFederationTokenOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "since", Document.From("2026-06-17") },
-                                    {
-                                        "message",
-                                        Document.From(
-                                            "Deprecated. Replaced by SessionTokenUtilization."
-                                        )
-                                    },
-                                }
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A percentage value that indicates the packed size of the session policies and session \n      tags combined passed in the request. The request fails if the packed size is greater than 100 percent, \n      which means the policies and tags exceeded the allowed space.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -103,18 +57,9 @@ public static partial class GetFederationTokenOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The percentage (0-100) of the maximum allowed session token size that the returned session\n    token consumes."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -129,30 +74,15 @@ public static partial class GetFederationTokenOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The size, in bytes, of the session token returned in the Credentials for this response."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the response to a successful <a>GetFederationToken</a> request,\n      including temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. </p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -165,23 +95,24 @@ public static partial class GetFederationTokenOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Credentials?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CredentialsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CredentialsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.FederatedUser?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => FederatedUserSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => FederatedUserSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFederationTokenOutput Build(Builder builder) =>
-            new GetFederationTokenOutput(
+        public override global::Com.Amazonaws.Sts.GetFederationTokenOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetFederationTokenOutput(
                 builder.Credentials,
                 builder.FederatedUser,
                 builder.PackedPolicySize,
@@ -190,7 +121,7 @@ public static partial class GetFederationTokenOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetFederationTokenOutput value,
+            global::Com.Amazonaws.Sts.GetFederationTokenOutput value,
             ref TSerializer serializer
         )
         {

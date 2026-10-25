@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketWebsiteOutputSchema
 {
@@ -15,68 +15,22 @@ public static partial class GetBucketWebsiteOutputSchema
         public global::Com.Amazonaws.S3.RedirectAllRequestsTo? RedirectAllRequestsTo { get; set; }
         public global::Com.Amazonaws.S3.IndexDocument? IndexDocument { get; set; }
         public global::Com.Amazonaws.S3.ErrorDocument? ErrorDocument { get; set; }
-        public global::Com.Amazonaws.S3.RoutingRules? RoutingRules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule>? RoutingRules { get; set; }
     }
 
-    public static StructSchema<GetBucketWebsiteOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketWebsiteOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketWebsiteOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketWebsiteOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketWebsiteOutput"),
             [
-                new(
-                    "RedirectAllRequestsTo",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "IndexDocument",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the index document for the website (for example <code>index.html</code>).</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ErrorDocument",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The object key name of the website error document to use for 4XX class errors.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "RoutingRules",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Rules that define when a redirect is applied and the redirect behavior.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("RedirectAllRequestsTo", Target0),
+                new("IndexDocument", Target1),
+                new("ErrorDocument", Target2),
+                new("RoutingRules", Target3),
             ],
             [
                 new Trait(
@@ -91,18 +45,26 @@ public static partial class GetBucketWebsiteOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RedirectAllRequestsTo?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => RedirectAllRequestsToSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RedirectAllRequestsToSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IndexDocument?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => IndexDocumentSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => IndexDocumentSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ErrorDocument?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorDocumentSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RoutingRules?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => RoutingRulesSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorDocumentSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.RoutingRule>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RoutingRulesSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketWebsiteOutput Build(Builder builder) =>
-            new GetBucketWebsiteOutput(
+        public override global::Com.Amazonaws.S3.GetBucketWebsiteOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketWebsiteOutput(
                 builder.ErrorDocument,
                 builder.IndexDocument,
                 builder.RedirectAllRequestsTo,
@@ -110,7 +72,7 @@ public static partial class GetBucketWebsiteOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketWebsiteOutput value,
+            global::Com.Amazonaws.S3.GetBucketWebsiteOutput value,
             ref TSerializer serializer
         )
         {

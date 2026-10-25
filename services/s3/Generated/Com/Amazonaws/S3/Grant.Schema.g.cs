@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GrantSchema
 {
@@ -16,10 +16,11 @@ public static partial class GrantSchema
         public global::Com.Amazonaws.S3.Permission? Permission { get; set; }
     }
 
-    public static StructSchema<Grant, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Grant, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Grant, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Grant, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Grant"),
             [
                 new(
@@ -27,10 +28,6 @@ public static partial class GrantSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The person being granted permissions.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlNamespace"),
                             Document.From(
@@ -46,37 +43,27 @@ public static partial class GrantSchema
                         ),
                     ]
                 ),
-                new(
-                    "Permission",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies the permission given to the grantee.</p>")
-                        ),
-                    ]
-                ),
+                new("Permission", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for grant information.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Grantee?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => GranteeSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => GranteeSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Permission?> Target1 =
-            Schemas.Nullable(PermissionSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(PermissionSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Grant Build(Builder builder) =>
-            new Grant(builder.Grantee, builder.Permission);
+        public override global::Com.Amazonaws.S3.Grant Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Grant(builder.Grantee, builder.Permission);
 
-        public override void SerializeMembers<TSerializer>(Grant value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.S3.Grant value,
+            ref TSerializer serializer
+        )
         {
             if (value.Grantee is { } value0)
             {

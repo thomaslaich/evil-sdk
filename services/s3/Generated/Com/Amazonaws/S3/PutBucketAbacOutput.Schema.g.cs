@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAbacOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketAbacOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketAbacOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketAbacOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketAbacOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAbacOutput"),
             [],
             [
@@ -33,10 +35,11 @@ public static partial class PutBucketAbacOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketAbacOutput Build(Builder builder) => new PutBucketAbacOutput();
+        public override global::Com.Amazonaws.S3.PutBucketAbacOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketAbacOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketAbacOutput value,
+            global::Com.Amazonaws.S3.PutBucketAbacOutput value,
             ref TSerializer serializer
         ) { }
 

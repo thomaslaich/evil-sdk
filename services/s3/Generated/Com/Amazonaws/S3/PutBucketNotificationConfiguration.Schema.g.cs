@@ -6,107 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketNotificationConfigurationSchema
 {
     public static OperationSchema<
-        PutBucketNotificationConfigurationInput,
-        PutBucketNotificationConfigurationOutput
+        global::Com.Amazonaws.S3.PutBucketNotificationConfigurationInput,
+        global::Com.Amazonaws.S3.PutBucketNotificationConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketNotificationConfiguration"),
-            Schemas.Lazy(() => PutBucketNotificationConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketNotificationConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutBucketNotificationConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                PutBucketNotificationConfigurationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Enables notifications of specified events for a bucket. For more information about event\n      notifications, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html\">Configuring Event Notifications</a>.</p>\n         <p>Using this API, you can replace an existing notification configuration. The configuration is an XML\n      file that defines the event types that you want Amazon S3 to publish and the destination where you want Amazon S3\n      to publish an event notification when it detects an event of the specified type.</p>\n         <p>By default, your bucket has no event notifications configured. That is, the notification\n      configuration will be an empty <code>NotificationConfiguration</code>.</p>\n         <p>\n            <code><NotificationConfiguration></code>\n         </p>\n         <p>\n            <code></NotificationConfiguration></code>\n         </p>\n         <p>This action replaces the existing notification configuration with the configuration you include in\n      the request body.</p>\n         <p>After Amazon S3 receives this request, it first verifies that any Amazon Simple Notification Service\n      (Amazon SNS) or Amazon Simple Queue Service (Amazon SQS) destination exists, and that the bucket owner\n      has permission to publish to it by sending a test notification. In the case of Lambda destinations,\n      Amazon S3 verifies that the Lambda function permissions grant Amazon S3 permission to invoke the function from the\n      Amazon S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html\">Configuring Notifications for Amazon S3\n      Events</a>.</p>\n         <p>You can disable notifications by adding the empty NotificationConfiguration element.</p>\n         <p>For more information about the number of event notification configurations that you can create per\n      bucket, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#limits_s3\">Amazon S3 service\n        quotas</a> in <i>Amazon Web Services General Reference</i>.</p>\n         <p>By default, only the bucket owner can configure notifications on a bucket. However, bucket owners\n      can use a bucket policy to grant permission to other users to set this configuration with the required\n        <code>s3:PutBucketNotification</code> permission.</p>\n         <note>\n            <p>The PUT notification is an atomic operation. For example, suppose your notification configuration\n        includes SNS topic, SQS queue, and Lambda function configurations. When you send a PUT request with\n        this configuration, Amazon S3 sends test messages to your SNS topic. If the message fails, the entire PUT\n        action will fail, and Amazon S3 will not add the configuration to your bucket.</p>\n         </note>\n         <p>If the configuration in the request body includes only one <code>TopicConfiguration</code>\n      specifying only the <code>s3:ReducedRedundancyLostObject</code> event type, the response will also\n      include the <code>x-amz-sns-test-message-id</code> header containing the message ID of the test\n      notification sent to the topic.</p>\n         <p>The following action is related to <code>PutBucketNotificationConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html\">GetBucketNotificationConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("Set notification configuration for a bucket")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example sets notification configuration on a bucket to publish the object created events to an SNS topic."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                {
-                                                    "NotificationConfiguration",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "TopicConfigurations",
-                                                                Document.From(
-                                                                    new Document[]
-                                                                    {
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "TopicArn",
-                                                                                    Document.From(
-                                                                                        "arn:aws:sns:us-west-2:123456789012:s3-notification-topic"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Events",
-                                                                                    Document.From(
-                                                                                        new Document[]
-                                                                                        {
-                                                                                            Document.From(
-                                                                                                "s3:ObjectCreated:*"
-                                                                                            ),
-                                                                                        }
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?notification") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?notification") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

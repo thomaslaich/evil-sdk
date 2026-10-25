@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicaModificationsSchema
 {
     public sealed class Builder
     {
-        public ReplicaModificationsStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.ReplicaModificationsStatus? Status { get; set; }
     }
 
-    public static StructSchema<ReplicaModifications, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ReplicaModifications,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReplicaModifications, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ReplicaModifications, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ReplicaModifications"),
             [
                 new(
@@ -29,40 +31,27 @@ public static partial class ReplicaModificationsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 replicates modifications on replicas.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A filter that you can specify for selection for modifications on replicas. Amazon S3 doesn't replicate\n      replica modifications by default. In the latest version of replication configuration (when\n        <code>Filter</code> is specified), you can specify this element and set the status to\n        <code>Enabled</code> to replicate modifications on replicas. </p>\n         <note>\n            <p> If you don't specify the <code>Filter</code> element, Amazon S3 assumes that the replication\n        configuration is the earlier version, V1. In the earlier version, this element is not allowed.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ReplicaModificationsStatus?> Target0 =
-            Schemas.Nullable(ReplicaModificationsStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicaModificationsStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ReplicaModificationsStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReplicaModifications Build(Builder builder) =>
-            new ReplicaModifications(
+        public override global::Com.Amazonaws.S3.ReplicaModifications Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ReplicaModifications(
                 builder.Status ?? throw new MissingRequiredMemberException("Status")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ReplicaModifications value,
+            global::Com.Amazonaws.S3.ReplicaModifications value,
             ref TSerializer serializer
         )
         {
@@ -82,8 +71,10 @@ public static partial class ReplicaModificationsSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ReplicaModificationsStatus.FromValue(value0)
-                                : default(ReplicaModificationsStatus)
+                                ? global::Com.Amazonaws.S3.ReplicaModificationsStatus.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.ReplicaModificationsStatus)
                         );
                     break;
             }

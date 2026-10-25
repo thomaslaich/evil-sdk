@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetFederationTokenInputSchema
 {
@@ -14,17 +14,19 @@ public static partial class GetFederationTokenInputSchema
     {
         public string? Name { get; set; }
         public string? Policy { get; set; }
-        public PolicyDescriptorListType? PolicyArns { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType>? PolicyArns { get; set; }
         public int? DurationSeconds { get; set; }
-        public TagListType? Tags { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sts.Tag>? Tags { get; set; }
         public int? MinimumSessionTokenSize { get; set; }
     }
 
-    public static StructSchema<GetFederationTokenInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetFederationTokenInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFederationTokenInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetFederationTokenInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetFederationTokenInput"),
             [
                 new(
@@ -34,18 +36,12 @@ public static partial class GetFederationTokenInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the federated user. The name is used as an identifier for the temporary\n         security credentials (such as <code>Bob</code>). For example, you can reference the\n         federated user name in a resource-based policy, such as in an Amazon S3 bucket policy.</p>\n         <p>The regex used to validate this parameter is a string of characters \n    consisting of upper- and lower-case alphanumeric characters with no spaces. You can \n    also include underscores or any of the following characters: =,.@-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)32) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(32m) },
                                 }
                             )
                         ),
@@ -65,18 +61,12 @@ public static partial class GetFederationTokenInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An IAM policy in JSON format that you want to use as an inline session policy.</p>\n         <p>You must pass an inline or managed <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session\">session policy</a> to\n         this operation. You can pass a single JSON policy document to use as an inline session\n         policy. You can also specify up to 10 managed policy Amazon Resource Names (ARNs) to use as\n         managed session policies.</p>\n         <p>This parameter is optional. However, if you do not pass any session policies, then the\n         resulting federated user session has no permissions.</p>\n         <p>When you pass session policies, the session permissions are the intersection of the\n            IAM user policies and the session policies that you pass. This gives you\n         a way to further restrict the permissions for a federated user. You cannot use session\n         policies to grant more permissions than those that are defined in the permissions policy of\n         the IAM user. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session\">Session Policies</a> in\n         the <i>IAM User Guide</i>.</p>\n         <p>The resulting credentials can be used to access a resource that has a resource-based\n         policy. If that policy specifically references the federated user session in the\n            <code>Principal</code> element of the policy, the session has the permissions allowed by\n         the policy. These permissions are granted in addition to the permissions that are granted\n         by the session policies.</p>\n         <p>The plaintext that you use for both inline and managed session policies can't exceed\n         2,048 characters. The JSON policy characters can be any ASCII character from the space\n         character to the end of the valid character list (\\u0020 through \\u00FF). It can also\n         include the tab (\\u0009), linefeed (\\u000A), and carriage return (\\u000D)\n         characters.</p>\n         <note>\n            <p>An Amazon Web Services conversion compresses the passed inline session policy, managed policy ARNs,\n            and session tags into a packed binary format that has a separate limit. Your request can\n            fail for this limit even if your plaintext meets the other requirements. The\n               <code>PackedPolicySize</code> response element indicates by percentage how close the\n            policies and tags for your request are to the upper size limit.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -86,19 +76,7 @@ public static partial class GetFederationTokenInputSchema
                         ),
                     ]
                 ),
-                new(
-                    "PolicyArns",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Names (ARNs) of the IAM managed policies that you want to use as a\n         managed session policy. The policies must exist in the same account as the IAM user that is requesting federated access.</p>\n         <p>You must pass an inline or managed <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session\">session policy</a> to\n         this operation. You can pass a single JSON policy document to use as an inline session\n         policy. You can also specify up to 10 managed policy Amazon Resource Names (ARNs) to use as\n         managed session policies. The plaintext that you use for both inline and managed session\n         policies can't exceed 2,048 characters. You can provide up to 10 managed policy ARNs. For\n         more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services\n            Service Namespaces</a> in the Amazon Web Services General Reference.</p>\n         <p>This parameter is optional. However, if you do not pass any session policies, then the\n         resulting federated user session has no permissions.</p>\n         <p>When you pass session policies, the session permissions are the intersection of the\n            IAM user policies and the session policies that you pass. This gives you\n         a way to further restrict the permissions for a federated user. You cannot use session\n         policies to grant more permissions than those that are defined in the permissions policy of\n         the IAM user. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session\">Session Policies</a> in\n         the <i>IAM User Guide</i>.</p>\n         <p>The resulting credentials can be used to access a resource that has a resource-based\n         policy. If that policy specifically references the federated user session in the\n            <code>Principal</code> element of the policy, the session has the permissions allowed by\n         the policy. These permissions are granted in addition to the permissions that are granted\n         by the session policies.</p>\n         <note>\n            <p>An Amazon Web Services conversion compresses the passed inline session policy, managed policy ARNs,\n            and session tags into a packed binary format that has a separate limit. Your request can\n            fail for this limit even if your plaintext meets the other requirements. The\n               <code>PackedPolicySize</code> response element indicates by percentage how close the\n            policies and tags for your request are to the upper size limit.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("PolicyArns", Target2),
                 new(
                     "DurationSeconds",
                     Target3,
@@ -109,36 +87,18 @@ public static partial class GetFederationTokenInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The duration, in seconds, that the session should last. Acceptable durations for\n         federation sessions range from 900 seconds (15 minutes) to 129,600 seconds (36 hours), with\n         43,200 seconds (12 hours) as the default. Sessions obtained using root user\n         credentials are restricted to a maximum of 3,600 seconds (one hour). If the specified\n         duration is longer than one hour, the session obtained by using root user\n         credentials defaults to one hour.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)900) },
-                                    { "max", Document.From((decimal)129600) },
+                                    { "min", Document.From(900m) },
+                                    { "max", Document.From(129600m) },
                                 }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "Tags",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of session tags. Each session tag consists of a key name and an associated value.\n         For more information about session tags, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html\">Passing Session Tags in STS</a> in the\n            <i>IAM User Guide</i>.</p>\n         <p>This parameter is optional. You can pass up to 50 session tags. The plaintext session\n         tag keys can’t exceed 128 characters and the values can’t exceed 256 characters. For these\n         and additional limits, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html#reference_iam-limits-entity-length\">IAM\n            and STS Character Limits</a> in the <i>IAM User Guide</i>.</p>\n         <note>\n            <p>An Amazon Web Services conversion compresses the passed inline session policy, managed policy ARNs,\n            and session tags into a packed binary format that has a separate limit. Your request can\n            fail for this limit even if your plaintext meets the other requirements. The\n               <code>PackedPolicySize</code> response element indicates by percentage how close the\n            policies and tags for your request are to the upper size limit.</p>\n         </note>\n         <p>You can pass a session tag with the same key as a tag that is already attached to the\n         user you are federating. When you do, session tags override a user tag with the same key. </p>\n         <p>Tag key–value pairs are not case sensitive, but case is preserved. This means that you\n         cannot have separate <code>Department</code> and <code>department</code> tag keys. Assume\n         that the role has the <code>Department</code>=<code>Marketing</code> tag and you pass the\n            <code>department</code>=<code>engineering</code> session tag. <code>Department</code>\n         and <code>department</code> are not saved as separate tags, and the session tag passed in\n         the request takes precedence over the role tag.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Tags", Target4),
                 new(
                     "MinimumSessionTokenSize",
                     Target5,
@@ -149,18 +109,12 @@ public static partial class GetFederationTokenInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The minimum size, in bytes, of the session token that STS issues for the request. STS increases\n    the session token to at least this size, regardless of its actual content. The value must not\n    exceed 4,096 bytes. When set to 0 or not specified, the session token size is unchanged."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)4096) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(4096m) },
                                 }
                             )
                         ),
@@ -180,24 +134,32 @@ public static partial class GetFederationTokenInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<PolicyDescriptorListType?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => PolicyDescriptorListTypeSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<TagListType?> Target4 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagListTypeSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sts.PolicyDescriptorType>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    PolicyDescriptorListTypeSchema.Schema!
+                )
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sts.Tag>?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagListTypeSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFederationTokenInput Build(Builder builder) =>
-            new GetFederationTokenInput(
+        public override global::Com.Amazonaws.Sts.GetFederationTokenInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.GetFederationTokenInput(
                 builder.Name ?? throw new MissingRequiredMemberException("Name"),
                 builder.DurationSeconds,
                 builder.MinimumSessionTokenSize,
@@ -207,7 +169,7 @@ public static partial class GetFederationTokenInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetFederationTokenInput value,
+            global::Com.Amazonaws.Sts.GetFederationTokenInput value,
             ref TSerializer serializer
         )
         {

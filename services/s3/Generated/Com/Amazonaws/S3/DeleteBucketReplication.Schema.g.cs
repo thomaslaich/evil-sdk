@@ -6,66 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketReplicationSchema
 {
     public static OperationSchema<
-        DeleteBucketReplicationInput,
-        DeleteBucketReplicationOutput
+        global::Com.Amazonaws.S3.DeleteBucketReplicationInput,
+        global::Com.Amazonaws.S3.DeleteBucketReplicationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketReplication"),
-            Schemas.Lazy(() => DeleteBucketReplicationInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteBucketReplicationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketReplicationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                DeleteBucketReplicationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p> Deletes the replication configuration from the bucket.</p>\n         <p>To use this operation, you must have permissions to perform the\n        <code>s3:PutReplicationConfiguration</code> action. The bucket owner has these permissions by default\n      and can grant it to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\">Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access Permissions to Your Amazon S3\n        Resources</a>. </p>\n         <note>\n            <p>It can take a while for the deletion of a replication configuration to fully propagate.</p>\n         </note>\n         <p> For information about replication configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html\">Replication</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p>The following operations are related to <code>DeleteBucketReplication</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html\">PutBucketReplication</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html\">GetBucketReplication</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("To delete bucket replication configuration")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example deletes replication configuration set on bucket."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("example") },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}?replication") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/?replication") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

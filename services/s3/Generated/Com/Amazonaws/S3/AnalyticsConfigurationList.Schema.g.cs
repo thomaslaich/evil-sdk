@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsConfigurationListSchema
 {
     public static ListSchema<
-        AnalyticsConfigurationList,
-        AnalyticsConfiguration,
-        List<AnalyticsConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.S3.AnalyticsConfiguration>,
+        global::Com.Amazonaws.S3.AnalyticsConfiguration,
+        List<global::Com.Amazonaws.S3.AnalyticsConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            AnalyticsConfigurationList,
-            AnalyticsConfiguration,
-            List<AnalyticsConfiguration>
+            IReadOnlyList<global::Com.Amazonaws.S3.AnalyticsConfiguration>,
+            global::Com.Amazonaws.S3.AnalyticsConfiguration,
+            List<global::Com.Amazonaws.S3.AnalyticsConfiguration>
         >(
             ShapeId.Parse("com.amazonaws.s3#AnalyticsConfigurationList"),
             ShapeKind.List,
@@ -29,29 +29,31 @@ public static partial class AnalyticsConfigurationListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<AnalyticsConfiguration> Target0 =
-            Schemas.Lazy(() => AnalyticsConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => AnalyticsConfigurationSchema.Schema!);
 
-        public override IEnumerable<AnalyticsConfiguration> GetElements(
-            AnalyticsConfigurationList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.AnalyticsConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.AnalyticsConfiguration> value
+        ) => value;
 
-        public override List<AnalyticsConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.AnalyticsConfiguration> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<AnalyticsConfiguration> builder,
-            AnalyticsConfiguration value
+            List<global::Com.Amazonaws.S3.AnalyticsConfiguration> builder,
+            global::Com.Amazonaws.S3.AnalyticsConfiguration value
         ) => builder.Add(value);
 
-        public override AnalyticsConfigurationList Build(List<AnalyticsConfiguration> builder) =>
-            AnalyticsConfigurationList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.AnalyticsConfiguration> Build(
+            List<global::Com.Amazonaws.S3.AnalyticsConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            AnalyticsConfigurationList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.AnalyticsConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -66,7 +68,7 @@ public static partial class AnalyticsConfigurationListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<AnalyticsConfiguration> builder,
+            List<global::Com.Amazonaws.S3.AnalyticsConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(AnalyticsConfigurationSchema.Schema));
     }

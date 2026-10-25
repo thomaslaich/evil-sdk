@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketAnalyticsConfigurationInputSchema
 {
@@ -18,11 +18,13 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<PutBucketAnalyticsConfigurationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketAnalyticsConfigurationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketAnalyticsConfigurationInput"),
             [
                 new(
@@ -31,12 +33,6 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket to which an analytics configuration is stored.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -62,12 +58,6 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID that identifies the analytics configuration.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
@@ -81,12 +71,6 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The configuration and any analyses for the analytics filter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -107,12 +91,6 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -132,18 +110,28 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsConfiguration?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => AnalyticsConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AnalyticsConfigurationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketAnalyticsConfigurationInput Build(Builder builder) =>
-            new PutBucketAnalyticsConfigurationInput(
+        public override global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationInput(
                 builder.AnalyticsConfiguration
                     ?? throw new MissingRequiredMemberException("AnalyticsConfiguration"),
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
@@ -152,7 +140,7 @@ public static partial class PutBucketAnalyticsConfigurationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketAnalyticsConfigurationInput value,
+            global::Com.Amazonaws.S3.PutBucketAnalyticsConfigurationInput value,
             ref TSerializer serializer
         )
         {

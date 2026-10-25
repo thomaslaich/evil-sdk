@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SourceAccessConfigurationsSchema
 {
     public static ListSchema<
-        SourceAccessConfigurations,
-        SourceAccessConfiguration,
-        List<SourceAccessConfiguration>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.SourceAccessConfiguration>,
+        global::Com.Amazonaws.Lambda.SourceAccessConfiguration,
+        List<global::Com.Amazonaws.Lambda.SourceAccessConfiguration>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            SourceAccessConfigurations,
-            SourceAccessConfiguration,
-            List<SourceAccessConfiguration>
+            IReadOnlyList<global::Com.Amazonaws.Lambda.SourceAccessConfiguration>,
+            global::Com.Amazonaws.Lambda.SourceAccessConfiguration,
+            List<global::Com.Amazonaws.Lambda.SourceAccessConfiguration>
         >(
             ShapeId.Parse("com.amazonaws.lambda#SourceAccessConfigurations"),
             ShapeKind.List,
@@ -31,47 +31,40 @@ public static partial class SourceAccessConfigurationsSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)23) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(23m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SourceAccessConfiguration> Target0 =
-            Schemas.Lazy(() => SourceAccessConfigurationSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => SourceAccessConfigurationSchema.Schema!);
 
-        public override IEnumerable<SourceAccessConfiguration> GetElements(
-            SourceAccessConfigurations value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> value
+        ) => value;
 
-        public override List<SourceAccessConfiguration> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<SourceAccessConfiguration> builder,
-            SourceAccessConfiguration value
+            List<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> builder,
+            global::Com.Amazonaws.Lambda.SourceAccessConfiguration value
         ) => builder.Add(value);
 
-        public override SourceAccessConfigurations Build(List<SourceAccessConfiguration> builder) =>
-            SourceAccessConfigurations.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> Build(
+            List<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            SourceAccessConfigurations value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -86,7 +79,7 @@ public static partial class SourceAccessConfigurationsSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<SourceAccessConfiguration> builder,
+            List<global::Com.Amazonaws.Lambda.SourceAccessConfiguration> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(SourceAccessConfigurationSchema.Schema));
     }

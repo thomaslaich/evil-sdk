@@ -6,68 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectTorrentSchema
 {
-    public static OperationSchema<GetObjectTorrentInput, GetObjectTorrentOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.GetObjectTorrentInput,
+        global::Com.Amazonaws.S3.GetObjectTorrentOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetObjectTorrent"),
-            Schemas.Lazy(() => GetObjectTorrentInputSchema.Schema!),
-            Schemas.Lazy(() => GetObjectTorrentOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectTorrentInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectTorrentOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Returns torrent files from a bucket. BitTorrent can save you bandwidth when you're distributing\n      large files.</p>\n         <note>\n            <p>You can get torrent only for objects that are less than 5 GB in size, and that are not encrypted\n        using server-side encryption with a customer-provided encryption key.</p>\n         </note>\n         <p>To use GET, you must have READ access to the object.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n         <p>The following action is related to <code>GetObjectTorrent</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("To retrieve torrent files for an object")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example retrieves torrent files of an object."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "Key", Document.From("HappyFace.jpg") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(new Dictionary<string, Document> { })
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?torrent") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?torrent") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

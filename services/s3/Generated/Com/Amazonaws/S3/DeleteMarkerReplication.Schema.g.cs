@@ -5,56 +5,37 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteMarkerReplicationSchema
 {
     public sealed class Builder
     {
-        public DeleteMarkerReplicationStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.DeleteMarkerReplicationStatus? Status { get; set; }
     }
 
-    public static StructSchema<DeleteMarkerReplication, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteMarkerReplication,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteMarkerReplication, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteMarkerReplication, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteMarkerReplication"),
-            [
-                new(
-                    "Status",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates whether to replicate delete markers.</p>\n         <note>\n            <p>Indicates whether to replicate delete markers.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies whether Amazon S3 replicates delete markers. If you specify a <code>Filter</code> in your\n      replication configuration, you must also include a <code>DeleteMarkerReplication</code> element. If your\n        <code>Filter</code> includes a <code>Tag</code> element, the <code>DeleteMarkerReplication</code>\n            <code>Status</code> must be set to Disabled, because Amazon S3 does not support replicating delete markers\n      for tag-based rules. For an example configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config\">Basic Rule\n        Configuration</a>. </p>\n         <p>For more information about delete marker replication, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html\">Basic Rule Configuration</a>. </p>\n         <note>\n            <p>If you are using an earlier version of the replication configuration, Amazon S3 handles replication of\n        delete markers differently. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations\">Backward Compatibility</a>.</p>\n         </note>"
-                    )
-                ),
-            ]
+            [new("Status", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<DeleteMarkerReplicationStatus?> Target0 =
-            Schemas.Nullable(DeleteMarkerReplicationStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.DeleteMarkerReplicationStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(DeleteMarkerReplicationStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteMarkerReplication Build(Builder builder) =>
-            new DeleteMarkerReplication(builder.Status);
+        public override global::Com.Amazonaws.S3.DeleteMarkerReplication Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeleteMarkerReplication(builder.Status);
 
         public override void SerializeMembers<TSerializer>(
-            DeleteMarkerReplication value,
+            global::Com.Amazonaws.S3.DeleteMarkerReplication value,
             ref TSerializer serializer
         )
         {
@@ -81,8 +62,10 @@ public static partial class DeleteMarkerReplicationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? DeleteMarkerReplicationStatus.FromValue(value0)
-                                : default(DeleteMarkerReplicationStatus)
+                                ? global::Com.Amazonaws.S3.DeleteMarkerReplicationStatus.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.DeleteMarkerReplicationStatus)
                         );
                     break;
             }

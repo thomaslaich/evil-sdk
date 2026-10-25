@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ChainedInvokeSucceededDetailsSchema
 {
     public sealed class Builder
     {
-        public EventResult? Result { get; set; }
+        public global::Com.Amazonaws.Lambda.EventResult? Result { get; set; }
     }
 
-    public static StructSchema<ChainedInvokeSucceededDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ChainedInvokeSucceededDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChainedInvokeSucceededDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ChainedInvokeSucceededDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ChainedInvokeSucceededDetails"),
             [
                 new(
@@ -29,46 +31,31 @@ public static partial class ChainedInvokeSucceededDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The response payload from the successful operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a chained invocation that succeeded.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventResult?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventResultSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventResult?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventResultSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChainedInvokeSucceededDetails Build(Builder builder) =>
-            new ChainedInvokeSucceededDetails(
+        public override global::Com.Amazonaws.Lambda.ChainedInvokeSucceededDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ChainedInvokeSucceededDetails(
                 builder.Result ?? throw new MissingRequiredMemberException("Result")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChainedInvokeSucceededDetails value,
+            global::Com.Amazonaws.Lambda.ChainedInvokeSucceededDetails value,
             ref TSerializer serializer
         )
         {

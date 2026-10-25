@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TargetObjectKeyFormatSchema
 {
@@ -15,11 +15,13 @@ public static partial class TargetObjectKeyFormatSchema
         public global::Com.Amazonaws.S3.PartitionedPrefix? PartitionedPrefix { get; set; }
     }
 
-    public static StructSchema<TargetObjectKeyFormat, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.TargetObjectKeyFormat,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TargetObjectKeyFormat, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.TargetObjectKeyFormat, Builder>(
             ShapeId.Parse("com.amazonaws.s3#TargetObjectKeyFormat"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class TargetObjectKeyFormatSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>To use the simple format for S3 keys for log objects. To specify SimplePrefix format, set\n      SimplePrefix to {}.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlName"),
                             Document.From("SimplePrefix")
@@ -45,38 +41,34 @@ public static partial class TargetObjectKeyFormatSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Partitioned S3 key for log objects.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlName"),
                             Document.From("PartitionedPrefix")
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Amazon S3 key format for log objects. Only one format, PartitionedPrefix or SimplePrefix, is\n      allowed.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SimplePrefix?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => SimplePrefixSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SimplePrefixSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.PartitionedPrefix?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => PartitionedPrefixSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => PartitionedPrefixSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TargetObjectKeyFormat Build(Builder builder) =>
-            new TargetObjectKeyFormat(builder.PartitionedPrefix, builder.SimplePrefix);
+        public override global::Com.Amazonaws.S3.TargetObjectKeyFormat Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.TargetObjectKeyFormat(
+                builder.PartitionedPrefix,
+                builder.SimplePrefix
+            );
 
         public override void SerializeMembers<TSerializer>(
-            TargetObjectKeyFormat value,
+            global::Com.Amazonaws.S3.TargetObjectKeyFormat value,
             ref TSerializer serializer
         )
         {

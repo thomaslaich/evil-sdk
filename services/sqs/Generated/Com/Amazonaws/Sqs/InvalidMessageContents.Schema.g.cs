@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class InvalidMessageContentsSchema
 {
@@ -14,32 +14,30 @@ public static partial class InvalidMessageContentsSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<InvalidMessageContents, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.InvalidMessageContents,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidMessageContents, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.InvalidMessageContents, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#InvalidMessageContents"),
             [new("message", Target0)],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The message contains characters outside the allowed set.</p>")
-                ),
-                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-            ]
+            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client"))]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidMessageContents Build(Builder builder) =>
-            new InvalidMessageContents(builder.Message);
+        public override global::Com.Amazonaws.Sqs.InvalidMessageContents Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.InvalidMessageContents(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidMessageContents value,
+            global::Com.Amazonaws.Sqs.InvalidMessageContents value,
             ref TSerializer serializer
         )
         {

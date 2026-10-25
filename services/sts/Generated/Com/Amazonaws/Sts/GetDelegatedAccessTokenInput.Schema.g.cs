@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class GetDelegatedAccessTokenInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetDelegatedAccessTokenInputSchema
         public string? TradeInToken { get; set; }
     }
 
-    public static StructSchema<GetDelegatedAccessTokenInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.GetDelegatedAccessTokenInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetDelegatedAccessTokenInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.GetDelegatedAccessTokenInput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#GetDelegatedAccessTokenInput"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class GetDelegatedAccessTokenInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The token to exchange for temporary Amazon Web Services credentials. This token must be valid and\n         unexpired at the time of the request.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -58,17 +54,21 @@ public static partial class GetDelegatedAccessTokenInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetDelegatedAccessTokenInput Build(Builder builder) =>
-            new GetDelegatedAccessTokenInput(
+        public override global::Com.Amazonaws.Sts.GetDelegatedAccessTokenInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sts.GetDelegatedAccessTokenInput(
                 builder.TradeInToken ?? throw new MissingRequiredMemberException("TradeInToken")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetDelegatedAccessTokenInput value,
+            global::Com.Amazonaws.Sts.GetDelegatedAccessTokenInput value,
             ref TSerializer serializer
         )
         {

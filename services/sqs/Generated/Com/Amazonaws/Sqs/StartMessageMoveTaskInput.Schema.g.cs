@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class StartMessageMoveTaskInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class StartMessageMoveTaskInputSchema
         public int? MaxNumberOfMessagesPerSecond { get; set; }
     }
 
-    public static StructSchema<StartMessageMoveTaskInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StartMessageMoveTaskInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#StartMessageMoveTaskInput"),
             [
                 new(
@@ -31,30 +33,12 @@ public static partial class StartMessageMoveTaskInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the queue that contains the messages to be moved to another queue.\n            Currently, only ARNs of dead-letter queues (DLQs) whose sources are other Amazon SQS queues\n            are accepted. DLQs whose sources are non-SQS queues, such as Lambda or Amazon SNS topics, are\n            not currently supported.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "DestinationArn",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN of the queue that receives the moved messages. You can use this field to\n            specify the destination queue where you would like to redrive messages. If this field is\n            left blank, the messages will be redriven back to their respective original source\n            queues.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("DestinationArn", Target1),
                 new(
                     "MaxNumberOfMessagesPerSecond",
                     Target2,
@@ -63,12 +47,6 @@ public static partial class StartMessageMoveTaskInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of messages to be moved per second (the message movement rate). You can use\n            this field to define a fixed message movement rate. The maximum value for messages per\n            second is 500. If this field is left blank, the system will optimize the rate based on\n            the queue message backlog size, which may vary throughout the duration of the message\n            movement task.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -86,24 +64,29 @@ public static partial class StartMessageMoveTaskInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StartMessageMoveTaskInput Build(Builder builder) =>
-            new StartMessageMoveTaskInput(
+        public override global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput(
                 builder.SourceArn ?? throw new MissingRequiredMemberException("SourceArn"),
                 builder.DestinationArn,
                 builder.MaxNumberOfMessagesPerSecond
             );
 
         public override void SerializeMembers<TSerializer>(
-            StartMessageMoveTaskInput value,
+            global::Com.Amazonaws.Sqs.StartMessageMoveTaskInput value,
             ref TSerializer serializer
         )
         {

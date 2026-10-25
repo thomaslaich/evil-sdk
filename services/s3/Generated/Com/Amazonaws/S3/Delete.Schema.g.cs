@@ -6,20 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteSchema
 {
     public sealed class Builder
     {
-        public ObjectIdentifierList? Objects { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.ObjectIdentifier>? Objects { get; set; }
         public bool? Quiet { get; set; }
     }
 
-    public static StructSchema<Delete, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Delete, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Delete, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Delete, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Delete"),
             [
                 new(
@@ -28,12 +29,6 @@ public static partial class DeleteSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The object to delete.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - For directory buckets, an object\n        that's composed entirely of whitespace characters is not supported by the <code>DeleteObjects</code>\n        API operation. The request will receive a <code>400 Bad Request</code> error and none of the objects\n        in the request will be deleted.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -54,38 +49,31 @@ public static partial class DeleteSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Element to enable quiet mode for the request. When you add this element, you must set its value to\n        <code>true</code>.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for the objects to delete.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectIdentifierList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => ObjectIdentifierListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.ObjectIdentifier>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ObjectIdentifierListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Delete Build(Builder builder) =>
-            new Delete(
+        public override global::Com.Amazonaws.S3.Delete Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Delete(
                 builder.Objects ?? throw new MissingRequiredMemberException("Objects"),
                 builder.Quiet
             );
 
-        public override void SerializeMembers<TSerializer>(Delete value, ref TSerializer serializer)
+        public override void SerializeMembers<TSerializer>(
+            global::Com.Amazonaws.S3.Delete value,
+            ref TSerializer serializer
+        )
         {
             if (value.Objects is { } value0)
             {

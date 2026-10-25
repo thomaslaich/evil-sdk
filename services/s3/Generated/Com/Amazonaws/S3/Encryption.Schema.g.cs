@@ -6,21 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EncryptionSchema
 {
     public sealed class Builder
     {
-        public ServerSideEncryption? EncryptionType { get; set; }
+        public global::Com.Amazonaws.S3.ServerSideEncryption? EncryptionType { get; set; }
         public string? KMSKeyId { get; set; }
         public string? KMSContext { get; set; }
     }
 
-    public static StructSchema<Encryption, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.Encryption, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<Encryption, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.Encryption, Builder>(
             ShapeId.Parse("com.amazonaws.s3#Encryption"),
             [
                 new(
@@ -29,12 +30,6 @@ public static partial class EncryptionSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The server-side encryption algorithm used when storing job results in Amazon S3 (for example, AES256,\n        <code>aws:kms</code>).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,50 +42,31 @@ public static partial class EncryptionSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the encryption type is <code>aws:kms</code>, this optional value specifies the ID of the\n      symmetric encryption customer managed key to use for encryption of job results. Amazon S3 only supports symmetric\n      encryption KMS keys. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html\">Asymmetric keys in KMS</a> in the\n        <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "KMSContext",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If the encryption type is <code>aws:kms</code>, this optional value can be used to specify the\n      encryption context for the restore results.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("KMSContext", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Contains the type of server-side encryption used.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ServerSideEncryption?> Target0 =
-            Schemas.Nullable(ServerSideEncryptionSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryption?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ServerSideEncryptionSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override Encryption Build(Builder builder) =>
-            new Encryption(
+        public override global::Com.Amazonaws.S3.Encryption Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.Encryption(
                 builder.EncryptionType
                     ?? throw new MissingRequiredMemberException("EncryptionType"),
                 builder.KMSContext,
@@ -98,7 +74,7 @@ public static partial class EncryptionSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            Encryption value,
+            global::Com.Amazonaws.S3.Encryption value,
             ref TSerializer serializer
         )
         {
@@ -134,8 +110,8 @@ public static partial class EncryptionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ServerSideEncryption.FromValue(value0)
-                                : default(ServerSideEncryption)
+                                ? global::Com.Amazonaws.S3.ServerSideEncryption.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ServerSideEncryption)
                         );
                     break;
                 case 1:

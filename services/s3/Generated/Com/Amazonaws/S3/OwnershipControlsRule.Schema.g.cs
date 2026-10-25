@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class OwnershipControlsRuleSchema
 {
@@ -15,11 +15,13 @@ public static partial class OwnershipControlsRuleSchema
         public global::Com.Amazonaws.S3.ObjectOwnership? ObjectOwnership { get; set; }
     }
 
-    public static StructSchema<OwnershipControlsRule, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.OwnershipControlsRule,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OwnershipControlsRule, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.OwnershipControlsRule, Builder>(
             ShapeId.Parse("com.amazonaws.s3#OwnershipControlsRule"),
             [
                 new(
@@ -35,27 +37,22 @@ public static partial class OwnershipControlsRuleSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The container element for an ownership control rule.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectOwnership?> Target0 =
-            Schemas.Nullable(ObjectOwnershipSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectOwnershipSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OwnershipControlsRule Build(Builder builder) =>
-            new OwnershipControlsRule(
+        public override global::Com.Amazonaws.S3.OwnershipControlsRule Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.OwnershipControlsRule(
                 builder.ObjectOwnership
                     ?? throw new MissingRequiredMemberException("ObjectOwnership")
             );
 
         public override void SerializeMembers<TSerializer>(
-            OwnershipControlsRule value,
+            global::Com.Amazonaws.S3.OwnershipControlsRule value,
             ref TSerializer serializer
         )
         {

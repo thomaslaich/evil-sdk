@@ -6,23 +6,25 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsS3BucketDestinationSchema
 {
     public sealed class Builder
     {
-        public AnalyticsS3ExportFileFormat? Format { get; set; }
+        public global::Com.Amazonaws.S3.AnalyticsS3ExportFileFormat? Format { get; set; }
         public string? BucketAccountId { get; set; }
         public string? Bucket { get; set; }
         public string? Prefix { get; set; }
     }
 
-    public static StructSchema<AnalyticsS3BucketDestination, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnalyticsS3BucketDestination,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AnalyticsS3BucketDestination, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AnalyticsS3BucketDestination, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnalyticsS3BucketDestination"),
             [
                 new(
@@ -32,30 +34,12 @@ public static partial class AnalyticsS3BucketDestinationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the file format used when exporting data to Amazon S3.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "BucketAccountId",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not\n      validated before exporting data.</p>\n         <note>\n            <p> Although this value is optional, we strongly recommend that you set it to help prevent problems\n        if the destination bucket ownership changes. </p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("BucketAccountId", Target1),
                 new(
                     "Bucket",
                     Target2,
@@ -63,54 +47,37 @@ public static partial class AnalyticsS3BucketDestinationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the bucket to which data is exported.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Prefix",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix to use when exporting data. The prefix is prepended to all results.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains information about where to publish the analytics results.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<AnalyticsS3ExportFileFormat?> Target0 =
-            Schemas.Nullable(AnalyticsS3ExportFileFormatSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsS3ExportFileFormat?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(AnalyticsS3ExportFileFormatSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AnalyticsS3BucketDestination Build(Builder builder) =>
-            new AnalyticsS3BucketDestination(
+        public override global::Com.Amazonaws.S3.AnalyticsS3BucketDestination Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.AnalyticsS3BucketDestination(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Format ?? throw new MissingRequiredMemberException("Format"),
                 builder.BucketAccountId,
@@ -118,7 +85,7 @@ public static partial class AnalyticsS3BucketDestinationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AnalyticsS3BucketDestination value,
+            global::Com.Amazonaws.S3.AnalyticsS3BucketDestination value,
             ref TSerializer serializer
         )
         {
@@ -162,8 +129,10 @@ public static partial class AnalyticsS3BucketDestinationSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? AnalyticsS3ExportFileFormat.FromValue(value0)
-                                : default(AnalyticsS3ExportFileFormat)
+                                ? global::Com.Amazonaws.S3.AnalyticsS3ExportFileFormat.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.AnalyticsS3ExportFileFormat)
                         );
                     break;
                 case 1:

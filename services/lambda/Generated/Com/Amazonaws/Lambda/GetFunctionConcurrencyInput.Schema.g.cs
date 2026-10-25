@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetFunctionConcurrencyInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetFunctionConcurrencyInputSchema
         public string? FunctionName { get; set; }
     }
 
-    public static StructSchema<GetFunctionConcurrencyInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetFunctionConcurrencyInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetFunctionConcurrencyInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetFunctionConcurrencyInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetFunctionConcurrencyInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class GetFunctionConcurrencyInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name or ARN of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> – <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -43,8 +39,8 @@ public static partial class GetFunctionConcurrencyInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -58,10 +54,6 @@ public static partial class GetFunctionConcurrencyInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
@@ -71,10 +63,6 @@ public static partial class GetFunctionConcurrencyInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetFunctionConcurrencyRequest")
                 ),
@@ -82,17 +70,21 @@ public static partial class GetFunctionConcurrencyInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetFunctionConcurrencyInput Build(Builder builder) =>
-            new GetFunctionConcurrencyInput(
+        public override global::Com.Amazonaws.Lambda.GetFunctionConcurrencyInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetFunctionConcurrencyInput(
                 builder.FunctionName ?? throw new MissingRequiredMemberException("FunctionName")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetFunctionConcurrencyInput value,
+            global::Com.Amazonaws.Lambda.GetFunctionConcurrencyInput value,
             ref TSerializer serializer
         )
         {

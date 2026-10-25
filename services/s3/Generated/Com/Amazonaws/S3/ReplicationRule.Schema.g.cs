@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationRuleSchema
 {
@@ -15,33 +15,22 @@ public static partial class ReplicationRuleSchema
         public string? ID { get; set; }
         public int? Priority { get; set; }
         public string? Prefix { get; set; }
-        public ReplicationRuleFilter? Filter { get; set; }
-        public ReplicationRuleStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.ReplicationRuleFilter? Filter { get; set; }
+        public global::Com.Amazonaws.S3.ReplicationRuleStatus? Status { get; set; }
         public global::Com.Amazonaws.S3.SourceSelectionCriteria? SourceSelectionCriteria { get; set; }
         public global::Com.Amazonaws.S3.ExistingObjectReplication? ExistingObjectReplication { get; set; }
         public global::Com.Amazonaws.S3.Destination? Destination { get; set; }
         public global::Com.Amazonaws.S3.DeleteMarkerReplication? DeleteMarkerReplication { get; set; }
     }
 
-    public static StructSchema<ReplicationRule, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ReplicationRule, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReplicationRule, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ReplicationRule, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ReplicationRule"),
             [
-                new(
-                    "ID",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A unique identifier for the rule. The maximum value is 255 characters.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("ID", Target0),
                 new(
                     "Priority",
                     Target1,
@@ -51,31 +40,9 @@ public static partial class ReplicationRuleSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The priority indicates which rule has precedence whenever two or more replication rules conflict.\n      Amazon S3 will attempt to replicate objects according to all replication rules. However, if there are two or\n      more rules with the same destination bucket, then objects will be replicated according to the rule with\n      the highest priority. The higher the number, the higher the priority. </p>\n         <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html\">Replication</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "Prefix",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An object key name prefix that identifies the object or objects to which the rule applies. The\n      maximum prefix length is 1,024 characters. To include all objects in a bucket, specify an empty string.\n      </p>\n         <important>\n            <p>Replacement must be made for object keys containing special characters (such as carriage returns) when using \n         XML requests. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints\">\n            XML related object key constraints</a>.</p>\n         </important>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target2),
                 new("Filter", Target3),
                 new(
                     "Status",
@@ -84,53 +51,19 @@ public static partial class ReplicationRuleSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies whether the rule is enabled.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "SourceSelectionCriteria",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container that describes additional filters for identifying the source objects that you want to\n      replicate. You can choose to enable or disable the replication of these objects. Currently, Amazon S3\n      supports only the filter that you can specify for objects created with server-side encryption using a\n      customer managed key stored in Amazon Web Services Key Management Service (SSE-KMS).</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "ExistingObjectReplication",
-                    Target6,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Optional configuration to replicate existing source bucket objects. </p>\n         <note>\n            <p>This parameter is no longer supported. To replicate existing objects, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html\">Replicating\n          existing objects with S3 Batch Replication</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("SourceSelectionCriteria", Target5),
+                new("ExistingObjectReplication", Target6),
                 new(
                     "Destination",
                     Target7,
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A container for information about the replication destination and its configurations including\n      enabling the S3 Replication Time Control (S3 RTC).</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -139,40 +72,48 @@ public static partial class ReplicationRuleSchema
                 ),
                 new("DeleteMarkerReplication", Target8),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies which Amazon S3 objects to replicate and where to store the replicas.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ReplicationRuleFilter?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => ReplicationRuleFilterSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<ReplicationRuleStatus?> Target4 =
-            Schemas.Nullable(ReplicationRuleStatusSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationRuleFilter?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ReplicationRuleFilterSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ReplicationRuleStatus?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ReplicationRuleStatusSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SourceSelectionCriteria?> Target5 =
-            Schemas.NullableReference(Schemas.Lazy(() => SourceSelectionCriteriaSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => SourceSelectionCriteriaSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ExistingObjectReplication?> Target6 =
-            Schemas.NullableReference(Schemas.Lazy(() => ExistingObjectReplicationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ExistingObjectReplicationSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Destination?> Target7 =
-            Schemas.NullableReference(Schemas.Lazy(() => DestinationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => DestinationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.DeleteMarkerReplication?> Target8 =
-            Schemas.NullableReference(Schemas.Lazy(() => DeleteMarkerReplicationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteMarkerReplicationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReplicationRule Build(Builder builder) =>
-            new ReplicationRule(
+        public override global::Com.Amazonaws.S3.ReplicationRule Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ReplicationRule(
                 builder.Destination ?? throw new MissingRequiredMemberException("Destination"),
                 builder.Status ?? throw new MissingRequiredMemberException("Status"),
                 builder.DeleteMarkerReplication,
@@ -185,7 +126,7 @@ public static partial class ReplicationRuleSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ReplicationRule value,
+            global::Com.Amazonaws.S3.ReplicationRule value,
             ref TSerializer serializer
         )
         {
@@ -283,8 +224,8 @@ public static partial class ReplicationRuleSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value4
-                                ? ReplicationRuleStatus.FromValue(value4)
-                                : default(ReplicationRuleStatus)
+                                ? global::Com.Amazonaws.S3.ReplicationRuleStatus.FromValue(value4)
+                                : default(global::Com.Amazonaws.S3.ReplicationRuleStatus)
                         );
                     break;
                 case 5:

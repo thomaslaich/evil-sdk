@@ -5,34 +5,32 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoSuchKeySchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<NoSuchKey, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.NoSuchKey, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<NoSuchKey, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.NoSuchKey, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NoSuchKey"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The specified key does not exist.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)404)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override NoSuchKey Build(Builder builder) => new NoSuchKey(null);
+        public override global::Com.Amazonaws.S3.NoSuchKey Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.NoSuchKey(null);
 
         public override void SerializeMembers<TSerializer>(
-            NoSuchKey value,
+            global::Com.Amazonaws.S3.NoSuchKey value,
             ref TSerializer serializer
         ) { }
 

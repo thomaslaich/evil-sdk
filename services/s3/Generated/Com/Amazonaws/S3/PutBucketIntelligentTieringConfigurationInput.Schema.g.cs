@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketIntelligentTieringConfigurationInputSchema
 {
@@ -19,12 +19,15 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
     }
 
     public static StructSchema<
-        PutBucketIntelligentTieringConfigurationInput,
+        global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationInput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketIntelligentTieringConfigurationInput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationInput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#PutBucketIntelligentTieringConfigurationInput"),
             [
                 new(
@@ -33,12 +36,6 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -64,12 +61,6 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID used to identify the S3 Intelligent-Tiering configuration.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpQuery"), Document.From("id")),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
@@ -83,12 +74,6 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -100,12 +85,6 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for S3 Intelligent-Tiering configuration.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -136,20 +115,30 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.IntelligentTieringConfiguration?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => IntelligentTieringConfigurationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    IntelligentTieringConfigurationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketIntelligentTieringConfigurationInput Build(Builder builder) =>
-            new PutBucketIntelligentTieringConfigurationInput(
+        public override global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.IntelligentTieringConfiguration
@@ -158,7 +147,7 @@ public static partial class PutBucketIntelligentTieringConfigurationInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketIntelligentTieringConfigurationInput value,
+            global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationInput value,
             ref TSerializer serializer
         )
         {

@@ -6,80 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SelectObjectContentEventStreamSchema
 {
-    public static UnionSchema<SelectObjectContentEventStream> Schema { get; } =
+    public static UnionSchema<global::Com.Amazonaws.S3.SelectObjectContentEventStream> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : UnionSchema<SelectObjectContentEventStream>(
+        : UnionSchema<global::Com.Amazonaws.S3.SelectObjectContentEventStream>(
             ShapeId.Parse("com.amazonaws.s3#SelectObjectContentEventStream"),
             [
-                new(
-                    "Cont",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Continuation Event.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "End",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The End Event.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Progress",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Progress Event.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Records",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Records Event.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Stats",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The Stats Event.</p>")
-                        ),
-                    ]
-                ),
+                new("Cont", Target0),
+                new("End", Target1),
+                new("Progress", Target2),
+                new("Records", Target3),
+                new("Stats", Target4),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The container for selecting objects from a content event stream.</p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#streaming"),
                     Document.From(new Dictionary<string, Document> { })
@@ -87,38 +31,36 @@ public static partial class SelectObjectContentEventStreamSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ContinuationEvent> Target0 =
-            Schemas.Lazy(() => ContinuationEventSchema.Schema!);
-        private static readonly global::NSmithy.Core.Serde.Schema<EndEvent> Target1 = Schemas.Lazy(
-            () =>
-                EndEventSchema.Schema!
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<ProgressEvent> Target2 =
-            Schemas.Lazy(() => ProgressEventSchema.Schema!);
-        private static readonly global::NSmithy.Core.Serde.Schema<RecordsEvent> Target3 =
-            Schemas.Lazy(() => RecordsEventSchema.Schema!);
-        private static readonly global::NSmithy.Core.Serde.Schema<StatsEvent> Target4 =
-            Schemas.Lazy(() => StatsEventSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ContinuationEvent> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ContinuationEventSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EndEvent> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => EndEventSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ProgressEvent> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ProgressEventSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RecordsEvent> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => RecordsEventSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.StatsEvent> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => StatsEventSchema.Schema!);
 
-        public override int CaseOf(SelectObjectContentEventStream value) =>
+        public override int CaseOf(global::Com.Amazonaws.S3.SelectObjectContentEventStream value) =>
             value switch
             {
-                SelectObjectContentEventStream.Cont => 0,
-                SelectObjectContentEventStream.End => 1,
-                SelectObjectContentEventStream.Progress => 2,
-                SelectObjectContentEventStream.Records => 3,
-                SelectObjectContentEventStream.Stats => 4,
+                global::Com.Amazonaws.S3.SelectObjectContentEventStream.Cont => 0,
+                global::Com.Amazonaws.S3.SelectObjectContentEventStream.End => 1,
+                global::Com.Amazonaws.S3.SelectObjectContentEventStream.Progress => 2,
+                global::Com.Amazonaws.S3.SelectObjectContentEventStream.Records => 3,
+                global::Com.Amazonaws.S3.SelectObjectContentEventStream.Stats => 4,
                 _ => throw NoCaseMatched(),
             };
 
         public override void SerializeCase<TSerializer>(
-            SelectObjectContentEventStream value,
+            global::Com.Amazonaws.S3.SelectObjectContentEventStream value,
             ref TSerializer serializer
         )
         {
             switch (value)
             {
-                case SelectObjectContentEventStream.Cont @case:
+                case global::Com.Amazonaws.S3.SelectObjectContentEventStream.Cont @case:
                     if (@case.Value is { } value0)
                     {
                         serializer.WriteStruct(0, value0, ContinuationEventSchema.Schema);
@@ -128,7 +70,7 @@ public static partial class SelectObjectContentEventStreamSchema
                         serializer.WriteNull(0);
                     }
                     break;
-                case SelectObjectContentEventStream.End @case:
+                case global::Com.Amazonaws.S3.SelectObjectContentEventStream.End @case:
                     if (@case.Value is { } value1)
                     {
                         serializer.WriteStruct(1, value1, EndEventSchema.Schema);
@@ -138,7 +80,7 @@ public static partial class SelectObjectContentEventStreamSchema
                         serializer.WriteNull(1);
                     }
                     break;
-                case SelectObjectContentEventStream.Progress @case:
+                case global::Com.Amazonaws.S3.SelectObjectContentEventStream.Progress @case:
                     if (@case.Value is { } value2)
                     {
                         serializer.WriteStruct(2, value2, ProgressEventSchema.Schema);
@@ -148,7 +90,7 @@ public static partial class SelectObjectContentEventStreamSchema
                         serializer.WriteNull(2);
                     }
                     break;
-                case SelectObjectContentEventStream.Records @case:
+                case global::Com.Amazonaws.S3.SelectObjectContentEventStream.Records @case:
                     if (@case.Value is { } value3)
                     {
                         serializer.WriteStruct(3, value3, RecordsEventSchema.Schema);
@@ -158,7 +100,7 @@ public static partial class SelectObjectContentEventStreamSchema
                         serializer.WriteNull(3);
                     }
                     break;
-                case SelectObjectContentEventStream.Stats @case:
+                case global::Com.Amazonaws.S3.SelectObjectContentEventStream.Stats @case:
                     if (@case.Value is { } value4)
                     {
                         serializer.WriteStruct(4, value4, StatsEventSchema.Schema);
@@ -173,25 +115,25 @@ public static partial class SelectObjectContentEventStreamSchema
             }
         }
 
-        public override SelectObjectContentEventStream DeserializeCase<TDeserializer>(
+        public override global::Com.Amazonaws.S3.SelectObjectContentEventStream DeserializeCase<TDeserializer>(
             int index,
             ref TDeserializer deserializer
         ) =>
             index switch
             {
-                0 => new SelectObjectContentEventStream.Cont(
+                0 => new global::Com.Amazonaws.S3.SelectObjectContentEventStream.Cont(
                     (deserializer.ReadStruct(ContinuationEventSchema.Schema))!
                 ),
-                1 => new SelectObjectContentEventStream.End(
+                1 => new global::Com.Amazonaws.S3.SelectObjectContentEventStream.End(
                     (deserializer.ReadStruct(EndEventSchema.Schema))!
                 ),
-                2 => new SelectObjectContentEventStream.Progress(
+                2 => new global::Com.Amazonaws.S3.SelectObjectContentEventStream.Progress(
                     (deserializer.ReadStruct(ProgressEventSchema.Schema))!
                 ),
-                3 => new SelectObjectContentEventStream.Records(
+                3 => new global::Com.Amazonaws.S3.SelectObjectContentEventStream.Records(
                     (deserializer.ReadStruct(RecordsEventSchema.Schema))!
                 ),
-                4 => new SelectObjectContentEventStream.Stats(
+                4 => new global::Com.Amazonaws.S3.SelectObjectContentEventStream.Stats(
                     (deserializer.ReadStruct(StatsEventSchema.Schema))!
                 ),
                 _ => throw NoCaseMatched(),

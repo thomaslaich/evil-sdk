@@ -6,34 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketOwnershipControlsSchema
 {
     public static OperationSchema<
-        GetBucketOwnershipControlsInput,
-        GetBucketOwnershipControlsOutput
+        global::Com.Amazonaws.S3.GetBucketOwnershipControlsInput,
+        global::Com.Amazonaws.S3.GetBucketOwnershipControlsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketOwnershipControls"),
-            Schemas.Lazy(() => GetBucketOwnershipControlsInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketOwnershipControlsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketOwnershipControlsInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketOwnershipControlsOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Retrieves <code>OwnershipControls</code> for an Amazon S3 bucket. To use this operation, you must have\n      the <code>s3:GetBucketOwnershipControls</code> permission. For more information about Amazon S3 permissions,\n      see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html\">Specifying\n        permissions in a policy</a>. </p>\n         <note>\n            <p>A bucket doesn't have <code>OwnershipControls</code> settings in the following cases:</p>\n            <ul>\n               <li>\n                  <p>The bucket was created before the <code>BucketOwnerEnforced</code> ownership setting was\n            introduced and you've never explicitly applied this value</p>\n               </li>\n               <li>\n                  <p>You've manually deleted the bucket ownership control value using the\n              <code>DeleteBucketOwnershipControls</code> API operation.</p>\n               </li>\n            </ul>\n            <p>By default, Amazon S3 sets <code>OwnershipControls</code> for all newly created buckets.</p>\n         </note>\n         <p>For information about Amazon S3 Object Ownership, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html\">Using Object Ownership</a>. </p>\n         <p>The following operations are related to <code>GetBucketOwnershipControls</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a>PutBucketOwnershipControls</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a>DeleteBucketOwnershipControls</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?ownershipControls") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?ownershipControls") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

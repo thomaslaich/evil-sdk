@@ -5,34 +5,29 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class EndEventSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<EndEvent, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.EndEvent, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<EndEvent, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.EndEvent, Builder>(
             ShapeId.Parse("com.amazonaws.s3#EndEvent"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A message that indicates the request is complete and no more messages will be sent. You should not\n      assume that the request is complete until the client receives an <code>EndEvent</code>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override EndEvent Build(Builder builder) => new EndEvent();
+        public override global::Com.Amazonaws.S3.EndEvent Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.EndEvent();
 
         public override void SerializeMembers<TSerializer>(
-            EndEvent value,
+            global::Com.Amazonaws.S3.EndEvent value,
             ref TSerializer serializer
         ) { }
 

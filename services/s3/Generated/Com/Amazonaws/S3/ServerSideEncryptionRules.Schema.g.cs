@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ServerSideEncryptionRulesSchema
 {
     public static ListSchema<
-        ServerSideEncryptionRules,
-        ServerSideEncryptionRule,
-        List<ServerSideEncryptionRule>
+        IReadOnlyList<global::Com.Amazonaws.S3.ServerSideEncryptionRule>,
+        global::Com.Amazonaws.S3.ServerSideEncryptionRule,
+        List<global::Com.Amazonaws.S3.ServerSideEncryptionRule>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            ServerSideEncryptionRules,
-            ServerSideEncryptionRule,
-            List<ServerSideEncryptionRule>
+            IReadOnlyList<global::Com.Amazonaws.S3.ServerSideEncryptionRule>,
+            global::Com.Amazonaws.S3.ServerSideEncryptionRule,
+            List<global::Com.Amazonaws.S3.ServerSideEncryptionRule>
         >(
             ShapeId.Parse("com.amazonaws.s3#ServerSideEncryptionRules"),
             ShapeKind.List,
@@ -29,29 +29,31 @@ public static partial class ServerSideEncryptionRulesSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ServerSideEncryptionRule> Target0 =
-            Schemas.Lazy(() => ServerSideEncryptionRuleSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ServerSideEncryptionRule> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ServerSideEncryptionRuleSchema.Schema!);
 
-        public override IEnumerable<ServerSideEncryptionRule> GetElements(
-            ServerSideEncryptionRules value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.ServerSideEncryptionRule> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.ServerSideEncryptionRule> value
+        ) => value;
 
-        public override List<ServerSideEncryptionRule> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.ServerSideEncryptionRule> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<ServerSideEncryptionRule> builder,
-            ServerSideEncryptionRule value
+            List<global::Com.Amazonaws.S3.ServerSideEncryptionRule> builder,
+            global::Com.Amazonaws.S3.ServerSideEncryptionRule value
         ) => builder.Add(value);
 
-        public override ServerSideEncryptionRules Build(List<ServerSideEncryptionRule> builder) =>
-            ServerSideEncryptionRules.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.ServerSideEncryptionRule> Build(
+            List<global::Com.Amazonaws.S3.ServerSideEncryptionRule> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            ServerSideEncryptionRules value,
+            IReadOnlyList<global::Com.Amazonaws.S3.ServerSideEncryptionRule> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -66,7 +68,7 @@ public static partial class ServerSideEncryptionRulesSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<ServerSideEncryptionRule> builder,
+            List<global::Com.Amazonaws.S3.ServerSideEncryptionRule> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ServerSideEncryptionRuleSchema.Schema));
     }

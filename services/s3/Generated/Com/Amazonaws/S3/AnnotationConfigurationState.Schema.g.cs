@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationConfigurationStateSchema
 {
     public static global::NSmithy.Core.Serde.Schema<AnnotationConfigurationState> Schema { get; } =
-        Schemas.StringEnum<AnnotationConfigurationState>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<AnnotationConfigurationState>(
             ShapeId.Parse("com.amazonaws.s3#AnnotationConfigurationState"),
             values: ["ENABLED", "DISABLED"],
             traits:

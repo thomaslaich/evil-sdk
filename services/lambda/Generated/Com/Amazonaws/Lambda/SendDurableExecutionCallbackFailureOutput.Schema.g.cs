@@ -6,27 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SendDurableExecutionCallbackFailureOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<SendDurableExecutionCallbackFailureOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SendDurableExecutionCallbackFailureOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#SendDurableExecutionCallbackFailureOutput"),
             [],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -39,11 +40,12 @@ public static partial class SendDurableExecutionCallbackFailureOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override SendDurableExecutionCallbackFailureOutput Build(Builder builder) =>
-            new SendDurableExecutionCallbackFailureOutput();
+        public override global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureOutput();
 
         public override void SerializeMembers<TSerializer>(
-            SendDurableExecutionCallbackFailureOutput value,
+            global::Com.Amazonaws.Lambda.SendDurableExecutionCallbackFailureOutput value,
             ref TSerializer serializer
         ) { }
 

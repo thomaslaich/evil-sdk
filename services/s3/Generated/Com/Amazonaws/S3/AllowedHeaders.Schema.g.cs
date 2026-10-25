@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AllowedHeadersSchema
 {
-    public static ListSchema<AllowedHeaders, string, List<string>> Schema { get; } =
+    public static ListSchema<IReadOnlyList<string>, string, List<string>> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<AllowedHeaders, string, List<string>>(
+        : ListSchema<IReadOnlyList<string>, string, List<string>>(
             ShapeId.Parse("com.amazonaws.s3#AllowedHeaders"),
             ShapeKind.List,
             Target0,
@@ -22,23 +22,26 @@ public static partial class AllowedHeadersSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<string> GetElements(AllowedHeaders value) => value.Values;
+        public override IEnumerable<string> GetElements(IReadOnlyList<string> value) => value;
 
         public override List<string> CreateTypedBuilder() => new();
 
         public override void Add(List<string> builder, string value) => builder.Add(value);
 
-        public override AllowedHeaders Build(List<string> builder) =>
-            AllowedHeaders.FromOwnedList(builder);
+        public override IReadOnlyList<string> Build(List<string> builder) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            AllowedHeaders value,
+            IReadOnlyList<string> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)

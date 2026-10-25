@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SelectParametersSchema
 {
@@ -18,10 +18,11 @@ public static partial class SelectParametersSchema
         public global::Com.Amazonaws.S3.OutputSerialization? OutputSerialization { get; set; }
     }
 
-    public static StructSchema<SelectParameters, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.SelectParameters, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SelectParameters, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SelectParameters, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SelectParameters"),
             [
                 new(
@@ -30,12 +31,6 @@ public static partial class SelectParametersSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes the serialization format of the object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -49,12 +44,6 @@ public static partial class SelectParametersSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The type of the provided expression (for example, SQL).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -66,12 +55,6 @@ public static partial class SelectParametersSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<important>\n            <p>Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can\n        continue to use the feature as usual. <a href=\"http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/\">Learn more</a>\n            </p>\n         </important>\n         <p>The expression that is used to query the object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -85,41 +68,34 @@ public static partial class SelectParametersSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes how the results of the Select job are serialized.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<important>\n            <p>Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can\n        continue to use the feature as usual. <a href=\"http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/\">Learn more</a>\n            </p>\n         </important>\n         <p>Describes the parameters for Select job types.</p>\n         <p>Learn <a href=\"http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/\">How to\n        optimize querying your data in Amazon S3</a> using <a href=\"https://docs.aws.amazon.com/athena/latest/ug/what-is.html\">Amazon Athena</a>, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html\">S3 Object Lambda</a>, or client-side\n      filtering.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InputSerialization?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => InputSerializationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => InputSerializationSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ExpressionType?> Target1 =
-            Schemas.Nullable(ExpressionTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ExpressionTypeSchema.Schema);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.OutputSerialization?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => OutputSerializationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OutputSerializationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SelectParameters Build(Builder builder) =>
-            new SelectParameters(
+        public override global::Com.Amazonaws.S3.SelectParameters Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SelectParameters(
                 builder.Expression ?? throw new MissingRequiredMemberException("Expression"),
                 builder.ExpressionType
                     ?? throw new MissingRequiredMemberException("ExpressionType"),
@@ -130,7 +106,7 @@ public static partial class SelectParametersSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            SelectParameters value,
+            global::Com.Amazonaws.S3.SelectParameters value,
             ref TSerializer serializer
         )
         {

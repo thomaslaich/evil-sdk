@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketLifecycleConfigurationSchema
 {
     public sealed class Builder
     {
-        public LifecycleRules? Rules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule>? Rules { get; set; }
     }
 
-    public static StructSchema<BucketLifecycleConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.BucketLifecycleConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BucketLifecycleConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.BucketLifecycleConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#BucketLifecycleConfiguration"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class BucketLifecycleConfigurationSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A lifecycle rule for individual objects in an Amazon S3 bucket.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -46,28 +42,25 @@ public static partial class BucketLifecycleConfigurationSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the lifecycle configuration for objects in an Amazon S3 bucket. For more information, see\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html\">Object Lifecycle\n        Management</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<LifecycleRules?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => LifecycleRulesSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.LifecycleRule>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => LifecycleRulesSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override BucketLifecycleConfiguration Build(Builder builder) =>
-            new BucketLifecycleConfiguration(
+        public override global::Com.Amazonaws.S3.BucketLifecycleConfiguration Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.BucketLifecycleConfiguration(
                 builder.Rules ?? throw new MissingRequiredMemberException("Rules")
             );
 
         public override void SerializeMembers<TSerializer>(
-            BucketLifecycleConfiguration value,
+            global::Com.Amazonaws.S3.BucketLifecycleConfiguration value,
             ref TSerializer serializer
         )
         {

@@ -6,34 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectLegalHoldSchema
 {
     public static OperationSchema<
-        GetObjectLegalHoldInput,
-        GetObjectLegalHoldOutput
+        global::Com.Amazonaws.S3.GetObjectLegalHoldInput,
+        global::Com.Amazonaws.S3.GetObjectLegalHoldOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetObjectLegalHold"),
-            Schemas.Lazy(() => GetObjectLegalHoldInputSchema.Schema!),
-            Schemas.Lazy(() => GetObjectLegalHoldOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectLegalHoldInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectLegalHoldOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Gets an object's current legal hold status. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html\">Locking Objects</a>.</p>\n         <p>This functionality is not supported for Amazon S3 on Outposts.</p>\n         <p>The following action is related to <code>GetObjectLegalHold</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html\">GetObjectAttributes</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}/{Key+}?legal-hold") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?legal-hold") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

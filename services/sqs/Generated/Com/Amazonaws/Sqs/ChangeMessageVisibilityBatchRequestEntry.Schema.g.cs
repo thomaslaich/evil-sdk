@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ChangeMessageVisibilityBatchRequestEntrySchema
 {
@@ -17,11 +17,13 @@ public static partial class ChangeMessageVisibilityBatchRequestEntrySchema
         public int? VisibilityTimeout { get; set; }
     }
 
-    public static StructSchema<ChangeMessageVisibilityBatchRequestEntry, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ChangeMessageVisibilityBatchRequestEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ChangeMessageVisibilityBatchRequestEntry"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class ChangeMessageVisibilityBatchRequestEntrySchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An identifier for this particular receipt handle used to communicate the\n            result.</p>\n         <note>\n            <p>The <code>Id</code>s of a batch request need to be unique within a request.</p>\n            <p>This identifier can have up to 80 characters. The following characters are accepted: alphanumeric characters, hyphens(-), and underscores (_).</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -48,10 +44,6 @@ public static partial class ChangeMessageVisibilityBatchRequestEntrySchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A receipt handle.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -67,44 +59,36 @@ public static partial class ChangeMessageVisibilityBatchRequestEntrySchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The new value (in seconds) for the message's visibility timeout.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Encloses a receipt handle and an entry ID for each message in <code>\n               <a>ChangeMessageVisibilityBatch</a>.</code>\n         </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ChangeMessageVisibilityBatchRequestEntry Build(Builder builder) =>
-            new ChangeMessageVisibilityBatchRequestEntry(
+        public override global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry(
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.ReceiptHandle ?? throw new MissingRequiredMemberException("ReceiptHandle"),
                 builder.VisibilityTimeout
             );
 
         public override void SerializeMembers<TSerializer>(
-            ChangeMessageVisibilityBatchRequestEntry value,
+            global::Com.Amazonaws.Sqs.ChangeMessageVisibilityBatchRequestEntry value,
             ref TSerializer serializer
         )
         {

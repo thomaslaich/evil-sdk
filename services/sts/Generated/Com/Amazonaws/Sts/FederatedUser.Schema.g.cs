@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class FederatedUserSchema
 {
@@ -16,10 +16,11 @@ public static partial class FederatedUserSchema
         public string? Arn { get; set; }
     }
 
-    public static StructSchema<FederatedUser, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sts.FederatedUser, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<FederatedUser, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.FederatedUser, Builder>(
             ShapeId.Parse("com.amazonaws.sts#FederatedUser"),
             [
                 new(
@@ -29,18 +30,12 @@ public static partial class FederatedUserSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The string that identifies the federated user associated with the credentials, similar\n         to the unique ID of an IAM user.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)193) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(193m) },
                                 }
                             )
                         ),
@@ -61,18 +56,12 @@ public static partial class FederatedUserSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ARN that specifies the federated user that is associated with the credentials. For\n         more information about ARNs and how to use them in policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM\n            Identifiers</a> in the <i>IAM User Guide</i>. </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)20) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(20m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -89,32 +78,29 @@ public static partial class FederatedUserSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Identifiers for the federated user that is associated with the credentials.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override FederatedUser Build(Builder builder) =>
-            new FederatedUser(
+        public override global::Com.Amazonaws.Sts.FederatedUser Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.FederatedUser(
                 builder.Arn ?? throw new MissingRequiredMemberException("Arn"),
                 builder.FederatedUserId
                     ?? throw new MissingRequiredMemberException("FederatedUserId")
             );
 
         public override void SerializeMembers<TSerializer>(
-            FederatedUser value,
+            global::Com.Amazonaws.Sts.FederatedUser value,
             ref TSerializer serializer
         )
         {

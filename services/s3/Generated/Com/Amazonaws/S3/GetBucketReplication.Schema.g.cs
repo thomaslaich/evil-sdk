@@ -6,141 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketReplicationSchema
 {
     public static OperationSchema<
-        GetBucketReplicationInput,
-        GetBucketReplicationOutput
+        global::Com.Amazonaws.S3.GetBucketReplicationInput,
+        global::Com.Amazonaws.S3.GetBucketReplicationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketReplication"),
-            Schemas.Lazy(() => GetBucketReplicationInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketReplicationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketReplicationInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketReplicationOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Returns the replication configuration of a bucket.</p>\n         <note>\n            <p> It can take a while to propagate the put or delete a replication configuration to all Amazon S3\n        systems. Therefore, a get request soon after put or delete can return a wrong result. </p>\n         </note>\n         <p> For information about replication configuration, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html\">Replication</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p>This action requires permissions for the <code>s3:GetReplicationConfiguration</code> action. For\n      more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html\">Using Bucket Policies and User\n      Policies</a>.</p>\n         <p>If you include the <code>Filter</code> element in a replication configuration, you must also include\n      the <code>DeleteMarkerReplication</code> and <code>Priority</code> elements. The response also returns\n      those elements.</p>\n         <p>For information about <code>GetBucketReplication</code> errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ReplicationErrorCodeList\">List of replication-related\n        error codes</a>\n         </p>\n         <p>The following operations are related to <code>GetBucketReplication</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html\">PutBucketReplication</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html\">DeleteBucketReplication</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To get replication configuration set on a bucket"
-                                        )
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns replication configuration set on a bucket."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "ReplicationConfiguration",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "Rules",
-                                                                Document.From(
-                                                                    new Document[]
-                                                                    {
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "Status",
-                                                                                    Document.From(
-                                                                                        "Enabled"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Prefix",
-                                                                                    Document.From(
-                                                                                        "Tax"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Destination",
-                                                                                    Document.From(
-                                                                                        new Dictionary<
-                                                                                            string,
-                                                                                            Document
-                                                                                        >
-                                                                                        {
-                                                                                            {
-                                                                                                "Bucket",
-                                                                                                Document.From(
-                                                                                                    "arn:aws:s3:::destination-bucket"
-                                                                                                )
-                                                                                            },
-                                                                                        }
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "ID",
-                                                                                    Document.From(
-                                                                                        "MWIwNTkwZmItMTE3MS00ZTc3LWJkZDEtNzRmODQwYzc1OTQy"
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                    }
-                                                                )
-                                                            },
-                                                            {
-                                                                "Role",
-                                                                Document.From(
-                                                                    "arn:aws:iam::acct-id:role/example-role"
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?replication") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?replication") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

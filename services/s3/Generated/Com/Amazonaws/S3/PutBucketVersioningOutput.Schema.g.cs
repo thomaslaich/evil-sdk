@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketVersioningOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketVersioningOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketVersioningOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketVersioningOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketVersioningOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketVersioningOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class PutBucketVersioningOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketVersioningOutput Build(Builder builder) =>
-            new PutBucketVersioningOutput();
+        public override global::Com.Amazonaws.S3.PutBucketVersioningOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketVersioningOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketVersioningOutput value,
+            global::Com.Amazonaws.S3.PutBucketVersioningOutput value,
             ref TSerializer serializer
         ) { }
 

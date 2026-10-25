@@ -6,44 +6,43 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListQueuesSchema
 {
-    public static OperationSchema<ListQueuesInput, ListQueuesOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.ListQueuesInput,
+        global::Com.Amazonaws.Sqs.ListQueuesOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#ListQueues"),
-            Schemas.Lazy(() => ListQueuesInputSchema.Schema!),
-            Schemas.Lazy(() => ListQueuesOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListQueuesInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListQueuesOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns a list of your queues in the current region. The response includes a maximum\n            of 1,000 results. If you specify a value for the optional <code>QueueNamePrefix</code>\n            parameter, only queues with a name that begins with the specified value are\n            returned.</p>\n         <p> The <code>listQueues</code> methods supports pagination. Set parameter\n                <code>MaxResults</code> in the request to specify the maximum number of results to\n            be returned in the response. If you do not set <code>MaxResults</code>, the response\n            includes a maximum of 1,000 results. If you set <code>MaxResults</code> and there are\n            additional results to display, the response includes a value for <code>NextToken</code>.\n            Use <code>NextToken</code> as a parameter in your next request to\n                <code>listQueues</code> to receive the next page of results. </p>\n         <note>\n            <p>Cross-account permissions don't apply to this action. For more information, \nsee <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name\">Grant \ncross-account permissions to a role and a username</a> in the <i>Amazon SQS Developer Guide</i>.</p>\n         </note>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#paginated"),
                     Document.From(

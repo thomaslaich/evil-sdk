@@ -5,37 +5,31 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ContextStartedDetailsSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<ContextStartedDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ContextStartedDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ContextStartedDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ContextStartedDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ContextStartedDetails"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Details about a context that has started.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override ContextStartedDetails Build(Builder builder) => new ContextStartedDetails();
+        public override global::Com.Amazonaws.Lambda.ContextStartedDetails Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.ContextStartedDetails();
 
         public override void SerializeMembers<TSerializer>(
-            ContextStartedDetails value,
+            global::Com.Amazonaws.Lambda.ContextStartedDetails value,
             ref TSerializer serializer
         ) { }
 

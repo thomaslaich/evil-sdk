@@ -6,61 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketTaggingSchema
 {
     public static OperationSchema<
-        DeleteBucketTaggingInput,
-        DeleteBucketTaggingOutput
+        global::Com.Amazonaws.S3.DeleteBucketTaggingInput,
+        global::Com.Amazonaws.S3.DeleteBucketTaggingOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketTagging"),
-            Schemas.Lazy(() => DeleteBucketTaggingInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteBucketTaggingOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteBucketTaggingInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteBucketTaggingOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Deletes tags from the general purpose bucket if attribute based access control (ABAC) is not enabled for the bucket. When you <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging-enable-abac.html\">enable ABAC for a general purpose bucket</a>, you can no longer use this operation for that bucket and must use <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UntagResource.html\">UntagResource</a> instead.</p>\n         <p>To use this operation, you must have permission to perform the <code>s3:PutBucketTagging</code>\n      action. By default, the bucket owner has this permission and can grant this permission to others. </p>\n         <p>The following operations are related to <code>DeleteBucketTagging</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html\">GetBucketTagging</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html\">PutBucketTagging</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To delete bucket tags") },
-                                    {
-                                        "documentation",
-                                        Document.From("The following example deletes bucket tags.")
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}?tagging") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/?tagging") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

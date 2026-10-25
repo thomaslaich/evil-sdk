@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PartitionDateSourceSchema
 {
     public static global::NSmithy.Core.Serde.Schema<PartitionDateSource> Schema { get; } =
-        Schemas.StringEnum<PartitionDateSource>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<PartitionDateSource>(
             ShapeId.Parse("com.amazonaws.s3#PartitionDateSource"),
             values: ["EventTime", "DeliveryTime"],
             traits:

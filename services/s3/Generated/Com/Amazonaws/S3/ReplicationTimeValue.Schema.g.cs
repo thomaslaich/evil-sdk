@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ReplicationTimeValueSchema
 {
@@ -15,11 +15,13 @@ public static partial class ReplicationTimeValueSchema
         public int? Minutes { get; set; }
     }
 
-    public static StructSchema<ReplicationTimeValue, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ReplicationTimeValue,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ReplicationTimeValue, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ReplicationTimeValue, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ReplicationTimeValue"),
             [
                 new(
@@ -31,36 +33,22 @@ public static partial class ReplicationTimeValueSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p> Contains an integer specifying time in minutes. </p>\n         <p> Valid value: 15</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> A container specifying the time value for S3 Replication Time Control (S3 RTC) and replication metrics\n        <code>EventThreshold</code>. </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ReplicationTimeValue Build(Builder builder) =>
-            new ReplicationTimeValue(builder.Minutes);
+        public override global::Com.Amazonaws.S3.ReplicationTimeValue Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ReplicationTimeValue(builder.Minutes);
 
         public override void SerializeMembers<TSerializer>(
-            ReplicationTimeValue value,
+            global::Com.Amazonaws.S3.ReplicationTimeValue value,
             ref TSerializer serializer
         )
         {

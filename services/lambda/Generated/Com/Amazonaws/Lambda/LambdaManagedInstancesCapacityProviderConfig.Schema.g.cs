@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LambdaManagedInstancesCapacityProviderConfigSchema
 {
@@ -18,12 +18,15 @@ public static partial class LambdaManagedInstancesCapacityProviderConfigSchema
     }
 
     public static StructSchema<
-        LambdaManagedInstancesCapacityProviderConfig,
+        global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<LambdaManagedInstancesCapacityProviderConfig, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#LambdaManagedInstancesCapacityProviderConfig"),
             [
                 new(
@@ -33,18 +36,12 @@ public static partial class LambdaManagedInstancesCapacityProviderConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -58,10 +55,6 @@ public static partial class LambdaManagedInstancesCapacityProviderConfigSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -74,24 +67,14 @@ public static partial class LambdaManagedInstancesCapacityProviderConfigSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The maximum number of concurrent execution environments that can run on each compute instance.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1600) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1600m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -105,54 +88,36 @@ public static partial class LambdaManagedInstancesCapacityProviderConfigSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The amount of memory in GiB allocated per vCPU for execution environments.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)8) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(8m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration for Lambda-managed instances used by the capacity provider.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<double?> Target2 =
-            Schemas.Nullable(Schemas.Double);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Double);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override LambdaManagedInstancesCapacityProviderConfig Build(Builder builder) =>
-            new LambdaManagedInstancesCapacityProviderConfig(
+        public override global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig(
                 builder.CapacityProviderArn
                     ?? throw new MissingRequiredMemberException("CapacityProviderArn"),
                 builder.ExecutionEnvironmentMemoryGiBPerVCpu,
@@ -160,7 +125,7 @@ public static partial class LambdaManagedInstancesCapacityProviderConfigSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            LambdaManagedInstancesCapacityProviderConfig value,
+            global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig value,
             ref TSerializer serializer
         )
         {

@@ -5,54 +5,52 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class AddPermissionSchema
 {
-    public static OperationSchema<AddPermissionInput, AddPermissionOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.AddPermissionInput,
+        global::Com.Amazonaws.Sqs.AddPermissionOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#AddPermission"),
-            Schemas.Lazy(() => AddPermissionInputSchema.Schema!),
-            Schemas.Lazy(() => AddPermissionOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => AddPermissionInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => AddPermissionOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#OverLimit"),
-                    Schemas.Lazy(() => OverLimitSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => OverLimitSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Adds a permission to a queue for a specific <a href=\"https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P\">principal</a>. This allows sharing\n            access to the queue.</p>\n         <p>When you create a queue, you have full control access rights for the queue. Only you,\n            the owner of the queue, can grant or deny permissions to the queue. For more information\n            about these permissions, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-writing-an-sqs-policy.html#write-messages-to-shared-queue\">Allow Developers to Write Messages to a Shared Queue</a> in the <i>Amazon SQS\n                Developer Guide</i>.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <code>AddPermission</code> generates a policy for you. You can use\n                                <code>\n                        <a>SetQueueAttributes</a>\n                     </code> to upload your\n                        policy. For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-creating-custom-policies.html\">Using Custom Policies with the Amazon SQS Access Policy Language</a> in\n                        the <i>Amazon SQS Developer Guide</i>.</p>\n               </li>\n               <li>\n                  <p>An Amazon SQS policy can have a maximum of seven actions per statement.</p>\n               </li>\n               <li>\n                  <p>To remove the ability to change queue permissions, you must deny permission to the <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetQueueAttributes</code> actions in your IAM policy.</p>\n               </li>\n               <li>\n                  <p>Amazon SQS <code>AddPermission</code> does not support adding a non-account\n                        principal.</p>\n               </li>\n            </ul>\n         </note>\n         <note>\n            <p>Cross-account permissions don't apply to this action. For more information, \nsee <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name\">Grant \ncross-account permissions to a role and a username</a> in the <i>Amazon SQS Developer Guide</i>.</p>\n         </note>"
-                    )
-                ),
-            ]
+            null
         );
 }

@@ -6,51 +6,48 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LayersListSchema
 {
-    public static ListSchema<LayersList, LayersListItem, List<LayersListItem>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.Lambda.LayersListItem>,
+        global::Com.Amazonaws.Lambda.LayersListItem,
+        List<global::Com.Amazonaws.Lambda.LayersListItem>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<LayersList, LayersListItem, List<LayersListItem>>(
-            ShapeId.Parse("com.amazonaws.lambda#LayersList"),
-            ShapeKind.List,
-            Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.LayersListItem>,
+            global::Com.Amazonaws.Lambda.LayersListItem,
+            List<global::Com.Amazonaws.Lambda.LayersListItem>
+        >(ShapeId.Parse("com.amazonaws.lambda#LayersList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<LayersListItem> Target0 =
-            Schemas.Lazy(() => LayersListItemSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.LayersListItem> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => LayersListItemSchema.Schema!);
 
-        public override IEnumerable<LayersListItem> GetElements(LayersList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.LayersListItem> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.LayersListItem> value
+        ) => value;
 
-        public override List<LayersListItem> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.LayersListItem> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<LayersListItem> builder, LayersListItem value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.LayersListItem> builder,
+            global::Com.Amazonaws.Lambda.LayersListItem value
+        ) => builder.Add(value);
 
-        public override LayersList Build(List<LayersListItem> builder) =>
-            LayersList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.LayersListItem> Build(
+            List<global::Com.Amazonaws.Lambda.LayersListItem> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            LayersList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.LayersListItem> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -65,7 +62,7 @@ public static partial class LayersListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<LayersListItem> builder,
+            List<global::Com.Amazonaws.Lambda.LayersListItem> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(LayersListItemSchema.Schema));
     }

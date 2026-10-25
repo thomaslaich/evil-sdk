@@ -6,105 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketTaggingSchema
 {
-    public static OperationSchema<GetBucketTaggingInput, GetBucketTaggingOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.GetBucketTaggingInput,
+        global::Com.Amazonaws.S3.GetBucketTaggingOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketTagging"),
-            Schemas.Lazy(() => GetBucketTaggingInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketTaggingOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketTaggingInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketTaggingOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Returns the tag set associated with the general purpose bucket.</p>\n         <p>To use this operation, you must have permission to perform the <code>s3:GetBucketTagging</code>\n      action. By default, the bucket owner has this permission and can grant this permission to others.</p>\n         <p>\n            <code>GetBucketTagging</code> has the following special error:</p>\n         <ul>\n            <li>\n               <p>Error code: <code>NoSuchTagSet</code>\n               </p>\n               <ul>\n                  <li>\n                     <p>Description: There is no tag set associated with the bucket.</p>\n                  </li>\n               </ul>\n            </li>\n         </ul>\n         <p>The following operations are related to <code>GetBucketTagging</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html\">PutBucketTagging</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html\">DeleteBucketTagging</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("To get tag set associated with a bucket")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns tag set associated with a bucket"
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "TagSet",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "Value",
-                                                                        Document.From("value1")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From("key1")
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "Value",
-                                                                        Document.From("value2")
-                                                                    },
-                                                                    {
-                                                                        "Key",
-                                                                        Document.From("key2")
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?tagging") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?tagging") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

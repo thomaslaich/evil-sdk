@@ -6,47 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetricsAndOperatorSchema
 {
     public sealed class Builder
     {
         public string? Prefix { get; set; }
-        public TagSet? Tags { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tag>? Tags { get; set; }
         public string? AccessPointArn { get; set; }
     }
 
-    public static StructSchema<MetricsAndOperator, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.MetricsAndOperator,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MetricsAndOperator, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.MetricsAndOperator, Builder>(
             ShapeId.Parse("com.amazonaws.s3#MetricsAndOperator"),
             [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix used when evaluating an AND predicate.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Prefix", Target0),
                 new(
                     "Tags",
                     Target1,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The list of tags used when evaluating an AND predicate.</p>\n         <note>\n            <p>\n               <code>Tag</code> filters are not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -54,44 +39,35 @@ public static partial class MetricsAndOperatorSchema
                         new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("Tag")),
                     ]
                 ),
-                new(
-                    "AccessPointArn",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The access point ARN used when evaluating an <code>AND</code> predicate.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("AccessPointArn", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The\n      operator must have at least two predicates, and an object must match all of the predicates in order for\n      the filter to apply.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<TagSet?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSetSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tag>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSetSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MetricsAndOperator Build(Builder builder) =>
-            new MetricsAndOperator(builder.AccessPointArn, builder.Prefix, builder.Tags);
+        public override global::Com.Amazonaws.S3.MetricsAndOperator Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.MetricsAndOperator(
+                builder.AccessPointArn,
+                builder.Prefix,
+                builder.Tags
+            );
 
         public override void SerializeMembers<TSerializer>(
-            MetricsAndOperator value,
+            global::Com.Amazonaws.S3.MetricsAndOperator value,
             ref TSerializer serializer
         )
         {

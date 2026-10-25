@@ -6,57 +6,54 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class LayerVersionsListSchema
 {
     public static ListSchema<
-        LayerVersionsList,
-        LayerVersionsListItem,
-        List<LayerVersionsListItem>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.LayerVersionsListItem>,
+        global::Com.Amazonaws.Lambda.LayerVersionsListItem,
+        List<global::Com.Amazonaws.Lambda.LayerVersionsListItem>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<LayerVersionsList, LayerVersionsListItem, List<LayerVersionsListItem>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.LayerVersionsListItem>,
+            global::Com.Amazonaws.Lambda.LayerVersionsListItem,
+            List<global::Com.Amazonaws.Lambda.LayerVersionsListItem>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#LayerVersionsList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<LayerVersionsListItem> Target0 =
-            Schemas.Lazy(() => LayerVersionsListItemSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.LayerVersionsListItem> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => LayerVersionsListItemSchema.Schema!);
 
-        public override IEnumerable<LayerVersionsListItem> GetElements(LayerVersionsList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.LayerVersionsListItem> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.LayerVersionsListItem> value
+        ) => value;
 
-        public override List<LayerVersionsListItem> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.LayerVersionsListItem> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<LayerVersionsListItem> builder,
-            LayerVersionsListItem value
+            List<global::Com.Amazonaws.Lambda.LayerVersionsListItem> builder,
+            global::Com.Amazonaws.Lambda.LayerVersionsListItem value
         ) => builder.Add(value);
 
-        public override LayerVersionsList Build(List<LayerVersionsListItem> builder) =>
-            LayerVersionsList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.LayerVersionsListItem> Build(
+            List<global::Com.Amazonaws.Lambda.LayerVersionsListItem> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            LayerVersionsList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.LayerVersionsListItem> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -71,7 +68,7 @@ public static partial class LayerVersionsListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<LayerVersionsListItem> builder,
+            List<global::Com.Amazonaws.Lambda.LayerVersionsListItem> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(LayerVersionsListItemSchema.Schema));
     }

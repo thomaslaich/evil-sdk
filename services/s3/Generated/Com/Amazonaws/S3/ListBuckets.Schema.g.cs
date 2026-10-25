@@ -6,128 +6,20 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketsSchema
 {
-    public static OperationSchema<ListBucketsInput, ListBucketsOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.ListBucketsInput,
+        global::Com.Amazonaws.S3.ListBucketsOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#ListBuckets"),
-            Schemas.Lazy(() => ListBucketsInputSchema.Schema!),
-            Schemas.Lazy(() => ListBucketsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListBucketsInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListBucketsOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Returns a list of all buckets owned by the authenticated sender of the request. To grant IAM\n      permission to use this operation, you must add the <code>s3:ListAllMyBuckets</code> policy action. </p>\n         <p>For information about Amazon S3 buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html\">Creating, configuring, and working with Amazon S3\n        buckets</a>.</p>\n         <important>\n            <p>We strongly recommend using only paginated <code>ListBuckets</code> requests. Unpaginated\n          <code>ListBuckets</code> requests are only supported for Amazon Web Services accounts set to the default general\n        purpose bucket quota of 10,000. If you have an approved general purpose bucket quota above 10,000, you\n        must send paginated <code>ListBuckets</code> requests to list your account’s buckets. All unpaginated\n          <code>ListBuckets</code> requests will be rejected for Amazon Web Services accounts with a general purpose bucket\n        quota greater than 10,000. </p>\n         </important>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To list all buckets") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns all the buckets owned by the sender of this request."
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "Owner",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "DisplayName",
-                                                                Document.From("own-display-name")
-                                                            },
-                                                            {
-                                                                "ID",
-                                                                Document.From(
-                                                                    "examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484be31"
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                                {
-                                                    "Buckets",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "CreationDate",
-                                                                        Document.From(
-                                                                            "2012-02-15T21:03:02.000Z"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Name",
-                                                                        Document.From(
-                                                                            "examplebucket"
-                                                                        )
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "CreationDate",
-                                                                        Document.From(
-                                                                            "2011-07-24T19:33:50.000Z"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Name",
-                                                                        Document.From(
-                                                                            "examplebucket2"
-                                                                        )
-                                                                    },
-                                                                }
-                                                            ),
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "CreationDate",
-                                                                        Document.From(
-                                                                            "2010-12-17T00:56:49.000Z"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "Name",
-                                                                        Document.From(
-                                                                            "examplebucket3"
-                                                                        )
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -135,7 +27,7 @@ public static partial class ListBucketsSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/?x-id=ListBuckets") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

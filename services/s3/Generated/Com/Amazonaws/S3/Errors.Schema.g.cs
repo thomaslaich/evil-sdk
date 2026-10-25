@@ -6,40 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ErrorsSchema
 {
-    public static ListSchema<Errors, Error, List<Error>> Schema { get; } = new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.Error>,
+        global::Com.Amazonaws.S3.Error,
+        List<global::Com.Amazonaws.S3.Error>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<Errors, Error, List<Error>>(
-            ShapeId.Parse("com.amazonaws.s3#Errors"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.Error>,
+            global::Com.Amazonaws.S3.Error,
+            List<global::Com.Amazonaws.S3.Error>
+        >(ShapeId.Parse("com.amazonaws.s3#Errors"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Error> Target0 = Schemas.Lazy(
-            () =>
-                ErrorSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Error> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorSchema.Schema!);
 
-        public override IEnumerable<Error> GetElements(Errors value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.Error> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.Error> value
+        ) => value;
 
-        public override List<Error> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.Error> CreateTypedBuilder() => new();
 
-        public override void Add(List<Error> builder, Error value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.Error> builder,
+            global::Com.Amazonaws.S3.Error value
+        ) => builder.Add(value);
 
-        public override Errors Build(List<Error> builder) => Errors.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.Error> Build(
+            List<global::Com.Amazonaws.S3.Error> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            Errors value,
+            IReadOnlyList<global::Com.Amazonaws.S3.Error> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -54,7 +61,7 @@ public static partial class ErrorsSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Error> builder,
+            List<global::Com.Amazonaws.S3.Error> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(ErrorSchema.Schema));
     }

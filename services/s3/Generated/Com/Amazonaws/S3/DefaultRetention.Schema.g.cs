@@ -6,37 +6,26 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DefaultRetentionSchema
 {
     public sealed class Builder
     {
-        public ObjectLockRetentionMode? Mode { get; set; }
+        public global::Com.Amazonaws.S3.ObjectLockRetentionMode? Mode { get; set; }
         public int? Days { get; set; }
         public int? Years { get; set; }
-        public EventHoldDuration? DefaultEventHold { get; set; }
+        public global::Com.Amazonaws.S3.EventHoldDuration? DefaultEventHold { get; set; }
     }
 
-    public static StructSchema<DefaultRetention, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.DefaultRetention, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DefaultRetention, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DefaultRetention, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DefaultRetention"),
             [
-                new(
-                    "Mode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The default Object Lock retention mode you want to apply to new objects placed in the specified\n      bucket. Must be used with either <code>Days</code> or <code>Years</code>.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Mode", Target0),
                 new(
                     "Days",
                     Target1,
@@ -45,12 +34,6 @@ public static partial class DefaultRetentionSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of days that you want to specify for the default retention period. Must be used with\n        <code>Mode</code>.</p>"
-                            )
                         ),
                     ]
                 ),
@@ -63,53 +46,28 @@ public static partial class DefaultRetentionSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of years that you want to specify for the default retention period. Must be used with\n        <code>Mode</code>.</p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "DefaultEventHold",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The default event hold duration to be applied to new objects placed in the specified bucket. When\n      configured, new objects will automatically have an event hold enabled with this duration.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("DefaultEventHold", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The container element for optionally specifying the default Object Lock retention settings for new\n      objects placed in the specified bucket.</p>\n         <note>\n            <ul>\n               <li>\n                  <p>The <code>DefaultRetention</code> settings require both a mode and a period.</p>\n               </li>\n               <li>\n                  <p>The <code>DefaultRetention</code> period can be either <code>Days</code> or <code>Years</code>\n            but you must select one. You cannot specify <code>Days</code> and <code>Years</code> at the same\n            time.</p>\n               </li>\n            </ul>\n         </note>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ObjectLockRetentionMode?> Target0 =
-            Schemas.Nullable(ObjectLockRetentionModeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<EventHoldDuration?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventHoldDurationSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ObjectLockRetentionMode?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ObjectLockRetentionModeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.EventHoldDuration?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventHoldDurationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DefaultRetention Build(Builder builder) =>
-            new DefaultRetention(
+        public override global::Com.Amazonaws.S3.DefaultRetention Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DefaultRetention(
                 builder.Days,
                 builder.DefaultEventHold,
                 builder.Mode,
@@ -117,7 +75,7 @@ public static partial class DefaultRetentionSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            DefaultRetention value,
+            global::Com.Amazonaws.S3.DefaultRetention value,
             ref TSerializer serializer
         )
         {
@@ -168,8 +126,8 @@ public static partial class DefaultRetentionSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? ObjectLockRetentionMode.FromValue(value0)
-                                : default(ObjectLockRetentionMode)
+                                ? global::Com.Amazonaws.S3.ObjectLockRetentionMode.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.ObjectLockRetentionMode)
                         );
                     break;
                 case 1:

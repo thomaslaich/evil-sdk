@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AbortIncompleteMultipartUploadSchema
 {
@@ -15,11 +15,13 @@ public static partial class AbortIncompleteMultipartUploadSchema
         public int? DaysAfterInitiation { get; set; }
     }
 
-    public static StructSchema<AbortIncompleteMultipartUpload, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AbortIncompleteMultipartUpload,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AbortIncompleteMultipartUpload, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.AbortIncompleteMultipartUpload, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AbortIncompleteMultipartUpload"),
             [
                 new(
@@ -31,36 +33,26 @@ public static partial class AbortIncompleteMultipartUploadSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload.</p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before\n      permanently removing all parts of the upload. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config\"> Aborting\n        Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration</a> in the\n        <i>Amazon S3 User Guide</i>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AbortIncompleteMultipartUpload Build(Builder builder) =>
-            new AbortIncompleteMultipartUpload(builder.DaysAfterInitiation);
+        public override global::Com.Amazonaws.S3.AbortIncompleteMultipartUpload Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.AbortIncompleteMultipartUpload(
+                builder.DaysAfterInitiation
+            );
 
         public override void SerializeMembers<TSerializer>(
-            AbortIncompleteMultipartUpload value,
+            global::Com.Amazonaws.S3.AbortIncompleteMultipartUpload value,
             ref TSerializer serializer
         )
         {

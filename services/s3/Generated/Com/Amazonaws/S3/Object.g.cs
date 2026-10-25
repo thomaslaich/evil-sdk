@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.S3;
 
@@ -79,7 +80,7 @@ namespace Com.Amazonaws.S3;
 /// &lt;/note&gt;
 /// </param>
 public sealed record class Object(
-    ChecksumAlgorithmList? ChecksumAlgorithm = null,
+    IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm = null,
     global::Com.Amazonaws.S3.ChecksumType? ChecksumType = null,
     string? ETag = null,
     string? Key = null,

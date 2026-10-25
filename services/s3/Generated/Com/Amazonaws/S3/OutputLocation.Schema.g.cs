@@ -5,54 +5,37 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class OutputLocationSchema
 {
     public sealed class Builder
     {
-        public S3Location? S3 { get; set; }
+        public global::Com.Amazonaws.S3.S3Location? S3 { get; set; }
     }
 
-    public static StructSchema<OutputLocation, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.OutputLocation, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OutputLocation, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.OutputLocation, Builder>(
             ShapeId.Parse("com.amazonaws.s3#OutputLocation"),
-            [
-                new(
-                    "S3",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Describes an S3 location that will receive the results of the restore request.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Describes the location where the restore job's output is stored.</p>"
-                    )
-                ),
-            ]
+            [new("S3", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<S3Location?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => S3LocationSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.S3Location?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => S3LocationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OutputLocation Build(Builder builder) => new OutputLocation(builder.S3);
+        public override global::Com.Amazonaws.S3.OutputLocation Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.OutputLocation(builder.S3);
 
         public override void SerializeMembers<TSerializer>(
-            OutputLocation value,
+            global::Com.Amazonaws.S3.OutputLocation value,
             ref TSerializer serializer
         )
         {

@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class OwnershipControlsSchema
 {
     public sealed class Builder
     {
-        public OwnershipControlsRules? Rules { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.OwnershipControlsRule>? Rules { get; set; }
     }
 
-    public static StructSchema<OwnershipControls, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.OwnershipControls,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<OwnershipControls, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.OwnershipControls, Builder>(
             ShapeId.Parse("com.amazonaws.s3#OwnershipControls"),
             [
                 new(
@@ -27,12 +30,6 @@ public static partial class OwnershipControlsSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The container element for an ownership control rule.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -45,26 +42,23 @@ public static partial class OwnershipControlsSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The container element for a bucket's ownership controls.</p>")
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<OwnershipControlsRules?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnershipControlsRulesSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.OwnershipControlsRule>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnershipControlsRulesSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override OwnershipControls Build(Builder builder) =>
-            new OwnershipControls(
+        public override global::Com.Amazonaws.S3.OwnershipControls Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.OwnershipControls(
                 builder.Rules ?? throw new MissingRequiredMemberException("Rules")
             );
 
         public override void SerializeMembers<TSerializer>(
-            OwnershipControls value,
+            global::Com.Amazonaws.S3.OwnershipControls value,
             ref TSerializer serializer
         )
         {

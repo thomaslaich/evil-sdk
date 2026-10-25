@@ -6,42 +6,38 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListObjectAnnotationsSchema
 {
     public static OperationSchema<
-        ListObjectAnnotationsInput,
-        ListObjectAnnotationsOutput
+        global::Com.Amazonaws.S3.ListObjectAnnotationsInput,
+        global::Com.Amazonaws.S3.ListObjectAnnotationsOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#ListObjectAnnotations"),
-            Schemas.Lazy(() => ListObjectAnnotationsInputSchema.Schema!),
-            Schemas.Lazy(() => ListObjectAnnotationsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListObjectAnnotationsInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                ListObjectAnnotationsOutputSchema.Schema!
+            ),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#InvalidPrefix"),
-                    Schemas.Lazy(() => InvalidPrefixSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidPrefixSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchBucket"),
-                    Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchKey"),
-                    Schemas.Lazy(() => NoSuchKeySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchKeySchema.Schema!),
                     404
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lists the annotations attached to an Amazon S3 object. Results are paginated, with a maximum of\n      1,000 annotations per object. Use the <code>AnnotationPrefix</code> parameter to filter the\n      results by name prefix.</p>\n         <p>To use this operation, you must have the <code>s3:ListObjectAnnotations</code> permission.</p>\n         <note>\n            <p>Annotations are not supported by the following features: S3 Inventory Reports,\n      API Gateway, S3 Storage Lens, Amazon S3 File Gateway, Amazon FSx, S3 on Outposts, and\n      S3 Express One Zone (directory buckets).</p>\n         </note>\n         <p>The following operations are related to <code>ListObjectAnnotations</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAnnotation.html\">PutObjectAnnotation</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAnnotation.html\">GetObjectAnnotation</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectAnnotation.html\">DeleteObjectAnnotation</a>\n               </p>\n            </li>\n         </ul>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -50,11 +46,9 @@ public static partial class ListObjectAnnotationsSchema
                             { "method", Document.From("GET") },
                             {
                                 "uri",
-                                Document.From(
-                                    "/{Bucket}/{Key+}?annotation&x-id=ListObjectAnnotations"
-                                )
+                                Document.From("/{Key+}?annotation&x-id=ListObjectAnnotations")
                             },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

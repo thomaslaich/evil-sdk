@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class HeadObjectInputSchema
 {
@@ -36,10 +36,11 @@ public static partial class HeadObjectInputSchema
         public global::Com.Amazonaws.S3.ChecksumMode? ChecksumMode { get; set; }
     }
 
-    public static StructSchema<HeadObjectInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.HeadObjectInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<HeadObjectInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.HeadObjectInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#HeadObjectInput"),
             [
                 new(
@@ -48,12 +49,6 @@ public static partial class HeadObjectInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket that contains the object.</p>\n         <p>\n            <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format <code>\n               <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming\n         restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming\n            rules</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>Object Lambda access points are not supported by directory buckets.</p>\n         </note>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the \n                     form <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -79,12 +74,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Return the object only if its entity tag (ETag) is the same as the one specified; otherwise, return\n      a 412 (precondition failed) error.</p>\n         <p>If both of the <code>If-Match</code> and <code>If-Unmodified-Since</code> headers are present in the\n      request as follows:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>If-Match</code> condition evaluates to <code>true</code>, and;</p>\n            </li>\n            <li>\n               <p>\n                  <code>If-Unmodified-Since</code> condition evaluates to <code>false</code>;</p>\n            </li>\n         </ul>\n         <p>Then Amazon S3 returns <code>200 OK</code> and the data requested.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Match")
                         ),
@@ -95,12 +84,6 @@ public static partial class HeadObjectInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Return the object only if it has been modified since the specified time; otherwise, return a 304\n      (not modified) error.</p>\n         <p>If both of the <code>If-None-Match</code> and <code>If-Modified-Since</code> headers are present in\n      the request as follows:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>If-None-Match</code> condition evaluates to <code>false</code>, and;</p>\n            </li>\n            <li>\n               <p>\n                  <code>If-Modified-Since</code> condition evaluates to <code>true</code>;</p>\n            </li>\n         </ul>\n         <p>Then Amazon S3 returns the <code>304 Not Modified</code> response code.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Modified-Since")
@@ -113,12 +96,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Return the object only if its entity tag (ETag) is different from the one specified; otherwise,\n      return a 304 (not modified) error.</p>\n         <p>If both of the <code>If-None-Match</code> and <code>If-Modified-Since</code> headers are present in\n      the request as follows:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>If-None-Match</code> condition evaluates to <code>false</code>, and;</p>\n            </li>\n            <li>\n               <p>\n                  <code>If-Modified-Since</code> condition evaluates to <code>true</code>;</p>\n            </li>\n         </ul>\n         <p>Then Amazon S3 returns the <code>304 Not Modified</code> response code.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-None-Match")
                         ),
@@ -129,12 +106,6 @@ public static partial class HeadObjectInputSchema
                     Target4,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Return the object only if it has not been modified since the specified time; otherwise, return a 412\n      (precondition failed) error.</p>\n         <p>If both of the <code>If-Match</code> and <code>If-Unmodified-Since</code> headers are present in the\n      request as follows:</p>\n         <ul>\n            <li>\n               <p>\n                  <code>If-Match</code> condition evaluates to <code>true</code>, and;</p>\n            </li>\n            <li>\n               <p>\n                  <code>If-Unmodified-Since</code> condition evaluates to <code>false</code>;</p>\n            </li>\n         </ul>\n         <p>Then Amazon S3 returns <code>200 OK</code> and the data requested.</p>\n         <p>For more information about conditional requests, see <a href=\"https://tools.ietf.org/html/rfc7232\">RFC 7232</a>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("If-Unmodified-Since")
@@ -148,20 +119,13 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The object key.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                         new Trait(
@@ -184,12 +148,6 @@ public static partial class HeadObjectInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>HeadObject returns only the metadata for an object. If the Range is satisfiable, only the\n        <code>ContentLength</code> is affected in the response. If the Range is not satisfiable, S3 returns a\n        <code>416 - Requested Range Not Satisfiable</code> error.</p>"
-                            )
-                        ),
                         new Trait(ShapeId.Parse("smithy.api#httpHeader"), Document.From("Range")),
                     ]
                 ),
@@ -198,12 +156,6 @@ public static partial class HeadObjectInputSchema
                     Target7,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Sets the <code>Cache-Control</code> header of the response.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("response-cache-control")
@@ -216,12 +168,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Sets the <code>Content-Disposition</code> header of the response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("response-content-disposition")
                         ),
@@ -232,12 +178,6 @@ public static partial class HeadObjectInputSchema
                     Target9,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Sets the <code>Content-Encoding</code> header of the response.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("response-content-encoding")
@@ -250,12 +190,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Sets the <code>Content-Language</code> header of the response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("response-content-language")
                         ),
@@ -267,12 +201,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Sets the <code>Content-Type</code> header of the response.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("response-content-type")
                         ),
@@ -283,12 +211,6 @@ public static partial class HeadObjectInputSchema
                     Target12,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Sets the <code>Expires</code> header of the response.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("response-expires")
@@ -305,12 +227,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Version ID used to reference a specific version of the object.</p>\n         <note>\n            <p>For directory buckets in this API operation, only the <code>null</code> value of the version ID is supported.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("versionId")
                         ),
@@ -322,12 +238,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the algorithm to use when encrypting the object (for example, AES256).</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-algorithm")
                         ),
@@ -338,12 +248,6 @@ public static partial class HeadObjectInputSchema
                     Target15,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is\n      used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must\n      be appropriate for use with the algorithm specified in the\n        <code>x-amz-server-side-encryption-customer-algorithm</code> header.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key")
@@ -359,12 +263,6 @@ public static partial class HeadObjectInputSchema
                     Target16,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header\n      for a message integrity check to ensure that the encryption key was transmitted without error.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-server-side-encryption-customer-key-MD5")
@@ -392,12 +290,6 @@ public static partial class HeadObjectInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively\n      performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and\n      the number of parts in this object.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("partNumber")
                         ),
@@ -409,12 +301,6 @@ public static partial class HeadObjectInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -425,12 +311,6 @@ public static partial class HeadObjectInputSchema
                     Target20,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>To retrieve the checksum, this parameter must be enabled.</p>\n         <p>\n            <b>General purpose buckets</b> -\n      If you enable checksum mode and the object is uploaded with a <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_Checksum.html\">checksum</a> and encrypted with\n      an Key Management Service (KMS) key, you must have permission to use the <code>kms:Decrypt</code> action to\n      retrieve the checksum.</p>\n         <p>\n            <b>Directory buckets</b> - If you enable <code>ChecksumMode</code>\n      and the object is encrypted with Amazon Web Services Key Management Service (Amazon Web Services KMS), you must also have the\n        <code>kms:GenerateDataKey</code> and <code>kms:Decrypt</code> permissions in IAM identity-based\n      policies and KMS key policies for the KMS key to retrieve the checksum of the object.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-checksum-mode")
@@ -451,32 +331,56 @@ public static partial class HeadObjectInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target2 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target4 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target7 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target8 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target9 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target10 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target11 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target12 =
-            Schemas.Nullable(
-                Schemas.TimestampWithTraits([
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.TimestampWithTraits([
                     new Trait(
                         ShapeId.Parse("smithy.api#timestampFormat"),
                         Document.From("http-date")
@@ -484,27 +388,36 @@ public static partial class HeadObjectInputSchema
                 ])
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target13 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target14 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target15 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target16 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target17 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target18 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target18 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target19 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumMode?> Target20 =
-            Schemas.Nullable(ChecksumModeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumModeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override HeadObjectInput Build(Builder builder) =>
-            new HeadObjectInput(
+        public override global::Com.Amazonaws.S3.HeadObjectInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.HeadObjectInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Key ?? throw new MissingRequiredMemberException("Key"),
                 builder.ChecksumMode,
@@ -529,7 +442,7 @@ public static partial class HeadObjectInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            HeadObjectInput value,
+            global::Com.Amazonaws.S3.HeadObjectInput value,
             ref TSerializer serializer
         )
         {

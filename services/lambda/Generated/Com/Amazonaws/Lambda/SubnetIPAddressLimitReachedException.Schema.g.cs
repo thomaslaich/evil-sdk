@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SubnetIPAddressLimitReachedExceptionSchema
 {
@@ -15,64 +15,42 @@ public static partial class SubnetIPAddressLimitReachedExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<SubnetIPAddressLimitReachedException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SubnetIPAddressLimitReachedException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SubnetIPAddressLimitReachedException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.SubnetIPAddressLimitReachedException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#SubnetIPAddressLimitReachedException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lambda couldn't set up VPC access for the Lambda function because one or more configured subnets has no available IP addresses.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("server")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)502)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(502m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SubnetIPAddressLimitReachedException Build(Builder builder) =>
-            new SubnetIPAddressLimitReachedException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.SubnetIPAddressLimitReachedException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.SubnetIPAddressLimitReachedException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            SubnetIPAddressLimitReachedException value,
+            global::Com.Amazonaws.Lambda.SubnetIPAddressLimitReachedException value,
             ref TSerializer serializer
         )
         {

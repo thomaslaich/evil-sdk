@@ -6,66 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListProvisionedConcurrencyConfigsOutputSchema
 {
     public sealed class Builder
     {
-        public ProvisionedConcurrencyConfigList? ProvisionedConcurrencyConfigs { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem>? ProvisionedConcurrencyConfigs { get; set; }
         public string? NextMarker { get; set; }
     }
 
-    public static StructSchema<ListProvisionedConcurrencyConfigsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListProvisionedConcurrencyConfigsOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ListProvisionedConcurrencyConfigsOutput"),
-            [
-                new(
-                    "ProvisionedConcurrencyConfigs",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of provisioned concurrency configurations.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "NextMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("ProvisionedConcurrencyConfigs", Target0), new("NextMarker", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -74,23 +40,29 @@ public static partial class ListProvisionedConcurrencyConfigsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ProvisionedConcurrencyConfigList?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => ProvisionedConcurrencyConfigListSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ProvisionedConcurrencyConfigListSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListProvisionedConcurrencyConfigsOutput Build(Builder builder) =>
-            new ListProvisionedConcurrencyConfigsOutput(
+        public override global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsOutput(
                 builder.NextMarker,
                 builder.ProvisionedConcurrencyConfigs
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListProvisionedConcurrencyConfigsOutput value,
+            global::Com.Amazonaws.Lambda.ListProvisionedConcurrencyConfigsOutput value,
             ref TSerializer serializer
         )
         {

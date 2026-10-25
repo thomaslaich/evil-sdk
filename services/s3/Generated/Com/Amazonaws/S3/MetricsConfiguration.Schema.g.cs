@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetricsConfigurationSchema
 {
     public sealed class Builder
     {
         public string? Id { get; set; }
-        public MetricsFilter? Filter { get; set; }
+        public global::Com.Amazonaws.S3.MetricsFilter? Filter { get; set; }
     }
 
-    public static StructSchema<MetricsConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.MetricsConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MetricsConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.MetricsConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#MetricsConfiguration"),
             [
                 new(
@@ -30,56 +32,35 @@ public static partial class MetricsConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The ID used to identify the metrics configuration. The ID has a 64 character limit and can only\n      contain letters, numbers, periods, dashes, and underscores.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Filter",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies a metrics configuration filter. The metrics configuration will only include objects that\n      meet the filter's criteria. A filter must be a prefix, an object tag, an access point ARN, or a\n      conjunction (MetricsAndOperator).</p>\n         <note>\n            <p>Metrics configurations for directory buckets do not support tag filters.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Filter", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies a metrics configuration for the CloudWatch request metrics (specified by the metrics\n      configuration ID) from an Amazon S3 bucket. If you're updating an existing metrics configuration, note that\n      this is a full replacement of the existing metrics configuration. If you don't include the elements you\n      want to keep, they are erased. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html\">PutBucketMetricsConfiguration</a>.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<MetricsFilter?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetricsFilterSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetricsFilter?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => MetricsFilterSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MetricsConfiguration Build(Builder builder) =>
-            new MetricsConfiguration(
+        public override global::Com.Amazonaws.S3.MetricsConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.MetricsConfiguration(
                 builder.Id ?? throw new MissingRequiredMemberException("Id"),
                 builder.Filter
             );
 
         public override void SerializeMembers<TSerializer>(
-            MetricsConfiguration value,
+            global::Com.Amazonaws.S3.MetricsConfiguration value,
             ref TSerializer serializer
         )
         {

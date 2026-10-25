@@ -26,8 +26,4 @@ namespace Com.Amazonaws.S3;
 /// &lt;code&gt;501 Not Implemented&lt;/code&gt;.&lt;/p&gt;
 /// &lt;/note&gt;
 /// </param>
-public sealed record class DeleteBucketInventoryConfigurationInput(
-    string Bucket,
-    string Id,
-    string? ExpectedBucketOwner = null
-);
+public sealed record class DeleteBucketInventoryConfigurationInput(string Bucket, string Id, string? ExpectedBucketOwner = null);

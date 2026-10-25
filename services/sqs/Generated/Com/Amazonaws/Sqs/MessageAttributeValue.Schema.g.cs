@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class MessageAttributeValueSchema
 {
@@ -14,53 +14,27 @@ public static partial class MessageAttributeValueSchema
     {
         public string? StringValue { get; set; }
         public byte[]? BinaryValue { get; set; }
-        public StringList? StringListValues { get; set; }
-        public BinaryList? BinaryListValues { get; set; }
+        public IReadOnlyList<string>? StringListValues { get; set; }
+        public IReadOnlyList<byte[]>? BinaryListValues { get; set; }
         public string? DataType { get; set; }
     }
 
-    public static StructSchema<MessageAttributeValue, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.MessageAttributeValue,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MessageAttributeValue, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.MessageAttributeValue, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#MessageAttributeValue"),
             [
-                new(
-                    "StringValue",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Strings are Unicode with UTF-8 binary encoding. For a list of code values, see <a href=\"http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters\">ASCII Printable\n                Characters</a>.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "BinaryValue",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Binary type attributes can store any binary data, such as compressed data, encrypted\n            data, or images.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("StringValue", Target0),
+                new("BinaryValue", Target1),
                 new(
                     "StringListValues",
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Not implemented. Reserved for future use.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -76,10 +50,6 @@ public static partial class MessageAttributeValueSchema
                     Target3,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Not implemented. Reserved for future use.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -97,43 +67,40 @@ public static partial class MessageAttributeValueSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Amazon SQS supports the following logical data types: <code>String</code>,\n                <code>Number</code>, and <code>Binary</code>. For the <code>Number</code> data type,\n            you must use <code>StringValue</code>.</p>\n         <p>You can also append custom labels. For more information, see <a href=\"https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes\">Amazon SQS Message Attributes</a> in the <i>Amazon SQS Developer\n            Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The user-specified message attribute value. For string data types, the\n                <code>Value</code> attribute has the same restrictions on the content as the message\n            body. For more information, see <code>\n               <a>SendMessage</a>.</code>\n         </p>\n         <p>\n            <code>Name</code>, <code>type</code>, <code>value</code> and the message body must not\n            be empty or null. All parts of the message attribute, including <code>Name</code>,\n                <code>Type</code>, and <code>Value</code>, are part of the message size restriction\n            (1 MiB or 1,048,576 bytes).</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<byte[]?> Target1 =
-            Schemas.NullableReference(Schemas.Blob);
-        private static readonly global::NSmithy.Core.Serde.Schema<StringList?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => StringListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<BinaryList?> Target3 =
-            Schemas.NullableReference(Schemas.Lazy(() => BinaryListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Blob
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<string>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => StringListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<byte[]>?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => BinaryListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MessageAttributeValue Build(Builder builder) =>
-            new MessageAttributeValue(
+        public override global::Com.Amazonaws.Sqs.MessageAttributeValue Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.MessageAttributeValue(
                 builder.DataType ?? throw new MissingRequiredMemberException("DataType"),
                 builder.BinaryListValues,
                 builder.BinaryValue,
@@ -142,7 +109,7 @@ public static partial class MessageAttributeValueSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            MessageAttributeValue value,
+            global::Com.Amazonaws.Sqs.MessageAttributeValue value,
             ref TSerializer serializer
         )
         {

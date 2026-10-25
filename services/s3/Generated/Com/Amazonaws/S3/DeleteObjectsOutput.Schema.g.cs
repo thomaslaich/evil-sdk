@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteObjectsOutputSchema
 {
     public sealed class Builder
     {
-        public DeletedObjects? Deleted { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.DeletedObject>? Deleted { get; set; }
         public global::Com.Amazonaws.S3.RequestCharged? RequestCharged { get; set; }
-        public global::Com.Amazonaws.S3.Errors? Errors { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Error>? Errors { get; set; }
     }
 
-    public static StructSchema<DeleteObjectsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteObjectsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteObjectsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteObjectsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteObjectsOutput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class DeleteObjectsOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container element for a successful delete. It identifies the object that was successfully\n      deleted.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -58,12 +54,6 @@ public static partial class DeleteObjectsOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Container for a failed delete action that describes the object that Amazon S3 attempted to delete and the\n      error it encountered.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -80,20 +70,28 @@ public static partial class DeleteObjectsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<DeletedObjects?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => DeletedObjectsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.DeletedObject>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => DeletedObjectsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestCharged?> Target1 =
-            Schemas.Nullable(RequestChargedSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Errors?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestChargedSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Error>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorsSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteObjectsOutput Build(Builder builder) =>
-            new DeleteObjectsOutput(builder.Deleted, builder.Errors, builder.RequestCharged);
+        public override global::Com.Amazonaws.S3.DeleteObjectsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeleteObjectsOutput(
+                builder.Deleted,
+                builder.Errors,
+                builder.RequestCharged
+            );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteObjectsOutput value,
+            global::Com.Amazonaws.S3.DeleteObjectsOutput value,
             ref TSerializer serializer
         )
         {

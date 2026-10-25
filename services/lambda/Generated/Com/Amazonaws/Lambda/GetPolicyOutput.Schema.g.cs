@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetPolicyOutputSchema
 {
@@ -16,53 +16,19 @@ public static partial class GetPolicyOutputSchema
         public string? RevisionId { get; set; }
     }
 
-    public static StructSchema<GetPolicyOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetPolicyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetPolicyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetPolicyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetPolicyOutput"),
-            [
-                new(
-                    "Policy",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The resource-based policy.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "RevisionId",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A unique identifier for the current revision of the policy.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("Policy", Target0), new("RevisionId", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -72,17 +38,21 @@ public static partial class GetPolicyOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetPolicyOutput Build(Builder builder) =>
-            new GetPolicyOutput(builder.Policy, builder.RevisionId);
+        public override global::Com.Amazonaws.Lambda.GetPolicyOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.GetPolicyOutput(builder.Policy, builder.RevisionId);
 
         public override void SerializeMembers<TSerializer>(
-            GetPolicyOutput value,
+            global::Com.Amazonaws.Lambda.GetPolicyOutput value,
             ref TSerializer serializer
         )
         {

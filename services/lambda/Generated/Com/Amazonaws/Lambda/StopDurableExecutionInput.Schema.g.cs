@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class StopDurableExecutionInputSchema
 {
     public sealed class Builder
     {
         public string? DurableExecutionArn { get; set; }
-        public ErrorObject? Error { get; set; }
+        public global::Com.Amazonaws.Lambda.ErrorObject? Error { get; set; }
     }
 
-    public static StructSchema<StopDurableExecutionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.StopDurableExecutionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<StopDurableExecutionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.StopDurableExecutionInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#StopDurableExecutionInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class StopDurableExecutionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the durable execution.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +40,8 @@ public static partial class StopDurableExecutionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -59,10 +55,6 @@ public static partial class StopDurableExecutionInputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -71,18 +63,8 @@ public static partial class StopDurableExecutionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Optional error details explaining why the execution is being stopped.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -93,10 +75,6 @@ public static partial class StopDurableExecutionInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#StopDurableExecutionRequest")
                 ),
@@ -104,21 +82,27 @@ public static partial class StopDurableExecutionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<ErrorObject?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => ErrorObjectSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ErrorObject?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ErrorObjectSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override StopDurableExecutionInput Build(Builder builder) =>
-            new StopDurableExecutionInput(
+        public override global::Com.Amazonaws.Lambda.StopDurableExecutionInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.StopDurableExecutionInput(
                 builder.DurableExecutionArn
                     ?? throw new MissingRequiredMemberException("DurableExecutionArn"),
                 builder.Error
             );
 
         public override void SerializeMembers<TSerializer>(
-            StopDurableExecutionInput value,
+            global::Com.Amazonaws.Lambda.StopDurableExecutionInput value,
             ref TSerializer serializer
         )
         {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class JournalTableConfigurationUpdatesSchema
 {
@@ -15,11 +15,13 @@ public static partial class JournalTableConfigurationUpdatesSchema
         public global::Com.Amazonaws.S3.RecordExpiration? RecordExpiration { get; set; }
     }
 
-    public static StructSchema<JournalTableConfigurationUpdates, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.JournalTableConfigurationUpdates,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<JournalTableConfigurationUpdates, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.JournalTableConfigurationUpdates, Builder>(
             ShapeId.Parse("com.amazonaws.s3#JournalTableConfigurationUpdates"),
             [
                 new(
@@ -29,41 +31,32 @@ public static partial class JournalTableConfigurationUpdatesSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The journal table record expiration settings for the journal table.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The specified updates to the S3 Metadata journal table configuration.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RecordExpiration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => RecordExpirationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => RecordExpirationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override JournalTableConfigurationUpdates Build(Builder builder) =>
-            new JournalTableConfigurationUpdates(
+        public override global::Com.Amazonaws.S3.JournalTableConfigurationUpdates Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.JournalTableConfigurationUpdates(
                 builder.RecordExpiration
                     ?? throw new MissingRequiredMemberException("RecordExpiration")
             );
 
         public override void SerializeMembers<TSerializer>(
-            JournalTableConfigurationUpdates value,
+            global::Com.Amazonaws.S3.JournalTableConfigurationUpdates value,
             ref TSerializer serializer
         )
         {

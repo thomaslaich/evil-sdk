@@ -5,66 +5,43 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderTelemetryConfigSchema
 {
     public sealed class Builder
     {
-        public CapacityProviderLoggingConfig? LoggingConfig { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderLoggingConfig? LoggingConfig { get; set; }
     }
 
-    public static StructSchema<CapacityProviderTelemetryConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CapacityProviderTelemetryConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderTelemetryConfig"),
-            [
-                new(
-                    "LoggingConfig",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The capacity provider's Amazon CloudWatch Logs configuration settings.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration that specifies the telemetry collection for the capacity provider.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("LoggingConfig", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderLoggingConfig?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => CapacityProviderLoggingConfigSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderLoggingConfig?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    CapacityProviderLoggingConfigSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CapacityProviderTelemetryConfig Build(Builder builder) =>
-            new CapacityProviderTelemetryConfig(builder.LoggingConfig);
+        public override global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig(builder.LoggingConfig);
 
         public override void SerializeMembers<TSerializer>(
-            CapacityProviderTelemetryConfig value,
+            global::Com.Amazonaws.Lambda.CapacityProviderTelemetryConfig value,
             ref TSerializer serializer
         )
         {

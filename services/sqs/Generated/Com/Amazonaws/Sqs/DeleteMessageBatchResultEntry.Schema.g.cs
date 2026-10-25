@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageBatchResultEntrySchema
 {
@@ -15,11 +15,13 @@ public static partial class DeleteMessageBatchResultEntrySchema
         public string? Id { get; set; }
     }
 
-    public static StructSchema<DeleteMessageBatchResultEntry, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteMessageBatchResultEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageBatchResultEntry"),
             [
                 new(
@@ -29,38 +31,31 @@ public static partial class DeleteMessageBatchResultEntrySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Represents a successfully deleted message.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Encloses the <code>Id</code> of an entry in <code>\n               <a>DeleteMessageBatch</a>.</code>\n         </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteMessageBatchResultEntry Build(Builder builder) =>
-            new DeleteMessageBatchResultEntry(
+        public override global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry(
                 builder.Id ?? throw new MissingRequiredMemberException("Id")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteMessageBatchResultEntry value,
+            global::Com.Amazonaws.Sqs.DeleteMessageBatchResultEntry value,
             ref TSerializer serializer
         )
         {

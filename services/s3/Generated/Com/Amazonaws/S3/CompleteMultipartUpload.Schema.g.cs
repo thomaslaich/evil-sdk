@@ -6,148 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompleteMultipartUploadSchema
 {
     public static OperationSchema<
-        CompleteMultipartUploadInput,
-        CompleteMultipartUploadOutput
+        global::Com.Amazonaws.S3.CompleteMultipartUploadInput,
+        global::Com.Amazonaws.S3.CompleteMultipartUploadOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#CompleteMultipartUpload"),
-            Schemas.Lazy(() => CompleteMultipartUploadInputSchema.Schema!),
-            Schemas.Lazy(() => CompleteMultipartUploadOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CompleteMultipartUploadInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                CompleteMultipartUploadOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Completes a multipart upload by assembling previously uploaded parts.</p>\n         <p>You first initiate the multipart upload and then upload all parts using the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html\">UploadPart</a> operation or the\n        <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html\">UploadPartCopy</a>\n      operation. After successfully uploading all relevant parts of an upload, you call this\n        <code>CompleteMultipartUpload</code> operation to complete the upload. Upon receiving this request,\n      Amazon S3 concatenates all the parts in ascending order by part number to create a new object. In the\n      CompleteMultipartUpload request, you must provide the parts list and ensure that the parts list is\n      complete. The CompleteMultipartUpload API operation concatenates the parts that you provide in the list.\n      For each part in the list, you must provide the <code>PartNumber</code> value and the <code>ETag</code>\n      value that are returned after that part was uploaded.</p>\n         <p>The processing of a CompleteMultipartUpload request could take several minutes to finalize. After\n      Amazon S3 begins processing the request, it sends an HTTP response header that specifies a <code>200\n        OK</code> response. While processing is in progress, Amazon S3 periodically sends white space characters to\n      keep the connection from timing out. A request could fail after the initial <code>200 OK</code> response\n      has been sent. This means that a <code>200 OK</code> response can contain either a success or an error.\n      The error response might be embedded in the <code>200 OK</code> response. If you call this API operation\n      directly, make sure to design your application to parse the contents of the response and handle it\n      appropriately. If you use Amazon Web Services SDKs, SDKs handle this condition. The SDKs detect the embedded error and\n      apply error handling per your configuration settings (including automatically retrying the request as\n      appropriate). If the condition persists, the SDKs throw an exception (or, for the SDKs that don't use\n      exceptions, they return an error). </p>\n         <p>Note that if <code>CompleteMultipartUpload</code> fails, applications should be prepared to retry\n      any failed requests (including 500 error responses). For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ErrorBestPractices.html\">Amazon S3 Error Best\n        Practices</a>.</p>\n         <important>\n            <p>You can't use <code>Content-Type: application/x-www-form-urlencoded</code> for the\n        CompleteMultipartUpload requests. Also, if you don't provide a <code>Content-Type</code> header,\n          <code>CompleteMultipartUpload</code> can still return a <code>200 OK</code> response.</p>\n         </important>\n         <p>For more information about multipart uploads, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/uploadobjusingmpu.html\">Uploading Objects Using Multipart Upload</a> in\n      the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>\n               <b>Directory buckets</b> - For directory buckets, you must make requests for this API operation to the Zonal endpoint. These endpoints support virtual-hosted-style requests in the format <code>https://<i>amzn-s3-demo-bucket</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com/<i>key-name</i>\n               </code>. Path-style requests are not supported. For more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the\n    <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket permissions</b> - For information\n                about permissions required to use the multipart upload API, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html\">Multipart Upload and Permissions</a> in\n                the <i>Amazon S3 User Guide</i>.</p>\n                     <p>If you provide an <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_Checksum.html\">additional checksum value</a> in your <code>MultipartUpload</code> requests and the\n                object is encrypted with Key Management Service, you must have permission to use the\n                  <code>kms:Decrypt</code> action for the <code>CompleteMultipartUpload</code> request to\n                succeed.</p>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket permissions</b> - To grant access to this API operation on a directory bucket, we recommend that you use the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a> API operation for session-based authorization. Specifically, you grant the <code>s3express:CreateSession</code> permission to the directory bucket in a bucket policy or an IAM identity-based policy. Then, you make the <code>CreateSession</code> API call on the bucket to obtain a session token. With the session token in your request header, you can make API requests to this operation. After the session token expires, you make another <code>CreateSession</code> API call to generate a new session token for use. \nAmazon Web Services CLI or SDKs create session and refresh the session token automatically to avoid service interruptions when a session expires. For more information about authorization, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateSession.html\">\n                           <code>CreateSession</code>\n                        </a>.</p>\n                     <p>If the object is encrypted with SSE-KMS, you must also have the\n                  <code>kms:GenerateDataKey</code> and <code>kms:Decrypt</code> permissions in IAM\n                identity-based policies and KMS key policies for the KMS key.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>Special errors</dt>\n            <dd>\n               <ul>\n                  <li>\n                     <p>Error Code: <code>EntityTooSmall</code>\n                     </p>\n                     <ul>\n                        <li>\n                           <p>Description: Your proposed upload is smaller than the minimum allowed object size.\n                    Each part must be at least 5 MB in size, except the last part.</p>\n                        </li>\n                        <li>\n                           <p>HTTP Status Code: 400 Bad Request</p>\n                        </li>\n                     </ul>\n                  </li>\n                  <li>\n                     <p>Error Code: <code>InvalidPart</code>\n                     </p>\n                     <ul>\n                        <li>\n                           <p>Description: One or more of the specified parts could not be found. The part might not\n                    have been uploaded, or the specified ETag might not have matched the uploaded part's\n                    ETag.</p>\n                        </li>\n                        <li>\n                           <p>HTTP Status Code: 400 Bad Request</p>\n                        </li>\n                     </ul>\n                  </li>\n                  <li>\n                     <p>Error Code: <code>InvalidPartOrder</code>\n                     </p>\n                     <ul>\n                        <li>\n                           <p>Description: The list of parts was not in ascending order. The parts list must be\n                    specified in order by part number.</p>\n                        </li>\n                        <li>\n                           <p>HTTP Status Code: 400 Bad Request</p>\n                        </li>\n                     </ul>\n                  </li>\n                  <li>\n                     <p>Error Code: <code>NoSuchUpload</code>\n                     </p>\n                     <ul>\n                        <li>\n                           <p>Description: The specified multipart upload does not exist. The upload ID might be\n                    invalid, or the multipart upload might have been aborted or completed.</p>\n                        </li>\n                        <li>\n                           <p>HTTP Status Code: 404 Not Found</p>\n                        </li>\n                     </ul>\n                  </li>\n               </ul>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is <code>\n                     <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>.</p>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>CompleteMultipartUpload</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html\">CreateMultipartUpload</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html\">UploadPart</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html\">AbortMultipartUpload</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html\">ListParts</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html\">ListMultipartUploads</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "title", Document.From("To complete multipart upload") },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example completes a multipart upload."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "Key", Document.From("bigobject") },
-                                                {
-                                                    "MultipartUpload",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "Parts",
-                                                                Document.From(
-                                                                    new Document[]
-                                                                    {
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "PartNumber",
-                                                                                    Document.From(
-                                                                                        (decimal)1
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "ETag",
-                                                                                    Document.From(
-                                                                                        "\"d8c2eafd90c266e19ab9dcacc479f8af\""
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "PartNumber",
-                                                                                    Document.From(
-                                                                                        (decimal)2
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "ETag",
-                                                                                    Document.From(
-                                                                                        "\"d8c2eafd90c266e19ab9dcacc479f8af\""
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        ),
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                                {
-                                                    "UploadId",
-                                                    Document.From(
-                                                        "7YPBOJuoFiQ9cz4P3Pe6FIZwO4f7wN93uHsNBEw97pl5eNwzExg0LAT2dUN91cOmrEQHDsP3WA60CEg--"
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "ETag",
-                                                    Document.From(
-                                                        "\"4d9031c7644d8081c2829f4ea23c55f7-2\""
-                                                    )
-                                                },
-                                                { "Bucket", Document.From("acexamplebucket") },
-                                                {
-                                                    "Location",
-                                                    Document.From(
-                                                        "https://examplebucket.s3.<Region>.amazonaws.com/bigobject"
-                                                    )
-                                                },
-                                                { "Key", Document.From("bigobject") },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("POST") },
-                            { "uri", Document.From("/{Bucket}/{Key+}") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

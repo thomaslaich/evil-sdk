@@ -6,45 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CompletedPartListSchema
 {
     public static ListSchema<
-        CompletedPartList,
-        CompletedPart,
-        List<CompletedPart>
+        IReadOnlyList<global::Com.Amazonaws.S3.CompletedPart>,
+        global::Com.Amazonaws.S3.CompletedPart,
+        List<global::Com.Amazonaws.S3.CompletedPart>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<CompletedPartList, CompletedPart, List<CompletedPart>>(
-            ShapeId.Parse("com.amazonaws.s3#CompletedPartList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.CompletedPart>,
+            global::Com.Amazonaws.S3.CompletedPart,
+            List<global::Com.Amazonaws.S3.CompletedPart>
+        >(ShapeId.Parse("com.amazonaws.s3#CompletedPartList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CompletedPart> Target0 =
-            Schemas.Lazy(() => CompletedPartSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CompletedPart> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => CompletedPartSchema.Schema!);
 
-        public override IEnumerable<CompletedPart> GetElements(CompletedPartList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.CompletedPart> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.CompletedPart> value
+        ) => value;
 
-        public override List<CompletedPart> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.CompletedPart> CreateTypedBuilder() => new();
 
-        public override void Add(List<CompletedPart> builder, CompletedPart value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.CompletedPart> builder,
+            global::Com.Amazonaws.S3.CompletedPart value
+        ) => builder.Add(value);
 
-        public override CompletedPartList Build(List<CompletedPart> builder) =>
-            CompletedPartList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.CompletedPart> Build(
+            List<global::Com.Amazonaws.S3.CompletedPart> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            CompletedPartList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.CompletedPart> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -59,7 +61,7 @@ public static partial class CompletedPartListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<CompletedPart> builder,
+            List<global::Com.Amazonaws.S3.CompletedPart> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(CompletedPartSchema.Schema));
     }

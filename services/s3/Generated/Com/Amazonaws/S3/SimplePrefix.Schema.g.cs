@@ -5,35 +5,29 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SimplePrefixSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<SimplePrefix, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.SimplePrefix, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SimplePrefix, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SimplePrefix, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SimplePrefix"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>To use simple format for S3 keys for log objects, set SimplePrefix to an empty object.</p>\n         <p>\n            <code>[DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]</code>\n         </p>"
-                    )
-                ),
-                new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SimplePrefix")),
-            ]
+            [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SimplePrefix"))]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override SimplePrefix Build(Builder builder) => new SimplePrefix();
+        public override global::Com.Amazonaws.S3.SimplePrefix Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SimplePrefix();
 
         public override void SerializeMembers<TSerializer>(
-            SimplePrefix value,
+            global::Com.Amazonaws.S3.SimplePrefix value,
             ref TSerializer serializer
         ) { }
 

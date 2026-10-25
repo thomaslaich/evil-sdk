@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionCodeLocationErrorSchema
 {
@@ -16,78 +16,52 @@ public static partial class FunctionCodeLocationErrorSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<FunctionCodeLocationError, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.FunctionCodeLocationError,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<FunctionCodeLocationError, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.FunctionCodeLocationError, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#FunctionCodeLocationError"),
             [
-                new(
-                    "ErrorCode",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The error code that identifies why Lambda failed to retrieve the deployment package.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("ErrorCode", Target0),
                 new(
                     "Message",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The human-readable message that describes why Lambda failed to retrieve the deployment package.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#sensitive"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains details about an error that occurred when Lambda attempted to retrieve a function's deployment package.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override FunctionCodeLocationError Build(Builder builder) =>
-            new FunctionCodeLocationError(builder.ErrorCode, builder.Message);
+        public override global::Com.Amazonaws.Lambda.FunctionCodeLocationError Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.FunctionCodeLocationError(
+                builder.ErrorCode,
+                builder.Message
+            );
 
         public override void SerializeMembers<TSerializer>(
-            FunctionCodeLocationError value,
+            global::Com.Amazonaws.Lambda.FunctionCodeLocationError value,
             ref TSerializer serializer
         )
         {

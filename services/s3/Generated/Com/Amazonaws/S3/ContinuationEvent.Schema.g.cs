@@ -5,34 +5,45 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ContinuationEventSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder
+    {
 
-    public static StructSchema<ContinuationEvent, Builder> Schema { get; } = new GeneratedSchema();
+    }
+
+    public static StructSchema<global::Com.Amazonaws.S3.ContinuationEvent, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ContinuationEvent, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ContinuationEvent, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ContinuationEvent"),
-            [],
-            [new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>"))]
-        )
+            [
+
+            ],
+            null)
     {
+
         public override Builder CreateTypedBuilder() => new();
 
-        public override ContinuationEvent Build(Builder builder) => new ContinuationEvent();
+        public override global::Com.Amazonaws.S3.ContinuationEvent Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ContinuationEvent();
 
         public override void SerializeMembers<TSerializer>(
-            ContinuationEvent value,
-            ref TSerializer serializer
-        ) { }
+            global::Com.Amazonaws.S3.ContinuationEvent value,
+            ref TSerializer serializer)
+        {
+
+        }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        ) { }
+            ref TDeserializer deserializer)
+        {
+
+        }
     }
 }

@@ -121,12 +121,12 @@ public abstract partial record class SelectObjectContentEventStream
 
         return this switch
         {
-            Cont value => cont(value.Value),
-            End value => end(value.Value),
-            Progress value => progress(value.Value),
-            Records value => records(value.Value),
-            Stats value => stats(value.Value),
-            Unknown value => unknown(value.Tag, value.Value),
+            Cont variant => cont(variant.Value),
+            End variant => end(variant.Value),
+            Progress variant => progress(variant.Value),
+            Records variant => records(variant.Value),
+            Stats variant => stats(variant.Value),
+            Unknown variant => unknown(variant.Tag, variant.Value),
             _ => throw new InvalidOperationException("Unknown union variant."),
         };
     }

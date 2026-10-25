@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketWebsiteSchema
 {
-    public static OperationSchema<PutBucketWebsiteInput, PutBucketWebsiteOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.PutBucketWebsiteInput,
+        global::Com.Amazonaws.S3.PutBucketWebsiteOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#PutBucketWebsite"),
-            Schemas.Lazy(() => PutBucketWebsiteInputSchema.Schema!),
-            Schemas.Lazy(() => PutBucketWebsiteOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketWebsiteInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => PutBucketWebsiteOutputSchema.Schema!),
             [],
             [
                 new Trait(
@@ -28,88 +31,13 @@ public static partial class PutBucketWebsiteSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Sets the configuration of the website that is specified in the <code>website</code> subresource. To\n      configure a bucket as a website, you can add this subresource on the bucket with website configuration\n      information such as the file name of the index document and any redirect rules. For more information,\n      see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html\">Hosting Websites on\n        Amazon S3</a>.</p>\n         <p>This PUT action requires the <code>S3:PutBucketWebsite</code> permission. By default, only the\n      bucket owner can configure the website attached to a bucket; however, bucket owners can allow other\n      users to set the website configuration by writing a bucket policy that grants them the\n        <code>S3:PutBucketWebsite</code> permission.</p>\n         <p>To redirect all website requests sent to the bucket's website endpoint, you add a website\n      configuration with the following elements. Because all requests are sent to another website, you don't\n      need to provide index document name for the bucket.</p>\n         <ul>\n            <li>\n               <p>\n                  <code>WebsiteConfiguration</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>RedirectAllRequestsTo</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>HostName</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>Protocol</code>\n               </p>\n            </li>\n         </ul>\n         <p>If you want granular control over redirects, you can use the following elements to add routing rules\n      that describe conditions for redirecting requests and information about the redirect destination. In\n      this case, the website configuration must provide an index document for the bucket, because some\n      requests might not be redirected. </p>\n         <ul>\n            <li>\n               <p>\n                  <code>WebsiteConfiguration</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>IndexDocument</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>Suffix</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>ErrorDocument</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>Key</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>RoutingRules</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>RoutingRule</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>Condition</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>HttpErrorCodeReturnedEquals</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>KeyPrefixEquals</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>Redirect</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>Protocol</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>HostName</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>ReplaceKeyPrefixWith</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>ReplaceKeyWith</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>HttpRedirectCode</code>\n               </p>\n            </li>\n         </ul>\n         <p>Amazon S3 has a limitation of 50 routing rules per website configuration. If you require more than 50\n      routing rules, you can use object redirect. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html\">Configuring an Object Redirect</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p>The maximum request length is limited to 128 KB.</p>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("Set website configuration on a bucket")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example adds website configuration to a bucket."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                                { "ContentMD5", Document.From("") },
-                                                {
-                                                    "WebsiteConfiguration",
-                                                    Document.From(
-                                                        new Dictionary<string, Document>
-                                                        {
-                                                            {
-                                                                "IndexDocument",
-                                                                Document.From(
-                                                                    new Dictionary<string, Document>
-                                                                    {
-                                                                        {
-                                                                            "Suffix",
-                                                                            Document.From(
-                                                                                "index.html"
-                                                                            )
-                                                                        },
-                                                                    }
-                                                                )
-                                                            },
-                                                            {
-                                                                "ErrorDocument",
-                                                                Document.From(
-                                                                    new Dictionary<string, Document>
-                                                                    {
-                                                                        {
-                                                                            "Key",
-                                                                            Document.From(
-                                                                                "error.html"
-                                                                            )
-                                                                        },
-                                                                    }
-                                                                )
-                                                            },
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?website") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?website") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

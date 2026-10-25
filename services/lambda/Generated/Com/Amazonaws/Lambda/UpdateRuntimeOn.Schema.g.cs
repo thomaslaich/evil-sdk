@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class UpdateRuntimeOnSchema
 {
     public static global::NSmithy.Core.Serde.Schema<UpdateRuntimeOn> Schema { get; } =
-        Schemas.StringEnum<UpdateRuntimeOn>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<UpdateRuntimeOn>(
             ShapeId.Parse("com.amazonaws.lambda#UpdateRuntimeOn"),
             values: ["Auto", "Manual", "FunctionUpdate"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

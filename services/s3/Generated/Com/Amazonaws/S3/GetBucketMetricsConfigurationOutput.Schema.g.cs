@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetricsConfigurationOutputSchema
 {
@@ -15,11 +15,13 @@ public static partial class GetBucketMetricsConfigurationOutputSchema
         public global::Com.Amazonaws.S3.MetricsConfiguration? MetricsConfiguration { get; set; }
     }
 
-    public static StructSchema<GetBucketMetricsConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketMetricsConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketMetricsConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketMetricsConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketMetricsConfigurationOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class GetBucketMetricsConfigurationOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Specifies the metrics configuration.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,15 +45,21 @@ public static partial class GetBucketMetricsConfigurationOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetricsConfiguration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => MetricsConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => MetricsConfigurationSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketMetricsConfigurationOutput Build(Builder builder) =>
-            new GetBucketMetricsConfigurationOutput(builder.MetricsConfiguration);
+        public override global::Com.Amazonaws.S3.GetBucketMetricsConfigurationOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.GetBucketMetricsConfigurationOutput(
+                builder.MetricsConfiguration
+            );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketMetricsConfigurationOutput value,
+            global::Com.Amazonaws.S3.GetBucketMetricsConfigurationOutput value,
             ref TSerializer serializer
         )
         {

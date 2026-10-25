@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetDurableExecutionInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class GetDurableExecutionInputSchema
         public bool? IncludeExecutionData { get; set; }
     }
 
-    public static StructSchema<GetDurableExecutionInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetDurableExecutionInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetDurableExecutionInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetDurableExecutionInput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetDurableExecutionInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class GetDurableExecutionInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the durable execution.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -44,8 +40,8 @@ public static partial class GetDurableExecutionInputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
@@ -58,10 +54,6 @@ public static partial class GetDurableExecutionInputSchema
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -76,18 +68,8 @@ public static partial class GetDurableExecutionInputSchema
                         ),
                         new Trait(ShapeId.Parse("smithy.api#default"), Document.From(true)),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether to include execution data such as input payload, result, and error information in the response. Set to <code>false</code> for a more compact response that includes only execution metadata. The default value is set to <code>true</code>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("IncludeExecutionData")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -98,10 +80,6 @@ public static partial class GetDurableExecutionInputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#GetDurableExecutionRequest")
                 ),
@@ -109,22 +87,25 @@ public static partial class GetDurableExecutionInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new() { IncludeExecutionData = true };
 
-        public override GetDurableExecutionInput Build(Builder builder) =>
-            new GetDurableExecutionInput(
+        public override global::Com.Amazonaws.Lambda.GetDurableExecutionInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetDurableExecutionInput(
                 builder.DurableExecutionArn
                     ?? throw new MissingRequiredMemberException("DurableExecutionArn"),
                 builder.IncludeExecutionData
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetDurableExecutionInput value,
+            global::Com.Amazonaws.Lambda.GetDurableExecutionInput value,
             ref TSerializer serializer
         )
         {

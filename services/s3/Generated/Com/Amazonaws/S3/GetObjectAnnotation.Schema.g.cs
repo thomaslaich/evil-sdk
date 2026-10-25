@@ -6,32 +6,32 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetObjectAnnotationSchema
 {
     public static OperationSchema<
-        GetObjectAnnotationInput,
-        GetObjectAnnotationOutput
+        global::Com.Amazonaws.S3.GetObjectAnnotationInput,
+        global::Com.Amazonaws.S3.GetObjectAnnotationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetObjectAnnotation"),
-            Schemas.Lazy(() => GetObjectAnnotationInputSchema.Schema!),
-            Schemas.Lazy(() => GetObjectAnnotationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectAnnotationInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetObjectAnnotationOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchAnnotation"),
-                    Schemas.Lazy(() => NoSuchAnnotationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchAnnotationSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchBucket"),
-                    Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchBucketSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.s3#NoSuchKey"),
-                    Schemas.Lazy(() => NoSuchKeySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => NoSuchKeySchema.Schema!),
                     404
                 ),
             ],
@@ -64,24 +64,13 @@ public static partial class GetObjectAnnotationSchema
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Retrieves an annotation from an Amazon S3 object. To use this operation, you must have the\n      <code>s3:GetObjectAnnotation</code> permission.</p>\n         <p>If checksum mode is enabled via the <code>x-amz-checksum-mode</code> header, Amazon S3\n      returns the stored checksum in the response headers for client-side validation.</p>\n         <note>\n            <p>Annotations are not supported by the following features: S3 Inventory Reports,\n      API Gateway, S3 Storage Lens, Amazon S3 File Gateway, Amazon FSx, S3 on Outposts, and\n      S3 Express One Zone (directory buckets).</p>\n         </note>\n         <p>The following operations are related to <code>GetObjectAnnotation</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAnnotation.html\">PutObjectAnnotation</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectAnnotations.html\">ListObjectAnnotations</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectAnnotation.html\">DeleteObjectAnnotation</a>\n               </p>\n            </li>\n         </ul>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            {
-                                "uri",
-                                Document.From(
-                                    "/{Bucket}/{Key+}?annotation&x-id=GetObjectAnnotation"
-                                )
-                            },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/{Key+}?annotation&x-id=GetObjectAnnotation") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteObjectsInputSchema
 {
@@ -21,10 +21,13 @@ public static partial class DeleteObjectsInputSchema
         public global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm { get; set; }
     }
 
-    public static StructSchema<DeleteObjectsInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteObjectsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteObjectsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteObjectsInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteObjectsInput"),
             [
                 new(
@@ -33,12 +36,6 @@ public static partial class DeleteObjectsInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The bucket name containing the objects to delete. </p>\n         <p>\n            <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format <code>\n               <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</code>. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming\n         restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming\n            rules</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <p>\n            <b>Access points</b> - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html\">Using access points</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>Object Lambda access points are not supported by directory buckets.</p>\n         </note>\n         <p>\n            <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the \n                     form <code>\n               <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</code>. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html\">What is S3 on Outposts?</a> in the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -65,10 +62,6 @@ public static partial class DeleteObjectsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Container for the request.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -84,12 +77,6 @@ public static partial class DeleteObjectsInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The concatenation of the authentication device's serial number, a space, and the value that is\n      displayed on your authentication device. Required to permanently delete a versioned object if versioning\n      is configured with MFA delete enabled.</p>\n         <p>When performing the <code>DeleteObjects</code> operation on an MFA delete enabled bucket, which\n      attempts to delete the specified versioned objects, you must include an MFA token. If you don't provide\n      an MFA token, the entire request will fail, even if there are non-versioned objects that you are trying\n      to delete. If you provide an invalid token, whether there are versioned object keys in the request or\n      not, the entire Multi-Object Delete request will fail. For information about MFA Delete, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html#MultiFactorAuthenticationDelete\"> MFA\n        Delete</a> in the <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-mfa")
@@ -117,12 +104,6 @@ public static partial class DeleteObjectsInputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether you want to delete this object even if it has a Governance-type Object Lock in\n      place. To use this header, you must have the <code>s3:BypassGovernanceRetention</code>\n      permission.</p>\n         <note>\n            <p>This functionality is not supported for directory buckets.</p>\n         </note>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-bypass-governance-retention")
                         ),
@@ -134,12 +115,6 @@ public static partial class DeleteObjectsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -150,12 +125,6 @@ public static partial class DeleteObjectsInputSchema
                     Target6,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Indicates the algorithm used to create the checksum for the object when you use the SDK. This header will not provide any\n    additional functionality if you don't use the SDK. When you send this header, there must be a corresponding <code>x-amz-checksum-<i>algorithm</i>\n            </code> or\n    <code>x-amz-trailer</code> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code <code>400 Bad Request</code>.</p>\n         <p>For the <code>x-amz-checksum-<i>algorithm</i>\n            </code> header, replace <code>\n               <i>algorithm</i>\n            </code> with the supported algorithm from the following list: </p>\n         <ul>\n            <li>\n               <p>\n                  <code>CRC32</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>CRC32C</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>CRC64NVME</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>MD5</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA1</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA256</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>SHA512</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH3</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH64</code>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <code>XXHASH128</code>\n               </p>\n            </li>\n         </ul>\n         <p>For more\n    information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html\">Checking object integrity</a> in\n    the <i>Amazon S3 User Guide</i>.</p>\n         <p>If the individual checksum value you provide through <code>x-amz-checksum-<i>algorithm</i>\n            </code> doesn't match the checksum algorithm you set through <code>x-amz-sdk-checksum-algorithm</code>, Amazon S3 fails the request with a <code>BadDigest</code> error.</p>\n         <p>If you provide an individual checksum, Amazon S3 ignores any provided <code>ChecksumAlgorithm</code>\n      parameter.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-sdk-checksum-algorithm")
@@ -176,25 +145,32 @@ public static partial class DeleteObjectsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Delete?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => DeleteSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.RequestPayer?> Target3 =
-            Schemas.Nullable(RequestPayerSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target4 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.Nullable(RequestPayerSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ChecksumAlgorithm?> Target6 =
-            Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ChecksumAlgorithmSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteObjectsInput Build(Builder builder) =>
-            new DeleteObjectsInput(
+        public override global::Com.Amazonaws.S3.DeleteObjectsInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeleteObjectsInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.Delete ?? throw new MissingRequiredMemberException("Delete"),
                 builder.BypassGovernanceRetention,
@@ -205,7 +181,7 @@ public static partial class DeleteObjectsInputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteObjectsInput value,
+            global::Com.Amazonaws.S3.DeleteObjectsInput value,
             ref TSerializer serializer
         )
         {

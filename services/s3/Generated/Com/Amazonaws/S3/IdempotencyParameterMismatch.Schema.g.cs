@@ -5,45 +5,45 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class IdempotencyParameterMismatchSchema
 {
-    public sealed class Builder { }
+    public sealed class Builder
+    {
 
-    public static StructSchema<IdempotencyParameterMismatch, Builder> Schema { get; } =
+    }
+
+    public static StructSchema<global::Com.Amazonaws.S3.IdempotencyParameterMismatch, Builder> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<IdempotencyParameterMismatch, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.IdempotencyParameterMismatch, Builder>(
             ShapeId.Parse("com.amazonaws.s3#IdempotencyParameterMismatch"),
-            [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Parameters on this idempotent request are inconsistent with parameters used in previous request(s). </p>\n         <p>For a list of error codes and more information on Amazon S3 errors, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList\">Error codes</a>.</p>\n         <note>\n            <p>Idempotency ensures that an API request completes no more than one time. With an idempotent\n        request, if the original request completes successfully, any subsequent retries complete successfully\n        without performing any further actions.</p>\n         </note>"
-                    )
-                ),
-                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
-            ]
-        )
+
+            ],
+            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")), new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m))])
     {
+
         public override Builder CreateTypedBuilder() => new();
 
-        public override IdempotencyParameterMismatch Build(Builder builder) =>
-            new IdempotencyParameterMismatch(null);
+        public override global::Com.Amazonaws.S3.IdempotencyParameterMismatch Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.IdempotencyParameterMismatch(null);
 
         public override void SerializeMembers<TSerializer>(
-            IdempotencyParameterMismatch value,
-            ref TSerializer serializer
-        ) { }
+            global::Com.Amazonaws.S3.IdempotencyParameterMismatch value,
+            ref TSerializer serializer)
+        {
+
+        }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer
-        ) { }
+            ref TDeserializer deserializer)
+        {
+
+        }
     }
 }

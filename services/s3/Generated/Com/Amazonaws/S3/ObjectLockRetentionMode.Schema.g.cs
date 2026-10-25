@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ObjectLockRetentionModeSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ObjectLockRetentionMode> Schema { get; } =
-        Schemas.StringEnum<ObjectLockRetentionMode>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ObjectLockRetentionMode>(
             ShapeId.Parse("com.amazonaws.s3#ObjectLockRetentionMode"),
             values: ["GOVERNANCE", "COMPLIANCE"],
             traits:

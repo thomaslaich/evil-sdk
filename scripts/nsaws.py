@@ -137,7 +137,10 @@ def smithy_build_config(service: Service, tools: Toolchain) -> dict:
         "maven": {
             "repositories": [{"url": url} for url in tools.maven_repositories],
             "dependencies": [f"software.amazon.smithy:{d}:{SMITHY_VERSION}" for d in SMITHY_DEPENDENCIES]
-            + [f"io.github.thomaslaich.nsmithy:smithy-csharp-codegen:{tools.nsmithy_version}"],
+            + [
+                f"io.github.thomaslaich.nsmithy:smithy-csharp-codegen:{tools.nsmithy_version}",
+                f"io.github.thomaslaich.nsmithy:smithy-csharp-aws-codegen:{tools.nsmithy_version}",
+            ],
         },
         "plugins": {
             "csharp-codegen": {

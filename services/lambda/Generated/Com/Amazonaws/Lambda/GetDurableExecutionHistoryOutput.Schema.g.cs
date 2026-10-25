@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class GetDurableExecutionHistoryOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.Lambda.Events? Events { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.Event>? Events { get; set; }
         public string? NextMarker { get; set; }
     }
 
-    public static StructSchema<GetDurableExecutionHistoryOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.GetDurableExecutionHistoryOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetDurableExecutionHistoryOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.GetDurableExecutionHistoryOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#GetDurableExecutionHistoryOutput"),
             [
                 new(
@@ -30,53 +32,17 @@ public static partial class GetDurableExecutionHistoryOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An array of execution history events, ordered chronologically unless <code>ReverseOrder</code> is set to <code>true</code>. Each event represents a significant occurrence during the execution, such as step completion or callback resolution.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "NextMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If present, indicates that more history events are available. Use this value as the <code>Marker</code> parameter in a subsequent request to retrieve the next page of results.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("NextMarker", Target1),
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The response from the GetDurableExecutionHistory operation, containing the execution history and events.</p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -85,21 +51,27 @@ public static partial class GetDurableExecutionHistoryOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.Events?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.Event>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetDurableExecutionHistoryOutput Build(Builder builder) =>
-            new GetDurableExecutionHistoryOutput(
+        public override global::Com.Amazonaws.Lambda.GetDurableExecutionHistoryOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.GetDurableExecutionHistoryOutput(
                 builder.Events ?? throw new MissingRequiredMemberException("Events"),
                 builder.NextMarker
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetDurableExecutionHistoryOutput value,
+            global::Com.Amazonaws.Lambda.GetDurableExecutionHistoryOutput value,
             ref TSerializer serializer
         )
         {

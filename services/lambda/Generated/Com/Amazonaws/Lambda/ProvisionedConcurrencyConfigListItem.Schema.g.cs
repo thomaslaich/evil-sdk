@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ProvisionedConcurrencyConfigListItemSchema
 {
@@ -16,16 +16,18 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
         public int? RequestedProvisionedConcurrentExecutions { get; set; }
         public int? AvailableProvisionedConcurrentExecutions { get; set; }
         public int? AllocatedProvisionedConcurrentExecutions { get; set; }
-        public ProvisionedConcurrencyStatusEnum? Status { get; set; }
+        public global::Com.Amazonaws.Lambda.ProvisionedConcurrencyStatusEnum? Status { get; set; }
         public string? StatusReason { get; set; }
         public string? LastModified { get; set; }
     }
 
-    public static StructSchema<ProvisionedConcurrencyConfigListItem, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ProvisionedConcurrencyConfigListItem, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ProvisionedConcurrencyConfigListItem"),
             [
                 new(
@@ -34,18 +36,12 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the alias or version.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)10000) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(10000m) },
                                 }
                             )
                         ),
@@ -54,10 +50,6 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
                             Document.From(
                                 "^arn:(aws[a-zA-Z-]*)?:lambda:(eusc-)?[a-z]{2}((-gov)|(-iso([a-z]?)))?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -71,21 +63,10 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The amount of provisioned concurrency requested.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -99,21 +80,10 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The amount of provisioned concurrency available.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -127,123 +97,66 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The amount of provisioned concurrency allocated. When a weighted alias is used during linear and canary deployments, this value fluctuates depending on the amount of concurrency that is provisioned for the function versions.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "Status",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The status of the allocation process.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "StatusReason",
-                    Target5,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>For failed allocations, the reason that provisioned concurrency could not be allocated.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("Status", Target4),
+                new("StatusReason", Target5),
                 new(
                     "LastModified",
                     Target6,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The date and time that a user last updated the configuration, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 format</a>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)100) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(100m) },
                                 }
                             )
                         ),
                         new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^.*$")),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Details about the provisioned concurrency configuration for a function alias or version.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<ProvisionedConcurrencyStatusEnum?> Target4 =
-            Schemas.Nullable(ProvisionedConcurrencyStatusEnumSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.ProvisionedConcurrencyStatusEnum?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                ProvisionedConcurrencyStatusEnumSchema.Schema
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target5 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target6 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ProvisionedConcurrencyConfigListItem Build(Builder builder) =>
-            new ProvisionedConcurrencyConfigListItem(
+        public override global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem(
                 builder.AllocatedProvisionedConcurrentExecutions,
                 builder.AvailableProvisionedConcurrentExecutions,
                 builder.FunctionArn,
@@ -254,7 +167,7 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ProvisionedConcurrencyConfigListItem value,
+            global::Com.Amazonaws.Lambda.ProvisionedConcurrencyConfigListItem value,
             ref TSerializer serializer
         )
         {
@@ -347,8 +260,10 @@ public static partial class ProvisionedConcurrencyConfigListItemSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value4
-                                ? ProvisionedConcurrencyStatusEnum.FromValue(value4)
-                                : default(ProvisionedConcurrencyStatusEnum)
+                                ? global::Com.Amazonaws.Lambda.ProvisionedConcurrencyStatusEnum.FromValue(
+                                    value4
+                                )
+                                : default(global::Com.Amazonaws.Lambda.ProvisionedConcurrencyStatusEnum)
                         );
                     break;
                 case 5:

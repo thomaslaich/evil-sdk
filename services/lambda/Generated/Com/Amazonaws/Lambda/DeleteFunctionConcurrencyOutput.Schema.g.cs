@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class DeleteFunctionConcurrencyOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteFunctionConcurrencyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.DeleteFunctionConcurrencyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteFunctionConcurrencyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.DeleteFunctionConcurrencyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#DeleteFunctionConcurrencyOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteFunctionConcurrencyOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteFunctionConcurrencyOutput Build(Builder builder) =>
-            new DeleteFunctionConcurrencyOutput();
+        public override global::Com.Amazonaws.Lambda.DeleteFunctionConcurrencyOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Lambda.DeleteFunctionConcurrencyOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteFunctionConcurrencyOutput value,
+            global::Com.Amazonaws.Lambda.DeleteFunctionConcurrencyOutput value,
             ref TSerializer serializer
         ) { }
 

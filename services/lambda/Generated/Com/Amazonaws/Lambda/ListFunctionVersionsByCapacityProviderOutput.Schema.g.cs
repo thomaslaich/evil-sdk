@@ -6,24 +6,27 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListFunctionVersionsByCapacityProviderOutputSchema
 {
     public sealed class Builder
     {
         public string? CapacityProviderArn { get; set; }
-        public FunctionVersionsByCapacityProviderList? FunctionVersions { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem>? FunctionVersions { get; set; }
         public string? NextMarker { get; set; }
     }
 
     public static StructSchema<
-        ListFunctionVersionsByCapacityProviderOutput,
+        global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListFunctionVersionsByCapacityProviderOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.lambda#ListFunctionVersionsByCapacityProviderOutput"),
             [
                 new(
@@ -33,18 +36,12 @@ public static partial class ListFunctionVersionsByCapacityProviderOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)140) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(140m) },
                                 }
                             )
                         ),
@@ -58,10 +55,6 @@ public static partial class ListFunctionVersionsByCapacityProviderOutputSchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
                 new(
@@ -71,47 +64,17 @@ public static partial class ListFunctionVersionsByCapacityProviderOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of function versions that use the specified capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "NextMarker",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("NextMarker", Target2),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -123,18 +86,26 @@ public static partial class ListFunctionVersionsByCapacityProviderOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<FunctionVersionsByCapacityProviderList?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => FunctionVersionsByCapacityProviderListSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.FunctionVersionsByCapacityProviderListItem>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    FunctionVersionsByCapacityProviderListSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListFunctionVersionsByCapacityProviderOutput Build(Builder builder) =>
-            new ListFunctionVersionsByCapacityProviderOutput(
+        public override global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderOutput(
                 builder.CapacityProviderArn
                     ?? throw new MissingRequiredMemberException("CapacityProviderArn"),
                 builder.FunctionVersions
@@ -143,7 +114,7 @@ public static partial class ListFunctionVersionsByCapacityProviderOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListFunctionVersionsByCapacityProviderOutput value,
+            global::Com.Amazonaws.Lambda.ListFunctionVersionsByCapacityProviderOutput value,
             ref TSerializer serializer
         )
         {

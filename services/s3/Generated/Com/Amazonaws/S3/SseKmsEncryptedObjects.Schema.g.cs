@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SseKmsEncryptedObjectsSchema
 {
     public sealed class Builder
     {
-        public SseKmsEncryptedObjectsStatus? Status { get; set; }
+        public global::Com.Amazonaws.S3.SseKmsEncryptedObjectsStatus? Status { get; set; }
     }
 
-    public static StructSchema<SseKmsEncryptedObjects, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.SseKmsEncryptedObjects,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SseKmsEncryptedObjects, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SseKmsEncryptedObjects, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SseKmsEncryptedObjects"),
             [
                 new(
@@ -29,40 +31,27 @@ public static partial class SseKmsEncryptedObjectsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether Amazon S3 replicates objects created with server-side encryption using an Amazon Web Services KMS key\n      stored in Amazon Web Services Key Management Service.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for filter information for the selection of S3 objects encrypted with Amazon Web Services KMS.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SseKmsEncryptedObjectsStatus?> Target0 =
-            Schemas.Nullable(SseKmsEncryptedObjectsStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.SseKmsEncryptedObjectsStatus?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(SseKmsEncryptedObjectsStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SseKmsEncryptedObjects Build(Builder builder) =>
-            new SseKmsEncryptedObjects(
+        public override global::Com.Amazonaws.S3.SseKmsEncryptedObjects Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SseKmsEncryptedObjects(
                 builder.Status ?? throw new MissingRequiredMemberException("Status")
             );
 
         public override void SerializeMembers<TSerializer>(
-            SseKmsEncryptedObjects value,
+            global::Com.Amazonaws.S3.SseKmsEncryptedObjects value,
             ref TSerializer serializer
         )
         {
@@ -82,8 +71,10 @@ public static partial class SseKmsEncryptedObjectsSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? SseKmsEncryptedObjectsStatus.FromValue(value0)
-                                : default(SseKmsEncryptedObjectsStatus)
+                                ? global::Com.Amazonaws.S3.SseKmsEncryptedObjectsStatus.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.S3.SseKmsEncryptedObjectsStatus)
                         );
                     break;
             }

@@ -6,34 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketEncryptionSchema
 {
     public static OperationSchema<
-        GetBucketEncryptionInput,
-        GetBucketEncryptionOutput
+        global::Com.Amazonaws.S3.GetBucketEncryptionInput,
+        global::Com.Amazonaws.S3.GetBucketEncryptionOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketEncryption"),
-            Schemas.Lazy(() => GetBucketEncryptionInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketEncryptionOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketEncryptionInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => GetBucketEncryptionOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Returns the default encryption configuration for an Amazon S3 bucket. By default, all buckets have a\n      default encryption configuration that uses server-side encryption with Amazon S3 managed keys (SSE-S3). This operation also returns the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ServerSideEncryptionRule.html#AmazonS3-Type-ServerSideEncryptionRule-BucketKeyEnabled\">BucketKeyEnabled</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ServerSideEncryptionRule.html#AmazonS3-Type-ServerSideEncryptionRule-BlockedEncryptionTypes\">BlockedEncryptionTypes</a> statuses. </p>\n         <note>\n            <ul>\n               <li>\n                  <p>\n                     <b>General purpose buckets</b> - For information about the bucket\n            default encryption feature, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html\">Amazon S3 Bucket Default Encryption</a> in the\n              <i>Amazon S3 User Guide</i>.</p>\n               </li>\n               <li>\n                  <p>\n                     <b>Directory buckets</b> -\n            For directory buckets, there are only two supported options for server-side encryption: SSE-S3 and SSE-KMS. For information about the default encryption configuration in\n            directory buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-bucket-encryption.html\">Setting default server-side\n              encryption behavior for directory buckets</a>.</p>\n               </li>\n            </ul>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket permissions</b> - The\n                  <code>s3:GetEncryptionConfiguration</code> permission is required in a policy. The bucket\n                owner has this permission by default. The bucket owner can grant this permission to others.\n                For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\">Permissions Related to Bucket Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access Permissions to Your\n                  Amazon S3 Resources</a>.</p>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket permissions</b> - To grant access to\n                this API operation, you must have the <code>s3express:GetEncryptionConfiguration</code>\n                permission in an IAM identity-based policy instead of a bucket policy. Cross-account access to this API operation isn't supported. This operation can only be performed by the Amazon Web Services account that owns the resource.\n                For more information about directory bucket policies and permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html\">Amazon Web Services Identity and Access Management (IAM) for S3 Express One Zone</a> in the <i>Amazon S3 User Guide</i>.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is <code>s3express-control.<i>region-code</i>.amazonaws.com</code>.</p>\n            </dd>\n         </dl>\n         <p>The following operations are related to <code>GetBucketEncryption</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html\">PutBucketEncryption</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html\">DeleteBucketEncryption</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("GET") },
-                            { "uri", Document.From("/{Bucket}?encryption") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?encryption") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

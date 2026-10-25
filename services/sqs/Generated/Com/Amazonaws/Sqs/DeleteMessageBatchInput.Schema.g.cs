@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class DeleteMessageBatchInputSchema
 {
     public sealed class Builder
     {
         public string? QueueUrl { get; set; }
-        public DeleteMessageBatchRequestEntryList? Entries { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry>? Entries { get; set; }
     }
 
-    public static StructSchema<DeleteMessageBatchInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.DeleteMessageBatchInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteMessageBatchInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.DeleteMessageBatchInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#DeleteMessageBatchInput"),
             [
                 new(
@@ -29,12 +31,6 @@ public static partial class DeleteMessageBatchInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The URL of the Amazon SQS queue from which messages are deleted.</p>\n         <p>Queue URLs and names are case-sensitive.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -47,12 +43,6 @@ public static partial class DeleteMessageBatchInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Lists the receipt handles for the messages to be deleted.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -69,7 +59,6 @@ public static partial class DeleteMessageBatchInputSchema
                 ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#documentation"), Document.From("<p></p>")),
                 new Trait(
                     ShapeId.Parse("smithy.api#input"),
                     Document.From(new Dictionary<string, Document> { })
@@ -82,22 +71,26 @@ public static partial class DeleteMessageBatchInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<DeleteMessageBatchRequestEntryList?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => DeleteMessageBatchRequestEntryListSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.DeleteMessageBatchRequestEntry>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    DeleteMessageBatchRequestEntryListSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteMessageBatchInput Build(Builder builder) =>
-            new DeleteMessageBatchInput(
+        public override global::Com.Amazonaws.Sqs.DeleteMessageBatchInput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.DeleteMessageBatchInput(
                 builder.Entries ?? throw new MissingRequiredMemberException("Entries"),
                 builder.QueueUrl ?? throw new MissingRequiredMemberException("QueueUrl")
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteMessageBatchInput value,
+            global::Com.Amazonaws.Sqs.DeleteMessageBatchInput value,
             ref TSerializer serializer
         )
         {

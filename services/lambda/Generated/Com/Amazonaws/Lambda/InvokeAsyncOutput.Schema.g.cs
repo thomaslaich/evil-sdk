@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeAsyncOutputSchema
 {
@@ -15,10 +15,13 @@ public static partial class InvokeAsyncOutputSchema
         public int? Status { get; set; }
     }
 
-    public static StructSchema<InvokeAsyncOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvokeAsyncOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvokeAsyncOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvokeAsyncOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvokeAsyncOutput"),
             [
                 new(
@@ -26,40 +29,18 @@ public static partial class InvokeAsyncOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The status code.</p>")
-                        ),
+                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m)),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpResponseCode"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
             [
                 new Trait(
-                    ShapeId.Parse("smithy.api#deprecated"),
-                    Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A success response (<code>202 Accepted</code>) indicates that the request is queued for invocation.</p>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -68,17 +49,16 @@ public static partial class InvokeAsyncOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new() { Status = 0 };
 
-        public override InvokeAsyncOutput Build(Builder builder) =>
-            new InvokeAsyncOutput(builder.Status);
+        public override global::Com.Amazonaws.Lambda.InvokeAsyncOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.InvokeAsyncOutput(builder.Status);
 
         public override void SerializeMembers<TSerializer>(
-            InvokeAsyncOutput value,
+            global::Com.Amazonaws.Lambda.InvokeAsyncOutput value,
             ref TSerializer serializer
         )
         {

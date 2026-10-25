@@ -5,69 +5,38 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class BucketInfoSchema
 {
     public sealed class Builder
     {
         public global::Com.Amazonaws.S3.DataRedundancy? DataRedundancy { get; set; }
-        public BucketType? Type { get; set; }
+        public global::Com.Amazonaws.S3.BucketType? Type { get; set; }
     }
 
-    public static StructSchema<BucketInfo, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.BucketInfo, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<BucketInfo, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.BucketInfo, Builder>(
             ShapeId.Parse("com.amazonaws.s3#BucketInfo"),
-            [
-                new(
-                    "DataRedundancy",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The number of Zone (Availability Zone or Local Zone) that's used for redundancy for the bucket.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The type of bucket.</p>")
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the information about the bucket that will be created. For more information about\n      directory buckets, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html\">Directory buckets</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <note>\n            <p>This functionality is only supported by directory buckets.</p>\n         </note>"
-                    )
-                ),
-            ]
+            [new("DataRedundancy", Target0), new("Type", Target1)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.DataRedundancy?> Target0 =
-            Schemas.Nullable(DataRedundancySchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<BucketType?> Target1 =
-            Schemas.Nullable(BucketTypeSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(DataRedundancySchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.BucketType?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(BucketTypeSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override BucketInfo Build(Builder builder) =>
-            new BucketInfo(builder.DataRedundancy, builder.Type);
+        public override global::Com.Amazonaws.S3.BucketInfo Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.BucketInfo(builder.DataRedundancy, builder.Type);
 
         public override void SerializeMembers<TSerializer>(
-            BucketInfo value,
+            global::Com.Amazonaws.S3.BucketInfo value,
             ref TSerializer serializer
         )
         {
@@ -111,8 +80,8 @@ public static partial class BucketInfoSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? BucketType.FromValue(value1)
-                                : default(BucketType)
+                                ? global::Com.Amazonaws.S3.BucketType.FromValue(value1)
+                                : default(global::Com.Amazonaws.S3.BucketType)
                         );
                     break;
             }

@@ -6,41 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CORSRulesSchema
 {
-    public static ListSchema<CORSRules, CORSRule, List<CORSRule>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.CORSRule>,
+        global::Com.Amazonaws.S3.CORSRule,
+        List<global::Com.Amazonaws.S3.CORSRule>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<CORSRules, CORSRule, List<CORSRule>>(
-            ShapeId.Parse("com.amazonaws.s3#CORSRules"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.CORSRule>,
+            global::Com.Amazonaws.S3.CORSRule,
+            List<global::Com.Amazonaws.S3.CORSRule>
+        >(ShapeId.Parse("com.amazonaws.s3#CORSRules"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CORSRule> Target0 = Schemas.Lazy(
-            () =>
-                CORSRuleSchema.Schema!
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CORSRule> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => CORSRuleSchema.Schema!);
 
-        public override IEnumerable<CORSRule> GetElements(CORSRules value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.CORSRule> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.CORSRule> value
+        ) => value;
 
-        public override List<CORSRule> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.CORSRule> CreateTypedBuilder() => new();
 
-        public override void Add(List<CORSRule> builder, CORSRule value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.CORSRule> builder,
+            global::Com.Amazonaws.S3.CORSRule value
+        ) => builder.Add(value);
 
-        public override CORSRules Build(List<CORSRule> builder) => CORSRules.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.CORSRule> Build(
+            List<global::Com.Amazonaws.S3.CORSRule> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            CORSRules value,
+            IReadOnlyList<global::Com.Amazonaws.S3.CORSRule> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -55,7 +61,7 @@ public static partial class CORSRulesSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<CORSRule> builder,
+            List<global::Com.Amazonaws.S3.CORSRule> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(CORSRuleSchema.Schema));
     }

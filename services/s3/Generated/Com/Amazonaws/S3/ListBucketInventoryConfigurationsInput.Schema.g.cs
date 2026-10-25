@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketInventoryConfigurationsInputSchema
 {
@@ -17,11 +17,13 @@ public static partial class ListBucketInventoryConfigurationsInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<ListBucketInventoryConfigurationsInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListBucketInventoryConfigurationsInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListBucketInventoryConfigurationsInput"),
             [
                 new(
@@ -30,12 +32,6 @@ public static partial class ListBucketInventoryConfigurationsInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The name of the bucket containing the inventory configurations to retrieve.</p>\n         <p>\n            <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use path-style requests in the format <code>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i>\n            </code>. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format <code>\n               <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</code> (for example, <code>\n               <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</code>). For information about bucket naming restrictions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html\">Directory bucket naming rules</a> in the <i>Amazon S3 User Guide</i>\n         </p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -61,12 +57,6 @@ public static partial class ListBucketInventoryConfigurationsInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The marker used to continue an inventory configuration listing that has been truncated. Use the\n        <code>NextContinuationToken</code> from a previously truncated list response to continue the listing.\n      The continuation token is an opaque value that Amazon S3 understands.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpQuery"),
                             Document.From("continuation-token")
                         ),
@@ -77,12 +67,6 @@ public static partial class ListBucketInventoryConfigurationsInputSchema
                     Target2,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>\n         <note>\n            <p>For directory buckets, this header is not supported in this API operation. If you specify this header, the request fails with the HTTP status code \n<code>501 Not Implemented</code>.</p>\n         </note>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
@@ -103,23 +87,31 @@ public static partial class ListBucketInventoryConfigurationsInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListBucketInventoryConfigurationsInput Build(Builder builder) =>
-            new ListBucketInventoryConfigurationsInput(
+        public override global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ContinuationToken,
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListBucketInventoryConfigurationsInput value,
+            global::Com.Amazonaws.S3.ListBucketInventoryConfigurationsInput value,
             ref TSerializer serializer
         )
         {

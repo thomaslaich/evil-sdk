@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SelectObjectContentOutputSchema
 {
     public sealed class Builder
     {
-        public IAsyncEnumerable<SelectObjectContentEventStream>? Payload { get; set; }
+        public IAsyncEnumerable<global::Com.Amazonaws.S3.SelectObjectContentEventStream>? Payload { get; set; }
     }
 
-    public static StructSchema<SelectObjectContentOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.SelectObjectContentOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SelectObjectContentOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SelectObjectContentOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SelectObjectContentOutput"),
             [
                 new(
@@ -27,10 +29,6 @@ public static partial class SelectObjectContentOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The array of results.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
@@ -46,20 +44,22 @@ public static partial class SelectObjectContentOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<IAsyncEnumerable<SelectObjectContentEventStream>?> Target0 =
-            Schemas.NullableReference(
-                Schemas.EventStream(
-                    Schemas.Lazy(() => SelectObjectContentEventStreamSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IAsyncEnumerable<global::Com.Amazonaws.S3.SelectObjectContentEventStream>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.EventStream(
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        SelectObjectContentEventStreamSchema.Schema!
+                    )
                 )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SelectObjectContentOutput Build(Builder builder) =>
-            new SelectObjectContentOutput(builder.Payload);
+        public override global::Com.Amazonaws.S3.SelectObjectContentOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SelectObjectContentOutput(builder.Payload);
 
         public override void SerializeMembers<TSerializer>(
-            SelectObjectContentOutput value,
+            global::Com.Amazonaws.S3.SelectObjectContentOutput value,
             ref TSerializer serializer
         )
         {

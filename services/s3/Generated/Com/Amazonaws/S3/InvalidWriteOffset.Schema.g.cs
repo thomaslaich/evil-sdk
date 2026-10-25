@@ -5,36 +5,34 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InvalidWriteOffsetSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<InvalidWriteOffset, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InvalidWriteOffset,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidWriteOffset, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.InvalidWriteOffset, Builder>(
             ShapeId.Parse("com.amazonaws.s3#InvalidWriteOffset"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p> The write offset value that you specified does not match the current object size. </p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidWriteOffset Build(Builder builder) => new InvalidWriteOffset(null);
+        public override global::Com.Amazonaws.S3.InvalidWriteOffset Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.InvalidWriteOffset(null);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidWriteOffset value,
+            global::Com.Amazonaws.S3.InvalidWriteOffset value,
             ref TSerializer serializer
         ) { }
 

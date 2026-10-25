@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class RedirectAllRequestsToSchema
 {
@@ -16,11 +16,13 @@ public static partial class RedirectAllRequestsToSchema
         public global::Com.Amazonaws.S3.Protocol? Protocol { get; set; }
     }
 
-    public static StructSchema<RedirectAllRequestsTo, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.RedirectAllRequestsTo,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<RedirectAllRequestsTo, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.RedirectAllRequestsTo, Builder>(
             ShapeId.Parse("com.amazonaws.s3#RedirectAllRequestsTo"),
             [
                 new(
@@ -30,54 +32,33 @@ public static partial class RedirectAllRequestsToSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Name of the host where requests are redirected.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "Protocol",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Protocol to use when redirecting requests. The default is the protocol that is used in the original\n      request.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Protocol", Target1),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Protocol?> Target1 =
-            Schemas.Nullable(ProtocolSchema.Schema);
+            global::NSmithy.Core.Serde.Schemas.Nullable(ProtocolSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override RedirectAllRequestsTo Build(Builder builder) =>
-            new RedirectAllRequestsTo(
+        public override global::Com.Amazonaws.S3.RedirectAllRequestsTo Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.RedirectAllRequestsTo(
                 builder.HostName ?? throw new MissingRequiredMemberException("HostName"),
                 builder.Protocol
             );
 
         public override void SerializeMembers<TSerializer>(
-            RedirectAllRequestsTo value,
+            global::Com.Amazonaws.S3.RedirectAllRequestsTo value,
             ref TSerializer serializer
         )
         {

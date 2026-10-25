@@ -6,55 +6,54 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CodeSigningConfigListSchema
 {
     public static ListSchema<
-        CodeSigningConfigList,
-        CodeSigningConfig,
-        List<CodeSigningConfig>
+        IReadOnlyList<global::Com.Amazonaws.Lambda.CodeSigningConfig>,
+        global::Com.Amazonaws.Lambda.CodeSigningConfig,
+        List<global::Com.Amazonaws.Lambda.CodeSigningConfig>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<CodeSigningConfigList, CodeSigningConfig, List<CodeSigningConfig>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Lambda.CodeSigningConfig>,
+            global::Com.Amazonaws.Lambda.CodeSigningConfig,
+            List<global::Com.Amazonaws.Lambda.CodeSigningConfig>
+        >(
             ShapeId.Parse("com.amazonaws.lambda#CodeSigningConfigList"),
             ShapeKind.List,
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null,
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CodeSigningConfig> Target0 =
-            Schemas.Lazy(() => CodeSigningConfigSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CodeSigningConfig> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => CodeSigningConfigSchema.Schema!);
 
-        public override IEnumerable<CodeSigningConfig> GetElements(CodeSigningConfigList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Lambda.CodeSigningConfig> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Lambda.CodeSigningConfig> value
+        ) => value;
 
-        public override List<CodeSigningConfig> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Lambda.CodeSigningConfig> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<CodeSigningConfig> builder, CodeSigningConfig value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Lambda.CodeSigningConfig> builder,
+            global::Com.Amazonaws.Lambda.CodeSigningConfig value
+        ) => builder.Add(value);
 
-        public override CodeSigningConfigList Build(List<CodeSigningConfig> builder) =>
-            CodeSigningConfigList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Lambda.CodeSigningConfig> Build(
+            List<global::Com.Amazonaws.Lambda.CodeSigningConfig> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            CodeSigningConfigList value,
+            IReadOnlyList<global::Com.Amazonaws.Lambda.CodeSigningConfig> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -69,7 +68,7 @@ public static partial class CodeSigningConfigListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<CodeSigningConfig> builder,
+            List<global::Com.Amazonaws.Lambda.CodeSigningConfig> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(CodeSigningConfigSchema.Schema));
     }

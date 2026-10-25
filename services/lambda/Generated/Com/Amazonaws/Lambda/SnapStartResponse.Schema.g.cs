@@ -5,83 +5,43 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SnapStartResponseSchema
 {
     public sealed class Builder
     {
-        public SnapStartApplyOn? ApplyOn { get; set; }
-        public SnapStartOptimizationStatus? OptimizationStatus { get; set; }
+        public global::Com.Amazonaws.Lambda.SnapStartApplyOn? ApplyOn { get; set; }
+        public global::Com.Amazonaws.Lambda.SnapStartOptimizationStatus? OptimizationStatus { get; set; }
     }
 
-    public static StructSchema<SnapStartResponse, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.SnapStartResponse,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SnapStartResponse, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.SnapStartResponse, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#SnapStartResponse"),
-            [
-                new(
-                    "ApplyOn",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When set to <code>PublishedVersions</code>, Lambda creates a snapshot of the execution environment when you publish a function version.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "OptimizationStatus",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>When you provide a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html#versioning-versions-using\">qualified Amazon Resource Name (ARN)</a>, this response element indicates whether SnapStart is activated for the specified function version.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html\">SnapStart</a> setting.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("ApplyOn", Target0), new("OptimizationStatus", Target1)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SnapStartApplyOn?> Target0 =
-            Schemas.Nullable(SnapStartApplyOnSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<SnapStartOptimizationStatus?> Target1 =
-            Schemas.Nullable(SnapStartOptimizationStatusSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SnapStartApplyOn?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(SnapStartApplyOnSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SnapStartOptimizationStatus?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(SnapStartOptimizationStatusSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SnapStartResponse Build(Builder builder) =>
-            new SnapStartResponse(builder.ApplyOn, builder.OptimizationStatus);
+        public override global::Com.Amazonaws.Lambda.SnapStartResponse Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.SnapStartResponse(
+                builder.ApplyOn,
+                builder.OptimizationStatus
+            );
 
         public override void SerializeMembers<TSerializer>(
-            SnapStartResponse value,
+            global::Com.Amazonaws.Lambda.SnapStartResponse value,
             ref TSerializer serializer
         )
         {
@@ -116,8 +76,8 @@ public static partial class SnapStartResponseSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? SnapStartApplyOn.FromValue(value0)
-                                : default(SnapStartApplyOn)
+                                ? global::Com.Amazonaws.Lambda.SnapStartApplyOn.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.SnapStartApplyOn)
                         );
                     break;
                 case 1:
@@ -125,8 +85,10 @@ public static partial class SnapStartResponseSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value1
-                                ? SnapStartOptimizationStatus.FromValue(value1)
-                                : default(SnapStartOptimizationStatus)
+                                ? global::Com.Amazonaws.Lambda.SnapStartOptimizationStatus.FromValue(
+                                    value1
+                                )
+                                : default(global::Com.Amazonaws.Lambda.SnapStartOptimizationStatus)
                         );
                     break;
             }

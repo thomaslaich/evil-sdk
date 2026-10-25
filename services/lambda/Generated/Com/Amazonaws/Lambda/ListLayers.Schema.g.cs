@@ -4,173 +4,41 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListLayersSchema
 {
     public static global::NSmithy.Core.Serde.OperationSchema<
-        ListLayersInput,
-        ListLayersOutput
+        global::Com.Amazonaws.Lambda.ListLayersInput,
+        global::Com.Amazonaws.Lambda.ListLayersOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.lambda#ListLayers"),
-            Schemas.Lazy(() => ListLayersInputSchema.Schema!),
-            Schemas.Lazy(() => ListLayersOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListLayersInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => ListLayersOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#InvalidParameterValueException"),
-                    Schemas.Lazy(() => InvalidParameterValueExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidParameterValueExceptionSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#ServiceException"),
-                    Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => ServiceExceptionSchema.Schema!),
                     500
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.lambda#TooManyRequestsException"),
-                    Schemas.Lazy(() => TooManyRequestsExceptionSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyRequestsExceptionSchema.Schema!
+                    ),
                     429
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("aws.iam#iamAction"),
-                    Document.From(
-                        new Dictionary<string, Document>
-                        {
-                            {
-                                "documentation",
-                                Document.From(
-                                    "Grants permission to retrieve a list of AWS Lambda layers, with details about the latest version of each layer"
-                                )
-                            },
-                            { "relativeDocumentation", Document.From("API_ListLayers.html") },
-                        }
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Lists <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html\">Lambda layers</a> and shows information about the latest version of each. Specify a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime identifier</a> to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html\">instruction set architecture</a>.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example returns information about layers that are compatible with the Python 3.7 runtime."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "CompatibleRuntime", Document.From("python3.7") },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "output",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                {
-                                                    "Layers",
-                                                    Document.From(
-                                                        new Document[]
-                                                        {
-                                                            Document.From(
-                                                                new Dictionary<string, Document>
-                                                                {
-                                                                    {
-                                                                        "LatestMatchingVersion",
-                                                                        Document.From(
-                                                                            new Dictionary<
-                                                                                string,
-                                                                                Document
-                                                                            >
-                                                                            {
-                                                                                {
-                                                                                    "CompatibleRuntimes",
-                                                                                    Document.From(
-                                                                                        new Document[]
-                                                                                        {
-                                                                                            Document.From(
-                                                                                                "python3.6"
-                                                                                            ),
-                                                                                            Document.From(
-                                                                                                "python3.7"
-                                                                                            ),
-                                                                                        }
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "CreatedDate",
-                                                                                    Document.From(
-                                                                                        "2018-11-15T00:37:46.592+0000"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Description",
-                                                                                    Document.From(
-                                                                                        "My layer"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "LayerVersionArn",
-                                                                                    Document.From(
-                                                                                        "arn:aws:lambda:us-east-2:123456789012:layer:my-layer:2"
-                                                                                    )
-                                                                                },
-                                                                                {
-                                                                                    "Version",
-                                                                                    Document.From(
-                                                                                        (decimal)2
-                                                                                    )
-                                                                                },
-                                                                            }
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LayerArn",
-                                                                        Document.From(
-                                                                            "arn:aws:lambda:us-east-2:123456789012:layer:my-layer"
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        "LayerName",
-                                                                        Document.From("my-layer")
-                                                                    },
-                                                                }
-                                                            ),
-                                                        }
-                                                    )
-                                                },
-                                            }
-                                        )
-                                    },
-                                    {
-                                        "title",
-                                        Document.From(
-                                            "To list the layers that are compatible with your function's runtime"
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -178,7 +46,7 @@ public static partial class ListLayersSchema
                         {
                             { "method", Document.From("GET") },
                             { "uri", Document.From("/2018-10-31/layers") },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),
@@ -191,10 +59,6 @@ public static partial class ListLayersSchema
                 new Trait(
                     ShapeId.Parse("smithy.api#readonly"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ]
         );

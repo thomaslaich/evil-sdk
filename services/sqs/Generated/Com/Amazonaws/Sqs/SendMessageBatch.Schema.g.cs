@@ -5,109 +5,115 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageBatchSchema
 {
-    public static OperationSchema<SendMessageBatchInput, SendMessageBatchOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.Sqs.SendMessageBatchInput,
+        global::Com.Amazonaws.Sqs.SendMessageBatchOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageBatch"),
-            Schemas.Lazy(() => SendMessageBatchInputSchema.Schema!),
-            Schemas.Lazy(() => SendMessageBatchOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => SendMessageBatchInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => SendMessageBatchOutputSchema.Schema!),
             [
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#BatchEntryIdsNotDistinct"),
-                    Schemas.Lazy(() => BatchEntryIdsNotDistinctSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        BatchEntryIdsNotDistinctSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#BatchRequestTooLong"),
-                    Schemas.Lazy(() => BatchRequestTooLongSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        BatchRequestTooLongSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#EmptyBatchRequest"),
-                    Schemas.Lazy(() => EmptyBatchRequestSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => EmptyBatchRequestSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidAddress"),
-                    Schemas.Lazy(() => InvalidAddressSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidAddressSchema.Schema!),
                     404
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidBatchEntryId"),
-                    Schemas.Lazy(() => InvalidBatchEntryIdSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvalidBatchEntryIdSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
-                    Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => InvalidSecuritySchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsAccessDenied"),
-                    Schemas.Lazy(() => KmsAccessDeniedSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsAccessDeniedSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsDisabled"),
-                    Schemas.Lazy(() => KmsDisabledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsDisabledSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsInvalidKeyUsage"),
-                    Schemas.Lazy(() => KmsInvalidKeyUsageSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsInvalidKeyUsageSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsInvalidState"),
-                    Schemas.Lazy(() => KmsInvalidStateSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsInvalidStateSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsNotFound"),
-                    Schemas.Lazy(() => KmsNotFoundSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsNotFoundSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsOptInRequired"),
-                    Schemas.Lazy(() => KmsOptInRequiredSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsOptInRequiredSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#KmsThrottled"),
-                    Schemas.Lazy(() => KmsThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => KmsThrottledSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#QueueDoesNotExist"),
-                    Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => QueueDoesNotExistSchema.Schema!),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#RequestThrottled"),
-                    Schemas.Lazy(() => RequestThrottledSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() => RequestThrottledSchema.Schema!),
                     403
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#TooManyEntriesInBatchRequest"),
-                    Schemas.Lazy(() => TooManyEntriesInBatchRequestSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        TooManyEntriesInBatchRequestSchema.Schema!
+                    ),
                     400
                 ),
-                Schemas.OperationError(
+                global::NSmithy.Core.Serde.Schemas.OperationError(
                     ShapeId.Parse("com.amazonaws.sqs#UnsupportedOperation"),
-                    Schemas.Lazy(() => UnsupportedOperationSchema.Schema!),
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        UnsupportedOperationSchema.Schema!
+                    ),
                     400
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>You can use <code>SendMessageBatch</code> to send up to 10 messages to the specified\n            queue by assigning either identical or different values to each message (or by not\n            assigning values at all). This is a batch version of <code>\n               <a>SendMessage</a>.</code> For a FIFO queue, multiple messages within a single batch are enqueued\n            in the order they are sent.</p>\n         <p>The result of sending each message is reported individually in the response.\n            Because the batch request can result in a combination of successful and unsuccessful actions, you should check for batch errors even when the call returns an HTTP status code of <code>200</code>.</p>\n         <p>The maximum allowed individual message size and the maximum total payload size (the\n            sum of the individual lengths of all of the batched messages) are both 1 MiB \n            1,048,576 bytes.</p>\n         <important>\n            <p>A message can include only XML, JSON, and unformatted text. The following Unicode characters are allowed. For more information, see the <a href=\"http://www.w3.org/TR/REC-xml/#charsets\">W3C specification for characters</a>.</p>\n            <p>\n               <code>#x9</code> | <code>#xA</code> | <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code>\n            </p>\n            <p>If a message contains characters outside the allowed set, Amazon SQS rejects the message and returns an InvalidMessageContents error. Ensure that your message body includes only valid characters to avoid this exception.</p>\n         </important>\n         <p>If you don't specify the <code>DelaySeconds</code> parameter for an entry, Amazon SQS uses\n            the default value for the queue.</p>"
-                    )
-                ),
-            ]
+            null
         );
 }

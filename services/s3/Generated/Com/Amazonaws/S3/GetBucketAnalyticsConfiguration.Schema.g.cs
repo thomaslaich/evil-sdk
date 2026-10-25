@@ -6,26 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketAnalyticsConfigurationSchema
 {
     public static OperationSchema<
-        GetBucketAnalyticsConfigurationInput,
-        GetBucketAnalyticsConfigurationOutput
+        global::Com.Amazonaws.S3.GetBucketAnalyticsConfigurationInput,
+        global::Com.Amazonaws.S3.GetBucketAnalyticsConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketAnalyticsConfiguration"),
-            Schemas.Lazy(() => GetBucketAnalyticsConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketAnalyticsConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketAnalyticsConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketAnalyticsConfigurationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>This implementation of the GET action returns an analytics configuration (identified by the\n      analytics configuration ID) from the bucket.</p>\n         <p>To use this operation, you must have permissions to perform the\n        <code>s3:GetAnalyticsConfiguration</code> action. The bucket owner has this permission by default. The\n      bucket owner can grant this permission to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\"> Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access Permissions to Your Amazon S3\n        Resources</a> in the <i>Amazon S3 User Guide</i>. </p>\n         <p>For information about Amazon S3 analytics feature, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/analytics-storage-class.html\">Amazon S3 Analytics – Storage Class Analysis</a>\n      in the <i>Amazon S3 User Guide</i>.</p>\n         <p>The following operations are related to <code>GetBucketAnalyticsConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketAnalyticsConfiguration.html\">DeleteBucketAnalyticsConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketAnalyticsConfigurations.html\">ListBucketAnalyticsConfigurations</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAnalyticsConfiguration.html\">PutBucketAnalyticsConfiguration</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -34,11 +32,9 @@ public static partial class GetBucketAnalyticsConfigurationSchema
                             { "method", Document.From("GET") },
                             {
                                 "uri",
-                                Document.From(
-                                    "/{Bucket}?analytics&x-id=GetBucketAnalyticsConfiguration"
-                                )
+                                Document.From("/?analytics&x-id=GetBucketAnalyticsConfiguration")
                             },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

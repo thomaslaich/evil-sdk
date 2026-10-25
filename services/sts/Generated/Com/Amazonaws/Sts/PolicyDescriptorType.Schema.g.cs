@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class PolicyDescriptorTypeSchema
 {
@@ -15,11 +15,13 @@ public static partial class PolicyDescriptorTypeSchema
         public string? Arn { get; set; }
     }
 
-    public static StructSchema<PolicyDescriptorType, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.PolicyDescriptorType,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PolicyDescriptorType, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.PolicyDescriptorType, Builder>(
             ShapeId.Parse("com.amazonaws.sts#PolicyDescriptorType"),
             [
                 new(
@@ -28,18 +30,12 @@ public static partial class PolicyDescriptorTypeSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the IAM managed policy to use as a session policy\n         for the role. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and Amazon Web Services\n            Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)20) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(20m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -52,26 +48,21 @@ public static partial class PolicyDescriptorTypeSchema
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A reference to the IAM managed policy that is passed as a session policy for a role\n         session or a federated user session.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PolicyDescriptorType Build(Builder builder) =>
-            new PolicyDescriptorType(builder.Arn);
+        public override global::Com.Amazonaws.Sts.PolicyDescriptorType Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.PolicyDescriptorType(builder.Arn);
 
         public override void SerializeMembers<TSerializer>(
-            PolicyDescriptorType value,
+            global::Com.Amazonaws.Sts.PolicyDescriptorType value,
             ref TSerializer serializer
         )
         {

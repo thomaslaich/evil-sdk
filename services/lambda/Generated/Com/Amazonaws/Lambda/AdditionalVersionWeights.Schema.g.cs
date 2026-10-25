@@ -4,71 +4,63 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class AdditionalVersionWeightsSchema
 {
     public static MapSchema<
-        AdditionalVersionWeights,
+        IReadOnlyDictionary<string, double>,
         double,
         Dictionary<string, double>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : MapSchema<AdditionalVersionWeights, double, Dictionary<string, double>>(
+        : MapSchema<IReadOnlyDictionary<string, double>, double, Dictionary<string, double>>(
             ShapeId.Parse("com.amazonaws.lambda#AdditionalVersionWeights"),
             Target0,
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ],
+            null,
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#length"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)1024) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(1024m) },
                         }
                     )
                 ),
                 new Trait(ShapeId.Parse("smithy.api#pattern"), Document.From("^[0-9]+$")),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
             [
-                new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
+                new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m)),
                 new Trait(
                     ShapeId.Parse("smithy.api#range"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0.0) },
-                            { "max", Document.From((decimal)1.0) },
+                            { "min", Document.From(0.0m) },
+                            { "max", Document.From(1.0m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ],
-            Schemas.String
+            global::NSmithy.Core.Serde.Schemas.String
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<double> Target0 = Schemas.Double;
+        private static readonly global::NSmithy.Core.Serde.Schema<double> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .Double;
 
         public override IEnumerable<KeyValuePair<string, double>> GetEntries(
-            AdditionalVersionWeights value
-        ) => value.Values;
+            IReadOnlyDictionary<string, double> value
+        ) => value;
 
         public override Dictionary<string, double> CreateTypedBuilder() =>
             new(StringComparer.Ordinal);
@@ -76,15 +68,16 @@ public static partial class AdditionalVersionWeightsSchema
         public override void Add(Dictionary<string, double> builder, string key, double value) =>
             builder[key] = value;
 
-        public override AdditionalVersionWeights Build(Dictionary<string, double> builder) =>
-            AdditionalVersionWeights.FromOwnedDictionary(builder);
+        public override IReadOnlyDictionary<string, double> Build(
+            Dictionary<string, double> builder
+        ) => new ReadOnlyDictionary<string, double>(builder);
 
         public override void SerializeEntries<TSerializer>(
-            AdditionalVersionWeights value,
+            IReadOnlyDictionary<string, double> value,
             ref TSerializer serializer
         )
         {
-            foreach (var entry in value.Values)
+            foreach (var entry in value)
             {
                 serializer.WriteString(0, entry.Key);
                 serializer.WriteDouble(1, entry.Value);

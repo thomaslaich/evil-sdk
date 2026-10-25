@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ExecutionSucceededDetailsSchema
 {
     public sealed class Builder
     {
-        public EventResult? Result { get; set; }
+        public global::Com.Amazonaws.Lambda.EventResult? Result { get; set; }
     }
 
-    public static StructSchema<ExecutionSucceededDetails, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ExecutionSucceededDetails,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ExecutionSucceededDetails, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ExecutionSucceededDetails, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ExecutionSucceededDetails"),
             [
                 new(
@@ -29,48 +31,31 @@ public static partial class ExecutionSucceededDetailsSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The response payload from the successful operation.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Details about a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html\">durable execution</a> that succeeded.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<EventResult?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventResultSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.EventResult?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventResultSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ExecutionSucceededDetails Build(Builder builder) =>
-            new ExecutionSucceededDetails(
+        public override global::Com.Amazonaws.Lambda.ExecutionSucceededDetails Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ExecutionSucceededDetails(
                 builder.Result ?? throw new MissingRequiredMemberException("Result")
             );
 
         public override void SerializeMembers<TSerializer>(
-            ExecutionSucceededDetails value,
+            global::Com.Amazonaws.Lambda.ExecutionSucceededDetails value,
             ref TSerializer serializer
         )
         {

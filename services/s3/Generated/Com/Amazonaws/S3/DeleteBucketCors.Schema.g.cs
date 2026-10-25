@@ -6,63 +6,28 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketCorsSchema
 {
-    public static OperationSchema<DeleteBucketCorsInput, DeleteBucketCorsOutput> Schema { get; } =
-        Schemas.Operation(
+    public static OperationSchema<
+        global::Com.Amazonaws.S3.DeleteBucketCorsInput,
+        global::Com.Amazonaws.S3.DeleteBucketCorsOutput
+    > Schema { get; } =
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketCors"),
-            Schemas.Lazy(() => DeleteBucketCorsInputSchema.Schema!),
-            Schemas.Lazy(() => DeleteBucketCorsOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteBucketCorsInputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => DeleteBucketCorsOutputSchema.Schema!),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<note>\n            <p>This operation is not supported for directory buckets.</p>\n         </note>\n         <p>Deletes the <code>cors</code> configuration information set for the bucket.</p>\n         <p>To use this operation, you must have permission to perform the <code>s3:PutBucketCORS</code> action.\n      The bucket owner has this permission by default and can grant this permission to others. </p>\n         <p>For information about <code>cors</code>, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html\">Enabling Cross-Origin Resource Sharing</a> in the\n        <i>Amazon S3 User Guide</i>.</p>\n         <p class=\"title\">\n            <b>Related Resources</b>\n         </p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html\">PutBucketCors</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTOPTIONSobject.html\">RESTOPTIONSobject</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#examples"),
-                    Document.From(
-                        new Document[]
-                        {
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    {
-                                        "title",
-                                        Document.From("To delete cors configuration on a bucket.")
-                                    },
-                                    {
-                                        "documentation",
-                                        Document.From(
-                                            "The following example deletes CORS configuration on a bucket."
-                                        )
-                                    },
-                                    {
-                                        "input",
-                                        Document.From(
-                                            new Dictionary<string, Document>
-                                            {
-                                                { "Bucket", Document.From("examplebucket") },
-                                            }
-                                        )
-                                    },
-                                }
-                            ),
-                        }
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("DELETE") },
-                            { "uri", Document.From("/{Bucket}?cors") },
-                            { "code", Document.From((decimal)204) },
+                            { "uri", Document.From("/?cors") },
+                            { "code", Document.From(204m) },
                         }
                     )
                 ),

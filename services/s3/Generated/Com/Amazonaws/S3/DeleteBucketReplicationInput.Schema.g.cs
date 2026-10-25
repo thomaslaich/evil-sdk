@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketReplicationInputSchema
 {
@@ -16,11 +16,13 @@ public static partial class DeleteBucketReplicationInputSchema
         public string? ExpectedBucketOwner { get; set; }
     }
 
-    public static StructSchema<DeleteBucketReplicationInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketReplicationInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketReplicationInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketReplicationInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketReplicationInput"),
             [
                 new(
@@ -29,10 +31,6 @@ public static partial class DeleteBucketReplicationInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p> The bucket name. </p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpLabel"),
                             Document.From(new Dictionary<string, Document> { })
@@ -58,12 +56,6 @@ public static partial class DeleteBucketReplicationInputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code <code>403 Forbidden</code> (access denied).</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("x-amz-expected-bucket-owner")
                         ),
@@ -83,20 +75,26 @@ public static partial class DeleteBucketReplicationInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketReplicationInput Build(Builder builder) =>
-            new DeleteBucketReplicationInput(
+        public override global::Com.Amazonaws.S3.DeleteBucketReplicationInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.S3.DeleteBucketReplicationInput(
                 builder.Bucket ?? throw new MissingRequiredMemberException("Bucket"),
                 builder.ExpectedBucketOwner
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketReplicationInput value,
+            global::Com.Amazonaws.S3.DeleteBucketReplicationInput value,
             ref TSerializer serializer
         )
         {

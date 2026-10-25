@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class CommonPrefixSchema
 {
@@ -14,43 +14,28 @@ public static partial class CommonPrefixSchema
         public string? Prefix { get; set; }
     }
 
-    public static StructSchema<CommonPrefix, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.CommonPrefix, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CommonPrefix, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.CommonPrefix, Builder>(
             ShapeId.Parse("com.amazonaws.s3#CommonPrefix"),
-            [
-                new(
-                    "Prefix",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Container for the specified common prefix.</p>")
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Container for all (if there are any) keys between Prefix and the next occurrence of the string\n      specified by a delimiter. CommonPrefixes lists keys that act like subdirectories in the directory\n      specified by Prefix. For example, if the prefix is notes/ and the delimiter is a slash (/) as in\n      notes/summer/july, the common prefix is notes/summer/. </p>"
-                    )
-                ),
-            ]
+            [new("Prefix", Target0)],
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CommonPrefix Build(Builder builder) => new CommonPrefix(builder.Prefix);
+        public override global::Com.Amazonaws.S3.CommonPrefix Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.CommonPrefix(builder.Prefix);
 
         public override void SerializeMembers<TSerializer>(
-            CommonPrefix value,
+            global::Com.Amazonaws.S3.CommonPrefix value,
             ref TSerializer serializer
         )
         {

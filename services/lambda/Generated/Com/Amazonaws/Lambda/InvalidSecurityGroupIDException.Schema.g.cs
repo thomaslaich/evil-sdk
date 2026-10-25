@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvalidSecurityGroupIDExceptionSchema
 {
@@ -15,64 +15,42 @@ public static partial class InvalidSecurityGroupIDExceptionSchema
         public string? Type { get; set; }
     }
 
-    public static StructSchema<InvalidSecurityGroupIDException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvalidSecurityGroupIDException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidSecurityGroupIDException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvalidSecurityGroupIDException, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvalidSecurityGroupIDException"),
+            [new("Message", Target0), new("Type", Target1)],
             [
-                new(
-                    "Message",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "Type",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The security group ID provided in the Lambda function VPC configuration is not valid.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("server")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)502)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(502m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidSecurityGroupIDException Build(Builder builder) =>
-            new InvalidSecurityGroupIDException(builder.Message, builder.Type);
+        public override global::Com.Amazonaws.Lambda.InvalidSecurityGroupIDException Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.InvalidSecurityGroupIDException(
+                builder.Message,
+                builder.Type
+            );
 
         public override void SerializeMembers<TSerializer>(
-            InvalidSecurityGroupIDException value,
+            global::Com.Amazonaws.Lambda.InvalidSecurityGroupIDException value,
             ref TSerializer serializer
         )
         {

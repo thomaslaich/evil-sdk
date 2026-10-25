@@ -23,9 +23,4 @@ namespace Com.Amazonaws.S3;
 /// <param name="RetainUntilDate">
 /// &lt;p&gt;The date on which this Object Lock Retention will expire.&lt;/p&gt;
 /// </param>
-public sealed record class ObjectLockRetention(
-    ObjectLockEventHold? EventHold = null,
-    global::Com.Amazonaws.S3.EventHoldDuration? EventHoldDuration = null,
-    ObjectLockRetentionMode? Mode = null,
-    DateTimeOffset? RetainUntilDate = null
-);
+public sealed record class ObjectLockRetention(ObjectLockEventHold? EventHold = null, global::Com.Amazonaws.S3.EventHoldDuration? EventHoldDuration = null, ObjectLockRetentionMode? Mode = null, DateTimeOffset? RetainUntilDate = null);

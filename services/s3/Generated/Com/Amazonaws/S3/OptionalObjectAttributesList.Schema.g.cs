@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class OptionalObjectAttributesListSchema
 {
     public static ListSchema<
-        OptionalObjectAttributesList,
-        OptionalObjectAttributes,
-        List<OptionalObjectAttributes>
+        IReadOnlyList<global::Com.Amazonaws.S3.OptionalObjectAttributes>,
+        global::Com.Amazonaws.S3.OptionalObjectAttributes,
+        List<global::Com.Amazonaws.S3.OptionalObjectAttributes>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            OptionalObjectAttributesList,
-            OptionalObjectAttributes,
-            List<OptionalObjectAttributes>
+            IReadOnlyList<global::Com.Amazonaws.S3.OptionalObjectAttributes>,
+            global::Com.Amazonaws.S3.OptionalObjectAttributes,
+            List<global::Com.Amazonaws.S3.OptionalObjectAttributes>
         >(
             ShapeId.Parse("com.amazonaws.s3#OptionalObjectAttributesList"),
             ShapeKind.List,
@@ -29,30 +29,31 @@ public static partial class OptionalObjectAttributesListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<OptionalObjectAttributes> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.OptionalObjectAttributes> Target0 =
             OptionalObjectAttributesSchema.Schema;
 
-        public override IEnumerable<OptionalObjectAttributes> GetElements(
-            OptionalObjectAttributesList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.OptionalObjectAttributes> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.OptionalObjectAttributes> value
+        ) => value;
 
-        public override List<OptionalObjectAttributes> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.OptionalObjectAttributes> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<OptionalObjectAttributes> builder,
-            OptionalObjectAttributes value
+            List<global::Com.Amazonaws.S3.OptionalObjectAttributes> builder,
+            global::Com.Amazonaws.S3.OptionalObjectAttributes value
         ) => builder.Add(value);
 
-        public override OptionalObjectAttributesList Build(
-            List<OptionalObjectAttributes> builder
-        ) => OptionalObjectAttributesList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.OptionalObjectAttributes> Build(
+            List<global::Com.Amazonaws.S3.OptionalObjectAttributes> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            OptionalObjectAttributesList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.OptionalObjectAttributes> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -60,14 +61,14 @@ public static partial class OptionalObjectAttributesListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<OptionalObjectAttributes> builder,
+            List<global::Com.Amazonaws.S3.OptionalObjectAttributes> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? OptionalObjectAttributes.FromValue(element)
-                        : default(OptionalObjectAttributes)
+                        ? global::Com.Amazonaws.S3.OptionalObjectAttributes.FromValue(element)
+                        : default(global::Com.Amazonaws.S3.OptionalObjectAttributes)
                 )
             );
     }

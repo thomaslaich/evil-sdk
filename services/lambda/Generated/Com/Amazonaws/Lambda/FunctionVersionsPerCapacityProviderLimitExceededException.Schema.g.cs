@@ -5,7 +5,7 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class FunctionVersionsPerCapacityProviderLimitExceededExceptionSchema
 {
@@ -16,76 +16,46 @@ public static partial class FunctionVersionsPerCapacityProviderLimitExceededExce
     }
 
     public static StructSchema<
-        FunctionVersionsPerCapacityProviderLimitExceededException,
+        global::Com.Amazonaws.Lambda.FunctionVersionsPerCapacityProviderLimitExceededException,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<FunctionVersionsPerCapacityProviderLimitExceededException, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.Lambda.FunctionVersionsPerCapacityProviderLimitExceededException,
+            Builder
+        >(
             ShapeId.Parse(
                 "com.amazonaws.lambda#FunctionVersionsPerCapacityProviderLimitExceededException"
             ),
+            [new("Type", Target0), new("message", Target1)],
             [
-                new(
-                    "Type",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The exception type.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "message",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The maximum number of function versions that can be associated with a single capacity provider has been exceeded. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html\">Lambda quotas</a>.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override FunctionVersionsPerCapacityProviderLimitExceededException Build(
+        public override global::Com.Amazonaws.Lambda.FunctionVersionsPerCapacityProviderLimitExceededException Build(
             Builder builder
         ) =>
-            new FunctionVersionsPerCapacityProviderLimitExceededException(
+            new global::Com.Amazonaws.Lambda.FunctionVersionsPerCapacityProviderLimitExceededException(
                 builder.Message,
                 builder.Type
             );
 
         public override void SerializeMembers<TSerializer>(
-            FunctionVersionsPerCapacityProviderLimitExceededException value,
+            global::Com.Amazonaws.Lambda.FunctionVersionsPerCapacityProviderLimitExceededException value,
             ref TSerializer serializer
         )
         {

@@ -5,36 +5,34 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UnsupportedMediaTypeSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<UnsupportedMediaType, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.UnsupportedMediaType,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UnsupportedMediaType, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.UnsupportedMediaType, Builder>(
             ShapeId.Parse("com.amazonaws.s3#UnsupportedMediaType"),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>The annotation payload is not valid UTF-8 encoded text.</p>")
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)415)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(415m)),
             ]
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override UnsupportedMediaType Build(Builder builder) =>
-            new UnsupportedMediaType(null);
+        public override global::Com.Amazonaws.S3.UnsupportedMediaType Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.UnsupportedMediaType(null);
 
         public override void SerializeMembers<TSerializer>(
-            UnsupportedMediaType value,
+            global::Com.Amazonaws.S3.UnsupportedMediaType value,
             ref TSerializer serializer
         ) { }
 

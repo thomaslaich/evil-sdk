@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DataRedundancySchema
 {
     public static global::NSmithy.Core.Serde.Schema<DataRedundancy> Schema { get; } =
-        Schemas.StringEnum<DataRedundancy>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<DataRedundancy>(
             ShapeId.Parse("com.amazonaws.s3#DataRedundancy"),
             values: ["SingleAvailabilityZone", "SingleLocalZone"],
             traits:

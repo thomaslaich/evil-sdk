@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListCapacityProvidersOutputSchema
 {
     public sealed class Builder
     {
-        public CapacityProvidersList? CapacityProviders { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.CapacityProvider>? CapacityProviders { get; set; }
         public string? NextMarker { get; set; }
     }
 
-    public static StructSchema<ListCapacityProvidersOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListCapacityProvidersOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListCapacityProvidersOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListCapacityProvidersOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListCapacityProvidersOutput"),
             [
                 new(
@@ -30,45 +32,17 @@ public static partial class ListCapacityProvidersOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of capacity providers in your account.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
-                new(
-                    "NextMarker",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The pagination token that's included if more results are available.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
+                new("NextMarker", Target1),
             ],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -77,22 +51,28 @@ public static partial class ListCapacityProvidersOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProvidersList?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CapacityProvidersListSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.CapacityProvider>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CapacityProvidersListSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListCapacityProvidersOutput Build(Builder builder) =>
-            new ListCapacityProvidersOutput(
+        public override global::Com.Amazonaws.Lambda.ListCapacityProvidersOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListCapacityProvidersOutput(
                 builder.CapacityProviders
                     ?? throw new MissingRequiredMemberException("CapacityProviders"),
                 builder.NextMarker
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListCapacityProvidersOutput value,
+            global::Com.Amazonaws.Lambda.ListCapacityProvidersOutput value,
             ref TSerializer serializer
         )
         {

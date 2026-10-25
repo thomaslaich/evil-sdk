@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class MetadataConfigurationSchema
 {
@@ -17,11 +17,13 @@ public static partial class MetadataConfigurationSchema
         public global::Com.Amazonaws.S3.AnnotationTableConfiguration? AnnotationTableConfiguration { get; set; }
     }
 
-    public static StructSchema<MetadataConfiguration, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.MetadataConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<MetadataConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.MetadataConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#MetadataConfiguration"),
             [
                 new(
@@ -31,69 +33,40 @@ public static partial class MetadataConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The journal table configuration for a metadata configuration.\n    </p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
                     ]
                 ),
-                new(
-                    "InventoryTableConfiguration",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      The inventory table configuration for a metadata configuration.\n    </p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "AnnotationTableConfiguration",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Optional annotation table configuration to include with the metadata configuration.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("InventoryTableConfiguration", Target1),
+                new("AnnotationTableConfiguration", Target2),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      The S3 Metadata configuration for a general purpose bucket.\n    </p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.JournalTableConfiguration?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => JournalTableConfigurationSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    JournalTableConfigurationSchema.Schema!
+                )
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.InventoryTableConfiguration?> Target1 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => InventoryTableConfigurationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    InventoryTableConfigurationSchema.Schema!
+                )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnnotationTableConfiguration?> Target2 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => AnnotationTableConfigurationSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    AnnotationTableConfigurationSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override MetadataConfiguration Build(Builder builder) =>
-            new MetadataConfiguration(
+        public override global::Com.Amazonaws.S3.MetadataConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.MetadataConfiguration(
                 builder.JournalTableConfiguration
                     ?? throw new MissingRequiredMemberException("JournalTableConfiguration"),
                 builder.AnnotationTableConfiguration,
@@ -101,7 +74,7 @@ public static partial class MetadataConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            MetadataConfiguration value,
+            global::Com.Amazonaws.S3.MetadataConfiguration value,
             ref TSerializer serializer
         )
         {

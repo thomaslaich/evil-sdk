@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class SSEKMSEncryptionSchema
 {
@@ -16,10 +16,11 @@ public static partial class SSEKMSEncryptionSchema
         public bool? BucketKeyEnabled { get; set; }
     }
 
-    public static StructSchema<SSEKMSEncryption, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.SSEKMSEncryption, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SSEKMSEncryption, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.SSEKMSEncryption, Builder>(
             ShapeId.Parse("com.amazonaws.s3#SSEKMSEncryption"),
             [
                 new(
@@ -29,18 +30,12 @@ public static partial class SSEKMSEncryptionSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      Specifies the Amazon Web Services KMS key Amazon Resource Name (ARN) to use for the updated server-side encryption \n      type. Required if <code>ObjectEncryption</code> specifies <code>SSEKMS</code>. \n    </p>\n         <note>\n            <p>You must specify the full Amazon Web Services KMS key ARN. The KMS key ID and KMS key alias aren't \n        supported.</p>\n         </note>\n         <p>Pattern: (<code>arn:aws[-a-z0-9]*:kms:[-a-z0-9]*:[0-9]{12}:key/.+</code>)</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)20) },
-                                    { "max", Document.From((decimal)2048) },
+                                    { "min", Document.From(20m) },
+                                    { "max", Document.From(2048m) },
                                 }
                             )
                         ),
@@ -69,42 +64,29 @@ public static partial class SSEKMSEncryptionSchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n      Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption \n      using Key Management Service (KMS) keys (SSE-KMS). If this value isn't specified, it defaults to <code>false</code>. \n      Setting this value to <code>true</code> causes Amazon S3 to use an S3 Bucket Key for object encryption with \n      SSE-KMS. For more information, see \n      <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html\">\n        Using Amazon S3 Bucket Keys</a> in the <i>Amazon S3 User Guide</i>.\n    </p>\n         <p>Valid Values: <code>true</code> | <code>false</code>\n         </p>"
-                            )
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>\n      If <code>SSEKMS</code> is specified for <code>ObjectEncryption</code>, this data type specifies\n      the Amazon Web Services KMS key Amazon Resource Name (ARN) to use and whether to use an S3 Bucket Key for \n      server-side encryption using Key Management Service (KMS) keys (SSE-KMS).\n    </p>"
-                    )
-                ),
-                new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SSE-KMS")),
-            ]
+            [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("SSE-KMS"))]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SSEKMSEncryption Build(Builder builder) =>
-            new SSEKMSEncryption(
+        public override global::Com.Amazonaws.S3.SSEKMSEncryption Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.SSEKMSEncryption(
                 builder.KMSKeyArn ?? throw new MissingRequiredMemberException("KMSKeyArn"),
                 builder.BucketKeyEnabled
             );
 
         public override void SerializeMembers<TSerializer>(
-            SSEKMSEncryption value,
+            global::Com.Amazonaws.S3.SSEKMSEncryption value,
             ref TSerializer serializer
         )
         {

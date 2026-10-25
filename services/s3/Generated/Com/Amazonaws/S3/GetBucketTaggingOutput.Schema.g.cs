@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketTaggingOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.S3.TagSet? TagSet { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Tag>? TagSet { get; set; }
     }
 
-    public static StructSchema<GetBucketTaggingOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.GetBucketTaggingOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<GetBucketTaggingOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.GetBucketTaggingOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#GetBucketTaggingOutput"),
             [
                 new(
@@ -28,10 +30,6 @@ public static partial class GetBucketTaggingOutputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Contains the tag set.</p>")
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -48,18 +46,20 @@ public static partial class GetBucketTaggingOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.TagSet?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => TagSetSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Tag>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSetSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override GetBucketTaggingOutput Build(Builder builder) =>
-            new GetBucketTaggingOutput(
+        public override global::Com.Amazonaws.S3.GetBucketTaggingOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.GetBucketTaggingOutput(
                 builder.TagSet ?? throw new MissingRequiredMemberException("TagSet")
             );
 
         public override void SerializeMembers<TSerializer>(
-            GetBucketTaggingOutput value,
+            global::Com.Amazonaws.S3.GetBucketTaggingOutput value,
             ref TSerializer serializer
         )
         {

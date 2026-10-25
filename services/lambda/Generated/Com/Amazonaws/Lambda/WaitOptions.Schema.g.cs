@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class WaitOptionsSchema
 {
@@ -15,10 +15,11 @@ public static partial class WaitOptionsSchema
         public int? WaitSeconds { get; set; }
     }
 
-    public static StructSchema<WaitOptions, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.WaitOptions, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<WaitOptions, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.WaitOptions, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#WaitOptions"),
             [
                 new(
@@ -31,48 +32,31 @@ public static partial class WaitOptionsSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The duration to wait, in seconds.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)31622400) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(31622400m) },
                                 }
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Specifies how long to pause the durable execution.</p>")
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override WaitOptions Build(Builder builder) => new WaitOptions(builder.WaitSeconds);
+        public override global::Com.Amazonaws.Lambda.WaitOptions Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.WaitOptions(builder.WaitSeconds);
 
         public override void SerializeMembers<TSerializer>(
-            WaitOptions value,
+            global::Com.Amazonaws.Lambda.WaitOptions value,
             ref TSerializer serializer
         )
         {

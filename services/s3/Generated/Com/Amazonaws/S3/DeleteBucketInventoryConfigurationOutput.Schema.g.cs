@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteBucketInventoryConfigurationOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<DeleteBucketInventoryConfigurationOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteBucketInventoryConfigurationOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteBucketInventoryConfigurationOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteBucketInventoryConfigurationOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteBucketInventoryConfigurationOutput"),
             [],
             [
@@ -33,11 +35,12 @@ public static partial class DeleteBucketInventoryConfigurationOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteBucketInventoryConfigurationOutput Build(Builder builder) =>
-            new DeleteBucketInventoryConfigurationOutput();
+        public override global::Com.Amazonaws.S3.DeleteBucketInventoryConfigurationOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.DeleteBucketInventoryConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            DeleteBucketInventoryConfigurationOutput value,
+            global::Com.Amazonaws.S3.DeleteBucketInventoryConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

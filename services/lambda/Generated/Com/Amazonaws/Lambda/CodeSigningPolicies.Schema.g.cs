@@ -5,64 +5,39 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CodeSigningPoliciesSchema
 {
     public sealed class Builder
     {
-        public CodeSigningPolicy? UntrustedArtifactOnDeployment { get; set; }
+        public global::Com.Amazonaws.Lambda.CodeSigningPolicy? UntrustedArtifactOnDeployment { get; set; }
     }
 
-    public static StructSchema<CodeSigningPolicies, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CodeSigningPolicies,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CodeSigningPolicies, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CodeSigningPolicies, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CodeSigningPolicies"),
-            [
-                new(
-                    "UntrustedArtifactOnDeployment",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Code signing configuration policy for deployment validation failure. If you set the policy to <code>Enforce</code>, Lambda blocks the deployment request if signature validation checks fail. If you set the policy to <code>Warn</code>, Lambda allows the deployment and issues a new Amazon CloudWatch metric (<code>SignatureValidationErrors</code>) and also stores the warning in the CloudTrail log.</p> <p>Default value: <code>Warn</code> </p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Code signing configuration <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html#config-codesigning-policies\">policies</a> specify the validation failure action for signature mismatch or expiry.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("UntrustedArtifactOnDeployment", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CodeSigningPolicy?> Target0 =
-            Schemas.Nullable(CodeSigningPolicySchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CodeSigningPolicy?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(CodeSigningPolicySchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CodeSigningPolicies Build(Builder builder) =>
-            new CodeSigningPolicies(builder.UntrustedArtifactOnDeployment);
+        public override global::Com.Amazonaws.Lambda.CodeSigningPolicies Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.CodeSigningPolicies(
+                builder.UntrustedArtifactOnDeployment
+            );
 
         public override void SerializeMembers<TSerializer>(
-            CodeSigningPolicies value,
+            global::Com.Amazonaws.Lambda.CodeSigningPolicies value,
             ref TSerializer serializer
         )
         {
@@ -89,8 +64,8 @@ public static partial class CodeSigningPoliciesSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? CodeSigningPolicy.FromValue(value0)
-                                : default(CodeSigningPolicy)
+                                ? global::Com.Amazonaws.Lambda.CodeSigningPolicy.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.CodeSigningPolicy)
                         );
                     break;
             }

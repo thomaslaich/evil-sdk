@@ -5,89 +5,47 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnalyticsFilterSchema
 {
-    public static UnionSchema<AnalyticsFilter> Schema { get; } = new GeneratedSchema();
+    public static UnionSchema<global::Com.Amazonaws.S3.AnalyticsFilter> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : UnionSchema<AnalyticsFilter>(
+        : UnionSchema<global::Com.Amazonaws.S3.AnalyticsFilter>(
             ShapeId.Parse("com.amazonaws.s3#AnalyticsFilter"),
-            [
-                new(
-                    "And",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A conjunction (logical AND) of predicates, which is used in evaluating an analytics filter. The\n      operator must have at least two predicates.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Prefix",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The prefix to use when evaluating an analytics filter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Tag",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The tag to use when evaluating an analytics filter.</p>"
-                            )
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The filter used to describe a set of objects for analyses. A filter must have exactly one prefix,\n      one tag, or one conjunction (AnalyticsAndOperator). If no filter is provided, all objects will be\n      considered in any analysis.</p>"
-                    )
-                ),
-            ]
+            [new("And", Target0), new("Prefix", Target1), new("Tag", Target2)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<AnalyticsAndOperator> Target0 =
-            Schemas.Lazy(() => AnalyticsAndOperatorSchema.Schema!);
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target1 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.AnalyticsAndOperator> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => AnalyticsAndOperatorSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target1 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Tag> Target2 =
-            Schemas.Lazy(() => TagSchema.Schema!);
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TagSchema.Schema!);
 
-        public override int CaseOf(AnalyticsFilter value) =>
+        public override int CaseOf(global::Com.Amazonaws.S3.AnalyticsFilter value) =>
             value switch
             {
-                AnalyticsFilter.And => 0,
-                AnalyticsFilter.Prefix => 1,
-                AnalyticsFilter.Tag => 2,
+                global::Com.Amazonaws.S3.AnalyticsFilter.And => 0,
+                global::Com.Amazonaws.S3.AnalyticsFilter.Prefix => 1,
+                global::Com.Amazonaws.S3.AnalyticsFilter.TagCase => 2,
                 _ => throw NoCaseMatched(),
             };
 
         public override void SerializeCase<TSerializer>(
-            AnalyticsFilter value,
+            global::Com.Amazonaws.S3.AnalyticsFilter value,
             ref TSerializer serializer
         )
         {
             switch (value)
             {
-                case AnalyticsFilter.And @case:
+                case global::Com.Amazonaws.S3.AnalyticsFilter.And @case:
                     if (@case.Value is { } value0)
                     {
                         serializer.WriteStruct(0, value0, AnalyticsAndOperatorSchema.Schema);
@@ -97,7 +55,7 @@ public static partial class AnalyticsFilterSchema
                         serializer.WriteNull(0);
                     }
                     break;
-                case AnalyticsFilter.Prefix @case:
+                case global::Com.Amazonaws.S3.AnalyticsFilter.Prefix @case:
                     if (@case.Value is { } value1)
                     {
                         serializer.WriteString(1, value1);
@@ -107,7 +65,7 @@ public static partial class AnalyticsFilterSchema
                         serializer.WriteNull(1);
                     }
                     break;
-                case AnalyticsFilter.Tag @case:
+                case global::Com.Amazonaws.S3.AnalyticsFilter.TagCase @case:
                     if (@case.Value is { } value2)
                     {
                         serializer.WriteStruct(2, value2, TagSchema.Schema);
@@ -122,17 +80,21 @@ public static partial class AnalyticsFilterSchema
             }
         }
 
-        public override AnalyticsFilter DeserializeCase<TDeserializer>(
+        public override global::Com.Amazonaws.S3.AnalyticsFilter DeserializeCase<TDeserializer>(
             int index,
             ref TDeserializer deserializer
         ) =>
             index switch
             {
-                0 => new AnalyticsFilter.And(
+                0 => new global::Com.Amazonaws.S3.AnalyticsFilter.And(
                     (deserializer.ReadStruct(AnalyticsAndOperatorSchema.Schema))!
                 ),
-                1 => new AnalyticsFilter.Prefix((deserializer.ReadString())!),
-                2 => new AnalyticsFilter.Tag((deserializer.ReadStruct(TagSchema.Schema))!),
+                1 => new global::Com.Amazonaws.S3.AnalyticsFilter.Prefix(
+                    (deserializer.ReadString())!
+                ),
+                2 => new global::Com.Amazonaws.S3.AnalyticsFilter.TagCase(
+                    (deserializer.ReadStruct(TagSchema.Schema))!
+                ),
                 _ => throw NoCaseMatched(),
             };
     }

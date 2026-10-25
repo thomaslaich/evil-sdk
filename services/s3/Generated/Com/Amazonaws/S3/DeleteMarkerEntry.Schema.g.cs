@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class DeleteMarkerEntrySchema
 {
@@ -20,54 +20,30 @@ public static partial class DeleteMarkerEntrySchema
         public DateTimeOffset? LastModified { get; set; }
     }
 
-    public static StructSchema<DeleteMarkerEntry, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DeleteMarkerEntry,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<DeleteMarkerEntry, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.DeleteMarkerEntry, Builder>(
             ShapeId.Parse("com.amazonaws.s3#DeleteMarkerEntry"),
             [
-                new(
-                    "Owner",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The account that created the delete marker. </p>")
-                        ),
-                    ]
-                ),
+                new("Owner", Target0),
                 new(
                     "Key",
                     Target1,
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The object key.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)1) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(1m) } }
                             )
                         ),
                     ]
                 ),
-                new(
-                    "VersionId",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Version ID of an object.</p>")
-                        ),
-                    ]
-                ),
+                new("VersionId", Target2),
                 new(
                     "IsLatest",
                     Target3,
@@ -77,50 +53,36 @@ public static partial class DeleteMarkerEntrySchema
                             ShapeId.Parse("smithy.api#box"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Specifies whether the object is (true) or is not (false) the latest version of an object. </p>"
-                            )
-                        ),
                     ]
                 ),
-                new(
-                    "LastModified",
-                    Target4,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>Date and time when the object was last modified.</p>")
-                        ),
-                    ]
-                ),
+                new("LastModified", Target4),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Information about the delete marker.</p>")
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Owner?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnerSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnerSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 = Schemas.Nullable(
-            Schemas.Boolean
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<bool?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Boolean);
         private static readonly global::NSmithy.Core.Serde.Schema<DateTimeOffset?> Target4 =
-            Schemas.Nullable(Schemas.Timestamp);
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                global::NSmithy.Core.Serde.Schemas.Timestamp
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override DeleteMarkerEntry Build(Builder builder) =>
-            new DeleteMarkerEntry(
+        public override global::Com.Amazonaws.S3.DeleteMarkerEntry Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.DeleteMarkerEntry(
                 builder.IsLatest,
                 builder.Key,
                 builder.LastModified,
@@ -129,7 +91,7 @@ public static partial class DeleteMarkerEntrySchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            DeleteMarkerEntry value,
+            global::Com.Amazonaws.S3.DeleteMarkerEntry value,
             ref TSerializer serializer
         )
         {

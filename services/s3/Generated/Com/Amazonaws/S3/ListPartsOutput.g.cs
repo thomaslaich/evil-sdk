@@ -3,6 +3,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 
 namespace Com.Amazonaws.S3;
 
@@ -104,7 +105,7 @@ public sealed record class ListPartsOutput(
     string? NextPartNumberMarker = null,
     global::Com.Amazonaws.S3.Owner? Owner = null,
     string? PartNumberMarker = null,
-    global::Com.Amazonaws.S3.Parts? Parts = null,
+    IReadOnlyList<Part>? Parts = null,
     global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null,
     global::Com.Amazonaws.S3.StorageClass? StorageClass = null,
     string? UploadId = null

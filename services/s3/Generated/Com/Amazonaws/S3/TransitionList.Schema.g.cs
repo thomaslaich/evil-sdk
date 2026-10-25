@@ -6,40 +6,47 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TransitionListSchema
 {
-    public static ListSchema<TransitionList, Transition, List<Transition>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.Transition>,
+        global::Com.Amazonaws.S3.Transition,
+        List<global::Com.Amazonaws.S3.Transition>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<TransitionList, Transition, List<Transition>>(
-            ShapeId.Parse("com.amazonaws.s3#TransitionList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.Transition>,
+            global::Com.Amazonaws.S3.Transition,
+            List<global::Com.Amazonaws.S3.Transition>
+        >(ShapeId.Parse("com.amazonaws.s3#TransitionList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<Transition> Target0 =
-            Schemas.Lazy(() => TransitionSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Transition> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => TransitionSchema.Schema!);
 
-        public override IEnumerable<Transition> GetElements(TransitionList value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.Transition> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.Transition> value
+        ) => value;
 
-        public override List<Transition> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.Transition> CreateTypedBuilder() => new();
 
-        public override void Add(List<Transition> builder, Transition value) => builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.Transition> builder,
+            global::Com.Amazonaws.S3.Transition value
+        ) => builder.Add(value);
 
-        public override TransitionList Build(List<Transition> builder) =>
-            TransitionList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.Transition> Build(
+            List<global::Com.Amazonaws.S3.Transition> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            TransitionList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.Transition> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -54,7 +61,7 @@ public static partial class TransitionListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<Transition> builder,
+            List<global::Com.Amazonaws.S3.Transition> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(TransitionSchema.Schema));
     }

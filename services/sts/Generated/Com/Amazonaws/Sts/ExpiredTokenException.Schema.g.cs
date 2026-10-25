@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class ExpiredTokenExceptionSchema
 {
@@ -15,11 +15,13 @@ public static partial class ExpiredTokenExceptionSchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<ExpiredTokenException, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.ExpiredTokenException,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ExpiredTokenException, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.ExpiredTokenException, Builder>(
             ShapeId.Parse("com.amazonaws.sts#ExpiredTokenException"),
             [new("message", Target0)],
             [
@@ -29,31 +31,27 @@ public static partial class ExpiredTokenExceptionSchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("ExpiredTokenException") },
-                            { "httpResponseCode", Document.From((decimal)400) },
+                            { "httpResponseCode", Document.From(400m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The web identity token that was passed is expired or is not valid. Get a new identity\n            token from the identity provider and then retry the request.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)400)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ExpiredTokenException Build(Builder builder) =>
-            new ExpiredTokenException(builder.Message);
+        public override global::Com.Amazonaws.Sts.ExpiredTokenException Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.ExpiredTokenException(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            ExpiredTokenException value,
+            global::Com.Amazonaws.Sts.ExpiredTokenException value,
             ref TSerializer serializer
         )
         {

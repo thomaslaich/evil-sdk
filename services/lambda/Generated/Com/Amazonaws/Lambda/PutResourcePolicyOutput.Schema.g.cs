@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class PutResourcePolicyOutputSchema
 {
@@ -16,11 +16,13 @@ public static partial class PutResourcePolicyOutputSchema
         public string? RevisionId { get; set; }
     }
 
-    public static StructSchema<PutResourcePolicyOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.PutResourcePolicyOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutResourcePolicyOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.PutResourcePolicyOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#PutResourcePolicyOutput"),
             [
                 new(
@@ -29,28 +31,18 @@ public static partial class PutResourcePolicyOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The resource-based policy that Lambda adds to the resource.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)20480) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(20480m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^[\\s\\S]+$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -60,18 +52,12 @@ public static partial class PutResourcePolicyOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The revision ID of the policy that Lambda adds to your Lambda resource.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)36) },
-                                    { "max", Document.From((decimal)36) },
+                                    { "min", Document.From(36m) },
+                                    { "max", Document.From(36m) },
                                 }
                             )
                         ),
@@ -80,10 +66,6 @@ public static partial class PutResourcePolicyOutputSchema
                             Document.From(
                                 "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                             )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -94,10 +76,6 @@ public static partial class PutResourcePolicyOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#PutResourcePolicyResponse")
                 ),
@@ -105,17 +83,26 @@ public static partial class PutResourcePolicyOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutResourcePolicyOutput Build(Builder builder) =>
-            new PutResourcePolicyOutput(builder.Policy, builder.RevisionId);
+        public override global::Com.Amazonaws.Lambda.PutResourcePolicyOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.PutResourcePolicyOutput(
+                builder.Policy,
+                builder.RevisionId
+            );
 
         public override void SerializeMembers<TSerializer>(
-            PutResourcePolicyOutput value,
+            global::Com.Amazonaws.Lambda.PutResourcePolicyOutput value,
             ref TSerializer serializer
         )
         {

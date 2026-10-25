@@ -4,22 +4,17 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ApplicationLogLevelSchema
 {
     public static global::NSmithy.Core.Serde.Schema<ApplicationLogLevel> Schema { get; } =
-        Schemas.StringEnum<ApplicationLogLevel>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<ApplicationLogLevel>(
             ShapeId.Parse("com.amazonaws.lambda#ApplicationLogLevel"),
             values: ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"],
             traits:
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#enum"),
                     Document.From(

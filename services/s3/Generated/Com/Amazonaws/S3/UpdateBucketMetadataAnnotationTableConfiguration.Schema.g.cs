@@ -6,18 +6,20 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataAnnotationTableConfigurationSchema
 {
     public static OperationSchema<
-        UpdateBucketMetadataAnnotationTableConfigurationInput,
-        UpdateBucketMetadataAnnotationTableConfigurationOutput
+        global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationInput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#UpdateBucketMetadataAnnotationTableConfiguration"),
-            Schemas.Lazy(() => UpdateBucketMetadataAnnotationTableConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() =>
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                UpdateBucketMetadataAnnotationTableConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
                 UpdateBucketMetadataAnnotationTableConfigurationOutputSchema.Schema!
             ),
             [],
@@ -33,19 +35,13 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationSche
                     )
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Updates the annotation table configuration for an Amazon S3 bucket's metadata configuration. Use this\n      operation to enable or disable the annotation table, or to update its associated IAM role.</p>\n         <p>An annotation table is a queryable Iceberg table that contains records of all annotations\n      attached to objects in the bucket. To use this operation, the bucket must have an existing Amazon S3\n      Metadata configuration.</p>\n         <p>To use this operation, you must have the\n      <code>s3:UpdateBucketMetadataAnnotationTableConfiguration</code> permission. If you are specifying\n      or changing the IAM role, you must also have <code>iam:PassRole</code> permission for the role.</p>\n         <p>The IAM role must have a trust policy that allows the Amazon S3 metadata service to assume it, and a\n      permissions policy that grants the actions needed to read annotations from your bucket. The\n      following examples show a trust policy and a permissions policy that you can adapt for your bucket\n      and account.</p>\n         <p>The following operations are related to\n      <code>UpdateBucketMetadataAnnotationTableConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html\">CreateBucketMetadataConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetadataConfiguration.html\">GetBucketMetadataConfiguration</a>\n               </p>\n            </li>\n         </ul>"
-                    )
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
                         new Dictionary<string, Document>
                         {
                             { "method", Document.From("PUT") },
-                            { "uri", Document.From("/{Bucket}?metadataAnnotationTable") },
-                            { "code", Document.From((decimal)200) },
+                            { "uri", Document.From("/?metadataAnnotationTable") },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

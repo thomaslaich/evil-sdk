@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class TopicConfigurationSchema
 {
@@ -14,41 +14,26 @@ public static partial class TopicConfigurationSchema
     {
         public string? Id { get; set; }
         public string? TopicArn { get; set; }
-        public EventList? Events { get; set; }
-        public NotificationConfigurationFilter? Filter { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Event>? Events { get; set; }
+        public global::Com.Amazonaws.S3.NotificationConfigurationFilter? Filter { get; set; }
     }
 
-    public static StructSchema<TopicConfiguration, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.TopicConfiguration,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TopicConfiguration, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.TopicConfiguration, Builder>(
             ShapeId.Parse("com.amazonaws.s3#TopicConfiguration"),
             [
-                new(
-                    "Id",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An optional unique identifier for configurations in a notification configuration. If you don't\n      provide one, Amazon S3 will assign an ID.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Id", Target0),
                 new(
                     "TopicArn",
                     Target1,
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) of the Amazon SNS topic to which Amazon S3 publishes a message when it\n      detects events of the specified type.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -63,12 +48,6 @@ public static partial class TopicConfigurationSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon S3 bucket event about which to send notifications. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html\">Supported Event Types</a> in\n      the <i>Amazon S3 User Guide</i>.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
@@ -81,31 +60,32 @@ public static partial class TopicConfigurationSchema
                 ),
                 new("Filter", Target3),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A container for specifying the configuration for publication of messages to an Amazon Simple\n      Notification Service (Amazon SNS) topic when Amazon S3 detects specified events.</p>"
-                    )
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<EventList?> Target2 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventListSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<NotificationConfigurationFilter?> Target3 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => NotificationConfigurationFilterSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Event>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventListSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.NotificationConfigurationFilter?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    NotificationConfigurationFilterSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TopicConfiguration Build(Builder builder) =>
-            new TopicConfiguration(
+        public override global::Com.Amazonaws.S3.TopicConfiguration Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.TopicConfiguration(
                 builder.Events ?? throw new MissingRequiredMemberException("Events"),
                 builder.TopicArn ?? throw new MissingRequiredMemberException("TopicArn"),
                 builder.Filter,
@@ -113,7 +93,7 @@ public static partial class TopicConfigurationSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            TopicConfiguration value,
+            global::Com.Amazonaws.S3.TopicConfiguration value,
             ref TSerializer serializer
         )
         {

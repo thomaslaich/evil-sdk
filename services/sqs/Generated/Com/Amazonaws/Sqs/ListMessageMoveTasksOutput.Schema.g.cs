@@ -6,20 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class ListMessageMoveTasksOutputSchema
 {
     public sealed class Builder
     {
-        public ListMessageMoveTasksResultEntryList? Results { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry>? Results { get; set; }
     }
 
-    public static StructSchema<ListMessageMoveTasksOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.ListMessageMoveTasksOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListMessageMoveTasksOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.ListMessageMoveTasksOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#ListMessageMoveTasksOutput"),
             [
                 new(
@@ -27,12 +29,6 @@ public static partial class ListMessageMoveTasksOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A list of message movement tasks and their attributes.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#xmlFlattened"),
                             Document.From(new Dictionary<string, Document> { })
@@ -60,18 +56,21 @@ public static partial class ListMessageMoveTasksOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<ListMessageMoveTasksResultEntryList?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => ListMessageMoveTasksResultEntryListSchema.Schema!)
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Sqs.ListMessageMoveTasksResultEntry>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    ListMessageMoveTasksResultEntryListSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListMessageMoveTasksOutput Build(Builder builder) =>
-            new ListMessageMoveTasksOutput(builder.Results);
+        public override global::Com.Amazonaws.Sqs.ListMessageMoveTasksOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.Sqs.ListMessageMoveTasksOutput(builder.Results);
 
         public override void SerializeMembers<TSerializer>(
-            ListMessageMoveTasksOutput value,
+            global::Com.Amazonaws.Sqs.ListMessageMoveTasksOutput value,
             ref TSerializer serializer
         )
         {

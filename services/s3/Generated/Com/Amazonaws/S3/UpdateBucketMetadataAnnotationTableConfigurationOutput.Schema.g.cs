@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UpdateBucketMetadataAnnotationTableConfigurationOutputSchema
 {
     public sealed class Builder { }
 
     public static StructSchema<
-        UpdateBucketMetadataAnnotationTableConfigurationOutput,
+        global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<UpdateBucketMetadataAnnotationTableConfigurationOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationOutput,
+            Builder
+        >(
             ShapeId.Parse(
                 "com.amazonaws.s3#UpdateBucketMetadataAnnotationTableConfigurationOutput"
             ),
@@ -37,12 +40,12 @@ public static partial class UpdateBucketMetadataAnnotationTableConfigurationOutp
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override UpdateBucketMetadataAnnotationTableConfigurationOutput Build(
+        public override global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationOutput Build(
             Builder builder
-        ) => new UpdateBucketMetadataAnnotationTableConfigurationOutput();
+        ) => new global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            UpdateBucketMetadataAnnotationTableConfigurationOutput value,
+            global::Com.Amazonaws.S3.UpdateBucketMetadataAnnotationTableConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketLoggingOutputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<PutBucketLoggingOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.PutBucketLoggingOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketLoggingOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.PutBucketLoggingOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#PutBucketLoggingOutput"),
             [],
             [
@@ -33,11 +35,11 @@ public static partial class PutBucketLoggingOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketLoggingOutput Build(Builder builder) =>
-            new PutBucketLoggingOutput();
+        public override global::Com.Amazonaws.S3.PutBucketLoggingOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.PutBucketLoggingOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketLoggingOutput value,
+            global::Com.Amazonaws.S3.PutBucketLoggingOutput value,
             ref TSerializer serializer
         ) { }
 

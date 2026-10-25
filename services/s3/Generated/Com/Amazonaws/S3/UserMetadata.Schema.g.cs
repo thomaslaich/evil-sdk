@@ -6,15 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class UserMetadataSchema
 {
-    public static ListSchema<UserMetadata, MetadataEntry, List<MetadataEntry>> Schema { get; } =
-        new GeneratedSchema();
+    public static ListSchema<
+        IReadOnlyList<global::Com.Amazonaws.S3.MetadataEntry>,
+        global::Com.Amazonaws.S3.MetadataEntry,
+        List<global::Com.Amazonaws.S3.MetadataEntry>
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<UserMetadata, MetadataEntry, List<MetadataEntry>>(
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.S3.MetadataEntry>,
+            global::Com.Amazonaws.S3.MetadataEntry,
+            List<global::Com.Amazonaws.S3.MetadataEntry>
+        >(
             ShapeId.Parse("com.amazonaws.s3#UserMetadata"),
             ShapeKind.List,
             Target0,
@@ -22,25 +29,30 @@ public static partial class UserMetadataSchema
             [new Trait(ShapeId.Parse("smithy.api#xmlName"), Document.From("MetadataEntry"))]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<MetadataEntry> Target0 =
-            Schemas.Lazy(() => MetadataEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.MetadataEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() => MetadataEntrySchema.Schema!);
 
-        public override IEnumerable<MetadataEntry> GetElements(UserMetadata value) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.MetadataEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.MetadataEntry> value
+        ) => value;
 
-        public override List<MetadataEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.MetadataEntry> CreateTypedBuilder() => new();
 
-        public override void Add(List<MetadataEntry> builder, MetadataEntry value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.S3.MetadataEntry> builder,
+            global::Com.Amazonaws.S3.MetadataEntry value
+        ) => builder.Add(value);
 
-        public override UserMetadata Build(List<MetadataEntry> builder) =>
-            UserMetadata.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.MetadataEntry> Build(
+            List<global::Com.Amazonaws.S3.MetadataEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            UserMetadata value,
+            IReadOnlyList<global::Com.Amazonaws.S3.MetadataEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -55,7 +67,7 @@ public static partial class UserMetadataSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<MetadataEntry> builder,
+            List<global::Com.Amazonaws.S3.MetadataEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(MetadataEntrySchema.Schema));
     }

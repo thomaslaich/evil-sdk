@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class CapacityProviderConfigSchema
 {
@@ -15,11 +15,13 @@ public static partial class CapacityProviderConfigSchema
         public global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig? LambdaManagedInstancesCapacityProviderConfig { get; set; }
     }
 
-    public static StructSchema<CapacityProviderConfig, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.CapacityProviderConfig,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CapacityProviderConfig, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.CapacityProviderConfig, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#CapacityProviderConfig"),
             [
                 new(
@@ -29,45 +31,28 @@ public static partial class CapacityProviderConfigSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Configuration for Lambda-managed instances used by the capacity provider.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Configuration for the capacity provider that manages compute resources for Lambda functions.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig?> Target0 =
-            Schemas.NullableReference(
-                Schemas.Lazy(() => LambdaManagedInstancesCapacityProviderConfigSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                    LambdaManagedInstancesCapacityProviderConfigSchema.Schema!
+                )
             );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CapacityProviderConfig Build(Builder builder) =>
-            new CapacityProviderConfig(
+        public override global::Com.Amazonaws.Lambda.CapacityProviderConfig Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.CapacityProviderConfig(
                 builder.LambdaManagedInstancesCapacityProviderConfig
                     ?? throw new MissingRequiredMemberException(
                         "LambdaManagedInstancesCapacityProviderConfig"
@@ -75,7 +60,7 @@ public static partial class CapacityProviderConfigSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            CapacityProviderConfig value,
+            global::Com.Amazonaws.Lambda.CapacityProviderConfig value,
             ref TSerializer serializer
         )
         {

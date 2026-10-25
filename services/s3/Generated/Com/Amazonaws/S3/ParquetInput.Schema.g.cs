@@ -5,32 +5,29 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ParquetInputSchema
 {
     public sealed class Builder { }
 
-    public static StructSchema<ParquetInput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.S3.ParquetInput, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ParquetInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ParquetInput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ParquetInput"),
             [],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From("<p>Container for Parquet.</p>")
-                ),
-            ]
+            null
         )
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override ParquetInput Build(Builder builder) => new ParquetInput();
+        public override global::Com.Amazonaws.S3.ParquetInput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ParquetInput();
 
         public override void SerializeMembers<TSerializer>(
-            ParquetInput value,
+            global::Com.Amazonaws.S3.ParquetInput value,
             ref TSerializer serializer
         ) { }
 

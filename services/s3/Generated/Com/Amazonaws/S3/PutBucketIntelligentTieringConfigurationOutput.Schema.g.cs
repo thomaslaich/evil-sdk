@@ -6,19 +6,22 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class PutBucketIntelligentTieringConfigurationOutputSchema
 {
     public sealed class Builder { }
 
     public static StructSchema<
-        PutBucketIntelligentTieringConfigurationOutput,
+        global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationOutput,
         Builder
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<PutBucketIntelligentTieringConfigurationOutput, Builder>(
+        : StructSchema<
+            global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationOutput,
+            Builder
+        >(
             ShapeId.Parse("com.amazonaws.s3#PutBucketIntelligentTieringConfigurationOutput"),
             [],
             [
@@ -35,11 +38,12 @@ public static partial class PutBucketIntelligentTieringConfigurationOutputSchema
     {
         public override Builder CreateTypedBuilder() => new();
 
-        public override PutBucketIntelligentTieringConfigurationOutput Build(Builder builder) =>
-            new PutBucketIntelligentTieringConfigurationOutput();
+        public override global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationOutput Build(
+            Builder builder
+        ) => new global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationOutput();
 
         public override void SerializeMembers<TSerializer>(
-            PutBucketIntelligentTieringConfigurationOutput value,
+            global::Com.Amazonaws.S3.PutBucketIntelligentTieringConfigurationOutput value,
             ref TSerializer serializer
         ) { }
 

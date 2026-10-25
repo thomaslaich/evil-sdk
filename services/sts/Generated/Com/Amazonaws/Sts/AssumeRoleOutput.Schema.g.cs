@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sts;
+namespace Com.Amazonaws.Sts.Schemas;
 
 public static partial class AssumeRoleOutputSchema
 {
@@ -20,38 +20,17 @@ public static partial class AssumeRoleOutputSchema
         public int? SessionTokenSize { get; set; }
     }
 
-    public static StructSchema<AssumeRoleOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sts.AssumeRoleOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<AssumeRoleOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sts.AssumeRoleOutput, Builder>(
             ShapeId.Parse("com.amazonaws.sts#AssumeRoleOutput"),
             [
-                new(
-                    "Credentials",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The temporary security credentials, which include an access key ID, a secret access key,\n         and a security (or session) token.</p>\n         <note>\n            <p>The size of the security token that STS API operations return is not fixed. We\n        strongly recommend that you make no assumptions about the maximum size.</p>\n         </note>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "AssumedRoleUser",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers that you\n         can use to refer to the resulting temporary security credentials. For example, you can\n         reference these credentials as a principal in a resource-based policy by using the ARN or\n         assumed role ID. The ARN and ID include the <code>RoleSessionName</code> that you specified\n         when you called <code>AssumeRole</code>. </p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Credentials", Target0),
+                new("AssumedRoleUser", Target1),
                 new(
                     "PackedPolicySize",
                     Target2,
@@ -62,33 +41,9 @@ public static partial class AssumeRoleOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#deprecated"),
-                            Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "since", Document.From("2026-06-17") },
-                                    {
-                                        "message",
-                                        Document.From(
-                                            "Deprecated. Replaced by SessionTokenUtilization."
-                                        )
-                                    },
-                                }
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A percentage value that indicates the packed size of the session policies and session \n      tags combined passed in the request. The request fails if the packed size is greater than 100 percent, \n      which means the policies and tags exceeded the allowed space.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -99,18 +54,12 @@ public static partial class AssumeRoleOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The source identity specified by the principal that is calling the\n            <code>AssumeRole</code> operation.</p>\n         <p>You can require users to specify a source identity when they assume a role. You do this\n         by using the <code>sts:SourceIdentity</code> condition key in a role trust policy. You can\n         use source identity information in CloudTrail logs to determine who took actions with a role.\n         You can use the <code>aws:SourceIdentity</code> condition key to further control access to\n         Amazon Web Services resources based on the value of source identity. For more information about using\n         source identity, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html\">Monitor and control\n            actions taken with assumed roles</a> in the\n         <i>IAM User Guide</i>.</p>\n         <p>The regex used to validate this parameter is a string of characters consisting of upper-\n         and lower-case alphanumeric characters with no spaces. You can also include underscores or\n         any of the following characters: =,.@-</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#length"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)2) },
-                                    { "max", Document.From((decimal)64) },
+                                    { "min", Document.From(2m) },
+                                    { "max", Document.From(64m) },
                                 }
                             )
                         ),
@@ -130,18 +79,9 @@ public static partial class AssumeRoleOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The percentage (0-100) of the maximum allowed session token size that the returned session\n    token consumes."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
@@ -156,30 +96,15 @@ public static partial class AssumeRoleOutputSchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "The size, in bytes, of the session token returned in the Credentials for this response."
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
-                                new Dictionary<string, Document>
-                                {
-                                    { "min", Document.From((decimal)0) },
-                                }
+                                new Dictionary<string, Document> { { "min", Document.From(0m) } }
                             )
                         ),
                     ]
                 ),
             ],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Contains the response to a successful <a>AssumeRole</a> request, including\n      temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. </p>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
@@ -192,25 +117,28 @@ public static partial class AssumeRoleOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.Credentials?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => CredentialsSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CredentialsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sts.AssumedRoleUser?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => AssumedRoleUserSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => AssumedRoleUserSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 = Schemas.Nullable(
-            Schemas.Integer
-        );
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 = Schemas.Nullable(
-            Schemas.Integer
-        );
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target5 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override AssumeRoleOutput Build(Builder builder) =>
-            new AssumeRoleOutput(
+        public override global::Com.Amazonaws.Sts.AssumeRoleOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.Sts.AssumeRoleOutput(
                 builder.AssumedRoleUser,
                 builder.Credentials,
                 builder.PackedPolicySize,
@@ -220,7 +148,7 @@ public static partial class AssumeRoleOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            AssumeRoleOutput value,
+            global::Com.Amazonaws.Sts.AssumeRoleOutput value,
             ref TSerializer serializer
         )
         {

@@ -6,21 +6,23 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class TargetTrackingScalingPolicySchema
 {
     public sealed class Builder
     {
-        public CapacityProviderPredefinedMetricType? PredefinedMetricType { get; set; }
+        public global::Com.Amazonaws.Lambda.CapacityProviderPredefinedMetricType? PredefinedMetricType { get; set; }
         public double? TargetValue { get; set; }
     }
 
-    public static StructSchema<TargetTrackingScalingPolicy, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<TargetTrackingScalingPolicy, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#TargetTrackingScalingPolicy"),
             [
                 new(
@@ -30,18 +32,8 @@ public static partial class TargetTrackingScalingPolicySchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The predefined metric type to track for scaling decisions.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -56,18 +48,12 @@ public static partial class TargetTrackingScalingPolicySchema
                             Document.From(new Dictionary<string, Document> { })
                         ),
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The target value for the metric that the scaling policy attempts to maintain through scaling actions.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#range"),
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)0) },
-                                    { "max", Document.From((decimal)100) },
+                                    { "min", Document.From(0m) },
+                                    { "max", Document.From(100m) },
                                 }
                             )
                         ),
@@ -75,43 +61,32 @@ public static partial class TargetTrackingScalingPolicySchema
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
                         ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
                     ]
                 ),
             ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>A scaling policy for the capacity provider that automatically adjusts capacity to maintain a target value for a specific metric.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<CapacityProviderPredefinedMetricType?> Target0 =
-            Schemas.Nullable(CapacityProviderPredefinedMetricTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.CapacityProviderPredefinedMetricType?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(
+                CapacityProviderPredefinedMetricTypeSchema.Schema
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<double?> Target1 =
-            Schemas.Nullable(Schemas.Double);
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Double);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override TargetTrackingScalingPolicy Build(Builder builder) =>
-            new TargetTrackingScalingPolicy(
+        public override global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy(
                 builder.PredefinedMetricType
                     ?? throw new MissingRequiredMemberException("PredefinedMetricType"),
                 builder.TargetValue.GetValueOrDefault()
             );
 
         public override void SerializeMembers<TSerializer>(
-            TargetTrackingScalingPolicy value,
+            global::Com.Amazonaws.Lambda.TargetTrackingScalingPolicy value,
             ref TSerializer serializer
         )
         {
@@ -132,8 +107,10 @@ public static partial class TargetTrackingScalingPolicySchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? CapacityProviderPredefinedMetricType.FromValue(value0)
-                                : default(CapacityProviderPredefinedMetricType)
+                                ? global::Com.Amazonaws.Lambda.CapacityProviderPredefinedMetricType.FromValue(
+                                    value0
+                                )
+                                : default(global::Com.Amazonaws.Lambda.CapacityProviderPredefinedMetricType)
                         );
                     break;
                 case 1:

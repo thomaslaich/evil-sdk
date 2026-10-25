@@ -4,14 +4,13 @@
 
 using System.Collections.Generic;
 using NSmithy.Core;
-using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class InventoryIncludedObjectVersionsSchema
 {
     public static global::NSmithy.Core.Serde.Schema<InventoryIncludedObjectVersions> Schema { get; } =
-        Schemas.StringEnum<InventoryIncludedObjectVersions>(
+        global::NSmithy.Core.Serde.Schemas.StringEnum<InventoryIncludedObjectVersions>(
             ShapeId.Parse("com.amazonaws.s3#InventoryIncludedObjectVersions"),
             values: ["All", "Current"],
             traits:

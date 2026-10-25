@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class InvalidSecuritySchema
 {
@@ -15,10 +15,11 @@ public static partial class InvalidSecuritySchema
         public string? Message { get; set; }
     }
 
-    public static StructSchema<InvalidSecurity, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Sqs.InvalidSecurity, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvalidSecurity, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.InvalidSecurity, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#InvalidSecurity"),
             [new("message", Target0)],
             [
@@ -28,31 +29,27 @@ public static partial class InvalidSecuritySchema
                         new Dictionary<string, Document>
                         {
                             { "code", Document.From("InvalidSecurity") },
-                            { "httpResponseCode", Document.From((decimal)403) },
+                            { "httpResponseCode", Document.From(403m) },
                         }
                     )
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The request was not made over HTTPS or did not use SigV4 for signing.</p>"
-                    )
-                ),
                 new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
-                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From((decimal)403)),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(403m)),
             ]
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override InvalidSecurity Build(Builder builder) =>
-            new InvalidSecurity(builder.Message);
+        public override global::Com.Amazonaws.Sqs.InvalidSecurity Build(Builder builder) =>
+            new global::Com.Amazonaws.Sqs.InvalidSecurity(builder.Message);
 
         public override void SerializeMembers<TSerializer>(
-            InvalidSecurity value,
+            global::Com.Amazonaws.Sqs.InvalidSecurity value,
             ref TSerializer serializer
         )
         {

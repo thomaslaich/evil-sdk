@@ -6,45 +6,48 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class AttributeNameListSchema
 {
     public static ListSchema<
-        AttributeNameList,
-        QueueAttributeName,
-        List<QueueAttributeName>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName>,
+        global::Com.Amazonaws.Sqs.QueueAttributeName,
+        List<global::Com.Amazonaws.Sqs.QueueAttributeName>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<AttributeNameList, QueueAttributeName, List<QueueAttributeName>>(
-            ShapeId.Parse("com.amazonaws.sqs#AttributeNameList"),
-            ShapeKind.List,
-            Target0,
-            null,
-            null
-        )
+        : ListSchema<
+            IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName>,
+            global::Com.Amazonaws.Sqs.QueueAttributeName,
+            List<global::Com.Amazonaws.Sqs.QueueAttributeName>
+        >(ShapeId.Parse("com.amazonaws.sqs#AttributeNameList"), ShapeKind.List, Target0, null, null)
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<QueueAttributeName> Target0 =
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.QueueAttributeName> Target0 =
             QueueAttributeNameSchema.Schema;
 
-        public override IEnumerable<QueueAttributeName> GetElements(AttributeNameList value) =>
-            value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.QueueAttributeName> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName> value
+        ) => value;
 
-        public override List<QueueAttributeName> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.QueueAttributeName> CreateTypedBuilder() =>
+            new();
 
-        public override void Add(List<QueueAttributeName> builder, QueueAttributeName value) =>
-            builder.Add(value);
+        public override void Add(
+            List<global::Com.Amazonaws.Sqs.QueueAttributeName> builder,
+            global::Com.Amazonaws.Sqs.QueueAttributeName value
+        ) => builder.Add(value);
 
-        public override AttributeNameList Build(List<QueueAttributeName> builder) =>
-            AttributeNameList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName> Build(
+            List<global::Com.Amazonaws.Sqs.QueueAttributeName> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            AttributeNameList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.QueueAttributeName> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 serializer.WriteStringEnum(0, elements[index].Value);
@@ -52,14 +55,14 @@ public static partial class AttributeNameListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<QueueAttributeName> builder,
+            List<global::Com.Amazonaws.Sqs.QueueAttributeName> builder,
             ref TDeserializer deserializer
         ) =>
             builder.Add(
                 (
                     deserializer.ReadStringEnum() is { } element
-                        ? QueueAttributeName.FromValue(element)
-                        : default(QueueAttributeName)
+                        ? global::Com.Amazonaws.Sqs.QueueAttributeName.FromValue(element)
+                        : default(global::Com.Amazonaws.Sqs.QueueAttributeName)
                 )
             );
     }

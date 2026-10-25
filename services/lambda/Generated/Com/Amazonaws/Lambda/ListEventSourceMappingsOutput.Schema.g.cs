@@ -6,64 +6,29 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class ListEventSourceMappingsOutputSchema
 {
     public sealed class Builder
     {
         public string? NextMarker { get; set; }
-        public EventSourceMappingsList? EventSourceMappings { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration>? EventSourceMappings { get; set; }
     }
 
-    public static StructSchema<ListEventSourceMappingsOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.ListEventSourceMappingsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListEventSourceMappingsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.ListEventSourceMappingsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#ListEventSourceMappingsOutput"),
-            [
-                new(
-                    "NextMarker",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>A pagination token that's returned when the response doesn't contain all event source mappings.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-                new(
-                    "EventSourceMappings",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>A list of event source mappings.</p>")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
+            [new("NextMarker", Target0), new("EventSourceMappings", Target1)],
             [
                 new Trait(
                     ShapeId.Parse("smithy.api#output"),
                     Document.From(new Dictionary<string, Document> { })
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
                 new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
@@ -73,17 +38,26 @@ public static partial class ListEventSourceMappingsOutputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<EventSourceMappingsList?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => EventSourceMappingsListSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.Lambda.EventSourceMappingConfiguration>?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => EventSourceMappingsListSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListEventSourceMappingsOutput Build(Builder builder) =>
-            new ListEventSourceMappingsOutput(builder.EventSourceMappings, builder.NextMarker);
+        public override global::Com.Amazonaws.Lambda.ListEventSourceMappingsOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.ListEventSourceMappingsOutput(
+                builder.EventSourceMappings,
+                builder.NextMarker
+            );
 
         public override void SerializeMembers<TSerializer>(
-            ListEventSourceMappingsOutput value,
+            global::Com.Amazonaws.Lambda.ListEventSourceMappingsOutput value,
             ref TSerializer serializer
         )
         {

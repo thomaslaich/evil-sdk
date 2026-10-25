@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class SendMessageBatchRequestEntryListSchema
 {
     public static ListSchema<
-        SendMessageBatchRequestEntryList,
-        SendMessageBatchRequestEntry,
-        List<SendMessageBatchRequestEntry>
+        IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry>,
+        global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry,
+        List<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            SendMessageBatchRequestEntryList,
-            SendMessageBatchRequestEntry,
-            List<SendMessageBatchRequestEntry>
+            IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry>,
+            global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry,
+            List<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry>
         >(
             ShapeId.Parse("com.amazonaws.sqs#SendMessageBatchRequestEntryList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class SendMessageBatchRequestEntryListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SendMessageBatchRequestEntry> Target0 =
-            Schemas.Lazy(() => SendMessageBatchRequestEntrySchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                SendMessageBatchRequestEntrySchema.Schema!
+            );
 
-        public override IEnumerable<SendMessageBatchRequestEntry> GetElements(
-            SendMessageBatchRequestEntryList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> value
+        ) => value;
 
-        public override List<SendMessageBatchRequestEntry> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<SendMessageBatchRequestEntry> builder,
-            SendMessageBatchRequestEntry value
+            List<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> builder,
+            global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry value
         ) => builder.Add(value);
 
-        public override SendMessageBatchRequestEntryList Build(
-            List<SendMessageBatchRequestEntry> builder
-        ) => SendMessageBatchRequestEntryList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> Build(
+            List<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            SendMessageBatchRequestEntryList value,
+            IReadOnlyList<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -67,7 +70,7 @@ public static partial class SendMessageBatchRequestEntryListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<SendMessageBatchRequestEntry> builder,
+            List<global::Com.Amazonaws.Sqs.SendMessageBatchRequestEntry> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(SendMessageBatchRequestEntrySchema.Schema));
     }

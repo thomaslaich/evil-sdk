@@ -5,62 +5,35 @@
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class SnapStartSchema
 {
     public sealed class Builder
     {
-        public SnapStartApplyOn? ApplyOn { get; set; }
+        public global::Com.Amazonaws.Lambda.SnapStartApplyOn? ApplyOn { get; set; }
     }
 
-    public static StructSchema<SnapStart, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<global::Com.Amazonaws.Lambda.SnapStart, Builder> Schema { get; } =
+        new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<SnapStart, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.SnapStart, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#SnapStart"),
-            [
-                new(
-                    "ApplyOn",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>Set to <code>PublishedVersions</code> to create a snapshot of the initialized execution environment when you publish a function version.</p>"
-                            )
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
-                        ),
-                    ]
-                ),
-            ],
-            [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html\">Lambda SnapStart</a> setting. Set <code>ApplyOn</code> to <code>PublishedVersions</code> to create a snapshot of the initialized execution environment when you publish a function version.</p>"
-                    )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-            ]
+            [new("ApplyOn", Target0)],
+            null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<SnapStartApplyOn?> Target0 =
-            Schemas.Nullable(SnapStartApplyOnSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.Lambda.SnapStartApplyOn?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(SnapStartApplyOnSchema.Schema);
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override SnapStart Build(Builder builder) => new SnapStart(builder.ApplyOn);
+        public override global::Com.Amazonaws.Lambda.SnapStart Build(Builder builder) =>
+            new global::Com.Amazonaws.Lambda.SnapStart(builder.ApplyOn);
 
         public override void SerializeMembers<TSerializer>(
-            SnapStart value,
+            global::Com.Amazonaws.Lambda.SnapStart value,
             ref TSerializer serializer
         )
         {
@@ -87,8 +60,8 @@ public static partial class SnapStartSchema
                         ? null
                         : (
                             deserializer.ReadStringEnum() is { } value0
-                                ? SnapStartApplyOn.FromValue(value0)
-                                : default(SnapStartApplyOn)
+                                ? global::Com.Amazonaws.Lambda.SnapStartApplyOn.FromValue(value0)
+                                : default(global::Com.Amazonaws.Lambda.SnapStartApplyOn)
                         );
                     break;
             }

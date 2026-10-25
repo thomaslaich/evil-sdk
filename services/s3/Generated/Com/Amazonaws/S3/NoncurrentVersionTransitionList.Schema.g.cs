@@ -6,21 +6,21 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoncurrentVersionTransitionListSchema
 {
     public static ListSchema<
-        NoncurrentVersionTransitionList,
-        NoncurrentVersionTransition,
-        List<NoncurrentVersionTransition>
+        IReadOnlyList<global::Com.Amazonaws.S3.NoncurrentVersionTransition>,
+        global::Com.Amazonaws.S3.NoncurrentVersionTransition,
+        List<global::Com.Amazonaws.S3.NoncurrentVersionTransition>
     > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : ListSchema<
-            NoncurrentVersionTransitionList,
-            NoncurrentVersionTransition,
-            List<NoncurrentVersionTransition>
+            IReadOnlyList<global::Com.Amazonaws.S3.NoncurrentVersionTransition>,
+            global::Com.Amazonaws.S3.NoncurrentVersionTransition,
+            List<global::Com.Amazonaws.S3.NoncurrentVersionTransition>
         >(
             ShapeId.Parse("com.amazonaws.s3#NoncurrentVersionTransitionList"),
             ShapeKind.List,
@@ -29,30 +29,33 @@ public static partial class NoncurrentVersionTransitionListSchema
             null
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<NoncurrentVersionTransition> Target0 =
-            Schemas.Lazy(() => NoncurrentVersionTransitionSchema.Schema!);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.NoncurrentVersionTransition> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                NoncurrentVersionTransitionSchema.Schema!
+            );
 
-        public override IEnumerable<NoncurrentVersionTransition> GetElements(
-            NoncurrentVersionTransitionList value
-        ) => value.Values;
+        public override IEnumerable<global::Com.Amazonaws.S3.NoncurrentVersionTransition> GetElements(
+            IReadOnlyList<global::Com.Amazonaws.S3.NoncurrentVersionTransition> value
+        ) => value;
 
-        public override List<NoncurrentVersionTransition> CreateTypedBuilder() => new();
+        public override List<global::Com.Amazonaws.S3.NoncurrentVersionTransition> CreateTypedBuilder() =>
+            new();
 
         public override void Add(
-            List<NoncurrentVersionTransition> builder,
-            NoncurrentVersionTransition value
+            List<global::Com.Amazonaws.S3.NoncurrentVersionTransition> builder,
+            global::Com.Amazonaws.S3.NoncurrentVersionTransition value
         ) => builder.Add(value);
 
-        public override NoncurrentVersionTransitionList Build(
-            List<NoncurrentVersionTransition> builder
-        ) => NoncurrentVersionTransitionList.FromOwnedList(builder);
+        public override IReadOnlyList<global::Com.Amazonaws.S3.NoncurrentVersionTransition> Build(
+            List<global::Com.Amazonaws.S3.NoncurrentVersionTransition> builder
+        ) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            NoncurrentVersionTransitionList value,
+            IReadOnlyList<global::Com.Amazonaws.S3.NoncurrentVersionTransition> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
@@ -67,7 +70,7 @@ public static partial class NoncurrentVersionTransitionListSchema
         }
 
         public override void DeserializeElement<TDeserializer>(
-            List<NoncurrentVersionTransition> builder,
+            List<global::Com.Amazonaws.S3.NoncurrentVersionTransition> builder,
             ref TDeserializer deserializer
         ) => builder.Add(deserializer.ReadStruct(NoncurrentVersionTransitionSchema.Schema));
     }

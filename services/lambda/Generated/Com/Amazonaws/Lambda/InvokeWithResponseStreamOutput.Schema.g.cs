@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InvokeWithResponseStreamOutputSchema
 {
@@ -14,15 +14,17 @@ public static partial class InvokeWithResponseStreamOutputSchema
     {
         public int? StatusCode { get; set; }
         public string? ExecutedVersion { get; set; }
-        public IAsyncEnumerable<InvokeWithResponseStreamResponseEvent>? EventStream { get; set; }
+        public IAsyncEnumerable<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent>? EventStream { get; set; }
         public string? ResponseStreamContentType { get; set; }
     }
 
-    public static StructSchema<InvokeWithResponseStreamOutput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Lambda.InvokeWithResponseStreamOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<InvokeWithResponseStreamOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamOutput, Builder>(
             ShapeId.Parse("com.amazonaws.lambda#InvokeWithResponseStreamOutput"),
             [
                 new(
@@ -30,20 +32,10 @@ public static partial class InvokeWithResponseStreamOutputSchema
                     Target0,
                     traits:
                     [
-                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From((decimal)0)),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>For a successful request, the HTTP status code is in the 200 range. For the <code>RequestResponse</code> invocation type, this status code is 200. For the <code>DryRun</code> invocation type, this status code is 204.</p>"
-                            )
-                        ),
+                        new Trait(ShapeId.Parse("smithy.api#default"), Document.From(0m)),
                         new Trait(
                             ShapeId.Parse("smithy.api#httpResponseCode"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -53,12 +45,6 @@ public static partial class InvokeWithResponseStreamOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>The version of the function that executed. When you invoke a function with an alias, this indicates which version the alias resolved to.</p>"
-                            )
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("X-Amz-Executed-Version")
                         ),
@@ -67,18 +53,14 @@ public static partial class InvokeWithResponseStreamOutputSchema
                             Document.From(
                                 new Dictionary<string, Document>
                                 {
-                                    { "min", Document.From((decimal)1) },
-                                    { "max", Document.From((decimal)1024) },
+                                    { "min", Document.From(1m) },
+                                    { "max", Document.From(1024m) },
                                 }
                             )
                         ),
                         new Trait(
                             ShapeId.Parse("smithy.api#pattern"),
                             Document.From("^(\\$LATEST|[0-9]+)$")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -88,16 +70,8 @@ public static partial class InvokeWithResponseStreamOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The stream of response payloads.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpPayload"),
                             Document.From(new Dictionary<string, Document> { })
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -107,16 +81,8 @@ public static partial class InvokeWithResponseStreamOutputSchema
                     traits:
                     [
                         new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The type of data the stream is returning.</p>")
-                        ),
-                        new Trait(
                             ShapeId.Parse("smithy.api#httpHeader"),
                             Document.From("Content-Type")
-                        ),
-                        new Trait(
-                            ShapeId.Parse("smithy.api#tags"),
-                            Document.From(new Document[] { Document.From("feature:public") })
                         ),
                     ]
                 ),
@@ -127,34 +93,37 @@ public static partial class InvokeWithResponseStreamOutputSchema
                     Document.From(new Dictionary<string, Document> { })
                 ),
                 new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
-                new Trait(
                     ShapeId.Parse("smithy.synthetic#originalShapeId"),
                     Document.From("com.amazonaws.lambda#InvokeWithResponseStreamResponse")
                 ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 = Schemas.Nullable(
-            Schemas.Integer
-        );
+        private static readonly global::NSmithy.Core.Serde.Schema<int?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(global::NSmithy.Core.Serde.Schemas.Integer);
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
-            Schemas.NullableReference(Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<IAsyncEnumerable<InvokeWithResponseStreamResponseEvent>?> Target2 =
-            Schemas.NullableReference(
-                Schemas.EventStream(
-                    Schemas.Lazy(() => InvokeWithResponseStreamResponseEventSchema.Schema!)
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<IAsyncEnumerable<global::Com.Amazonaws.Lambda.InvokeWithResponseStreamResponseEvent>?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.EventStream(
+                    global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                        InvokeWithResponseStreamResponseEventSchema.Schema!
+                    )
                 )
             );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new() { StatusCode = 0 };
 
-        public override InvokeWithResponseStreamOutput Build(Builder builder) =>
-            new InvokeWithResponseStreamOutput(
+        public override global::Com.Amazonaws.Lambda.InvokeWithResponseStreamOutput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Lambda.InvokeWithResponseStreamOutput(
                 builder.EventStream,
                 builder.ExecutedVersion,
                 builder.ResponseStreamContentType,
@@ -162,7 +131,7 @@ public static partial class InvokeWithResponseStreamOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            InvokeWithResponseStreamOutput value,
+            global::Com.Amazonaws.Lambda.InvokeWithResponseStreamOutput value,
             ref TSerializer serializer
         )
         {

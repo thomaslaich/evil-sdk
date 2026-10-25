@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Sqs;
+namespace Com.Amazonaws.Sqs.Schemas;
 
 public static partial class CancelMessageMoveTaskInputSchema
 {
@@ -15,11 +15,13 @@ public static partial class CancelMessageMoveTaskInputSchema
         public string? TaskHandle { get; set; }
     }
 
-    public static StructSchema<CancelMessageMoveTaskInput, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<CancelMessageMoveTaskInput, Builder>(
+        : StructSchema<global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput, Builder>(
             ShapeId.Parse("com.amazonaws.sqs#CancelMessageMoveTaskInput"),
             [
                 new(
@@ -28,12 +30,6 @@ public static partial class CancelMessageMoveTaskInputSchema
                     isRequired: true,
                     traits:
                     [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>An identifier associated with a message movement task.</p>"
-                            )
-                        ),
                         new Trait(
                             ShapeId.Parse("smithy.api#required"),
                             Document.From(new Dictionary<string, Document> { })
@@ -54,17 +50,21 @@ public static partial class CancelMessageMoveTaskInputSchema
         )
     {
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override CancelMessageMoveTaskInput Build(Builder builder) =>
-            new CancelMessageMoveTaskInput(
+        public override global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput Build(
+            Builder builder
+        ) =>
+            new global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput(
                 builder.TaskHandle ?? throw new MissingRequiredMemberException("TaskHandle")
             );
 
         public override void SerializeMembers<TSerializer>(
-            CancelMessageMoveTaskInput value,
+            global::Com.Amazonaws.Sqs.CancelMessageMoveTaskInput value,
             ref TSerializer serializer
         )
         {

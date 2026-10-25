@@ -6,72 +6,31 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ListBucketsOutputSchema
 {
     public sealed class Builder
     {
-        public global::Com.Amazonaws.S3.Buckets? Buckets { get; set; }
+        public IReadOnlyList<global::Com.Amazonaws.S3.Bucket>? Buckets { get; set; }
         public global::Com.Amazonaws.S3.Owner? Owner { get; set; }
         public string? ContinuationToken { get; set; }
         public string? Prefix { get; set; }
     }
 
-    public static StructSchema<ListBucketsOutput, Builder> Schema { get; } = new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ListBucketsOutput,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : StructSchema<ListBucketsOutput, Builder>(
+        : StructSchema<global::Com.Amazonaws.S3.ListBucketsOutput, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ListBucketsOutput"),
             [
-                new(
-                    "Buckets",
-                    Target0,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The list of buckets owned by the requester.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "Owner",
-                    Target1,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From("<p>The owner of the buckets listed.</p>")
-                        ),
-                    ]
-                ),
-                new(
-                    "ContinuationToken",
-                    Target2,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>\n            <code>ContinuationToken</code> is included in the response when there are more buckets that can be\n      listed with pagination. The next <code>ListBuckets</code> request to Amazon S3 can be continued with this\n        <code>ContinuationToken</code>. <code>ContinuationToken</code> is obfuscated and is not a real\n      bucket.</p>"
-                            )
-                        ),
-                    ]
-                ),
-                new(
-                    "Prefix",
-                    Target3,
-                    traits:
-                    [
-                        new Trait(
-                            ShapeId.Parse("smithy.api#documentation"),
-                            Document.From(
-                                "<p>If <code>Prefix</code> was sent with the request, it is included in the response.</p>\n         <p>All bucket names in the response begin with the specified bucket name prefix.</p>"
-                            )
-                        ),
-                    ]
-                ),
+                new("Buckets", Target0),
+                new("Owner", Target1),
+                new("ContinuationToken", Target2),
+                new("Prefix", Target3),
             ],
             [
                 new Trait(
@@ -85,19 +44,27 @@ public static partial class ListBucketsOutputSchema
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Buckets?> Target0 =
-            Schemas.NullableReference(Schemas.Lazy(() => BucketsSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<IReadOnlyList<global::Com.Amazonaws.S3.Bucket>?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => BucketsSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Owner?> Target1 =
-            Schemas.NullableReference(Schemas.Lazy(() => OwnerSchema.Schema!));
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => OwnerSchema.Schema!)
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
         private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
-            Schemas.NullableReference(Schemas.String);
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
-        public override ListBucketsOutput Build(Builder builder) =>
-            new ListBucketsOutput(
+        public override global::Com.Amazonaws.S3.ListBucketsOutput Build(Builder builder) =>
+            new global::Com.Amazonaws.S3.ListBucketsOutput(
                 builder.Buckets,
                 builder.ContinuationToken,
                 builder.Owner,
@@ -105,7 +72,7 @@ public static partial class ListBucketsOutputSchema
             );
 
         public override void SerializeMembers<TSerializer>(
-            ListBucketsOutput value,
+            global::Com.Amazonaws.S3.ListBucketsOutput value,
             ref TSerializer serializer
         )
         {

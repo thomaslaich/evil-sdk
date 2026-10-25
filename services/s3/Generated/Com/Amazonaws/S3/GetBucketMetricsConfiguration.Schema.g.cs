@@ -6,26 +6,24 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.S3;
+namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class GetBucketMetricsConfigurationSchema
 {
     public static OperationSchema<
-        GetBucketMetricsConfigurationInput,
-        GetBucketMetricsConfigurationOutput
+        global::Com.Amazonaws.S3.GetBucketMetricsConfigurationInput,
+        global::Com.Amazonaws.S3.GetBucketMetricsConfigurationOutput
     > Schema { get; } =
-        Schemas.Operation(
+        global::NSmithy.Core.Serde.Schemas.Operation(
             ShapeId.Parse("com.amazonaws.s3#GetBucketMetricsConfiguration"),
-            Schemas.Lazy(() => GetBucketMetricsConfigurationInputSchema.Schema!),
-            Schemas.Lazy(() => GetBucketMetricsConfigurationOutputSchema.Schema!),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketMetricsConfigurationInputSchema.Schema!
+            ),
+            global::NSmithy.Core.Serde.Schemas.Lazy(() =>
+                GetBucketMetricsConfigurationOutputSchema.Schema!
+            ),
             [],
             [
-                new Trait(
-                    ShapeId.Parse("smithy.api#documentation"),
-                    Document.From(
-                        "<p>Gets a metrics configuration (specified by the metrics configuration ID) from the bucket. Note that\n      this doesn't include the daily storage metrics.</p>\n         <note>\n            <p>\n               <b>Directory buckets </b> - For directory buckets, you must make requests for this API operation to the Regional endpoint. These endpoints support path-style requests in the format <code>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i>\n               </code>. Virtual-hosted-style requests aren't supported. \nFor more information about endpoints in Availability Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html\">Regional and Zonal endpoints for directory buckets in Availability Zones</a> in the\n    <i>Amazon S3 User Guide</i>. For more information about endpoints in Local Zones, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html\">Concepts for directory buckets in Local Zones</a> in the\n    <i>Amazon S3 User Guide</i>.</p>\n         </note>\n         <dl>\n            <dt>Permissions</dt>\n            <dd>\n               <p> To use this operation, you must have permissions to perform the\n              <code>s3:GetMetricsConfiguration</code> action. The bucket owner has this permission by default. The\n            bucket owner can grant this permission to others. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources\">Permissions Related to Bucket Subresource Operations</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html\">Managing Access Permissions to Your Amazon S3\n              Resources</a>.</p>\n               <ul>\n                  <li>\n                     <p>\n                        <b>General purpose bucket permissions</b> - The\n                  <code>s3:GetMetricsConfiguration</code> permission is required in a policy. For more information\n                about general purpose buckets permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html\">Using Bucket Policies and User\n                  Policies</a> in the <i>Amazon S3 User Guide</i>.</p>\n                  </li>\n                  <li>\n                     <p>\n                        <b>Directory bucket permissions</b> - To grant access to\n                this API operation, you must have the <code>s3express:GetMetricsConfiguration</code> permission in\n                an IAM identity-based policy instead of a bucket policy. Cross-account access to this API operation isn't supported. This operation can only be performed by the Amazon Web Services account that owns the resource.\n                For more information about directory bucket policies and permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html\">Amazon Web Services Identity and Access Management (IAM) for S3 Express One Zone</a> in the <i>Amazon S3 User Guide</i>.</p>\n                  </li>\n               </ul>\n            </dd>\n            <dt>HTTP Host header syntax</dt>\n            <dd>\n               <p>\n                  <b>Directory buckets </b> - The HTTP Host header syntax is <code>s3express-control.<i>region-code</i>.amazonaws.com</code>.</p>\n            </dd>\n         </dl>\n         <p> For information about CloudWatch request metrics for Amazon S3, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudwatch-monitoring.html\">Monitoring Metrics with Amazon\n      CloudWatch</a>.</p>\n         <p>The following operations are related to <code>GetBucketMetricsConfiguration</code>:</p>\n         <ul>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html\">PutBucketMetricsConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetricsConfiguration.html\">DeleteBucketMetricsConfiguration</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketMetricsConfigurations.html\">ListBucketMetricsConfigurations</a>\n               </p>\n            </li>\n            <li>\n               <p>\n                  <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudwatch-monitoring.html\">Monitoring\n            Metrics with Amazon CloudWatch</a>\n               </p>\n            </li>\n         </ul>\n         <important>\n            <p>You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my  file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>\n         </important>"
-                    )
-                ),
                 new Trait(
                     ShapeId.Parse("smithy.api#http"),
                     Document.From(
@@ -34,11 +32,9 @@ public static partial class GetBucketMetricsConfigurationSchema
                             { "method", Document.From("GET") },
                             {
                                 "uri",
-                                Document.From(
-                                    "/{Bucket}?metrics&x-id=GetBucketMetricsConfiguration"
-                                )
+                                Document.From("/?metrics&x-id=GetBucketMetricsConfiguration")
                             },
-                            { "code", Document.From((decimal)200) },
+                            { "code", Document.From(200m) },
                         }
                     )
                 ),

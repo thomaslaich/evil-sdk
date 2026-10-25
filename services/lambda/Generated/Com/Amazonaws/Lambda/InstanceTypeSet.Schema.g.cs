@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using NSmithy.Core;
 using NSmithy.Core.Serde;
 
-namespace Com.Amazonaws.Lambda;
+namespace Com.Amazonaws.Lambda.Schemas;
 
 public static partial class InstanceTypeSetSchema
 {
-    public static ListSchema<InstanceTypeSet, string, List<string>> Schema { get; } =
+    public static ListSchema<IReadOnlyList<string>, string, List<string>> Schema { get; } =
         new GeneratedSchema();
 
     private sealed class GeneratedSchema()
-        : ListSchema<InstanceTypeSet, string, List<string>>(
+        : ListSchema<IReadOnlyList<string>, string, List<string>>(
             ShapeId.Parse("com.amazonaws.lambda#InstanceTypeSet"),
             ShapeKind.List,
             Target0,
@@ -24,14 +24,10 @@ public static partial class InstanceTypeSetSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)0) },
-                            { "max", Document.From((decimal)400) },
+                            { "min", Document.From(0m) },
+                            { "max", Document.From(400m) },
                         }
                     )
-                ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
                 ),
             ],
             [
@@ -40,8 +36,8 @@ public static partial class InstanceTypeSetSchema
                     Document.From(
                         new Dictionary<string, Document>
                         {
-                            { "min", Document.From((decimal)1) },
-                            { "max", Document.From((decimal)30) },
+                            { "min", Document.From(1m) },
+                            { "max", Document.From(30m) },
                         }
                     )
                 ),
@@ -49,30 +45,29 @@ public static partial class InstanceTypeSetSchema
                     ShapeId.Parse("smithy.api#pattern"),
                     Document.From("^[a-zA-Z0-9\\.\\*\\-]+$")
                 ),
-                new Trait(
-                    ShapeId.Parse("smithy.api#tags"),
-                    Document.From(new Document[] { Document.From("feature:public") })
-                ),
             ]
         )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = Schemas.String;
+        private static readonly global::NSmithy.Core.Serde.Schema<string> Target0 = global::NSmithy
+            .Core
+            .Serde
+            .Schemas
+            .String;
 
-        public override IEnumerable<string> GetElements(InstanceTypeSet value) => value.Values;
+        public override IEnumerable<string> GetElements(IReadOnlyList<string> value) => value;
 
         public override List<string> CreateTypedBuilder() => new();
 
         public override void Add(List<string> builder, string value) => builder.Add(value);
 
-        public override InstanceTypeSet Build(List<string> builder) =>
-            InstanceTypeSet.FromOwnedList(builder);
+        public override IReadOnlyList<string> Build(List<string> builder) => builder.AsReadOnly();
 
         public override void SerializeElements<TSerializer>(
-            InstanceTypeSet value,
+            IReadOnlyList<string> value,
             ref TSerializer serializer
         )
         {
-            var elements = value.Values;
+            var elements = value;
             for (var index = 0; index < elements.Count; index++)
             {
                 if (elements[index] is { } element)
