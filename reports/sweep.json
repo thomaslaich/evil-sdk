@@ -1,20 +1,18 @@
 {
-  "nsmithy": "0.0.0-SNAPSHOT",
+  "nsmithy": "0.14.0",
   "results": [
     {
       "id": "accessanalyzer",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 5,
-      "first_error": "CS0542: 'Value': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 455,
-      "seconds": 21.6
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 456,
+      "seconds": 10.6
     },
     {
       "id": "account",
@@ -26,8 +24,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 117,
-      "seconds": 21.0
+      "files": 118,
+      "seconds": 7.3
     },
     {
       "id": "account-access",
@@ -39,8 +37,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 119,
-      "seconds": 21.4
+      "files": 121,
+      "seconds": 7.4
     },
     {
       "id": "acm",
@@ -52,8 +50,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 444,
-      "seconds": 22.5
+      "files": 446,
+      "seconds": 10.4
     },
     {
       "id": "acm-pca",
@@ -65,8 +63,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 252,
-      "seconds": 21.4
+      "files": 254,
+      "seconds": 8.7
     },
     {
       "id": "agent-registry",
@@ -78,8 +76,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 87,
-      "seconds": 30.4
+      "files": 88,
+      "seconds": 6.8
     },
     {
       "id": "agent-registry-control",
@@ -91,8 +89,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 311,
-      "seconds": 22.3
+      "files": 313,
+      "seconds": 11.1
     },
     {
       "id": "aiops",
@@ -104,8 +102,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 88,
-      "seconds": 20.7
+      "files": 89,
+      "seconds": 6.5
     },
     {
       "id": "amp",
@@ -117,8 +115,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 344,
-      "seconds": 15.8
+      "files": 346,
+      "seconds": 11.9
     },
     {
       "id": "amplify",
@@ -130,8 +128,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 286,
-      "seconds": 13.6
+      "files": 287,
+      "seconds": 10.7
     },
     {
       "id": "amplifybackend",
@@ -143,38 +141,34 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 275,
-      "seconds": 13.6
+      "files": 276,
+      "seconds": 8.9
     },
     {
       "id": "amplifyuibuilder",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 3,
-      "first_error": "CS0542: 'Value': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 356,
-      "seconds": 14.9
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 357,
+      "seconds": 9.0
     },
     {
       "id": "api-gateway",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'DomainName': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 805,
-      "seconds": 54.3
+      "first_error": "",
+      "error_codes": {},
+      "files": 806,
+      "seconds": 11.8
     },
     {
       "id": "apigatewaymanagementapi",
@@ -186,23 +180,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 27,
-      "seconds": 5.7
+      "files": 28,
+      "seconds": 4.8
     },
     {
       "id": "apigatewayv2",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'DomainName': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 711,
-      "seconds": 43.9
+      "first_error": "",
+      "error_codes": {},
+      "files": 712,
+      "seconds": 17.1
     },
     {
       "id": "app-mesh",
@@ -214,8 +206,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 524,
-      "seconds": 51.2
+      "files": 525,
+      "seconds": 13.8
     },
     {
       "id": "appconfig",
@@ -227,8 +219,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 417,
-      "seconds": 15.3
+      "files": 419,
+      "seconds": 8.9
     },
     {
       "id": "appconfigdata",
@@ -240,8 +232,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 26,
-      "seconds": 7.6
+      "files": 27,
+      "seconds": 4.3
     },
     {
       "id": "appfabric",
@@ -253,8 +245,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 226,
-      "seconds": 19.7
+      "files": 227,
+      "seconds": 17.1
     },
     {
       "id": "appflow",
@@ -266,8 +258,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 581,
-      "seconds": 47.2
+      "files": 582,
+      "seconds": 18.2
     },
     {
       "id": "appintegrations",
@@ -279,8 +271,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 203,
-      "seconds": 18.3
+      "files": 204,
+      "seconds": 7.1
     },
     {
       "id": "application-auto-scaling",
@@ -292,8 +284,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 189,
-      "seconds": 7.2
+      "files": 190,
+      "seconds": 5.1
     },
     {
       "id": "application-discovery-service",
@@ -305,8 +297,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 288,
-      "seconds": 9.7
+      "files": 289,
+      "seconds": 9.3
     },
     {
       "id": "application-insights",
@@ -319,8 +311,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 249,
-      "seconds": 18.5
+      "files": 250,
+      "seconds": 12.0
     },
     {
       "id": "application-signals",
@@ -332,8 +324,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 395,
-      "seconds": 13.5
+      "files": 396,
+      "seconds": 12.5
     },
     {
       "id": "applicationcostprofiler",
@@ -345,8 +337,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 55,
-      "seconds": 6.6
+      "files": 56,
+      "seconds": 5.6
     },
     {
       "id": "apprunner",
@@ -358,8 +350,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 319,
-      "seconds": 17.2
+      "files": 320,
+      "seconds": 10.8
     },
     {
       "id": "appstream",
@@ -372,8 +364,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 746,
-      "seconds": 18.4
+      "files": 748,
+      "seconds": 26.8
     },
     {
       "id": "appsync",
@@ -385,8 +377,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 606,
-      "seconds": 31.1
+      "files": 607,
+      "seconds": 22.9
     },
     {
       "id": "arc-region-switch",
@@ -399,8 +391,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 344,
-      "seconds": 33.9
+      "files": 346,
+      "seconds": 11.4
     },
     {
       "id": "arc-zonal-shift",
@@ -412,8 +404,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 137,
-      "seconds": 17.4
+      "files": 138,
+      "seconds": 9.7
     },
     {
       "id": "artifact",
@@ -425,8 +417,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 168,
-      "seconds": 14.1
+      "files": 169,
+      "seconds": 10.0
     },
     {
       "id": "athena",
@@ -438,8 +430,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 579,
-      "seconds": 31.8
+      "files": 580,
+      "seconds": 9.7
     },
     {
       "id": "auditmanager",
@@ -451,23 +443,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 530,
-      "seconds": 18.9
+      "files": 531,
+      "seconds": 15.5
     },
     {
       "id": "auto-scaling",
       "protocols": [
         "awsQuery"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'AdjustmentType': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 678,
-      "seconds": 28.0
+      "first_error": "",
+      "error_codes": {},
+      "files": 680,
+      "seconds": 20.8
     },
     {
       "id": "auto-scaling-plans",
@@ -479,8 +469,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 105,
-      "seconds": 12.5
+      "files": 106,
+      "seconds": 6.6
     },
     {
       "id": "b2bi",
@@ -492,8 +482,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 306,
-      "seconds": 21.1
+      "files": 308,
+      "seconds": 9.6
     },
     {
       "id": "backup",
@@ -505,8 +495,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 873,
-      "seconds": 54.3
+      "files": 874,
+      "seconds": 26.6
     },
     {
       "id": "backup-gateway",
@@ -519,8 +509,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 170,
-      "seconds": 7.1
+      "files": 171,
+      "seconds": 9.0
     },
     {
       "id": "backupsearch",
@@ -532,8 +522,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 138,
-      "seconds": 7.6
+      "files": 139,
+      "seconds": 6.3
     },
     {
       "id": "batch",
@@ -545,8 +535,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 707,
-      "seconds": 24.2
+      "files": 708,
+      "seconds": 15.7
     },
     {
       "id": "bcm-dashboards",
@@ -558,8 +548,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 179,
-      "seconds": 13.8
+      "files": 180,
+      "seconds": 8.6
     },
     {
       "id": "bcm-data-exports",
@@ -571,8 +561,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 133,
-      "seconds": 12.5
+      "files": 134,
+      "seconds": 19.4
     },
     {
       "id": "bcm-pricing-calculator",
@@ -584,8 +574,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 399,
-      "seconds": 20.6
+      "files": 400,
+      "seconds": 9.7
     },
     {
       "id": "bcm-recommended-actions",
@@ -597,56 +587,47 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 41,
-      "seconds": 7.6
+      "files": 42,
+      "seconds": 6.8
     },
     {
       "id": "bedrock",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 5,
-      "warnings": 3,
-      "first_error": "CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 2,
-        "CS0542": 2,
-        "CS8866": 1
-      },
-      "files": 1348,
-      "seconds": 74.0
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1349,
+      "seconds": 32.7
     },
     {
       "id": "bedrock-agent",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0261: Partial declarations of 'FunctionSchema' must be all classes, all record classes, all structs, all record structs, or all interfaces",
-      "error_codes": {
-        "CS0261": 1
-      },
-      "files": 1148,
-      "seconds": 60.3
+      "first_error": "",
+      "error_codes": {},
+      "files": 1149,
+      "seconds": 46.7
     },
     {
       "id": "bedrock-agent-runtime",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 1,
-      "first_error": "CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 1,
-        "CS0542": 1
-      },
-      "files": 1044,
-      "seconds": 40.2
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1045,
+      "seconds": 35.1
     },
     {
       "id": "bedrock-agentcore",
@@ -658,23 +639,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1096,
-      "seconds": 86.7
+      "files": 1097,
+      "seconds": 49.9
     },
     {
       "id": "bedrock-agentcore-control",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'ModifyMemoryStrategies': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 2085,
-      "seconds": 116.7
+      "first_error": "",
+      "error_codes": {},
+      "files": 2087,
+      "seconds": 96.0
     },
     {
       "id": "bedrock-data-automation",
@@ -686,8 +665,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 387,
-      "seconds": 24.0
+      "files": 388,
+      "seconds": 11.3
     },
     {
       "id": "bedrock-data-automation-runtime",
@@ -699,8 +678,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 89,
-      "seconds": 10.1
+      "files": 90,
+      "seconds": 12.7
     },
     {
       "id": "bedrock-runtime",
@@ -712,8 +691,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 539,
-      "seconds": 12.9
+      "files": 540,
+      "seconds": 11.4
     },
     {
       "id": "billing",
@@ -725,8 +704,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 261,
-      "seconds": 10.9
+      "files": 262,
+      "seconds": 7.2
     },
     {
       "id": "billingconductor",
@@ -738,8 +717,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 353,
-      "seconds": 13.6
+      "files": 354,
+      "seconds": 7.6
     },
     {
       "id": "braket",
@@ -751,8 +730,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 181,
-      "seconds": 15.8
+      "files": 182,
+      "seconds": 5.8
     },
     {
       "id": "budgets",
@@ -764,8 +743,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 272,
-      "seconds": 12.6
+      "files": 273,
+      "seconds": 6.6
     },
     {
       "id": "chatbot",
@@ -777,8 +756,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 283,
-      "seconds": 10.9
+      "files": 284,
+      "seconds": 7.7
     },
     {
       "id": "chime",
@@ -790,8 +769,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 454,
-      "seconds": 12.5
+      "files": 455,
+      "seconds": 19.6
     },
     {
       "id": "chime-sdk-identity",
@@ -803,8 +782,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 235,
-      "seconds": 11.5
+      "files": 236,
+      "seconds": 17.2
     },
     {
       "id": "chime-sdk-media-pipelines",
@@ -816,8 +795,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 448,
-      "seconds": 11.3
+      "files": 449,
+      "seconds": 20.9
     },
     {
       "id": "chime-sdk-meetings",
@@ -829,8 +808,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 180,
-      "seconds": 13.0
+      "files": 181,
+      "seconds": 18.6
     },
     {
       "id": "chime-sdk-messaging",
@@ -842,8 +821,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 405,
-      "seconds": 28.2
+      "files": 406,
+      "seconds": 12.7
     },
     {
       "id": "chime-sdk-voice",
@@ -855,23 +834,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 694,
-      "seconds": 30.3
+      "files": 695,
+      "seconds": 14.0
     },
     {
       "id": "cleanrooms",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Cleanrooms' already contains a definition for 'IntermediateTableSchema'",
-      "error_codes": {
-        "CS0101": 1
-      },
-      "files": 1210,
-      "seconds": 59.2
+      "first_error": "",
+      "error_codes": {},
+      "files": 1211,
+      "seconds": 64.1
     },
     {
       "id": "cleanroomsml",
@@ -883,8 +860,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 577,
-      "seconds": 26.5
+      "files": 578,
+      "seconds": 20.4
     },
     {
       "id": "cloud9",
@@ -896,8 +873,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 114,
-      "seconds": 10.7
+      "files": 115,
+      "seconds": 10.4
     },
     {
       "id": "cloudcontrol",
@@ -909,21 +886,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 97,
-      "seconds": 7.8
+      "files": 99,
+      "seconds": 6.6
     },
     {
       "id": "clouddirectory",
       "protocols": [
         "restJson1"
       ],
-      "stage": "codegen",
+      "stage": "ok",
       "errors": 0,
       "warnings": 0,
-      "first_error": "Projection source failed: java.util.NoSuchElementException",
+      "first_error": "",
       "error_codes": {},
-      "files": 0,
-      "seconds": 1.9
+      "files": 649,
+      "seconds": 17.7
     },
     {
       "id": "cloudformation",
@@ -935,23 +912,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 943,
-      "seconds": 28.1
+      "files": 945,
+      "seconds": 35.0
     },
     {
       "id": "cloudfront",
       "protocols": [
         "restXml"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Cloudfront' already contains a definition for 'ParameterDefinitionSchema'",
-      "error_codes": {
-        "CS0101": 1
-      },
-      "files": 1727,
-      "seconds": 76.6
+      "first_error": "",
+      "error_codes": {},
+      "files": 1729,
+      "seconds": 116.2
     },
     {
       "id": "cloudfront-keyvaluestore",
@@ -963,8 +938,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 53,
-      "seconds": 11.8
+      "files": 54,
+      "seconds": 9.3
     },
     {
       "id": "cloudhsm",
@@ -976,8 +951,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 126,
-      "seconds": 10.7
+      "files": 127,
+      "seconds": 8.3
     },
     {
       "id": "cloudhsm-v2",
@@ -989,8 +964,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 143,
-      "seconds": 11.0
+      "files": 144,
+      "seconds": 18.2
     },
     {
       "id": "cloudsearch",
@@ -1002,8 +977,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 234,
-      "seconds": 13.0
+      "files": 235,
+      "seconds": 9.9
     },
     {
       "id": "cloudsearch-domain",
@@ -1015,23 +990,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 55,
-      "seconds": 6.6
+      "files": 56,
+      "seconds": 7.0
     },
     {
       "id": "cloudtrail",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positional parameter 'Equals'.",
-      "error_codes": {
-        "CS8866": 2
-      },
-      "files": 637,
-      "seconds": 17.5
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 638,
+      "seconds": 16.6
     },
     {
       "id": "cloudtrail-data",
@@ -1043,8 +1016,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 28,
-      "seconds": 6.8
+      "files": 29,
+      "seconds": 7.7
     },
     {
       "id": "cloudwatch",
@@ -1058,8 +1031,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 518,
-      "seconds": 27.8
+      "files": 520,
+      "seconds": 38.9
     },
     {
       "id": "cloudwatch-events",
@@ -1071,23 +1044,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 459,
-      "seconds": 31.5
+      "files": 460,
+      "seconds": 33.8
     },
     {
       "id": "cloudwatch-logs",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Cloudwatchlogs' already contains a definition for 'DeliverySourceConfigurationSchema'",
-      "error_codes": {
-        "CS0101": 1
-      },
-      "files": 1062,
-      "seconds": 66.0
+      "first_error": "",
+      "error_codes": {},
+      "files": 1063,
+      "seconds": 49.3
     },
     {
       "id": "cloudwatchomni",
@@ -1099,8 +1070,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 574,
-      "seconds": 50.2
+      "files": 575,
+      "seconds": 16.8
     },
     {
       "id": "codeartifact",
@@ -1112,8 +1083,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 373,
-      "seconds": 11.6
+      "files": 374,
+      "seconds": 15.6
     },
     {
       "id": "codebuild",
@@ -1125,8 +1096,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 617,
-      "seconds": 19.9
+      "files": 618,
+      "seconds": 17.8
     },
     {
       "id": "codecatalyst",
@@ -1138,8 +1109,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 285,
-      "seconds": 24.4
+      "files": 286,
+      "seconds": 14.3
     },
     {
       "id": "codecommit",
@@ -1151,8 +1122,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 990,
-      "seconds": 64.8
+      "files": 991,
+      "seconds": 51.0
     },
     {
       "id": "codeconnections",
@@ -1165,8 +1136,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 234,
-      "seconds": 8.9
+      "files": 235,
+      "seconds": 11.3
     },
     {
       "id": "codedeploy",
@@ -1178,8 +1149,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 680,
-      "seconds": 24.8
+      "files": 682,
+      "seconds": 27.1
     },
     {
       "id": "codeguru-reviewer",
@@ -1191,8 +1162,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 177,
-      "seconds": 9.9
+      "files": 179,
+      "seconds": 13.2
     },
     {
       "id": "codeguru-security",
@@ -1204,8 +1175,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 148,
-      "seconds": 10.1
+      "files": 149,
+      "seconds": 13.1
     },
     {
       "id": "codeguruprofiler",
@@ -1217,8 +1188,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 191,
-      "seconds": 9.0
+      "files": 192,
+      "seconds": 8.9
     },
     {
       "id": "codepipeline",
@@ -1230,8 +1201,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 656,
-      "seconds": 16.6
+      "files": 657,
+      "seconds": 18.4
     },
     {
       "id": "codestar-connections",
@@ -1243,8 +1214,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 232,
-      "seconds": 19.8
+      "files": 233,
+      "seconds": 20.2
     },
     {
       "id": "codestar-notifications",
@@ -1256,8 +1227,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 119,
-      "seconds": 10.8
+      "files": 120,
+      "seconds": 12.3
     },
     {
       "id": "cognito-identity",
@@ -1269,8 +1240,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 180,
-      "seconds": 17.4
+      "files": 181,
+      "seconds": 10.5
     },
     {
       "id": "cognito-identity-provider",
@@ -1282,8 +1253,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1151,
-      "seconds": 43.2
+      "files": 1152,
+      "seconds": 40.3
     },
     {
       "id": "cognito-sync",
@@ -1295,8 +1266,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 142,
-      "seconds": 7.4
+      "files": 143,
+      "seconds": 8.6
     },
     {
       "id": "comprehend",
@@ -1308,8 +1279,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 804,
-      "seconds": 34.2
+      "files": 805,
+      "seconds": 30.1
     },
     {
       "id": "comprehendmedical",
@@ -1322,8 +1293,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 249,
-      "seconds": 14.9
+      "files": 250,
+      "seconds": 13.6
     },
     {
       "id": "compute-optimizer",
@@ -1336,8 +1307,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 639,
-      "seconds": 30.9
+      "files": 640,
+      "seconds": 37.0
     },
     {
       "id": "compute-optimizer-automation",
@@ -1350,8 +1321,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 254,
-      "seconds": 18.3
+      "files": 255,
+      "seconds": 18.6
     },
     {
       "id": "config-service",
@@ -1363,8 +1334,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1049,
-      "seconds": 37.9
+      "files": 1050,
+      "seconds": 49.1
     },
     {
       "id": "connect",
@@ -1376,8 +1347,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 4001,
-      "seconds": 216.4
+      "files": 4002,
+      "seconds": 118.5
     },
     {
       "id": "connect-contact-lens",
@@ -1389,8 +1360,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 51,
-      "seconds": 6.9
+      "files": 52,
+      "seconds": 7.0
     },
     {
       "id": "connectcampaigns",
@@ -1402,8 +1373,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 176,
-      "seconds": 9.9
+      "files": 177,
+      "seconds": 10.6
     },
     {
       "id": "connectcampaignsv2",
@@ -1415,8 +1386,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 370,
-      "seconds": 20.4
+      "files": 371,
+      "seconds": 22.9
     },
     {
       "id": "connectcases",
@@ -1425,11 +1396,11 @@
       ],
       "stage": "ok",
       "errors": 0,
-      "warnings": 4,
+      "warnings": 3,
       "first_error": "",
       "error_codes": {},
-      "files": 439,
-      "seconds": 24.7
+      "files": 440,
+      "seconds": 29.1
     },
     {
       "id": "connecthealth",
@@ -1441,8 +1412,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 213,
-      "seconds": 16.5
+      "files": 214,
+      "seconds": 23.1
     },
     {
       "id": "connectparticipant",
@@ -1454,8 +1425,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 130,
-      "seconds": 14.4
+      "files": 131,
+      "seconds": 20.6
     },
     {
       "id": "controlcatalog",
@@ -1467,8 +1438,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 118,
-      "seconds": 14.0
+      "files": 119,
+      "seconds": 22.8
     },
     {
       "id": "controltower",
@@ -1480,8 +1451,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 269,
-      "seconds": 18.4
+      "files": 270,
+      "seconds": 14.0
     },
     {
       "id": "cost-and-usage-report-service",
@@ -1493,8 +1464,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 74,
-      "seconds": 10.5
+      "files": 75,
+      "seconds": 18.2
     },
     {
       "id": "cost-explorer",
@@ -1506,8 +1477,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 618,
-      "seconds": 32.2
+      "files": 619,
+      "seconds": 15.7
     },
     {
       "id": "cost-optimization-hub",
@@ -1519,8 +1490,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 242,
-      "seconds": 28.2
+      "files": 243,
+      "seconds": 10.1
     },
     {
       "id": "customer-profiles",
@@ -1532,8 +1503,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1127,
-      "seconds": 63.1
+      "files": 1128,
+      "seconds": 34.7
     },
     {
       "id": "data-pipeline",
@@ -1545,8 +1516,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 156,
-      "seconds": 13.7
+      "files": 157,
+      "seconds": 8.7
     },
     {
       "id": "database-migration-service",
@@ -1558,8 +1529,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1033,
-      "seconds": 64.1
+      "files": 1035,
+      "seconds": 68.2
     },
     {
       "id": "databrew",
@@ -1571,8 +1542,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 396,
-      "seconds": 32.5
+      "files": 397,
+      "seconds": 26.9
     },
     {
       "id": "dataexchange",
@@ -1584,8 +1555,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 363,
-      "seconds": 30.8
+      "files": 364,
+      "seconds": 19.2
     },
     {
       "id": "datasync",
@@ -1597,8 +1568,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 462,
-      "seconds": 19.7
+      "files": 463,
+      "seconds": 12.4
     },
     {
       "id": "datazone",
@@ -1610,8 +1581,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 2054,
-      "seconds": 87.2
+      "files": 2055,
+      "seconds": 66.8
     },
     {
       "id": "dax",
@@ -1623,8 +1594,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 229,
-      "seconds": 8.0
+      "files": 230,
+      "seconds": 7.8
     },
     {
       "id": "deadline",
@@ -1636,8 +1607,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1254,
-      "seconds": 76.5
+      "files": 1256,
+      "seconds": 63.0
     },
     {
       "id": "detective",
@@ -1649,8 +1620,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 260,
-      "seconds": 14.2
+      "files": 261,
+      "seconds": 15.4
     },
     {
       "id": "device-farm",
@@ -1662,8 +1633,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 640,
-      "seconds": 24.8
+      "files": 641,
+      "seconds": 39.7
     },
     {
       "id": "devops-agent",
@@ -1675,8 +1646,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 759,
-      "seconds": 44.5
+      "files": 760,
+      "seconds": 26.6
     },
     {
       "id": "devops-guru",
@@ -1688,8 +1659,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 463,
-      "seconds": 12.9
+      "files": 464,
+      "seconds": 13.0
     },
     {
       "id": "direct-connect",
@@ -1701,8 +1672,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 531,
-      "seconds": 15.7
+      "files": 532,
+      "seconds": 32.6
     },
     {
       "id": "directory-service",
@@ -1714,8 +1685,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 695,
-      "seconds": 46.8
+      "files": 697,
+      "seconds": 32.4
     },
     {
       "id": "directory-service-data",
@@ -1727,8 +1698,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 135,
-      "seconds": 10.8
+      "files": 136,
+      "seconds": 15.0
     },
     {
       "id": "dlm",
@@ -1740,8 +1711,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 158,
-      "seconds": 12.5
+      "files": 159,
+      "seconds": 14.9
     },
     {
       "id": "docdb",
@@ -1753,8 +1724,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 516,
-      "seconds": 15.0
+      "files": 518,
+      "seconds": 22.0
     },
     {
       "id": "docdb-elastic",
@@ -1766,8 +1737,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 136,
-      "seconds": 10.5
+      "files": 137,
+      "seconds": 11.3
     },
     {
       "id": "drs",
@@ -1779,8 +1750,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 579,
-      "seconds": 31.2
+      "files": 580,
+      "seconds": 33.1
     },
     {
       "id": "dsql",
@@ -1792,8 +1763,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 134,
-      "seconds": 8.0
+      "files": 136,
+      "seconds": 16.0
     },
     {
       "id": "dynamodb",
@@ -1805,8 +1776,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 788,
-      "seconds": 24.7
+      "files": 790,
+      "seconds": 20.4
     },
     {
       "id": "dynamodb-streams",
@@ -1818,8 +1789,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 74,
-      "seconds": 10.4
+      "files": 75,
+      "seconds": 11.9
     },
     {
       "id": "ebs",
@@ -1831,24 +1802,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 75,
-      "seconds": 17.6
+      "files": 76,
+      "seconds": 11.4
     },
     {
       "id": "ec2",
       "protocols": [
         "ec2Query"
       ],
-      "stage": "compile",
-      "errors": 9,
-      "warnings": 1,
-      "first_error": "CS0102: The type 'IpamPrefixListResolverRuleConditionOperation' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 1,
-        "CS0542": 8
-      },
-      "files": 7736,
-      "seconds": 363.2
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 7738,
+      "seconds": 461.6
     },
     {
       "id": "ec2-instance-connect",
@@ -1860,8 +1828,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 36,
-      "seconds": 9.7
+      "files": 37,
+      "seconds": 6.8
     },
     {
       "id": "ecr",
@@ -1873,7 +1841,7 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 606,
+      "files": 608,
       "seconds": 27.3
     },
     {
@@ -1886,8 +1854,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 222,
-      "seconds": 16.6
+      "files": 223,
+      "seconds": 11.1
     },
     {
       "id": "ecs",
@@ -1899,8 +1867,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1181,
-      "seconds": 29.6
+      "files": 1183,
+      "seconds": 60.6
     },
     {
       "id": "efs",
@@ -1912,8 +1880,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 289,
-      "seconds": 14.1
+      "files": 290,
+      "seconds": 15.7
     },
     {
       "id": "eks",
@@ -1925,8 +1893,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 845,
-      "seconds": 36.1
+      "files": 847,
+      "seconds": 42.2
     },
     {
       "id": "eks-auth",
@@ -1938,23 +1906,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 33,
-      "seconds": 7.3
+      "files": 34,
+      "seconds": 7.4
     },
     {
       "id": "elastic-beanstalk",
       "protocols": [
         "awsQuery"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0542: 'Builder': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 485,
-      "seconds": 21.4
+      "first_error": "",
+      "error_codes": {},
+      "files": 487,
+      "seconds": 21.6
     },
     {
       "id": "elastic-load-balancing",
@@ -1966,8 +1932,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 269,
-      "seconds": 20.6
+      "files": 271,
+      "seconds": 23.2
     },
     {
       "id": "elastic-load-balancing-v2",
@@ -1979,8 +1945,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 594,
-      "seconds": 45.0
+      "files": 596,
+      "seconds": 24.0
     },
     {
       "id": "elasticache",
@@ -1992,8 +1958,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 813,
-      "seconds": 30.9
+      "files": 815,
+      "seconds": 20.4
     },
     {
       "id": "elasticsearch-service",
@@ -2005,8 +1971,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 569,
-      "seconds": 35.0
+      "files": 570,
+      "seconds": 19.8
     },
     {
       "id": "elementalinference",
@@ -2018,8 +1984,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 194,
-      "seconds": 20.7
+      "files": 196,
+      "seconds": 11.6
     },
     {
       "id": "emr",
@@ -2031,8 +1997,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 722,
-      "seconds": 39.4
+      "files": 724,
+      "seconds": 45.3
     },
     {
       "id": "emr-containers",
@@ -2044,8 +2010,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 252,
-      "seconds": 20.0
+      "files": 253,
+      "seconds": 15.8
     },
     {
       "id": "emr-serverless",
@@ -2057,8 +2023,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 219,
-      "seconds": 15.8
+      "files": 220,
+      "seconds": 34.5
     },
     {
       "id": "endusermessaging",
@@ -2070,8 +2036,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 232,
-      "seconds": 18.7
+      "files": 234,
+      "seconds": 43.1
     },
     {
       "id": "entityresolution",
@@ -2083,8 +2049,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 375,
-      "seconds": 22.5
+      "files": 376,
+      "seconds": 39.6
     },
     {
       "id": "eventbridge",
@@ -2096,8 +2062,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 530,
-      "seconds": 38.2
+      "files": 531,
+      "seconds": 19.3
     },
     {
       "id": "eventbridgev2",
@@ -2109,8 +2075,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 292,
-      "seconds": 19.0
+      "files": 294,
+      "seconds": 13.8
     },
     {
       "id": "evs",
@@ -2122,8 +2088,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 231,
-      "seconds": 22.4
+      "files": 232,
+      "seconds": 12.6
     },
     {
       "id": "finspace",
@@ -2135,8 +2101,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 427,
-      "seconds": 22.6
+      "files": 428,
+      "seconds": 17.3
     },
     {
       "id": "finspace-data",
@@ -2148,8 +2114,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 253,
-      "seconds": 14.3
+      "files": 254,
+      "seconds": 11.4
     },
     {
       "id": "firehose",
@@ -2161,8 +2127,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 372,
-      "seconds": 23.4
+      "files": 373,
+      "seconds": 13.8
     },
     {
       "id": "fis",
@@ -2174,8 +2140,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 343,
-      "seconds": 30.3
+      "files": 344,
+      "seconds": 13.9
     },
     {
       "id": "fms",
@@ -2188,8 +2154,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 505,
-      "seconds": 39.5
+      "files": 506,
+      "seconds": 36.0
     },
     {
       "id": "forecast",
@@ -2201,8 +2167,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 536,
-      "seconds": 42.5
+      "files": 537,
+      "seconds": 17.8
     },
     {
       "id": "forecastquery",
@@ -2214,23 +2180,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 29,
-      "seconds": 11.4
+      "files": 30,
+      "seconds": 6.8
     },
     {
       "id": "frauddetector",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
+      "stage": "ok",
+      "errors": 0,
       "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Frauddetector' already contains a definition for 'LabelSchema'",
-      "error_codes": {
-        "CS0101": 1
-      },
-      "files": 607,
-      "seconds": 44.9
+      "first_error": "",
+      "error_codes": {},
+      "files": 608,
+      "seconds": 36.3
     },
     {
       "id": "freetier",
@@ -2242,8 +2206,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 69,
-      "seconds": 12.3
+      "files": 70,
+      "seconds": 12.7
     },
     {
       "id": "fsx",
@@ -2255,8 +2219,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 756,
-      "seconds": 18.0
+      "files": 757,
+      "seconds": 38.8
     },
     {
       "id": "gamelift",
@@ -2269,8 +2233,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1038,
-      "seconds": 29.1
+      "files": 1039,
+      "seconds": 60.8
     },
     {
       "id": "gameliftstreams",
@@ -2282,8 +2246,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 250,
-      "seconds": 19.1
+      "files": 252,
+      "seconds": 23.0
     },
     {
       "id": "geo-maps",
@@ -2295,8 +2259,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 75,
-      "seconds": 10.0
+      "files": 76,
+      "seconds": 19.5
     },
     {
       "id": "geo-places",
@@ -2308,8 +2272,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 294,
-      "seconds": 12.5
+      "files": 295,
+      "seconds": 11.4
     },
     {
       "id": "geo-routes",
@@ -2321,8 +2285,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 817,
-      "seconds": 33.4
+      "files": 818,
+      "seconds": 28.2
     },
     {
       "id": "glacier",
@@ -2334,8 +2298,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 262,
-      "seconds": 14.0
+      "files": 264,
+      "seconds": 12.8
     },
     {
       "id": "global-accelerator",
@@ -2347,23 +2311,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 440,
-      "seconds": 18.6
+      "files": 441,
+      "seconds": 14.3
     },
     {
       "id": "glue",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0102: The type 'SearchFilterOperator' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 1
-      },
-      "files": 3121,
-      "seconds": 117.3
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 3122,
+      "seconds": 168.6
     },
     {
       "id": "grafana",
@@ -2375,8 +2337,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 202,
-      "seconds": 15.3
+      "files": 203,
+      "seconds": 13.6
     },
     {
       "id": "greengrass",
@@ -2388,8 +2350,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 601,
-      "seconds": 28.1
+      "files": 602,
+      "seconds": 65.7
     },
     {
       "id": "greengrassv2",
@@ -2401,8 +2363,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 322,
-      "seconds": 10.4
+      "files": 323,
+      "seconds": 14.5
     },
     {
       "id": "groundstation",
@@ -2414,23 +2376,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 468,
-      "seconds": 17.8
+      "files": 470,
+      "seconds": 29.5
     },
     {
       "id": "guardduty",
       "protocols": [
         "restJson1"
       ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 2,
-      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positional parameter 'Equals'.",
-      "error_codes": {
-        "CS8866": 2
-      },
-      "files": 1382,
-      "seconds": 58.1
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1383,
+      "seconds": 44.8
     },
     {
       "id": "health",
@@ -2443,8 +2403,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 195,
-      "seconds": 14.0
+      "files": 196,
+      "seconds": 45.2
     },
     {
       "id": "healthlake",
@@ -2456,8 +2416,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 277,
-      "seconds": 16.1
+      "files": 279,
+      "seconds": 15.4
     },
     {
       "id": "iam",
@@ -2469,8 +2429,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1236,
-      "seconds": 69.6
+      "files": 1238,
+      "seconds": 25.0
     },
     {
       "id": "iam-toolbox",
@@ -2482,8 +2442,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 37,
-      "seconds": 6.0
+      "files": 38,
+      "seconds": 8.8
     },
     {
       "id": "identitystore",
@@ -2495,8 +2455,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 196,
-      "seconds": 13.2
+      "files": 197,
+      "seconds": 9.8
     },
     {
       "id": "imagebuilder",
@@ -2508,8 +2468,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 781,
-      "seconds": 25.3
+      "files": 782,
+      "seconds": 18.8
     },
     {
       "id": "inspector",
@@ -2521,8 +2481,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 361,
-      "seconds": 14.9
+      "files": 362,
+      "seconds": 14.2
     },
     {
       "id": "inspector-scan",
@@ -2534,8 +2494,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 24,
-      "seconds": 4.8
+      "files": 25,
+      "seconds": 7.2
     },
     {
       "id": "inspector2",
@@ -2547,8 +2507,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1085,
-      "seconds": 39.1
+      "files": 1087,
+      "seconds": 35.1
     },
     {
       "id": "interconnect",
@@ -2561,8 +2521,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 111,
-      "seconds": 10.3
+      "files": 113,
+      "seconds": 9.3
     },
     {
       "id": "internetmonitor",
@@ -2574,8 +2534,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 152,
-      "seconds": 8.4
+      "files": 153,
+      "seconds": 21.1
     },
     {
       "id": "invoicing",
@@ -2587,8 +2547,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 258,
-      "seconds": 21.7
+      "files": 259,
+      "seconds": 18.9
     },
     {
       "id": "iot",
@@ -2600,8 +2560,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 2251,
-      "seconds": 101.0
+      "files": 2252,
+      "seconds": 105.5
     },
     {
       "id": "iot-data-plane",
@@ -2613,8 +2573,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 90,
-      "seconds": 18.1
+      "files": 91,
+      "seconds": 8.3
     },
     {
       "id": "iot-jobs-data-plane",
@@ -2626,8 +2586,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 62,
-      "seconds": 7.2
+      "files": 63,
+      "seconds": 12.8
     },
     {
       "id": "iot-managed-integrations",
@@ -2639,8 +2599,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 688,
-      "seconds": 13.4
+      "files": 689,
+      "seconds": 17.9
     },
     {
       "id": "iot-wireless",
@@ -2652,8 +2612,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1003,
-      "seconds": 24.8
+      "files": 1004,
+      "seconds": 78.4
     },
     {
       "id": "iotdeviceadvisor",
@@ -2665,8 +2625,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 119,
-      "seconds": 6.7
+      "files": 120,
+      "seconds": 12.8
     },
     {
       "id": "iotfleetwise",
@@ -2678,8 +2638,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 564,
-      "seconds": 45.2
+      "files": 565,
+      "seconds": 65.9
     },
     {
       "id": "iotsecuretunneling",
@@ -2691,8 +2651,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 68,
-      "seconds": 6.6
+      "files": 69,
+      "seconds": 8.0
     },
     {
       "id": "iotsitewise",
@@ -2704,8 +2664,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 1501,
-      "seconds": 59.8
+      "files": 1503,
+      "seconds": 63.2
     },
     {
       "id": "iotthingsgraph",
@@ -2717,8 +2677,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 274,
-      "seconds": 11.4
+      "files": 275,
+      "seconds": 35.8
     },
     {
       "id": "iottwinmaker",
@@ -2730,8 +2690,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 432,
-      "seconds": 31.7
+      "files": 433,
+      "seconds": 18.5
     },
     {
       "id": "ivs",
@@ -2743,8 +2703,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 332,
-      "seconds": 13.5
+      "files": 333,
+      "seconds": 13.7
     },
     {
       "id": "ivs-realtime",
@@ -2756,8 +2716,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 338,
-      "seconds": 16.7
+      "files": 339,
+      "seconds": 29.0
     },
     {
       "id": "ivschat",
@@ -2769,8 +2729,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 128,
-      "seconds": 6.5
+      "files": 129,
+      "seconds": 14.0
     },
     {
       "id": "kafka",
@@ -2782,8 +2742,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 704,
-      "seconds": 28.2
+      "files": 705,
+      "seconds": 24.4
     },
     {
       "id": "kafkaconnect",
@@ -2795,23 +2755,21 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 237,
-      "seconds": 13.3
+      "files": 238,
+      "seconds": 15.6
     },
     {
       "id": "kendra",
       "protocols": [
         "awsJson1_1"
       ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS0102: The type 'ConditionOperator' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 1
-      },
-      "files": 897,
-      "seconds": 53.6
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 898,
+      "seconds": 43.5
     },
     {
       "id": "kendra-ranking",
@@ -2824,8 +2782,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 82,
-      "seconds": 8.9
+      "files": 83,
+      "seconds": 37.3
     },
     {
       "id": "keyspaces",
@@ -2838,8 +2796,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 184,
-      "seconds": 10.7
+      "files": 185,
+      "seconds": 31.4
     },
     {
       "id": "keyspacesstreams",
@@ -2851,8 +2809,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 77,
-      "seconds": 10.8
+      "files": 78,
+      "seconds": 23.7
     },
     {
       "id": "kinesis",
@@ -2864,8 +2822,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 410,
-      "seconds": 18.7
+      "files": 412,
+      "seconds": 28.5
     },
     {
       "id": "kinesis-analytics",
@@ -2877,8 +2835,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 259,
-      "seconds": 16.1
+      "files": 260,
+      "seconds": 22.0
     },
     {
       "id": "kinesis-analytics-v2",
@@ -2890,8 +2848,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 517,
-      "seconds": 30.1
+      "files": 518,
+      "seconds": 24.7
     },
     {
       "id": "kinesis-video",
@@ -2903,8 +2861,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 291,
-      "seconds": 28.7
+      "files": 292,
+      "seconds": 17.6
     },
     {
       "id": "kinesis-video-archived-media",
@@ -2916,2767 +2874,11 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 104,
-      "seconds": 26.9
+      "files": 105,
+      "seconds": 25.2
     },
     {
       "id": "kinesis-video-media",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 23,
-      "seconds": 20.5
-    },
-    {
-      "id": "kinesis-video-signaling",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 30,
-      "seconds": 20.2
-    },
-    {
-      "id": "kinesis-video-webrtc-storage",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 20,
-      "seconds": 16.2
-    },
-    {
-      "id": "kms",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 475,
-      "seconds": 18.7
-    },
-    {
-      "id": "lakeformation",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 529,
-      "seconds": 20.1
-    },
-    {
-      "id": "lambda",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 947,
-      "seconds": 51.6
-    },
-    {
-      "id": "lambda-core",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 66,
-      "seconds": 7.2
-    },
-    {
-      "id": "lambda-microvms",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 219,
-      "seconds": 12.6
-    },
-    {
-      "id": "lambda-web",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 17,
-      "seconds": 6.3
-    },
-    {
-      "id": "launch-wizard",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 144,
-      "seconds": 11.1
-    },
-    {
-      "id": "lex-model-building-service",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 377,
-      "seconds": 19.8
-    },
-    {
-      "id": "lex-models-v2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "compile",
-      "errors": 9,
-      "warnings": 9,
-      "first_error": "CS0102: The type 'AggregatedUtterancesFilterOperator' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 9
-      },
-      "files": 1433,
-      "seconds": 30.7
-    },
-    {
-      "id": "lex-runtime-service",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 88,
-      "seconds": 12.6
-    },
-    {
-      "id": "lex-runtime-v2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 148,
-      "seconds": 22.5
-    },
-    {
-      "id": "license-manager",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 545,
-      "seconds": 39.2
-    },
-    {
-      "id": "license-manager-linux-subscriptions",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 85,
-      "seconds": 9.4
-    },
-    {
-      "id": "license-manager-user-subscriptions",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 152,
-      "seconds": 7.8
-    },
-    {
-      "id": "lightsail",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 1342,
-      "seconds": 53.5
-    },
-    {
-      "id": "location",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 528,
-      "seconds": 34.5
-    },
-    {
-      "id": "lookoutequipment",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 392,
-      "seconds": 28.7
-    },
-    {
-      "id": "m2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 333,
-      "seconds": 22.9
-    },
-    {
-      "id": "machine-learning",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 226,
-      "seconds": 17.1
-    },
-    {
-      "id": "macie2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 880,
-      "seconds": 32.4
-    },
-    {
-      "id": "mailmanager",
-      "protocols": [
-        "awsJson1_0",
-        "rpcv2Cbor"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 605,
-      "seconds": 42.2
-    },
-    {
-      "id": "managedblockchain",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 269,
-      "seconds": 24.6
-    },
-    {
-      "id": "managedblockchain-query",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 115,
-      "seconds": 8.5
-    },
-    {
-      "id": "marketplace-agreement",
-      "protocols": [
-        "awsJson1_0",
-        "rpcv2Cbor"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 343,
-      "seconds": 34.9
-    },
-    {
-      "id": "marketplace-catalog",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 457,
-      "seconds": 33.8
-    },
-    {
-      "id": "marketplace-commerce-analytics",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 19,
-      "seconds": 7.5
-    },
-    {
-      "id": "marketplace-deployment",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 41,
-      "seconds": 13.8
-    },
-    {
-      "id": "marketplace-discovery",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 319,
-      "seconds": 19.5
-    },
-    {
-      "id": "marketplace-entitlement-service",
-      "protocols": [
-        "awsJson1_1",
-        "rpcv2Cbor"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 22,
-      "seconds": 10.8
-    },
-    {
-      "id": "marketplace-metering",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 76,
-      "seconds": 10.9
-    },
-    {
-      "id": "marketplace-reporting",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 16,
-      "seconds": 10.7
-    },
-    {
-      "id": "mediaconnect",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 975,
-      "seconds": 17.6
-    },
-    {
-      "id": "mediaconvert",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 1649,
-      "seconds": 50.9
-    },
-    {
-      "id": "medialive",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 2171,
-      "seconds": 185.3
-    },
-    {
-      "id": "mediapackage",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 198,
-      "seconds": 18.5
-    },
-    {
-      "id": "mediapackage-vod",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 170,
-      "seconds": 16.8
-    },
-    {
-      "id": "mediapackagev2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 372,
-      "seconds": 34.0
-    },
-    {
-      "id": "mediastore",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 144,
-      "seconds": 14.1
-    },
-    {
-      "id": "mediastore-data",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 44,
-      "seconds": 13.1
-    },
-    {
-      "id": "mediatailor",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 503,
-      "seconds": 14.9
-    },
-    {
-      "id": "medical-imaging",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 187,
-      "seconds": 9.8
-    },
-    {
-      "id": "memorydb",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 485,
-      "seconds": 32.7
-    },
-    {
-      "id": "mgn",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 837,
-      "seconds": 45.3
-    },
-    {
-      "id": "migration-hub",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 165,
-      "seconds": 12.3
-    },
-    {
-      "id": "migration-hub-refactor-spaces",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 183,
-      "seconds": 9.8
-    },
-    {
-      "id": "migrationhub-config",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 41,
-      "seconds": 6.0
-    },
-    {
-      "id": "migrationhuborchestrator",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 222,
-      "seconds": 8.1
-    },
-    {
-      "id": "migrationhubstrategy",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 270,
-      "seconds": 18.6
-    },
-    {
-      "id": "mpa",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 234,
-      "seconds": 17.2
-    },
-    {
-      "id": "mq",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 237,
-      "seconds": 13.3
-    },
-    {
-      "id": "mturk",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 284,
-      "seconds": 21.3
-    },
-    {
-      "id": "mwaa",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 108,
-      "seconds": 8.0
-    },
-    {
-      "id": "mwaa-serverless",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 148,
-      "seconds": 10.5
-    },
-    {
-      "id": "neptune",
-      "protocols": [
-        "awsQuery"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 642,
-      "seconds": 28.3
-    },
-    {
-      "id": "neptune-graph",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 282,
-      "seconds": 12.4
-    },
-    {
-      "id": "neptunedata",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 376,
-      "seconds": 14.8
-    },
-    {
-      "id": "network-firewall",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 812,
-      "seconds": 30.4
-    },
-    {
-      "id": "network-security-manager",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 415,
-      "seconds": 28.0
-    },
-    {
-      "id": "networkflowmonitor",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 198,
-      "seconds": 15.9
-    },
-    {
-      "id": "networkmanager",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 790,
-      "seconds": 115.5
-    },
-    {
-      "id": "networkmonitor",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 97,
-      "seconds": 8.9
-    },
-    {
-      "id": "notifications",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 317,
-      "seconds": 18.3
-    },
-    {
-      "id": "notificationscontacts",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 71,
-      "seconds": 8.3
-    },
-    {
-      "id": "nova-act",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 160,
-      "seconds": 7.7
-    },
-    {
-      "id": "oam",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 115,
-      "seconds": 9.1
-    },
-    {
-      "id": "observabilityadmin",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 1,
-      "first_error": "CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positional parameter 'Equals'.",
-      "error_codes": {
-        "CS8866": 1
-      },
-      "files": 428,
-      "seconds": 49.8
-    },
-    {
-      "id": "odb",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 758,
-      "seconds": 47.6
-    },
-    {
-      "id": "omics",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 811,
-      "seconds": 94.3
-    },
-    {
-      "id": "opensearch",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 1066,
-      "seconds": 91.2
-    },
-    {
-      "id": "opensearchserverless",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 374,
-      "seconds": 43.4
-    },
-    {
-      "id": "organizations",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 535,
-      "seconds": 43.1
-    },
-    {
-      "id": "osis",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 200,
-      "seconds": 45.9
-    },
-    {
-      "id": "outposts",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 471,
-      "seconds": 45.9
-    },
-    {
-      "id": "partnercentral-account",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 300,
-      "seconds": 45.9
-    },
-    {
-      "id": "partnercentral-benefits",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 179,
-      "seconds": 44.0
-    },
-    {
-      "id": "partnercentral-channel",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 223,
-      "seconds": 14.7
-    },
-    {
-      "id": "partnercentral-revenue-measurement",
-      "protocols": [
-        "rpcv2Cbor"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 176,
-      "seconds": 11.4
-    },
-    {
-      "id": "partnercentral-selling",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 594,
-      "seconds": 30.4
-    },
-    {
-      "id": "payment-cryptography",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 253,
-      "seconds": 16.9
-    },
-    {
-      "id": "payment-cryptography-data",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 266,
-      "seconds": 15.9
-    },
-    {
-      "id": "pca-connector-ad",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 276,
-      "seconds": 24.4
-    },
-    {
-      "id": "pca-connector-scep",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 106,
-      "seconds": 15.5
-    },
-    {
-      "id": "pcs",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 256,
-      "seconds": 16.5
-    },
-    {
-      "id": "personalize",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Personalize' already contains a definition for 'DatasetSchema'",
-      "error_codes": {
-        "CS0101": 1
-      },
-      "files": 579,
-      "seconds": 32.4
-    },
-    {
-      "id": "personalize-events",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 52,
-      "seconds": 8.3
-    },
-    {
-      "id": "personalize-runtime",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 37,
-      "seconds": 6.5
-    },
-    {
-      "id": "pi",
-      "protocols": [
-        "awsJson1_1",
-        "rpcv2Cbor"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 167,
-      "seconds": 8.7
-    },
-    {
-      "id": "pinpoint",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 1151,
-      "seconds": 53.9
-    },
-    {
-      "id": "pinpoint-email",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 348,
-      "seconds": 12.4
-    },
-    {
-      "id": "pinpoint-sms-voice",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 77,
-      "seconds": 9.0
-    },
-    {
-      "id": "pinpoint-sms-voice-v2",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 851,
-      "seconds": 46.3
-    },
-    {
-      "id": "pipes",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 243,
-      "seconds": 15.3
-    },
-    {
-      "id": "polly",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 159,
-      "seconds": 15.2
-    },
-    {
-      "id": "pricing",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 60,
-      "seconds": 7.8
-    },
-    {
-      "id": "pricing-plan-manager",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 75,
-      "seconds": 8.4
-    },
-    {
-      "id": "proton",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 584,
-      "seconds": 34.0
-    },
-    {
-      "id": "qapps",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 319,
-      "seconds": 11.1
-    },
-    {
-      "id": "qbusiness",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 928,
-      "seconds": 37.7
-    },
-    {
-      "id": "qconnect",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 1,
-      "first_error": "CS0102: The type 'RetrievalFilterConfiguration' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 1,
-        "CS0542": 1
-      },
-      "files": 1019,
-      "seconds": 47.7
-    },
-    {
-      "id": "quicksight",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Quicksight' already contains a definition for 'ColumnGroupSchema'",
-      "error_codes": {
-        "CS0101": 2
-      },
-      "files": 4907,
-      "seconds": 228.2
-    },
-    {
-      "id": "ram",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 311,
-      "seconds": 15.0
-    },
-    {
-      "id": "rbin",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 97,
-      "seconds": 7.9
-    },
-    {
-      "id": "rds",
-      "protocols": [
-        "awsQuery"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 1575,
-      "seconds": 62.1
-    },
-    {
-      "id": "rds-data",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 113,
-      "seconds": 7.6
-    },
-    {
-      "id": "redshift",
-      "protocols": [
-        "awsQuery"
-      ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 0,
-      "first_error": "CS0542: 'ClusterVersion': member names cannot be the same as their enclosing type",
-      "error_codes": {
-        "CS0542": 1
-      },
-      "files": 1401,
-      "seconds": 51.0
-    },
-    {
-      "id": "redshift-data",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 113,
-      "seconds": 8.3
-    },
-    {
-      "id": "redshift-serverless",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 441,
-      "seconds": 16.1
-    },
-    {
-      "id": "rekognition",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 902,
-      "seconds": 38.4
-    },
-    {
-      "id": "repostspace",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 155,
-      "seconds": 18.1
-    },
-    {
-      "id": "resiliencehub",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 588,
-      "seconds": 48.3
-    },
-    {
-      "id": "resiliencehubv2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 804,
-      "seconds": 22.4
-    },
-    {
-      "id": "resource-explorer-2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 237,
-      "seconds": 10.1
-    },
-    {
-      "id": "resource-groups",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 218,
-      "seconds": 18.4
-    },
-    {
-      "id": "resource-groups-tagging-api",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 99,
-      "seconds": 10.9
-    },
-    {
-      "id": "rolesanywhere",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 207,
-      "seconds": 14.0
-    },
-    {
-      "id": "route-53",
-      "protocols": [
-        "restXml"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 653,
-      "seconds": 30.7
-    },
-    {
-      "id": "route-53-domains",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 262,
-      "seconds": 14.0
-    },
-    {
-      "id": "route53-recovery-cluster",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 52,
-      "seconds": 10.6
-    },
-    {
-      "id": "route53-recovery-control-config",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 180,
-      "seconds": 10.3
-    },
-    {
-      "id": "route53-recovery-readiness",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 220,
-      "seconds": 11.8
-    },
-    {
-      "id": "route53globalresolver",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 350,
-      "seconds": 11.5
-    },
-    {
-      "id": "route53profiles",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 122,
-      "seconds": 9.4
-    },
-    {
-      "id": "route53resolver",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 563,
-      "seconds": 30.2
-    },
-    {
-      "id": "rtbfabric",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 292,
-      "seconds": 17.7
-    },
-    {
-      "id": "rum",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 178,
-      "seconds": 16.2
-    },
-    {
-      "id": "s3",
-      "protocols": [
-        "restXml"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 2,
-      "first_error": "",
-      "error_codes": {},
-      "files": 1131,
-      "seconds": 45.7
-    },
-    {
-      "id": "s3-control",
-      "protocols": [
-        "restXml"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 955,
-      "seconds": 48.8
-    },
-    {
-      "id": "s3files",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 152,
-      "seconds": 16.2
-    },
-    {
-      "id": "s3outposts",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 56,
-      "seconds": 8.8
-    },
-    {
-      "id": "s3tables",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 386,
-      "seconds": 20.0
-    },
-    {
-      "id": "s3vectors",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 178,
-      "seconds": 11.6
-    },
-    {
-      "id": "sagemaker",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 4765,
-      "seconds": 232.2
-    },
-    {
-      "id": "sagemaker-a2i-runtime",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 55,
-      "seconds": 7.3
-    },
-    {
-      "id": "sagemaker-edge",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 48,
-      "seconds": 6.9
-    },
-    {
-      "id": "sagemaker-featurestore-runtime",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 84,
-      "seconds": 7.1
-    },
-    {
-      "id": "sagemaker-geospatial",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 246,
-      "seconds": 10.0
-    },
-    {
-      "id": "sagemaker-metrics",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 36,
-      "seconds": 6.5
-    },
-    {
-      "id": "sagemaker-runtime",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 37,
-      "seconds": 7.1
-    },
-    {
-      "id": "sagemaker-runtime-http2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 27,
-      "seconds": 6.6
-    },
-    {
-      "id": "sagemakerjobruntime",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 39,
-      "seconds": 6.2
-    },
-    {
-      "id": "savingsplans",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 141,
-      "seconds": 7.6
-    },
-    {
-      "id": "scheduler",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 124,
-      "seconds": 8.5
-    },
-    {
-      "id": "schemas",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 204,
-      "seconds": 8.7
-    },
-    {
-      "id": "secrets-manager",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 188,
-      "seconds": 11.1
-    },
-    {
-      "id": "security-ir",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 239,
-      "seconds": 14.9
-    },
-    {
-      "id": "securityagent",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 945,
-      "seconds": 59.2
-    },
-    {
-      "id": "securityhub",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 2766,
-      "seconds": 276.3
-    },
-    {
-      "id": "securitylake",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 255,
-      "seconds": 13.8
-    },
-    {
-      "id": "serverlessapplicationrepository",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 118,
-      "seconds": 9.6
-    },
-    {
-      "id": "service-catalog",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 728,
-      "seconds": 73.4
-    },
-    {
-      "id": "service-catalog-appregistry",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 187,
-      "seconds": 12.0
-    },
-    {
-      "id": "service-quotas",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 225,
-      "seconds": 11.4
-    },
-    {
-      "id": "servicediscovery",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 304,
-      "seconds": 14.4
-    },
-    {
-      "id": "ses",
-      "protocols": [
-        "awsQuery"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 569,
-      "seconds": 23.8
-    },
-    {
-      "id": "sesv2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 1039,
-      "seconds": 57.2
-    },
-    {
-      "id": "sfn",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 430,
-      "seconds": 27.9
-    },
-    {
-      "id": "shield",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 321,
-      "seconds": 31.6
-    },
-    {
-      "id": "signer",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 185,
-      "seconds": 23.8
-    },
-    {
-      "id": "signer-data",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 17,
-      "seconds": 22.1
-    },
-    {
-      "id": "signin",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 92,
-      "seconds": 11.2
-    },
-    {
-      "id": "simpledbv2",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 38,
-      "seconds": 10.7
-    },
-    {
-      "id": "snow-device-management",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 126,
-      "seconds": 10.7
-    },
-    {
-      "id": "snowball",
-      "protocols": [
-        "awsJson1_1",
-        "rpcv2Cbor"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 271,
-      "seconds": 16.7
-    },
-    {
-      "id": "sns",
-      "protocols": [
-        "awsQuery"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 330,
-      "seconds": 20.7
-    },
-    {
-      "id": "socialmessaging",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 316,
-      "seconds": 23.2
-    },
-    {
-      "id": "sqs",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 224,
-      "seconds": 22.4
-    },
-    {
-      "id": "ssm",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Ssm' already contains a definition for 'InventoryItemSchema'",
-      "error_codes": {
-        "CS0101": 1
-      },
-      "files": 1805,
-      "seconds": 112.8
-    },
-    {
-      "id": "ssm-contacts",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 309,
-      "seconds": 22.1
-    },
-    {
-      "id": "ssm-guiconnect",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 38,
-      "seconds": 9.0
-    },
-    {
-      "id": "ssm-incidents",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "compile",
-      "errors": 2,
-      "warnings": 1,
-      "first_error": "CS0102: The type 'Condition' already contains a definition for 'Equals'",
-      "error_codes": {
-        "CS0102": 1,
-        "CS0542": 1
-      },
-      "files": 280,
-      "seconds": 10.1
-    },
-    {
-      "id": "ssm-quicksetup",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 122,
-      "seconds": 12.0
-    },
-    {
-      "id": "ssm-sap",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 266,
-      "seconds": 10.7
-    },
-    {
-      "id": "sso",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 38,
-      "seconds": 6.5
-    },
-    {
-      "id": "sso-admin",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 580,
-      "seconds": 32.9
-    },
-    {
-      "id": "sso-oidc",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 59,
-      "seconds": 8.1
-    },
-    {
-      "id": "storage-gateway",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 633,
-      "seconds": 46.8
-    },
-    {
-      "id": "sts",
-      "protocols": [
-        "awsQuery"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 98,
-      "seconds": 13.7
-    },
-    {
-      "id": "supplychain",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "compile",
-      "errors": 1,
-      "warnings": 0,
-      "first_error": "CS0101: The namespace 'Com.Amazonaws.Supplychain' already contains a definition for 'DataLakeDatasetSchema'",
-      "error_codes": {
-        "CS0101": 1
-      },
-      "files": 277,
-      "seconds": 18.0
-    },
-    {
-      "id": "support",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 203,
-      "seconds": 15.4
-    },
-    {
-      "id": "support-app",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 70,
-      "seconds": 7.1
-    },
-    {
-      "id": "supportauthz",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 103,
-      "seconds": 7.3
-    },
-    {
-      "id": "sustainability",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 69,
-      "seconds": 6.2
-    },
-    {
-      "id": "swf",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 456,
-      "seconds": 13.7
-    },
-    {
-      "id": "synthetics",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 255,
-      "seconds": 19.1
-    },
-    {
-      "id": "taxsettings",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 258,
-      "seconds": 19.2
-    },
-    {
-      "id": "textract",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 323,
-      "seconds": 24.7
-    },
-    {
-      "id": "timestream-influxdb",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 230,
-      "seconds": 10.8
-    },
-    {
-      "id": "timestream-query",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 220,
-      "seconds": 11.2
-    },
-    {
-      "id": "timestream-write",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 209,
-      "seconds": 11.2
-    },
-    {
-      "id": "tnb",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 291,
-      "seconds": 14.6
-    },
-    {
-      "id": "transcribe",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 409,
-      "seconds": 20.1
-    },
-    {
-      "id": "transcribe-streaming",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 203,
-      "seconds": 27.4
-    },
-    {
-      "id": "transfer",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 660,
-      "seconds": 33.5
-    },
-    {
-      "id": "translate",
-      "protocols": [
-        "awsJson1_1",
-        "rpcv2Cbor"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 198,
-      "seconds": 13.2
-    },
-    {
-      "id": "trustedadvisor",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 137,
-      "seconds": 20.9
-    },
-    {
-      "id": "uxc",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 32,
-      "seconds": 9.3
-    },
-    {
-      "id": "verifiedpermissions",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 401,
-      "seconds": 14.0
-    },
-    {
-      "id": "voice-id",
-      "protocols": [
-        "awsJson1_0"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 233,
-      "seconds": 11.5
-    },
-    {
-      "id": "vpc-lattice",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 509,
-      "seconds": 16.6
-    },
-    {
-      "id": "waf",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 611,
-      "seconds": 41.6
-    },
-    {
-      "id": "waf-regional",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 636,
-      "seconds": 53.5
-    },
-    {
-      "id": "wafv2",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 810,
-      "seconds": 76.7
-    },
-    {
-      "id": "wellarchitected",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 876,
-      "seconds": 82.2
-    },
-    {
-      "id": "wickr",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 334,
-      "seconds": 23.4
-    },
-    {
-      "id": "wisdom",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 345,
-      "seconds": 13.0
-    },
-    {
-      "id": "workdocs",
-      "protocols": [
-        "restJson1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 433,
-      "seconds": 18.4
-    },
-    {
-      "id": "workmail",
-      "protocols": [
-        "awsJson1_1"
-      ],
-      "stage": "ok",
-      "errors": 0,
-      "warnings": 0,
-      "first_error": "",
-      "error_codes": {},
-      "files": 643,
-      "seconds": 15.3
-    },
-    {
-      "id": "workmailmessageflow",
       "protocols": [
         "restJson1"
       ],
@@ -5689,6 +2891,2742 @@
       "seconds": 7.7
     },
     {
+      "id": "kinesis-video-signaling",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 31,
+      "seconds": 14.3
+    },
+    {
+      "id": "kinesis-video-webrtc-storage",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 21,
+      "seconds": 6.7
+    },
+    {
+      "id": "kms",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 476,
+      "seconds": 15.3
+    },
+    {
+      "id": "lakeformation",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 530,
+      "seconds": 27.8
+    },
+    {
+      "id": "lambda",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 949,
+      "seconds": 31.4
+    },
+    {
+      "id": "lambda-core",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 67,
+      "seconds": 7.6
+    },
+    {
+      "id": "lambda-microvms",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 220,
+      "seconds": 12.9
+    },
+    {
+      "id": "lambda-web",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 18,
+      "seconds": 9.5
+    },
+    {
+      "id": "launch-wizard",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 145,
+      "seconds": 16.1
+    },
+    {
+      "id": "lex-model-building-service",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 378,
+      "seconds": 21.3
+    },
+    {
+      "id": "lex-models-v2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1435,
+      "seconds": 43.5
+    },
+    {
+      "id": "lex-runtime-service",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 89,
+      "seconds": 9.9
+    },
+    {
+      "id": "lex-runtime-v2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 149,
+      "seconds": 13.1
+    },
+    {
+      "id": "license-manager",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 546,
+      "seconds": 20.6
+    },
+    {
+      "id": "license-manager-linux-subscriptions",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 86,
+      "seconds": 9.7
+    },
+    {
+      "id": "license-manager-user-subscriptions",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 153,
+      "seconds": 11.3
+    },
+    {
+      "id": "lightsail",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1343,
+      "seconds": 61.1
+    },
+    {
+      "id": "location",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 530,
+      "seconds": 36.3
+    },
+    {
+      "id": "lookoutequipment",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 393,
+      "seconds": 30.9
+    },
+    {
+      "id": "m2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 334,
+      "seconds": 21.5
+    },
+    {
+      "id": "machine-learning",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 228,
+      "seconds": 10.9
+    },
+    {
+      "id": "macie2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 882,
+      "seconds": 50.7
+    },
+    {
+      "id": "mailmanager",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 606,
+      "seconds": 30.6
+    },
+    {
+      "id": "managedblockchain",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 270,
+      "seconds": 12.7
+    },
+    {
+      "id": "managedblockchain-query",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 116,
+      "seconds": 12.0
+    },
+    {
+      "id": "marketplace-agreement",
+      "protocols": [
+        "awsJson1_0",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 344,
+      "seconds": 15.1
+    },
+    {
+      "id": "marketplace-catalog",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 458,
+      "seconds": 15.6
+    },
+    {
+      "id": "marketplace-commerce-analytics",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 20,
+      "seconds": 18.0
+    },
+    {
+      "id": "marketplace-deployment",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 42,
+      "seconds": 6.8
+    },
+    {
+      "id": "marketplace-discovery",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 320,
+      "seconds": 11.7
+    },
+    {
+      "id": "marketplace-entitlement-service",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 23,
+      "seconds": 9.6
+    },
+    {
+      "id": "marketplace-metering",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 77,
+      "seconds": 6.4
+    },
+    {
+      "id": "marketplace-reporting",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 17,
+      "seconds": 5.4
+    },
+    {
+      "id": "mediaconnect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 977,
+      "seconds": 42.5
+    },
+    {
+      "id": "mediaconvert",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1650,
+      "seconds": 48.7
+    },
+    {
+      "id": "medialive",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 2173,
+      "seconds": 102.6
+    },
+    {
+      "id": "mediapackage",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 199,
+      "seconds": 7.6
+    },
+    {
+      "id": "mediapackage-vod",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 171,
+      "seconds": 11.1
+    },
+    {
+      "id": "mediapackagev2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 374,
+      "seconds": 23.8
+    },
+    {
+      "id": "mediastore",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 145,
+      "seconds": 21.3
+    },
+    {
+      "id": "mediastore-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 45,
+      "seconds": 8.2
+    },
+    {
+      "id": "mediatailor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 504,
+      "seconds": 18.1
+    },
+    {
+      "id": "medical-imaging",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 188,
+      "seconds": 11.2
+    },
+    {
+      "id": "memorydb",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 486,
+      "seconds": 14.1
+    },
+    {
+      "id": "mgn",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 838,
+      "seconds": 30.2
+    },
+    {
+      "id": "migration-hub",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 166,
+      "seconds": 8.8
+    },
+    {
+      "id": "migration-hub-refactor-spaces",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 184,
+      "seconds": 29.7
+    },
+    {
+      "id": "migrationhub-config",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 42,
+      "seconds": 10.2
+    },
+    {
+      "id": "migrationhuborchestrator",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 223,
+      "seconds": 14.6
+    },
+    {
+      "id": "migrationhubstrategy",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 271,
+      "seconds": 13.0
+    },
+    {
+      "id": "mpa",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 235,
+      "seconds": 12.1
+    },
+    {
+      "id": "mq",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 238,
+      "seconds": 29.5
+    },
+    {
+      "id": "mturk",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 285,
+      "seconds": 35.6
+    },
+    {
+      "id": "mwaa",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 109,
+      "seconds": 4.0
+    },
+    {
+      "id": "mwaa-serverless",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 149,
+      "seconds": 8.0
+    },
+    {
+      "id": "neptune",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 644,
+      "seconds": 56.4
+    },
+    {
+      "id": "neptune-graph",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 284,
+      "seconds": 45.3
+    },
+    {
+      "id": "neptunedata",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 377,
+      "seconds": 15.9
+    },
+    {
+      "id": "network-firewall",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 813,
+      "seconds": 39.0
+    },
+    {
+      "id": "network-security-manager",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 416,
+      "seconds": 22.1
+    },
+    {
+      "id": "networkflowmonitor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 199,
+      "seconds": 22.6
+    },
+    {
+      "id": "networkmanager",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 791,
+      "seconds": 25.3
+    },
+    {
+      "id": "networkmonitor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 98,
+      "seconds": 19.4
+    },
+    {
+      "id": "notifications",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 318,
+      "seconds": 12.8
+    },
+    {
+      "id": "notificationscontacts",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 72,
+      "seconds": 9.2
+    },
+    {
+      "id": "nova-act",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 161,
+      "seconds": 8.2
+    },
+    {
+      "id": "oam",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 116,
+      "seconds": 7.8
+    },
+    {
+      "id": "observabilityadmin",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 429,
+      "seconds": 16.6
+    },
+    {
+      "id": "odb",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 759,
+      "seconds": 50.6
+    },
+    {
+      "id": "omics",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 813,
+      "seconds": 52.1
+    },
+    {
+      "id": "opensearch",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1067,
+      "seconds": 45.4
+    },
+    {
+      "id": "opensearchserverless",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 375,
+      "seconds": 25.0
+    },
+    {
+      "id": "organizations",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 536,
+      "seconds": 23.1
+    },
+    {
+      "id": "osis",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 201,
+      "seconds": 9.6
+    },
+    {
+      "id": "outposts",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 472,
+      "seconds": 25.5
+    },
+    {
+      "id": "partnercentral-account",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 301,
+      "seconds": 28.0
+    },
+    {
+      "id": "partnercentral-benefits",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 180,
+      "seconds": 16.3
+    },
+    {
+      "id": "partnercentral-channel",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 224,
+      "seconds": 6.1
+    },
+    {
+      "id": "partnercentral-revenue-measurement",
+      "protocols": [
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 177,
+      "seconds": 10.9
+    },
+    {
+      "id": "partnercentral-selling",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 595,
+      "seconds": 17.2
+    },
+    {
+      "id": "payment-cryptography",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 254,
+      "seconds": 21.5
+    },
+    {
+      "id": "payment-cryptography-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 267,
+      "seconds": 24.9
+    },
+    {
+      "id": "pca-connector-ad",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 277,
+      "seconds": 13.5
+    },
+    {
+      "id": "pca-connector-scep",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 107,
+      "seconds": 10.8
+    },
+    {
+      "id": "pcs",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 257,
+      "seconds": 8.9
+    },
+    {
+      "id": "personalize",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 580,
+      "seconds": 13.5
+    },
+    {
+      "id": "personalize-events",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 53,
+      "seconds": 18.7
+    },
+    {
+      "id": "personalize-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 38,
+      "seconds": 10.5
+    },
+    {
+      "id": "pi",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 168,
+      "seconds": 8.7
+    },
+    {
+      "id": "pinpoint",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1152,
+      "seconds": 50.5
+    },
+    {
+      "id": "pinpoint-email",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 349,
+      "seconds": 18.0
+    },
+    {
+      "id": "pinpoint-sms-voice",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 78,
+      "seconds": 8.3
+    },
+    {
+      "id": "pinpoint-sms-voice-v2",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 852,
+      "seconds": 33.3
+    },
+    {
+      "id": "pipes",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 244,
+      "seconds": 14.0
+    },
+    {
+      "id": "polly",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 160,
+      "seconds": 10.0
+    },
+    {
+      "id": "pricing",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 61,
+      "seconds": 9.2
+    },
+    {
+      "id": "pricing-plan-manager",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 76,
+      "seconds": 7.6
+    },
+    {
+      "id": "proton",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 586,
+      "seconds": 15.0
+    },
+    {
+      "id": "qapps",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 320,
+      "seconds": 10.2
+    },
+    {
+      "id": "qbusiness",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 929,
+      "seconds": 35.8
+    },
+    {
+      "id": "qconnect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1020,
+      "seconds": 27.2
+    },
+    {
+      "id": "quicksight",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 4908,
+      "seconds": 217.5
+    },
+    {
+      "id": "ram",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 312,
+      "seconds": 10.8
+    },
+    {
+      "id": "rbin",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 98,
+      "seconds": 8.7
+    },
+    {
+      "id": "rds",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1577,
+      "seconds": 61.3
+    },
+    {
+      "id": "rds-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 114,
+      "seconds": 7.5
+    },
+    {
+      "id": "redshift",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1403,
+      "seconds": 69.0
+    },
+    {
+      "id": "redshift-data",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 114,
+      "seconds": 10.6
+    },
+    {
+      "id": "redshift-serverless",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 442,
+      "seconds": 26.7
+    },
+    {
+      "id": "rekognition",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 904,
+      "seconds": 49.6
+    },
+    {
+      "id": "repostspace",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 157,
+      "seconds": 7.2
+    },
+    {
+      "id": "resiliencehub",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 589,
+      "seconds": 12.0
+    },
+    {
+      "id": "resiliencehubv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 806,
+      "seconds": 20.9
+    },
+    {
+      "id": "resource-explorer-2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 238,
+      "seconds": 11.7
+    },
+    {
+      "id": "resource-groups",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 219,
+      "seconds": 11.4
+    },
+    {
+      "id": "resource-groups-tagging-api",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 100,
+      "seconds": 8.1
+    },
+    {
+      "id": "rolesanywhere",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 208,
+      "seconds": 11.4
+    },
+    {
+      "id": "route-53",
+      "protocols": [
+        "restXml"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 655,
+      "seconds": 20.6
+    },
+    {
+      "id": "route-53-domains",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 263,
+      "seconds": 24.7
+    },
+    {
+      "id": "route53-recovery-cluster",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 53,
+      "seconds": 6.0
+    },
+    {
+      "id": "route53-recovery-control-config",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 182,
+      "seconds": 18.3
+    },
+    {
+      "id": "route53-recovery-readiness",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 221,
+      "seconds": 16.6
+    },
+    {
+      "id": "route53globalresolver",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 351,
+      "seconds": 9.2
+    },
+    {
+      "id": "route53profiles",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 123,
+      "seconds": 2.8
+    },
+    {
+      "id": "route53resolver",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 564,
+      "seconds": 7.4
+    },
+    {
+      "id": "rtbfabric",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 294,
+      "seconds": 4.9
+    },
+    {
+      "id": "rum",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 179,
+      "seconds": 11.4
+    },
+    {
+      "id": "s3",
+      "protocols": [
+        "restXml"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1133,
+      "seconds": 37.6
+    },
+    {
+      "id": "s3-control",
+      "protocols": [
+        "restXml"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 956,
+      "seconds": 27.2
+    },
+    {
+      "id": "s3files",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 153,
+      "seconds": 8.0
+    },
+    {
+      "id": "s3outposts",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 57,
+      "seconds": 6.8
+    },
+    {
+      "id": "s3tables",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 387,
+      "seconds": 19.0
+    },
+    {
+      "id": "s3vectors",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 179,
+      "seconds": 11.0
+    },
+    {
+      "id": "sagemaker",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 4767,
+      "seconds": 238.5
+    },
+    {
+      "id": "sagemaker-a2i-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 56,
+      "seconds": 8.0
+    },
+    {
+      "id": "sagemaker-edge",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 49,
+      "seconds": 5.3
+    },
+    {
+      "id": "sagemaker-featurestore-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 85,
+      "seconds": 7.0
+    },
+    {
+      "id": "sagemaker-geospatial",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 247,
+      "seconds": 14.1
+    },
+    {
+      "id": "sagemaker-metrics",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 37,
+      "seconds": 7.6
+    },
+    {
+      "id": "sagemaker-runtime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 38,
+      "seconds": 8.0
+    },
+    {
+      "id": "sagemaker-runtime-http2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 28,
+      "seconds": 8.5
+    },
+    {
+      "id": "sagemakerjobruntime",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 40,
+      "seconds": 16.6
+    },
+    {
+      "id": "savingsplans",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 142,
+      "seconds": 6.3
+    },
+    {
+      "id": "scheduler",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 125,
+      "seconds": 5.8
+    },
+    {
+      "id": "schemas",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 206,
+      "seconds": 8.8
+    },
+    {
+      "id": "secrets-manager",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 189,
+      "seconds": 18.3
+    },
+    {
+      "id": "security-ir",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 240,
+      "seconds": 9.0
+    },
+    {
+      "id": "securityagent",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 946,
+      "seconds": 40.1
+    },
+    {
+      "id": "securityhub",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 2767,
+      "seconds": 84.8
+    },
+    {
+      "id": "securitylake",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 256,
+      "seconds": 11.9
+    },
+    {
+      "id": "serverlessapplicationrepository",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 119,
+      "seconds": 16.3
+    },
+    {
+      "id": "service-catalog",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 729,
+      "seconds": 18.7
+    },
+    {
+      "id": "service-catalog-appregistry",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 188,
+      "seconds": 11.8
+    },
+    {
+      "id": "service-quotas",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 226,
+      "seconds": 13.1
+    },
+    {
+      "id": "servicediscovery",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 305,
+      "seconds": 8.8
+    },
+    {
+      "id": "ses",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 571,
+      "seconds": 11.0
+    },
+    {
+      "id": "sesv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1040,
+      "seconds": 37.0
+    },
+    {
+      "id": "sfn",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 431,
+      "seconds": 29.1
+    },
+    {
+      "id": "shield",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 322,
+      "seconds": 24.1
+    },
+    {
+      "id": "signer",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 187,
+      "seconds": 14.9
+    },
+    {
+      "id": "signer-data",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 18,
+      "seconds": 4.4
+    },
+    {
+      "id": "signin",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 93,
+      "seconds": 6.6
+    },
+    {
+      "id": "simpledbv2",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 40,
+      "seconds": 6.1
+    },
+    {
+      "id": "snow-device-management",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 127,
+      "seconds": 7.4
+    },
+    {
+      "id": "snowball",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 272,
+      "seconds": 19.3
+    },
+    {
+      "id": "sns",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 331,
+      "seconds": 17.8
+    },
+    {
+      "id": "socialmessaging",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 317,
+      "seconds": 17.0
+    },
+    {
+      "id": "sqs",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 225,
+      "seconds": 16.5
+    },
+    {
+      "id": "ssm",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 1807,
+      "seconds": 99.5
+    },
+    {
+      "id": "ssm-contacts",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 310,
+      "seconds": 10.5
+    },
+    {
+      "id": "ssm-guiconnect",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 39,
+      "seconds": 7.5
+    },
+    {
+      "id": "ssm-incidents",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 282,
+      "seconds": 10.6
+    },
+    {
+      "id": "ssm-quicksetup",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 123,
+      "seconds": 11.9
+    },
+    {
+      "id": "ssm-sap",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 267,
+      "seconds": 34.1
+    },
+    {
+      "id": "sso",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 39,
+      "seconds": 7.4
+    },
+    {
+      "id": "sso-admin",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 581,
+      "seconds": 41.0
+    },
+    {
+      "id": "sso-oidc",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 60,
+      "seconds": 10.2
+    },
+    {
+      "id": "storage-gateway",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 634,
+      "seconds": 28.3
+    },
+    {
+      "id": "sts",
+      "protocols": [
+        "awsQuery"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 99,
+      "seconds": 12.3
+    },
+    {
+      "id": "supplychain",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 278,
+      "seconds": 10.3
+    },
+    {
+      "id": "support",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 204,
+      "seconds": 9.3
+    },
+    {
+      "id": "support-app",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 71,
+      "seconds": 7.7
+    },
+    {
+      "id": "supportauthz",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 104,
+      "seconds": 7.9
+    },
+    {
+      "id": "sustainability",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 70,
+      "seconds": 11.5
+    },
+    {
+      "id": "swf",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 457,
+      "seconds": 22.7
+    },
+    {
+      "id": "synthetics",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 256,
+      "seconds": 25.8
+    },
+    {
+      "id": "taxsettings",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 259,
+      "seconds": 28.7
+    },
+    {
+      "id": "textract",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 324,
+      "seconds": 12.4
+    },
+    {
+      "id": "timestream-influxdb",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 231,
+      "seconds": 10.3
+    },
+    {
+      "id": "timestream-query",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 221,
+      "seconds": 8.6
+    },
+    {
+      "id": "timestream-write",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 210,
+      "seconds": 9.2
+    },
+    {
+      "id": "tnb",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 292,
+      "seconds": 9.4
+    },
+    {
+      "id": "transcribe",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 411,
+      "seconds": 11.9
+    },
+    {
+      "id": "transcribe-streaming",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 204,
+      "seconds": 9.2
+    },
+    {
+      "id": "transfer",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 662,
+      "seconds": 11.5
+    },
+    {
+      "id": "translate",
+      "protocols": [
+        "awsJson1_1",
+        "rpcv2Cbor"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 199,
+      "seconds": 6.4
+    },
+    {
+      "id": "trustedadvisor",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 138,
+      "seconds": 6.0
+    },
+    {
+      "id": "uxc",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 33,
+      "seconds": 3.8
+    },
+    {
+      "id": "verifiedpermissions",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 402,
+      "seconds": 8.4
+    },
+    {
+      "id": "voice-id",
+      "protocols": [
+        "awsJson1_0"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 234,
+      "seconds": 6.1
+    },
+    {
+      "id": "vpc-lattice",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 510,
+      "seconds": 10.0
+    },
+    {
+      "id": "waf",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 612,
+      "seconds": 9.1
+    },
+    {
+      "id": "waf-regional",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 637,
+      "seconds": 12.4
+    },
+    {
+      "id": "wafv2",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 811,
+      "seconds": 11.1
+    },
+    {
+      "id": "wellarchitected",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 877,
+      "seconds": 20.0
+    },
+    {
+      "id": "wickr",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 335,
+      "seconds": 7.5
+    },
+    {
+      "id": "wisdom",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 346,
+      "seconds": 11.0
+    },
+    {
+      "id": "workdocs",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 434,
+      "seconds": 22.2
+    },
+    {
+      "id": "workmail",
+      "protocols": [
+        "awsJson1_1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 644,
+      "seconds": 35.3
+    },
+    {
+      "id": "workmailmessageflow",
+      "protocols": [
+        "restJson1"
+      ],
+      "stage": "ok",
+      "errors": 0,
+      "warnings": 0,
+      "first_error": "",
+      "error_codes": {},
+      "files": 25,
+      "seconds": 7.1
+    },
+    {
       "id": "workspaces",
       "protocols": [
         "awsJson1_1"
@@ -5698,8 +5636,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 893,
-      "seconds": 51.2
+      "files": 894,
+      "seconds": 24.1
     },
     {
       "id": "workspaces-instances",
@@ -5712,8 +5650,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 227,
-      "seconds": 11.2
+      "files": 228,
+      "seconds": 18.1
     },
     {
       "id": "workspaces-thin-client",
@@ -5725,8 +5663,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 149,
-      "seconds": 10.9
+      "files": 150,
+      "seconds": 17.7
     },
     {
       "id": "workspaces-web",
@@ -5738,8 +5676,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 534,
-      "seconds": 38.6
+      "files": 535,
+      "seconds": 27.0
     },
     {
       "id": "xray",
@@ -5751,8 +5689,8 @@
       "warnings": 0,
       "first_error": "",
       "error_codes": {},
-      "files": 422,
-      "seconds": 12.0
+      "files": 423,
+      "seconds": 25.2
     }
   ]
 }

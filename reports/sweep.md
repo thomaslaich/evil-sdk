@@ -1,38 +1,31 @@
 # Sweep report
 
-NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
+NSmithy `0.14.0`, Smithy `1.73.0`, 436 services.
 
 | Stage | Services |
 | --- | --- |
-| codegen | 1 |
-| compile | 28 |
-| ok | 407 |
+| ok | 436 |
 
 | Protocol | Compiling |
 | --- | --- |
 | awsJson1_0 | 51/51 |
-| awsJson1_1 | 95/102 |
-| awsQuery | 13/16 |
-| ec2Query | 0/1 |
-| restJson1 | 243/260 |
-| restXml | 3/4 |
+| awsJson1_1 | 102/102 |
+| awsQuery | 16/16 |
+| ec2Query | 1/1 |
+| restJson1 | 260/260 |
+| restXml | 4/4 |
 | rpcv2Cbor | 25/25 |
 
 ## Compiler errors by code
 
 | Code | Count |
 | --- | --- |
-| CS0542 | 21 |
-| CS0102 | 17 |
-| CS0101 | 9 |
-| CS8866 | 6 |
-| CS0261 | 1 |
 
 ## Services
 
 | Service | Protocols | Stage | Errors | Warnings | First error |
 | --- | --- | --- | --- | --- | --- |
-| accessanalyzer | restJson1 | compile | 1 | 5 | CS0542: 'Value': member names cannot be the same as their enclosing type |
+| accessanalyzer | restJson1 | ok | 0 | 0 |  |
 | account | restJson1 | ok | 0 | 0 |  |
 | account-access | restJson1 | ok | 0 | 0 |  |
 | acm | awsJson1_1 | ok | 0 | 0 |  |
@@ -43,10 +36,10 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | amp | restJson1 | ok | 0 | 0 |  |
 | amplify | restJson1 | ok | 0 | 0 |  |
 | amplifybackend | restJson1 | ok | 0 | 0 |  |
-| amplifyuibuilder | restJson1 | compile | 1 | 3 | CS0542: 'Value': member names cannot be the same as their enclosing type |
-| api-gateway | restJson1 | compile | 1 | 0 | CS0542: 'DomainName': member names cannot be the same as their enclosing type |
+| amplifyuibuilder | restJson1 | ok | 0 | 0 |  |
+| api-gateway | restJson1 | ok | 0 | 0 |  |
 | apigatewaymanagementapi | restJson1 | ok | 0 | 0 |  |
-| apigatewayv2 | restJson1 | compile | 1 | 0 | CS0542: 'DomainName': member names cannot be the same as their enclosing type |
+| apigatewayv2 | restJson1 | ok | 0 | 0 |  |
 | app-mesh | restJson1 | ok | 0 | 0 |  |
 | appconfig | restJson1 | ok | 0 | 0 |  |
 | appconfigdata | restJson1 | ok | 0 | 0 |  |
@@ -66,7 +59,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | artifact | restJson1 | ok | 0 | 0 |  |
 | athena | awsJson1_1 | ok | 0 | 0 |  |
 | auditmanager | restJson1 | ok | 0 | 0 |  |
-| auto-scaling | awsQuery | compile | 1 | 0 | CS0542: 'AdjustmentType': member names cannot be the same as their enclosing type |
+| auto-scaling | awsQuery | ok | 0 | 0 |  |
 | auto-scaling-plans | awsJson1_1 | ok | 0 | 0 |  |
 | b2bi | awsJson1_0 | ok | 0 | 0 |  |
 | backup | restJson1 | ok | 0 | 0 |  |
@@ -77,11 +70,11 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | bcm-data-exports | awsJson1_1 | ok | 0 | 0 |  |
 | bcm-pricing-calculator | awsJson1_0 | ok | 0 | 0 |  |
 | bcm-recommended-actions | awsJson1_0 | ok | 0 | 0 |  |
-| bedrock | restJson1 | compile | 5 | 3 | CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals' |
-| bedrock-agent | restJson1 | compile | 1 | 0 | CS0261: Partial declarations of 'FunctionSchema' must be all classes, all record classes, all structs, all record structs, or all interfaces |
-| bedrock-agent-runtime | restJson1 | compile | 2 | 1 | CS0102: The type 'RetrievalFilter' already contains a definition for 'Equals' |
+| bedrock | restJson1 | ok | 0 | 0 |  |
+| bedrock-agent | restJson1 | ok | 0 | 0 |  |
+| bedrock-agent-runtime | restJson1 | ok | 0 | 0 |  |
 | bedrock-agentcore | restJson1 | ok | 0 | 0 |  |
-| bedrock-agentcore-control | restJson1 | compile | 1 | 0 | CS0542: 'ModifyMemoryStrategies': member names cannot be the same as their enclosing type |
+| bedrock-agentcore-control | restJson1 | ok | 0 | 0 |  |
 | bedrock-data-automation | restJson1 | ok | 0 | 0 |  |
 | bedrock-data-automation-runtime | awsJson1_1 | ok | 0 | 0 |  |
 | bedrock-runtime | restJson1 | ok | 0 | 0 |  |
@@ -96,23 +89,23 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | chime-sdk-meetings | restJson1 | ok | 0 | 0 |  |
 | chime-sdk-messaging | restJson1 | ok | 0 | 0 |  |
 | chime-sdk-voice | restJson1 | ok | 0 | 0 |  |
-| cleanrooms | restJson1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Cleanrooms' already contains a definition for 'IntermediateTableSchema' |
+| cleanrooms | restJson1 | ok | 0 | 0 |  |
 | cleanroomsml | restJson1 | ok | 0 | 0 |  |
 | cloud9 | awsJson1_1 | ok | 0 | 0 |  |
 | cloudcontrol | awsJson1_0 | ok | 0 | 0 |  |
-| clouddirectory | restJson1 | codegen | 0 | 0 | Projection source failed: java.util.NoSuchElementException |
+| clouddirectory | restJson1 | ok | 0 | 0 |  |
 | cloudformation | awsQuery | ok | 0 | 0 |  |
-| cloudfront | restXml | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Cloudfront' already contains a definition for 'ParameterDefinitionSchema' |
+| cloudfront | restXml | ok | 0 | 0 |  |
 | cloudfront-keyvaluestore | restJson1 | ok | 0 | 0 |  |
 | cloudhsm | awsJson1_1 | ok | 0 | 0 |  |
 | cloudhsm-v2 | awsJson1_1 | ok | 0 | 0 |  |
 | cloudsearch | awsQuery | ok | 0 | 0 |  |
 | cloudsearch-domain | restJson1 | ok | 0 | 0 |  |
-| cloudtrail | awsJson1_1 | compile | 2 | 2 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positio |
+| cloudtrail | awsJson1_1 | ok | 0 | 0 |  |
 | cloudtrail-data | restJson1 | ok | 0 | 0 |  |
 | cloudwatch | awsJson1_0, awsQuery, rpcv2Cbor | ok | 0 | 0 |  |
 | cloudwatch-events | awsJson1_1 | ok | 0 | 0 |  |
-| cloudwatch-logs | awsJson1_1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Cloudwatchlogs' already contains a definition for 'DeliverySourceConfigurationSchema' |
+| cloudwatch-logs | awsJson1_1 | ok | 0 | 0 |  |
 | cloudwatchomni | rpcv2Cbor | ok | 0 | 0 |  |
 | codeartifact | restJson1 | ok | 0 | 0 |  |
 | codebuild | awsJson1_1 | ok | 0 | 0 |  |
@@ -138,7 +131,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | connect-contact-lens | restJson1 | ok | 0 | 0 |  |
 | connectcampaigns | restJson1 | ok | 0 | 0 |  |
 | connectcampaignsv2 | restJson1 | ok | 0 | 0 |  |
-| connectcases | restJson1 | ok | 0 | 4 |  |
+| connectcases | restJson1 | ok | 0 | 3 |  |
 | connecthealth | restJson1 | ok | 0 | 0 |  |
 | connectparticipant | restJson1 | ok | 0 | 0 |  |
 | controlcatalog | restJson1 | ok | 0 | 0 |  |
@@ -170,7 +163,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | dynamodb | awsJson1_0 | ok | 0 | 0 |  |
 | dynamodb-streams | awsJson1_0 | ok | 0 | 0 |  |
 | ebs | restJson1 | ok | 0 | 0 |  |
-| ec2 | ec2Query | compile | 9 | 1 | CS0102: The type 'IpamPrefixListResolverRuleConditionOperation' already contains a definition for 'Equals' |
+| ec2 | ec2Query | ok | 0 | 0 |  |
 | ec2-instance-connect | awsJson1_1 | ok | 0 | 0 |  |
 | ecr | awsJson1_1 | ok | 0 | 0 |  |
 | ecr-public | awsJson1_1 | ok | 0 | 0 |  |
@@ -178,7 +171,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | efs | restJson1 | ok | 0 | 0 |  |
 | eks | restJson1 | ok | 0 | 0 |  |
 | eks-auth | restJson1 | ok | 0 | 0 |  |
-| elastic-beanstalk | awsQuery | compile | 1 | 0 | CS0542: 'Builder': member names cannot be the same as their enclosing type |
+| elastic-beanstalk | awsQuery | ok | 0 | 0 |  |
 | elastic-load-balancing | awsQuery | ok | 0 | 0 |  |
 | elastic-load-balancing-v2 | awsQuery | ok | 0 | 0 |  |
 | elasticache | awsQuery | ok | 0 | 0 |  |
@@ -199,7 +192,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | fms | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
 | forecast | awsJson1_1 | ok | 0 | 0 |  |
 | forecastquery | awsJson1_1 | ok | 0 | 0 |  |
-| frauddetector | awsJson1_1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Frauddetector' already contains a definition for 'LabelSchema' |
+| frauddetector | awsJson1_1 | ok | 0 | 0 |  |
 | freetier | awsJson1_0 | ok | 0 | 0 |  |
 | fsx | awsJson1_1 | ok | 0 | 0 |  |
 | gamelift | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
@@ -209,12 +202,12 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | geo-routes | restJson1 | ok | 0 | 0 |  |
 | glacier | restJson1 | ok | 0 | 0 |  |
 | global-accelerator | awsJson1_1 | ok | 0 | 0 |  |
-| glue | awsJson1_1 | compile | 1 | 1 | CS0102: The type 'SearchFilterOperator' already contains a definition for 'Equals' |
+| glue | awsJson1_1 | ok | 0 | 0 |  |
 | grafana | restJson1 | ok | 0 | 0 |  |
 | greengrass | restJson1 | ok | 0 | 0 |  |
 | greengrassv2 | restJson1 | ok | 0 | 0 |  |
 | groundstation | restJson1 | ok | 0 | 0 |  |
-| guardduty | restJson1 | compile | 2 | 2 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positio |
+| guardduty | restJson1 | ok | 0 | 0 |  |
 | health | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
 | healthlake | awsJson1_0 | ok | 0 | 0 |  |
 | iam | awsQuery | ok | 0 | 0 |  |
@@ -243,7 +236,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | ivschat | restJson1 | ok | 0 | 0 |  |
 | kafka | restJson1 | ok | 0 | 0 |  |
 | kafkaconnect | restJson1 | ok | 0 | 0 |  |
-| kendra | awsJson1_1 | compile | 1 | 1 | CS0102: The type 'ConditionOperator' already contains a definition for 'Equals' |
+| kendra | awsJson1_1 | ok | 0 | 0 |  |
 | kendra-ranking | awsJson1_0, rpcv2Cbor | ok | 0 | 0 |  |
 | keyspaces | awsJson1_0, rpcv2Cbor | ok | 0 | 0 |  |
 | keyspacesstreams | awsJson1_0 | ok | 0 | 0 |  |
@@ -263,7 +256,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | lambda-web | restJson1 | ok | 0 | 0 |  |
 | launch-wizard | restJson1 | ok | 0 | 0 |  |
 | lex-model-building-service | restJson1 | ok | 0 | 0 |  |
-| lex-models-v2 | restJson1 | compile | 9 | 9 | CS0102: The type 'AggregatedUtterancesFilterOperator' already contains a definition for 'Equals' |
+| lex-models-v2 | restJson1 | ok | 0 | 0 |  |
 | lex-runtime-service | restJson1 | ok | 0 | 0 |  |
 | lex-runtime-v2 | restJson1 | ok | 0 | 0 |  |
 | license-manager | awsJson1_1 | ok | 0 | 0 |  |
@@ -320,7 +313,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | notificationscontacts | restJson1 | ok | 0 | 0 |  |
 | nova-act | restJson1 | ok | 0 | 0 |  |
 | oam | restJson1 | ok | 0 | 0 |  |
-| observabilityadmin | restJson1 | compile | 1 | 1 | CS8866: Record member 'object.Equals' must be a readable instance property or field of type 'System.Collections.Generic.IReadOnlyList<string>?' to match positio |
+| observabilityadmin | restJson1 | ok | 0 | 0 |  |
 | odb | awsJson1_0 | ok | 0 | 0 |  |
 | omics | restJson1 | ok | 0 | 0 |  |
 | opensearch | restJson1 | ok | 0 | 0 |  |
@@ -338,7 +331,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | pca-connector-ad | restJson1 | ok | 0 | 0 |  |
 | pca-connector-scep | restJson1 | ok | 0 | 0 |  |
 | pcs | awsJson1_0 | ok | 0 | 0 |  |
-| personalize | awsJson1_1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Personalize' already contains a definition for 'DatasetSchema' |
+| personalize | awsJson1_1 | ok | 0 | 0 |  |
 | personalize-events | restJson1 | ok | 0 | 0 |  |
 | personalize-runtime | restJson1 | ok | 0 | 0 |  |
 | pi | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
@@ -353,13 +346,13 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | proton | awsJson1_0 | ok | 0 | 0 |  |
 | qapps | restJson1 | ok | 0 | 0 |  |
 | qbusiness | restJson1 | ok | 0 | 0 |  |
-| qconnect | restJson1 | compile | 2 | 1 | CS0102: The type 'RetrievalFilterConfiguration' already contains a definition for 'Equals' |
-| quicksight | restJson1 | compile | 2 | 0 | CS0101: The namespace 'Com.Amazonaws.Quicksight' already contains a definition for 'ColumnGroupSchema' |
+| qconnect | restJson1 | ok | 0 | 0 |  |
+| quicksight | restJson1 | ok | 0 | 0 |  |
 | ram | restJson1 | ok | 0 | 0 |  |
 | rbin | restJson1 | ok | 0 | 0 |  |
 | rds | awsQuery | ok | 0 | 0 |  |
 | rds-data | restJson1 | ok | 0 | 0 |  |
-| redshift | awsQuery | compile | 1 | 0 | CS0542: 'ClusterVersion': member names cannot be the same as their enclosing type |
+| redshift | awsQuery | ok | 0 | 0 |  |
 | redshift-data | awsJson1_1 | ok | 0 | 0 |  |
 | redshift-serverless | awsJson1_1 | ok | 0 | 0 |  |
 | rekognition | awsJson1_1 | ok | 0 | 0 |  |
@@ -380,7 +373,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | route53resolver | awsJson1_1 | ok | 0 | 0 |  |
 | rtbfabric | restJson1 | ok | 0 | 0 |  |
 | rum | restJson1 | ok | 0 | 0 |  |
-| s3 | restXml | ok | 0 | 2 |  |
+| s3 | restXml | ok | 0 | 0 |  |
 | s3-control | restXml | ok | 0 | 0 |  |
 | s3files | restJson1 | ok | 0 | 0 |  |
 | s3outposts | restJson1 | ok | 0 | 0 |  |
@@ -421,10 +414,10 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | sns | awsQuery | ok | 0 | 0 |  |
 | socialmessaging | restJson1 | ok | 0 | 0 |  |
 | sqs | awsJson1_0 | ok | 0 | 0 |  |
-| ssm | awsJson1_1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Ssm' already contains a definition for 'InventoryItemSchema' |
+| ssm | awsJson1_1 | ok | 0 | 0 |  |
 | ssm-contacts | awsJson1_1 | ok | 0 | 0 |  |
 | ssm-guiconnect | restJson1 | ok | 0 | 0 |  |
-| ssm-incidents | restJson1 | compile | 2 | 1 | CS0102: The type 'Condition' already contains a definition for 'Equals' |
+| ssm-incidents | restJson1 | ok | 0 | 0 |  |
 | ssm-quicksetup | restJson1 | ok | 0 | 0 |  |
 | ssm-sap | restJson1 | ok | 0 | 0 |  |
 | sso | restJson1 | ok | 0 | 0 |  |
@@ -432,7 +425,7 @@ NSmithy `0.0.0-SNAPSHOT`, Smithy `1.73.0`, 436 services.
 | sso-oidc | restJson1 | ok | 0 | 0 |  |
 | storage-gateway | awsJson1_1 | ok | 0 | 0 |  |
 | sts | awsQuery | ok | 0 | 0 |  |
-| supplychain | restJson1 | compile | 1 | 0 | CS0101: The namespace 'Com.Amazonaws.Supplychain' already contains a definition for 'DataLakeDatasetSchema' |
+| supplychain | restJson1 | ok | 0 | 0 |  |
 | support | awsJson1_1 | ok | 0 | 0 |  |
 | support-app | restJson1 | ok | 0 | 0 |  |
 | supportauthz | restJson1 | ok | 0 | 0 |  |
