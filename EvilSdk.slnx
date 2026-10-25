@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/services/">
+    <Project Path="services/dynamodb/NSmithy.Aws.Dynamodb.csproj" />
     <Project Path="services/lambda/NSmithy.Aws.Lambda.csproj" />
     <Project Path="services/s3/NSmithy.Aws.S3.csproj" />
     <Project Path="services/sqs/NSmithy.Aws.Sqs.csproj" />

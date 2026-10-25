@@ -1,7 +1,7 @@
 # Services whose generated clients are checked in under services/.
 # Regenerate with `just generate`; sweep the full catalog with `just sweep`.
+dynamodb
 lambda
 s3
 sqs
 sts
-# dynamodb: blocked on KeySchema / KeySchemaSchema type name collision (CS0261).
