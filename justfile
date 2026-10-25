@@ -17,7 +17,7 @@ generate *ids:
 
 # Build the checked-in services
 build:
-    dotnet build EvilAwsNet.slnx {{ build_props }}
+    dotnet build EvilSdk.slnx {{ build_props }}
 
 # Generate and compile every service (or the given ids) into .sweep/ and write reports/
 sweep *ids:

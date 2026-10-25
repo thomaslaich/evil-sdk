@@ -312,7 +312,7 @@ def cmd_generate(args: argparse.Namespace) -> None:
         write_project(service, SERVICES / service.id, files, work / "out" / "source" / "csharp-codegen")
         print(f"ok   {service.id} ({len(files)} files)")
     projects = sorted(p.relative_to(ROOT).as_posix() for p in SERVICES.glob("*/*.csproj"))
-    (ROOT / "EvilAwsNet.slnx").write_text(
+    (ROOT / "EvilSdk.slnx").write_text(
         "<Solution>\n"
         '  <Folder Name="/services/">\n'
         + "".join(f'    <Project Path="{p}" />\n' for p in projects)
