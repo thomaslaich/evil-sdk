@@ -9,23 +9,23 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class AnnotationNameTooLongSchema
 {
-    public sealed class Builder
-    {
+    public sealed class Builder { }
 
-    }
-
-    public static StructSchema<global::Com.Amazonaws.S3.AnnotationNameTooLong, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.AnnotationNameTooLong,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.S3.AnnotationNameTooLong, Builder>(
             ShapeId.Parse("com.amazonaws.s3#AnnotationNameTooLong"),
+            [],
             [
-
-            ],
-            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")), new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m))])
+                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(400m)),
+            ]
+        )
     {
-
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.S3.AnnotationNameTooLong Build(Builder builder) =>
@@ -33,17 +33,13 @@ public static partial class AnnotationNameTooLongSchema
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.S3.AnnotationNameTooLong value,
-            ref TSerializer serializer)
-        {
-
-        }
+            ref TSerializer serializer
+        ) { }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer)
-        {
-
-        }
+            ref TDeserializer deserializer
+        ) { }
     }
 }

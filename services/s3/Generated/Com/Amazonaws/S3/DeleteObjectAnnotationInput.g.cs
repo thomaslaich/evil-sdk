@@ -27,4 +27,12 @@ namespace Com.Amazonaws.S3;
 /// <param name="VersionId">
 /// &lt;p&gt;The version ID of the object.&lt;/p&gt;
 /// </param>
-public sealed record class DeleteObjectAnnotationInput(string AnnotationName, string Bucket, string Key, string? ExpectedBucketOwner = null, string? ObjectIfMatch = null, global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null, string? VersionId = null);
+public sealed record class DeleteObjectAnnotationInput(
+    string AnnotationName,
+    string Bucket,
+    string Key,
+    string? ExpectedBucketOwner = null,
+    string? ObjectIfMatch = null,
+    global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
+    string? VersionId = null
+);

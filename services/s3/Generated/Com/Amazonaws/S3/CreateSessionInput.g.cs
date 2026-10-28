@@ -61,4 +61,11 @@ namespace Com.Amazonaws.S3;
 /// &lt;code&gt;GetObjectAttributes&lt;/code&gt;, &lt;code&gt;ListParts&lt;/code&gt;, and
 /// &lt;code&gt;ListMultipartUploads&lt;/code&gt;.&lt;/p&gt;
 /// </param>
-public sealed record class CreateSessionInput(string Bucket, bool? BucketKeyEnabled = null, string? SSEKMSEncryptionContext = null, string? SSEKMSKeyId = null, global::Com.Amazonaws.S3.ServerSideEncryption? ServerSideEncryption = null, global::Com.Amazonaws.S3.SessionMode? SessionMode = null);
+public sealed record class CreateSessionInput(
+    string Bucket,
+    bool? BucketKeyEnabled = null,
+    string? SSEKMSEncryptionContext = null,
+    string? SSEKMSKeyId = null,
+    global::Com.Amazonaws.S3.ServerSideEncryption? ServerSideEncryption = null,
+    global::Com.Amazonaws.S3.SessionMode? SessionMode = null
+);

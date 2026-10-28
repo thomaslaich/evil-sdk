@@ -9,23 +9,20 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class ContinuationEventSchema
 {
-    public sealed class Builder
-    {
+    public sealed class Builder { }
 
-    }
-
-    public static StructSchema<global::Com.Amazonaws.S3.ContinuationEvent, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.ContinuationEvent,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.S3.ContinuationEvent, Builder>(
             ShapeId.Parse("com.amazonaws.s3#ContinuationEvent"),
-            [
-
-            ],
-            null)
+            [],
+            null
+        )
     {
-
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.S3.ContinuationEvent Build(Builder builder) =>
@@ -33,17 +30,13 @@ public static partial class ContinuationEventSchema
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.S3.ContinuationEvent value,
-            ref TSerializer serializer)
-        {
-
-        }
+            ref TSerializer serializer
+        ) { }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer)
-        {
-
-        }
+            ref TDeserializer deserializer
+        ) { }
     }
 }

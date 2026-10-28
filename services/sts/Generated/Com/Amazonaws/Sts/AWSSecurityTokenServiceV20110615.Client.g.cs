@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using NSmithy.Aws;
 using NSmithy.Client;
 using NSmithy.Protocols.AwsQuery;
 
@@ -2254,7 +2255,10 @@ public sealed class AWSSecurityTokenServiceV20110615Client : IAWSSecurityTokenSe
 
 public sealed class AWSSecurityTokenServiceV20110615ClientConfig : SmithyClientConfig
 {
-    public AWSSecurityTokenServiceV20110615ClientConfig() { }
+    public AWSSecurityTokenServiceV20110615ClientConfig()
+    {
+        Region = AwsRegion.Resolve();
+    }
 
     public AWSSecurityTokenServiceV20110615ClientConfig(
         AWSSecurityTokenServiceV20110615ClientConfig source

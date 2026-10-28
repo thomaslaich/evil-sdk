@@ -17,7 +17,5 @@ public sealed partial class ObjectNotInActiveTierError : Exception
     /// Glacier.&lt;/p&gt;
     /// </summary>
     public ObjectNotInActiveTierError(string? message = null)
-        : base(message)
-    { }
-
+        : base(message) { }
 }

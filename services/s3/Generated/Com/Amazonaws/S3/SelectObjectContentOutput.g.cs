@@ -12,4 +12,6 @@ namespace Com.Amazonaws.S3;
 /// <param name="Payload">
 /// &lt;p&gt;The array of results.&lt;/p&gt;
 /// </param>
-public sealed record class SelectObjectContentOutput(IAsyncEnumerable<SelectObjectContentEventStream>? Payload = null);
+public sealed record class SelectObjectContentOutput(
+    IAsyncEnumerable<SelectObjectContentEventStream>? Payload = null
+);

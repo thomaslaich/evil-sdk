@@ -15,7 +15,5 @@ public sealed partial class InvalidAnnotationName : Exception
     /// &lt;p&gt;The annotation name you provided is invalid.&lt;/p&gt;
     /// </summary>
     public InvalidAnnotationName(string? message = null)
-        : base(message)
-    { }
-
+        : base(message) { }
 }

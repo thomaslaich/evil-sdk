@@ -175,4 +175,26 @@ namespace Com.Amazonaws.S3;
 /// &lt;p&gt;For directory buckets in this API operation, only the &lt;code&gt;null&lt;/code&gt; value of the version ID is supported.&lt;/p&gt;
 /// &lt;/note&gt;
 /// </param>
-public sealed record class HeadObjectInput(string Bucket, string Key, global::Com.Amazonaws.S3.ChecksumMode? ChecksumMode = null, string? ExpectedBucketOwner = null, string? IfMatch = null, DateTimeOffset? IfModifiedSince = null, string? IfNoneMatch = null, DateTimeOffset? IfUnmodifiedSince = null, int? PartNumber = null, string? Range = null, global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null, string? ResponseCacheControl = null, string? ResponseContentDisposition = null, string? ResponseContentEncoding = null, string? ResponseContentLanguage = null, string? ResponseContentType = null, DateTimeOffset? ResponseExpires = null, string? SSECustomerAlgorithm = null, string? SSECustomerKey = null, string? SSECustomerKeyMD5 = null, string? VersionId = null);
+public sealed record class HeadObjectInput(
+    string Bucket,
+    string Key,
+    global::Com.Amazonaws.S3.ChecksumMode? ChecksumMode = null,
+    string? ExpectedBucketOwner = null,
+    string? IfMatch = null,
+    DateTimeOffset? IfModifiedSince = null,
+    string? IfNoneMatch = null,
+    DateTimeOffset? IfUnmodifiedSince = null,
+    int? PartNumber = null,
+    string? Range = null,
+    global::Com.Amazonaws.S3.RequestPayer? RequestPayer = null,
+    string? ResponseCacheControl = null,
+    string? ResponseContentDisposition = null,
+    string? ResponseContentEncoding = null,
+    string? ResponseContentLanguage = null,
+    string? ResponseContentType = null,
+    DateTimeOffset? ResponseExpires = null,
+    string? SSECustomerAlgorithm = null,
+    string? SSECustomerKey = null,
+    string? SSECustomerKeyMD5 = null,
+    string? VersionId = null
+);

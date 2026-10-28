@@ -34,4 +34,10 @@ namespace Com.Amazonaws.S3;
 /// configuration that you want to enable or disable an inventory table for.
 /// &lt;/p&gt;
 /// </param>
-public sealed record class UpdateBucketMetadataInventoryTableConfigurationInput(string Bucket, InventoryTableConfigurationUpdates InventoryTableConfiguration, global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null, string? ContentMD5 = null, string? ExpectedBucketOwner = null);
+public sealed record class UpdateBucketMetadataInventoryTableConfigurationInput(
+    string Bucket,
+    InventoryTableConfigurationUpdates InventoryTableConfiguration,
+    global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
+    string? ContentMD5 = null,
+    string? ExpectedBucketOwner = null
+);

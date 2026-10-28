@@ -15,4 +15,8 @@ namespace Com.Amazonaws.S3;
 /// <param name="Role">
 /// &lt;p&gt;The ARN of the IAM role used to manage the annotation table.&lt;/p&gt;
 /// </param>
-public sealed record class AnnotationTableConfiguration(AnnotationConfigurationState ConfigurationState, MetadataTableEncryptionConfiguration? EncryptionConfiguration = null, string? Role = null);
+public sealed record class AnnotationTableConfiguration(
+    AnnotationConfigurationState ConfigurationState,
+    MetadataTableEncryptionConfiguration? EncryptionConfiguration = null,
+    string? Role = null
+);

@@ -12,4 +12,7 @@ namespace Com.Amazonaws.S3;
 /// <param name="Body">
 /// &lt;p&gt;A Bencoded dictionary as defined by the BitTorrent specification&lt;/p&gt;
 /// </param>
-public sealed record class GetObjectTorrentOutput(Stream? Body = null, global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null);
+public sealed record class GetObjectTorrentOutput(
+    Stream? Body = null,
+    global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null
+);

@@ -16,8 +16,10 @@ public static partial class DestinationResultSchema
         public string? TableNamespace { get; set; }
     }
 
-    public static StructSchema<global::Com.Amazonaws.S3.DestinationResult, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.DestinationResult,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.S3.DestinationResult, Builder>(
@@ -27,20 +29,33 @@ public static partial class DestinationResultSchema
                 new("TableBucketArn", Target1),
                 new("TableNamespace", Target2),
             ],
-            null)
+            null
+        )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.S3TablesBucketType?> Target0 = global::NSmithy.Core.Serde.Schemas.Nullable(S3TablesBucketTypeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.S3TablesBucketType?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(S3TablesBucketTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.S3.DestinationResult Build(Builder builder) =>
-            new global::Com.Amazonaws.S3.DestinationResult(builder.TableBucketArn, builder.TableBucketType, builder.TableNamespace);
+            new global::Com.Amazonaws.S3.DestinationResult(
+                builder.TableBucketArn,
+                builder.TableBucketType,
+                builder.TableNamespace
+            );
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.S3.DestinationResult value,
-            ref TSerializer serializer)
+            ref TSerializer serializer
+        )
         {
             if (value.TableBucketType is { } value0)
             {
@@ -71,12 +86,19 @@ public static partial class DestinationResultSchema
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer)
+            ref TDeserializer deserializer
+        )
         {
             switch (index)
             {
                 case 0:
-                    builder.TableBucketType = deserializer.TryReadNull() ? null : (deserializer.ReadStringEnum() is { } value0 ? global::Com.Amazonaws.S3.S3TablesBucketType.FromValue(value0) : default(global::Com.Amazonaws.S3.S3TablesBucketType));
+                    builder.TableBucketType = deserializer.TryReadNull()
+                        ? null
+                        : (
+                            deserializer.ReadStringEnum() is { } value0
+                                ? global::Com.Amazonaws.S3.S3TablesBucketType.FromValue(value0)
+                                : default(global::Com.Amazonaws.S3.S3TablesBucketType)
+                        );
                     break;
                 case 1:
                     builder.TableBucketArn = deserializer.ReadString();

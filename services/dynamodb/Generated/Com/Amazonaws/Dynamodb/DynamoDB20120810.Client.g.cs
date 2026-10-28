@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using NSmithy.Aws;
 using NSmithy.Client;
 using NSmithy.Protocols.AwsJson;
 
@@ -7526,7 +7527,10 @@ public sealed class DynamoDB20120810Client : IDynamoDB20120810Client
 
 public sealed class DynamoDB20120810ClientConfig : SmithyClientConfig
 {
-    public DynamoDB20120810ClientConfig() { }
+    public DynamoDB20120810ClientConfig()
+    {
+        Region = AwsRegion.Resolve();
+    }
 
     public DynamoDB20120810ClientConfig(DynamoDB20120810ClientConfig source)
         : base(source)

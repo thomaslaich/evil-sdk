@@ -1,6 +1,6 @@
 # Sweep report
 
-NSmithy `0.14.0`, Smithy `1.73.0`, 436 services.
+NSmithy `0.15.0`, Smithy `1.73.0`, 436 services.
 
 | Stage | Services |
 | --- | --- |

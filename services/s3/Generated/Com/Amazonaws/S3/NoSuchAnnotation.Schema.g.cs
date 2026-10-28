@@ -9,10 +9,7 @@ namespace Com.Amazonaws.S3.Schemas;
 
 public static partial class NoSuchAnnotationSchema
 {
-    public sealed class Builder
-    {
-
-    }
+    public sealed class Builder { }
 
     public static StructSchema<global::Com.Amazonaws.S3.NoSuchAnnotation, Builder> Schema { get; } =
         new GeneratedSchema();
@@ -20,12 +17,13 @@ public static partial class NoSuchAnnotationSchema
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.S3.NoSuchAnnotation, Builder>(
             ShapeId.Parse("com.amazonaws.s3#NoSuchAnnotation"),
+            [],
             [
-
-            ],
-            [new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")), new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m))])
+                new Trait(ShapeId.Parse("smithy.api#error"), Document.From("client")),
+                new Trait(ShapeId.Parse("smithy.api#httpError"), Document.From(404m)),
+            ]
+        )
     {
-
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.S3.NoSuchAnnotation Build(Builder builder) =>
@@ -33,17 +31,13 @@ public static partial class NoSuchAnnotationSchema
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.S3.NoSuchAnnotation value,
-            ref TSerializer serializer)
-        {
-
-        }
+            ref TSerializer serializer
+        ) { }
 
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer)
-        {
-
-        }
+            ref TDeserializer deserializer
+        ) { }
     }
 }

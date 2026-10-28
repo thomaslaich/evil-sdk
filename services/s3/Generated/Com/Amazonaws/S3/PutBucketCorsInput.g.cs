@@ -34,4 +34,10 @@ namespace Com.Amazonaws.S3;
 /// <param name="ExpectedBucketOwner">
 /// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
 /// </param>
-public sealed record class PutBucketCorsInput(string Bucket, global::Com.Amazonaws.S3.CORSConfiguration CORSConfiguration, global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null, string? ContentMD5 = null, string? ExpectedBucketOwner = null);
+public sealed record class PutBucketCorsInput(
+    string Bucket,
+    global::Com.Amazonaws.S3.CORSConfiguration CORSConfiguration,
+    global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,
+    string? ContentMD5 = null,
+    string? ExpectedBucketOwner = null
+);

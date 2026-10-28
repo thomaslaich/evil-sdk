@@ -31,22 +31,43 @@ public static partial class RedirectSchema
                 new("ReplaceKeyPrefixWith", Target3),
                 new("ReplaceKeyWith", Target4),
             ],
-            null)
+            null
+        )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Protocol?> Target2 = global::NSmithy.Core.Serde.Schemas.Nullable(ProtocolSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
-        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.String);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.Protocol?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(ProtocolSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<string?> Target4 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.String
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.S3.Redirect Build(Builder builder) =>
-            new global::Com.Amazonaws.S3.Redirect(builder.HostName, builder.HttpRedirectCode, builder.Protocol, builder.ReplaceKeyPrefixWith, builder.ReplaceKeyWith);
+            new global::Com.Amazonaws.S3.Redirect(
+                builder.HostName,
+                builder.HttpRedirectCode,
+                builder.Protocol,
+                builder.ReplaceKeyPrefixWith,
+                builder.ReplaceKeyWith
+            );
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.S3.Redirect value,
-            ref TSerializer serializer)
+            ref TSerializer serializer
+        )
         {
             if (value.HostName is { } value0)
             {
@@ -93,7 +114,8 @@ public static partial class RedirectSchema
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer)
+            ref TDeserializer deserializer
+        )
         {
             switch (index)
             {
@@ -104,7 +126,13 @@ public static partial class RedirectSchema
                     builder.HttpRedirectCode = deserializer.ReadString();
                     break;
                 case 2:
-                    builder.Protocol = deserializer.TryReadNull() ? null : (deserializer.ReadStringEnum() is { } value2 ? global::Com.Amazonaws.S3.Protocol.FromValue(value2) : default(global::Com.Amazonaws.S3.Protocol));
+                    builder.Protocol = deserializer.TryReadNull()
+                        ? null
+                        : (
+                            deserializer.ReadStringEnum() is { } value2
+                                ? global::Com.Amazonaws.S3.Protocol.FromValue(value2)
+                                : default(global::Com.Amazonaws.S3.Protocol)
+                        );
                     break;
                 case 3:
                     builder.ReplaceKeyPrefixWith = deserializer.ReadString();

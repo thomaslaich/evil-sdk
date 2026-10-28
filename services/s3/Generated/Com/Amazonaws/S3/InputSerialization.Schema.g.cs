@@ -17,8 +17,10 @@ public static partial class InputSerializationSchema
         public global::Com.Amazonaws.S3.ParquetInput? Parquet { get; set; }
     }
 
-    public static StructSchema<global::Com.Amazonaws.S3.InputSerialization, Builder> Schema { get; } =
-        new GeneratedSchema();
+    public static StructSchema<
+        global::Com.Amazonaws.S3.InputSerialization,
+        Builder
+    > Schema { get; } = new GeneratedSchema();
 
     private sealed class GeneratedSchema()
         : StructSchema<global::Com.Amazonaws.S3.InputSerialization, Builder>(
@@ -29,21 +31,38 @@ public static partial class InputSerializationSchema
                 new("JSON", Target2),
                 new("Parquet", Target3),
             ],
-            null)
+            null
+        )
     {
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CSVInput?> Target0 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => CSVInputSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CompressionType?> Target1 = global::NSmithy.Core.Serde.Schemas.Nullable(CompressionTypeSchema.Schema);
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.JSONInput?> Target2 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => JSONInputSchema.Schema!));
-        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ParquetInput?> Target3 = global::NSmithy.Core.Serde.Schemas.NullableReference(global::NSmithy.Core.Serde.Schemas.Lazy(() => ParquetInputSchema.Schema!));
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CSVInput?> Target0 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => CSVInputSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.CompressionType?> Target1 =
+            global::NSmithy.Core.Serde.Schemas.Nullable(CompressionTypeSchema.Schema);
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.JSONInput?> Target2 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => JSONInputSchema.Schema!)
+            );
+        private static readonly global::NSmithy.Core.Serde.Schema<global::Com.Amazonaws.S3.ParquetInput?> Target3 =
+            global::NSmithy.Core.Serde.Schemas.NullableReference(
+                global::NSmithy.Core.Serde.Schemas.Lazy(() => ParquetInputSchema.Schema!)
+            );
 
         public override Builder CreateTypedBuilder() => new();
 
         public override global::Com.Amazonaws.S3.InputSerialization Build(Builder builder) =>
-            new global::Com.Amazonaws.S3.InputSerialization(builder.CSV, builder.CompressionType, builder.JSON, builder.Parquet);
+            new global::Com.Amazonaws.S3.InputSerialization(
+                builder.CSV,
+                builder.CompressionType,
+                builder.JSON,
+                builder.Parquet
+            );
 
         public override void SerializeMembers<TSerializer>(
             global::Com.Amazonaws.S3.InputSerialization value,
-            ref TSerializer serializer)
+            ref TSerializer serializer
+        )
         {
             if (value.CSV is { } value0)
             {
@@ -82,7 +101,8 @@ public static partial class InputSerializationSchema
         public override void DeserializeMember<TDeserializer>(
             Builder builder,
             int index,
-            ref TDeserializer deserializer)
+            ref TDeserializer deserializer
+        )
         {
             switch (index)
             {
@@ -90,7 +110,13 @@ public static partial class InputSerializationSchema
                     builder.CSV = deserializer.ReadStruct(CSVInputSchema.Schema);
                     break;
                 case 1:
-                    builder.CompressionType = deserializer.TryReadNull() ? null : (deserializer.ReadStringEnum() is { } value1 ? global::Com.Amazonaws.S3.CompressionType.FromValue(value1) : default(global::Com.Amazonaws.S3.CompressionType));
+                    builder.CompressionType = deserializer.TryReadNull()
+                        ? null
+                        : (
+                            deserializer.ReadStringEnum() is { } value1
+                                ? global::Com.Amazonaws.S3.CompressionType.FromValue(value1)
+                                : default(global::Com.Amazonaws.S3.CompressionType)
+                        );
                     break;
                 case 2:
                     builder.JSON = deserializer.ReadStruct(JSONInputSchema.Schema);

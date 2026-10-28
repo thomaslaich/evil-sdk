@@ -6,8 +6,7 @@ using NSmithy.Core.Serde;
 
 namespace Com.Amazonaws.S3;
 
-public readonly partial record struct Protocol(string Value)
-    : IStringEnumValue<Protocol>
+public readonly partial record struct Protocol(string Value) : IStringEnumValue<Protocol>
 {
     public static Protocol FromValue(string value)
     {

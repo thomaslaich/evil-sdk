@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using NSmithy.Aws;
 using NSmithy.Client;
 using NSmithy.Protocols.RestJson;
 
@@ -9144,7 +9145,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
 
 public sealed class AWSGirApiServiceClientConfig : SmithyClientConfig
 {
-    public AWSGirApiServiceClientConfig() { }
+    public AWSGirApiServiceClientConfig()
+    {
+        Region = AwsRegion.Resolve();
+    }
 
     public AWSGirApiServiceClientConfig(AWSGirApiServiceClientConfig source)
         : base(source)

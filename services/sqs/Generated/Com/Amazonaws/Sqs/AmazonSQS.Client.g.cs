@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using NSmithy.Aws;
 using NSmithy.Client;
 using NSmithy.Protocols.AwsJson;
 
@@ -2848,7 +2849,10 @@ public sealed class AmazonSQSClient : IAmazonSQSClient
 
 public sealed class AmazonSQSClientConfig : SmithyClientConfig
 {
-    public AmazonSQSClientConfig() { }
+    public AmazonSQSClientConfig()
+    {
+        Region = AwsRegion.Resolve();
+    }
 
     public AmazonSQSClientConfig(AmazonSQSClientConfig source)
         : base(source)
