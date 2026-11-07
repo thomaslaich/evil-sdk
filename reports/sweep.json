@@ -12,7 +12,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 456,
-      "seconds": 8.9
+      "seconds": 7.3
     },
     {
       "id": "account",
@@ -25,7 +25,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 118,
-      "seconds": 6.3
+      "seconds": 5.7
     },
     {
       "id": "account-access",
@@ -38,7 +38,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 121,
-      "seconds": 15.7
+      "seconds": 10.2
     },
     {
       "id": "acm",
@@ -51,7 +51,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 446,
-      "seconds": 8.3
+      "seconds": 7.1
     },
     {
       "id": "acm-pca",
@@ -64,7 +64,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 254,
-      "seconds": 6.6
+      "seconds": 12.7
     },
     {
       "id": "agent-registry",
@@ -77,7 +77,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 88,
-      "seconds": 16.0
+      "seconds": 6.3
     },
     {
       "id": "agent-registry-control",
@@ -90,7 +90,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 313,
-      "seconds": 7.1
+      "seconds": 16.0
     },
     {
       "id": "aiops",
@@ -103,7 +103,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 89,
-      "seconds": 15.7
+      "seconds": 13.4
     },
     {
       "id": "amp",
@@ -116,7 +116,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 346,
-      "seconds": 6.0
+      "seconds": 14.9
     },
     {
       "id": "amplify",
@@ -129,7 +129,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 287,
-      "seconds": 10.9
+      "seconds": 14.3
     },
     {
       "id": "amplifybackend",
@@ -142,7 +142,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 276,
-      "seconds": 5.2
+      "seconds": 13.6
     },
     {
       "id": "amplifyuibuilder",
@@ -155,7 +155,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 357,
-      "seconds": 8.4
+      "seconds": 4.4
     },
     {
       "id": "api-gateway",
@@ -168,7 +168,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 806,
-      "seconds": 7.3
+      "seconds": 6.4
     },
     {
       "id": "apigatewaymanagementapi",
@@ -181,7 +181,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 28,
-      "seconds": 2.7
+      "seconds": 3.3
     },
     {
       "id": "apigatewayv2",
@@ -194,7 +194,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 712,
-      "seconds": 9.0
+      "seconds": 7.3
     },
     {
       "id": "app-mesh",
@@ -207,7 +207,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 525,
-      "seconds": 19.1
+      "seconds": 6.0
     },
     {
       "id": "appconfig",
@@ -220,7 +220,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 419,
-      "seconds": 18.5
+      "seconds": 13.7
     },
     {
       "id": "appconfigdata",
@@ -233,7 +233,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 27,
-      "seconds": 6.2
+      "seconds": 3.0
     },
     {
       "id": "appfabric",
@@ -246,7 +246,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 227,
-      "seconds": 6.8
+      "seconds": 4.1
     },
     {
       "id": "appflow",
@@ -259,7 +259,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 582,
-      "seconds": 8.9
+      "seconds": 17.9
     },
     {
       "id": "appintegrations",
@@ -272,7 +272,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 204,
-      "seconds": 15.6
+      "seconds": 6.3
     },
     {
       "id": "application-auto-scaling",
@@ -285,7 +285,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 190,
-      "seconds": 6.2
+      "seconds": 6.0
     },
     {
       "id": "application-discovery-service",
@@ -298,7 +298,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 289,
-      "seconds": 15.3
+      "seconds": 5.7
     },
     {
       "id": "application-insights",
@@ -312,7 +312,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 250,
-      "seconds": 6.0
+      "seconds": 15.4
     },
     {
       "id": "application-signals",
@@ -325,7 +325,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 396,
-      "seconds": 4.8
+      "seconds": 6.4
     },
     {
       "id": "applicationcostprofiler",
@@ -338,7 +338,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 56,
-      "seconds": 12.9
+      "seconds": 14.6
     },
     {
       "id": "apprunner",
@@ -351,7 +351,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 320,
-      "seconds": 3.7
+      "seconds": 5.8
     },
     {
       "id": "appstream",
@@ -365,7 +365,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 748,
-      "seconds": 18.2
+      "seconds": 20.0
     },
     {
       "id": "appsync",
@@ -378,7 +378,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 607,
-      "seconds": 12.9
+      "seconds": 8.6
     },
     {
       "id": "arc-region-switch",
@@ -392,7 +392,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 346,
-      "seconds": 6.6
+      "seconds": 17.5
     },
     {
       "id": "arc-zonal-shift",
@@ -405,7 +405,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 138,
-      "seconds": 10.1
+      "seconds": 6.3
     },
     {
       "id": "artifact",
@@ -418,7 +418,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 169,
-      "seconds": 9.5
+      "seconds": 10.8
     },
     {
       "id": "athena",
@@ -431,7 +431,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 580,
-      "seconds": 12.1
+      "seconds": 16.3
     },
     {
       "id": "auditmanager",
@@ -444,7 +444,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 531,
-      "seconds": 17.0
+      "seconds": 16.2
     },
     {
       "id": "auto-scaling",
@@ -457,7 +457,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 680,
-      "seconds": 11.3
+      "seconds": 26.4
     },
     {
       "id": "auto-scaling-plans",
@@ -470,7 +470,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 106,
-      "seconds": 9.1
+      "seconds": 17.4
     },
     {
       "id": "b2bi",
@@ -483,7 +483,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 308,
-      "seconds": 7.0
+      "seconds": 12.0
     },
     {
       "id": "backup",
@@ -496,7 +496,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 874,
-      "seconds": 20.0
+      "seconds": 16.1
     },
     {
       "id": "backup-gateway",
@@ -510,7 +510,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 171,
-      "seconds": 15.2
+      "seconds": 10.9
     },
     {
       "id": "backupsearch",
@@ -523,7 +523,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 139,
-      "seconds": 15.3
+      "seconds": 7.2
     },
     {
       "id": "batch",
@@ -536,7 +536,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 708,
-      "seconds": 9.0
+      "seconds": 9.1
     },
     {
       "id": "bcm-dashboards",
@@ -549,7 +549,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 180,
-      "seconds": 15.5
+      "seconds": 14.5
     },
     {
       "id": "bcm-data-exports",
@@ -562,7 +562,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 134,
-      "seconds": 4.1
+      "seconds": 4.4
     },
     {
       "id": "bcm-pricing-calculator",
@@ -575,7 +575,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 400,
-      "seconds": 6.5
+      "seconds": 15.6
     },
     {
       "id": "bcm-recommended-actions",
@@ -588,7 +588,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 42,
-      "seconds": 3.7
+      "seconds": 3.6
     },
     {
       "id": "bedrock",
@@ -601,7 +601,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1349,
-      "seconds": 37.3
+      "seconds": 41.4
     },
     {
       "id": "bedrock-agent",
@@ -614,7 +614,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1149,
-      "seconds": 35.5
+      "seconds": 40.5
     },
     {
       "id": "bedrock-agent-runtime",
@@ -627,7 +627,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1045,
-      "seconds": 23.2
+      "seconds": 29.7
     },
     {
       "id": "bedrock-agentcore",
@@ -640,7 +640,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1097,
-      "seconds": 24.3
+      "seconds": 29.1
     },
     {
       "id": "bedrock-agentcore-control",
@@ -653,7 +653,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 2087,
-      "seconds": 27.3
+      "seconds": 54.5
     },
     {
       "id": "bedrock-data-automation",
@@ -666,7 +666,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 388,
-      "seconds": 22.3
+      "seconds": 18.3
     },
     {
       "id": "bedrock-data-automation-runtime",
@@ -679,7 +679,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 90,
-      "seconds": 19.0
+      "seconds": 14.6
     },
     {
       "id": "bedrock-runtime",
@@ -692,7 +692,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 540,
-      "seconds": 14.4
+      "seconds": 17.1
     },
     {
       "id": "billing",
@@ -705,7 +705,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 262,
-      "seconds": 6.1
+      "seconds": 9.5
     },
     {
       "id": "billingconductor",
@@ -718,7 +718,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 354,
-      "seconds": 15.5
+      "seconds": 14.3
     },
     {
       "id": "braket",
@@ -731,7 +731,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 182,
-      "seconds": 13.0
+      "seconds": 13.7
     },
     {
       "id": "budgets",
@@ -744,7 +744,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 273,
-      "seconds": 15.2
+      "seconds": 9.2
     },
     {
       "id": "chatbot",
@@ -757,7 +757,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 284,
-      "seconds": 14.5
+      "seconds": 18.6
     },
     {
       "id": "chime",
@@ -770,7 +770,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 455,
-      "seconds": 4.8
+      "seconds": 25.3
     },
     {
       "id": "chime-sdk-identity",
@@ -783,7 +783,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 236,
-      "seconds": 11.3
+      "seconds": 21.2
     },
     {
       "id": "chime-sdk-media-pipelines",
@@ -796,7 +796,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 449,
-      "seconds": 5.5
+      "seconds": 18.3
     },
     {
       "id": "chime-sdk-meetings",
@@ -809,7 +809,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 181,
-      "seconds": 15.0
+      "seconds": 20.0
     },
     {
       "id": "chime-sdk-messaging",
@@ -822,7 +822,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 406,
-      "seconds": 7.2
+      "seconds": 21.6
     },
     {
       "id": "chime-sdk-voice",
@@ -835,7 +835,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 695,
-      "seconds": 20.4
+      "seconds": 12.2
     },
     {
       "id": "cleanrooms",
@@ -848,7 +848,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1211,
-      "seconds": 50.0
+      "seconds": 19.8
     },
     {
       "id": "cleanroomsml",
@@ -861,7 +861,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 578,
-      "seconds": 19.6
+      "seconds": 23.2
     },
     {
       "id": "cloud9",
@@ -874,7 +874,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 115,
-      "seconds": 19.4
+      "seconds": 14.9
     },
     {
       "id": "cloudcontrol",
@@ -887,7 +887,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 99,
-      "seconds": 11.8
+      "seconds": 17.5
     },
     {
       "id": "clouddirectory",
@@ -900,7 +900,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 649,
-      "seconds": 44.0
+      "seconds": 30.5
     },
     {
       "id": "cloudformation",
@@ -913,7 +913,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 945,
-      "seconds": 35.7
+      "seconds": 30.4
     },
     {
       "id": "cloudfront",
@@ -926,7 +926,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1729,
-      "seconds": 29.1
+      "seconds": 45.7
     },
     {
       "id": "cloudfront-keyvaluestore",
@@ -939,7 +939,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 54,
-      "seconds": 13.1
+      "seconds": 16.4
     },
     {
       "id": "cloudhsm",
@@ -952,7 +952,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 127,
-      "seconds": 19.0
+      "seconds": 9.9
     },
     {
       "id": "cloudhsm-v2",
@@ -965,7 +965,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 144,
-      "seconds": 28.6
+      "seconds": 11.7
     },
     {
       "id": "cloudsearch",
@@ -978,7 +978,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 235,
-      "seconds": 26.7
+      "seconds": 8.3
     },
     {
       "id": "cloudsearch-domain",
@@ -991,7 +991,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 56,
-      "seconds": 8.8
+      "seconds": 5.1
     },
     {
       "id": "cloudtrail",
@@ -1004,7 +1004,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 638,
-      "seconds": 8.4
+      "seconds": 20.0
     },
     {
       "id": "cloudtrail-data",
@@ -1017,7 +1017,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 29,
-      "seconds": 3.5
+      "seconds": 14.5
     },
     {
       "id": "cloudwatch",
@@ -1032,7 +1032,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 520,
-      "seconds": 15.6
+      "seconds": 19.0
     },
     {
       "id": "cloudwatch-events",
@@ -1045,7 +1045,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 460,
-      "seconds": 5.8
+      "seconds": 18.8
     },
     {
       "id": "cloudwatch-logs",
@@ -1058,7 +1058,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1063,
-      "seconds": 10.7
+      "seconds": 28.2
     },
     {
       "id": "cloudwatchomni",
@@ -1071,7 +1071,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 575,
-      "seconds": 13.0
+      "seconds": 18.8
     },
     {
       "id": "codeartifact",
@@ -1084,7 +1084,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 374,
-      "seconds": 19.3
+      "seconds": 15.2
     },
     {
       "id": "codebuild",
@@ -1097,7 +1097,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 618,
-      "seconds": 28.3
+      "seconds": 30.1
     },
     {
       "id": "codecatalyst",
@@ -1110,7 +1110,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 286,
-      "seconds": 13.9
+      "seconds": 11.3
     },
     {
       "id": "codecommit",
@@ -1123,7 +1123,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 991,
-      "seconds": 22.8
+      "seconds": 34.2
     },
     {
       "id": "codeconnections",
@@ -1137,7 +1137,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 235,
-      "seconds": 23.4
+      "seconds": 11.2
     },
     {
       "id": "codedeploy",
@@ -1150,7 +1150,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 682,
-      "seconds": 18.7
+      "seconds": 22.9
     },
     {
       "id": "codeguru-reviewer",
@@ -1163,7 +1163,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 179,
-      "seconds": 21.1
+      "seconds": 13.1
     },
     {
       "id": "codeguru-security",
@@ -1176,7 +1176,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 149,
-      "seconds": 19.3
+      "seconds": 18.0
     },
     {
       "id": "codeguruprofiler",
@@ -1189,7 +1189,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 192,
-      "seconds": 8.0
+      "seconds": 19.6
     },
     {
       "id": "codepipeline",
@@ -1202,7 +1202,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 657,
-      "seconds": 19.2
+      "seconds": 26.3
     },
     {
       "id": "codestar-connections",
@@ -1215,7 +1215,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 233,
-      "seconds": 4.5
+      "seconds": 10.5
     },
     {
       "id": "codestar-notifications",
@@ -1228,7 +1228,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 120,
-      "seconds": 13.3
+      "seconds": 8.6
     },
     {
       "id": "cognito-identity",
@@ -1241,7 +1241,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 181,
-      "seconds": 2.9
+      "seconds": 19.2
     },
     {
       "id": "cognito-identity-provider",
@@ -1254,7 +1254,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1152,
-      "seconds": 30.8
+      "seconds": 40.8
     },
     {
       "id": "cognito-sync",
@@ -1267,7 +1267,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 143,
-      "seconds": 4.5
+      "seconds": 9.3
     },
     {
       "id": "comprehend",
@@ -1280,7 +1280,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 805,
-      "seconds": 38.6
+      "seconds": 23.1
     },
     {
       "id": "comprehendmedical",
@@ -1294,7 +1294,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 250,
-      "seconds": 15.4
+      "seconds": 13.4
     },
     {
       "id": "compute-optimizer",
@@ -1308,7 +1308,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 640,
-      "seconds": 28.5
+      "seconds": 23.0
     },
     {
       "id": "compute-optimizer-automation",
@@ -1322,7 +1322,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 255,
-      "seconds": 25.7
+      "seconds": 15.2
     },
     {
       "id": "config-service",
@@ -1335,7 +1335,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1050,
-      "seconds": 24.9
+      "seconds": 28.5
     },
     {
       "id": "connect",
@@ -1348,7 +1348,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 4002,
-      "seconds": 122.0
+      "seconds": 160.8
     },
     {
       "id": "connect-contact-lens",
@@ -1361,7 +1361,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 52,
-      "seconds": 22.6
+      "seconds": 9.1
     },
     {
       "id": "connectcampaigns",
@@ -1374,7 +1374,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 177,
-      "seconds": 11.9
+      "seconds": 11.7
     },
     {
       "id": "connectcampaignsv2",
@@ -1387,7 +1387,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 371,
-      "seconds": 6.1
+      "seconds": 13.1
     },
     {
       "id": "connectcases",
@@ -1400,7 +1400,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 440,
-      "seconds": 18.3
+      "seconds": 24.5
     },
     {
       "id": "connecthealth",
@@ -1413,7 +1413,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 214,
-      "seconds": 9.5
+      "seconds": 11.9
     },
     {
       "id": "connectparticipant",
@@ -1426,7 +1426,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 131,
-      "seconds": 5.4
+      "seconds": 19.6
     },
     {
       "id": "controlcatalog",
@@ -1439,7 +1439,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 119,
-      "seconds": 4.6
+      "seconds": 17.3
     },
     {
       "id": "controltower",
@@ -1452,7 +1452,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 270,
-      "seconds": 23.2
+      "seconds": 22.9
     },
     {
       "id": "cost-and-usage-report-service",
@@ -1465,7 +1465,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 75,
-      "seconds": 11.7
+      "seconds": 11.4
     },
     {
       "id": "cost-explorer",
@@ -1478,7 +1478,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 619,
-      "seconds": 20.9
+      "seconds": 31.8
     },
     {
       "id": "cost-optimization-hub",
@@ -1491,7 +1491,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 243,
-      "seconds": 12.9
+      "seconds": 11.0
     },
     {
       "id": "customer-profiles",
@@ -1504,7 +1504,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1128,
-      "seconds": 45.1
+      "seconds": 42.9
     },
     {
       "id": "data-pipeline",
@@ -1517,7 +1517,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 157,
-      "seconds": 10.0
+      "seconds": 15.1
     },
     {
       "id": "database-migration-service",
@@ -1530,7 +1530,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1035,
-      "seconds": 40.9
+      "seconds": 42.7
     },
     {
       "id": "databrew",
@@ -1543,7 +1543,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 397,
-      "seconds": 20.4
+      "seconds": 25.9
     },
     {
       "id": "dataexchange",
@@ -1556,7 +1556,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 364,
-      "seconds": 19.2
+      "seconds": 19.8
     },
     {
       "id": "datasync",
@@ -1569,7 +1569,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 463,
-      "seconds": 21.7
+      "seconds": 24.7
     },
     {
       "id": "datazone",
@@ -1582,7 +1582,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 2055,
-      "seconds": 71.4
+      "seconds": 65.3
     },
     {
       "id": "dax",
@@ -1595,7 +1595,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 230,
-      "seconds": 23.1
+      "seconds": 13.3
     },
     {
       "id": "deadline",
@@ -1608,7 +1608,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1256,
-      "seconds": 58.9
+      "seconds": 35.5
     },
     {
       "id": "detective",
@@ -1621,7 +1621,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 261,
-      "seconds": 61.8
+      "seconds": 23.6
     },
     {
       "id": "device-farm",
@@ -1634,7 +1634,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 641,
-      "seconds": 58.4
+      "seconds": 31.9
     },
     {
       "id": "devops-agent",
@@ -1647,7 +1647,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 760,
-      "seconds": 47.1
+      "seconds": 24.7
     },
     {
       "id": "devops-guru",
@@ -1660,7 +1660,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 464,
-      "seconds": 36.8
+      "seconds": 18.2
     },
     {
       "id": "direct-connect",
@@ -1673,7 +1673,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 532,
-      "seconds": 46.9
+      "seconds": 27.8
     },
     {
       "id": "directory-service",
@@ -1686,7 +1686,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 697,
-      "seconds": 29.5
+      "seconds": 20.7
     },
     {
       "id": "directory-service-data",
@@ -1699,7 +1699,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 136,
-      "seconds": 10.7
+      "seconds": 20.4
     },
     {
       "id": "dlm",
@@ -1712,7 +1712,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 159,
-      "seconds": 10.4
+      "seconds": 10.0
     },
     {
       "id": "docdb",
@@ -1725,7 +1725,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 518,
-      "seconds": 17.3
+      "seconds": 26.7
     },
     {
       "id": "docdb-elastic",
@@ -1738,7 +1738,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 137,
-      "seconds": 10.6
+      "seconds": 17.4
     },
     {
       "id": "drs",
@@ -1751,7 +1751,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 580,
-      "seconds": 15.6
+      "seconds": 42.1
     },
     {
       "id": "dsql",
@@ -1764,7 +1764,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 136,
-      "seconds": 17.9
+      "seconds": 16.2
     },
     {
       "id": "dynamodb",
@@ -1777,7 +1777,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 790,
-      "seconds": 25.4
+      "seconds": 40.9
     },
     {
       "id": "dynamodb-streams",
@@ -1790,7 +1790,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 75,
-      "seconds": 17.7
+      "seconds": 31.2
     },
     {
       "id": "ebs",
@@ -1803,7 +1803,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 76,
-      "seconds": 7.8
+      "seconds": 43.8
     },
     {
       "id": "ec2",
@@ -1816,7 +1816,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 7738,
-      "seconds": 253.7
+      "seconds": 256.0
     },
     {
       "id": "ec2-instance-connect",
@@ -1829,7 +1829,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 37,
-      "seconds": 5.0
+      "seconds": 22.5
     },
     {
       "id": "ecr",
@@ -1842,7 +1842,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 608,
-      "seconds": 14.1
+      "seconds": 24.5
     },
     {
       "id": "ecr-public",
@@ -1855,7 +1855,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 223,
-      "seconds": 8.5
+      "seconds": 14.6
     },
     {
       "id": "ecs",
@@ -1868,7 +1868,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1183,
-      "seconds": 47.1
+      "seconds": 40.1
     },
     {
       "id": "efs",
@@ -1881,7 +1881,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 290,
-      "seconds": 37.0
+      "seconds": 14.5
     },
     {
       "id": "eks",
@@ -1894,7 +1894,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 847,
-      "seconds": 46.3
+      "seconds": 31.5
     },
     {
       "id": "eks-auth",
@@ -1907,7 +1907,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 34,
-      "seconds": 23.1
+      "seconds": 12.8
     },
     {
       "id": "elastic-beanstalk",
@@ -1920,7 +1920,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 487,
-      "seconds": 42.1
+      "seconds": 23.9
     },
     {
       "id": "elastic-load-balancing",
@@ -1933,7 +1933,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 271,
-      "seconds": 36.6
+      "seconds": 17.9
     },
     {
       "id": "elastic-load-balancing-v2",
@@ -1946,7 +1946,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 596,
-      "seconds": 35.5
+      "seconds": 27.4
     },
     {
       "id": "elasticache",
@@ -1959,7 +1959,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 815,
-      "seconds": 20.2
+      "seconds": 34.0
     },
     {
       "id": "elasticsearch-service",
@@ -1972,7 +1972,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 570,
-      "seconds": 31.1
+      "seconds": 30.1
     },
     {
       "id": "elementalinference",
@@ -1985,7 +1985,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 196,
-      "seconds": 16.9
+      "seconds": 15.6
     },
     {
       "id": "emr",
@@ -1998,7 +1998,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 724,
-      "seconds": 36.7
+      "seconds": 35.8
     },
     {
       "id": "emr-containers",
@@ -2011,7 +2011,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 253,
-      "seconds": 16.7
+      "seconds": 16.6
     },
     {
       "id": "emr-serverless",
@@ -2024,7 +2024,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 220,
-      "seconds": 26.4
+      "seconds": 18.7
     },
     {
       "id": "endusermessaging",
@@ -2037,7 +2037,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 234,
-      "seconds": 26.5
+      "seconds": 18.8
     },
     {
       "id": "entityresolution",
@@ -2050,7 +2050,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 376,
-      "seconds": 19.0
+      "seconds": 26.2
     },
     {
       "id": "eventbridge",
@@ -2063,7 +2063,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 531,
-      "seconds": 28.5
+      "seconds": 38.8
     },
     {
       "id": "eventbridgev2",
@@ -2076,7 +2076,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 294,
-      "seconds": 20.6
+      "seconds": 20.2
     },
     {
       "id": "evs",
@@ -2089,7 +2089,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 232,
-      "seconds": 29.7
+      "seconds": 21.9
     },
     {
       "id": "finspace",
@@ -2102,7 +2102,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 428,
-      "seconds": 28.1
+      "seconds": 33.5
     },
     {
       "id": "finspace-data",
@@ -2115,7 +2115,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 254,
-      "seconds": 23.2
+      "seconds": 19.9
     },
     {
       "id": "firehose",
@@ -2128,7 +2128,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 373,
-      "seconds": 45.6
+      "seconds": 15.4
     },
     {
       "id": "fis",
@@ -2141,7 +2141,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 344,
-      "seconds": 46.4
+      "seconds": 15.1
     },
     {
       "id": "fms",
@@ -2155,7 +2155,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 506,
-      "seconds": 54.8
+      "seconds": 14.6
     },
     {
       "id": "forecast",
@@ -2168,7 +2168,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 537,
-      "seconds": 37.7
+      "seconds": 14.3
     },
     {
       "id": "forecastquery",
@@ -2181,7 +2181,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 30,
-      "seconds": 40.1
+      "seconds": 14.2
     },
     {
       "id": "frauddetector",
@@ -2194,7 +2194,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 608,
-      "seconds": 32.1
+      "seconds": 21.0
     },
     {
       "id": "freetier",
@@ -2207,7 +2207,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 70,
-      "seconds": 31.3
+      "seconds": 7.6
     },
     {
       "id": "fsx",
@@ -2220,7 +2220,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 757,
-      "seconds": 17.3
+      "seconds": 23.2
     },
     {
       "id": "gamelift",
@@ -2234,7 +2234,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1039,
-      "seconds": 23.5
+      "seconds": 32.5
     },
     {
       "id": "gameliftstreams",
@@ -2247,7 +2247,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 252,
-      "seconds": 25.5
+      "seconds": 15.2
     },
     {
       "id": "geo-maps",
@@ -2260,7 +2260,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 76,
-      "seconds": 22.7
+      "seconds": 14.3
     },
     {
       "id": "geo-places",
@@ -2273,7 +2273,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 295,
-      "seconds": 25.3
+      "seconds": 15.7
     },
     {
       "id": "geo-routes",
@@ -2286,7 +2286,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 818,
-      "seconds": 27.9
+      "seconds": 39.0
     },
     {
       "id": "glacier",
@@ -2299,7 +2299,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 264,
-      "seconds": 11.1
+      "seconds": 16.2
     },
     {
       "id": "global-accelerator",
@@ -2312,7 +2312,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 441,
-      "seconds": 22.4
+      "seconds": 20.3
     },
     {
       "id": "glue",
@@ -2325,7 +2325,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 3122,
-      "seconds": 80.0
+      "seconds": 83.4
     },
     {
       "id": "grafana",
@@ -2338,7 +2338,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 203,
-      "seconds": 12.7
+      "seconds": 16.0
     },
     {
       "id": "greengrass",
@@ -2351,7 +2351,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 602,
-      "seconds": 53.4
+      "seconds": 24.5
     },
     {
       "id": "greengrassv2",
@@ -2364,7 +2364,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 323,
-      "seconds": 39.3
+      "seconds": 17.2
     },
     {
       "id": "groundstation",
@@ -2377,7 +2377,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 470,
-      "seconds": 50.6
+      "seconds": 34.8
     },
     {
       "id": "guardduty",
@@ -2390,7 +2390,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1383,
-      "seconds": 72.9
+      "seconds": 51.6
     },
     {
       "id": "health",
@@ -2404,7 +2404,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 196,
-      "seconds": 59.8
+      "seconds": 21.6
     },
     {
       "id": "healthlake",
@@ -2417,7 +2417,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 279,
-      "seconds": 51.0
+      "seconds": 19.0
     },
     {
       "id": "iam",
@@ -2430,7 +2430,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1238,
-      "seconds": 30.9
+      "seconds": 42.9
     },
     {
       "id": "iam-toolbox",
@@ -2443,7 +2443,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 38,
-      "seconds": 10.6
+      "seconds": 19.5
     },
     {
       "id": "identitystore",
@@ -2456,7 +2456,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 197,
-      "seconds": 10.3
+      "seconds": 22.6
     },
     {
       "id": "imagebuilder",
@@ -2469,7 +2469,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 782,
-      "seconds": 43.7
+      "seconds": 25.4
     },
     {
       "id": "inspector",
@@ -2482,7 +2482,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 362,
-      "seconds": 25.8
+      "seconds": 26.1
     },
     {
       "id": "inspector-scan",
@@ -2495,7 +2495,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 25,
-      "seconds": 25.6
+      "seconds": 9.0
     },
     {
       "id": "inspector2",
@@ -2508,7 +2508,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1087,
-      "seconds": 58.8
+      "seconds": 49.8
     },
     {
       "id": "interconnect",
@@ -2522,7 +2522,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 113,
-      "seconds": 13.6
+      "seconds": 14.9
     },
     {
       "id": "internetmonitor",
@@ -2535,7 +2535,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 153,
-      "seconds": 22.6
+      "seconds": 8.1
     },
     {
       "id": "invoicing",
@@ -2548,7 +2548,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 259,
-      "seconds": 27.9
+      "seconds": 19.9
     },
     {
       "id": "iot",
@@ -2561,7 +2561,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 2252,
-      "seconds": 63.7
+      "seconds": 78.1
     },
     {
       "id": "iot-data-plane",
@@ -2574,7 +2574,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 91,
-      "seconds": 41.8
+      "seconds": 13.4
     },
     {
       "id": "iot-jobs-data-plane",
@@ -2587,7 +2587,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 63,
-      "seconds": 48.1
+      "seconds": 12.1
     },
     {
       "id": "iot-managed-integrations",
@@ -2600,7 +2600,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 689,
-      "seconds": 64.9
+      "seconds": 46.9
     },
     {
       "id": "iot-wireless",
@@ -2613,7 +2613,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1004,
-      "seconds": 49.7
+      "seconds": 49.2
     },
     {
       "id": "iotdeviceadvisor",
@@ -2626,7 +2626,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 120,
-      "seconds": 37.3
+      "seconds": 27.4
     },
     {
       "id": "iotfleetwise",
@@ -2639,7 +2639,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 565,
-      "seconds": 36.0
+      "seconds": 39.2
     },
     {
       "id": "iotsecuretunneling",
@@ -2652,7 +2652,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 69,
-      "seconds": 20.6
+      "seconds": 24.9
     },
     {
       "id": "iotsitewise",
@@ -2665,7 +2665,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1503,
-      "seconds": 22.6
+      "seconds": 56.8
     },
     {
       "id": "iotthingsgraph",
@@ -2678,7 +2678,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 275,
-      "seconds": 20.4
+      "seconds": 19.6
     },
     {
       "id": "iottwinmaker",
@@ -2691,7 +2691,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 433,
-      "seconds": 19.2
+      "seconds": 18.6
     },
     {
       "id": "ivs",
@@ -2704,7 +2704,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 333,
-      "seconds": 15.5
+      "seconds": 23.7
     },
     {
       "id": "ivs-realtime",
@@ -2717,7 +2717,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 339,
-      "seconds": 13.7
+      "seconds": 15.1
     },
     {
       "id": "ivschat",
@@ -2730,7 +2730,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 129,
-      "seconds": 11.5
+      "seconds": 20.5
     },
     {
       "id": "kafka",
@@ -2743,7 +2743,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 705,
-      "seconds": 26.9
+      "seconds": 30.8
     },
     {
       "id": "kafkaconnect",
@@ -2756,7 +2756,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 238,
-      "seconds": 12.1
+      "seconds": 13.0
     },
     {
       "id": "kendra",
@@ -2769,7 +2769,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 898,
-      "seconds": 31.3
+      "seconds": 26.7
     },
     {
       "id": "kendra-ranking",
@@ -2783,7 +2783,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 83,
-      "seconds": 11.6
+      "seconds": 10.7
     },
     {
       "id": "keyspaces",
@@ -2797,7 +2797,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 185,
-      "seconds": 12.3
+      "seconds": 21.5
     },
     {
       "id": "keyspacesstreams",
@@ -2810,7 +2810,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 78,
-      "seconds": 19.7
+      "seconds": 10.2
     },
     {
       "id": "kinesis",
@@ -2823,7 +2823,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 412,
-      "seconds": 24.9
+      "seconds": 22.6
     },
     {
       "id": "kinesis-analytics",
@@ -2836,7 +2836,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 260,
-      "seconds": 13.6
+      "seconds": 21.1
     },
     {
       "id": "kinesis-analytics-v2",
@@ -2849,7 +2849,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 518,
-      "seconds": 15.2
+      "seconds": 16.2
     },
     {
       "id": "kinesis-video",
@@ -2862,7 +2862,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 292,
-      "seconds": 10.2
+      "seconds": 7.7
     },
     {
       "id": "kinesis-video-archived-media",
@@ -2875,7 +2875,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 105,
-      "seconds": 17.1
+      "seconds": 4.9
     },
     {
       "id": "kinesis-video-media",
@@ -2888,7 +2888,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 24,
-      "seconds": 15.4
+      "seconds": 13.3
     },
     {
       "id": "kinesis-video-signaling",
@@ -2901,7 +2901,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 31,
-      "seconds": 13.9
+      "seconds": 11.9
     },
     {
       "id": "kinesis-video-webrtc-storage",
@@ -2914,7 +2914,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 21,
-      "seconds": 4.4
+      "seconds": 3.5
     },
     {
       "id": "kms",
@@ -2927,7 +2927,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 476,
-      "seconds": 34.0
+      "seconds": 18.8
     },
     {
       "id": "lakeformation",
@@ -2940,7 +2940,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 530,
-      "seconds": 43.2
+      "seconds": 21.5
     },
     {
       "id": "lambda",
@@ -2953,7 +2953,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 949,
-      "seconds": 31.5
+      "seconds": 17.3
     },
     {
       "id": "lambda-core",
@@ -2966,7 +2966,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 67,
-      "seconds": 31.9
+      "seconds": 15.8
     },
     {
       "id": "lambda-microvms",
@@ -2979,7 +2979,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 220,
-      "seconds": 35.4
+      "seconds": 8.9
     },
     {
       "id": "lambda-web",
@@ -2992,7 +2992,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 18,
-      "seconds": 22.1
+      "seconds": 12.4
     },
     {
       "id": "launch-wizard",
@@ -3005,7 +3005,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 145,
-      "seconds": 24.8
+      "seconds": 9.0
     },
     {
       "id": "lex-model-building-service",
@@ -3018,7 +3018,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 378,
-      "seconds": 32.0
+      "seconds": 8.7
     },
     {
       "id": "lex-models-v2",
@@ -3031,7 +3031,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1435,
-      "seconds": 33.2
+      "seconds": 38.4
     },
     {
       "id": "lex-runtime-service",
@@ -3044,7 +3044,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 89,
-      "seconds": 4.5
+      "seconds": 14.9
     },
     {
       "id": "lex-runtime-v2",
@@ -3057,7 +3057,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 149,
-      "seconds": 6.4
+      "seconds": 9.5
     },
     {
       "id": "license-manager",
@@ -3070,7 +3070,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 546,
-      "seconds": 16.8
+      "seconds": 27.5
     },
     {
       "id": "license-manager-linux-subscriptions",
@@ -3083,7 +3083,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 86,
-      "seconds": 8.3
+      "seconds": 8.5
     },
     {
       "id": "license-manager-user-subscriptions",
@@ -3096,7 +3096,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 153,
-      "seconds": 9.8
+      "seconds": 10.6
     },
     {
       "id": "lightsail",
@@ -3109,7 +3109,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1343,
-      "seconds": 41.7
+      "seconds": 32.6
     },
     {
       "id": "location",
@@ -3122,7 +3122,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 530,
-      "seconds": 24.8
+      "seconds": 30.4
     },
     {
       "id": "lookoutequipment",
@@ -3135,7 +3135,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 393,
-      "seconds": 19.1
+      "seconds": 20.7
     },
     {
       "id": "m2",
@@ -3148,7 +3148,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 334,
-      "seconds": 17.7
+      "seconds": 15.4
     },
     {
       "id": "machine-learning",
@@ -3161,7 +3161,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 228,
-      "seconds": 24.4
+      "seconds": 12.1
     },
     {
       "id": "macie2",
@@ -3174,7 +3174,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 882,
-      "seconds": 28.3
+      "seconds": 35.0
     },
     {
       "id": "mailmanager",
@@ -3188,7 +3188,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 606,
-      "seconds": 31.7
+      "seconds": 17.3
     },
     {
       "id": "managedblockchain",
@@ -3201,7 +3201,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 270,
-      "seconds": 12.9
+      "seconds": 20.5
     },
     {
       "id": "managedblockchain-query",
@@ -3214,7 +3214,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 116,
-      "seconds": 18.6
+      "seconds": 8.7
     },
     {
       "id": "marketplace-agreement",
@@ -3228,7 +3228,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 344,
-      "seconds": 13.4
+      "seconds": 12.8
     },
     {
       "id": "marketplace-catalog",
@@ -3241,7 +3241,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 458,
-      "seconds": 13.7
+      "seconds": 11.2
     },
     {
       "id": "marketplace-commerce-analytics",
@@ -3254,7 +3254,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 20,
-      "seconds": 8.1
+      "seconds": 7.6
     },
     {
       "id": "marketplace-deployment",
@@ -3267,7 +3267,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 42,
-      "seconds": 14.4
+      "seconds": 17.7
     },
     {
       "id": "marketplace-discovery",
@@ -3280,7 +3280,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 320,
-      "seconds": 16.5
+      "seconds": 8.7
     },
     {
       "id": "marketplace-entitlement-service",
@@ -3294,7 +3294,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 23,
-      "seconds": 4.0
+      "seconds": 10.0
     },
     {
       "id": "marketplace-metering",
@@ -3307,7 +3307,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 77,
-      "seconds": 4.2
+      "seconds": 14.3
     },
     {
       "id": "marketplace-reporting",
@@ -3320,7 +3320,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 17,
-      "seconds": 4.0
+      "seconds": 13.1
     },
     {
       "id": "mediaconnect",
@@ -3333,7 +3333,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 977,
-      "seconds": 52.0
+      "seconds": 39.1
     },
     {
       "id": "mediaconvert",
@@ -3346,7 +3346,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1650,
-      "seconds": 51.3
+      "seconds": 46.2
     },
     {
       "id": "medialive",
@@ -3359,7 +3359,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 2173,
-      "seconds": 51.7
+      "seconds": 43.7
     },
     {
       "id": "mediapackage",
@@ -3372,7 +3372,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 199,
-      "seconds": 11.3
+      "seconds": 20.7
     },
     {
       "id": "mediapackage-vod",
@@ -3385,7 +3385,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 171,
-      "seconds": 28.1
+      "seconds": 22.2
     },
     {
       "id": "mediapackagev2",
@@ -3398,7 +3398,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 374,
-      "seconds": 44.3
+      "seconds": 26.2
     },
     {
       "id": "mediastore",
@@ -3411,7 +3411,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 145,
-      "seconds": 46.0
+      "seconds": 20.4
     },
     {
       "id": "mediastore-data",
@@ -3424,7 +3424,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 45,
-      "seconds": 45.4
+      "seconds": 9.6
     },
     {
       "id": "mediatailor",
@@ -3437,7 +3437,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 504,
-      "seconds": 49.3
+      "seconds": 17.0
     },
     {
       "id": "medical-imaging",
@@ -3450,7 +3450,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 188,
-      "seconds": 20.2
+      "seconds": 21.4
     },
     {
       "id": "memorydb",
@@ -3463,7 +3463,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 486,
-      "seconds": 14.5
+      "seconds": 26.3
     },
     {
       "id": "mgn",
@@ -3476,7 +3476,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 838,
-      "seconds": 16.7
+      "seconds": 27.8
     },
     {
       "id": "migration-hub",
@@ -3489,7 +3489,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 166,
-      "seconds": 17.9
+      "seconds": 15.5
     },
     {
       "id": "migration-hub-refactor-spaces",
@@ -3502,7 +3502,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 184,
-      "seconds": 10.0
+      "seconds": 8.7
     },
     {
       "id": "migrationhub-config",
@@ -3515,7 +3515,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 42,
-      "seconds": 7.0
+      "seconds": 15.9
     },
     {
       "id": "migrationhuborchestrator",
@@ -3528,7 +3528,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 223,
-      "seconds": 18.8
+      "seconds": 16.7
     },
     {
       "id": "migrationhubstrategy",
@@ -3541,7 +3541,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 271,
-      "seconds": 13.1
+      "seconds": 16.5
     },
     {
       "id": "mpa",
@@ -3554,7 +3554,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 235,
-      "seconds": 9.0
+      "seconds": 17.3
     },
     {
       "id": "mq",
@@ -3567,7 +3567,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 238,
-      "seconds": 7.8
+      "seconds": 7.1
     },
     {
       "id": "mturk",
@@ -3580,7 +3580,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 285,
-      "seconds": 7.5
+      "seconds": 13.0
     },
     {
       "id": "mwaa",
@@ -3593,7 +3593,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 109,
-      "seconds": 6.5
+      "seconds": 9.0
     },
     {
       "id": "mwaa-serverless",
@@ -3606,7 +3606,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 149,
-      "seconds": 18.2
+      "seconds": 13.6
     },
     {
       "id": "neptune",
@@ -3619,7 +3619,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 644,
-      "seconds": 20.1
+      "seconds": 16.6
     },
     {
       "id": "neptune-graph",
@@ -3632,7 +3632,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 284,
-      "seconds": 14.6
+      "seconds": 5.7
     },
     {
       "id": "neptunedata",
@@ -3645,7 +3645,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 377,
-      "seconds": 26.1
+      "seconds": 10.1
     },
     {
       "id": "network-firewall",
@@ -3658,7 +3658,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 813,
-      "seconds": 22.0
+      "seconds": 23.1
     },
     {
       "id": "network-security-manager",
@@ -3671,7 +3671,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 416,
-      "seconds": 26.3
+      "seconds": 24.3
     },
     {
       "id": "networkflowmonitor",
@@ -3684,7 +3684,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 199,
-      "seconds": 13.5
+      "seconds": 10.5
     },
     {
       "id": "networkmanager",
@@ -3697,7 +3697,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 791,
-      "seconds": 20.9
+      "seconds": 18.1
     },
     {
       "id": "networkmonitor",
@@ -3710,7 +3710,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 98,
-      "seconds": 19.9
+      "seconds": 17.8
     },
     {
       "id": "notifications",
@@ -3723,7 +3723,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 318,
-      "seconds": 10.0
+      "seconds": 11.1
     },
     {
       "id": "notificationscontacts",
@@ -3736,7 +3736,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 72,
-      "seconds": 17.2
+      "seconds": 16.8
     },
     {
       "id": "nova-act",
@@ -3749,7 +3749,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 161,
-      "seconds": 6.1
+      "seconds": 10.2
     },
     {
       "id": "oam",
@@ -3762,7 +3762,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 116,
-      "seconds": 4.8
+      "seconds": 7.3
     },
     {
       "id": "observabilityadmin",
@@ -3775,7 +3775,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 429,
-      "seconds": 44.5
+      "seconds": 27.0
     },
     {
       "id": "odb",
@@ -3788,7 +3788,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 759,
-      "seconds": 53.3
+      "seconds": 36.5
     },
     {
       "id": "omics",
@@ -3801,7 +3801,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 813,
-      "seconds": 42.5
+      "seconds": 24.4
     },
     {
       "id": "opensearch",
@@ -3814,7 +3814,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1067,
-      "seconds": 41.8
+      "seconds": 39.4
     },
     {
       "id": "opensearchserverless",
@@ -3827,7 +3827,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 375,
-      "seconds": 50.7
+      "seconds": 26.9
     },
     {
       "id": "organizations",
@@ -3840,7 +3840,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 536,
-      "seconds": 43.6
+      "seconds": 29.7
     },
     {
       "id": "osis",
@@ -3853,7 +3853,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 201,
-      "seconds": 42.3
+      "seconds": 13.1
     },
     {
       "id": "outposts",
@@ -3866,7 +3866,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 472,
-      "seconds": 35.5
+      "seconds": 19.3
     },
     {
       "id": "partnercentral-account",
@@ -3879,7 +3879,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 301,
-      "seconds": 17.0
+      "seconds": 16.9
     },
     {
       "id": "partnercentral-benefits",
@@ -3892,7 +3892,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 180,
-      "seconds": 6.2
+      "seconds": 17.0
     },
     {
       "id": "partnercentral-channel",
@@ -3905,7 +3905,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 224,
-      "seconds": 13.5
+      "seconds": 8.5
     },
     {
       "id": "partnercentral-revenue-measurement",
@@ -3918,7 +3918,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 177,
-      "seconds": 15.7
+      "seconds": 14.8
     },
     {
       "id": "partnercentral-selling",
@@ -3931,7 +3931,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 595,
-      "seconds": 20.1
+      "seconds": 20.0
     },
     {
       "id": "payment-cryptography",
@@ -3944,7 +3944,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 254,
-      "seconds": 7.4
+      "seconds": 16.5
     },
     {
       "id": "payment-cryptography-data",
@@ -3957,7 +3957,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 267,
-      "seconds": 12.7
+      "seconds": 6.4
     },
     {
       "id": "pca-connector-ad",
@@ -3970,7 +3970,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 277,
-      "seconds": 7.7
+      "seconds": 10.2
     },
     {
       "id": "pca-connector-scep",
@@ -3983,7 +3983,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 107,
-      "seconds": 15.8
+      "seconds": 10.2
     },
     {
       "id": "pcs",
@@ -3996,7 +3996,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 257,
-      "seconds": 16.4
+      "seconds": 7.6
     },
     {
       "id": "personalize",
@@ -4009,7 +4009,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 580,
-      "seconds": 8.4
+      "seconds": 7.3
     },
     {
       "id": "personalize-events",
@@ -4022,7 +4022,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 53,
-      "seconds": 4.6
+      "seconds": 14.9
     },
     {
       "id": "personalize-runtime",
@@ -4035,7 +4035,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 38,
-      "seconds": 4.6
+      "seconds": 4.3
     },
     {
       "id": "pi",
@@ -4049,7 +4049,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 168,
-      "seconds": 15.0
+      "seconds": 17.5
     },
     {
       "id": "pinpoint",
@@ -4062,7 +4062,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1152,
-      "seconds": 19.4
+      "seconds": 34.7
     },
     {
       "id": "pinpoint-email",
@@ -4075,7 +4075,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 349,
-      "seconds": 12.1
+      "seconds": 11.4
     },
     {
       "id": "pinpoint-sms-voice",
@@ -4088,7 +4088,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 78,
-      "seconds": 16.8
+      "seconds": 8.4
     },
     {
       "id": "pinpoint-sms-voice-v2",
@@ -4101,7 +4101,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 852,
-      "seconds": 16.5
+      "seconds": 24.1
     },
     {
       "id": "pipes",
@@ -4114,7 +4114,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 244,
-      "seconds": 20.0
+      "seconds": 10.8
     },
     {
       "id": "polly",
@@ -4127,7 +4127,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 160,
-      "seconds": 18.6
+      "seconds": 9.6
     },
     {
       "id": "pricing",
@@ -4140,7 +4140,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 61,
-      "seconds": 15.6
+      "seconds": 15.8
     },
     {
       "id": "pricing-plan-manager",
@@ -4153,7 +4153,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 76,
-      "seconds": 14.8
+      "seconds": 6.0
     },
     {
       "id": "proton",
@@ -4166,7 +4166,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 586,
-      "seconds": 11.7
+      "seconds": 19.5
     },
     {
       "id": "qapps",
@@ -4179,7 +4179,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 320,
-      "seconds": 18.8
+      "seconds": 14.7
     },
     {
       "id": "qbusiness",
@@ -4192,7 +4192,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 929,
-      "seconds": 69.3
+      "seconds": 24.5
     },
     {
       "id": "qconnect",
@@ -4205,7 +4205,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1020,
-      "seconds": 57.9
+      "seconds": 41.5
     },
     {
       "id": "quicksight",
@@ -4218,7 +4218,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 4908,
-      "seconds": 86.9
+      "seconds": 132.5
     },
     {
       "id": "ram",
@@ -4231,7 +4231,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 312,
-      "seconds": 52.5
+      "seconds": 11.1
     },
     {
       "id": "rbin",
@@ -4244,7 +4244,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 98,
-      "seconds": 25.2
+      "seconds": 13.0
     },
     {
       "id": "rds",
@@ -4257,7 +4257,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1577,
-      "seconds": 62.2
+      "seconds": 55.9
     },
     {
       "id": "rds-data",
@@ -4270,7 +4270,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 114,
-      "seconds": 59.1
+      "seconds": 15.2
     },
     {
       "id": "redshift",
@@ -4283,7 +4283,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1403,
-      "seconds": 50.7
+      "seconds": 55.8
     },
     {
       "id": "redshift-data",
@@ -4296,7 +4296,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 114,
-      "seconds": 29.9
+      "seconds": 20.5
     },
     {
       "id": "redshift-serverless",
@@ -4309,7 +4309,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 442,
-      "seconds": 34.3
+      "seconds": 19.5
     },
     {
       "id": "rekognition",
@@ -4322,7 +4322,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 904,
-      "seconds": 37.5
+      "seconds": 33.6
     },
     {
       "id": "repostspace",
@@ -4335,7 +4335,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 157,
-      "seconds": 27.4
+      "seconds": 19.3
     },
     {
       "id": "resiliencehub",
@@ -4348,7 +4348,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 589,
-      "seconds": 20.9
+      "seconds": 30.1
     },
     {
       "id": "resiliencehubv2",
@@ -4361,7 +4361,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 806,
-      "seconds": 32.1
+      "seconds": 43.1
     },
     {
       "id": "resource-explorer-2",
@@ -4374,7 +4374,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 238,
-      "seconds": 16.9
+      "seconds": 27.3
     },
     {
       "id": "resource-groups",
@@ -4387,7 +4387,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 219,
-      "seconds": 17.2
+      "seconds": 29.4
     },
     {
       "id": "resource-groups-tagging-api",
@@ -4400,7 +4400,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 100,
-      "seconds": 6.7
+      "seconds": 22.5
     },
     {
       "id": "rolesanywhere",
@@ -4413,7 +4413,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 208,
-      "seconds": 8.7
+      "seconds": 11.2
     },
     {
       "id": "route-53",
@@ -4426,7 +4426,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 655,
-      "seconds": 33.9
+      "seconds": 26.0
     },
     {
       "id": "route-53-domains",
@@ -4439,7 +4439,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 263,
-      "seconds": 42.9
+      "seconds": 18.7
     },
     {
       "id": "route53-recovery-cluster",
@@ -4452,7 +4452,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 53,
-      "seconds": 26.9
+      "seconds": 11.2
     },
     {
       "id": "route53-recovery-control-config",
@@ -4465,7 +4465,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 182,
-      "seconds": 29.7
+      "seconds": 19.6
     },
     {
       "id": "route53-recovery-readiness",
@@ -4478,7 +4478,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 221,
-      "seconds": 39.1
+      "seconds": 9.5
     },
     {
       "id": "route53globalresolver",
@@ -4491,7 +4491,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 351,
-      "seconds": 27.3
+      "seconds": 12.0
     },
     {
       "id": "route53profiles",
@@ -4504,7 +4504,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 123,
-      "seconds": 23.9
+      "seconds": 7.7
     },
     {
       "id": "route53resolver",
@@ -4517,7 +4517,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 564,
-      "seconds": 20.9
+      "seconds": 23.0
     },
     {
       "id": "rtbfabric",
@@ -4530,7 +4530,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 294,
-      "seconds": 9.4
+      "seconds": 13.3
     },
     {
       "id": "rum",
@@ -4543,7 +4543,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 179,
-      "seconds": 17.5
+      "seconds": 14.5
     },
     {
       "id": "s3",
@@ -4556,7 +4556,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1133,
-      "seconds": 36.4
+      "seconds": 40.0
     },
     {
       "id": "s3-control",
@@ -4569,7 +4569,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 956,
-      "seconds": 17.1
+      "seconds": 25.3
     },
     {
       "id": "s3files",
@@ -4582,7 +4582,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 153,
-      "seconds": 8.9
+      "seconds": 10.8
     },
     {
       "id": "s3outposts",
@@ -4595,7 +4595,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 57,
-      "seconds": 7.3
+      "seconds": 9.7
     },
     {
       "id": "s3tables",
@@ -4608,7 +4608,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 387,
-      "seconds": 16.5
+      "seconds": 23.6
     },
     {
       "id": "s3vectors",
@@ -4621,7 +4621,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 179,
-      "seconds": 12.3
+      "seconds": 19.5
     },
     {
       "id": "sagemaker",
@@ -4634,7 +4634,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 4767,
-      "seconds": 126.1
+      "seconds": 169.0
     },
     {
       "id": "sagemaker-a2i-runtime",
@@ -4647,7 +4647,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 56,
-      "seconds": 18.6
+      "seconds": 7.2
     },
     {
       "id": "sagemaker-edge",
@@ -4660,7 +4660,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 49,
-      "seconds": 18.7
+      "seconds": 6.8
     },
     {
       "id": "sagemaker-featurestore-runtime",
@@ -4673,7 +4673,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 85,
-      "seconds": 11.9
+      "seconds": 17.5
     },
     {
       "id": "sagemaker-geospatial",
@@ -4686,7 +4686,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 247,
-      "seconds": 7.8
+      "seconds": 18.2
     },
     {
       "id": "sagemaker-metrics",
@@ -4699,7 +4699,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 37,
-      "seconds": 5.0
+      "seconds": 15.2
     },
     {
       "id": "sagemaker-runtime",
@@ -4712,7 +4712,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 38,
-      "seconds": 14.6
+      "seconds": 15.8
     },
     {
       "id": "sagemaker-runtime-http2",
@@ -4725,7 +4725,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 28,
-      "seconds": 13.0
+      "seconds": 7.3
     },
     {
       "id": "sagemakerjobruntime",
@@ -4738,7 +4738,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 40,
-      "seconds": 13.1
+      "seconds": 4.6
     },
     {
       "id": "savingsplans",
@@ -4751,7 +4751,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 142,
-      "seconds": 14.5
+      "seconds": 16.7
     },
     {
       "id": "scheduler",
@@ -4764,7 +4764,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 125,
-      "seconds": 14.2
+      "seconds": 7.4
     },
     {
       "id": "schemas",
@@ -4777,7 +4777,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 206,
-      "seconds": 5.5
+      "seconds": 12.1
     },
     {
       "id": "secrets-manager",
@@ -4790,7 +4790,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 189,
-      "seconds": 18.9
+      "seconds": 17.9
     },
     {
       "id": "security-ir",
@@ -4803,7 +4803,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 240,
-      "seconds": 25.5
+      "seconds": 20.8
     },
     {
       "id": "securityagent",
@@ -4816,7 +4816,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 946,
-      "seconds": 31.3
+      "seconds": 33.9
     },
     {
       "id": "securityhub",
@@ -4829,7 +4829,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 2767,
-      "seconds": 93.8
+      "seconds": 77.5
     },
     {
       "id": "securitylake",
@@ -4842,7 +4842,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 256,
-      "seconds": 16.8
+      "seconds": 22.0
     },
     {
       "id": "serverlessapplicationrepository",
@@ -4855,7 +4855,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 119,
-      "seconds": 18.9
+      "seconds": 7.7
     },
     {
       "id": "service-catalog",
@@ -4868,7 +4868,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 729,
-      "seconds": 27.5
+      "seconds": 33.4
     },
     {
       "id": "service-catalog-appregistry",
@@ -4881,7 +4881,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 188,
-      "seconds": 13.8
+      "seconds": 28.1
     },
     {
       "id": "service-quotas",
@@ -4894,7 +4894,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 226,
-      "seconds": 14.3
+      "seconds": 28.4
     },
     {
       "id": "servicediscovery",
@@ -4907,7 +4907,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 305,
-      "seconds": 68.8
+      "seconds": 28.0
     },
     {
       "id": "ses",
@@ -4920,7 +4920,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 571,
-      "seconds": 66.5
+      "seconds": 19.0
     },
     {
       "id": "sesv2",
@@ -4933,7 +4933,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1040,
-      "seconds": 54.5
+      "seconds": 32.6
     },
     {
       "id": "sfn",
@@ -4946,7 +4946,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 431,
-      "seconds": 53.5
+      "seconds": 26.5
     },
     {
       "id": "shield",
@@ -4959,7 +4959,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 322,
-      "seconds": 61.4
+      "seconds": 14.8
     },
     {
       "id": "signer",
@@ -4972,7 +4972,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 187,
-      "seconds": 50.3
+      "seconds": 22.2
     },
     {
       "id": "signer-data",
@@ -4985,7 +4985,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 18,
-      "seconds": 4.9
+      "seconds": 9.0
     },
     {
       "id": "signin",
@@ -4998,7 +4998,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 93,
-      "seconds": 4.5
+      "seconds": 15.4
     },
     {
       "id": "simpledbv2",
@@ -5011,7 +5011,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 40,
-      "seconds": 12.8
+      "seconds": 7.2
     },
     {
       "id": "snow-device-management",
@@ -5024,7 +5024,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 127,
-      "seconds": 5.4
+      "seconds": 15.0
     },
     {
       "id": "snowball",
@@ -5038,7 +5038,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 272,
-      "seconds": 15.0
+      "seconds": 19.7
     },
     {
       "id": "sns",
@@ -5051,7 +5051,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 331,
-      "seconds": 6.8
+      "seconds": 11.3
     },
     {
       "id": "socialmessaging",
@@ -5064,7 +5064,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 317,
-      "seconds": 20.5
+      "seconds": 18.8
     },
     {
       "id": "sqs",
@@ -5077,7 +5077,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 225,
-      "seconds": 9.1
+      "seconds": 21.5
     },
     {
       "id": "ssm",
@@ -5090,7 +5090,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 1807,
-      "seconds": 59.2
+      "seconds": 33.3
     },
     {
       "id": "ssm-contacts",
@@ -5103,7 +5103,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 310,
-      "seconds": 12.1
+      "seconds": 23.0
     },
     {
       "id": "ssm-guiconnect",
@@ -5116,7 +5116,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 39,
-      "seconds": 7.8
+      "seconds": 18.2
     },
     {
       "id": "ssm-incidents",
@@ -5129,7 +5129,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 282,
-      "seconds": 13.1
+      "seconds": 19.6
     },
     {
       "id": "ssm-quicksetup",
@@ -5142,7 +5142,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 123,
-      "seconds": 20.9
+      "seconds": 8.5
     },
     {
       "id": "ssm-sap",
@@ -5155,7 +5155,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 267,
-      "seconds": 21.6
+      "seconds": 8.8
     },
     {
       "id": "sso",
@@ -5168,7 +5168,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 39,
-      "seconds": 7.9
+      "seconds": 7.3
     },
     {
       "id": "sso-admin",
@@ -5181,7 +5181,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 581,
-      "seconds": 37.6
+      "seconds": 31.4
     },
     {
       "id": "sso-oidc",
@@ -5194,7 +5194,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 60,
-      "seconds": 6.5
+      "seconds": 6.6
     },
     {
       "id": "storage-gateway",
@@ -5207,7 +5207,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 634,
-      "seconds": 31.2
+      "seconds": 19.5
     },
     {
       "id": "sts",
@@ -5220,7 +5220,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 99,
-      "seconds": 30.6
+      "seconds": 10.5
     },
     {
       "id": "supplychain",
@@ -5233,7 +5233,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 278,
-      "seconds": 28.9
+      "seconds": 13.1
     },
     {
       "id": "support",
@@ -5246,7 +5246,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 204,
-      "seconds": 28.3
+      "seconds": 20.5
     },
     {
       "id": "support-app",
@@ -5259,7 +5259,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 71,
-      "seconds": 23.1
+      "seconds": 8.4
     },
     {
       "id": "supportauthz",
@@ -5272,7 +5272,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 104,
-      "seconds": 18.1
+      "seconds": 7.2
     },
     {
       "id": "sustainability",
@@ -5285,7 +5285,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 70,
-      "seconds": 10.1
+      "seconds": 6.8
     },
     {
       "id": "swf",
@@ -5298,7 +5298,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 457,
-      "seconds": 12.6
+      "seconds": 26.7
     },
     {
       "id": "synthetics",
@@ -5311,7 +5311,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 256,
-      "seconds": 18.4
+      "seconds": 11.9
     },
     {
       "id": "taxsettings",
@@ -5324,7 +5324,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 259,
-      "seconds": 17.1
+      "seconds": 21.2
     },
     {
       "id": "textract",
@@ -5337,7 +5337,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 324,
-      "seconds": 11.4
+      "seconds": 15.1
     },
     {
       "id": "timestream-influxdb",
@@ -5350,7 +5350,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 231,
-      "seconds": 10.6
+      "seconds": 14.1
     },
     {
       "id": "timestream-query",
@@ -5363,7 +5363,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 221,
-      "seconds": 20.4
+      "seconds": 23.2
     },
     {
       "id": "timestream-write",
@@ -5376,7 +5376,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 210,
-      "seconds": 8.9
+      "seconds": 21.0
     },
     {
       "id": "tnb",
@@ -5389,7 +5389,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 292,
-      "seconds": 19.8
+      "seconds": 22.4
     },
     {
       "id": "transcribe",
@@ -5402,7 +5402,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 411,
-      "seconds": 12.5
+      "seconds": 19.1
     },
     {
       "id": "transcribe-streaming",
@@ -5415,7 +5415,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 204,
-      "seconds": 9.0
+      "seconds": 7.1
     },
     {
       "id": "transfer",
@@ -5428,7 +5428,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 662,
-      "seconds": 18.4
+      "seconds": 19.9
     },
     {
       "id": "translate",
@@ -5442,7 +5442,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 199,
-      "seconds": 15.7
+      "seconds": 16.2
     },
     {
       "id": "trustedadvisor",
@@ -5455,7 +5455,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 138,
-      "seconds": 8.3
+      "seconds": 15.1
     },
     {
       "id": "uxc",
@@ -5468,7 +5468,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 33,
-      "seconds": 11.4
+      "seconds": 3.5
     },
     {
       "id": "verifiedpermissions",
@@ -5481,7 +5481,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 402,
-      "seconds": 10.9
+      "seconds": 9.1
     },
     {
       "id": "voice-id",
@@ -5494,7 +5494,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 234,
-      "seconds": 9.6
+      "seconds": 18.3
     },
     {
       "id": "vpc-lattice",
@@ -5507,7 +5507,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 510,
-      "seconds": 14.1
+      "seconds": 23.2
     },
     {
       "id": "waf",
@@ -5520,7 +5520,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 612,
-      "seconds": 27.2
+      "seconds": 18.2
     },
     {
       "id": "waf-regional",
@@ -5533,7 +5533,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 637,
-      "seconds": 27.3
+      "seconds": 21.9
     },
     {
       "id": "wafv2",
@@ -5546,7 +5546,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 811,
-      "seconds": 29.0
+      "seconds": 26.4
     },
     {
       "id": "wellarchitected",
@@ -5559,7 +5559,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 877,
-      "seconds": 41.0
+      "seconds": 29.9
     },
     {
       "id": "wickr",
@@ -5572,7 +5572,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 335,
-      "seconds": 31.4
+      "seconds": 20.1
     },
     {
       "id": "wisdom",
@@ -5585,7 +5585,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 346,
-      "seconds": 20.7
+      "seconds": 15.7
     },
     {
       "id": "workdocs",
@@ -5598,7 +5598,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 434,
-      "seconds": 22.7
+      "seconds": 25.8
     },
     {
       "id": "workmail",
@@ -5611,7 +5611,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 644,
-      "seconds": 25.4
+      "seconds": 35.7
     },
     {
       "id": "workmailmessageflow",
@@ -5624,7 +5624,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 25,
-      "seconds": 7.5
+      "seconds": 15.8
     },
     {
       "id": "workspaces",
@@ -5637,7 +5637,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 894,
-      "seconds": 33.3
+      "seconds": 31.8
     },
     {
       "id": "workspaces-instances",
@@ -5651,7 +5651,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 228,
-      "seconds": 31.5
+      "seconds": 20.8
     },
     {
       "id": "workspaces-thin-client",
@@ -5664,7 +5664,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 150,
-      "seconds": 29.2
+      "seconds": 14.8
     },
     {
       "id": "workspaces-web",
@@ -5677,7 +5677,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 535,
-      "seconds": 27.6
+      "seconds": 21.8
     },
     {
       "id": "xray",
@@ -5690,7 +5690,7 @@
       "first_error": "",
       "error_codes": {},
       "files": 423,
-      "seconds": 27.5
+      "seconds": 18.3
     }
   ]
 }
