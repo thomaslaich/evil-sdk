@@ -2,7 +2,7 @@
   <PropertyGroup>
     <!-- NSmithy runtime and codegen version. scripts/nsaws.py reads this too; pass
          -p:NSmithyVersion=0.0.0-SNAPSHOT with NSmithyLocalFeed to build against a local checkout. -->
-    <NSmithyVersion Condition="'$(NSmithyVersion)' == ''">0.15.0</NSmithyVersion>
+    <NSmithyVersion Condition="'$(NSmithyVersion)' == ''">0.18.0</NSmithyVersion>
 
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
