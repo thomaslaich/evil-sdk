@@ -20,7 +20,7 @@ is not affiliated with or supported by AWS; for production use, see the
 
 ## Usage
 
-Requires .NET 10, Java 17+, Python 3.11+, the Smithy CLI 1.73.0 on `PATH`
+Requires .NET 10, Java 17+, Python 3.11+, the Smithy CLI 1.74.1 on `PATH`
 (or `SMITHY=/path/to/smithy`), and [`just`](https://github.com/casey/just).
 
 ```sh

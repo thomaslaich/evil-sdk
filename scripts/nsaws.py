@@ -30,7 +30,7 @@ MODELS = ROOT / "aws-models" / "models"
 SERVICES = ROOT / "services"
 SWEEP = ROOT / ".sweep"
 REPORTS = ROOT / "reports"
-SMITHY_VERSION = "1.73.0"
+SMITHY_VERSION = "1.74.1"
 
 SMITHY_DEPENDENCIES = [
     "smithy-aws-traits",
