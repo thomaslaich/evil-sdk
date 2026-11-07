@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#DeleteCapacityProviderInput.
 /// </summary>
 /// <param name="CapacityProviderName">
-/// &lt;p&gt;The name of the capacity provider to delete.&lt;/p&gt;
+/// The name of the capacity provider to delete.
 /// </param>
 public sealed record class DeleteCapacityProviderInput(string CapacityProviderName);

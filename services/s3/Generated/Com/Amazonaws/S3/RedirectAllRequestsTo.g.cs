@@ -5,14 +5,14 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.&lt;/p&gt;
+/// Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.
 /// </summary>
 /// <param name="HostName">
-/// &lt;p&gt;Name of the host where requests are redirected.&lt;/p&gt;
+/// Name of the host where requests are redirected.
 /// </param>
 /// <param name="Protocol">
-/// &lt;p&gt;Protocol to use when redirecting requests. The default is the protocol that is used in the original
-/// request.&lt;/p&gt;
+/// Protocol to use when redirecting requests. The default is the protocol that is used in the original
+/// request.
 /// </param>
 public sealed record class RedirectAllRequestsTo(
     string HostName,

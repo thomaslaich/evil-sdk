@@ -5,11 +5,10 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Specifies an item to be retrieved as part of the transaction.&lt;/p&gt;
+/// Specifies an item to be retrieved as part of the transaction.
 /// </summary>
 /// <param name="Get">
-/// &lt;p&gt;Contains the primary key that identifies the item to get, together with the name of
-/// the table that contains the item, and optionally the specific attributes of the item to
-/// retrieve.&lt;/p&gt;
+/// Contains the primary key that identifies the item to get, together with the name of the table that
+/// contains the item, and optionally the specific attributes of the item to retrieve.
 /// </param>
 public sealed record class TransactGetItem(global::Com.Amazonaws.Dynamodb.Get Get);

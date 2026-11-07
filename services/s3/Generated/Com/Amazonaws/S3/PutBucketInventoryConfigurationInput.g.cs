@@ -8,26 +8,38 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutBucketInventoryConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket where the inventory configuration will be stored.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - When you use this operation with a directory bucket, you must use path-style requests in the format &lt;code&gt;https://s3express-control.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com/&lt;i&gt;bucket-name&lt;/i&gt;
-/// &lt;/code&gt;. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;DOC-EXAMPLE-BUCKET&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;
-/// &lt;/p&gt;
+/// <para>
+/// The name of the bucket where the inventory configuration will be stored.
+/// </para>
+/// <para>
+/// <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use
+/// path-style requests in the format
+/// <c>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i> </c>.
+/// Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen
+/// Zone (Availability Zone or Local Zone). Bucket names must also follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>
+/// </para>
 /// </param>
 /// <param name="Id">
-/// &lt;p&gt;The ID used to identify the inventory configuration.&lt;/p&gt;
+/// The ID used to identify the inventory configuration.
 /// </param>
 /// <param name="InventoryConfiguration">
-/// &lt;p&gt;Specifies the inventory configuration.&lt;/p&gt;
+/// Specifies the inventory configuration.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;For directory buckets, this header is not supported in this API operation. If you specify this header, the request fails with the HTTP status code
-/// &lt;code&gt;501 Not Implemented&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, this header is not supported in this API operation. If you
+/// specify this header, the request fails with the HTTP status code <c>501 Not Implemented</c>.
+/// </para>
 /// </param>
 public sealed record class PutBucketInventoryConfigurationInput(
     string Bucket,

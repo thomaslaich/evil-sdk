@@ -8,93 +8,136 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListMultipartUploadsInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket to which the multipart upload was initiated. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The name of the bucket to which the multipart upload was initiated.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="Delimiter">
-/// &lt;p&gt;Character you use to group keys.&lt;/p&gt;
-/// &lt;p&gt;All keys that contain the same string between the prefix, if specified, and the first occurrence of
-/// the delimiter after the prefix are grouped under a single result element, &lt;code&gt;CommonPrefixes&lt;/code&gt;.
-/// If you don't specify the prefix parameter, then the substring starts at the beginning of the key. The
-/// keys that are grouped under &lt;code&gt;CommonPrefixes&lt;/code&gt; result element are not returned elsewhere in the
-/// response.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; is filtered out from results if it is not lexicographically greater than
-/// the key-marker.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, &lt;code&gt;/&lt;/code&gt; is the only supported delimiter.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Character you use to group keys.
+/// </para>
+/// <para>
+/// All keys that contain the same string between the prefix, if specified, and the first occurrence of
+/// the delimiter after the prefix are grouped under a single result element, <c>CommonPrefixes</c>. If
+/// you don't specify the prefix parameter, then the substring starts at the beginning of the key. The
+/// keys that are grouped under <c>CommonPrefixes</c> result element are not returned elsewhere in the
+/// response.
+/// </para>
+/// <para>
+/// <c>CommonPrefixes</c> is filtered out from results if it is not lexicographically greater than the
+/// key-marker.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, <c>/</c> is the only supported
+/// delimiter.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="KeyMarker">
-/// &lt;p&gt;Specifies the multipart upload after which listing should begin.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - For general purpose buckets,
-/// &lt;code&gt;key-marker&lt;/code&gt; is an object key. Together with &lt;code&gt;upload-id-marker&lt;/code&gt;, this
-/// parameter specifies the multipart upload after which listing should begin.&lt;/p&gt;
-/// &lt;p&gt;If &lt;code&gt;upload-id-marker&lt;/code&gt; is not specified, only the keys lexicographically greater
-/// than the specified &lt;code&gt;key-marker&lt;/code&gt; will be included in the list.&lt;/p&gt;
-/// &lt;p&gt;If &lt;code&gt;upload-id-marker&lt;/code&gt; is specified, any multipart uploads for a key equal to the
-/// &lt;code&gt;key-marker&lt;/code&gt; might also be included, provided those multipart uploads have upload IDs
-/// lexicographically greater than the specified &lt;code&gt;upload-id-marker&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets,
-/// &lt;code&gt;key-marker&lt;/code&gt; is obfuscated and isn't a real object key. The
-/// &lt;code&gt;upload-id-marker&lt;/code&gt; parameter isn't supported by directory buckets. To list the
-/// additional multipart uploads, you only need to set the value of &lt;code&gt;key-marker&lt;/code&gt; to the
-/// &lt;code&gt;NextKeyMarker&lt;/code&gt; value from the previous response. &lt;/p&gt;
-/// &lt;p&gt;In the &lt;code&gt;ListMultipartUploads&lt;/code&gt; response, the multipart uploads aren't sorted
-/// lexicographically based on the object keys.
-///
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the multipart upload after which listing should begin.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <b>General purpose buckets</b> - For general purpose buckets, <c>key-marker</c> is an object key.
+/// Together with <c>upload-id-marker</c>, this parameter specifies the multipart upload after which
+/// listing should begin.
+/// </para>
+/// <para>
+/// If <c>upload-id-marker</c> is not specified, only the keys lexicographically greater than the
+/// specified <c>key-marker</c> will be included in the list.
+/// </para>
+/// <para>
+/// If <c>upload-id-marker</c> is specified, any multipart uploads for a key equal to the
+/// <c>key-marker</c> might also be included, provided those multipart uploads have upload IDs
+/// lexicographically greater than the specified <c>upload-id-marker</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <b>Directory buckets</b> - For directory buckets, <c>key-marker</c> is obfuscated and isn't a real
+/// object key. The <c>upload-id-marker</c> parameter isn't supported by directory buckets. To list the
+/// additional multipart uploads, you only need to set the value of <c>key-marker</c> to the
+/// <c>NextKeyMarker</c> value from the previous response.
+/// </para>
+/// <para>
+/// In the <c>ListMultipartUploads</c> response, the multipart uploads aren't sorted lexicographically
+/// based on the object keys.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="MaxUploads">
-/// &lt;p&gt;Sets the maximum number of multipart uploads, from 1 to 1,000, to return in the response body. 1,000
-/// is the maximum number of uploads that can be returned in a response.&lt;/p&gt;
+/// Sets the maximum number of multipart uploads, from 1 to 1,000, to return in the response body. 1,000
+/// is the maximum number of uploads that can be returned in a response.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Lists in-progress uploads only for those keys that begin with the specified prefix. You can use
-/// prefixes to separate a bucket into different grouping of keys. (You can think of using
-/// &lt;code&gt;prefix&lt;/code&gt; to make groups in the same way that you'd use a folder in a file system.)&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, only prefixes that end in a delimiter (&lt;code&gt;/&lt;/code&gt;) are supported.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Lists in-progress uploads only for those keys that begin with the specified prefix. You can use
+/// prefixes to separate a bucket into different grouping of keys. (You can think of using <c>prefix</c>
+/// to make groups in the same way that you'd use a folder in a file system.)
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter
+/// (<c>/</c>) are supported.
+/// </para>
 /// </param>
 /// <param name="UploadIdMarker">
-/// &lt;p&gt;Together with key-marker, specifies the multipart upload after which listing should begin. If
-/// key-marker is not specified, the upload-id-marker parameter is ignored. Otherwise, any multipart uploads
-/// for a key equal to the key-marker might be included in the list only if they have an upload ID
-/// lexicographically greater than the specified &lt;code&gt;upload-id-marker&lt;/code&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Together with key-marker, specifies the multipart upload after which listing should begin. If
+/// key-marker is not specified, the upload-id-marker parameter is ignored. Otherwise, any multipart
+/// uploads for a key equal to the key-marker might be included in the list only if they have an upload
+/// ID lexicographically greater than the specified <c>upload-id-marker</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class ListMultipartUploadsInput(
     string Bucket,

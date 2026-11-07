@@ -8,13 +8,13 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateCapacityProviderInput.
 /// </summary>
 /// <param name="CapacityProviderName">
-/// &lt;p&gt;The name of the capacity provider to update.&lt;/p&gt;
+/// The name of the capacity provider to update.
 /// </param>
 /// <param name="CapacityProviderScalingConfig">
-/// &lt;p&gt;The updated scaling configuration for the capacity provider.&lt;/p&gt;
+/// The updated scaling configuration for the capacity provider.
 /// </param>
 /// <param name="TelemetryConfig">
-/// &lt;p&gt;The updated telemetry configuration for the capacity provider.&lt;/p&gt;
+/// The updated telemetry configuration for the capacity provider.
 /// </param>
 public sealed record class UpdateCapacityProviderInput(
     string CapacityProviderName,

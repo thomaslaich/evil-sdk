@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#SendDurableExecutionCallbackHeartbeatInput.
 /// </summary>
 /// <param name="CallbackId">
-/// &lt;p&gt;The unique identifier for the callback operation.&lt;/p&gt;
+/// The unique identifier for the callback operation.
 /// </param>
 public sealed record class SendDurableExecutionCallbackHeartbeatInput(string CallbackId);

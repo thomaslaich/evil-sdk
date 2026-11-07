@@ -5,15 +5,21 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for granting information.&lt;/p&gt;
-/// &lt;p&gt;Buckets that use the bucket owner enforced setting for Object Ownership don't support target grants.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-general&quot;&gt;Permissions server access log delivery&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Container for granting information.
+/// </para>
+/// <para>
+/// Buckets that use the bucket owner enforced setting for Object Ownership don't support target grants.
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-general">Permissions
+/// server access log delivery</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </summary>
 /// <param name="Grantee">
-/// &lt;p&gt;Container for the person being granted permissions.&lt;/p&gt;
+/// Container for the person being granted permissions.
 /// </param>
 /// <param name="Permission">
-/// &lt;p&gt;Logging permissions assigned to the grantee for the bucket.&lt;/p&gt;
+/// Logging permissions assigned to the grantee for the bucket.
 /// </param>
 public sealed record class TargetGrant(
     global::Com.Amazonaws.S3.Grantee? Grantee = null,

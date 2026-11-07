@@ -10,20 +10,20 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListBucketInventoryConfigurationsOutput.
 /// </summary>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;If sent in the request, the marker that is used as a starting point for this inventory configuration
-/// list response.&lt;/p&gt;
+/// If sent in the request, the marker that is used as a starting point for this inventory configuration
+/// list response.
 /// </param>
 /// <param name="InventoryConfigurationList">
-/// &lt;p&gt;The list of inventory configurations for a bucket.&lt;/p&gt;
+/// The list of inventory configurations for a bucket.
 /// </param>
 /// <param name="IsTruncated">
-/// &lt;p&gt;Tells whether the returned list of inventory configurations is complete. A value of true indicates
-/// that the list is not complete and the NextContinuationToken is provided for a subsequent request.&lt;/p&gt;
+/// Tells whether the returned list of inventory configurations is complete. A value of true indicates
+/// that the list is not complete and the NextContinuationToken is provided for a subsequent request.
 /// </param>
 /// <param name="NextContinuationToken">
-/// &lt;p&gt;The marker used to continue this inventory configuration listing. Use the
-/// &lt;code&gt;NextContinuationToken&lt;/code&gt; from this response to continue the listing in a subsequent request.
-/// The continuation token is an opaque value that Amazon S3 understands.&lt;/p&gt;
+/// The marker used to continue this inventory configuration listing. Use the
+/// <c>NextContinuationToken</c> from this response to continue the listing in a subsequent request. The
+/// continuation token is an opaque value that Amazon S3 understands.
 /// </param>
 public sealed record class ListBucketInventoryConfigurationsOutput(
     string? ContinuationToken = null,

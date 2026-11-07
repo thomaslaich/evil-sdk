@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#ListQueueTagsInput.
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the queue.&lt;/p&gt;
+/// The URL of the queue.
 /// </param>
 public sealed record class ListQueueTagsInput(string QueueUrl);

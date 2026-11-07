@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-dlq&quot;&gt;dead-letter queue&lt;/a&gt; for failed asynchronous invocations.&lt;/p&gt;
+/// The
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-dlq">dead-letter
+/// queue</see> for failed asynchronous invocations.
 /// </summary>
 /// <param name="TargetArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.
 /// </param>
 public sealed record class DeadLetterConfig(string? TargetArn = null);

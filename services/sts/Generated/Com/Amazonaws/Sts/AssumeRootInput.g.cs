@@ -8,47 +8,50 @@ namespace Com.Amazonaws.Sts;
 /// Represents the Smithy structure com.amazonaws.sts#AssumeRootInput.
 /// </summary>
 /// <param name="TargetPrincipal">
-/// &lt;p&gt;The member account principal ARN or account ID.&lt;/p&gt;
+/// The member account principal ARN or account ID.
 /// </param>
 /// <param name="TaskPolicyArn">
-/// &lt;p&gt;The identity based policy that scopes the session to the privileged tasks that can be
-/// performed. You must
-///
-/// use one of following Amazon Web Services managed policies to scope root session
-/// actions:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMAuditRootUserCredentials&quot;&gt;IAMAuditRootUserCredentials&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMCreateRootUserPassword&quot;&gt;IAMCreateRootUserPassword&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMDeleteRootUserCredentials&quot;&gt;IAMDeleteRootUserCredentials&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-S3UnlockBucketPolicy&quot;&gt;S3UnlockBucketPolicy&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-SQSUnlockQueuePolicy&quot;&gt;SQSUnlockQueuePolicy&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The identity based policy that scopes the session to the privileged tasks that can be performed. You
+/// must use one of following Amazon Web Services managed policies to scope root session actions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMAuditRootUserCredentials">IAMAuditRootUserCredentials</see>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMCreateRootUserPassword">IAMCreateRootUserPassword</see>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-IAMDeleteRootUserCredentials">IAMDeleteRootUserCredentials</see>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-S3UnlockBucketPolicy">S3UnlockBucketPolicy</see>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/security-iam-awsmanpol.html#security-iam-awsmanpol-SQSUnlockQueuePolicy">SQSUnlockQueuePolicy</see>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="DurationSeconds">
-/// &lt;p&gt;The duration, in seconds, of the privileged session. The value can range from 0 seconds
-/// up to the maximum session duration of 900 seconds (15 minutes). If you specify a value
-/// higher than this setting, the operation fails.&lt;/p&gt;
-/// &lt;p&gt;By default, the value is set to &lt;code&gt;900&lt;/code&gt; seconds.&lt;/p&gt;
+/// <para>
+/// The duration, in seconds, of the privileged session. The value can range from 0 seconds up to the
+/// maximum session duration of 900 seconds (15 minutes). If you specify a value higher than this
+/// setting, the operation fails.
+/// </para>
+/// <para>
+/// By default, the value is set to <c>900</c> seconds.
+/// </para>
 /// </param>
 public sealed record class AssumeRootInput(
     string TargetPrincipal,

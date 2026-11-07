@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; The write offset value that you specified does not match the current object size. &lt;/p&gt;
+/// The write offset value that you specified does not match the current object size.
 /// </summary>
 public sealed partial class InvalidWriteOffset : Exception
 {
     /// <summary>
-    /// &lt;p&gt; The write offset value that you specified does not match the current object size. &lt;/p&gt;
+    /// The write offset value that you specified does not match the current object size.
     /// </summary>
     public InvalidWriteOffset(string? message = null)
         : base(message) { }

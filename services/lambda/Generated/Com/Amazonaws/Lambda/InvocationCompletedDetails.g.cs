@@ -7,19 +7,21 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a function invocation that completed.&lt;/p&gt;
+/// Details about a function invocation that completed.
 /// </summary>
 /// <param name="EndTimestamp">
-/// &lt;p&gt;The date and time when the invocation ended, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when the invocation ended, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="RequestId">
-/// &lt;p&gt;The request ID for the invocation.&lt;/p&gt;
+/// The request ID for the invocation.
 /// </param>
 /// <param name="StartTimestamp">
-/// &lt;p&gt;The date and time when the invocation started, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when the invocation started, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="Error">
-/// &lt;p&gt;Details about the invocation failure.&lt;/p&gt;
+/// Details about the invocation failure.
 /// </param>
 public sealed record class InvocationCompletedDetails(
     DateTimeOffset EndTimestamp,

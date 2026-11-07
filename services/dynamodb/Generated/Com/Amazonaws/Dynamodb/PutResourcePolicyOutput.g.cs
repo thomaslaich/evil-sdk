@@ -8,6 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#PutResourcePolicyOutput.
 /// </summary>
 /// <param name="RevisionId">
-/// &lt;p&gt;A unique string that represents the revision ID of the policy. If you're comparing revision IDs, make sure to always use string comparison logic.&lt;/p&gt;
+/// A unique string that represents the revision ID of the policy. If you're comparing revision IDs,
+/// make sure to always use string comparison logic.
 /// </param>
 public sealed record class PutResourcePolicyOutput(string? RevisionId = null);

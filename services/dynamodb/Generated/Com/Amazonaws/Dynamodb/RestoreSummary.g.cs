@@ -7,19 +7,19 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains details for the restore.&lt;/p&gt;
+/// Contains details for the restore.
 /// </summary>
 /// <param name="RestoreDateTime">
-/// &lt;p&gt;Point in time or source backup time.&lt;/p&gt;
+/// Point in time or source backup time.
 /// </param>
 /// <param name="RestoreInProgress">
-/// &lt;p&gt;Indicates if a restore is in progress or not.&lt;/p&gt;
+/// Indicates if a restore is in progress or not.
 /// </param>
 /// <param name="SourceBackupArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the backup from which the table was restored.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the backup from which the table was restored.
 /// </param>
 /// <param name="SourceTableArn">
-/// &lt;p&gt;The ARN of the source table of the backup that is being restored.&lt;/p&gt;
+/// The ARN of the source table of the backup that is being restored.
 /// </param>
 public sealed record class RestoreSummary(
     DateTimeOffset RestoreDateTime,

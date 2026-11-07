@@ -7,15 +7,19 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The maximum number of capacity providers for your account has been exceeded. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt; &lt;/p&gt;
+/// The maximum number of capacity providers for your account has been exceeded. For more information,
+/// see <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+/// quotas</see>
 /// </summary>
 public sealed partial class CapacityProviderLimitExceededException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The maximum number of capacity providers for your account has been exceeded. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt; &lt;/p&gt;
+    /// The maximum number of capacity providers for your account has been exceeded. For more information,
+    /// see <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+    /// quotas</see>
     /// </summary>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public CapacityProviderLimitExceededException(string? message = null, string? type = null)
         : base(message)
@@ -26,7 +30,7 @@ public sealed partial class CapacityProviderLimitExceededException : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the use of SSE-KMS to encrypt delivered inventory reports.&lt;/p&gt;
+/// Specifies the use of SSE-KMS to encrypt delivered inventory reports.
 /// </summary>
 /// <param name="KeyId">
-/// &lt;p&gt;Specifies the ID of the Key Management Service (KMS) symmetric encryption customer managed key to use for encrypting
-/// inventory reports.&lt;/p&gt;
+/// Specifies the ID of the Key Management Service (KMS) symmetric encryption customer managed key to
+/// use for encrypting inventory reports.
 /// </param>
 public sealed record class SSEKMS(string KeyId);

@@ -8,13 +8,14 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListFunctionVersionsByCapacityProviderInput.
 /// </summary>
 /// <param name="CapacityProviderName">
-/// &lt;p&gt;The name of the capacity provider to list function versions for.&lt;/p&gt;
+/// The name of the capacity provider to list function versions for.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;Specify the pagination token that's returned by a previous request to retrieve the next page of results.&lt;/p&gt;
+/// Specify the pagination token that's returned by a previous request to retrieve the next page of
+/// results.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;The maximum number of function versions to return in the response.&lt;/p&gt;
+/// The maximum number of function versions to return in the response.
 /// </param>
 public sealed record class ListFunctionVersionsByCapacityProviderInput(
     string CapacityProviderName,

@@ -5,10 +5,11 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Configures the transfer acceleration state for an Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html&quot;&gt;Amazon S3 Transfer
-/// Acceleration&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// Configures the transfer acceleration state for an Amazon S3 bucket. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html">Amazon S3
+/// Transfer Acceleration</see> in the <i>Amazon S3 User Guide</i>.
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;Specifies the transfer acceleration status of the bucket.&lt;/p&gt;
+/// Specifies the transfer acceleration status of the bucket.
 /// </param>
 public sealed record class AccelerateConfiguration(BucketAccelerateStatus? Status = null);

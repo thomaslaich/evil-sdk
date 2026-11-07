@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration that specifies the telemetry collection for the capacity provider.&lt;/p&gt;
+/// Configuration that specifies the telemetry collection for the capacity provider.
 /// </summary>
 /// <param name="LoggingConfig">
-/// &lt;p&gt;The capacity provider's Amazon CloudWatch Logs configuration settings.&lt;/p&gt;
+/// The capacity provider's Amazon CloudWatch Logs configuration settings.
 /// </param>
 public sealed record class CapacityProviderTelemetryConfig(
     CapacityProviderLoggingConfig? LoggingConfig = null

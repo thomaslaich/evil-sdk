@@ -8,13 +8,15 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteBucketAnalyticsConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket from which an analytics configuration is deleted.&lt;/p&gt;
+/// The name of the bucket from which an analytics configuration is deleted.
 /// </param>
 /// <param name="Id">
-/// &lt;p&gt;The ID that identifies the analytics configuration.&lt;/p&gt;
+/// The ID that identifies the analytics configuration.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 public sealed record class DeleteBucketAnalyticsConfigurationInput(
     string Bucket,

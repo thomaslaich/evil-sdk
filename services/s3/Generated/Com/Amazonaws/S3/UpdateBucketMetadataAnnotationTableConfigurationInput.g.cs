@@ -8,19 +8,19 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#UpdateBucketMetadataAnnotationTableConfigurationInput.
 /// </summary>
 /// <param name="AnnotationTableConfiguration">
-/// &lt;p&gt;The annotation table configuration updates to apply.&lt;/p&gt;
+/// The annotation table configuration updates to apply.
 /// </param>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket whose annotation table configuration to update.&lt;/p&gt;
+/// The name of the bucket whose annotation table configuration to update.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Checksum algorithm for the request payload.&lt;/p&gt;
+/// Checksum algorithm for the request payload.
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;Base64-encoded MD5 digest of the message body.&lt;/p&gt;
+/// Base64-encoded MD5 digest of the message body.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner.&lt;/p&gt;
+/// The account ID of the expected bucket owner.
 /// </param>
 public sealed record class UpdateBucketMetadataAnnotationTableConfigurationInput(
     AnnotationTableConfigurationUpdates AnnotationTableConfiguration,

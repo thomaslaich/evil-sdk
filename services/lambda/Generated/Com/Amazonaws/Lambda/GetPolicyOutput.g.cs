@@ -8,9 +8,9 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetPolicyOutput.
 /// </summary>
 /// <param name="Policy">
-/// &lt;p&gt;The resource-based policy.&lt;/p&gt;
+/// The resource-based policy.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;A unique identifier for the current revision of the policy.&lt;/p&gt;
+/// A unique identifier for the current revision of the policy.
 /// </param>
 public sealed record class GetPolicyOutput(string? Policy = null, string? RevisionId = null);

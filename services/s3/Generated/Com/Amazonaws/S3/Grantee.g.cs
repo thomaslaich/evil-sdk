@@ -5,22 +5,20 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for the person being granted permissions.&lt;/p&gt;
+/// Container for the person being granted permissions.
 /// </summary>
 /// <param name="Type">
-/// &lt;p&gt;Type of grantee&lt;/p&gt;
+/// Type of grantee
 /// </param>
 /// <param name="DisplayName">
-/// &lt;p&gt;&lt;/p&gt;
 /// </param>
 /// <param name="EmailAddress">
-/// &lt;p&gt;&lt;/p&gt;
 /// </param>
 /// <param name="ID">
-/// &lt;p&gt;The canonical user ID of the grantee.&lt;/p&gt;
+/// The canonical user ID of the grantee.
 /// </param>
 /// <param name="URI">
-/// &lt;p&gt;URI of the grantee group.&lt;/p&gt;
+/// URI of the grantee group.
 /// </param>
 public sealed record class Grantee(
     global::Com.Amazonaws.S3.Type Type,

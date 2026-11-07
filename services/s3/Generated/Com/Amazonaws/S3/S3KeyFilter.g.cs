@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for object key name prefix and suffix filtering rules.&lt;/p&gt;
+/// A container for object key name prefix and suffix filtering rules.
 /// </summary>
 /// <param name="FilterRules">
-/// &lt;p&gt;A list of containers for the key-value pair that defines the criteria for the filter rule.&lt;/p&gt;
+/// A list of containers for the key-value pair that defines the criteria for the filter rule.
 /// </param>
 public sealed record class S3KeyFilter(IReadOnlyList<FilterRule>? FilterRules = null);

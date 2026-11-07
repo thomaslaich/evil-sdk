@@ -5,15 +5,15 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; A container specifying S3 Replication Time Control (S3 RTC) related information, including whether S3 RTC is enabled and
-/// the time when all objects and operations on objects must be replicated. Must be specified together with
-/// a &lt;code&gt;Metrics&lt;/code&gt; block. &lt;/p&gt;
+/// A container specifying S3 Replication Time Control (S3 RTC) related information, including whether
+/// S3 RTC is enabled and the time when all objects and operations on objects must be replicated. Must
+/// be specified together with a <c>Metrics</c> block.
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt; Specifies whether the replication time is enabled. &lt;/p&gt;
+/// Specifies whether the replication time is enabled.
 /// </param>
 /// <param name="Time">
-/// &lt;p&gt; A container specifying the time by which replication should be complete for all objects and
-/// operations on objects. &lt;/p&gt;
+/// A container specifying the time by which replication should be complete for all objects and
+/// operations on objects.
 /// </param>
 public sealed record class ReplicationTime(ReplicationTimeStatus Status, ReplicationTimeValue Time);

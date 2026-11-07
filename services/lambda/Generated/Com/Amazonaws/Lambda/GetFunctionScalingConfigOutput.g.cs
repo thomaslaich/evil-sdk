@@ -8,13 +8,14 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetFunctionScalingConfigOutput.
 /// </summary>
 /// <param name="AppliedFunctionScalingConfig">
-/// &lt;p&gt;The scaling configuration that is currently applied to the function. This represents the actual scaling settings in effect.&lt;/p&gt;
+/// The scaling configuration that is currently applied to the function. This represents the actual
+/// scaling settings in effect.
 /// </param>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the function.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the function.
 /// </param>
 /// <param name="RequestedFunctionScalingConfig">
-/// &lt;p&gt;The scaling configuration that was requested for the function.&lt;/p&gt;
+/// The scaling configuration that was requested for the function.
 /// </param>
 public sealed record class GetFunctionScalingConfigOutput(
     FunctionScalingConfig? AppliedFunctionScalingConfig = null,

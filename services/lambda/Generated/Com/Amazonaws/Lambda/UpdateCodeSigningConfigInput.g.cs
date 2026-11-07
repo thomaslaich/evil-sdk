@@ -8,16 +8,16 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateCodeSigningConfigInput.
 /// </summary>
 /// <param name="CodeSigningConfigArn">
-/// &lt;p&gt;The The Amazon Resource Name (ARN) of the code signing configuration.&lt;/p&gt;
+/// The The Amazon Resource Name (ARN) of the code signing configuration.
 /// </param>
 /// <param name="AllowedPublishers">
-/// &lt;p&gt;Signing profiles for this code signing configuration.&lt;/p&gt;
+/// Signing profiles for this code signing configuration.
 /// </param>
 /// <param name="CodeSigningPolicies">
-/// &lt;p&gt;The code signing policy.&lt;/p&gt;
+/// The code signing policy.
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;Descriptive name for this code signing configuration.&lt;/p&gt;
+/// Descriptive name for this code signing configuration.
 /// </param>
 public sealed record class UpdateCodeSigningConfigInput(
     string CodeSigningConfigArn,

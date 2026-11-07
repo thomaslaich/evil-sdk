@@ -5,10 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Specifies the tenant isolation mode configuration for a Lambda function. This allows you to configure specific tenant isolation strategies for your function invocations. Tenant isolation configuration cannot be modified after function creation.&lt;/p&gt;
+/// Specifies the tenant isolation mode configuration for a Lambda function. This allows you to
+/// configure specific tenant isolation strategies for your function invocations. Tenant isolation
+/// configuration cannot be modified after function creation.
 /// </summary>
 /// <param name="TenantIsolationMode">
-/// &lt;p&gt;Tenant isolation mode allows for invocation to be sent to a corresponding execution environment dedicated to a specific tenant ID.&lt;/p&gt;
+/// Tenant isolation mode allows for invocation to be sent to a corresponding execution environment
+/// dedicated to a specific tenant ID.
 /// </param>
 public sealed record class TenancyConfig(
     global::Com.Amazonaws.Lambda.TenantIsolationMode TenantIsolationMode

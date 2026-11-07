@@ -5,12 +5,13 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait before
-/// permanently removing all parts of the upload. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config&quot;&gt; Aborting
-/// Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// Specifies the days since the initiation of an incomplete multipart upload that Amazon S3 will wait
+/// before permanently removing all parts of the upload. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Aborting
+/// Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration</see> in the <i>Amazon S3 User
+/// Guide</i>.
 /// </summary>
 /// <param name="DaysAfterInitiation">
-/// &lt;p&gt;Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload.&lt;/p&gt;
+/// Specifies the number of days after which Amazon S3 aborts an incomplete multipart upload.
 /// </param>
 public sealed record class AbortIncompleteMultipartUpload(int? DaysAfterInitiation = null);

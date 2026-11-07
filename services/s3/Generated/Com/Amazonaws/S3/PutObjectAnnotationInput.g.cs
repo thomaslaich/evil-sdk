@@ -10,65 +10,71 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectAnnotationInput.
 /// </summary>
 /// <param name="AnnotationName">
-/// &lt;p&gt;The name of the annotation.&lt;/p&gt;
-/// &lt;p&gt;Length Constraints: Minimum length of 1. Maximum length of 512 bytes.&lt;/p&gt;
+/// <para>
+/// The name of the annotation.
+/// </para>
+/// <para>
+/// Length Constraints: Minimum length of 1. Maximum length of 512 bytes.
+/// </para>
 /// </param>
 /// <param name="AnnotationPayload">
-/// &lt;p&gt;The annotation payload. Must be between 1 byte and 1 MiB in size, and must be valid UTF-8
-/// encoded text. If the payload contains invalid UTF-8 bytes, the request fails with HTTP 415
-/// (Unsupported Media Type). To store binary data, encode the payload using Base64 before
-/// uploading.&lt;/p&gt;
+/// The annotation payload. Must be between 1 byte and 1 MiB in size, and must be valid UTF-8 encoded
+/// text. If the payload contains invalid UTF-8 bytes, the request fails with HTTP 415 (Unsupported
+/// Media Type). To store binary data, encode the payload using Base64 before uploading.
 /// </param>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket that contains the object.&lt;/p&gt;
+/// The name of the bucket that contains the object.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;The checksum algorithm to use. Supported values: &lt;code&gt;CRC32&lt;/code&gt;, &lt;code&gt;CRC32C&lt;/code&gt;, &lt;code&gt;CRC64NVME&lt;/code&gt;, &lt;code&gt;SHA1&lt;/code&gt;, &lt;code&gt;SHA256&lt;/code&gt;, &lt;code&gt;SHA512&lt;/code&gt;, &lt;code&gt;MD5&lt;/code&gt;, &lt;code&gt;XXHASH64&lt;/code&gt;, &lt;code&gt;XXHASH3&lt;/code&gt;, &lt;code&gt;XXHASH128&lt;/code&gt;.&lt;/p&gt;
+/// The checksum algorithm to use. Supported values: <c>CRC32</c>, <c>CRC32C</c>, <c>CRC64NVME</c>,
+/// <c>SHA1</c>, <c>SHA256</c>, <c>SHA512</c>, <c>MD5</c>, <c>XXHASH64</c>, <c>XXHASH3</c>,
+/// <c>XXHASH128</c>.
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;Base64-encoded CRC32 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded CRC32 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;Base64-encoded CRC32C checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded CRC32C checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;Base64-encoded CRC64NVME checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded CRC64NVME checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;Base64-encoded MD5 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded MD5 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;Base64-encoded SHA1 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded SHA1 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;Base64-encoded SHA256 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded SHA256 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;Base64-encoded SHA512 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded SHA512 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;Base64-encoded XXHASH128 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded XXHASH128 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;Base64-encoded XXHASH3 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded XXHASH3 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;Base64-encoded XXHASH64 checksum of the annotation payload.&lt;/p&gt;
+/// Base64-encoded XXHASH64 checksum of the annotation payload.
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;Base64-encoded MD5 digest of the message.&lt;/p&gt;
+/// Base64-encoded MD5 digest of the message.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the bucket is owned by a different account, the request fails with an HTTP 403 (Access Denied) error.&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the bucket is owned by a different account, the
+/// request fails with an HTTP 403 (Access Denied) error.
 /// </param>
 /// <param name="ObjectIfMatch">
-/// &lt;p&gt;If specified, the operation only succeeds if the object's ETag matches the provided value.&lt;/p&gt;
+/// If specified, the operation only succeeds if the object's ETag matches the provided value.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID of the object to attach the annotation to.&lt;/p&gt;
+/// The version ID of the object to attach the annotation to.
 /// </param>
 public sealed record class PutObjectAnnotationInput(
     string AnnotationName,

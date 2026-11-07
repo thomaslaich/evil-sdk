@@ -7,16 +7,14 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Indicates that the specified queue previously received a &lt;code&gt;PurgeQueue&lt;/code&gt;
-/// request within the last 60 seconds (the time it can take to delete the messages in the
-/// queue).&lt;/p&gt;
+/// Indicates that the specified queue previously received a <c>PurgeQueue</c> request within the last
+/// 60 seconds (the time it can take to delete the messages in the queue).
 /// </summary>
 public sealed partial class PurgeQueueInProgress : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Indicates that the specified queue previously received a &lt;code&gt;PurgeQueue&lt;/code&gt;
-    /// request within the last 60 seconds (the time it can take to delete the messages in the
-    /// queue).&lt;/p&gt;
+    /// Indicates that the specified queue previously received a <c>PurgeQueue</c> request within the last
+    /// 60 seconds (the time it can take to delete the messages in the queue).
     /// </summary>
     public PurgeQueueInProgress(string? message = null)
         : base(message) { }

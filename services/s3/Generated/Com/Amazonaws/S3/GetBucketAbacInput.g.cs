@@ -8,9 +8,9 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketAbacInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the general purpose bucket.&lt;/p&gt;
+/// The name of the general purpose bucket.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The Amazon Web Services account ID of the general purpose bucket's owner. &lt;/p&gt;
+/// The Amazon Web Services account ID of the general purpose bucket's owner.
 /// </param>
 public sealed record class GetBucketAbacInput(string Bucket, string? ExpectedBucketOwner = null);

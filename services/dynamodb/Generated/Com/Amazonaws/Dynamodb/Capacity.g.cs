@@ -5,17 +5,16 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the amount of provisioned throughput capacity consumed on a table or an
-/// index.&lt;/p&gt;
+/// Represents the amount of provisioned throughput capacity consumed on a table or an index.
 /// </summary>
 /// <param name="CapacityUnits">
-/// &lt;p&gt;The total number of capacity units consumed on a table or an index.&lt;/p&gt;
+/// The total number of capacity units consumed on a table or an index.
 /// </param>
 /// <param name="ReadCapacityUnits">
-/// &lt;p&gt;The total number of read capacity units consumed on a table or an index.&lt;/p&gt;
+/// The total number of read capacity units consumed on a table or an index.
 /// </param>
 /// <param name="WriteCapacityUnits">
-/// &lt;p&gt;The total number of write capacity units consumed on a table or an index.&lt;/p&gt;
+/// The total number of write capacity units consumed on a table or an index.
 /// </param>
 public sealed record class Capacity(
     double? CapacityUnits = null,

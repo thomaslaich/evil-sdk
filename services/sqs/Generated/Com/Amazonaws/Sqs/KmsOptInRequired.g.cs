@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The request was rejected because the specified key policy isn't syntactically or
-/// semantically correct.&lt;/p&gt;
+/// The request was rejected because the specified key policy isn't syntactically or semantically
+/// correct.
 /// </summary>
 public sealed partial class KmsOptInRequired : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was rejected because the specified key policy isn't syntactically or
-    /// semantically correct.&lt;/p&gt;
+    /// The request was rejected because the specified key policy isn't syntactically or semantically
+    /// correct.
     /// </summary>
     public KmsOptInRequired(string? message = null)
         : base(message) { }

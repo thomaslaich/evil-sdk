@@ -7,12 +7,16 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The &lt;code&gt;afterRestore()&lt;/code&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html&quot;&gt;runtime hook&lt;/a&gt; encountered an error. For more information, check the Amazon CloudWatch logs.&lt;/p&gt;
+/// The <c>afterRestore()</c>
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
+/// hook</see> encountered an error. For more information, check the Amazon CloudWatch logs.
 /// </summary>
 public sealed partial class SnapStartException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The &lt;code&gt;afterRestore()&lt;/code&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html&quot;&gt;runtime hook&lt;/a&gt; encountered an error. For more information, check the Amazon CloudWatch logs.&lt;/p&gt;
+    /// The <c>afterRestore()</c>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
+    /// hook</see> encountered an error. For more information, check the Amazon CloudWatch logs.
     /// </summary>
     public SnapStartException(string? message = null, string? type = null)
         : base(message)

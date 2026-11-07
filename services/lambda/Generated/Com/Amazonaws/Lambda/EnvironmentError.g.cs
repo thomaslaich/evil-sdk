@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Error messages for environment variables that couldn't be applied.&lt;/p&gt;
+/// Error messages for environment variables that couldn't be applied.
 /// </summary>
 /// <param name="ErrorCode">
-/// &lt;p&gt;The error code.&lt;/p&gt;
+/// The error code.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;The error message.&lt;/p&gt;
+/// The error message.
 /// </param>
 public sealed record class EnvironmentError(string? ErrorCode = null, string? Message = null);

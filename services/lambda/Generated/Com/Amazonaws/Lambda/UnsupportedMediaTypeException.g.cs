@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The content type of the &lt;code&gt;Invoke&lt;/code&gt; request body is not JSON.&lt;/p&gt;
+/// The content type of the <c>Invoke</c> request body is not JSON.
 /// </summary>
 public sealed partial class UnsupportedMediaTypeException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The content type of the &lt;code&gt;Invoke&lt;/code&gt; request body is not JSON.&lt;/p&gt;
+    /// The content type of the <c>Invoke</c> request body is not JSON.
     /// </summary>
     public UnsupportedMediaTypeException(string? message = null, string? type = null)
         : base(message)

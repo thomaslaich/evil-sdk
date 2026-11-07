@@ -5,85 +5,105 @@
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;Contains the response to a successful &lt;a&gt;AssumeRoleWithSAML&lt;/a&gt; request,
-/// including temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. &lt;/p&gt;
+/// Contains the response to a successful AssumeRoleWithSAML request, including temporary Amazon Web
+/// Services credentials that can be used to make Amazon Web Services requests.
 /// </summary>
 /// <param name="AssumedRoleUser">
-/// &lt;p&gt;The identifiers for the temporary security credentials that the operation
-/// returns.&lt;/p&gt;
+/// The identifiers for the temporary security credentials that the operation returns.
 /// </param>
 /// <param name="Audience">
-/// &lt;p&gt; The value of the &lt;code&gt;Recipient&lt;/code&gt; attribute of the
-/// &lt;code&gt;SubjectConfirmationData&lt;/code&gt; element of the SAML assertion. &lt;/p&gt;
+/// The value of the <c>Recipient</c> attribute of the <c>SubjectConfirmationData</c> element of the
+/// SAML assertion.
 /// </param>
 /// <param name="Credentials">
-/// &lt;p&gt;The temporary security credentials, which include an access key ID, a secret access key,
-/// and a security (or session) token.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The size of the security token that STS API operations return is not fixed. We
-/// strongly recommend that you make no assumptions about the maximum size.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The temporary security credentials, which include an access key ID, a secret access key, and a
+/// security (or session) token.
+/// </para>
+/// <para>
+/// <b>Note:</b> The size of the security token that STS API operations return is not fixed. We strongly
+/// recommend that you make no assumptions about the maximum size.
+/// </para>
 /// </param>
 /// <param name="Issuer">
-/// &lt;p&gt;The value of the &lt;code&gt;Issuer&lt;/code&gt; element of the SAML assertion.&lt;/p&gt;
+/// The value of the <c>Issuer</c> element of the SAML assertion.
 /// </param>
 /// <param name="NameQualifier">
-/// &lt;p&gt;A hash value based on the concatenation of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The &lt;code&gt;Issuer&lt;/code&gt; response value.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The Amazon Web Services account ID.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The friendly name (the last part of the ARN) of the SAML provider in IAM.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;The combination of &lt;code&gt;NameQualifier&lt;/code&gt; and &lt;code&gt;Subject&lt;/code&gt; can be used to
-/// uniquely identify a user.&lt;/p&gt;
-/// &lt;p&gt;The following pseudocode shows how the hash value is calculated:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;BASE64 ( SHA1 ( &quot;https://example.com/saml&quot; + &quot;123456789012&quot; + &quot;/MySAMLIdP&quot; ) )&lt;/code&gt;
-/// &lt;/p&gt;
+/// <para>
+/// A hash value based on the concatenation of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// The <c>Issuer</c> response value.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The Amazon Web Services account ID.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The friendly name (the last part of the ARN) of the SAML provider in IAM.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The combination of <c>NameQualifier</c> and <c>Subject</c> can be used to uniquely identify a user.
+/// </para>
+/// <para>
+/// The following pseudocode shows how the hash value is calculated:
+/// </para>
+/// <para>
+/// <c>BASE64 ( SHA1 ( "https://example.com/saml" + "123456789012" + "/MySAMLIdP" ) )</c>
+/// </para>
 /// </param>
 /// <param name="PackedPolicySize">
-/// &lt;p&gt;A percentage value that indicates the packed size of the session policies and session
-/// tags combined passed in the request. The request fails if the packed size is greater than 100 percent,
-/// which means the policies and tags exceeded the allowed space.&lt;/p&gt;
+/// A percentage value that indicates the packed size of the session policies and session tags combined
+/// passed in the request. The request fails if the packed size is greater than 100 percent, which means
+/// the policies and tags exceeded the allowed space.
 /// </param>
 /// <param name="SourceIdentity">
-/// &lt;p&gt;The value in the &lt;code&gt;SourceIdentity&lt;/code&gt; attribute in the SAML assertion. The source
-/// identity value persists across &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#iam-term-role-chaining&quot;&gt;chained role&lt;/a&gt;
-/// sessions.&lt;/p&gt;
-/// &lt;p&gt;You can require users to set a source identity value when they assume a role. You do
-/// this by using the &lt;code&gt;sts:SourceIdentity&lt;/code&gt; condition key in a role trust policy.
-/// That way, actions that are taken with the role are associated with that user. After the
-/// source identity is set, the value cannot be changed. It is present in the request for all
-/// actions that are taken by the role and persists across &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts&quot;&gt;chained role&lt;/a&gt;
-/// sessions. You can configure your SAML identity provider to use an attribute associated with
-/// your users, like user name or email, as the source identity when calling
-/// &lt;code&gt;AssumeRoleWithSAML&lt;/code&gt;. You do this by adding an attribute to the SAML
-/// assertion. For more information about using source identity, see &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html&quot;&gt;Monitor and control
-/// actions taken with assumed roles&lt;/a&gt; in the
-/// &lt;i&gt;IAM User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;The regex used to validate this parameter is a string of characters
-/// consisting of upper- and lower-case alphanumeric characters with no spaces. You can
-/// also include underscores or any of the following characters: =,.@-&lt;/p&gt;
+/// <para>
+/// The value in the <c>SourceIdentity</c> attribute in the SAML assertion. The source identity value
+/// persists across
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#iam-term-role-chaining">chained
+/// role</see> sessions.
+/// </para>
+/// <para>
+/// You can require users to set a source identity value when they assume a role. You do this by using
+/// the <c>sts:SourceIdentity</c> condition key in a role trust policy. That way, actions that are taken
+/// with the role are associated with that user. After the source identity is set, the value cannot be
+/// changed. It is present in the request for all actions that are taken by the role and persists across
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts">chained
+/// role</see> sessions. You can configure your SAML identity provider to use an attribute associated
+/// with your users, like user name or email, as the source identity when calling
+/// <c>AssumeRoleWithSAML</c>. You do this by adding an attribute to the SAML assertion. For more
+/// information about using source identity, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html">Monitor
+/// and control actions taken with assumed roles</see> in the <i>IAM User Guide</i>.
+/// </para>
+/// <para>
+/// The regex used to validate this parameter is a string of characters consisting of upper- and
+/// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
+/// following characters: =,.@-
+/// </para>
 /// </param>
 /// <param name="Subject">
-/// &lt;p&gt;The value of the &lt;code&gt;NameID&lt;/code&gt; element in the &lt;code&gt;Subject&lt;/code&gt; element of the
-/// SAML assertion.&lt;/p&gt;
+/// The value of the <c>NameID</c> element in the <c>Subject</c> element of the SAML assertion.
 /// </param>
 /// <param name="SubjectType">
-/// &lt;p&gt; The format of the name ID, as defined by the &lt;code&gt;Format&lt;/code&gt; attribute in the
-/// &lt;code&gt;NameID&lt;/code&gt; element of the SAML assertion. Typical examples of the format are
-/// &lt;code&gt;transient&lt;/code&gt; or &lt;code&gt;persistent&lt;/code&gt;. &lt;/p&gt;
-/// &lt;p&gt; If the format includes the prefix
-/// &lt;code&gt;urn:oasis:names:tc:SAML:2.0:nameid-format&lt;/code&gt;, that prefix is removed. For
-/// example, &lt;code&gt;urn:oasis:names:tc:SAML:2.0:nameid-format:transient&lt;/code&gt; is returned as
-/// &lt;code&gt;transient&lt;/code&gt;. If the format includes any other prefix, the format is returned
-/// with no modifications.&lt;/p&gt;
+/// <para>
+/// The format of the name ID, as defined by the <c>Format</c> attribute in the <c>NameID</c> element of
+/// the SAML assertion. Typical examples of the format are <c>transient</c> or <c>persistent</c>.
+/// </para>
+/// <para>
+/// If the format includes the prefix <c>urn:oasis:names:tc:SAML:2.0:nameid-format</c>, that prefix is
+/// removed. For example, <c>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</c> is returned as
+/// <c>transient</c>. If the format includes any other prefix, the format is returned with no
+/// modifications.
+/// </para>
 /// </param>
 public sealed record class AssumeRoleWithSAMLOutput(
     global::Com.Amazonaws.Sts.AssumedRoleUser? AssumedRoleUser = null,

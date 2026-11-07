@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Error response to &lt;code&gt;GetFunctionConfiguration&lt;/code&gt;.&lt;/p&gt;
+/// Error response to <c>GetFunctionConfiguration</c>.
 /// </summary>
 /// <param name="ErrorCode">
-/// &lt;p&gt;Error code.&lt;/p&gt;
+/// Error code.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;Error message.&lt;/p&gt;
+/// Error message.
 /// </param>
 public sealed record class ImageConfigError(string? ErrorCode = null, string? Message = null);

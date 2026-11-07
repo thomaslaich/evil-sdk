@@ -7,16 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; Processing options for the CSV file being imported. &lt;/p&gt;
+/// Processing options for the CSV file being imported.
 /// </summary>
 /// <param name="Delimiter">
-/// &lt;p&gt; The delimiter used for separating items in the CSV file being imported. &lt;/p&gt;
+/// The delimiter used for separating items in the CSV file being imported.
 /// </param>
 /// <param name="HeaderList">
-/// &lt;p&gt; List of the headers used to specify a common header for all source CSV files being
-/// imported. If this field is specified then the first line of each CSV file is treated as
-/// data instead of the header. If this field is not specified the the first line of each
-/// CSV file is treated as the header. &lt;/p&gt;
+/// List of the headers used to specify a common header for all source CSV files being imported. If this
+/// field is specified then the first line of each CSV file is treated as data instead of the header. If
+/// this field is not specified the the first line of each CSV file is treated as the header.
 /// </param>
 public sealed record class CsvOptions(
     string? Delimiter = null,

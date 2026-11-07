@@ -5,7 +5,6 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of a &lt;code&gt;DescribeLimits&lt;/code&gt; operation. Has no
-/// content.&lt;/p&gt;
+/// Represents the input of a <c>DescribeLimits</c> operation. Has no content.
 /// </summary>
 public sealed record class DescribeLimitsInput;

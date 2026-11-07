@@ -5,18 +5,17 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Retrieves the URL of an existing queue based on its name and, optionally, the Amazon Web Services
-/// account ID. &lt;/p&gt;
+/// Retrieves the URL of an existing queue based on its name and, optionally, the Amazon Web Services
+/// account ID.
 /// </summary>
 /// <param name="QueueName">
-/// &lt;p&gt;(Required) The name of the queue for which you want to fetch the URL. The name can be
-/// up to 80 characters long and can include alphanumeric characters, hyphens (-), and
-/// underscores (_). Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// (Required) The name of the queue for which you want to fetch the URL. The name can be up to 80
+/// characters long and can include alphanumeric characters, hyphens (-), and underscores (_). Queue
+/// URLs and names are case-sensitive.
 /// </param>
 /// <param name="QueueOwnerAWSAccountId">
-/// &lt;p&gt;(Optional) The Amazon Web Services account ID of the account that created the queue. This is only
-/// required when you are attempting to access a queue owned by another
-/// Amazon Web Services account.&lt;/p&gt;
+/// (Optional) The Amazon Web Services account ID of the account that created the queue. This is only
+/// required when you are attempting to access a queue owned by another Amazon Web Services account.
 /// </param>
 public sealed record class GetQueueUrlInput(
     string QueueName,

@@ -7,13 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains operations that have been updated since the last checkpoint, such as completed asynchronous work like timers or callbacks.&lt;/p&gt;
+/// Contains operations that have been updated since the last checkpoint, such as completed asynchronous
+/// work like timers or callbacks.
 /// </summary>
 /// <param name="NextMarker">
-/// &lt;p&gt;Indicates that more results are available. Use this value in a subsequent call to retrieve the next page of results.&lt;/p&gt;
+/// Indicates that more results are available. Use this value in a subsequent call to retrieve the next
+/// page of results.
 /// </param>
 /// <param name="Operations">
-/// &lt;p&gt;A list of operations that have been updated since the last checkpoint.&lt;/p&gt;
+/// A list of operations that have been updated since the last checkpoint.
 /// </param>
 public sealed record class CheckpointUpdatedExecutionState(
     string? NextMarker = null,

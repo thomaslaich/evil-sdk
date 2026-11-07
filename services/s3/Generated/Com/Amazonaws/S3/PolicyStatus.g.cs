@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container element for a bucket's policy status.&lt;/p&gt;
+/// The container element for a bucket's policy status.
 /// </summary>
 /// <param name="IsPublic">
-/// &lt;p&gt;The policy status for this bucket. &lt;code&gt;TRUE&lt;/code&gt; indicates that this bucket is public.
-/// &lt;code&gt;FALSE&lt;/code&gt; indicates that the bucket is not public.&lt;/p&gt;
+/// The policy status for this bucket. <c>TRUE</c> indicates that this bucket is public. <c>FALSE</c>
+/// indicates that the bucket is not public.
 /// </param>
 public sealed record class PolicyStatus(bool? IsPublic = null);

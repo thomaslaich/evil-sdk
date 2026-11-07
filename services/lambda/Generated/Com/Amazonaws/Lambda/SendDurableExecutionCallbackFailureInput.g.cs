@@ -8,10 +8,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#SendDurableExecutionCallbackFailureInput.
 /// </summary>
 /// <param name="CallbackId">
-/// &lt;p&gt;The unique identifier for the callback operation.&lt;/p&gt;
+/// The unique identifier for the callback operation.
 /// </param>
 /// <param name="Error">
-/// &lt;p&gt;Error details describing why the callback operation failed.&lt;/p&gt;
+/// Error details describing why the callback operation failed.
 /// </param>
 public sealed record class SendDurableExecutionCallbackFailureInput(
     string CallbackId,

@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for data related to the storage class analysis for an Amazon S3 bucket for export.&lt;/p&gt;
+/// Container for data related to the storage class analysis for an Amazon S3 bucket for export.
 /// </summary>
 /// <param name="Destination">
-/// &lt;p&gt;The place to store the data for an analysis.&lt;/p&gt;
+/// The place to store the data for an analysis.
 /// </param>
 /// <param name="OutputSchemaVersion">
-/// &lt;p&gt;The version of the output schema to use when exporting data. Must be &lt;code&gt;V_1&lt;/code&gt;.&lt;/p&gt;
+/// The version of the output schema to use when exporting data. Must be <c>V_1</c>.
 /// </param>
 public sealed record class StorageClassAnalysisDataExport(
     AnalyticsExportDestination Destination,

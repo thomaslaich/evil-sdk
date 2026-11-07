@@ -8,16 +8,20 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetDurableExecutionStateInput.
 /// </summary>
 /// <param name="CheckpointToken">
-/// &lt;p&gt;A checkpoint token that identifies the current state of the execution. This token is provided by the Lambda runtime and ensures that state retrieval is consistent with the current execution context.&lt;/p&gt;
+/// A checkpoint token that identifies the current state of the execution. This token is provided by the
+/// Lambda runtime and ensures that state retrieval is consistent with the current execution context.
 /// </param>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the durable execution.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;If &lt;code&gt;NextMarker&lt;/code&gt; was returned from a previous request, use this value to retrieve the next page of operations. Each pagination token expires after 24 hours.&lt;/p&gt;
+/// If <c>NextMarker</c> was returned from a previous request, use this value to retrieve the next page
+/// of operations. Each pagination token expires after 24 hours.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;The maximum number of operations to return per call. You can use &lt;code&gt;Marker&lt;/code&gt; to retrieve additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses the default.&lt;/p&gt;
+/// The maximum number of operations to return per call. You can use <c>Marker</c> to retrieve
+/// additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses
+/// the default.
 /// </param>
 public sealed record class GetDurableExecutionStateInput(
     string CheckpointToken,

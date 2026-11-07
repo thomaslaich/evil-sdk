@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetLayerVersionByArnInput.
 /// </summary>
 /// <param name="Arn">
-/// &lt;p&gt;The ARN of the layer version.&lt;/p&gt;
+/// The ARN of the layer version.
 /// </param>
 public sealed record class GetLayerVersionByArnInput(string Arn);

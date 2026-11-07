@@ -7,9 +7,13 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A function's environment variable settings. You can use environment variables to adjust your function's behavior without updating code. An environment variable is a pair of strings that are stored in a function's version-specific configuration.&lt;/p&gt;
+/// A function's environment variable settings. You can use environment variables to adjust your
+/// function's behavior without updating code. An environment variable is a pair of strings that are
+/// stored in a function's version-specific configuration.
 /// </summary>
 /// <param name="Variables">
-/// &lt;p&gt;Environment variable key-value pairs. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html&quot;&gt;Using Lambda environment variables&lt;/a&gt;.&lt;/p&gt;
+/// Environment variable key-value pairs. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html">Using Lambda
+/// environment variables</see>.
 /// </param>
 public sealed record class Environment(IReadOnlyDictionary<string, string>? Variables = null);

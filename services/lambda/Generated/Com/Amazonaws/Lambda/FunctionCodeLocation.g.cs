@@ -5,28 +5,31 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a function's deployment package.&lt;/p&gt;
+/// Details about a function's deployment package.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;An object that contains details about an error related to function deployment package retrieval.&lt;/p&gt;
+/// An object that contains details about an error related to function deployment package retrieval.
 /// </param>
 /// <param name="ImageUri">
-/// &lt;p&gt;URI of a container image in the Amazon ECR registry.&lt;/p&gt;
+/// URI of a container image in the Amazon ECR registry.
 /// </param>
 /// <param name="Location">
-/// &lt;p&gt;A presigned URL that you can use to download the deployment package.&lt;/p&gt;
+/// A presigned URL that you can use to download the deployment package.
 /// </param>
 /// <param name="RepositoryType">
-/// &lt;p&gt;The service that's hosting the file.&lt;/p&gt;
+/// The service that's hosting the file.
 /// </param>
 /// <param name="ResolvedImageUri">
-/// &lt;p&gt;The resolved URI for the image.&lt;/p&gt;
+/// The resolved URI for the image.
 /// </param>
 /// <param name="ResolvedS3Object">
-/// &lt;p&gt;The resolved Amazon S3 object that contains the deployment package.&lt;/p&gt;
+/// The resolved Amazon S3 object that contains the deployment package.
 /// </param>
 /// <param name="SourceKMSKeyArn">
-/// &lt;p&gt;The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk&quot;&gt;Amazon Web Services owned key&lt;/a&gt;.&lt;/p&gt;
+/// The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your
+/// function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk">Amazon
+/// Web Services owned key</see>.
 /// </param>
 public sealed record class FunctionCodeLocation(
     FunctionCodeLocationError? Error = null,

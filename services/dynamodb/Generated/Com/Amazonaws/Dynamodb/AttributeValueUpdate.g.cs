@@ -5,118 +5,139 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;For the &lt;code&gt;UpdateItem&lt;/code&gt; operation, represents the attributes to be modified,
-/// the action to perform on each, and the new value for each.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;You cannot use &lt;code&gt;UpdateItem&lt;/code&gt; to update any primary key attributes.
-/// Instead, you will need to delete the item, and then use &lt;code&gt;PutItem&lt;/code&gt; to
-/// create a new item with new attributes.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;Attribute values cannot be null; string and binary type attributes must have lengths
-/// greater than zero; and set type attributes must not be empty. Requests with empty values
-/// will be rejected with a &lt;code&gt;ValidationException&lt;/code&gt; exception.&lt;/p&gt;
+/// <para>
+/// For the <c>UpdateItem</c> operation, represents the attributes to be modified, the action to perform
+/// on each, and the new value for each.
+/// </para>
+/// <para>
+/// <b>Note:</b> You cannot use <c>UpdateItem</c> to update any primary key attributes. Instead, you
+/// will need to delete the item, and then use <c>PutItem</c> to create a new item with new attributes.
+/// </para>
+/// <para>
+/// Attribute values cannot be null; string and binary type attributes must have lengths greater than
+/// zero; and set type attributes must not be empty. Requests with empty values will be rejected with a
+/// <c>ValidationException</c> exception.
+/// </para>
 /// </summary>
 /// <param name="Action">
-/// &lt;p&gt;Specifies how to perform the update. Valid values are &lt;code&gt;PUT&lt;/code&gt; (default),
-/// &lt;code&gt;DELETE&lt;/code&gt;, and &lt;code&gt;ADD&lt;/code&gt;. The behavior depends on whether the
-/// specified primary key already exists in the table.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;If an item with the specified &lt;i&gt;Key&lt;/i&gt; is found in
-/// the table:&lt;/b&gt;
-/// &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PUT&lt;/code&gt; - Adds the specified attribute to the item. If the attribute
-/// already exists, it is replaced by the new value. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETE&lt;/code&gt; - If no value is specified, the attribute and its value are
-/// removed from the item. The data type of the specified value must match the
-/// existing value's data type.&lt;/p&gt;
-/// &lt;p&gt;If a &lt;i&gt;set&lt;/i&gt; of values is specified, then those values are
-/// subtracted from the old set. For example, if the attribute value was the set
-/// &lt;code&gt;[a,b,c]&lt;/code&gt; and the &lt;code&gt;DELETE&lt;/code&gt; action specified
-/// &lt;code&gt;[a,c]&lt;/code&gt;, then the final attribute value would be
-/// &lt;code&gt;[b]&lt;/code&gt;. Specifying an empty set is an error.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ADD&lt;/code&gt; - If the attribute does not already exist, then the attribute
-/// and its values are added to the item. If the attribute does exist, then the
-/// behavior of &lt;code&gt;ADD&lt;/code&gt; depends on the data type of the attribute:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If the existing attribute is a number, and if &lt;code&gt;Value&lt;/code&gt; is
-/// also a number, then the &lt;code&gt;Value&lt;/code&gt; is mathematically added to
-/// the existing attribute. If &lt;code&gt;Value&lt;/code&gt; is a negative number, then
-/// it is subtracted from the existing attribute.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt; If you use &lt;code&gt;ADD&lt;/code&gt; to increment or decrement a number
-/// value for an item that doesn't exist before the update, DynamoDB
-/// uses 0 as the initial value.&lt;/p&gt;
-/// &lt;p&gt;In addition, if you use &lt;code&gt;ADD&lt;/code&gt; to update an existing
-/// item, and intend to increment or decrement an attribute value which
-/// does not yet exist, DynamoDB uses &lt;code&gt;0&lt;/code&gt; as the initial
-/// value. For example, suppose that the item you want to update does
-/// not yet have an attribute named &lt;i&gt;itemcount&lt;/i&gt;, but
-/// you decide to &lt;code&gt;ADD&lt;/code&gt; the number &lt;code&gt;3&lt;/code&gt; to this
-/// attribute anyway, even though it currently does not exist. DynamoDB
-/// will create the &lt;i&gt;itemcount&lt;/i&gt; attribute, set its
-/// initial value to &lt;code&gt;0&lt;/code&gt;, and finally add &lt;code&gt;3&lt;/code&gt; to
-/// it. The result will be a new &lt;i&gt;itemcount&lt;/i&gt;
-/// attribute in the item, with a value of &lt;code&gt;3&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If the existing data type is a set, and if the &lt;code&gt;Value&lt;/code&gt; is
-/// also a set, then the &lt;code&gt;Value&lt;/code&gt; is added to the existing set.
-/// (This is a &lt;i&gt;set&lt;/i&gt; operation, not mathematical
-/// addition.) For example, if the attribute value was the set
-/// &lt;code&gt;[1,2]&lt;/code&gt;, and the &lt;code&gt;ADD&lt;/code&gt; action specified
-/// &lt;code&gt;[3]&lt;/code&gt;, then the final attribute value would be
-/// &lt;code&gt;[1,2,3]&lt;/code&gt;. An error occurs if an Add action is specified
-/// for a set attribute and the attribute type specified does not match the
-/// existing set type. &lt;/p&gt;
-/// &lt;p&gt;Both sets must have the same primitive data type. For example, if the
-/// existing data type is a set of strings, the &lt;code&gt;Value&lt;/code&gt; must also
-/// be a set of strings. The same holds true for number sets and binary
-/// sets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;This action is only valid for an existing attribute whose data type is number
-/// or is a set. Do not use &lt;code&gt;ADD&lt;/code&gt; for any other data types.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;If no item with the specified &lt;i&gt;Key&lt;/i&gt; is
-/// found:&lt;/b&gt;
-/// &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PUT&lt;/code&gt; - DynamoDB creates a new item with the specified primary key,
-/// and then adds the attribute. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETE&lt;/code&gt; - Nothing happens; there is no attribute to delete.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ADD&lt;/code&gt; - DynamoDB creates a new item with the supplied primary key and
-/// number (or set) for the attribute value. The only data types allowed are number,
-/// number set, string set or binary set.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Specifies how to perform the update. Valid values are <c>PUT</c> (default), <c>DELETE</c>, and
+/// <c>ADD</c>. The behavior depends on whether the specified primary key already exists in the table.
+/// </para>
+/// <para>
+/// <b>If an item with the specified <i>Key</i> is found in the table:</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>PUT</c> - Adds the specified attribute to the item. If the attribute already exists, it is
+/// replaced by the new value.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>DELETE</c> - If no value is specified, the attribute and its value are removed from the item. The
+/// data type of the specified value must match the existing value's data type.
+/// </para>
+/// <para>
+/// If a <i>set</i> of values is specified, then those values are subtracted from the old set. For
+/// example, if the attribute value was the set <c>[a,b,c]</c> and the <c>DELETE</c> action specified
+/// <c>[a,c]</c>, then the final attribute value would be <c>[b]</c>. Specifying an empty set is an
+/// error.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>ADD</c> - If the attribute does not already exist, then the attribute and its values are added to
+/// the item. If the attribute does exist, then the behavior of <c>ADD</c> depends on the data type of
+/// the attribute:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// If the existing attribute is a number, and if <c>Value</c> is also a number, then the <c>Value</c>
+/// is mathematically added to the existing attribute. If <c>Value</c> is a negative number, then it is
+/// subtracted from the existing attribute.
+/// </para>
+/// <para>
+/// <b>Note:</b> If you use <c>ADD</c> to increment or decrement a number value for an item that doesn't
+/// exist before the update, DynamoDB uses 0 as the initial value.
+/// </para>
+/// <para>
+/// In addition, if you use <c>ADD</c> to update an existing item, and intend to increment or decrement
+/// an attribute value which does not yet exist, DynamoDB uses <c>0</c> as the initial value. For
+/// example, suppose that the item you want to update does not yet have an attribute named
+/// <i>itemcount</i>, but you decide to <c>ADD</c> the number <c>3</c> to this attribute anyway, even
+/// though it currently does not exist. DynamoDB will create the <i>itemcount</i> attribute, set its
+/// initial value to <c>0</c>, and finally add <c>3</c> to it. The result will be a new <i>itemcount</i>
+/// attribute in the item, with a value of <c>3</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// If the existing data type is a set, and if the <c>Value</c> is also a set, then the <c>Value</c> is
+/// added to the existing set. (This is a <i>set</i> operation, not mathematical addition.) For example,
+/// if the attribute value was the set <c>[1,2]</c>, and the <c>ADD</c> action specified <c>[3]</c>,
+/// then the final attribute value would be <c>[1,2,3]</c>. An error occurs if an Add action is
+/// specified for a set attribute and the attribute type specified does not match the existing set type.
+/// </para>
+/// <para>
+/// Both sets must have the same primitive data type. For example, if the existing data type is a set of
+/// strings, the <c>Value</c> must also be a set of strings. The same holds true for number sets and
+/// binary sets.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// This action is only valid for an existing attribute whose data type is number or is a set. Do not
+/// use <c>ADD</c> for any other data types.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>If no item with the specified <i>Key</i> is found:</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>PUT</c> - DynamoDB creates a new item with the specified primary key, and then adds the
+/// attribute.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETE</c> - Nothing happens; there is no attribute to delete.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ADD</c> - DynamoDB creates a new item with the supplied primary key and number (or set) for the
+/// attribute value. The only data types allowed are number, number set, string set or binary set.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Value">
-/// &lt;p&gt;Represents the data for an attribute.&lt;/p&gt;
-/// &lt;p&gt;Each attribute value is described as a name-value pair. The name is the data type, and
-/// the value is the data itself.&lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes&quot;&gt;Data Types&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer Guide&lt;/i&gt;.
-/// &lt;/p&gt;
+/// <para>
+/// Represents the data for an attribute.
+/// </para>
+/// <para>
+/// Each attribute value is described as a name-value pair. The name is the data type, and the value is
+/// the data itself.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes">Data
+/// Types</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 public sealed record class AttributeValueUpdate(
     AttributeAction? Action = null,

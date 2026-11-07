@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a wait operation that was cancelled.&lt;/p&gt;
+/// Details about a wait operation that was cancelled.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about why the wait operation was cancelled.&lt;/p&gt;
+/// Details about why the wait operation was cancelled.
 /// </param>
 public sealed record class WaitCancelledDetails(EventError? Error = null);

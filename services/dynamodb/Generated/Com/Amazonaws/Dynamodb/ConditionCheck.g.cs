@@ -7,37 +7,37 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a request to perform a check that an item exists or to check the condition
-/// of specific attributes of the item.&lt;/p&gt;
+/// Represents a request to perform a check that an item exists or to check the condition of specific
+/// attributes of the item.
 /// </summary>
 /// <param name="ConditionExpression">
-/// &lt;p&gt;A condition that must be satisfied in order for a conditional update to succeed. For
-/// more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html&quot;&gt;Condition expressions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// A condition that must be satisfied in order for a conditional update to succeed. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html">Condition
+/// expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The primary key of the item to be checked. Each element consists of an attribute name
-/// and a value for that attribute.&lt;/p&gt;
+/// The primary key of the item to be checked. Each element consists of an attribute name and a value
+/// for that attribute.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;Name of the table for the check item request. You can also provide the Amazon Resource Name (ARN) of
-/// the table in this parameter.&lt;/p&gt;
+/// Name of the table for the check item request. You can also provide the Amazon Resource Name (ARN) of
+/// the table in this parameter.
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionAttributeNames.html&quot;&gt;Expression attribute names&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// One or more substitution tokens for attribute names in an expression. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionAttributeNames.html">Expression
+/// attribute names</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html&quot;&gt;Condition expressions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// One or more values that can be substituted in an expression. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html">Condition
+/// expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;Use &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt; to get the item attributes if the
-/// &lt;code&gt;ConditionCheck&lt;/code&gt; condition fails. For
-/// &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt;, the valid values are: NONE and
-/// ALL_OLD.&lt;/p&gt;
+/// Use <c>ReturnValuesOnConditionCheckFailure</c> to get the item attributes if the
+/// <c>ConditionCheck</c> condition fails. For <c>ReturnValuesOnConditionCheckFailure</c>, the valid
+/// values are: NONE and ALL_OLD.
 /// </param>
 public sealed record class ConditionCheck(
     string ConditionExpression,

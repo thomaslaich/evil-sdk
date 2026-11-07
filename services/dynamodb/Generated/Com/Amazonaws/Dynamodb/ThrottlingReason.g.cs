@@ -5,65 +5,90 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the specific reason why a DynamoDB request was throttled and the
-/// ARN of the impacted resource. This helps identify exactly what resource is being throttled,
-/// what type of operation caused it, and why the throttling occurred.&lt;/p&gt;
+/// Represents the specific reason why a DynamoDB request was throttled and the ARN of the impacted
+/// resource. This helps identify exactly what resource is being throttled, what type of operation
+/// caused it, and why the throttling occurred.
 /// </summary>
 /// <param name="Reason">
-/// &lt;p&gt;The reason for throttling. The throttling reason follows a specific format:
-/// &lt;code&gt;ResourceType+OperationType+LimitType&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Resource Type (What is being throttled): Table or Index&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Operation Type (What kind of operation): Read or Write&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Limit Type (Why the throttling occurred):&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProvisionedThroughputExceeded&lt;/code&gt;: The request rate is
-/// exceeding the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html&quot;&gt;provisioned throughput capacity&lt;/a&gt; (read or write capacity
-/// units) configured for a table or a global secondary index (GSI) in
-/// provisioned capacity mode.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AccountLimitExceeded&lt;/code&gt;: The request rate has caused a table
-/// or global secondary index (GSI) in on-demand mode to exceed the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html#default-limits-throughput&quot;&gt;per-table account-level service quotas&lt;/a&gt; for read/write
-/// throughput in the current Amazon Web Services Region. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeyRangeThroughputExceeded&lt;/code&gt;: The request rate directed at
-/// a specific partition key value has exceeded the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html&quot;&gt;internal partition-level throughput limits&lt;/a&gt;, indicating
-/// uneven access patterns across the table's or GSI's key space.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MaxOnDemandThroughputExceeded&lt;/code&gt;: The request rate has
-/// exceeded the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode-max-throughput.html&quot;&gt;configured maximum throughput limits&lt;/a&gt; set for a table or
-/// index in on-demand capacity mode.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;Examples of complete throttling reasons:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;TableReadProvisionedThroughputExceeded&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;IndexWriteAccountLimitExceeded&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;This helps identify exactly what resource is being throttled, what type of operation
-/// caused it, and why the throttling occurred.&lt;/p&gt;
+/// <para>
+/// The reason for throttling. The throttling reason follows a specific format:
+/// <c>ResourceType+OperationType+LimitType</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Resource Type (What is being throttled): Table or Index
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Operation Type (What kind of operation): Read or Write
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Limit Type (Why the throttling occurred):
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ProvisionedThroughputExceeded</c>: The request rate is exceeding the
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html">provisioned
+/// throughput capacity</see> (read or write capacity units) configured for a table or a global
+/// secondary index (GSI) in provisioned capacity mode.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>AccountLimitExceeded</c>: The request rate has caused a table or global secondary index (GSI) in
+/// on-demand mode to exceed the
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html#default-limits-throughput">per-table
+/// account-level service quotas</see> for read/write throughput in the current Amazon Web Services
+/// Region.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KeyRangeThroughputExceeded</c>: The request rate directed at a specific partition key value has
+/// exceeded the
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html">internal
+/// partition-level throughput limits</see>, indicating uneven access patterns across the table's or
+/// GSI's key space.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MaxOnDemandThroughputExceeded</c>: The request rate has exceeded the
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode-max-throughput.html">configured
+/// maximum throughput limits</see> set for a table or index in on-demand capacity mode.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Examples of complete throttling reasons:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// TableReadProvisionedThroughputExceeded
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// IndexWriteAccountLimitExceeded
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// This helps identify exactly what resource is being throttled, what type of operation caused it, and
+/// why the throttling occurred.
+/// </para>
 /// </param>
 /// <param name="Resource">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the DynamoDB table or index that experienced the
-/// throttling event.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the DynamoDB table or index that experienced the throttling event.
 /// </param>
 public sealed record class ThrottlingReason(string? Reason = null, string? Resource = null);

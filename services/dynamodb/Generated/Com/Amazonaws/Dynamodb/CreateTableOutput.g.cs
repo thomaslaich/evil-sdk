@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of a &lt;code&gt;CreateTable&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of a <c>CreateTable</c> operation.
 /// </summary>
 /// <param name="TableDescription">
-/// &lt;p&gt;Represents the properties of the table.&lt;/p&gt;
+/// Represents the properties of the table.
 /// </param>
 public sealed record class CreateTableOutput(
     global::Com.Amazonaws.Dynamodb.TableDescription? TableDescription = null

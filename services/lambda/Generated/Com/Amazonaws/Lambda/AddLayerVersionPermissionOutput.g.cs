@@ -8,10 +8,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#AddLayerVersionPermissionOutput.
 /// </summary>
 /// <param name="RevisionId">
-/// &lt;p&gt;A unique identifier for the current revision of the policy.&lt;/p&gt;
+/// A unique identifier for the current revision of the policy.
 /// </param>
 /// <param name="Statement">
-/// &lt;p&gt;The permission statement.&lt;/p&gt;
+/// The permission statement.
 /// </param>
 public sealed record class AddLayerVersionPermissionOutput(
     string? RevisionId = null,

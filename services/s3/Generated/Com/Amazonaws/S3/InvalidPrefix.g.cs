@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The annotation prefix you provided is invalid.&lt;/p&gt;
+/// The annotation prefix you provided is invalid.
 /// </summary>
 public sealed partial class InvalidPrefix : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The annotation prefix you provided is invalid.&lt;/p&gt;
+    /// The annotation prefix you provided is invalid.
     /// </summary>
     public InvalidPrefix(string? message = null)
         : base(message) { }

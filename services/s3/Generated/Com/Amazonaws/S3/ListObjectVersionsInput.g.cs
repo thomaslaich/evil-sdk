@@ -10,43 +10,48 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListObjectVersionsInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name that contains the objects. &lt;/p&gt;
+/// The bucket name that contains the objects.
 /// </param>
 /// <param name="Delimiter">
-/// &lt;p&gt;A delimiter is a character that you specify to group keys. All keys that contain the same string
-/// between the &lt;code&gt;prefix&lt;/code&gt; and the first occurrence of the delimiter are grouped under a single
-/// result element in &lt;code&gt;CommonPrefixes&lt;/code&gt;. These groups are counted as one result against the
-/// &lt;code&gt;max-keys&lt;/code&gt; limitation. These keys are not returned elsewhere in the response.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; is filtered out from results if it is not lexicographically greater than
-/// the key-marker.&lt;/p&gt;
+/// <para>
+/// A delimiter is a character that you specify to group keys. All keys that contain the same string
+/// between the <c>prefix</c> and the first occurrence of the delimiter are grouped under a single
+/// result element in <c>CommonPrefixes</c>. These groups are counted as one result against the
+/// <c>max-keys</c> limitation. These keys are not returned elsewhere in the response.
+/// </para>
+/// <para>
+/// <c>CommonPrefixes</c> is filtered out from results if it is not lexicographically greater than the
+/// key-marker.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="KeyMarker">
-/// &lt;p&gt;Specifies the key to start with when listing objects in a bucket.&lt;/p&gt;
+/// Specifies the key to start with when listing objects in a bucket.
 /// </param>
 /// <param name="MaxKeys">
-/// &lt;p&gt;Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000
-/// key names. The response might contain fewer keys but will never contain more. If additional keys satisfy
-/// the search criteria, but were not returned because &lt;code&gt;max-keys&lt;/code&gt; was exceeded, the response
-/// contains &lt;code&gt;&lt;isTruncated&gt;true&lt;/isTruncated&gt;&lt;/code&gt;. To return the additional keys, see
-/// &lt;code&gt;key-marker&lt;/code&gt; and &lt;code&gt;version-id-marker&lt;/code&gt;.&lt;/p&gt;
+/// Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000
+/// key names. The response might contain fewer keys but will never contain more. If additional keys
+/// satisfy the search criteria, but were not returned because <c>max-keys</c> was exceeded, the
+/// response contains <c>&lt;isTruncated&gt;true&lt;/isTruncated&gt;</c>. To return the additional keys,
+/// see <c>key-marker</c> and <c>version-id-marker</c>.
 /// </param>
 /// <param name="OptionalObjectAttributes">
-/// &lt;p&gt;Specifies the optional fields that you want returned in the response. Fields that you do not specify
-/// are not returned.&lt;/p&gt;
+/// Specifies the optional fields that you want returned in the response. Fields that you do not specify
+/// are not returned.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Use this parameter to select only those keys that begin with the specified prefix. You can use
+/// Use this parameter to select only those keys that begin with the specified prefix. You can use
 /// prefixes to separate a bucket into different groupings of keys. (You can think of using
-/// &lt;code&gt;prefix&lt;/code&gt; to make groups in the same way that you'd use a folder in a file system.) You can
-/// use &lt;code&gt;prefix&lt;/code&gt; with &lt;code&gt;delimiter&lt;/code&gt; to roll up numerous objects into a single result
-/// under &lt;code&gt;CommonPrefixes&lt;/code&gt;. &lt;/p&gt;
+/// <c>prefix</c> to make groups in the same way that you'd use a folder in a file system.) You can use
+/// <c>prefix</c> with <c>delimiter</c> to roll up numerous objects into a single result under
+/// <c>CommonPrefixes</c>.
 /// </param>
 /// <param name="VersionIdMarker">
-/// &lt;p&gt;Specifies the object version you want to start listing from.&lt;/p&gt;
+/// Specifies the object version you want to start listing from.
 /// </param>
 public sealed record class ListObjectVersionsInput(
     string Bucket,

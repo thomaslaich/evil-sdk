@@ -10,10 +10,10 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectTaggingOutput.
 /// </summary>
 /// <param name="TagSet">
-/// &lt;p&gt;Contains the tag set.&lt;/p&gt;
+/// Contains the tag set.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The versionId of the object for which you got the tagging information.&lt;/p&gt;
+/// The versionId of the object for which you got the tagging information.
 /// </param>
 public sealed record class GetObjectTaggingOutput(
     IReadOnlyList<global::Com.Amazonaws.S3.Tag> TagSet,

@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Sts;
 /// Represents the Smithy structure com.amazonaws.sts#GetAccessKeyInfoOutput.
 /// </summary>
 /// <param name="Account">
-/// &lt;p&gt;The number used to identify the Amazon Web Services account.&lt;/p&gt;
+/// The number used to identify the Amazon Web Services account.
 /// </param>
 public sealed record class GetAccessKeyInfoOutput(string? Account = null);

@@ -5,15 +5,14 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; A container specifying replication metrics-related settings enabling replication metrics and
-/// events.&lt;/p&gt;
+/// A container specifying replication metrics-related settings enabling replication metrics and events.
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt; Specifies whether the replication metrics are enabled. &lt;/p&gt;
+/// Specifies whether the replication metrics are enabled.
 /// </param>
 /// <param name="EventThreshold">
-/// &lt;p&gt; A container specifying the time threshold for emitting the
-/// &lt;code&gt;s3:Replication:OperationMissedThreshold&lt;/code&gt; event. &lt;/p&gt;
+/// A container specifying the time threshold for emitting the
+/// <c>s3:Replication:OperationMissedThreshold</c> event.
 /// </param>
 public sealed record class Metrics(
     MetricsStatus Status,

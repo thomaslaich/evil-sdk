@@ -10,21 +10,23 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListBucketsOutput.
 /// </summary>
 /// <param name="Buckets">
-/// &lt;p&gt;The list of buckets owned by the requester.&lt;/p&gt;
+/// The list of buckets owned by the requester.
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;
-/// &lt;code&gt;ContinuationToken&lt;/code&gt; is included in the response when there are more buckets that can be
-/// listed with pagination. The next &lt;code&gt;ListBuckets&lt;/code&gt; request to Amazon S3 can be continued with this
-/// &lt;code&gt;ContinuationToken&lt;/code&gt;. &lt;code&gt;ContinuationToken&lt;/code&gt; is obfuscated and is not a real
-/// bucket.&lt;/p&gt;
+/// <c>ContinuationToken</c> is included in the response when there are more buckets that can be listed
+/// with pagination. The next <c>ListBuckets</c> request to Amazon S3 can be continued with this
+/// <c>ContinuationToken</c>. <c>ContinuationToken</c> is obfuscated and is not a real bucket.
 /// </param>
 /// <param name="Owner">
-/// &lt;p&gt;The owner of the buckets listed.&lt;/p&gt;
+/// The owner of the buckets listed.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;If &lt;code&gt;Prefix&lt;/code&gt; was sent with the request, it is included in the response.&lt;/p&gt;
-/// &lt;p&gt;All bucket names in the response begin with the specified bucket name prefix.&lt;/p&gt;
+/// <para>
+/// If <c>Prefix</c> was sent with the request, it is included in the response.
+/// </para>
+/// <para>
+/// All bucket names in the response begin with the specified bucket name prefix.
+/// </para>
 /// </param>
 public sealed record class ListBucketsOutput(
     IReadOnlyList<Bucket>? Buckets = null,

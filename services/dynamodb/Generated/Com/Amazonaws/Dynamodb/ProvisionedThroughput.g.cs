@@ -5,27 +5,36 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the provisioned throughput settings for the specified global secondary
-/// index. You must use &lt;code&gt;ProvisionedThroughput&lt;/code&gt; or
-/// &lt;code&gt;OnDemandThroughput&lt;/code&gt; based on your table’s capacity mode.&lt;/p&gt;
-/// &lt;p&gt;For current minimum and maximum provisioned throughput values, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html&quot;&gt;Service,
-/// Account, and Table Quotas&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Represents the provisioned throughput settings for the specified global secondary index. You must
+/// use <c>ProvisionedThroughput</c> or <c>OnDemandThroughput</c> based on your table’s capacity mode.
+/// </para>
+/// <para>
+/// For current minimum and maximum provisioned throughput values, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Service,
+/// Account, and Table Quotas</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </summary>
 /// <param name="ReadCapacityUnits">
-/// &lt;p&gt;The maximum number of strongly consistent reads consumed per second before DynamoDB
-/// returns a &lt;code&gt;ThrottlingException&lt;/code&gt;. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html&quot;&gt;Specifying
-/// Read and Write Requirements&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If read/write capacity mode is &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; the value is set to
-/// 0.&lt;/p&gt;
+/// <para>
+/// The maximum number of strongly consistent reads consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html">Specifying
+/// Read and Write Requirements</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
+/// <para>
+/// If read/write capacity mode is <c>PAY_PER_REQUEST</c> the value is set to 0.
+/// </para>
 /// </param>
 /// <param name="WriteCapacityUnits">
-/// &lt;p&gt;The maximum number of writes consumed per second before DynamoDB returns a
-/// &lt;code&gt;ThrottlingException&lt;/code&gt;. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html&quot;&gt;Specifying
-/// Read and Write Requirements&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If read/write capacity mode is &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; the value is set to
-/// 0.&lt;/p&gt;
+/// <para>
+/// The maximum number of writes consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html">Specifying
+/// Read and Write Requirements</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
+/// <para>
+/// If read/write capacity mode is <c>PAY_PER_REQUEST</c> the value is set to 0.
+/// </para>
 /// </param>
 public sealed record class ProvisionedThroughput(long ReadCapacityUnits, long WriteCapacityUnits);

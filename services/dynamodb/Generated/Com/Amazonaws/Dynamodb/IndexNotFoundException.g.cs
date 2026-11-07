@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The operation tried to access a nonexistent index.&lt;/p&gt;
+/// The operation tried to access a nonexistent index.
 /// </summary>
 public sealed partial class IndexNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The operation tried to access a nonexistent index.&lt;/p&gt;
+    /// The operation tried to access a nonexistent index.
     /// </summary>
     public IndexNotFoundException(string? message = null)
         : base(message) { }

@@ -7,30 +7,39 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for the expiration for the lifecycle of the object.&lt;/p&gt;
-/// &lt;p&gt;For more information see, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html&quot;&gt;Managing your storage lifecycle&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Container for the expiration for the lifecycle of the object.
+/// </para>
+/// <para>
+/// For more information see,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html">Managing
+/// your storage lifecycle</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </summary>
 /// <param name="Date">
-/// &lt;p&gt;Indicates at what date the object is to be moved or deleted. The date value must conform to the ISO
-/// 8601 format. The time is always midnight UTC.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Indicates at what date the object is to be moved or deleted. The date value must conform to the ISO
+/// 8601 format. The time is always midnight UTC.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 /// <param name="Days">
-/// &lt;p&gt;Indicates the lifetime, in days, of the objects that are subject to the rule. The value must be a
-/// non-zero positive integer.&lt;/p&gt;
+/// Indicates the lifetime, in days, of the objects that are subject to the rule. The value must be a
+/// non-zero positive integer.
 /// </param>
 /// <param name="ExpiredObjectDeleteMarker">
-/// &lt;p&gt;Indicates whether Amazon S3 will remove a delete marker with no noncurrent versions. If set to true, the
-/// delete marker will be expired; if set to false the policy takes no action. This cannot be specified with
-/// Days or Date in a Lifecycle Expiration Policy.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Indicates whether Amazon S3 will remove a delete marker with no noncurrent versions. If set to true,
+/// the delete marker will be expired; if set to false the policy takes no action. This cannot be
+/// specified with Days or Date in a Lifecycle Expiration Policy.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 public sealed record class LifecycleExpiration(
     DateTimeOffset? Date = null,

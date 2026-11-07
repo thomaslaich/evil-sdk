@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListGlobalTablesOutput.
 /// </summary>
 /// <param name="GlobalTables">
-/// &lt;p&gt;List of global table names.&lt;/p&gt;
+/// List of global table names.
 /// </param>
 /// <param name="LastEvaluatedGlobalTableName">
-/// &lt;p&gt;Last evaluated global table name.&lt;/p&gt;
+/// Last evaluated global table name.
 /// </param>
 public sealed record class ListGlobalTablesOutput(
     IReadOnlyList<GlobalTable>? GlobalTables = null,

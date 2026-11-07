@@ -8,9 +8,9 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetFunctionScalingConfigInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt;
+/// The name or ARN of the Lambda function.
 /// </param>
 /// <param name="Qualifier">
-/// &lt;p&gt;Specify a version or alias to get the scaling configuration for a published version of the function.&lt;/p&gt;
+/// Specify a version or alias to get the scaling configuration for a published version of the function.
 /// </param>
 public sealed record class GetFunctionScalingConfigInput(string FunctionName, string Qualifier);

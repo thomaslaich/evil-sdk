@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteObjectAnnotationOutput.
 /// </summary>
 /// <param name="ObjectVersionId">
-/// &lt;p&gt;The version ID of the object that the annotation was deleted from.&lt;/p&gt;
+/// The version ID of the object that the annotation was deleted from.
 /// </param>
 public sealed record class DeleteObjectAnnotationOutput(
     string? ObjectVersionId = null,

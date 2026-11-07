@@ -8,14 +8,14 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListContributorInsightsInput.
 /// </summary>
 /// <param name="MaxResults">
-/// &lt;p&gt;Maximum number of results to return per page.&lt;/p&gt;
+/// Maximum number of results to return per page.
 /// </param>
 /// <param name="NextToken">
-/// &lt;p&gt;A token to for the desired page, if there is one.&lt;/p&gt;
+/// A token to for the desired page, if there is one.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
-/// parameter.&lt;/p&gt;
+/// The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
+/// parameter.
 /// </param>
 public sealed record class ListContributorInsightsInput(
     int? MaxResults = null,

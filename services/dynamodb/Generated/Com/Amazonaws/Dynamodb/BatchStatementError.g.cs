@@ -7,17 +7,17 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; An error associated with a statement in a PartiQL batch that was run. &lt;/p&gt;
+/// An error associated with a statement in a PartiQL batch that was run.
 /// </summary>
 /// <param name="Code">
-/// &lt;p&gt; The error code associated with the failed PartiQL batch statement. &lt;/p&gt;
+/// The error code associated with the failed PartiQL batch statement.
 /// </param>
 /// <param name="Item">
-/// &lt;p&gt;The item which caused the condition check to fail. This will be set if
-/// ReturnValuesOnConditionCheckFailure is specified as &lt;code&gt;ALL_OLD&lt;/code&gt;.&lt;/p&gt;
+/// The item which caused the condition check to fail. This will be set if
+/// ReturnValuesOnConditionCheckFailure is specified as <c>ALL_OLD</c>.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt; The error message associated with the PartiQL batch response. &lt;/p&gt;
+/// The error message associated with the PartiQL batch response.
 /// </param>
 public sealed record class BatchStatementError(
     BatchStatementErrorCodeEnum? Code = null,

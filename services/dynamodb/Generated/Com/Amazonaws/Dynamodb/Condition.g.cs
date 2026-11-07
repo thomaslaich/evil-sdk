@@ -7,225 +7,263 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the selection criteria for a &lt;code&gt;Query&lt;/code&gt; or &lt;code&gt;Scan&lt;/code&gt;
-/// operation:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For a &lt;code&gt;Query&lt;/code&gt; operation, &lt;code&gt;Condition&lt;/code&gt; is used for
-/// specifying the &lt;code&gt;KeyConditions&lt;/code&gt; to use when querying a table or an
-/// index. For &lt;code&gt;KeyConditions&lt;/code&gt;, only the following comparison operators
-/// are supported:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;EQ | LE | LT | GE | GT | BEGINS_WITH | BETWEEN&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Condition&lt;/code&gt; is also used in a &lt;code&gt;QueryFilter&lt;/code&gt;, which
-/// evaluates the query results and returns only the desired values.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For a &lt;code&gt;Scan&lt;/code&gt; operation, &lt;code&gt;Condition&lt;/code&gt; is used in a
-/// &lt;code&gt;ScanFilter&lt;/code&gt;, which evaluates the scan results and returns only
-/// the desired values.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Represents the selection criteria for a <c>Query</c> or <c>Scan</c> operation:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// For a <c>Query</c> operation, <c>Condition</c> is used for specifying the <c>KeyConditions</c> to
+/// use when querying a table or an index. For <c>KeyConditions</c>, only the following comparison
+/// operators are supported:
+/// </para>
+/// <para>
+/// <c>EQ | LE | LT | GE | GT | BEGINS_WITH | BETWEEN</c>
+/// </para>
+/// <para>
+/// <c>Condition</c> is also used in a <c>QueryFilter</c>, which evaluates the query results and returns
+/// only the desired values.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// For a <c>Scan</c> operation, <c>Condition</c> is used in a <c>ScanFilter</c>, which evaluates the
+/// scan results and returns only the desired values.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="ComparisonOperator">
-/// &lt;p&gt;A comparator for evaluating attributes. For example, equals, greater than, less than,
-/// etc.&lt;/p&gt;
-/// &lt;p&gt;The following comparison operators are available:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;EQ | NE | LE | LT | GE | GT | NOT_NULL | NULL | CONTAINS | NOT_CONTAINS |
-/// BEGINS_WITH | IN | BETWEEN&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;The following are descriptions of each comparison operator.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;EQ&lt;/code&gt; : Equal. &lt;code&gt;EQ&lt;/code&gt; is supported for all data types,
-/// including lists and maps.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// element of type String, Number, Binary, String Set, Number Set, or Binary Set.
-/// If an item contains an &lt;code&gt;AttributeValue&lt;/code&gt; element of a different type
-/// than the one provided in the request, the value does not match. For example,
-/// &lt;code&gt;{&quot;S&quot;:&quot;6&quot;}&lt;/code&gt; does not equal &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt;. Also,
-/// &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt; does not equal &lt;code&gt;{&quot;NS&quot;:[&quot;6&quot;, &quot;2&quot;,
-/// &quot;1&quot;]}&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NE&lt;/code&gt; : Not equal. &lt;code&gt;NE&lt;/code&gt; is supported for all data types,
-/// including lists and maps.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// of type String, Number, Binary, String Set, Number Set, or Binary Set. If an
-/// item contains an &lt;code&gt;AttributeValue&lt;/code&gt; of a different type than the one
-/// provided in the request, the value does not match. For example,
-/// &lt;code&gt;{&quot;S&quot;:&quot;6&quot;}&lt;/code&gt; does not equal &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt;. Also,
-/// &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt; does not equal &lt;code&gt;{&quot;NS&quot;:[&quot;6&quot;, &quot;2&quot;,
-/// &quot;1&quot;]}&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;LE&lt;/code&gt; : Less than or equal. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// element of type String, Number, or Binary (not a set type). If an item contains
-/// an &lt;code&gt;AttributeValue&lt;/code&gt; element of a different type than the one provided
-/// in the request, the value does not match. For example, &lt;code&gt;{&quot;S&quot;:&quot;6&quot;}&lt;/code&gt;
-/// does not equal &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt;. Also, &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt; does not
-/// compare to &lt;code&gt;{&quot;NS&quot;:[&quot;6&quot;, &quot;2&quot;, &quot;1&quot;]}&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;LT&lt;/code&gt; : Less than. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// of type String, Number, or Binary (not a set type). If an item contains an
-/// &lt;code&gt;AttributeValue&lt;/code&gt; element of a different type than the one
-/// provided in the request, the value does not match. For example,
-/// &lt;code&gt;{&quot;S&quot;:&quot;6&quot;}&lt;/code&gt; does not equal &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt;. Also,
-/// &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt; does not compare to &lt;code&gt;{&quot;NS&quot;:[&quot;6&quot;, &quot;2&quot;,
-/// &quot;1&quot;]}&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;GE&lt;/code&gt; : Greater than or equal. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// element of type String, Number, or Binary (not a set type). If an item contains
-/// an &lt;code&gt;AttributeValue&lt;/code&gt; element of a different type than the one provided
-/// in the request, the value does not match. For example, &lt;code&gt;{&quot;S&quot;:&quot;6&quot;}&lt;/code&gt;
-/// does not equal &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt;. Also, &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt; does not
-/// compare to &lt;code&gt;{&quot;NS&quot;:[&quot;6&quot;, &quot;2&quot;, &quot;1&quot;]}&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;GT&lt;/code&gt; : Greater than. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// element of type String, Number, or Binary (not a set type). If an item contains
-/// an &lt;code&gt;AttributeValue&lt;/code&gt; element of a different type than the one provided
-/// in the request, the value does not match. For example, &lt;code&gt;{&quot;S&quot;:&quot;6&quot;}&lt;/code&gt;
-/// does not equal &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt;. Also, &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt; does not
-/// compare to &lt;code&gt;{&quot;NS&quot;:[&quot;6&quot;, &quot;2&quot;, &quot;1&quot;]}&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NOT_NULL&lt;/code&gt; : The attribute exists. &lt;code&gt;NOT_NULL&lt;/code&gt; is supported
-/// for all data types, including lists and maps.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This operator tests for the existence of an attribute, not its data type.
-/// If the data type of attribute &quot;&lt;code&gt;a&lt;/code&gt;&quot; is null, and you evaluate it
-/// using &lt;code&gt;NOT_NULL&lt;/code&gt;, the result is a Boolean &lt;code&gt;true&lt;/code&gt;. This
-/// result is because the attribute &quot;&lt;code&gt;a&lt;/code&gt;&quot; exists; its data type is
-/// not relevant to the &lt;code&gt;NOT_NULL&lt;/code&gt; comparison operator.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NULL&lt;/code&gt; : The attribute does not exist. &lt;code&gt;NULL&lt;/code&gt; is supported
-/// for all data types, including lists and maps.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This operator tests for the nonexistence of an attribute, not its data
-/// type. If the data type of attribute &quot;&lt;code&gt;a&lt;/code&gt;&quot; is null, and you
-/// evaluate it using &lt;code&gt;NULL&lt;/code&gt;, the result is a Boolean
-/// &lt;code&gt;false&lt;/code&gt;. This is because the attribute &quot;&lt;code&gt;a&lt;/code&gt;&quot;
-/// exists; its data type is not relevant to the &lt;code&gt;NULL&lt;/code&gt; comparison
-/// operator.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CONTAINS&lt;/code&gt; : Checks for a subsequence, or value in a set.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// element of type String, Number, or Binary (not a set type). If the target
-/// attribute of the comparison is of type String, then the operator checks for a
-/// substring match. If the target attribute of the comparison is of type Binary,
-/// then the operator looks for a subsequence of the target that matches the input.
-/// If the target attribute of the comparison is a set (&quot;&lt;code&gt;SS&lt;/code&gt;&quot;,
-/// &quot;&lt;code&gt;NS&lt;/code&gt;&quot;, or &quot;&lt;code&gt;BS&lt;/code&gt;&quot;), then the operator evaluates to
-/// true if it finds an exact match with any member of the set.&lt;/p&gt;
-/// &lt;p&gt;CONTAINS is supported for lists: When evaluating &quot;&lt;code&gt;a CONTAINS b&lt;/code&gt;&quot;,
-/// &quot;&lt;code&gt;a&lt;/code&gt;&quot; can be a list; however, &quot;&lt;code&gt;b&lt;/code&gt;&quot; cannot be a set, a
-/// map, or a list.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NOT_CONTAINS&lt;/code&gt; : Checks for absence of a subsequence, or absence of a
-/// value in a set.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// element of type String, Number, or Binary (not a set type). If the target
-/// attribute of the comparison is a String, then the operator checks for the
-/// absence of a substring match. If the target attribute of the comparison is
-/// Binary, then the operator checks for the absence of a subsequence of the target
-/// that matches the input. If the target attribute of the comparison is a set
-/// (&quot;&lt;code&gt;SS&lt;/code&gt;&quot;, &quot;&lt;code&gt;NS&lt;/code&gt;&quot;, or &quot;&lt;code&gt;BS&lt;/code&gt;&quot;), then the
-/// operator evaluates to true if it &lt;i&gt;does not&lt;/i&gt; find an exact
-/// match with any member of the set.&lt;/p&gt;
-/// &lt;p&gt;NOT_CONTAINS is supported for lists: When evaluating &quot;&lt;code&gt;a NOT CONTAINS
-/// b&lt;/code&gt;&quot;, &quot;&lt;code&gt;a&lt;/code&gt;&quot; can be a list; however, &quot;&lt;code&gt;b&lt;/code&gt;&quot; cannot
-/// be a set, a map, or a list.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;BEGINS_WITH&lt;/code&gt; : Checks for a prefix. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain only one &lt;code&gt;AttributeValue&lt;/code&gt;
-/// of type String or Binary (not a Number or a set type). The target attribute of
-/// the comparison must be of type String or Binary (not a Number or a set
-/// type).&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IN&lt;/code&gt; : Checks for matching elements in a list.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; can contain one or more
-/// &lt;code&gt;AttributeValue&lt;/code&gt; elements of type String, Number, or Binary.
-/// These attributes are compared against an existing attribute of an item. If any
-/// elements of the input are equal to the item attribute, the expression evaluates
-/// to true.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;BETWEEN&lt;/code&gt; : Greater than or equal to the first value, and less than
-/// or equal to the second value. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeValueList&lt;/code&gt; must contain two &lt;code&gt;AttributeValue&lt;/code&gt;
-/// elements of the same type, either String, Number, or Binary (not a set type). A
-/// target attribute matches if the target value is greater than, or equal to, the
-/// first element and less than, or equal to, the second element. If an item
-/// contains an &lt;code&gt;AttributeValue&lt;/code&gt; element of a different type than the one
-/// provided in the request, the value does not match. For example,
-/// &lt;code&gt;{&quot;S&quot;:&quot;6&quot;}&lt;/code&gt; does not compare to &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt;. Also,
-/// &lt;code&gt;{&quot;N&quot;:&quot;6&quot;}&lt;/code&gt; does not compare to &lt;code&gt;{&quot;NS&quot;:[&quot;6&quot;, &quot;2&quot;,
-/// &quot;1&quot;]}&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For usage examples of &lt;code&gt;AttributeValueList&lt;/code&gt; and
-/// &lt;code&gt;ComparisonOperator&lt;/code&gt;, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html&quot;&gt;Legacy
-/// Conditional Parameters&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// A comparator for evaluating attributes. For example, equals, greater than, less than, etc.
+/// </para>
+/// <para>
+/// The following comparison operators are available:
+/// </para>
+/// <para>
+/// <c>EQ | NE | LE | LT | GE | GT | NOT_NULL | NULL | CONTAINS | NOT_CONTAINS | BEGINS_WITH | IN |
+/// BETWEEN</c>
+/// </para>
+/// <para>
+/// The following are descriptions of each comparison operator.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <c>EQ</c> : Equal. <c>EQ</c> is supported for all data types, including lists and maps.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> element of type String, Number,
+/// Binary, String Set, Number Set, or Binary Set. If an item contains an <c>AttributeValue</c> element
+/// of a different type than the one provided in the request, the value does not match. For example,
+/// <c>{"S":"6"}</c> does not equal <c>{"N":"6"}</c>. Also, <c>{"N":"6"}</c> does not equal
+/// <c>{"NS":["6", "2", "1"]}</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>NE</c> : Not equal. <c>NE</c> is supported for all data types, including lists and maps.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> of type String, Number, Binary,
+/// String Set, Number Set, or Binary Set. If an item contains an <c>AttributeValue</c> of a different
+/// type than the one provided in the request, the value does not match. For example, <c>{"S":"6"}</c>
+/// does not equal <c>{"N":"6"}</c>. Also, <c>{"N":"6"}</c> does not equal <c>{"NS":["6", "2",
+/// "1"]}</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>LE</c> : Less than or equal.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> element of type String, Number,
+/// or Binary (not a set type). If an item contains an <c>AttributeValue</c> element of a different type
+/// than the one provided in the request, the value does not match. For example, <c>{"S":"6"}</c> does
+/// not equal <c>{"N":"6"}</c>. Also, <c>{"N":"6"}</c> does not compare to <c>{"NS":["6", "2",
+/// "1"]}</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>LT</c> : Less than.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> of type String, Number, or
+/// Binary (not a set type). If an item contains an <c>AttributeValue</c> element of a different type
+/// than the one provided in the request, the value does not match. For example, <c>{"S":"6"}</c> does
+/// not equal <c>{"N":"6"}</c>. Also, <c>{"N":"6"}</c> does not compare to <c>{"NS":["6", "2",
+/// "1"]}</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>GE</c> : Greater than or equal.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> element of type String, Number,
+/// or Binary (not a set type). If an item contains an <c>AttributeValue</c> element of a different type
+/// than the one provided in the request, the value does not match. For example, <c>{"S":"6"}</c> does
+/// not equal <c>{"N":"6"}</c>. Also, <c>{"N":"6"}</c> does not compare to <c>{"NS":["6", "2",
+/// "1"]}</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>GT</c> : Greater than.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> element of type String, Number,
+/// or Binary (not a set type). If an item contains an <c>AttributeValue</c> element of a different type
+/// than the one provided in the request, the value does not match. For example, <c>{"S":"6"}</c> does
+/// not equal <c>{"N":"6"}</c>. Also, <c>{"N":"6"}</c> does not compare to <c>{"NS":["6", "2",
+/// "1"]}</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>NOT_NULL</c> : The attribute exists. <c>NOT_NULL</c> is supported for all data types, including
+/// lists and maps.
+/// </para>
+/// <para>
+/// <b>Note:</b> This operator tests for the existence of an attribute, not its data type. If the data
+/// type of attribute "<c>a</c>" is null, and you evaluate it using <c>NOT_NULL</c>, the result is a
+/// Boolean <c>true</c>. This result is because the attribute "<c>a</c>" exists; its data type is not
+/// relevant to the <c>NOT_NULL</c> comparison operator.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>NULL</c> : The attribute does not exist. <c>NULL</c> is supported for all data types, including
+/// lists and maps.
+/// </para>
+/// <para>
+/// <b>Note:</b> This operator tests for the nonexistence of an attribute, not its data type. If the
+/// data type of attribute "<c>a</c>" is null, and you evaluate it using <c>NULL</c>, the result is a
+/// Boolean <c>false</c>. This is because the attribute "<c>a</c>" exists; its data type is not relevant
+/// to the <c>NULL</c> comparison operator.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>CONTAINS</c> : Checks for a subsequence, or value in a set.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> element of type String, Number,
+/// or Binary (not a set type). If the target attribute of the comparison is of type String, then the
+/// operator checks for a substring match. If the target attribute of the comparison is of type Binary,
+/// then the operator looks for a subsequence of the target that matches the input. If the target
+/// attribute of the comparison is a set ("<c>SS</c>", "<c>NS</c>", or "<c>BS</c>"), then the operator
+/// evaluates to true if it finds an exact match with any member of the set.
+/// </para>
+/// <para>
+/// CONTAINS is supported for lists: When evaluating "<c>a CONTAINS b</c>", "<c>a</c>" can be a list;
+/// however, "<c>b</c>" cannot be a set, a map, or a list.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>NOT_CONTAINS</c> : Checks for absence of a subsequence, or absence of a value in a set.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> element of type String, Number,
+/// or Binary (not a set type). If the target attribute of the comparison is a String, then the operator
+/// checks for the absence of a substring match. If the target attribute of the comparison is Binary,
+/// then the operator checks for the absence of a subsequence of the target that matches the input. If
+/// the target attribute of the comparison is a set ("<c>SS</c>", "<c>NS</c>", or "<c>BS</c>"), then the
+/// operator evaluates to true if it <i>does not</i> find an exact match with any member of the set.
+/// </para>
+/// <para>
+/// NOT_CONTAINS is supported for lists: When evaluating "<c>a NOT CONTAINS b</c>", "<c>a</c>" can be a
+/// list; however, "<c>b</c>" cannot be a set, a map, or a list.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>BEGINS_WITH</c> : Checks for a prefix.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain only one <c>AttributeValue</c> of type String or Binary (not a
+/// Number or a set type). The target attribute of the comparison must be of type String or Binary (not
+/// a Number or a set type).
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>IN</c> : Checks for matching elements in a list.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> can contain one or more <c>AttributeValue</c> elements of type String,
+/// Number, or Binary. These attributes are compared against an existing attribute of an item. If any
+/// elements of the input are equal to the item attribute, the expression evaluates to true.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>BETWEEN</c> : Greater than or equal to the first value, and less than or equal to the second
+/// value.
+/// </para>
+/// <para>
+/// <c>AttributeValueList</c> must contain two <c>AttributeValue</c> elements of the same type, either
+/// String, Number, or Binary (not a set type). A target attribute matches if the target value is
+/// greater than, or equal to, the first element and less than, or equal to, the second element. If an
+/// item contains an <c>AttributeValue</c> element of a different type than the one provided in the
+/// request, the value does not match. For example, <c>{"S":"6"}</c> does not compare to
+/// <c>{"N":"6"}</c>. Also, <c>{"N":"6"}</c> does not compare to <c>{"NS":["6", "2", "1"]}</c>
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For usage examples of <c>AttributeValueList</c> and <c>ComparisonOperator</c>, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html">Legacy
+/// Conditional Parameters</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="AttributeValueList">
-/// &lt;p&gt;One or more values to evaluate against the supplied attribute. The number of values in
-/// the list depends on the &lt;code&gt;ComparisonOperator&lt;/code&gt; being used.&lt;/p&gt;
-/// &lt;p&gt;For type Number, value comparisons are numeric.&lt;/p&gt;
-/// &lt;p&gt;String value comparisons for greater than, equals, or less than are based on ASCII
-/// character code values. For example, &lt;code&gt;a&lt;/code&gt; is greater than &lt;code&gt;A&lt;/code&gt;, and
-/// &lt;code&gt;a&lt;/code&gt; is greater than &lt;code&gt;B&lt;/code&gt;. For a list of code values, see &lt;a href=&quot;http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters&quot;&gt;http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters&lt;/a&gt;.&lt;/p&gt;
-/// &lt;p&gt;For Binary, DynamoDB treats each byte of the binary data as unsigned when it
-/// compares binary values.&lt;/p&gt;
+/// <para>
+/// One or more values to evaluate against the supplied attribute. The number of values in the list
+/// depends on the <c>ComparisonOperator</c> being used.
+/// </para>
+/// <para>
+/// For type Number, value comparisons are numeric.
+/// </para>
+/// <para>
+/// String value comparisons for greater than, equals, or less than are based on ASCII character code
+/// values. For example, <c>a</c> is greater than <c>A</c>, and <c>a</c> is greater than <c>B</c>. For a
+/// list of code values, see
+/// <see href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters">http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</see>.
+/// </para>
+/// <para>
+/// For Binary, DynamoDB treats each byte of the binary data as unsigned when it compares binary values.
+/// </para>
 /// </param>
 public sealed record class Condition(
     global::Com.Amazonaws.Dynamodb.ComparisonOperator ComparisonOperator,

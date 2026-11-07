@@ -7,13 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The response from the ListDurableExecutionsByFunction operation, containing a list of durable executions and pagination information.&lt;/p&gt;
+/// The response from the ListDurableExecutionsByFunction operation, containing a list of durable
+/// executions and pagination information.
 /// </summary>
 /// <param name="DurableExecutions">
-/// &lt;p&gt;List of durable execution summaries matching the filter criteria.&lt;/p&gt;
+/// List of durable execution summaries matching the filter criteria.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;Pagination token for retrieving additional results. Present only if there are more results available.&lt;/p&gt;
+/// Pagination token for retrieving additional results. Present only if there are more results
+/// available.
 /// </param>
 public sealed record class ListDurableExecutionsByFunctionOutput(
     IReadOnlyList<Execution>? DurableExecutions = null,

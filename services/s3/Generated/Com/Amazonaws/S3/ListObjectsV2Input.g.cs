@@ -10,108 +10,146 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListObjectsV2Input.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;
-/// &lt;code&gt;ContinuationToken&lt;/code&gt; indicates to Amazon S3 that the list is being continued on this bucket
-/// with a token. &lt;code&gt;ContinuationToken&lt;/code&gt; is obfuscated and is not a real key. You can use this
-/// &lt;code&gt;ContinuationToken&lt;/code&gt; for pagination of the list results. &lt;/p&gt;
+/// <c>ContinuationToken</c> indicates to Amazon S3 that the list is being continued on this bucket with
+/// a token. <c>ContinuationToken</c> is obfuscated and is not a real key. You can use this
+/// <c>ContinuationToken</c> for pagination of the list results.
 /// </param>
 /// <param name="Delimiter">
-/// &lt;p&gt;A delimiter is a character that you use to group keys.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; is filtered out from results if it is not lexicographically greater than
-/// the &lt;code&gt;StartAfter&lt;/code&gt; value.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, &lt;code&gt;/&lt;/code&gt; is the only supported delimiter.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - When you query
-/// &lt;code&gt;ListObjectsV2&lt;/code&gt; with a delimiter during in-progress multipart uploads, the
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; response parameter contains the prefixes that are associated with
-/// the in-progress multipart uploads. For more information about multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html&quot;&gt;Multipart Upload
-/// Overview&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// A delimiter is a character that you use to group keys.
+/// </para>
+/// <para>
+/// <c>CommonPrefixes</c> is filtered out from results if it is not lexicographically greater than the
+/// <c>StartAfter</c> value.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Directory buckets</b> - For directory buckets, <c>/</c> is the only supported delimiter.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Directory buckets </b> - When you query <c>ListObjectsV2</c> with a delimiter during in-progress
+/// multipart uploads, the <c>CommonPrefixes</c> response parameter contains the prefixes that are
+/// associated with the in-progress multipart uploads. For more information about multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html">Multipart Upload
+/// Overview</see> in the <i>Amazon S3 User Guide</i>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="EncodingType">
-/// &lt;p&gt;Encoding type used by Amazon S3 to encode the &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html&quot;&gt;object keys&lt;/a&gt; in the response. Responses are
-/// encoded only in UTF-8. An object key can contain any Unicode character. However, the XML 1.0 parser
-/// can't parse certain characters, such as characters with an ASCII value from 0 to 10. For characters that
-/// aren't supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the
-/// response. For more information about characters to avoid in object key names, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines&quot;&gt;Object key
-/// naming guidelines&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When using the URL encoding type, non-ASCII characters that are used in an object's key name will
-/// be percent-encoded according to UTF-8 code values. For example, the object
-/// &lt;code&gt;test_file(3).png&lt;/code&gt; will appear as &lt;code&gt;test_file%283%29.png&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Encoding type used by Amazon S3 to encode the
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html">object keys</see>
+/// in the response. Responses are encoded only in UTF-8. An object key can contain any Unicode
+/// character. However, the XML 1.0 parser can't parse certain characters, such as characters with an
+/// ASCII value from 0 to 10. For characters that aren't supported in XML 1.0, you can add this
+/// parameter to request that Amazon S3 encode the keys in the response. For more information about
+/// characters to avoid in object key names, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines">Object
+/// key naming guidelines</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> When using the URL encoding type, non-ASCII characters that are used in an object's key
+/// name will be percent-encoded according to UTF-8 code values. For example, the object
+/// <c>test_file(3).png</c> will appear as <c>test_file%283%29.png</c>.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="FetchOwner">
-/// &lt;p&gt;The owner field is not present in &lt;code&gt;ListObjectsV2&lt;/code&gt; by default. If you want to return the
-/// owner field with each key in the result, then set the &lt;code&gt;FetchOwner&lt;/code&gt; field to
-/// &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, the bucket
-/// owner is returned as the object owner for all objects.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The owner field is not present in <c>ListObjectsV2</c> by default. If you want to return the owner
+/// field with each key in the result, then set the <c>FetchOwner</c> field to <c>true</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, the bucket owner is returned as the
+/// object owner for all objects.
+/// </para>
 /// </param>
 /// <param name="MaxKeys">
-/// &lt;p&gt;Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000
-/// key names. The response might contain fewer keys but will never contain more.&lt;/p&gt;
+/// Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000
+/// key names. The response might contain fewer keys but will never contain more.
 /// </param>
 /// <param name="OptionalObjectAttributes">
-/// &lt;p&gt;Specifies the optional fields that you want returned in the response. Fields that you do not specify
-/// are not returned.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the optional fields that you want returned in the response. Fields that you do not specify
+/// are not returned.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Limits the response to keys that begin with the specified prefix.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, only prefixes that end in a delimiter (&lt;code&gt;/&lt;/code&gt;) are supported.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Limits the response to keys that begin with the specified prefix.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter
+/// (<c>/</c>) are supported.
+/// </para>
 /// </param>
 /// <param name="RequestPayer">
-/// &lt;p&gt;Confirms that the requester knows that she or he will be charged for the list objects request in V2
-/// style. Bucket owners need not specify this parameter in their requests.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Confirms that the requester knows that she or he will be charged for the list objects request in V2
+/// style. Bucket owners need not specify this parameter in their requests.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="StartAfter">
-/// &lt;p&gt;StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts listing after this specified
-/// key. StartAfter can be any key in the bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts listing after this
+/// specified key. StartAfter can be any key in the bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class ListObjectsV2Input(
     string Bucket,

@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Returns the &lt;code&gt;QueueUrl&lt;/code&gt; attribute of the created queue.&lt;/p&gt;
+/// Returns the <c>QueueUrl</c> attribute of the created queue.
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the created Amazon SQS queue.&lt;/p&gt;
+/// The URL of the created Amazon SQS queue.
 /// </param>
 public sealed record class CreateQueueOutput(string? QueueUrl = null);

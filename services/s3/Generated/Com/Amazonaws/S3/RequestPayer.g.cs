@@ -7,14 +7,17 @@ using NSmithy.Core.Serde;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Confirms that the requester knows that they will be charged for the request. Bucket owners need not
-/// specify this parameter in their requests. If either the source or destination S3 bucket has Requester
-/// Pays enabled, the requester will pay for the corresponding charges. For information about
-/// downloading objects from Requester Pays buckets, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html&quot;&gt;Downloading Objects in Requester Pays
-/// Buckets&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Confirms that the requester knows that they will be charged for the request. Bucket owners need not
+/// specify this parameter in their requests. If either the source or destination S3 bucket has
+/// Requester Pays enabled, the requester will pay for the corresponding charges. For information about
+/// downloading objects from Requester Pays buckets, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html">Downloading
+/// Objects in Requester Pays Buckets</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </summary>
 public readonly partial record struct RequestPayer(string Value) : IStringEnumValue<RequestPayer>
 {

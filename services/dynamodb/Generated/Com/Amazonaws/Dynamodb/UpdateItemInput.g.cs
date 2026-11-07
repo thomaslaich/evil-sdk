@@ -7,283 +7,349 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of an &lt;code&gt;UpdateItem&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of an <c>UpdateItem</c> operation.
 /// </summary>
 /// <param name="Key">
-/// &lt;p&gt;The primary key of the item to be updated. Each element consists of an attribute name
-/// and a value for that attribute.&lt;/p&gt;
-/// &lt;p&gt;For the primary key, you must provide all of the attributes. For example, with a
-/// simple primary key, you only need to provide a value for the partition key. For a
-/// composite primary key, you must provide values for both the partition key and the sort
-/// key.&lt;/p&gt;
+/// <para>
+/// The primary key of the item to be updated. Each element consists of an attribute name and a value
+/// for that attribute.
+/// </para>
+/// <para>
+/// For the primary key, you must provide all of the attributes. For example, with a simple primary key,
+/// you only need to provide a value for the partition key. For a composite primary key, you must
+/// provide values for both the partition key and the sort key.
+/// </para>
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table containing the item to update. You can also provide the
-/// Amazon Resource Name (ARN) of the table in this parameter.&lt;/p&gt;
+/// The name of the table containing the item to update. You can also provide the Amazon Resource Name
+/// (ARN) of the table in this parameter.
 /// </param>
 /// <param name="AttributeUpdates">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;UpdateExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html&quot;&gt;AttributeUpdates&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>UpdateExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html">AttributeUpdates</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ConditionExpression">
-/// &lt;p&gt;A condition that must be satisfied in order for a conditional update to
-/// succeed.&lt;/p&gt;
-/// &lt;p&gt;An expression can contain any of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Functions: &lt;code&gt;attribute_exists | attribute_not_exists | attribute_type |
-/// contains | begins_with | size&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;These function names are case-sensitive.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Comparison operators: &lt;code&gt;= | &lt;&gt; |
-/// &lt; | &gt; | &lt;= | &gt;= |
-/// BETWEEN | IN &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; Logical operators: &lt;code&gt;AND | OR | NOT&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information about condition expressions, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html&quot;&gt;Specifying Conditions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// A condition that must be satisfied in order for a conditional update to succeed.
+/// </para>
+/// <para>
+/// An expression can contain any of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// Functions: <c>attribute_exists | attribute_not_exists | attribute_type | contains | begins_with |
+/// size</c>
+/// </para>
+/// <para>
+/// These function names are case-sensitive.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Comparison operators: <c>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN | IN </c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Logical operators: <c>AND | OR | NOT</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about condition expressions, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
+/// Conditions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ConditionalOperator">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;ConditionExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html&quot;&gt;ConditionalOperator&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="Expected">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;ConditionExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html&quot;&gt;Expected&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html">Expected</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression. The following
-/// are some use cases for using &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To access an attribute whose name conflicts with a DynamoDB reserved
-/// word.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To create a placeholder for repeating occurrences of an attribute name in an
-/// expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To prevent special characters in an attribute name from being misinterpreted
-/// in an expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;Use the &lt;b&gt;#&lt;/b&gt; character in an expression to dereference
-/// an attribute name. For example, consider the following attribute name:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Percentile&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;The name of this attribute conflicts with a reserved word, so it cannot be used
-/// directly in an expression. (For the complete list of reserved words, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html&quot;&gt;Reserved Words&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.) To work around this, you could specify the following for
-/// &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;{&quot;#P&quot;:&quot;Percentile&quot;}&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;You could then use this substitution in an expression, as in this example:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;#P = :val&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Tokens that begin with the &lt;b&gt;:&lt;/b&gt; character are
-/// &lt;i&gt;expression attribute values&lt;/i&gt;, which are placeholders for the
-/// actual value at runtime.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For more information about expression attribute names, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html&quot;&gt;Specifying Item Attributes&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// One or more substitution tokens for attribute names in an expression. The following are some use
+/// cases for using <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// To access an attribute whose name conflicts with a DynamoDB reserved word.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To create a placeholder for repeating occurrences of an attribute name in an expression.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To prevent special characters in an attribute name from being misinterpreted in an expression.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Use the <b>#</b> character in an expression to dereference an attribute name. For example, consider
+/// the following attribute name:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>Percentile</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The name of this attribute conflicts with a reserved word, so it cannot be used directly in an
+/// expression. (For the complete list of reserved words, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+/// Words</see> in the <i>Amazon DynamoDB Developer Guide</i>.) To work around this, you could specify
+/// the following for <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>{"#P":"Percentile"}</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You could then use this substitution in an expression, as in this example:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>#P = :val</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> Tokens that begin with the <b>:</b> character are <i>expression attribute values</i>,
+/// which are placeholders for the actual value at runtime.
+/// </para>
+/// <para>
+/// For more information about expression attribute names, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Specifying
+/// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression.&lt;/p&gt;
-/// &lt;p&gt;Use the &lt;b&gt;:&lt;/b&gt; (colon) character in an expression to
-/// dereference an attribute value. For example, suppose that you wanted to check whether
-/// the value of the &lt;code&gt;ProductStatus&lt;/code&gt; attribute was one of the following: &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Available | Backordered | Discontinued&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;You would first need to specify &lt;code&gt;ExpressionAttributeValues&lt;/code&gt; as
-/// follows:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;{ &quot;:avail&quot;:{&quot;S&quot;:&quot;Available&quot;}, &quot;:back&quot;:{&quot;S&quot;:&quot;Backordered&quot;},
-/// &quot;:disc&quot;:{&quot;S&quot;:&quot;Discontinued&quot;} }&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;You could then use these values in an expression, such as this:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProductStatus IN (:avail, :back, :disc)&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;For more information on expression attribute values, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html&quot;&gt;Condition Expressions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// One or more values that can be substituted in an expression.
+/// </para>
+/// <para>
+/// Use the <b>:</b> (colon) character in an expression to dereference an attribute value. For example,
+/// suppose that you wanted to check whether the value of the <c>ProductStatus</c> attribute was one of
+/// the following:
+/// </para>
+/// <para>
+/// <c>Available | Backordered | Discontinued</c>
+/// </para>
+/// <para>
+/// You would first need to specify <c>ExpressionAttributeValues</c> as follows:
+/// </para>
+/// <para>
+/// <c>{ ":avail":{"S":"Available"}, ":back":{"S":"Backordered"}, ":disc":{"S":"Discontinued"} }</c>
+/// </para>
+/// <para>
+/// You could then use these values in an expression, such as this:
+/// </para>
+/// <para>
+/// <c>ProductStatus IN (:avail, :back, :disc)</c>
+/// </para>
+/// <para>
+/// For more information on expression attribute values, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Condition
+/// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ReturnItemCollectionMetrics">
-/// &lt;p&gt;Determines whether item collection metrics are returned. If set to &lt;code&gt;SIZE&lt;/code&gt;,
-/// the response includes statistics about item collections, if any, that were modified
-/// during the operation are returned in the response. If set to &lt;code&gt;NONE&lt;/code&gt; (the
-/// default), no statistics are returned.&lt;/p&gt;
+/// Determines whether item collection metrics are returned. If set to <c>SIZE</c>, the response
+/// includes statistics about item collections, if any, that were modified during the operation are
+/// returned in the response. If set to <c>NONE</c> (the default), no statistics are returned.
 /// </param>
 /// <param name="ReturnValues">
-/// &lt;p&gt;Use &lt;code&gt;ReturnValues&lt;/code&gt; if you want to get the item attributes as they appear
-/// before or after they are successfully updated. For &lt;code&gt;UpdateItem&lt;/code&gt;, the valid
-/// values are:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NONE&lt;/code&gt; - If &lt;code&gt;ReturnValues&lt;/code&gt; is not specified, or if its
-/// value is &lt;code&gt;NONE&lt;/code&gt;, then nothing is returned. (This setting is the
-/// default for &lt;code&gt;ReturnValues&lt;/code&gt;.)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL_OLD&lt;/code&gt; - Returns all of the attributes of the item, as they
-/// appeared before the UpdateItem operation.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATED_OLD&lt;/code&gt; - Returns only the updated attributes, as they appeared
-/// before the UpdateItem operation.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL_NEW&lt;/code&gt; - Returns all of the attributes of the item, as they appear
-/// after the UpdateItem operation.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATED_NEW&lt;/code&gt; - Returns only the updated attributes, as they appear
-/// after the UpdateItem operation.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;There is no additional cost associated with requesting a return value aside from the
-/// small network and processing overhead of receiving a larger response. No read capacity
-/// units are consumed.&lt;/p&gt;
-/// &lt;p&gt;The values returned are strongly consistent.&lt;/p&gt;
+/// <para>
+/// Use <c>ReturnValues</c> if you want to get the item attributes as they appear before or after they
+/// are successfully updated. For <c>UpdateItem</c>, the valid values are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>NONE</c> - If <c>ReturnValues</c> is not specified, or if its value is <c>NONE</c>, then nothing
+/// is returned. (This setting is the default for <c>ReturnValues</c>.)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL_OLD</c> - Returns all of the attributes of the item, as they appeared before the UpdateItem
+/// operation.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATED_OLD</c> - Returns only the updated attributes, as they appeared before the UpdateItem
+/// operation.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL_NEW</c> - Returns all of the attributes of the item, as they appear after the UpdateItem
+/// operation.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATED_NEW</c> - Returns only the updated attributes, as they appear after the UpdateItem
+/// operation.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// There is no additional cost associated with requesting a return value aside from the small network
+/// and processing overhead of receiving a larger response. No read capacity units are consumed.
+/// </para>
+/// <para>
+/// The values returned are strongly consistent.
+/// </para>
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;An optional parameter that returns the item attributes for an &lt;code&gt;UpdateItem&lt;/code&gt;
-/// operation that failed a condition check.&lt;/p&gt;
-/// &lt;p&gt;There is no additional cost associated with requesting a return value aside from the
-/// small network and processing overhead of receiving a larger response. No read capacity
-/// units are consumed.&lt;/p&gt;
+/// <para>
+/// An optional parameter that returns the item attributes for an <c>UpdateItem</c> operation that
+/// failed a condition check.
+/// </para>
+/// <para>
+/// There is no additional cost associated with requesting a return value aside from the small network
+/// and processing overhead of receiving a larger response. No read capacity units are consumed.
+/// </para>
 /// </param>
 /// <param name="UpdateExpression">
-/// &lt;p&gt;An expression that defines one or more attributes to be updated, the action to be
-/// performed on them, and new values for them.&lt;/p&gt;
-/// &lt;p&gt;The following action values are available for &lt;code&gt;UpdateExpression&lt;/code&gt;.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SET&lt;/code&gt; - Adds one or more attributes and values to an item. If any of
-/// these attributes already exist, they are replaced by the new values. You can
-/// also use &lt;code&gt;SET&lt;/code&gt; to add or subtract from an attribute that is of type
-/// Number. For example: &lt;code&gt;SET myNum = myNum + :val&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SET&lt;/code&gt; supports the following functions:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;if_not_exists (path, operand)&lt;/code&gt; - if the item does not
-/// contain an attribute at the specified path, then
-/// &lt;code&gt;if_not_exists&lt;/code&gt; evaluates to operand; otherwise, it
-/// evaluates to path. You can use this function to avoid overwriting an
-/// attribute that may already be present in the item.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;list_append (operand, operand)&lt;/code&gt; - evaluates to a list with a
-/// new element added to it. You can append the new element to the start or
-/// the end of the list by reversing the order of the operands.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;These function names are case-sensitive.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;REMOVE&lt;/code&gt; - Removes one or more attributes from an item.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ADD&lt;/code&gt; - Adds the specified value to the item, if the attribute does
-/// not already exist. If the attribute does exist, then the behavior of
-/// &lt;code&gt;ADD&lt;/code&gt; depends on the data type of the attribute:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If the existing attribute is a number, and if &lt;code&gt;Value&lt;/code&gt; is
-/// also a number, then &lt;code&gt;Value&lt;/code&gt; is mathematically added to the
-/// existing attribute. If &lt;code&gt;Value&lt;/code&gt; is a negative number, then it
-/// is subtracted from the existing attribute.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;If you use &lt;code&gt;ADD&lt;/code&gt; to increment or decrement a number
-/// value for an item that doesn't exist before the update, DynamoDB
-/// uses &lt;code&gt;0&lt;/code&gt; as the initial value.&lt;/p&gt;
-/// &lt;p&gt;Similarly, if you use &lt;code&gt;ADD&lt;/code&gt; for an existing item to
-/// increment or decrement an attribute value that doesn't exist before
-/// the update, DynamoDB uses &lt;code&gt;0&lt;/code&gt; as the initial value. For
-/// example, suppose that the item you want to update doesn't have an
-/// attribute named &lt;code&gt;itemcount&lt;/code&gt;, but you decide to
-/// &lt;code&gt;ADD&lt;/code&gt; the number &lt;code&gt;3&lt;/code&gt; to this attribute
-/// anyway. DynamoDB will create the &lt;code&gt;itemcount&lt;/code&gt; attribute,
-/// set its initial value to &lt;code&gt;0&lt;/code&gt;, and finally add
-/// &lt;code&gt;3&lt;/code&gt; to it. The result will be a new
-/// &lt;code&gt;itemcount&lt;/code&gt; attribute in the item, with a value of
-/// &lt;code&gt;3&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If the existing data type is a set and if &lt;code&gt;Value&lt;/code&gt; is also a
-/// set, then &lt;code&gt;Value&lt;/code&gt; is added to the existing set. For example,
-/// if the attribute value is the set &lt;code&gt;[1,2]&lt;/code&gt;, and the
-/// &lt;code&gt;ADD&lt;/code&gt; action specified &lt;code&gt;[3]&lt;/code&gt;, then the final
-/// attribute value is &lt;code&gt;[1,2,3]&lt;/code&gt;. An error occurs if an
-/// &lt;code&gt;ADD&lt;/code&gt; action is specified for a set attribute and the
-/// attribute type specified does not match the existing set type. &lt;/p&gt;
-/// &lt;p&gt;Both sets must have the same primitive data type. For example, if the
-/// existing data type is a set of strings, the &lt;code&gt;Value&lt;/code&gt; must also
-/// be a set of strings.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;The &lt;code&gt;ADD&lt;/code&gt; action only supports Number and set data types.&lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETE&lt;/code&gt; - Deletes an element from a set.&lt;/p&gt;
-/// &lt;p&gt;If a set of values is specified, then those values are subtracted from the old
-/// set. For example, if the attribute value was the set &lt;code&gt;[a,b,c]&lt;/code&gt; and
-/// the &lt;code&gt;DELETE&lt;/code&gt; action specifies &lt;code&gt;[a,c]&lt;/code&gt;, then the final
-/// attribute value is &lt;code&gt;[b]&lt;/code&gt;. Specifying an empty set is an error.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;The &lt;code&gt;DELETE&lt;/code&gt; action only supports set data types.&lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;You can have many actions in a single expression, such as the following: &lt;code&gt;SET
-/// a=:value1, b=:value2 DELETE :value3, :value4, :value5&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;For more information on update expressions, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.Modifying.html&quot;&gt;Modifying
-/// Items and Attributes&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// An expression that defines one or more attributes to be updated, the action to be performed on them,
+/// and new values for them.
+/// </para>
+/// <para>
+/// The following action values are available for <c>UpdateExpression</c>.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <c>SET</c> - Adds one or more attributes and values to an item. If any of these attributes already
+/// exist, they are replaced by the new values. You can also use <c>SET</c> to add or subtract from an
+/// attribute that is of type Number. For example: <c>SET myNum = myNum + :val</c>
+/// </para>
+/// <para>
+/// <c>SET</c> supports the following functions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>if_not_exists (path, operand)</c> - if the item does not contain an attribute at the specified
+/// path, then <c>if_not_exists</c> evaluates to operand; otherwise, it evaluates to path. You can use
+/// this function to avoid overwriting an attribute that may already be present in the item.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>list_append (operand, operand)</c> - evaluates to a list with a new element added to it. You can
+/// append the new element to the start or the end of the list by reversing the order of the operands.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// These function names are case-sensitive.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>REMOVE</c> - Removes one or more attributes from an item.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>ADD</c> - Adds the specified value to the item, if the attribute does not already exist. If the
+/// attribute does exist, then the behavior of <c>ADD</c> depends on the data type of the attribute:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// If the existing attribute is a number, and if <c>Value</c> is also a number, then <c>Value</c> is
+/// mathematically added to the existing attribute. If <c>Value</c> is a negative number, then it is
+/// subtracted from the existing attribute.
+/// </para>
+/// <para>
+/// <b>Note:</b> If you use <c>ADD</c> to increment or decrement a number value for an item that doesn't
+/// exist before the update, DynamoDB uses <c>0</c> as the initial value.
+/// </para>
+/// <para>
+/// Similarly, if you use <c>ADD</c> for an existing item to increment or decrement an attribute value
+/// that doesn't exist before the update, DynamoDB uses <c>0</c> as the initial value. For example,
+/// suppose that the item you want to update doesn't have an attribute named <c>itemcount</c>, but you
+/// decide to <c>ADD</c> the number <c>3</c> to this attribute anyway. DynamoDB will create the
+/// <c>itemcount</c> attribute, set its initial value to <c>0</c>, and finally add <c>3</c> to it. The
+/// result will be a new <c>itemcount</c> attribute in the item, with a value of <c>3</c>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// If the existing data type is a set and if <c>Value</c> is also a set, then <c>Value</c> is added to
+/// the existing set. For example, if the attribute value is the set <c>[1,2]</c>, and the <c>ADD</c>
+/// action specified <c>[3]</c>, then the final attribute value is <c>[1,2,3]</c>. An error occurs if an
+/// <c>ADD</c> action is specified for a set attribute and the attribute type specified does not match
+/// the existing set type.
+/// </para>
+/// <para>
+/// Both sets must have the same primitive data type. For example, if the existing data type is a set of
+/// strings, the <c>Value</c> must also be a set of strings.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Important:</b> The <c>ADD</c> action only supports Number and set data types.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>DELETE</c> - Deletes an element from a set.
+/// </para>
+/// <para>
+/// If a set of values is specified, then those values are subtracted from the old set. For example, if
+/// the attribute value was the set <c>[a,b,c]</c> and the <c>DELETE</c> action specifies <c>[a,c]</c>,
+/// then the final attribute value is <c>[b]</c>. Specifying an empty set is an error.
+/// </para>
+/// <para>
+/// <b>Important:</b> The <c>DELETE</c> action only supports set data types.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You can have many actions in a single expression, such as the following: <c>SET a=:value1, b=:value2
+/// DELETE :value3, :value4, :value5</c>
+/// </para>
+/// <para>
+/// For more information on update expressions, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.Modifying.html">Modifying
+/// Items and Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 public sealed record class UpdateItemInput(
     IReadOnlyDictionary<string, AttributeValue> Key,

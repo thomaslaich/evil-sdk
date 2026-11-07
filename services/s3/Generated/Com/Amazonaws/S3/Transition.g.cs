@@ -7,23 +7,25 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies when an object transitions to a specified storage class. For more information about Amazon S3
-/// lifecycle configuration rules, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html&quot;&gt;Transitioning Objects Using
-/// Amazon S3 Lifecycle&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// Specifies when an object transitions to a specified storage class. For more information about Amazon
+/// S3 lifecycle configuration rules, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html">Transitioning
+/// Objects Using Amazon S3 Lifecycle</see> in the <i>Amazon S3 User Guide</i>.
 /// </summary>
 /// <param name="Date">
-/// &lt;p&gt;Indicates when objects are transitioned to the specified storage class. The date value must be in
-/// ISO 8601 format. The time is always midnight UTC.&lt;/p&gt;
+/// Indicates when objects are transitioned to the specified storage class. The date value must be in
+/// ISO 8601 format. The time is always midnight UTC.
 /// </param>
 /// <param name="Days">
-/// &lt;p&gt;Indicates the number of days after creation when objects are transitioned to the specified storage
-/// class. The value can be &lt;code&gt;0&lt;/code&gt; or any positive integer. Be aware that some storage classes have a
-/// minimum storage duration and that you're charged for transitioning objects before their minimum storage
-/// duration. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-configuration-constraints&quot;&gt; Constraints and considerations for transitions&lt;/a&gt; in the &lt;i&gt;Amazon S3 User
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// Indicates the number of days after creation when objects are transitioned to the specified storage
+/// class. The value can be <c>0</c> or any positive integer. Be aware that some storage classes have a
+/// minimum storage duration and that you're charged for transitioning objects before their minimum
+/// storage duration. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#lifecycle-configuration-constraints">Constraints
+/// and considerations for transitions</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;The storage class to which you want the object to transition.&lt;/p&gt;
+/// The storage class to which you want the object to transition.
 /// </param>
 public sealed record class Transition(
     DateTimeOffset? Date = null,

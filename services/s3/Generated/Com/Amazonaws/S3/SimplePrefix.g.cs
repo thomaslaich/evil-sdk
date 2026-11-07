@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;To use simple format for S3 keys for log objects, set SimplePrefix to an empty object.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;[DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]&lt;/code&gt;
-/// &lt;/p&gt;
+/// <para>
+/// To use simple format for S3 keys for log objects, set SimplePrefix to an empty object.
+/// </para>
+/// <para>
+/// <c>[DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]</c>
+/// </para>
 /// </summary>
 public sealed record class SimplePrefix;

@@ -5,10 +5,11 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for filter information for the selection of S3 objects encrypted with Amazon Web Services KMS.&lt;/p&gt;
+/// A container for filter information for the selection of S3 objects encrypted with Amazon Web
+/// Services KMS.
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;Specifies whether Amazon S3 replicates objects created with server-side encryption using an Amazon Web Services KMS key
-/// stored in Amazon Web Services Key Management Service.&lt;/p&gt;
+/// Specifies whether Amazon S3 replicates objects created with server-side encryption using an Amazon
+/// Web Services KMS key stored in Amazon Web Services Key Management Service.
 /// </param>
 public sealed record class SseKmsEncryptedObjects(SseKmsEncryptedObjectsStatus Status);

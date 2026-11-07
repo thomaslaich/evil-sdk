@@ -7,53 +7,61 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a replica.&lt;/p&gt;
+/// Represents the properties of a replica.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The Region name of the replica.&lt;/p&gt;
+/// The Region name of the replica.
 /// </param>
 /// <param name="ReplicaBillingModeSummary">
-/// &lt;p&gt;The read/write capacity mode of the replica.&lt;/p&gt;
+/// The read/write capacity mode of the replica.
 /// </param>
 /// <param name="ReplicaGlobalSecondaryIndexSettings">
-/// &lt;p&gt;Replica global secondary index settings for the global table.&lt;/p&gt;
+/// Replica global secondary index settings for the global table.
 /// </param>
 /// <param name="ReplicaProvisionedReadCapacityAutoScalingSettings">
-/// &lt;p&gt;Auto scaling settings for a global table replica's read capacity units.&lt;/p&gt;
+/// Auto scaling settings for a global table replica's read capacity units.
 /// </param>
 /// <param name="ReplicaProvisionedReadCapacityUnits">
-/// &lt;p&gt;The maximum number of strongly consistent reads consumed per second before DynamoDB
-/// returns a &lt;code&gt;ThrottlingException&lt;/code&gt;. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput&quot;&gt;Specifying Read and Write Requirements&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB
-/// Developer Guide&lt;/i&gt;. &lt;/p&gt;
+/// The maximum number of strongly consistent reads consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput">Specifying
+/// Read and Write Requirements</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ReplicaProvisionedWriteCapacityAutoScalingSettings">
-/// &lt;p&gt;Auto scaling settings for a global table replica's write capacity units.&lt;/p&gt;
+/// Auto scaling settings for a global table replica's write capacity units.
 /// </param>
 /// <param name="ReplicaProvisionedWriteCapacityUnits">
-/// &lt;p&gt;The maximum number of writes consumed per second before DynamoDB returns a
-/// &lt;code&gt;ThrottlingException&lt;/code&gt;. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput&quot;&gt;Specifying Read and Write Requirements&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB
-/// Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// The maximum number of writes consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput">Specifying
+/// Read and Write Requirements</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ReplicaStatus">
-/// &lt;p&gt;The current state of the Region:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The Region is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The Region is being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The Region is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The Region is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of the Region:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The Region is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The Region is being updated.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The Region is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The Region is ready for use.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class ReplicaSettingsDescription(
     string RegionName,

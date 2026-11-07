@@ -5,14 +5,12 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the settings used to enable or disable Time to Live (TTL) for the specified
-/// table.&lt;/p&gt;
+/// Represents the settings used to enable or disable Time to Live (TTL) for the specified table.
 /// </summary>
 /// <param name="AttributeName">
-/// &lt;p&gt;The name of the TTL attribute used to store the expiration time for items in the
-/// table.&lt;/p&gt;
+/// The name of the TTL attribute used to store the expiration time for items in the table.
 /// </param>
 /// <param name="Enabled">
-/// &lt;p&gt;Indicates whether TTL is to be enabled (true) or disabled (false) on the table.&lt;/p&gt;
+/// Indicates whether TTL is to be enabled (true) or disabled (false) on the table.
 /// </param>
 public sealed record class TimeToLiveSpecification(string AttributeName, bool Enabled);

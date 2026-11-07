@@ -5,22 +5,20 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a Contributor Insights summary entry.&lt;/p&gt;
+/// Represents a Contributor Insights summary entry.
 /// </summary>
 /// <param name="ContributorInsightsMode">
-/// &lt;p&gt;Indicates the current mode of CloudWatch Contributor Insights, specifying whether it
-/// tracks all access and throttled events or throttled events only for the DynamoDB
-/// table or index.&lt;/p&gt;
+/// Indicates the current mode of CloudWatch Contributor Insights, specifying whether it tracks all
+/// access and throttled events or throttled events only for the DynamoDB table or index.
 /// </param>
 /// <param name="ContributorInsightsStatus">
-/// &lt;p&gt;Describes the current status for contributor insights for the given table and index,
-/// if applicable.&lt;/p&gt;
+/// Describes the current status for contributor insights for the given table and index, if applicable.
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;Name of the index associated with the summary, if any.&lt;/p&gt;
+/// Name of the index associated with the summary, if any.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;Name of the table associated with the summary.&lt;/p&gt;
+/// Name of the table associated with the summary.
 /// </param>
 public sealed record class ContributorInsightsSummary(
     global::Com.Amazonaws.Dynamodb.ContributorInsightsMode? ContributorInsightsMode = null,

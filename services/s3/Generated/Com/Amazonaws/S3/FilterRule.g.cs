@@ -5,20 +5,22 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the Amazon S3 object key name to filter on. An object key name is the name assigned to an
-/// object in your Amazon S3 bucket. You specify whether to filter on the suffix or prefix of the object key
-/// name. A prefix is a specific string of characters at the beginning of an object key name, which you can
-/// use to organize objects. For example, you can start the key names of related objects with a prefix, such
-/// as &lt;code&gt;2023-&lt;/code&gt; or &lt;code&gt;engineering/&lt;/code&gt;. Then, you can use &lt;code&gt;FilterRule&lt;/code&gt; to find
-/// objects in a bucket with key names that have the same prefix. A suffix is similar to a prefix, but it is
-/// at the end of the object key name instead of at the beginning.&lt;/p&gt;
+/// Specifies the Amazon S3 object key name to filter on. An object key name is the name assigned to an
+/// object in your Amazon S3 bucket. You specify whether to filter on the suffix or prefix of the object
+/// key name. A prefix is a specific string of characters at the beginning of an object key name, which
+/// you can use to organize objects. For example, you can start the key names of related objects with a
+/// prefix, such as <c>2023-</c> or <c>engineering/</c>. Then, you can use <c>FilterRule</c> to find
+/// objects in a bucket with key names that have the same prefix. A suffix is similar to a prefix, but
+/// it is at the end of the object key name instead of at the beginning.
 /// </summary>
 /// <param name="Name">
-/// &lt;p&gt;The object key name prefix or suffix identifying one or more objects to which the filtering rule
-/// applies. The maximum length is 1,024 characters. Overlapping prefixes and suffixes are not supported.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html&quot;&gt;Configuring Event Notifications&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The object key name prefix or suffix identifying one or more objects to which the filtering rule
+/// applies. The maximum length is 1,024 characters. Overlapping prefixes and suffixes are not
+/// supported. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html">Configuring Event
+/// Notifications</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="Value">
-/// &lt;p&gt;The value that the filter searches for in object key names.&lt;/p&gt;
+/// The value that the filter searches for in object key names.
 /// </param>
 public sealed record class FilterRule(FilterRuleName? Name = null, string? Value = null);

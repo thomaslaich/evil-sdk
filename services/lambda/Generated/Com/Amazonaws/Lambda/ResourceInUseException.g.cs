@@ -7,12 +7,16 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The operation conflicts with the resource's availability. For example, you tried to update an event source mapping in the CREATING state, or you tried to delete an event source mapping currently UPDATING.&lt;/p&gt;
+/// The operation conflicts with the resource's availability. For example, you tried to update an event
+/// source mapping in the CREATING state, or you tried to delete an event source mapping currently
+/// UPDATING.
 /// </summary>
 public sealed partial class ResourceInUseException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The operation conflicts with the resource's availability. For example, you tried to update an event source mapping in the CREATING state, or you tried to delete an event source mapping currently UPDATING.&lt;/p&gt;
+    /// The operation conflicts with the resource's availability. For example, you tried to update an event
+    /// source mapping in the CREATING state, or you tried to delete an event source mapping currently
+    /// UPDATING.
     /// </summary>
     public ResourceInUseException(string? message = null, string? type = null)
         : base(message)

@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration options for a step operation.&lt;/p&gt;
+/// Configuration options for a step operation.
 /// </summary>
 /// <param name="NextAttemptDelaySeconds">
-/// &lt;p&gt;The delay in seconds before the next retry attempt.&lt;/p&gt;
+/// The delay in seconds before the next retry attempt.
 /// </param>
 public sealed record class StepOptions(int? NextAttemptDelaySeconds = null);

@@ -7,27 +7,28 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains details of a table archival operation.&lt;/p&gt;
+/// Contains details of a table archival operation.
 /// </summary>
 /// <param name="ArchivalBackupArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the backup the table was archived to, when
-/// applicable in the archival reason. If you wish to restore this backup to the same table
-/// name, you will need to delete the original table.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the backup the table was archived to, when applicable in the
+/// archival reason. If you wish to restore this backup to the same table name, you will need to delete
+/// the original table.
 /// </param>
 /// <param name="ArchivalDateTime">
-/// &lt;p&gt;The date and time when table archival was initiated by DynamoDB, in UNIX epoch time
-/// format.&lt;/p&gt;
+/// The date and time when table archival was initiated by DynamoDB, in UNIX epoch time format.
 /// </param>
 /// <param name="ArchivalReason">
-/// &lt;p&gt;The reason DynamoDB archived the table. Currently, the only possible value is:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;INACCESSIBLE_ENCRYPTION_CREDENTIALS&lt;/code&gt; - The table was archived due
-/// to the table's KMS key being inaccessible for more than seven
-/// days. An On-Demand backup was created at the archival time.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The reason DynamoDB archived the table. Currently, the only possible value is:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>INACCESSIBLE_ENCRYPTION_CREDENTIALS</c> - The table was archived due to the table's KMS key being
+/// inaccessible for more than seven days. An On-Demand backup was created at the archival time.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class ArchivalSummary(
     string? ArchivalBackupArn = null,

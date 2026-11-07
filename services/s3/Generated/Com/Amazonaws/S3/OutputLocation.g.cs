@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes the location where the restore job's output is stored.&lt;/p&gt;
+/// Describes the location where the restore job's output is stored.
 /// </summary>
 /// <param name="S3">
-/// &lt;p&gt;Describes an S3 location that will receive the results of the restore request.&lt;/p&gt;
+/// Describes an S3 location that will receive the results of the restore request.
 /// </param>
 public sealed record class OutputLocation(S3Location? S3 = null);

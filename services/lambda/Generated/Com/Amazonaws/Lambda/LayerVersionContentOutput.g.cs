@@ -5,25 +5,27 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;.&lt;/p&gt;
+/// Details about a version of an
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</see>.
 /// </summary>
 /// <param name="CodeSha256">
-/// &lt;p&gt;The SHA-256 hash of the layer archive.&lt;/p&gt;
+/// The SHA-256 hash of the layer archive.
 /// </param>
 /// <param name="CodeSize">
-/// &lt;p&gt;The size of the layer archive in bytes.&lt;/p&gt;
+/// The size of the layer archive in bytes.
 /// </param>
 /// <param name="Location">
-/// &lt;p&gt;A link to the layer archive in Amazon S3 that is valid for 10 minutes.&lt;/p&gt;
+/// A link to the layer archive in Amazon S3 that is valid for 10 minutes.
 /// </param>
 /// <param name="ResolvedS3Object">
-/// &lt;p&gt;The resolved Amazon S3 object that contains the layer archive.&lt;/p&gt;
+/// The resolved Amazon S3 object that contains the layer archive.
 /// </param>
 /// <param name="SigningJobArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of a signing job.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of a signing job.
 /// </param>
 /// <param name="SigningProfileVersionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) for a signing profile version.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) for a signing profile version.
 /// </param>
 public sealed record class LayerVersionContentOutput(
     string? CodeSha256 = null,

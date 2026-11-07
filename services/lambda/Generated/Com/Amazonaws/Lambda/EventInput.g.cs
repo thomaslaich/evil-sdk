@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Input information for an event.&lt;/p&gt;
+/// Input information for an event.
 /// </summary>
 /// <param name="Payload">
-/// &lt;p&gt;The input payload.&lt;/p&gt;
+/// The input payload.
 /// </param>
 /// <param name="Truncated">
-/// &lt;p&gt;Indicates if the error payload was truncated due to size limits.&lt;/p&gt;
+/// Indicates if the error payload was truncated due to size limits.
 /// </param>
 public sealed record class EventInput(string? Payload = null, bool? Truncated = null);

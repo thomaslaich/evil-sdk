@@ -5,42 +5,51 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents &lt;i&gt;a single element&lt;/i&gt; of a key schema. A key schema
-/// specifies the attributes that make up the primary key of a table, or the key attributes
-/// of an index.&lt;/p&gt;
-/// &lt;p&gt;A &lt;code&gt;KeySchemaElement&lt;/code&gt; represents exactly one attribute of the primary key.
-/// For example, a simple primary key would be represented by one
-/// &lt;code&gt;KeySchemaElement&lt;/code&gt; (for the partition key). A composite primary key would
-/// require one &lt;code&gt;KeySchemaElement&lt;/code&gt; for the partition key, and another
-/// &lt;code&gt;KeySchemaElement&lt;/code&gt; for the sort key.&lt;/p&gt;
-/// &lt;p&gt;A &lt;code&gt;KeySchemaElement&lt;/code&gt; must be a scalar, top-level attribute (not a nested
-/// attribute). The data type must be one of String, Number, or Binary. The attribute cannot
-/// be nested within a List or a Map.&lt;/p&gt;
+/// <para>
+/// Represents <i>a single element</i> of a key schema. A key schema specifies the attributes that make
+/// up the primary key of a table, or the key attributes of an index.
+/// </para>
+/// <para>
+/// A <c>KeySchemaElement</c> represents exactly one attribute of the primary key. For example, a simple
+/// primary key would be represented by one <c>KeySchemaElement</c> (for the partition key). A composite
+/// primary key would require one <c>KeySchemaElement</c> for the partition key, and another
+/// <c>KeySchemaElement</c> for the sort key.
+/// </para>
+/// <para>
+/// A <c>KeySchemaElement</c> must be a scalar, top-level attribute (not a nested attribute). The data
+/// type must be one of String, Number, or Binary. The attribute cannot be nested within a List or a
+/// Map.
+/// </para>
 /// </summary>
 /// <param name="AttributeName">
-/// &lt;p&gt;The name of a key attribute.&lt;/p&gt;
+/// The name of a key attribute.
 /// </param>
 /// <param name="KeyType">
-/// &lt;p&gt;The role that this key attribute will assume:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;HASH&lt;/code&gt; - partition key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;RANGE&lt;/code&gt; - sort key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The partition key of an item is also known as its &lt;i&gt;hash
-/// attribute&lt;/i&gt;. The term &quot;hash attribute&quot; derives from DynamoDB's usage of an internal hash function to evenly distribute data items across
-/// partitions, based on their partition key values.&lt;/p&gt;
-/// &lt;p&gt;The sort key of an item is also known as its &lt;i&gt;range attribute&lt;/i&gt;.
-/// The term &quot;range attribute&quot; derives from the way DynamoDB stores items with
-/// the same partition key physically close together, in sorted order by the sort key
-/// value.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The role that this key attribute will assume:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>HASH</c> - partition key
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>RANGE</c> - sort key
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> The partition key of an item is also known as its <i>hash attribute</i>. The term "hash
+/// attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data
+/// items across partitions, based on their partition key values.
+/// </para>
+/// <para>
+/// The sort key of an item is also known as its <i>range attribute</i>. The term "range attribute"
+/// derives from the way DynamoDB stores items with the same partition key physically close together, in
+/// sorted order by the sort key value.
+/// </para>
 /// </param>
 public sealed record class KeySchemaElement(
     string AttributeName,

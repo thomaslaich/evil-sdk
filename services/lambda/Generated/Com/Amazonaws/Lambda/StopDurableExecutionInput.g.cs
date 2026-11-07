@@ -8,10 +8,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#StopDurableExecutionInput.
 /// </summary>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the durable execution.
 /// </param>
 /// <param name="Error">
-/// &lt;p&gt;Optional error details explaining why the execution is being stopped.&lt;/p&gt;
+/// Optional error details explaining why the execution is being stopped.
 /// </param>
 public sealed record class StopDurableExecutionInput(
     string DurableExecutionArn,

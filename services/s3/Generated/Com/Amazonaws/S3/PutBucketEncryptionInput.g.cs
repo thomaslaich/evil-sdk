@@ -8,41 +8,63 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutBucketEncryptionInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;Specifies default encryption for a bucket using server-side encryption with different key
-/// options.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - When you use this operation with a directory bucket, you must use path-style requests in the format &lt;code&gt;https://s3express-control.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com/&lt;i&gt;bucket-name&lt;/i&gt;
-/// &lt;/code&gt;. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;DOC-EXAMPLE-BUCKET&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;
-/// &lt;/p&gt;
+/// <para>
+/// Specifies default encryption for a bucket using server-side encryption with different key options.
+/// </para>
+/// <para>
+/// <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use
+/// path-style requests in the format
+/// <c>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i> </c>.
+/// Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen
+/// Zone (Availability Zone or Local Zone). Bucket names must also follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>
+/// </para>
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any
-/// additional functionality if you don't use the SDK. When you send this header, there must be a corresponding &lt;code&gt;x-amz-checksum&lt;/code&gt; or
-/// &lt;code&gt;x-amz-trailer&lt;/code&gt; header sent. Otherwise, Amazon S3 fails the request with the HTTP status code &lt;code&gt;400 Bad Request&lt;/code&gt;. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If you provide an individual checksum, Amazon S3 ignores any provided &lt;code&gt;ChecksumAlgorithm&lt;/code&gt;
-/// parameter.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;For directory buckets, when you use Amazon Web Services SDKs, &lt;code&gt;CRC32&lt;/code&gt; is the default checksum algorithm that's used for performance.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
+/// header will not provide any additional functionality if you don't use the SDK. When you send this
+/// header, there must be a corresponding <c>x-amz-checksum</c> or <c>x-amz-trailer</c> header sent.
+/// Otherwise, Amazon S3 fails the request with the HTTP status code <c>400 Bad Request</c>. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If you provide an individual checksum, Amazon S3 ignores any provided <c>ChecksumAlgorithm</c>
+/// parameter.
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, when you use Amazon Web Services SDKs, <c>CRC32</c> is the
+/// default checksum algorithm that's used for performance.
+/// </para>
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;The Base64 encoded 128-bit &lt;code&gt;MD5&lt;/code&gt; digest of the server-side encryption
-/// configuration.&lt;/p&gt;
-/// &lt;p&gt;For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The Base64 encoded 128-bit <c>MD5</c> digest of the server-side encryption configuration.
+/// </para>
+/// <para>
+/// For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services
+/// SDKs, this field is calculated automatically.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;For directory buckets, this header is not supported in this API operation. If you specify this header, the request fails with the HTTP status code
-/// &lt;code&gt;501 Not Implemented&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, this header is not supported in this API operation. If you
+/// specify this header, the request fails with the HTTP status code <c>501 Not Implemented</c>.
+/// </para>
 /// </param>
 public sealed record class PutBucketEncryptionInput(
     string Bucket,

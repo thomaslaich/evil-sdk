@@ -10,43 +10,51 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#SearchVectorsInput.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the vector index to search. The index must be in the
-/// &lt;code&gt;ACTIVE&lt;/code&gt; state.&lt;/p&gt;
+/// The name of the vector index to search. The index must be in the <c>ACTIVE</c> state.
 /// </param>
 /// <param name="SearchVector">
-/// &lt;p&gt;The search vector to compare against the indexed vectors. Each element is a 32-bit
-/// IEEE-754 floating point number, provided in DynamoDB list format.&lt;/p&gt;
-/// &lt;p&gt;The number of dimensions must match the number of dimensions configured for the
-/// vector index.&lt;/p&gt;
+/// <para>
+/// The search vector to compare against the indexed vectors. Each element is a 32-bit IEEE-754 floating
+/// point number, provided in DynamoDB list format.
+/// </para>
+/// <para>
+/// The number of dimensions must match the number of dimensions configured for the vector index.
+/// </para>
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name or Amazon Resource Name (ARN) of the table containing the vector index.&lt;/p&gt;
+/// The name or Amazon Resource Name (ARN) of the table containing the vector index.
 /// </param>
 /// <param name="TopK">
-/// &lt;p&gt;The number of most similar results to return.&lt;/p&gt;
+/// The number of most similar results to return.
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression. Use the
-/// &lt;code&gt;#&lt;/code&gt; character in an expression to dereference an attribute name.&lt;/p&gt;
+/// One or more substitution tokens for attribute names in an expression. Use the <c>#</c> character in
+/// an expression to dereference an attribute name.
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression. Use the
-/// &lt;code&gt;:&lt;/code&gt; character in an expression to dereference an attribute value.&lt;/p&gt;
+/// One or more values that can be substituted in an expression. Use the <c>:</c> character in an
+/// expression to dereference an attribute value.
 /// </param>
 /// <param name="ProjectionExpression">
-/// &lt;p&gt;A string that identifies one or more attributes to retrieve from the index.
-/// Separate attribute names with commas. If not specified, the operation returns all
-/// attributes projected into the vector index.&lt;/p&gt;
-/// &lt;p&gt;Only attributes projected into the vector index can be retrieved.&lt;/p&gt;
+/// <para>
+/// A string that identifies one or more attributes to retrieve from the index. Separate attribute names
+/// with commas. If not specified, the operation returns all attributes projected into the vector index.
+/// </para>
+/// <para>
+/// Only attributes projected into the vector index can be retrieved.
+/// </para>
 /// </param>
 /// <param name="SearchConditionExpression">
-/// &lt;p&gt;A condition expression used to filter the vector search results. The expression can
-/// reference attributes defined in the vector index search schema, including
-/// &lt;code&gt;HASH&lt;/code&gt; and &lt;code&gt;INLINE_FILTER&lt;/code&gt; key elements.&lt;/p&gt;
-/// &lt;p&gt;Only the equality operator (&lt;code&gt;=&lt;/code&gt;) is supported for &lt;code&gt;HASH&lt;/code&gt;
-/// attributes. Comparison and range operators are supported for
-/// &lt;code&gt;INLINE_FILTER&lt;/code&gt; attributes. Only top-level attributes from the search
-/// schema can be referenced.&lt;/p&gt;
+/// <para>
+/// A condition expression used to filter the vector search results. The expression can reference
+/// attributes defined in the vector index search schema, including <c>HASH</c> and <c>INLINE_FILTER</c>
+/// key elements.
+/// </para>
+/// <para>
+/// Only the equality operator (<c>=</c>) is supported for <c>HASH</c> attributes. Comparison and range
+/// operators are supported for <c>INLINE_FILTER</c> attributes. Only top-level attributes from the
+/// search schema can be referenced.
+/// </para>
 /// </param>
 public sealed record class SearchVectorsInput(
     string IndexName,

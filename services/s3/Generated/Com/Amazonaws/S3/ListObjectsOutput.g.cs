@@ -10,68 +10,83 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListObjectsOutput.
 /// </summary>
 /// <param name="CommonPrefixes">
-/// &lt;p&gt;All of the keys (up to 1,000) rolled up in a common prefix count as a single return when calculating
-/// the number of returns. &lt;/p&gt;
-/// &lt;p&gt;A response can contain &lt;code&gt;CommonPrefixes&lt;/code&gt; only if you specify a delimiter.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; contains all (if there are any) keys between &lt;code&gt;Prefix&lt;/code&gt; and the
-/// next occurrence of the string specified by the delimiter.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; lists keys that act like subdirectories in the directory specified by
-/// &lt;code&gt;Prefix&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For example, if the prefix is &lt;code&gt;notes/&lt;/code&gt; and the delimiter is a slash (&lt;code&gt;/&lt;/code&gt;), as
-/// in &lt;code&gt;notes/summer/july&lt;/code&gt;, the common prefix is &lt;code&gt;notes/summer/&lt;/code&gt;. All of the keys that
-/// roll up into a common prefix count as a single return when calculating the number of returns.&lt;/p&gt;
+/// <para>
+/// All of the keys (up to 1,000) rolled up in a common prefix count as a single return when calculating
+/// the number of returns.
+/// </para>
+/// <para>
+/// A response can contain <c>CommonPrefixes</c> only if you specify a delimiter.
+/// </para>
+/// <para>
+/// <c>CommonPrefixes</c> contains all (if there are any) keys between <c>Prefix</c> and the next
+/// occurrence of the string specified by the delimiter.
+/// </para>
+/// <para>
+/// <c>CommonPrefixes</c> lists keys that act like subdirectories in the directory specified by
+/// <c>Prefix</c>.
+/// </para>
+/// <para>
+/// For example, if the prefix is <c>notes/</c> and the delimiter is a slash (<c>/</c>), as in
+/// <c>notes/summer/july</c>, the common prefix is <c>notes/summer/</c>. All of the keys that roll up
+/// into a common prefix count as a single return when calculating the number of returns.
+/// </para>
 /// </param>
 /// <param name="Contents">
-/// &lt;p&gt;Metadata about each object returned.&lt;/p&gt;
+/// Metadata about each object returned.
 /// </param>
 /// <param name="Delimiter">
-/// &lt;p&gt;Causes keys that contain the same string between the prefix and the first occurrence of the
-/// delimiter to be rolled up into a single result element in the &lt;code&gt;CommonPrefixes&lt;/code&gt; collection.
-/// These rolled-up keys are not returned elsewhere in the response. Each rolled-up result counts as only
-/// one return against the &lt;code&gt;MaxKeys&lt;/code&gt; value.&lt;/p&gt;
+/// Causes keys that contain the same string between the prefix and the first occurrence of the
+/// delimiter to be rolled up into a single result element in the <c>CommonPrefixes</c> collection.
+/// These rolled-up keys are not returned elsewhere in the response. Each rolled-up result counts as
+/// only one return against the <c>MaxKeys</c> value.
 /// </param>
 /// <param name="EncodingType">
-/// &lt;p&gt;Encoding type used by Amazon S3 to encode the &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html&quot;&gt;object keys&lt;/a&gt; in the response. Responses are
-/// encoded only in UTF-8. An object key can contain any Unicode character. However, the XML 1.0 parser
-/// can't parse certain characters, such as characters with an ASCII value from 0 to 10. For characters that
-/// aren't supported in XML 1.0, you can add this parameter to request that Amazon S3 encode the keys in the
-/// response. For more information about characters to avoid in object key names, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines&quot;&gt;Object key
-/// naming guidelines&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When using the URL encoding type, non-ASCII characters that are used in an object's key name will
-/// be percent-encoded according to UTF-8 code values. For example, the object
-/// &lt;code&gt;test_file(3).png&lt;/code&gt; will appear as &lt;code&gt;test_file%283%29.png&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Encoding type used by Amazon S3 to encode the
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html">object keys</see>
+/// in the response. Responses are encoded only in UTF-8. An object key can contain any Unicode
+/// character. However, the XML 1.0 parser can't parse certain characters, such as characters with an
+/// ASCII value from 0 to 10. For characters that aren't supported in XML 1.0, you can add this
+/// parameter to request that Amazon S3 encode the keys in the response. For more information about
+/// characters to avoid in object key names, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-guidelines">Object
+/// key naming guidelines</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> When using the URL encoding type, non-ASCII characters that are used in an object's key
+/// name will be percent-encoded according to UTF-8 code values. For example, the object
+/// <c>test_file(3).png</c> will appear as <c>test_file%283%29.png</c>.
+/// </para>
 /// </param>
 /// <param name="IsTruncated">
-/// &lt;p&gt;A flag that indicates whether Amazon S3 returned all of the results that satisfied the search
-/// criteria.&lt;/p&gt;
+/// A flag that indicates whether Amazon S3 returned all of the results that satisfied the search
+/// criteria.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;Indicates where in the bucket listing begins. Marker is included in the response if it was sent with
-/// the request.&lt;/p&gt;
+/// Indicates where in the bucket listing begins. Marker is included in the response if it was sent with
+/// the request.
 /// </param>
 /// <param name="MaxKeys">
-/// &lt;p&gt;The maximum number of keys returned in the response body.&lt;/p&gt;
+/// The maximum number of keys returned in the response body.
 /// </param>
 /// <param name="Name">
-/// &lt;p&gt;The bucket name.&lt;/p&gt;
+/// The bucket name.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;When the response is truncated (the &lt;code&gt;IsTruncated&lt;/code&gt; element value in the response is
-/// &lt;code&gt;true&lt;/code&gt;), you can use the key name in this field as the &lt;code&gt;marker&lt;/code&gt; parameter in the
-/// subsequent request to get the next set of objects. Amazon S3 lists objects in alphabetical order. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This element is returned only if you have the &lt;code&gt;delimiter&lt;/code&gt; request parameter specified.
-/// If the response does not include the &lt;code&gt;NextMarker&lt;/code&gt; element and it is truncated, you can use
-/// the value of the last &lt;code&gt;Key&lt;/code&gt; element in the response as the &lt;code&gt;marker&lt;/code&gt; parameter in
-/// the subsequent request to get the next set of object keys.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// When the response is truncated (the <c>IsTruncated</c> element value in the response is
+/// <c>true</c>), you can use the key name in this field as the <c>marker</c> parameter in the
+/// subsequent request to get the next set of objects. Amazon S3 lists objects in alphabetical order.
+/// </para>
+/// <para>
+/// <b>Note:</b> This element is returned only if you have the <c>delimiter</c> request parameter
+/// specified. If the response does not include the <c>NextMarker</c> element and it is truncated, you
+/// can use the value of the last <c>Key</c> element in the response as the <c>marker</c> parameter in
+/// the subsequent request to get the next set of object keys.
+/// </para>
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Keys that begin with the indicated prefix.&lt;/p&gt;
+/// Keys that begin with the indicated prefix.
 /// </param>
 public sealed record class ListObjectsOutput(
     IReadOnlyList<CommonPrefix>? CommonPrefixes = null,

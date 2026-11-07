@@ -5,12 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration options for chained function invocations in durable executions, including retry settings and timeout configuration.&lt;/p&gt;
+/// Configuration options for chained function invocations in durable executions, including retry
+/// settings and timeout configuration.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function to invoke.&lt;/p&gt;
+/// The name or ARN of the Lambda function to invoke.
 /// </param>
 /// <param name="TenantId">
-/// &lt;p&gt;The tenant identifier for the chained invocation.&lt;/p&gt;
+/// The tenant identifier for the chained invocation.
 /// </param>
 public sealed record class ChainedInvokeOptions(string FunctionName, string? TenantId = null);

@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListContributorInsightsOutput.
 /// </summary>
 /// <param name="ContributorInsightsSummaries">
-/// &lt;p&gt;A list of ContributorInsightsSummary.&lt;/p&gt;
+/// A list of ContributorInsightsSummary.
 /// </param>
 /// <param name="NextToken">
-/// &lt;p&gt;A token to go to the next page if there is one.&lt;/p&gt;
+/// A token to go to the next page if there is one.
 /// </param>
 public sealed record class ListContributorInsightsOutput(
     IReadOnlyList<ContributorInsightsSummary>? ContributorInsightsSummaries = null,

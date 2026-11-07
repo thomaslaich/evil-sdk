@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The number of functions and amount of storage in use.&lt;/p&gt;
+/// The number of functions and amount of storage in use.
 /// </summary>
 /// <param name="FunctionCount">
-/// &lt;p&gt;The number of Lambda functions.&lt;/p&gt;
+/// The number of Lambda functions.
 /// </param>
 /// <param name="TotalCodeSize">
-/// &lt;p&gt;The amount of storage space, in bytes, that's being used by deployment packages and layer archives.&lt;/p&gt;
+/// The amount of storage space, in bytes, that's being used by deployment packages and layer archives.
 /// </param>
 public sealed record class AccountUsage(long? FunctionCount = null, long? TotalCodeSize = null);

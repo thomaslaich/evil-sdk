@@ -8,14 +8,14 @@ namespace Com.Amazonaws.Sts;
 /// Represents the Smithy structure com.amazonaws.sts#GetDelegatedAccessTokenOutput.
 /// </summary>
 /// <param name="AssumedPrincipal">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the principal that was assumed when obtaining the
-/// delegated access token. This ARN identifies the IAM entity whose permissions are granted
-/// by the temporary credentials.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the principal that was assumed when obtaining the delegated access
+/// token. This ARN identifies the IAM entity whose permissions are granted by the temporary
+/// credentials.
 /// </param>
 /// <param name="PackedPolicySize">
-/// &lt;p&gt;The percentage of the maximum policy size that is used by the session policy. The policy
-/// size is calculated as the sum of all the session policies and permission boundaries
-/// attached to the session. If the packed size exceeds 100%, the request fails.&lt;/p&gt;
+/// The percentage of the maximum policy size that is used by the session policy. The policy size is
+/// calculated as the sum of all the session policies and permission boundaries attached to the session.
+/// If the packed size exceeds 100%, the request fails.
 /// </param>
 public sealed record class GetDelegatedAccessTokenOutput(
     string? AssumedPrincipal = null,

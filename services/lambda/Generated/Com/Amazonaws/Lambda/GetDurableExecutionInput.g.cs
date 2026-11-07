@@ -8,10 +8,12 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetDurableExecutionInput.
 /// </summary>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the durable execution.
 /// </param>
 /// <param name="IncludeExecutionData">
-/// &lt;p&gt;Specifies whether to include execution data such as input payload, result, and error information in the response. Set to &lt;code&gt;false&lt;/code&gt; for a more compact response that includes only execution metadata. The default value is set to &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+/// Specifies whether to include execution data such as input payload, result, and error information in
+/// the response. Set to <c>false</c> for a more compact response that includes only execution metadata.
+/// The default value is set to <c>true</c>.
 /// </param>
 public sealed record class GetDurableExecutionInput(
     string DurableExecutionArn,

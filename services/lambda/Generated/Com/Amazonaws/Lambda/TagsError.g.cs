@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;An object that contains details about an error related to retrieving tags.&lt;/p&gt;
+/// An object that contains details about an error related to retrieving tags.
 /// </summary>
 /// <param name="ErrorCode">
-/// &lt;p&gt;The error code.&lt;/p&gt;
+/// The error code.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;The error message.&lt;/p&gt;
+/// The error message.
 /// </param>
 public sealed record class TagsError(string ErrorCode, string Message);

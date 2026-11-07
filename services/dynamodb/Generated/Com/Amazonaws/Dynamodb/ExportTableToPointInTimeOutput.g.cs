@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ExportTableToPointInTimeOutput.
 /// </summary>
 /// <param name="ExportDescription">
-/// &lt;p&gt;Contains a description of the table export.&lt;/p&gt;
+/// Contains a description of the table export.
 /// </param>
 public sealed record class ExportTableToPointInTimeOutput(
     global::Com.Amazonaws.Dynamodb.ExportDescription? ExportDescription = null

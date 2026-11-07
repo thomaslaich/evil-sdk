@@ -7,23 +7,26 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; A PartiQL batch statement request. &lt;/p&gt;
+/// A PartiQL batch statement request.
 /// </summary>
 /// <param name="Statement">
-/// &lt;p&gt; A valid PartiQL statement. &lt;/p&gt;
+/// A valid PartiQL statement.
 /// </param>
 /// <param name="ConsistentRead">
-/// &lt;p&gt; The read consistency of the PartiQL batch request. &lt;/p&gt;
+/// The read consistency of the PartiQL batch request.
 /// </param>
 /// <param name="Parameters">
-/// &lt;p&gt; The parameters associated with a PartiQL statement in the batch request. &lt;/p&gt;
+/// The parameters associated with a PartiQL statement in the batch request.
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;An optional parameter that returns the item attributes for a PartiQL batch request
-/// operation that failed a condition check.&lt;/p&gt;
-/// &lt;p&gt;There is no additional cost associated with requesting a return value aside from the
-/// small network and processing overhead of receiving a larger response. No read capacity
-/// units are consumed.&lt;/p&gt;
+/// <para>
+/// An optional parameter that returns the item attributes for a PartiQL batch request operation that
+/// failed a condition check.
+/// </para>
+/// <para>
+/// There is no additional cost associated with requesting a return value aside from the small network
+/// and processing overhead of receiving a larger response. No read capacity units are consumed.
+/// </para>
 /// </param>
 public sealed record class BatchStatementRequest(
     string Statement,

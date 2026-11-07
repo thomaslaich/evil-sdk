@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The specified bucket does not exist.&lt;/p&gt;
+/// The specified bucket does not exist.
 /// </summary>
 public sealed partial class NoSuchBucket : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified bucket does not exist.&lt;/p&gt;
+    /// The specified bucket does not exist.
     /// </summary>
     public NoSuchBucket(string? message = null)
         : base(message) { }

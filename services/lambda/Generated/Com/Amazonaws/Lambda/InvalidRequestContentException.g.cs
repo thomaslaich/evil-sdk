@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The request body could not be parsed as JSON, or a request header is invalid. For example, the 'x-amzn-RequestId' header is not a valid UUID string.&lt;/p&gt;
+/// The request body could not be parsed as JSON, or a request header is invalid. For example, the
+/// 'x-amzn-RequestId' header is not a valid UUID string.
 /// </summary>
 public sealed partial class InvalidRequestContentException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request body could not be parsed as JSON, or a request header is invalid. For example, the 'x-amzn-RequestId' header is not a valid UUID string.&lt;/p&gt;
+    /// The request body could not be parsed as JSON, or a request header is invalid. For example, the
+    /// 'x-amzn-RequestId' header is not a valid UUID string.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public InvalidRequestContentException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +29,12 @@ public sealed partial class InvalidRequestContentException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

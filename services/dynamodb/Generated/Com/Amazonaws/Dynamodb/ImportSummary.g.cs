@@ -7,36 +7,33 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; Summary information about the source file for the import.
-/// &lt;/p&gt;
+/// Summary information about the source file for the import.
 /// </summary>
 /// <param name="CloudWatchLogGroupArn">
-/// &lt;p&gt; The Amazon Resource Number (ARN) of the Cloudwatch Log Group associated with this
-/// import task. &lt;/p&gt;
+/// The Amazon Resource Number (ARN) of the Cloudwatch Log Group associated with this import task.
 /// </param>
 /// <param name="EndTime">
-/// &lt;p&gt; The time at which this import task ended. &lt;/p&gt;
+/// The time at which this import task ended.
 /// </param>
 /// <param name="ImportArn">
-/// &lt;p&gt; The Amazon Resource Number (ARN) corresponding to the import request. &lt;/p&gt;
+/// The Amazon Resource Number (ARN) corresponding to the import request.
 /// </param>
 /// <param name="ImportStatus">
-/// &lt;p&gt; The status of the import operation. &lt;/p&gt;
+/// The status of the import operation.
 /// </param>
 /// <param name="InputFormat">
-/// &lt;p&gt; The format of the source data. Valid values are &lt;code&gt;CSV&lt;/code&gt;,
-/// &lt;code&gt;DYNAMODB_JSON&lt;/code&gt; or &lt;code&gt;ION&lt;/code&gt;.&lt;/p&gt;
+/// The format of the source data. Valid values are <c>CSV</c>, <c>DYNAMODB_JSON</c> or <c>ION</c>.
 /// </param>
 /// <param name="S3BucketSource">
-/// &lt;p&gt; The path and S3 bucket of the source file that is being imported. This includes the
-/// S3Bucket (required), S3KeyPrefix (optional) and S3BucketOwner (optional if the bucket is
-/// owned by the requester). &lt;/p&gt;
+/// The path and S3 bucket of the source file that is being imported. This includes the S3Bucket
+/// (required), S3KeyPrefix (optional) and S3BucketOwner (optional if the bucket is owned by the
+/// requester).
 /// </param>
 /// <param name="StartTime">
-/// &lt;p&gt; The time at which this import task began. &lt;/p&gt;
+/// The time at which this import task began.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt; The Amazon Resource Number (ARN) of the table being imported into. &lt;/p&gt;
+/// The Amazon Resource Number (ARN) of the table being imported into.
 /// </param>
 public sealed record class ImportSummary(
     string? CloudWatchLogGroupArn = null,

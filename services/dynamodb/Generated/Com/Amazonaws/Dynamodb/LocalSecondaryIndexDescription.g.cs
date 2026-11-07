@@ -7,52 +7,54 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a local secondary index.&lt;/p&gt;
+/// Represents the properties of a local secondary index.
 /// </summary>
 /// <param name="IndexArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the index.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) that uniquely identifies the index.
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;Represents the name of the local secondary index.&lt;/p&gt;
+/// Represents the name of the local secondary index.
 /// </param>
 /// <param name="IndexSizeBytes">
-/// &lt;p&gt;The total size of the specified index, in bytes. DynamoDB updates this value
-/// approximately every six hours. Recent changes might not be reflected in this
-/// value.&lt;/p&gt;
+/// The total size of the specified index, in bytes. DynamoDB updates this value approximately every six
+/// hours. Recent changes might not be reflected in this value.
 /// </param>
 /// <param name="ItemCount">
-/// &lt;p&gt;The number of items in the specified index. DynamoDB updates this value
-/// approximately every six hours. Recent changes might not be reflected in this
-/// value.&lt;/p&gt;
+/// The number of items in the specified index. DynamoDB updates this value approximately every six
+/// hours. Recent changes might not be reflected in this value.
 /// </param>
 /// <param name="KeySchema">
-/// &lt;p&gt;The complete key schema for the local secondary index, consisting of one or more pairs
-/// of attribute names and key types:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;HASH&lt;/code&gt; - partition key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;RANGE&lt;/code&gt; - sort key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The partition key of an item is also known as its &lt;i&gt;hash
-/// attribute&lt;/i&gt;. The term &quot;hash attribute&quot; derives from DynamoDB's usage of
-/// an internal hash function to evenly distribute data items across partitions, based
-/// on their partition key values.&lt;/p&gt;
-/// &lt;p&gt;The sort key of an item is also known as its &lt;i&gt;range attribute&lt;/i&gt;.
-/// The term &quot;range attribute&quot; derives from the way DynamoDB stores items with the same
-/// partition key physically close together, in sorted order by the sort key
-/// value.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The complete key schema for the local secondary index, consisting of one or more pairs of attribute
+/// names and key types:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>HASH</c> - partition key
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>RANGE</c> - sort key
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> The partition key of an item is also known as its <i>hash attribute</i>. The term "hash
+/// attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data
+/// items across partitions, based on their partition key values.
+/// </para>
+/// <para>
+/// The sort key of an item is also known as its <i>range attribute</i>. The term "range attribute"
+/// derives from the way DynamoDB stores items with the same partition key physically close together, in
+/// sorted order by the sort key value.
+/// </para>
 /// </param>
 /// <param name="Projection">
-/// &lt;p&gt;Represents attributes that are copied (projected) from the table into the global
-/// secondary index. These are in addition to the primary key attributes and index key
-/// attributes, which are automatically projected. &lt;/p&gt;
+/// Represents attributes that are copied (projected) from the table into the global secondary index.
+/// These are in addition to the primary key attributes and index key attributes, which are
+/// automatically projected.
 /// </param>
 public sealed record class LocalSecondaryIndexDescription(
     string? IndexArn = null,

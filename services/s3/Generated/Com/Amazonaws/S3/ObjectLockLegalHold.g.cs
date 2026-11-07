@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A legal hold configuration for an object.&lt;/p&gt;
+/// A legal hold configuration for an object.
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;Indicates whether the specified object has a legal hold in place.&lt;/p&gt;
+/// Indicates whether the specified object has a legal hold in place.
 /// </param>
 public sealed record class ObjectLockLegalHold(ObjectLockLegalHoldStatus? Status = null);

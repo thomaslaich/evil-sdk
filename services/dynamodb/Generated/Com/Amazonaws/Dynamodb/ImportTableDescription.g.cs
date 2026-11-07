@@ -7,78 +7,68 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; Represents the properties of the table being imported into.
-/// &lt;/p&gt;
+/// Represents the properties of the table being imported into.
 /// </summary>
 /// <param name="ClientToken">
-/// &lt;p&gt; The client token that was provided for the import task. Reusing the client token on
-/// retry makes a call to &lt;code&gt;ImportTable&lt;/code&gt; idempotent. &lt;/p&gt;
+/// The client token that was provided for the import task. Reusing the client token on retry makes a
+/// call to <c>ImportTable</c> idempotent.
 /// </param>
 /// <param name="CloudWatchLogGroupArn">
-/// &lt;p&gt; The Amazon Resource Number (ARN) of the Cloudwatch Log Group associated with the
-/// target table. &lt;/p&gt;
+/// The Amazon Resource Number (ARN) of the Cloudwatch Log Group associated with the target table.
 /// </param>
 /// <param name="EndTime">
-/// &lt;p&gt; The time at which the creation of the table associated with this import task
-/// completed. &lt;/p&gt;
+/// The time at which the creation of the table associated with this import task completed.
 /// </param>
 /// <param name="ErrorCount">
-/// &lt;p&gt; The number of errors occurred on importing the source file into the target table.
-/// &lt;/p&gt;
+/// The number of errors occurred on importing the source file into the target table.
 /// </param>
 /// <param name="FailureCode">
-/// &lt;p&gt; The error code corresponding to the failure that the import job ran into during
-/// execution. &lt;/p&gt;
+/// The error code corresponding to the failure that the import job ran into during execution.
 /// </param>
 /// <param name="FailureMessage">
-/// &lt;p&gt; The error message corresponding to the failure that the import job ran into during
-/// execution. &lt;/p&gt;
+/// The error message corresponding to the failure that the import job ran into during execution.
 /// </param>
 /// <param name="ImportArn">
-/// &lt;p&gt; The Amazon Resource Number (ARN) corresponding to the import request.
-/// &lt;/p&gt;
+/// The Amazon Resource Number (ARN) corresponding to the import request.
 /// </param>
 /// <param name="ImportStatus">
-/// &lt;p&gt; The status of the import. &lt;/p&gt;
+/// The status of the import.
 /// </param>
 /// <param name="ImportedItemCount">
-/// &lt;p&gt; The number of items successfully imported into the new table. &lt;/p&gt;
+/// The number of items successfully imported into the new table.
 /// </param>
 /// <param name="InputCompressionType">
-/// &lt;p&gt; The compression options for the data that has been imported into the target table.
-/// The values are NONE, GZIP, or ZSTD. &lt;/p&gt;
+/// The compression options for the data that has been imported into the target table. The values are
+/// NONE, GZIP, or ZSTD.
 /// </param>
 /// <param name="InputFormat">
-/// &lt;p&gt; The format of the source data going into the target table.
-/// &lt;/p&gt;
+/// The format of the source data going into the target table.
 /// </param>
 /// <param name="InputFormatOptions">
-/// &lt;p&gt; The format options for the data that was imported into the target table. There is one
-/// value, CsvOption. &lt;/p&gt;
+/// The format options for the data that was imported into the target table. There is one value,
+/// CsvOption.
 /// </param>
 /// <param name="ProcessedItemCount">
-/// &lt;p&gt; The total number of items processed from the source file. &lt;/p&gt;
+/// The total number of items processed from the source file.
 /// </param>
 /// <param name="ProcessedSizeBytes">
-/// &lt;p&gt; The total size of data processed from the source file, in Bytes. &lt;/p&gt;
+/// The total size of data processed from the source file, in Bytes.
 /// </param>
 /// <param name="S3BucketSource">
-/// &lt;p&gt; Values for the S3 bucket the source file is imported from. Includes bucket name
-/// (required), key prefix (optional) and bucket account owner ID (optional). &lt;/p&gt;
+/// Values for the S3 bucket the source file is imported from. Includes bucket name (required), key
+/// prefix (optional) and bucket account owner ID (optional).
 /// </param>
 /// <param name="StartTime">
-/// &lt;p&gt; The time when this import task started. &lt;/p&gt;
+/// The time when this import task started.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt; The Amazon Resource Number (ARN) of the table being imported into.
-/// &lt;/p&gt;
+/// The Amazon Resource Number (ARN) of the table being imported into.
 /// </param>
 /// <param name="TableCreationParameters">
-/// &lt;p&gt; The parameters for the new table that is being imported into. &lt;/p&gt;
+/// The parameters for the new table that is being imported into.
 /// </param>
 /// <param name="TableId">
-/// &lt;p&gt; The table id corresponding to the table created by import table process.
-/// &lt;/p&gt;
+/// The table id corresponding to the table created by import table process.
 /// </param>
 public sealed record class ImportTableDescription(
     string? ClientToken = null,

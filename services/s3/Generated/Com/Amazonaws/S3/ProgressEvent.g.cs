@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;This data type contains information about the progress event of an operation.&lt;/p&gt;
+/// This data type contains information about the progress event of an operation.
 /// </summary>
 /// <param name="Details">
-/// &lt;p&gt;The Progress event details.&lt;/p&gt;
+/// The Progress event details.
 /// </param>
 public sealed record class ProgressEvent(Progress? Details = null);

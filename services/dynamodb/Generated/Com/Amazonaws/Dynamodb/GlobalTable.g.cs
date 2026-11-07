@@ -7,13 +7,13 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a global table.&lt;/p&gt;
+/// Represents the properties of a global table.
 /// </summary>
 /// <param name="GlobalTableName">
-/// &lt;p&gt;The global table name.&lt;/p&gt;
+/// The global table name.
 /// </param>
 /// <param name="ReplicationGroup">
-/// &lt;p&gt;The Regions where the global table has replicas.&lt;/p&gt;
+/// The Regions where the global table has replicas.
 /// </param>
 public sealed record class GlobalTable(
     string? GlobalTableName = null,

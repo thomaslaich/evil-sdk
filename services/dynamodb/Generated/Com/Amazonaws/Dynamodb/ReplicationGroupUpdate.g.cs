@@ -5,37 +5,42 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A new replica to be added to an existing regional table or global table. This
-/// request invokes the &lt;code&gt;CreateTableReplica&lt;/code&gt; action in the destination
-/// Region.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;New parameters for an existing replica. This request invokes the
-/// &lt;code&gt;UpdateTable&lt;/code&gt; action in the destination Region.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;An existing replica to be deleted. The request invokes the
-/// &lt;code&gt;DeleteTableReplica&lt;/code&gt; action in the destination Region, deleting
-/// the replica and all if its items in the destination Region.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When you manually remove a table or global table replica, you do not automatically
-/// remove any associated scalable targets, scaling policies, or CloudWatch
-/// alarms.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Represents one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// A new replica to be added to an existing regional table or global table. This request invokes the
+/// <c>CreateTableReplica</c> action in the destination Region.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// New parameters for an existing replica. This request invokes the <c>UpdateTable</c> action in the
+/// destination Region.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// An existing replica to be deleted. The request invokes the <c>DeleteTableReplica</c> action in the
+/// destination Region, deleting the replica and all if its items in the destination Region.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> When you manually remove a table or global table replica, you do not automatically
+/// remove any associated scalable targets, scaling policies, or CloudWatch alarms.
+/// </para>
 /// </summary>
 /// <param name="Create">
-/// &lt;p&gt;The parameters required for creating a replica for the table.&lt;/p&gt;
+/// The parameters required for creating a replica for the table.
 /// </param>
 /// <param name="Delete">
-/// &lt;p&gt;The parameters required for deleting a replica for the table.&lt;/p&gt;
+/// The parameters required for deleting a replica for the table.
 /// </param>
 /// <param name="Update">
-/// &lt;p&gt;The parameters required for updating a replica for the table.&lt;/p&gt;
+/// The parameters required for updating a replica for the table.
 /// </param>
 public sealed record class ReplicationGroupUpdate(
     CreateReplicationGroupMemberAction? Create = null,

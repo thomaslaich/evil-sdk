@@ -7,15 +7,14 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for specifying S3 Intelligent-Tiering filters. The filters determine the subset of
-/// objects to which the rule applies.&lt;/p&gt;
+/// A container for specifying S3 Intelligent-Tiering filters. The filters determine the subset of
+/// objects to which the rule applies.
 /// </summary>
 /// <param name="Prefix">
-/// &lt;p&gt;An object key name prefix that identifies the subset of objects to which the configuration
-/// applies.&lt;/p&gt;
+/// An object key name prefix that identifies the subset of objects to which the configuration applies.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;All of these tags must exist in the object's tag set in order for the configuration to apply.&lt;/p&gt;
+/// All of these tags must exist in the object's tag set in order for the configuration to apply.
 /// </param>
 public sealed record class IntelligentTieringAndOperator(
     string? Prefix = null,

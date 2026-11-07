@@ -8,6 +8,8 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutFunctionConcurrencyOutput.
 /// </summary>
 /// <param name="ReservedConcurrentExecutions">
-/// &lt;p&gt;The number of concurrent executions that are reserved for this function. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html&quot;&gt;Managing Lambda reserved concurrency&lt;/a&gt;.&lt;/p&gt;
+/// The number of concurrent executions that are reserved for this function. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html">Managing
+/// Lambda reserved concurrency</see>.
 /// </param>
 public sealed record class PutFunctionConcurrencyOutput(int? ReservedConcurrentExecutions = null);

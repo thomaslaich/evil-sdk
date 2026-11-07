@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a chained invocation that timed out.&lt;/p&gt;
+/// Details about a chained invocation that timed out.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the chained invocation timeout.&lt;/p&gt;
+/// Details about the chained invocation timeout.
 /// </param>
 public sealed record class ChainedInvokeTimedOutDetails(EventError Error);

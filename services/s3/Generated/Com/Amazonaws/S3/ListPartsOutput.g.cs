@@ -11,86 +11,96 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListPartsOutput.
 /// </summary>
 /// <param name="AbortDate">
-/// &lt;p&gt;If the bucket has a lifecycle rule configured with an action to abort incomplete multipart uploads
-/// and the prefix in the lifecycle rule matches the object name in the request, then the response includes
-/// this header indicating when the initiated multipart upload will become eligible for abort operation. For
-/// more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config&quot;&gt;Aborting
-/// Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration&lt;/a&gt;.&lt;/p&gt;
-/// &lt;p&gt;The response will also include the &lt;code&gt;x-amz-abort-rule-id&lt;/code&gt; header that will provide the ID
-/// of the lifecycle configuration rule that defines this action.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the bucket has a lifecycle rule configured with an action to abort incomplete multipart uploads
+/// and the prefix in the lifecycle rule matches the object name in the request, then the response
+/// includes this header indicating when the initiated multipart upload will become eligible for abort
+/// operation. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Aborting
+/// Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration</see>.
+/// </para>
+/// <para>
+/// The response will also include the <c>x-amz-abort-rule-id</c> header that will provide the ID of the
+/// lifecycle configuration rule that defines this action.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="AbortRuleId">
-/// &lt;p&gt;This header is returned along with the &lt;code&gt;x-amz-abort-date&lt;/code&gt; header. It identifies
-/// applicable lifecycle configuration rule that defines the action to abort incomplete multipart
-/// uploads.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// This header is returned along with the <c>x-amz-abort-date</c> header. It identifies applicable
+/// lifecycle configuration rule that defines the action to abort incomplete multipart uploads.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket to which the multipart upload was initiated. Does not return the access point ARN or
-/// access point alias if used.&lt;/p&gt;
+/// The name of the bucket to which the multipart upload was initiated. Does not return the access point
+/// ARN or access point alias if used.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;The algorithm that was used to create a checksum of the object.&lt;/p&gt;
+/// The algorithm that was used to create a checksum of the object.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;The checksum type, which determines how part-level checksums are combined to create an object-level
-/// checksum for multipart objects. You can use this header response to verify that the checksum type that
-/// is received is the same checksum type that was specified in &lt;code&gt;CreateMultipartUpload&lt;/code&gt; request.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The checksum type, which determines how part-level checksums are combined to create an object-level
+/// checksum for multipart objects. You can use this header response to verify that the checksum type
+/// that is received is the same checksum type that was specified in <c>CreateMultipartUpload</c>
+/// request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="Initiator">
-/// &lt;p&gt;Container element that identifies who initiated the multipart upload. If the initiator is an
-/// Amazon Web Services account, this element provides the same information as the &lt;code&gt;Owner&lt;/code&gt; element. If the
-/// initiator is an IAM User, this element provides the user ARN.&lt;/p&gt;
+/// Container element that identifies who initiated the multipart upload. If the initiator is an Amazon
+/// Web Services account, this element provides the same information as the <c>Owner</c> element. If the
+/// initiator is an IAM User, this element provides the user ARN.
 /// </param>
 /// <param name="IsTruncated">
-/// &lt;p&gt; Indicates whether the returned list of parts is truncated. A true value indicates that the list was
+/// Indicates whether the returned list of parts is truncated. A true value indicates that the list was
 /// truncated. A list can be truncated if the number of parts exceeds the limit returned in the MaxParts
-/// element.&lt;/p&gt;
+/// element.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;Object key for which the multipart upload was initiated.&lt;/p&gt;
+/// Object key for which the multipart upload was initiated.
 /// </param>
 /// <param name="MaxParts">
-/// &lt;p&gt;Maximum number of parts that were allowed in the response.&lt;/p&gt;
+/// Maximum number of parts that were allowed in the response.
 /// </param>
 /// <param name="NextPartNumberMarker">
-/// &lt;p&gt;When a list is truncated, this element specifies the last part in the list, as well as the value to
-/// use for the &lt;code&gt;part-number-marker&lt;/code&gt; request parameter in a subsequent request.&lt;/p&gt;
+/// When a list is truncated, this element specifies the last part in the list, as well as the value to
+/// use for the <c>part-number-marker</c> request parameter in a subsequent request.
 /// </param>
 /// <param name="Owner">
-/// &lt;p&gt;Container element that identifies the object owner, after the object is created. If multipart upload
-/// is initiated by an IAM user, this element provides the parent account ID.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - The bucket owner is returned as the
-/// object owner for all the parts.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Container element that identifies the object owner, after the object is created. If multipart upload
+/// is initiated by an IAM user, this element provides the parent account ID.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - The bucket owner is returned as the object owner for all the
+/// parts.
+/// </para>
 /// </param>
 /// <param name="PartNumberMarker">
-/// &lt;p&gt;Specifies the part after which listing should begin. Only parts with higher part numbers will be
-/// listed.&lt;/p&gt;
+/// Specifies the part after which listing should begin. Only parts with higher part numbers will be
+/// listed.
 /// </param>
 /// <param name="Parts">
-/// &lt;p&gt;Container for elements related to a particular part. A response can contain zero or more
-/// &lt;code&gt;Part&lt;/code&gt; elements.&lt;/p&gt;
+/// Container for elements related to a particular part. A response can contain zero or more <c>Part</c>
+/// elements.
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;The class of storage used to store the uploaded object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; -
-/// Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The class of storage used to store the uploaded object.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - Directory buckets only support <c>EXPRESS_ONEZONE</c> (the
+/// S3 Express One Zone storage class) in Availability Zones and <c>ONEZONE_IA</c> (the S3 One
+/// Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </param>
 /// <param name="UploadId">
-/// &lt;p&gt;Upload ID identifying the multipart upload whose parts are being listed.&lt;/p&gt;
+/// Upload ID identifying the multipart upload whose parts are being listed.
 /// </param>
 public sealed record class ListPartsOutput(
     DateTimeOffset? AbortDate = null,

@@ -5,11 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies data related to access patterns to be collected and made available to analyze the
-/// tradeoffs between different storage classes for an Amazon S3 bucket.&lt;/p&gt;
+/// Specifies data related to access patterns to be collected and made available to analyze the
+/// tradeoffs between different storage classes for an Amazon S3 bucket.
 /// </summary>
 /// <param name="DataExport">
-/// &lt;p&gt;Specifies how data related to the storage class analysis for an Amazon S3 bucket should be
-/// exported.&lt;/p&gt;
+/// Specifies how data related to the storage class analysis for an Amazon S3 bucket should be exported.
 /// </param>
 public sealed record class StorageClassAnalysis(StorageClassAnalysisDataExport? DataExport = null);

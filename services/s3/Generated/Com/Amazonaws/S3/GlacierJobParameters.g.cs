@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for S3 Glacier job parameters.&lt;/p&gt;
+/// Container for S3 Glacier job parameters.
 /// </summary>
 /// <param name="Tier">
-/// &lt;p&gt;Retrieval tier at which the restore will be processed.&lt;/p&gt;
+/// Retrieval tier at which the restore will be processed.
 /// </param>
 public sealed record class GlacierJobParameters(global::Com.Amazonaws.S3.Tier Tier);

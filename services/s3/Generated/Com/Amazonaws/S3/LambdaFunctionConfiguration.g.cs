@@ -7,15 +7,16 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for specifying the configuration for Lambda notifications.&lt;/p&gt;
+/// A container for specifying the configuration for Lambda notifications.
 /// </summary>
 /// <param name="Events">
-/// &lt;p&gt;The Amazon S3 bucket event for which to invoke the Lambda function. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html&quot;&gt;Supported Event Types&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Amazon S3 bucket event for which to invoke the Lambda function. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html">Supported Event
+/// Types</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="LambdaFunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Lambda function that Amazon S3 invokes when the specified event
-/// type occurs.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Lambda function that Amazon S3 invokes when the specified
+/// event type occurs.
 /// </param>
 public sealed record class LambdaFunctionConfiguration(
     IReadOnlyList<Event> Events,

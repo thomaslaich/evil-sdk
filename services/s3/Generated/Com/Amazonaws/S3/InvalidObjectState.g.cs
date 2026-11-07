@@ -7,24 +7,38 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Object is archived and inaccessible until restored.&lt;/p&gt;
-/// &lt;p&gt;If the object you are retrieving is stored in the S3 Glacier Flexible Retrieval storage class, the
-/// S3 Glacier Deep Archive storage class, the S3 Intelligent-Tiering Archive Access tier, or the
-/// S3 Intelligent-Tiering Deep Archive Access tier, before you can retrieve the object you must first restore a copy
-/// using &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html&quot;&gt;RestoreObject&lt;/a&gt;. Otherwise, this operation returns an &lt;code&gt;InvalidObjectState&lt;/code&gt; error. For
-/// information about restoring archived objects, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/restoring-objects.html&quot;&gt;Restoring Archived Objects&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Object is archived and inaccessible until restored.
+/// </para>
+/// <para>
+/// If the object you are retrieving is stored in the S3 Glacier Flexible Retrieval storage class, the
+/// S3 Glacier Deep Archive storage class, the S3 Intelligent-Tiering Archive Access tier, or the S3
+/// Intelligent-Tiering Deep Archive Access tier, before you can retrieve the object you must first
+/// restore a copy using
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html">RestoreObject</see>.
+/// Otherwise, this operation returns an <c>InvalidObjectState</c> error. For information about
+/// restoring archived objects, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/restoring-objects.html">Restoring
+/// Archived Objects</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </summary>
 public sealed partial class InvalidObjectState : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Object is archived and inaccessible until restored.&lt;/p&gt;
-    /// &lt;p&gt;If the object you are retrieving is stored in the S3 Glacier Flexible Retrieval storage class, the
-    /// S3 Glacier Deep Archive storage class, the S3 Intelligent-Tiering Archive Access tier, or the
-    /// S3 Intelligent-Tiering Deep Archive Access tier, before you can retrieve the object you must first restore a copy
-    /// using &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html&quot;&gt;RestoreObject&lt;/a&gt;. Otherwise, this operation returns an &lt;code&gt;InvalidObjectState&lt;/code&gt; error. For
-    /// information about restoring archived objects, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/restoring-objects.html&quot;&gt;Restoring Archived Objects&lt;/a&gt; in the
-    /// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+    /// <para>
+    /// Object is archived and inaccessible until restored.
+    /// </para>
+    /// <para>
+    /// If the object you are retrieving is stored in the S3 Glacier Flexible Retrieval storage class, the
+    /// S3 Glacier Deep Archive storage class, the S3 Intelligent-Tiering Archive Access tier, or the S3
+    /// Intelligent-Tiering Deep Archive Access tier, before you can retrieve the object you must first
+    /// restore a copy using
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html">RestoreObject</see>.
+    /// Otherwise, this operation returns an <c>InvalidObjectState</c> error. For information about
+    /// restoring archived objects, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/restoring-objects.html">Restoring
+    /// Archived Objects</see> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
     /// </summary>
     public InvalidObjectState(
         string? message = null,

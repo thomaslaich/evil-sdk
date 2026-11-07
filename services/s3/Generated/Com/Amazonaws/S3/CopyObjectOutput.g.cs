@@ -8,60 +8,72 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#CopyObjectOutput.
 /// </summary>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Indicates whether the copied object uses an S3 Bucket Key for server-side encryption with Key Management Service
-/// (KMS) keys (SSE-KMS).&lt;/p&gt;
+/// Indicates whether the copied object uses an S3 Bucket Key for server-side encryption with Key
+/// Management Service (KMS) keys (SSE-KMS).
 /// </param>
 /// <param name="CopyObjectResult">
-/// &lt;p&gt;Container for all response elements.&lt;/p&gt;
+/// Container for all response elements.
 /// </param>
 /// <param name="CopySourceVersionId">
-/// &lt;p&gt;Version ID of the source object that was copied.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the source object is in a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Version ID of the source object that was copied.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the source object is in a directory bucket.
+/// </para>
 /// </param>
 /// <param name="Expiration">
-/// &lt;p&gt;If the object expiration is configured, the response includes this header.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object expiration information is not returned in directory buckets and this header returns the
-/// value &quot;&lt;code&gt;NotImplemented&lt;/code&gt;&quot; in all responses for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the object expiration is configured, the response includes this header.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object expiration information is not returned in directory buckets and this header
+/// returns the value "<c>NotImplemented</c>" in all responses for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to confirm the encryption algorithm that's used.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to confirm the encryption algorithm that's used.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to provide the round-trip message integrity verification of the customer-provided
-/// encryption key.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to provide the round-trip message integrity verification of the
+/// customer-provided encryption key.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSEncryptionContext">
-/// &lt;p&gt;If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption. The value of
-/// this header is a Base64 encoded UTF-8 string holding JSON with the encryption context key-value
-/// pairs.&lt;/p&gt;
+/// If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption.
+/// The value of this header is a Base64 encoded UTF-8 string holding JSON with the encryption context
+/// key-value pairs.
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;If present, indicates the ID of the KMS key that was used for object encryption.&lt;/p&gt;
+/// If present, indicates the ID of the KMS key that was used for object encryption.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side
-/// encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <para>
+/// <b>Note:</b> When accessing data stored in Amazon FSx file systems using S3 access points, the only
+/// valid server side encryption option is <c>aws:fsx</c>.
+/// </para>
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;Version ID of the newly created copy.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Version ID of the newly created copy.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class CopyObjectOutput(
     bool? BucketKeyEnabled = null,

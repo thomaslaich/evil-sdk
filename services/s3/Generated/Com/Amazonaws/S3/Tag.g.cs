@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container of a key value name pair.&lt;/p&gt;
+/// A container of a key value name pair.
 /// </summary>
 /// <param name="Key">
-/// &lt;p&gt;Name of the object key.&lt;/p&gt;
+/// Name of the object key.
 /// </param>
 /// <param name="Value">
-/// &lt;p&gt;Value of the tag.&lt;/p&gt;
+/// Value of the tag.
 /// </param>
 public sealed record class Tag(string Key, string Value);

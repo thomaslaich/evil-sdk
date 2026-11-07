@@ -7,34 +7,31 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a request to perform a &lt;code&gt;PutItem&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents a request to perform a <c>PutItem</c> operation.
 /// </summary>
 /// <param name="Item">
-/// &lt;p&gt;A map of attribute name to attribute values, representing the primary key of the item
-/// to be written by &lt;code&gt;PutItem&lt;/code&gt;. All of the table's primary key attributes must be
-/// specified, and their data types must match those of the table's key schema. If any
-/// attributes are present in the item that are part of an index key schema for the table,
-/// their types must match the index key schema. &lt;/p&gt;
+/// A map of attribute name to attribute values, representing the primary key of the item to be written
+/// by <c>PutItem</c>. All of the table's primary key attributes must be specified, and their data types
+/// must match those of the table's key schema. If any attributes are present in the item that are part
+/// of an index key schema for the table, their types must match the index key schema.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;Name of the table in which to write the item. You can also provide the Amazon Resource Name (ARN) of
-/// the table in this parameter.&lt;/p&gt;
+/// Name of the table in which to write the item. You can also provide the Amazon Resource Name (ARN) of
+/// the table in this parameter.
 /// </param>
 /// <param name="ConditionExpression">
-/// &lt;p&gt;A condition that must be satisfied in order for a conditional update to
-/// succeed.&lt;/p&gt;
+/// A condition that must be satisfied in order for a conditional update to succeed.
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression.&lt;/p&gt;
+/// One or more substitution tokens for attribute names in an expression.
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression.&lt;/p&gt;
+/// One or more values that can be substituted in an expression.
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;Use &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt; to get the item attributes if the
-/// &lt;code&gt;Put&lt;/code&gt; condition fails. For
-/// &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt;, the valid values are: NONE and
-/// ALL_OLD.&lt;/p&gt;
+/// Use <c>ReturnValuesOnConditionCheckFailure</c> to get the item attributes if the <c>Put</c>
+/// condition fails. For <c>ReturnValuesOnConditionCheckFailure</c>, the valid values are: NONE and
+/// ALL_OLD.
 /// </param>
 public sealed record class Put(
     IReadOnlyDictionary<string, AttributeValue> Item,

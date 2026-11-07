@@ -7,47 +7,49 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A collection of parts associated with a multipart upload.&lt;/p&gt;
+/// A collection of parts associated with a multipart upload.
 /// </summary>
 /// <param name="IsTruncated">
-/// &lt;p&gt;Indicates whether the returned list of parts is truncated. A value of &lt;code&gt;true&lt;/code&gt; indicates
-/// that the list was truncated. A list can be truncated if the number of parts exceeds the limit returned
-/// in the &lt;code&gt;MaxParts&lt;/code&gt; element.&lt;/p&gt;
+/// Indicates whether the returned list of parts is truncated. A value of <c>true</c> indicates that the
+/// list was truncated. A list can be truncated if the number of parts exceeds the limit returned in the
+/// <c>MaxParts</c> element.
 /// </param>
 /// <param name="MaxParts">
-/// &lt;p&gt;The maximum number of parts allowed in the response.&lt;/p&gt;
+/// The maximum number of parts allowed in the response.
 /// </param>
 /// <param name="NextPartNumberMarker">
-/// &lt;p&gt;When a list is truncated, this element specifies the last part in the list, as well as the value to
-/// use for the &lt;code&gt;PartNumberMarker&lt;/code&gt; request parameter in a subsequent request.&lt;/p&gt;
+/// When a list is truncated, this element specifies the last part in the list, as well as the value to
+/// use for the <c>PartNumberMarker</c> request parameter in a subsequent request.
 /// </param>
 /// <param name="PartNumberMarker">
-/// &lt;p&gt;The marker for the current part.&lt;/p&gt;
+/// The marker for the current part.
 /// </param>
 /// <param name="Parts">
-/// &lt;p&gt;A container for elements related to a particular part. A response can contain zero or more
-/// &lt;code&gt;Parts&lt;/code&gt; elements.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - For
-/// &lt;code&gt;GetObjectAttributes&lt;/code&gt;, if an additional checksum (including
-/// &lt;code&gt;x-amz-checksum-crc32&lt;/code&gt;, &lt;code&gt;x-amz-checksum-crc32c&lt;/code&gt;,
-/// &lt;code&gt;x-amz-checksum-sha1&lt;/code&gt;, or &lt;code&gt;x-amz-checksum-sha256&lt;/code&gt;) isn't applied to the
-/// object specified in the request, the response doesn't return the &lt;code&gt;Part&lt;/code&gt; element.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For
-/// &lt;code&gt;GetObjectAttributes&lt;/code&gt;, regardless of whether an additional checksum is applied to the
-/// object specified in the request, the response returns the &lt;code&gt;Part&lt;/code&gt; element.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// A container for elements related to a particular part. A response can contain zero or more
+/// <c>Parts</c> elements.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>General purpose buckets</b> - For <c>GetObjectAttributes</c>, if an additional checksum
+/// (including <c>x-amz-checksum-crc32</c>, <c>x-amz-checksum-crc32c</c>, <c>x-amz-checksum-sha1</c>, or
+/// <c>x-amz-checksum-sha256</c>) isn't applied to the object specified in the request, the response
+/// doesn't return the <c>Part</c> element.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Directory buckets</b> - For <c>GetObjectAttributes</c>, regardless of whether an additional
+/// checksum is applied to the object specified in the request, the response returns the <c>Part</c>
+/// element.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="TotalPartsCount">
-/// &lt;p&gt;The total number of parts.&lt;/p&gt;
+/// The total number of parts.
 /// </param>
 public sealed record class GetObjectAttributesParts(
     bool? IsTruncated = null,

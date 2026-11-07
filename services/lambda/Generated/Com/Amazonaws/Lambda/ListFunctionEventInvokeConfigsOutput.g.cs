@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListFunctionEventInvokeConfigsOutput.
 /// </summary>
 /// <param name="FunctionEventInvokeConfigs">
-/// &lt;p&gt;A list of configurations.&lt;/p&gt;
+/// A list of configurations.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListFunctionEventInvokeConfigsOutput(
     IReadOnlyList<FunctionEventInvokeConfig>? FunctionEventInvokeConfigs = null,

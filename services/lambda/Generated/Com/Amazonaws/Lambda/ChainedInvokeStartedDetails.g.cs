@@ -5,22 +5,23 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains details about a chained function invocation that has started execution, including start time and execution context.&lt;/p&gt;
+/// Contains details about a chained function invocation that has started execution, including start
+/// time and execution context.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function being invoked.&lt;/p&gt;
+/// The name or ARN of the Lambda function being invoked.
 /// </param>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) that identifies the durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) that identifies the durable execution.
 /// </param>
 /// <param name="ExecutedVersion">
-/// &lt;p&gt;The version of the function that was executed.&lt;/p&gt;
+/// The version of the function that was executed.
 /// </param>
 /// <param name="Input">
-/// &lt;p&gt;The JSON input payload provided to the chained invocation.&lt;/p&gt;
+/// The JSON input payload provided to the chained invocation.
 /// </param>
 /// <param name="TenantId">
-/// &lt;p&gt;The tenant identifier for the chained invocation.&lt;/p&gt;
+/// The tenant identifier for the chained invocation.
 /// </param>
 public sealed record class ChainedInvokeStartedDetails(
     string FunctionName,

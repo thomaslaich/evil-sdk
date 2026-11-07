@@ -5,18 +5,17 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Summary information about an export task.&lt;/p&gt;
+/// Summary information about an export task.
 /// </summary>
 /// <param name="ExportArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the export.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the export.
 /// </param>
 /// <param name="ExportStatus">
-/// &lt;p&gt;Export can be in one of the following states: IN_PROGRESS, COMPLETED, or
-/// FAILED.&lt;/p&gt;
+/// Export can be in one of the following states: IN_PROGRESS, COMPLETED, or FAILED.
 /// </param>
 /// <param name="ExportType">
-/// &lt;p&gt;The type of export that was performed. Valid values are &lt;code&gt;FULL_EXPORT&lt;/code&gt; or
-/// &lt;code&gt;INCREMENTAL_EXPORT&lt;/code&gt;.&lt;/p&gt;
+/// The type of export that was performed. Valid values are <c>FULL_EXPORT</c> or
+/// <c>INCREMENTAL_EXPORT</c>.
 /// </param>
 public sealed record class ExportSummary(
     string? ExportArn = null,

@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#RestoreTableToPointInTimeOutput.
 /// </summary>
 /// <param name="TableDescription">
-/// &lt;p&gt;Represents the properties of a table.&lt;/p&gt;
+/// Represents the properties of a table.
 /// </param>
 public sealed record class RestoreTableToPointInTimeOutput(
     global::Com.Amazonaws.Dynamodb.TableDescription? TableDescription = null

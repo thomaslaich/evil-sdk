@@ -10,35 +10,32 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#RestoreTableFromBackupInput.
 /// </summary>
 /// <param name="BackupArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) associated with the backup.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) associated with the backup.
 /// </param>
 /// <param name="TargetTableName">
-/// &lt;p&gt;The name of the new table to which the backup must be restored.&lt;/p&gt;
+/// The name of the new table to which the backup must be restored.
 /// </param>
 /// <param name="BillingModeOverride">
-/// &lt;p&gt;The billing mode of the restored table.&lt;/p&gt;
+/// The billing mode of the restored table.
 /// </param>
 /// <param name="GlobalSecondaryIndexOverride">
-/// &lt;p&gt;List of global secondary indexes for the restored table. The indexes provided should
-/// match existing secondary indexes. You can choose to exclude some or all of the indexes
-/// at the time of restore.&lt;/p&gt;
+/// List of global secondary indexes for the restored table. The indexes provided should match existing
+/// secondary indexes. You can choose to exclude some or all of the indexes at the time of restore.
 /// </param>
 /// <param name="LocalSecondaryIndexOverride">
-/// &lt;p&gt;List of local secondary indexes for the restored table. The indexes provided should
-/// match existing secondary indexes. You can choose to exclude some or all of the indexes
-/// at the time of restore.&lt;/p&gt;
+/// List of local secondary indexes for the restored table. The indexes provided should match existing
+/// secondary indexes. You can choose to exclude some or all of the indexes at the time of restore.
 /// </param>
 /// <param name="ProvisionedThroughputOverride">
-/// &lt;p&gt;Provisioned throughput settings for the restored table.&lt;/p&gt;
+/// Provisioned throughput settings for the restored table.
 /// </param>
 /// <param name="SSESpecificationOverride">
-/// &lt;p&gt;The new server-side encryption settings for the restored table.&lt;/p&gt;
+/// The new server-side encryption settings for the restored table.
 /// </param>
 /// <param name="VectorIndexOverride">
-/// &lt;p&gt;The vector indexes for the restored table. If not specified, all vector indexes
-/// from the backup are restored. The indexes provided must match existing vector
-/// indexes from the backup. You can choose to exclude some or all of the vector
-/// indexes at the time of restore.&lt;/p&gt;
+/// The vector indexes for the restored table. If not specified, all vector indexes from the backup are
+/// restored. The indexes provided must match existing vector indexes from the backup. You can choose to
+/// exclude some or all of the vector indexes at the time of restore.
 /// </param>
 public sealed record class RestoreTableFromBackupInput(
     string BackupArn,

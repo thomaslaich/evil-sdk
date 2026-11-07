@@ -5,16 +5,16 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration for Lambda-managed instances used by the capacity provider.&lt;/p&gt;
+/// Configuration for Lambda-managed instances used by the capacity provider.
 /// </summary>
 /// <param name="CapacityProviderArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the capacity provider.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the capacity provider.
 /// </param>
 /// <param name="ExecutionEnvironmentMemoryGiBPerVCpu">
-/// &lt;p&gt;The amount of memory in GiB allocated per vCPU for execution environments.&lt;/p&gt;
+/// The amount of memory in GiB allocated per vCPU for execution environments.
 /// </param>
 /// <param name="PerExecutionEnvironmentMaxConcurrency">
-/// &lt;p&gt;The maximum number of concurrent execution environments that can run on each compute instance.&lt;/p&gt;
+/// The maximum number of concurrent execution environments that can run on each compute instance.
 /// </param>
 public sealed record class LambdaManagedInstancesCapacityProviderConfig(
     string CapacityProviderArn,

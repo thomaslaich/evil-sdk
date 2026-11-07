@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The specified replica is already part of the global table.&lt;/p&gt;
+/// The specified replica is already part of the global table.
 /// </summary>
 public sealed partial class ReplicaAlreadyExistsException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified replica is already part of the global table.&lt;/p&gt;
+    /// The specified replica is already part of the global table.
     /// </summary>
     public ReplicaAlreadyExistsException(string? message = null)
         : base(message) { }

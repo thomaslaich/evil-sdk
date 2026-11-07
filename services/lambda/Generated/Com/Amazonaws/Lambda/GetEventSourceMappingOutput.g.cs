@@ -8,106 +8,181 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A mapping between an Amazon Web Services resource and a Lambda function. For details, see &lt;a&gt;CreateEventSourceMapping&lt;/a&gt;.&lt;/p&gt;
+/// A mapping between an Amazon Web Services resource and a Lambda function. For details, see
+/// CreateEventSourceMapping.
 /// </summary>
 /// <param name="AmazonManagedKafkaEventSourceConfig">
-/// &lt;p&gt;Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.&lt;/p&gt;
+/// Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event
+/// source.
 /// </param>
 /// <param name="BatchSize">
-/// &lt;p&gt;The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).&lt;/p&gt; &lt;p&gt;Default value: Varies by service. For Amazon SQS, the default is 10. For all other services, the default is 100.&lt;/p&gt; &lt;p&gt;Related setting: When you set &lt;code&gt;BatchSize&lt;/code&gt; to a value greater than 10, you must set &lt;code&gt;MaximumBatchingWindowInSeconds&lt;/code&gt; to at least 1.&lt;/p&gt;
+/// <para>
+/// The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to
+/// your function. Lambda passes all of the records in the batch to the function in a single call, up to
+/// the payload limit for synchronous invocation (6 MB).
+/// </para>
+/// <para>
+/// Default value: Varies by service. For Amazon SQS, the default is 10. For all other services, the
+/// default is 100.
+/// </para>
+/// <para>
+/// Related setting: When you set <c>BatchSize</c> to a value greater than 10, you must set
+/// <c>MaximumBatchingWindowInSeconds</c> to at least 1.
+/// </para>
 /// </param>
 /// <param name="BisectBatchOnFunctionError">
-/// &lt;p&gt;(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an error, split the batch in two and retry. The default value is false.&lt;/p&gt;
+/// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an
+/// error, split the batch in two and retry. The default value is false.
 /// </param>
 /// <param name="DestinationConfig">
-/// &lt;p&gt;(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that specifies the destination of an event after Lambda processes it.&lt;/p&gt;
+/// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that
+/// specifies the destination of an event after Lambda processes it.
 /// </param>
 /// <param name="DocumentDBEventSourceConfig">
-/// &lt;p&gt;Specific configuration settings for a DocumentDB event source.&lt;/p&gt;
+/// Specific configuration settings for a DocumentDB event source.
 /// </param>
 /// <param name="EventSourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the event source.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the event source.
 /// </param>
 /// <param name="EventSourceMappingArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the event source mapping.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the event source mapping.
 /// </param>
 /// <param name="FilterCriteria">
-/// &lt;p&gt;An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html&quot;&gt;Lambda event filtering&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;If filter criteria is encrypted, this field shows up as &lt;code&gt;null&lt;/code&gt; in the response of ListEventSourceMapping API calls. You can view this field in plaintext in the response of GetEventSourceMapping and DeleteEventSourceMapping calls if you have &lt;code&gt;kms:Decrypt&lt;/code&gt; permissions for the correct KMS key.&lt;/p&gt;
+/// <para>
+/// An object that defines the filter criteria that determine whether Lambda should process an event.
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">Lambda event
+/// filtering</see>.
+/// </para>
+/// <para>
+/// If filter criteria is encrypted, this field shows up as <c>null</c> in the response of
+/// ListEventSourceMapping API calls. You can view this field in plaintext in the response of
+/// GetEventSourceMapping and DeleteEventSourceMapping calls if you have <c>kms:Decrypt</c> permissions
+/// for the correct KMS key.
+/// </para>
 /// </param>
 /// <param name="FilterCriteriaError">
-/// &lt;p&gt;An object that contains details about an error related to filter criteria encryption.&lt;/p&gt;
+/// An object that contains details about an error related to filter criteria encryption.
 /// </param>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The ARN of the Lambda function.&lt;/p&gt;
+/// The ARN of the Lambda function.
 /// </param>
 /// <param name="FunctionResponseTypes">
-/// &lt;p&gt;(Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.&lt;/p&gt;
+/// (Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current
+/// response type enums applied to the event source mapping.
 /// </param>
 /// <param name="KMSKeyArn">
-/// &lt;p&gt; The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics&quot;&gt;filter criteria&lt;/a&gt;.&lt;/p&gt;
+/// The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your
+/// function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics">filter
+/// criteria</see>.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date that the event source mapping was last updated or that its state changed.&lt;/p&gt;
+/// The date that the event source mapping was last updated or that its state changed.
 /// </param>
 /// <param name="LastProcessingResult">
-/// &lt;p&gt;The result of the event source mapping's last processing attempt.&lt;/p&gt;
+/// The result of the event source mapping's last processing attempt.
 /// </param>
 /// <param name="LoggingConfig">
-/// &lt;p&gt;(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/esm-logging.html&quot;&gt;Event source mapping logging&lt;/a&gt;.&lt;/p&gt;
+/// (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source.
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/esm-logging.html">Event source mapping
+/// logging</see>.
 /// </param>
 /// <param name="MaximumBatchingWindowInSeconds">
-/// &lt;p&gt;The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure &lt;code&gt;MaximumBatchingWindowInSeconds&lt;/code&gt; to any value from 0 seconds to 300 seconds in increments of seconds.&lt;/p&gt; &lt;p&gt;For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change &lt;code&gt;MaximumBatchingWindowInSeconds&lt;/code&gt; in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping.&lt;/p&gt; &lt;p&gt;Related setting: For streams and Amazon SQS event sources, when you set &lt;code&gt;BatchSize&lt;/code&gt; to a value greater than 10, you must set &lt;code&gt;MaximumBatchingWindowInSeconds&lt;/code&gt; to at least 1.&lt;/p&gt;
+/// <para>
+/// The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the
+/// function. You can configure <c>MaximumBatchingWindowInSeconds</c> to any value from 0 seconds to 300
+/// seconds in increments of seconds.
+/// </para>
+/// <para>
+/// For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK,
+/// Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is
+/// 500 ms. Note that because you can only change <c>MaximumBatchingWindowInSeconds</c> in increments of
+/// seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To
+/// restore the default batching window, you must create a new event source mapping.
+/// </para>
+/// <para>
+/// Related setting: For streams and Amazon SQS event sources, when you set <c>BatchSize</c> to a value
+/// greater than 10, you must set <c>MaximumBatchingWindowInSeconds</c> to at least 1.
+/// </para>
 /// </param>
 /// <param name="MaximumRecordAgeInSeconds">
-/// &lt;p&gt;(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records older than the specified age. The default value is -1, which sets the maximum age to infinite. When the value is set to infinite, Lambda never discards old records.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The minimum valid value for maximum record age is 60s. Although values less than 60 and greater than -1 fall within the parameter's absolute range, they are not allowed&lt;/p&gt; &lt;/note&gt;
+/// <para>
+/// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records older than
+/// the specified age. The default value is -1, which sets the maximum age to infinite. When the value
+/// is set to infinite, Lambda never discards old records.
+/// </para>
+/// <para>
+/// <b>Note:</b> The minimum valid value for maximum record age is 60s. Although values less than 60 and
+/// greater than -1 fall within the parameter's absolute range, they are not allowed
+/// </para>
 /// </param>
 /// <param name="MaximumRetryAttempts">
-/// &lt;p&gt;(Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries. The default value is -1, which sets the maximum number of retries to infinite. When MaximumRetryAttempts is infinite, Lambda retries failed records until the record expires in the event source.&lt;/p&gt;
+/// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the
+/// specified number of retries. The default value is -1, which sets the maximum number of retries to
+/// infinite. When MaximumRetryAttempts is infinite, Lambda retries failed records until the record
+/// expires in the event source.
 /// </param>
 /// <param name="MetricsConfig">
-/// &lt;p&gt;The metrics configuration for your event source. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics&quot;&gt;Event source mapping metrics&lt;/a&gt;.&lt;/p&gt;
+/// The metrics configuration for your event source. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics">Event
+/// source mapping metrics</see>.
 /// </param>
 /// <param name="ParallelizationFactor">
-/// &lt;p&gt;(Kinesis and DynamoDB Streams only) The number of batches to process concurrently from each shard. The default value is 1.&lt;/p&gt;
+/// (Kinesis and DynamoDB Streams only) The number of batches to process concurrently from each shard.
+/// The default value is 1.
 /// </param>
 /// <param name="ProvisionedPollerConfig">
-/// &lt;p&gt;(Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping-provisioned-mode&quot;&gt;provisioned mode&lt;/a&gt;.&lt;/p&gt;
+/// (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for
+/// the event source. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping-provisioned-mode">provisioned
+/// mode</see>.
 /// </param>
 /// <param name="Queues">
-/// &lt;p&gt; (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.&lt;/p&gt;
+/// (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.
 /// </param>
 /// <param name="ScalingConfig">
-/// &lt;p&gt;(Amazon SQS only) The scaling configuration for the event source. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency&quot;&gt;Configuring maximum concurrency for Amazon SQS event sources&lt;/a&gt;.&lt;/p&gt;
+/// (Amazon SQS only) The scaling configuration for the event source. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency">Configuring
+/// maximum concurrency for Amazon SQS event sources</see>.
 /// </param>
 /// <param name="SelfManagedEventSource">
-/// &lt;p&gt;The self-managed Apache Kafka cluster for your event source.&lt;/p&gt;
+/// The self-managed Apache Kafka cluster for your event source.
 /// </param>
 /// <param name="SelfManagedKafkaEventSourceConfig">
-/// &lt;p&gt;Specific configuration settings for a self-managed Apache Kafka event source.&lt;/p&gt;
+/// Specific configuration settings for a self-managed Apache Kafka event source.
 /// </param>
 /// <param name="SourceAccessConfigurations">
-/// &lt;p&gt;An array of the authentication protocol, VPC components, or virtual host to secure and define your event source.&lt;/p&gt;
+/// An array of the authentication protocol, VPC components, or virtual host to secure and define your
+/// event source.
 /// </param>
 /// <param name="StartingPosition">
-/// &lt;p&gt;The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon DynamoDB Stream event sources. &lt;code&gt;AT_TIMESTAMP&lt;/code&gt; is supported only for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.&lt;/p&gt;
+/// The position in a stream from which to start reading. Required for Amazon Kinesis and Amazon
+/// DynamoDB Stream event sources. <c>AT_TIMESTAMP</c> is supported only for Amazon Kinesis streams,
+/// Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.
 /// </param>
 /// <param name="StartingPositionTimestamp">
-/// &lt;p&gt;With &lt;code&gt;StartingPosition&lt;/code&gt; set to &lt;code&gt;AT_TIMESTAMP&lt;/code&gt;, the time from which to start reading. &lt;code&gt;StartingPositionTimestamp&lt;/code&gt; cannot be in the future.&lt;/p&gt;
+/// With <c>StartingPosition</c> set to <c>AT_TIMESTAMP</c>, the time from which to start reading.
+/// <c>StartingPositionTimestamp</c> cannot be in the future.
 /// </param>
 /// <param name="State">
-/// &lt;p&gt;The state of the event source mapping. It can be one of the following: &lt;code&gt;Creating&lt;/code&gt;, &lt;code&gt;Enabling&lt;/code&gt;, &lt;code&gt;Enabled&lt;/code&gt;, &lt;code&gt;Disabling&lt;/code&gt;, &lt;code&gt;Disabled&lt;/code&gt;, &lt;code&gt;Updating&lt;/code&gt;, or &lt;code&gt;Deleting&lt;/code&gt;.&lt;/p&gt;
+/// The state of the event source mapping. It can be one of the following: <c>Creating</c>,
+/// <c>Enabling</c>, <c>Enabled</c>, <c>Disabling</c>, <c>Disabled</c>, <c>Updating</c>, or
+/// <c>Deleting</c>.
 /// </param>
 /// <param name="StateTransitionReason">
-/// &lt;p&gt;Indicates whether a user or Lambda made the last change to the event source mapping.&lt;/p&gt;
+/// Indicates whether a user or Lambda made the last change to the event source mapping.
 /// </param>
 /// <param name="Topics">
-/// &lt;p&gt;The name of the Kafka topic.&lt;/p&gt;
+/// The name of the Kafka topic.
 /// </param>
 /// <param name="TumblingWindowInSeconds">
-/// &lt;p&gt;(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.&lt;/p&gt;
+/// (Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and
+/// Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.
 /// </param>
 /// <param name="UUID">
-/// &lt;p&gt;The identifier of the event source mapping.&lt;/p&gt;
+/// The identifier of the event source mapping.
 /// </param>
 public sealed record class GetEventSourceMappingOutput(
     global::Com.Amazonaws.Lambda.AmazonManagedKafkaEventSourceConfig? AmazonManagedKafkaEventSourceConfig =

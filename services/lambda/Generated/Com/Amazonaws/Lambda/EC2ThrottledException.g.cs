@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Amazon EC2 throttled Lambda during Lambda function initialization using the execution role provided for the function.&lt;/p&gt;
+/// Amazon EC2 throttled Lambda during Lambda function initialization using the execution role provided
+/// for the function.
 /// </summary>
 public sealed partial class EC2ThrottledException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Amazon EC2 throttled Lambda during Lambda function initialization using the execution role provided for the function.&lt;/p&gt;
+    /// Amazon EC2 throttled Lambda during Lambda function initialization using the execution role provided
+    /// for the function.
     /// </summary>
     public EC2ThrottledException(string? message = null, string? type = null)
         : base(message)

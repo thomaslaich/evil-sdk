@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketAnalyticsConfigurationOutput.
 /// </summary>
 /// <param name="AnalyticsConfiguration">
-/// &lt;p&gt;The configuration and any analyses for the analytics filter.&lt;/p&gt;
+/// The configuration and any analyses for the analytics filter.
 /// </param>
 public sealed record class GetBucketAnalyticsConfigurationOutput(
     global::Com.Amazonaws.S3.AnalyticsConfiguration? AnalyticsConfiguration = null

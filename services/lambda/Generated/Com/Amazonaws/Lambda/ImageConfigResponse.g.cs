@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Response to a &lt;code&gt;GetFunctionConfiguration&lt;/code&gt; request.&lt;/p&gt;
+/// Response to a <c>GetFunctionConfiguration</c> request.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Error response to &lt;code&gt;GetFunctionConfiguration&lt;/code&gt;.&lt;/p&gt;
+/// Error response to <c>GetFunctionConfiguration</c>.
 /// </param>
 /// <param name="ImageConfig">
-/// &lt;p&gt;Configuration values that override the container image Dockerfile.&lt;/p&gt;
+/// Configuration values that override the container image Dockerfile.
 /// </param>
 public sealed record class ImageConfigResponse(
     ImageConfigError? Error = null,

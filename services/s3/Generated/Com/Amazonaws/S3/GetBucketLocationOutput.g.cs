@@ -8,10 +8,16 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketLocationOutput.
 /// </summary>
 /// <param name="LocationConstraint">
-/// &lt;p&gt;Specifies the Region where the bucket resides. For a list of all the Amazon S3 supported location
-/// constraints by Region, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region&quot;&gt;Regions and Endpoints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;p&gt;Buckets in Region &lt;code&gt;us-east-1&lt;/code&gt; have a LocationConstraint of &lt;code&gt;null&lt;/code&gt;. Buckets
-/// with a LocationConstraint of &lt;code&gt;EU&lt;/code&gt; reside in &lt;code&gt;eu-west-1&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// Specifies the Region where the bucket resides. For a list of all the Amazon S3 supported location
+/// constraints by Region, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions and
+/// Endpoints</see>.
+/// </para>
+/// <para>
+/// Buckets in Region <c>us-east-1</c> have a LocationConstraint of <c>null</c>. Buckets with a
+/// LocationConstraint of <c>EU</c> reside in <c>eu-west-1</c>.
+/// </para>
 /// </param>
 public sealed record class GetBucketLocationOutput(
     BucketLocationConstraint? LocationConstraint = null

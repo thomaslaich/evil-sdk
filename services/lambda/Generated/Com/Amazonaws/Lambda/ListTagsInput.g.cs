@@ -8,6 +8,7 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListTagsInput.
 /// </summary>
 /// <param name="Resource">
-/// &lt;p&gt;The resource's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to function aliases or versions.&lt;/p&gt;
+/// The resource's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to function
+/// aliases or versions.
 /// </param>
 public sealed record class ListTagsInput(string Resource);

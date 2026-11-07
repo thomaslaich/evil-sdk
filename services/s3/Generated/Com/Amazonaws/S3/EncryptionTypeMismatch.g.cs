@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; The existing object was created with a different encryption type. Subsequent write requests must
-/// include the appropriate encryption parameters in the request or while creating the session. &lt;/p&gt;
+/// The existing object was created with a different encryption type. Subsequent write requests must
+/// include the appropriate encryption parameters in the request or while creating the session.
 /// </summary>
 public sealed partial class EncryptionTypeMismatch : Exception
 {
     /// <summary>
-    /// &lt;p&gt; The existing object was created with a different encryption type. Subsequent write requests must
-    /// include the appropriate encryption parameters in the request or while creating the session. &lt;/p&gt;
+    /// The existing object was created with a different encryption type. Subsequent write requests must
+    /// include the appropriate encryption parameters in the request or while creating the session.
     /// </summary>
     public EncryptionTypeMismatch(string? message = null)
         : base(message) { }

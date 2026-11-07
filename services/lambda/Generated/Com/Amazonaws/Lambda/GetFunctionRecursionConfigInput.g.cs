@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetFunctionRecursionConfigInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name of the function.&lt;/p&gt;
+/// The name of the function.
 /// </param>
 public sealed record class GetFunctionRecursionConfigInput(string FunctionName);

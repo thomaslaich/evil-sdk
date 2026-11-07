@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#CancelMessageMoveTaskOutput.
 /// </summary>
 /// <param name="ApproximateNumberOfMessagesMoved">
-/// &lt;p&gt;The approximate number of messages already moved to the destination queue.&lt;/p&gt;
+/// The approximate number of messages already moved to the destination queue.
 /// </param>
 public sealed record class CancelMessageMoveTaskOutput(
     long? ApproximateNumberOfMessagesMoved = null

@@ -7,44 +7,66 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The configuration information for the bucket.&lt;/p&gt;
+/// The configuration information for the bucket.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;Specifies the information about the bucket that will be created.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the information about the bucket that will be created.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported by directory buckets.
+/// </para>
 /// </param>
 /// <param name="Location">
-/// &lt;p&gt;Specifies the location where the bucket will be created.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - The location type is Availability Zone or Local Zone. To
-/// use the Local Zone location type, your account must be  enabled
-/// for Local Zones. Otherwise, you get an HTTP &lt;code&gt;403 Forbidden&lt;/code&gt; error with the error code
-/// &lt;code&gt;AccessDenied&lt;/code&gt;. To learn more,
-/// see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/opt-in-directory-bucket-lz.html&quot;&gt;Enable
-/// accounts for Local Zones&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the location where the bucket will be created.
+/// </para>
+/// <para>
+/// <b>Directory buckets </b> - The location type is Availability Zone or Local Zone. To use the Local
+/// Zone location type, your account must be enabled for Local Zones. Otherwise, you get an HTTP <c>403
+/// Forbidden</c> error with the error code <c>AccessDenied</c>. To learn more, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/opt-in-directory-bucket-lz.html">Enable
+/// accounts for Local Zones</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported by directory buckets.
+/// </para>
 /// </param>
 /// <param name="LocationConstraint">
-/// &lt;p&gt;Specifies the Region where the bucket will be created. You might choose a Region to optimize
-/// latency, minimize costs, or address regulatory requirements. For example, if you reside in Europe, you
-/// will probably find it advantageous to create buckets in the Europe (Ireland) Region.&lt;/p&gt;
-/// &lt;p&gt;If you don't specify a Region, the bucket is created in the US East (N. Virginia) Region (us-east-1)
-/// by default. Configurations using the value &lt;code&gt;EU&lt;/code&gt; will create a bucket in
-/// &lt;code&gt;eu-west-1&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For a list of the valid values for all of the Amazon Web Services Regions, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region&quot;&gt;Regions and Endpoints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the Region where the bucket will be created. You might choose a Region to optimize
+/// latency, minimize costs, or address regulatory requirements. For example, if you reside in Europe,
+/// you will probably find it advantageous to create buckets in the Europe (Ireland) Region.
+/// </para>
+/// <para>
+/// If you don't specify a Region, the bucket is created in the US East (N. Virginia) Region (us-east-1)
+/// by default. Configurations using the value <c>EU</c> will create a bucket in <c>eu-west-1</c>.
+/// </para>
+/// <para>
+/// For a list of the valid values for all of the Amazon Web Services Regions, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions and
+/// Endpoints</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;An array of tags that you can apply to the bucket that you're creating. Tags are key-value pairs of metadata used to categorize and organize your buckets, track costs, and control access. &lt;/p&gt;
-/// &lt;p&gt;You must have the &lt;code&gt;s3:TagResource&lt;/code&gt; permission to create a general
-/// purpose bucket with tags or the &lt;code&gt;s3express:TagResource&lt;/code&gt; permission to create a directory bucket with tags.&lt;/p&gt;
-/// &lt;p&gt;When creating buckets with tags, note that tag-based conditions using &lt;code&gt;aws:ResourceTag&lt;/code&gt; and &lt;code&gt;s3:BucketTag&lt;/code&gt; condition keys are applicable only after ABAC is enabled on the bucket. To learn more, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging-enable-abac.html&quot;&gt;Enabling ABAC in general purpose buckets&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// An array of tags that you can apply to the bucket that you're creating. Tags are key-value pairs of
+/// metadata used to categorize and organize your buckets, track costs, and control access.
+/// </para>
+/// <para>
+/// You must have the <c>s3:TagResource</c> permission to create a general purpose bucket with tags or
+/// the <c>s3express:TagResource</c> permission to create a directory bucket with tags.
+/// </para>
+/// <para>
+/// When creating buckets with tags, note that tag-based conditions using <c>aws:ResourceTag</c> and
+/// <c>s3:BucketTag</c> condition keys are applicable only after ABAC is enabled on the bucket. To learn
+/// more, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/buckets-tagging-enable-abac.html">Enabling
+/// ABAC in general purpose buckets</see>.
+/// </para>
 /// </param>
 public sealed record class CreateBucketConfiguration(
     BucketInfo? Bucket = null,

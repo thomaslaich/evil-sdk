@@ -7,11 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container for the completed multipart upload details.&lt;/p&gt;
+/// The container for the completed multipart upload details.
 /// </summary>
 /// <param name="Parts">
-/// &lt;p&gt;Array of CompletedPart data types.&lt;/p&gt;
-/// &lt;p&gt;If you do not supply a valid &lt;code&gt;Part&lt;/code&gt; with your request, the service sends back an HTTP 400
-/// response.&lt;/p&gt;
+/// <para>
+/// Array of CompletedPart data types.
+/// </para>
+/// <para>
+/// If you do not supply a valid <c>Part</c> with your request, the service sends back an HTTP 400
+/// response.
+/// </para>
 /// </param>
 public sealed record class CompletedMultipartUpload(IReadOnlyList<CompletedPart>? Parts = null);

@@ -8,13 +8,14 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListCapacityProvidersInput.
 /// </summary>
 /// <param name="Marker">
-/// &lt;p&gt;Specify the pagination token that's returned by a previous request to retrieve the next page of results.&lt;/p&gt;
+/// Specify the pagination token that's returned by a previous request to retrieve the next page of
+/// results.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;The maximum number of capacity providers to return.&lt;/p&gt;
+/// The maximum number of capacity providers to return.
 /// </param>
 /// <param name="State">
-/// &lt;p&gt;Filter capacity providers by their current state.&lt;/p&gt;
+/// Filter capacity providers by their current state.
 /// </param>
 public sealed record class ListCapacityProvidersInput(
     string? Marker = null,

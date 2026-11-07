@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda service encountered an internal error.&lt;/p&gt;
+/// The Lambda service encountered an internal error.
 /// </summary>
 public sealed partial class ServiceException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda service encountered an internal error.&lt;/p&gt;
+    /// The Lambda service encountered an internal error.
     /// </summary>
     public ServiceException(string? message = null, string? type = null)
         : base(message)

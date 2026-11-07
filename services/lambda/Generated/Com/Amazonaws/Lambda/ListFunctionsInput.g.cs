@@ -8,16 +8,21 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListFunctionsInput.
 /// </summary>
 /// <param name="FunctionVersion">
-/// &lt;p&gt;Set to &lt;code&gt;ALL&lt;/code&gt; to include entries for all published versions of each function.&lt;/p&gt;
+/// Set to <c>ALL</c> to include entries for all published versions of each function.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;Specify the pagination token that's returned by a previous request to retrieve the next page of results.&lt;/p&gt;
+/// Specify the pagination token that's returned by a previous request to retrieve the next page of
+/// results.
 /// </param>
 /// <param name="MasterRegion">
-/// &lt;p&gt;For Lambda@Edge functions, the Amazon Web Services Region of the master function. For example, &lt;code&gt;us-east-1&lt;/code&gt; filters the list of functions to include only Lambda@Edge functions replicated from a master function in US East (N. Virginia). If specified, you must set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt;.&lt;/p&gt;
+/// For Lambda@Edge functions, the Amazon Web Services Region of the master function. For example,
+/// <c>us-east-1</c> filters the list of functions to include only Lambda@Edge functions replicated from
+/// a master function in US East (N. Virginia). If specified, you must set <c>FunctionVersion</c> to
+/// <c>ALL</c>.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;The maximum number of functions to return in the response. Note that &lt;code&gt;ListFunctions&lt;/code&gt; returns a maximum of 50 items in each response, even if you set the number higher.&lt;/p&gt;
+/// The maximum number of functions to return in the response. Note that <c>ListFunctions</c> returns a
+/// maximum of 50 items in each response, even if you set the number higher.
 /// </param>
 public sealed record class ListFunctionsInput(
     global::Com.Amazonaws.Lambda.FunctionVersion? FunctionVersion = null,

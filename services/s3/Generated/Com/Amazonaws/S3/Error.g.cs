@@ -5,1858 +5,2369 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;note&gt;
-/// &lt;p&gt;For information about using the Amazon S3 API—including error handling—see the &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/developerguide/Welcome.html&quot;&gt;Amazon S3 Developer Guide&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;Container for all error elements.&lt;/p&gt;
+/// <para>
+/// <b>Note:</b> For information about using the Amazon S3 API—including error handling—see the
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/developerguide/Welcome.html">Amazon S3
+/// Developer Guide</see>.
+/// </para>
+/// <para>
+/// Container for all error elements.
+/// </para>
 /// </summary>
 /// <param name="Code">
-/// &lt;p&gt;The error code is a string that uniquely identifies an error condition. It is meant to be read and
-/// understood by programs that detect and handle errors by type. The following is a list of Amazon S3 error
-/// codes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html&quot;&gt;Error responses&lt;/a&gt;.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; AccessDenied &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Access Denied&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; AccountProblem&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; There is a problem with your Amazon Web Services account that prevents
-/// the action from completing successfully. Contact Amazon Web Services Support for further assistance.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; AllAccessDisabled&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; All access to this Amazon S3 resource has been disabled.
-/// Contact Amazon Web Services Support for further assistance.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; AmbiguousGrantByEmailAddress&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The email address you provided is associated with more
-/// than one account.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; AuthorizationHeaderMalformed&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The authorization header you provided is invalid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; BadDigest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The Content-MD5 you specified did not match what we
-/// received.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; BucketAlreadyExists&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The requested bucket name is not available. The bucket
-/// namespace is shared by all users of the system. Please select a different name and try
-/// again.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 409 Conflict&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; BucketAlreadyOwnedByYou&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The bucket you tried to create already exists, and you own
-/// it. Amazon S3 returns this error in all Amazon Web Services Regions except in the North Virginia Region. For legacy
+/// <para>
+/// The error code is a string that uniquely identifies an error condition. It is meant to be read and
+/// understood by programs that detect and handle errors by type. The following is a list of Amazon S3
+/// error codes. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html">Error
+/// responses</see>.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> AccessDenied
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Access Denied
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> AccountProblem
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> There is a problem with your Amazon Web Services account that prevents the
+/// action from completing successfully. Contact Amazon Web Services Support for further assistance.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> AllAccessDisabled
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> All access to this Amazon S3 resource has been disabled. Contact Amazon Web
+/// Services Support for further assistance.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> AmbiguousGrantByEmailAddress
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The email address you provided is associated with more than one account.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> AuthorizationHeaderMalformed
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The authorization header you provided is invalid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> BadDigest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The Content-MD5 you specified did not match what we received.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> BucketAlreadyExists
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The requested bucket name is not available. The bucket namespace is shared by
+/// all users of the system. Please select a different name and try again.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 409 Conflict
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> BucketAlreadyOwnedByYou
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The bucket you tried to create already exists, and you own it. Amazon S3 returns
+/// this error in all Amazon Web Services Regions except in the North Virginia Region. For legacy
 /// compatibility, if you re-create an existing bucket that you already own in the North Virginia
-/// Region, Amazon S3 returns 200 OK and resets the bucket access control lists (ACLs).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; 409 Conflict (in all Regions except the North Virginia Region)
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; BucketNotEmpty&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The bucket you tried to delete is not empty.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 409 Conflict&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; CredentialsNotSupported&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; This request does not support credentials.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; CrossLocationLoggingProhibited&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Cross-location logging not allowed. Buckets in one
-/// geographic location cannot log information to a bucket in another location.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; EntityTooSmall&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your proposed upload is smaller than the minimum allowed
-/// object size.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; EntityTooLarge&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your proposed upload exceeds the maximum allowed object
-/// size.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; ExpiredToken&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The provided token has expired.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; IllegalVersioningConfigurationException &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Indicates that the versioning configuration specified in
-/// the request is invalid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; IncompleteBody&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; You did not provide the number of bytes specified by the
-/// Content-Length HTTP header&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; IncorrectNumberOfFilesInPostRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; POST requires exactly one file upload per request.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InlineDataTooLarge&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Inline data exceeds the maximum allowed size.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InternalError&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; We encountered an internal error. Please try again.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 500 Internal Server Error&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Server&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidAccessKeyId&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The Amazon Web Services access key ID you provided does not exist in our
-/// records.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidAddressingHeader&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; You must specify the Anonymous role.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidArgument&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Invalid Argument&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidBucketName&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The specified bucket is not valid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidBucketState&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The request is not valid with the current state of the
-/// bucket.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 409 Conflict&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidDigest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The Content-MD5 you specified is not valid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidEncryptionAlgorithmError&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The encryption request you specified is not valid. The
-/// valid value is AES256.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidLocationConstraint&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The specified location constraint is not valid. For more
-/// information about Regions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro&quot;&gt;How to Select a Region for Your
-/// Buckets&lt;/a&gt;. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidObjectState&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The action is not valid for the current state of the
-/// object.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidPart&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; One or more of the specified parts could not be found. The
-/// part might not have been uploaded, or the specified entity tag might not have matched the part's
-/// entity tag.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidPartOrder&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The list of parts was not in ascending order. Parts list
-/// must be specified in order by part number.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidPayer&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; All access to this object has been disabled. Please
-/// contact Amazon Web Services Support for further assistance.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidPolicyDocument&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The content of the form does not meet the conditions
-/// specified in the policy document.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRange&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The requested range cannot be satisfied.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 416 Requested Range Not Satisfiable&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Please use &lt;code&gt;AWS4-HMAC-SHA256&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; SOAP requests must be made over an HTTPS
-/// connection.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Amazon S3 Transfer Acceleration is not supported for buckets
-/// with non-DNS compliant names.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Amazon S3 Transfer Acceleration is not supported for buckets
-/// with periods (.) in their names.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Amazon S3 Transfer Accelerate endpoint only supports virtual
-/// style requests.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Amazon S3 Transfer Accelerate is not configured on this
-/// bucket.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Amazon S3 Transfer Accelerate is disabled on this
-/// bucket.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Amazon S3 Transfer Acceleration is not supported on this
-/// bucket. Contact Amazon Web Services Support for more information.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Amazon S3 Transfer Acceleration cannot be enabled on this
-/// bucket. Contact Amazon Web Services Support for more information.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidSecurity&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The provided security credentials are not valid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidSOAPRequest&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The SOAP request body is invalid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidStorageClass&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The storage class you specified is not valid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidTargetBucketForLogging&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The target bucket for logging does not exist, is not owned
-/// by you, or does not have the appropriate grants for the log-delivery group. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidToken&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The provided token is malformed or otherwise
-/// invalid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; InvalidURI&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Couldn't parse the specified URI.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; KeyTooLongError&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your key is too long.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MalformedACLError&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The XML you provided was not well-formed or did not
-/// validate against our published schema.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MalformedPOSTRequest &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The body of your POST request is not well-formed
-/// multipart/form-data.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MalformedXML&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; This happens when the user sends malformed XML (XML that
-/// doesn't conform to the published XSD) for the configuration. The error message is, &quot;The XML you
-/// provided was not well-formed or did not validate against our published schema.&quot; &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MaxMessageLengthExceeded&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your request was too big.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MaxPostPreDataLengthExceededError&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your POST request fields preceding the upload file were
-/// too large.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MetadataTooLarge&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your metadata headers exceed the maximum allowed metadata
-/// size.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MethodNotAllowed&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The specified method is not allowed against this
-/// resource.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 405 Method Not Allowed&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MissingAttachment&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; A SOAP attachment was expected, but none were
-/// found.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; N/A&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MissingContentLength&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; You must provide the Content-Length HTTP header.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 411 Length Required&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MissingRequestBodyError&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; This happens when the user sends an empty XML document as
-/// a request. The error message is, &quot;Request body is empty.&quot; &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MissingSecurityElement&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The SOAP 1.1 request is missing a security element.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; MissingSecurityHeader&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your request is missing a required header.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NoLoggingStatusForKey&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; There is no such thing as a logging status subresource for
-/// a key.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NoSuchBucket&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The specified bucket does not exist.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 404 Not Found&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NoSuchBucketPolicy&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The specified bucket does not have a bucket policy.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 404 Not Found&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NoSuchKey&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The specified key does not exist.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 404 Not Found&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NoSuchLifecycleConfiguration&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The lifecycle configuration does not exist. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 404 Not Found&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NoSuchUpload&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The specified multipart upload does not exist. The upload
-/// ID might be invalid, or the multipart upload might have been aborted or completed.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 404 Not Found&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NoSuchVersion &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Indicates that the version ID specified in the request
-/// does not match an existing version.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 404 Not Found&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NotImplemented&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; A header you provided implies functionality that is not
-/// implemented.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 501 Not Implemented&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Server&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; NotSignedUp&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your account is not signed up for the Amazon S3 service. You
-/// must sign up before you can use Amazon S3. You can sign up at the following URL: &lt;a href=&quot;http://aws.amazon.com/s3&quot;&gt;Amazon S3&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; OperationAborted&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; A conflicting conditional action is currently in progress
-/// against this resource. Try again.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 409 Conflict&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; PermanentRedirect&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The bucket you are attempting to access must be addressed
-/// using the specified endpoint. Send all future requests to this endpoint.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 301 Moved Permanently&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; PreconditionFailed&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; At least one of the preconditions you specified did not
-/// hold.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 412 Precondition Failed&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; Redirect&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Temporary redirect.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 307 Moved Temporarily&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; RestoreAlreadyInProgress&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Object restore is already in progress.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 409 Conflict&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; RequestIsNotMultiPartContent&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Bucket POST must be of the enclosure-type
-/// multipart/form-data.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; RequestTimeout&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Your socket connection to the server was not read from or
-/// written to within the timeout period.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; RequestTimeTooSkewed&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The difference between the request time and the server's
-/// time is too large.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; RequestTorrentOfBucketError&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Requesting the torrent file of a bucket is not
-/// permitted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; SignatureDoesNotMatch&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The request signature we calculated does not match the
-/// signature you provided. Check your Amazon Web Services secret access key and signing method. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html&quot;&gt;REST Authentication&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/SOAPAuthentication.html&quot;&gt;SOAP Authentication&lt;/a&gt; for
-/// details.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 403 Forbidden&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; ServiceUnavailable&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Service is unable to handle request.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 503 Service Unavailable&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Server&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; SlowDown&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; Reduce your request rate.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 503 Slow Down&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Server&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; TemporaryRedirect&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; You are being redirected to the bucket while DNS
-/// updates.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 307 Moved Temporarily&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; TokenRefreshRequired&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The provided token must be refreshed.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; TooManyBuckets&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; You have attempted to create more buckets than
-/// allowed.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; UnexpectedContent&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; This request does not support content.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; UnresolvableGrantByEmailAddress&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The email address you provided does not match any account
-/// on record.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Code:&lt;/i&gt; UserKeyMustBeSpecified&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;Description:&lt;/i&gt; The bucket POST must contain the specified field name. If
-/// it is specified, check the order of the fields.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;HTTP Status Code:&lt;/i&gt; 400 Bad Request&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;i&gt;SOAP Fault Code Prefix:&lt;/i&gt; Client&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;&lt;/p&gt;
+/// Region, Amazon S3 returns 200 OK and resets the bucket access control lists (ACLs).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> 409 Conflict (in all Regions except the North Virginia Region)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> BucketNotEmpty
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The bucket you tried to delete is not empty.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 409 Conflict
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> CredentialsNotSupported
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> This request does not support credentials.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> CrossLocationLoggingProhibited
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Cross-location logging not allowed. Buckets in one geographic location cannot
+/// log information to a bucket in another location.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> EntityTooSmall
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your proposed upload is smaller than the minimum allowed object size.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> EntityTooLarge
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your proposed upload exceeds the maximum allowed object size.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> ExpiredToken
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The provided token has expired.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> IllegalVersioningConfigurationException
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Indicates that the versioning configuration specified in the request is invalid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> IncompleteBody
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> You did not provide the number of bytes specified by the Content-Length HTTP
+/// header
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> IncorrectNumberOfFilesInPostRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> POST requires exactly one file upload per request.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InlineDataTooLarge
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Inline data exceeds the maximum allowed size.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InternalError
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> We encountered an internal error. Please try again.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 500 Internal Server Error
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Server
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidAccessKeyId
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The Amazon Web Services access key ID you provided does not exist in our
+/// records.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidAddressingHeader
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> You must specify the Anonymous role.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> N/A
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidArgument
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Invalid Argument
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidBucketName
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The specified bucket is not valid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidBucketState
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The request is not valid with the current state of the bucket.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 409 Conflict
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidDigest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The Content-MD5 you specified is not valid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidEncryptionAlgorithmError
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The encryption request you specified is not valid. The valid value is AES256.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidLocationConstraint
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The specified location constraint is not valid. For more information about
+/// Regions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro">How
+/// to Select a Region for Your Buckets</see>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidObjectState
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The action is not valid for the current state of the object.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidPart
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> One or more of the specified parts could not be found. The part might not have
+/// been uploaded, or the specified entity tag might not have matched the part's entity tag.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidPartOrder
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The list of parts was not in ascending order. Parts list must be specified in
+/// order by part number.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidPayer
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> All access to this object has been disabled. Please contact Amazon Web Services
+/// Support for further assistance.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidPolicyDocument
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The content of the form does not meet the conditions specified in the policy
+/// document.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRange
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The requested range cannot be satisfied.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 416 Requested Range Not Satisfiable
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Please use <c>AWS4-HMAC-SHA256</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> SOAP requests must be made over an HTTPS connection.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Amazon S3 Transfer Acceleration is not supported for buckets with non-DNS
+/// compliant names.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Amazon S3 Transfer Acceleration is not supported for buckets with periods (.) in
+/// their names.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Amazon S3 Transfer Accelerate endpoint only supports virtual style requests.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Amazon S3 Transfer Accelerate is not configured on this bucket.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Amazon S3 Transfer Accelerate is disabled on this bucket.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Amazon S3 Transfer Acceleration is not supported on this bucket. Contact Amazon
+/// Web Services Support for more information.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Amazon S3 Transfer Acceleration cannot be enabled on this bucket. Contact Amazon
+/// Web Services Support for more information.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Code:</i> N/A
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidSecurity
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The provided security credentials are not valid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidSOAPRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The SOAP request body is invalid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidStorageClass
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The storage class you specified is not valid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidTargetBucketForLogging
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The target bucket for logging does not exist, is not owned by you, or does not
+/// have the appropriate grants for the log-delivery group.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidToken
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The provided token is malformed or otherwise invalid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> InvalidURI
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Couldn't parse the specified URI.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> KeyTooLongError
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your key is too long.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MalformedACLError
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The XML you provided was not well-formed or did not validate against our
+/// published schema.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MalformedPOSTRequest
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The body of your POST request is not well-formed multipart/form-data.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MalformedXML
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> This happens when the user sends malformed XML (XML that doesn't conform to the
+/// published XSD) for the configuration. The error message is, "The XML you provided was not
+/// well-formed or did not validate against our published schema."
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MaxMessageLengthExceeded
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your request was too big.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MaxPostPreDataLengthExceededError
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your POST request fields preceding the upload file were too large.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MetadataTooLarge
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your metadata headers exceed the maximum allowed metadata size.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MethodNotAllowed
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The specified method is not allowed against this resource.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 405 Method Not Allowed
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MissingAttachment
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> A SOAP attachment was expected, but none were found.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> N/A
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MissingContentLength
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> You must provide the Content-Length HTTP header.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 411 Length Required
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MissingRequestBodyError
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> This happens when the user sends an empty XML document as a request. The error
+/// message is, "Request body is empty."
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MissingSecurityElement
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The SOAP 1.1 request is missing a security element.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> MissingSecurityHeader
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your request is missing a required header.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NoLoggingStatusForKey
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> There is no such thing as a logging status subresource for a key.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NoSuchBucket
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The specified bucket does not exist.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 404 Not Found
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NoSuchBucketPolicy
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The specified bucket does not have a bucket policy.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 404 Not Found
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NoSuchKey
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The specified key does not exist.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 404 Not Found
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NoSuchLifecycleConfiguration
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The lifecycle configuration does not exist.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 404 Not Found
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NoSuchUpload
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The specified multipart upload does not exist. The upload ID might be invalid,
+/// or the multipart upload might have been aborted or completed.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 404 Not Found
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NoSuchVersion
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Indicates that the version ID specified in the request does not match an
+/// existing version.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 404 Not Found
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NotImplemented
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> A header you provided implies functionality that is not implemented.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 501 Not Implemented
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Server
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> NotSignedUp
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your account is not signed up for the Amazon S3 service. You must sign up before
+/// you can use Amazon S3. You can sign up at the following URL:
+/// <see href="http://aws.amazon.com/s3">Amazon S3</see>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> OperationAborted
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> A conflicting conditional action is currently in progress against this resource.
+/// Try again.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 409 Conflict
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> PermanentRedirect
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The bucket you are attempting to access must be addressed using the specified
+/// endpoint. Send all future requests to this endpoint.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 301 Moved Permanently
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> PreconditionFailed
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> At least one of the preconditions you specified did not hold.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 412 Precondition Failed
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> Redirect
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Temporary redirect.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 307 Moved Temporarily
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> RestoreAlreadyInProgress
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Object restore is already in progress.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 409 Conflict
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> RequestIsNotMultiPartContent
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Bucket POST must be of the enclosure-type multipart/form-data.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> RequestTimeout
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Your socket connection to the server was not read from or written to within the
+/// timeout period.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> RequestTimeTooSkewed
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The difference between the request time and the server's time is too large.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> RequestTorrentOfBucketError
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Requesting the torrent file of a bucket is not permitted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> SignatureDoesNotMatch
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The request signature we calculated does not match the signature you provided.
+/// Check your Amazon Web Services secret access key and signing method. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">REST
+/// Authentication</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/SOAPAuthentication.html">SOAP
+/// Authentication</see> for details.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 403 Forbidden
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> ServiceUnavailable
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Service is unable to handle request.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 503 Service Unavailable
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Server
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> SlowDown
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> Reduce your request rate.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 503 Slow Down
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Server
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> TemporaryRedirect
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> You are being redirected to the bucket while DNS updates.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 307 Moved Temporarily
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> TokenRefreshRequired
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The provided token must be refreshed.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> TooManyBuckets
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> You have attempted to create more buckets than allowed.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> UnexpectedContent
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> This request does not support content.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> UnresolvableGrantByEmailAddress
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The email address you provided does not match any account on record.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <i>Code:</i> UserKeyMustBeSpecified
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>Description:</i> The bucket POST must contain the specified field name. If it is specified, check
+/// the order of the fields.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>HTTP Status Code:</i> 400 Bad Request
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <i>SOAP Fault Code Prefix:</i> Client
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The error key.&lt;/p&gt;
+/// The error key.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;The error message contains a generic description of the error condition in English. It is intended
-/// for a human audience. Simple programs display the message directly to the end user if they encounter an
-/// error condition they don't know how or don't care to handle. Sophisticated programs with more exhaustive
-/// error handling and proper internationalization are more likely to ignore the error message.&lt;/p&gt;
+/// The error message contains a generic description of the error condition in English. It is intended
+/// for a human audience. Simple programs display the message directly to the end user if they encounter
+/// an error condition they don't know how or don't care to handle. Sophisticated programs with more
+/// exhaustive error handling and proper internationalization are more likely to ignore the error
+/// message.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID of the error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The version ID of the error.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class Error(
     string? Code = null,

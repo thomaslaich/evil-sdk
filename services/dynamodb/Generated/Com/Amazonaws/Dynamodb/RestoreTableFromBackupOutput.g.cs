@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#RestoreTableFromBackupOutput.
 /// </summary>
 /// <param name="TableDescription">
-/// &lt;p&gt;The description of the table created from an existing backup.&lt;/p&gt;
+/// The description of the table created from an existing backup.
 /// </param>
 public sealed record class RestoreTableFromBackupOutput(
     global::Com.Amazonaws.Dynamodb.TableDescription? TableDescription = null

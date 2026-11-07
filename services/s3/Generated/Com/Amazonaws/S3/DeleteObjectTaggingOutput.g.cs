@@ -8,6 +8,6 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteObjectTaggingOutput.
 /// </summary>
 /// <param name="VersionId">
-/// &lt;p&gt;The versionId of the object the tag-set was removed from.&lt;/p&gt;
+/// The versionId of the object the tag-set was removed from.
 /// </param>
 public sealed record class DeleteObjectTaggingOutput(string? VersionId = null);

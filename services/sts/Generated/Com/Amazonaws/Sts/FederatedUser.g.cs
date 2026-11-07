@@ -5,15 +5,16 @@
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;Identifiers for the federated user that is associated with the credentials.&lt;/p&gt;
+/// Identifiers for the federated user that is associated with the credentials.
 /// </summary>
 /// <param name="Arn">
-/// &lt;p&gt;The ARN that specifies the federated user that is associated with the credentials. For
-/// more information about ARNs and how to use them in policies, see &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html&quot;&gt;IAM
-/// Identifiers&lt;/a&gt; in the &lt;i&gt;IAM User Guide&lt;/i&gt;. &lt;/p&gt;
+/// The ARN that specifies the federated user that is associated with the credentials. For more
+/// information about ARNs and how to use them in policies, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html">IAM
+/// Identifiers</see> in the <i>IAM User Guide</i>.
 /// </param>
 /// <param name="FederatedUserId">
-/// &lt;p&gt;The string that identifies the federated user associated with the credentials, similar
-/// to the unique ID of an IAM user.&lt;/p&gt;
+/// The string that identifies the federated user associated with the credentials, similar to the unique
+/// ID of an IAM user.
 /// </param>
 public sealed record class FederatedUser(string Arn, string FederatedUserId);

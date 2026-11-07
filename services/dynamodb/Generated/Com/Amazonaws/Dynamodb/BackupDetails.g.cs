@@ -7,49 +7,51 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains the details of the backup created for the table.&lt;/p&gt;
+/// Contains the details of the backup created for the table.
 /// </summary>
 /// <param name="BackupArn">
-/// &lt;p&gt;ARN associated with the backup.&lt;/p&gt;
+/// ARN associated with the backup.
 /// </param>
 /// <param name="BackupCreationDateTime">
-/// &lt;p&gt;Time at which the backup was created. This is the request time of the backup. &lt;/p&gt;
+/// Time at which the backup was created. This is the request time of the backup.
 /// </param>
 /// <param name="BackupName">
-/// &lt;p&gt;Name of the requested backup.&lt;/p&gt;
+/// Name of the requested backup.
 /// </param>
 /// <param name="BackupStatus">
-/// &lt;p&gt;Backup can be in one of the following states: CREATING, ACTIVE, DELETED. &lt;/p&gt;
+/// Backup can be in one of the following states: CREATING, ACTIVE, DELETED.
 /// </param>
 /// <param name="BackupType">
-/// &lt;p&gt;BackupType:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;USER&lt;/code&gt; - You create and manage these using the on-demand backup
-/// feature.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SYSTEM&lt;/code&gt; - If you delete a table with point-in-time recovery enabled,
-/// a &lt;code&gt;SYSTEM&lt;/code&gt; backup is automatically created and is retained for 35
-/// days (at no additional cost). System backups allow you to restore the deleted
-/// table to the state it was in just before the point of deletion. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AWS_BACKUP&lt;/code&gt; - On-demand backup created by you from Backup service.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// BackupType:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>USER</c> - You create and manage these using the on-demand backup feature.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SYSTEM</c> - If you delete a table with point-in-time recovery enabled, a <c>SYSTEM</c> backup is
+/// automatically created and is retained for 35 days (at no additional cost). System backups allow you
+/// to restore the deleted table to the state it was in just before the point of deletion.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>AWS_BACKUP</c> - On-demand backup created by you from Backup service.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="BackupExpiryDateTime">
-/// &lt;p&gt;Time at which the automatic on-demand backup created by DynamoDB will
-/// expire. This &lt;code&gt;SYSTEM&lt;/code&gt; on-demand backup expires automatically 35 days after
-/// its creation.&lt;/p&gt;
+/// Time at which the automatic on-demand backup created by DynamoDB will expire. This <c>SYSTEM</c>
+/// on-demand backup expires automatically 35 days after its creation.
 /// </param>
 /// <param name="BackupSizeBytes">
-/// &lt;p&gt;Size of the backup in bytes. DynamoDB updates this value approximately every six
-/// hours. Recent changes might not be reflected in this value.&lt;/p&gt;
+/// Size of the backup in bytes. DynamoDB updates this value approximately every six hours. Recent
+/// changes might not be reflected in this value.
 /// </param>
 public sealed record class BackupDetails(
     string BackupArn,

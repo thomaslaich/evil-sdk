@@ -10,71 +10,109 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectAttributesInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket that contains the object.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The name of the bucket that contains the object.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="ObjectAttributes">
-/// &lt;p&gt;Specifies the fields at the root level that you want returned in the response. Fields that you do
-/// not specify are not returned.&lt;/p&gt;
+/// Specifies the fields at the root level that you want returned in the response. Fields that you do
+/// not specify are not returned.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="MaxParts">
-/// &lt;p&gt;Sets the maximum number of parts to return. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html&quot;&gt;Uploading and copying objects using multipart upload
-/// in Amazon S3 &lt;/a&gt; in the &lt;i&gt;Amazon Simple Storage Service user guide&lt;/i&gt;.&lt;/p&gt;
+/// Sets the maximum number of parts to return. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html">Uploading and
+/// copying objects using multipart upload in Amazon S3</see> in the <i>Amazon Simple Storage Service
+/// user guide</i>.
 /// </param>
 /// <param name="PartNumberMarker">
-/// &lt;p&gt;Specifies the part after which listing should begin. Only parts with higher part numbers will be
-/// listed. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html&quot;&gt;Uploading and copying objects using multipart upload
-/// in Amazon S3 &lt;/a&gt; in the &lt;i&gt;Amazon Simple Storage Service user guide&lt;/i&gt;.&lt;/p&gt;
+/// Specifies the part after which listing should begin. Only parts with higher part numbers will be
+/// listed. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html">Uploading and
+/// copying objects using multipart upload in Amazon S3</see> in the <i>Amazon Simple Storage Service
+/// user guide</i>.
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;Specifies the algorithm to use when encrypting the object (for example, AES256).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the algorithm to use when encrypting the object (for example, AES256).
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKey">
-/// &lt;p&gt;Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is
-/// used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must
-/// be appropriate for use with the algorithm specified in the
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt; header.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value
+/// is used to store the object and then it is discarded; Amazon S3 does not store the encryption key.
+/// The key must be appropriate for use with the algorithm specified in the
+/// <c>x-amz-server-side-encryption-customer-algorithm</c> header.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header
-/// for a message integrity check to ensure that the encryption key was transmitted without error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this
+/// header for a message integrity check to ensure that the encryption key was transmitted without
+/// error.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID used to reference a specific version of the object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;S3 Versioning isn't enabled and supported for directory buckets. For this API operation, only the &lt;code&gt;null&lt;/code&gt; value of the version ID is supported by directory buckets. You can only specify &lt;code&gt;null&lt;/code&gt; to the
-/// &lt;code&gt;versionId&lt;/code&gt; query parameter in the request.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The version ID used to reference a specific version of the object.
+/// </para>
+/// <para>
+/// <b>Note:</b> S3 Versioning isn't enabled and supported for directory buckets. For this API
+/// operation, only the <c>null</c> value of the version ID is supported by directory buckets. You can
+/// only specify <c>null</c> to the <c>versionId</c> query parameter in the request.
+/// </para>
 /// </param>
 public sealed record class GetObjectAttributesInput(
     string Bucket,

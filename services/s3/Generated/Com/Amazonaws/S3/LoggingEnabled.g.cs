@@ -7,29 +7,35 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes where logs are stored and the prefix that Amazon S3 assigns to all log object keys for a
-/// bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html&quot;&gt;PUT Bucket logging&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 API Reference&lt;/i&gt;.&lt;/p&gt;
+/// Describes where logs are stored and the prefix that Amazon S3 assigns to all log object keys for a
+/// bucket. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html">PUT Bucket
+/// logging</see> in the <i>Amazon S3 API Reference</i>.
 /// </summary>
 /// <param name="TargetBucket">
-/// &lt;p&gt;Specifies the bucket where you want Amazon S3 to store server access logs. You can have your logs
+/// Specifies the bucket where you want Amazon S3 to store server access logs. You can have your logs
 /// delivered to any bucket that you own, including the same bucket that is being logged. You can also
 /// configure multiple buckets to deliver their logs to the same target bucket. In this case, you should
-/// choose a different &lt;code&gt;TargetPrefix&lt;/code&gt; for each source bucket so that the delivered log files can
-/// be distinguished by key.&lt;/p&gt;
+/// choose a different <c>TargetPrefix</c> for each source bucket so that the delivered log files can be
+/// distinguished by key.
 /// </param>
 /// <param name="TargetPrefix">
-/// &lt;p&gt;A prefix for all log object keys. If you store log files from multiple Amazon S3 buckets in a single
-/// bucket, you can use a prefix to distinguish which log files came from which bucket.&lt;/p&gt;
+/// A prefix for all log object keys. If you store log files from multiple Amazon S3 buckets in a single
+/// bucket, you can use a prefix to distinguish which log files came from which bucket.
 /// </param>
 /// <param name="TargetGrants">
-/// &lt;p&gt;Container for granting information.&lt;/p&gt;
-/// &lt;p&gt;Buckets that use the bucket owner enforced setting for Object Ownership don't support target grants.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-general&quot;&gt;Permissions for server access log delivery&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Container for granting information.
+/// </para>
+/// <para>
+/// Buckets that use the bucket owner enforced setting for Object Ownership don't support target grants.
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html#grant-log-delivery-permissions-general">Permissions
+/// for server access log delivery</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="TargetObjectKeyFormat">
-/// &lt;p&gt;Amazon S3 key format for log objects.&lt;/p&gt;
+/// Amazon S3 key format for log objects.
 /// </param>
 public sealed record class LoggingEnabled(
     string TargetBucket,

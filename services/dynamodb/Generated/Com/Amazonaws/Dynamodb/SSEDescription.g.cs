@@ -7,40 +7,46 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The description of the server-side encryption status on the specified table.&lt;/p&gt;
+/// The description of the server-side encryption status on the specified table.
 /// </summary>
 /// <param name="InaccessibleEncryptionDateTime">
-/// &lt;p&gt;Indicates the time, in UNIX epoch date format, when DynamoDB detected that
-/// the table's KMS key was inaccessible. This attribute will automatically
-/// be cleared when DynamoDB detects that the table's KMS key is accessible
-/// again. DynamoDB will initiate the table archival process when table's KMS key remains inaccessible for more than seven days from this date.&lt;/p&gt;
+/// Indicates the time, in UNIX epoch date format, when DynamoDB detected that the table's KMS key was
+/// inaccessible. This attribute will automatically be cleared when DynamoDB detects that the table's
+/// KMS key is accessible again. DynamoDB will initiate the table archival process when table's KMS key
+/// remains inaccessible for more than seven days from this date.
 /// </param>
 /// <param name="KMSMasterKeyArn">
-/// &lt;p&gt;The KMS key ARN used for the KMS encryption.&lt;/p&gt;
+/// The KMS key ARN used for the KMS encryption.
 /// </param>
 /// <param name="SSEType">
-/// &lt;p&gt;Server-side encryption type. The only supported value is:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KMS&lt;/code&gt; - Server-side encryption that uses Key Management Service. The
-/// key is stored in your account and is managed by KMS (KMS charges apply).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Server-side encryption type. The only supported value is:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>KMS</c> - Server-side encryption that uses Key Management Service. The key is stored in your
+/// account and is managed by KMS (KMS charges apply).
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;Represents the current state of server-side encryption. The only supported values
-/// are:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ENABLED&lt;/code&gt; - Server-side encryption is enabled.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - Server-side encryption is being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Represents the current state of server-side encryption. The only supported values are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ENABLED</c> - Server-side encryption is enabled.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - Server-side encryption is being updated.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class SSEDescription(
     DateTimeOffset? InaccessibleEncryptionDateTime = null,

@@ -5,61 +5,74 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes how an uncompressed comma-separated values (CSV)-formatted input object is
-/// formatted.&lt;/p&gt;
+/// Describes how an uncompressed comma-separated values (CSV)-formatted input object is formatted.
 /// </summary>
 /// <param name="AllowQuotedRecordDelimiter">
-/// &lt;p&gt;Specifies that CSV field values may contain quoted record delimiters and such records should be
-/// allowed. Default value is FALSE. Setting this value to TRUE may lower performance.&lt;/p&gt;
+/// Specifies that CSV field values may contain quoted record delimiters and such records should be
+/// allowed. Default value is FALSE. Setting this value to TRUE may lower performance.
 /// </param>
 /// <param name="Comments">
-/// &lt;p&gt;A single character used to indicate that a row should be ignored when the character is present at
-/// the start of that row. You can specify any character to indicate a comment line. The default character
-/// is &lt;code&gt;#&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;Default: &lt;code&gt;#&lt;/code&gt;
-/// &lt;/p&gt;
+/// <para>
+/// A single character used to indicate that a row should be ignored when the character is present at
+/// the start of that row. You can specify any character to indicate a comment line. The default
+/// character is <c>#</c>.
+/// </para>
+/// <para>
+/// Default: <c>#</c>
+/// </para>
 /// </param>
 /// <param name="FieldDelimiter">
-/// &lt;p&gt;A single character used to separate individual fields in a record. You can specify an arbitrary
-/// delimiter.&lt;/p&gt;
+/// A single character used to separate individual fields in a record. You can specify an arbitrary
+/// delimiter.
 /// </param>
 /// <param name="FileHeaderInfo">
-/// &lt;p&gt;Describes the first line of input. Valid values are:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NONE&lt;/code&gt;: First line is not a header.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IGNORE&lt;/code&gt;: First line is a header, but you can't use the header values to indicate the
-/// column in an expression. You can use column position (such as _1, _2, …) to indicate the column
-/// (&lt;code&gt;SELECT s._1 FROM OBJECT s&lt;/code&gt;).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Use&lt;/code&gt;: First line is a header, and you can use the header value to identify a column
-/// in an expression (&lt;code&gt;SELECT &quot;name&quot; FROM OBJECT&lt;/code&gt;). &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Describes the first line of input. Valid values are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>NONE</c>: First line is not a header.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IGNORE</c>: First line is a header, but you can't use the header values to indicate the column in
+/// an expression. You can use column position (such as _1, _2, …) to indicate the column (<c>SELECT
+/// s._1 FROM OBJECT s</c>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Use</c>: First line is a header, and you can use the header value to identify a column in an
+/// expression (<c>SELECT "name" FROM OBJECT</c>).
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="QuoteCharacter">
-/// &lt;p&gt;A single character used for escaping when the field delimiter is part of the value. For example, if
-/// the value is &lt;code&gt;a, b&lt;/code&gt;, Amazon S3 wraps this field value in quotation marks, as follows: &lt;code&gt;&quot; a ,
-/// b &quot;&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;Type: String&lt;/p&gt;
-/// &lt;p&gt;Default: &lt;code&gt;&quot;&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;Ancestors: &lt;code&gt;CSV&lt;/code&gt;
-/// &lt;/p&gt;
+/// <para>
+/// A single character used for escaping when the field delimiter is part of the value. For example, if
+/// the value is <c>a, b</c>, Amazon S3 wraps this field value in quotation marks, as follows: <c>" a ,
+/// b "</c>.
+/// </para>
+/// <para>
+/// Type: String
+/// </para>
+/// <para>
+/// Default: <c>"</c>
+/// </para>
+/// <para>
+/// Ancestors: <c>CSV</c>
+/// </para>
 /// </param>
 /// <param name="QuoteEscapeCharacter">
-/// &lt;p&gt;A single character used for escaping the quotation mark character inside an already escaped value.
-/// For example, the value &lt;code&gt;&quot;&quot;&quot; a , b &quot;&quot;&quot;&lt;/code&gt; is parsed as &lt;code&gt;&quot; a , b &quot;&lt;/code&gt;.&lt;/p&gt;
+/// A single character used for escaping the quotation mark character inside an already escaped value.
+/// For example, the value <c>""" a , b """</c> is parsed as <c>" a , b "</c>.
 /// </param>
 /// <param name="RecordDelimiter">
-/// &lt;p&gt;A single character used to separate individual records in the input. Instead of the default value,
-/// you can specify an arbitrary delimiter.&lt;/p&gt;
+/// A single character used to separate individual records in the input. Instead of the default value,
+/// you can specify an arbitrary delimiter.
 /// </param>
 public sealed record class CSVInput(
     bool? AllowQuotedRecordDelimiter = null,

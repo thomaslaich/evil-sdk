@@ -7,18 +7,26 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't invoke the Lambda function because the elastic network interface (ENI) configured for its VPC connection isn't ready yet. Wait a few moments and try the request again. For more information about VPC configuration, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html&quot;&gt;Configuring a Lambda function to access resources in a VPC&lt;/a&gt;.&lt;/p&gt;
+/// Lambda couldn't invoke the Lambda function because the elastic network interface (ENI) configured
+/// for its VPC connection isn't ready yet. Wait a few moments and try the request again. For more
+/// information about VPC configuration, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html">Configuring a Lambda
+/// function to access resources in a VPC</see>.
 /// </summary>
 public sealed partial class ENINotReadyException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't invoke the Lambda function because the elastic network interface (ENI) configured for its VPC connection isn't ready yet. Wait a few moments and try the request again. For more information about VPC configuration, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html&quot;&gt;Configuring a Lambda function to access resources in a VPC&lt;/a&gt;.&lt;/p&gt;
+    /// Lambda couldn't invoke the Lambda function because the elastic network interface (ENI) configured
+    /// for its VPC connection isn't ready yet. Wait a few moments and try the request again. For more
+    /// information about VPC configuration, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html">Configuring a Lambda
+    /// function to access resources in a VPC</see>.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public ENINotReadyException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +35,12 @@ public sealed partial class ENINotReadyException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

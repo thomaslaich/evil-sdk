@@ -7,24 +7,36 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Parameters on this idempotent request are inconsistent with parameters used in previous request(s). &lt;/p&gt;
-/// &lt;p&gt;For a list of error codes and more information on Amazon S3 errors, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList&quot;&gt;Error codes&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Idempotency ensures that an API request completes no more than one time. With an idempotent
-/// request, if the original request completes successfully, any subsequent retries complete successfully
-/// without performing any further actions.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Parameters on this idempotent request are inconsistent with parameters used in previous request(s).
+/// </para>
+/// <para>
+/// For a list of error codes and more information on Amazon S3 errors, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList">Error
+/// codes</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Idempotency ensures that an API request completes no more than one time. With an
+/// idempotent request, if the original request completes successfully, any subsequent retries complete
+/// successfully without performing any further actions.
+/// </para>
 /// </summary>
 public sealed partial class IdempotencyParameterMismatch : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Parameters on this idempotent request are inconsistent with parameters used in previous request(s). &lt;/p&gt;
-    /// &lt;p&gt;For a list of error codes and more information on Amazon S3 errors, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList&quot;&gt;Error codes&lt;/a&gt;.&lt;/p&gt;
-    /// &lt;note&gt;
-    /// &lt;p&gt;Idempotency ensures that an API request completes no more than one time. With an idempotent
-    /// request, if the original request completes successfully, any subsequent retries complete successfully
-    /// without performing any further actions.&lt;/p&gt;
-    /// &lt;/note&gt;
+    /// <para>
+    /// Parameters on this idempotent request are inconsistent with parameters used in previous request(s).
+    /// </para>
+    /// <para>
+    /// For a list of error codes and more information on Amazon S3 errors, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList">Error
+    /// codes</see>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Idempotency ensures that an API request completes no more than one time. With an
+    /// idempotent request, if the original request completes successfully, any subsequent retries complete
+    /// successfully without performing any further actions.
+    /// </para>
     /// </summary>
     public IdempotencyParameterMismatch(string? message = null)
         : base(message) { }

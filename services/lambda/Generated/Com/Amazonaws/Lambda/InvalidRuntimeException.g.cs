@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The runtime or runtime version specified is not supported.&lt;/p&gt;
+/// The runtime or runtime version specified is not supported.
 /// </summary>
 public sealed partial class InvalidRuntimeException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The runtime or runtime version specified is not supported.&lt;/p&gt;
+    /// The runtime or runtime version specified is not supported.
     /// </summary>
     public InvalidRuntimeException(string? message = null, string? type = null)
         : base(message)

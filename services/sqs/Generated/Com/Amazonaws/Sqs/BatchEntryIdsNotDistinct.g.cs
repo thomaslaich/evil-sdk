@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Two or more batch entries in the request have the same &lt;code&gt;Id&lt;/code&gt;.&lt;/p&gt;
+/// Two or more batch entries in the request have the same <c>Id</c>.
 /// </summary>
 public sealed partial class BatchEntryIdsNotDistinct : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Two or more batch entries in the request have the same &lt;code&gt;Id&lt;/code&gt;.&lt;/p&gt;
+    /// Two or more batch entries in the request have the same <c>Id</c>.
     /// </summary>
     public BatchEntryIdsNotDistinct(string? message = null)
         : base(message) { }

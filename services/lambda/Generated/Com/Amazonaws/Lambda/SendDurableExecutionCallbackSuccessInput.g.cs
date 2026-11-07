@@ -8,10 +8,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#SendDurableExecutionCallbackSuccessInput.
 /// </summary>
 /// <param name="CallbackId">
-/// &lt;p&gt;The unique identifier for the callback operation.&lt;/p&gt;
+/// The unique identifier for the callback operation.
 /// </param>
 /// <param name="Result">
-/// &lt;p&gt;The result data from the successful callback operation. Maximum size is 256 KB.&lt;/p&gt;
+/// The result data from the successful callback operation. Maximum size is 256 KB.
 /// </param>
 public sealed record class SendDurableExecutionCallbackSuccessInput(
     string CallbackId,

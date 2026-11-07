@@ -7,18 +7,26 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't regenerate the SnapStart snapshot for the function. SnapStart-enabled functions periodically regenerate snapshots when their underlying runtime or dependencies change; this regeneration failed. Wait for Lambda to retry, or update the function's configuration to trigger a new snapshot. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html&quot;&gt;Lambda SnapStart&lt;/a&gt;.&lt;/p&gt;
+/// Lambda couldn't regenerate the SnapStart snapshot for the function. SnapStart-enabled functions
+/// periodically regenerate snapshots when their underlying runtime or dependencies change; this
+/// regeneration failed. Wait for Lambda to retry, or update the function's configuration to trigger a
+/// new snapshot. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">Lambda SnapStart</see>.
 /// </summary>
 public sealed partial class SnapStartRegenerationFailureException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't regenerate the SnapStart snapshot for the function. SnapStart-enabled functions periodically regenerate snapshots when their underlying runtime or dependencies change; this regeneration failed. Wait for Lambda to retry, or update the function's configuration to trigger a new snapshot. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html&quot;&gt;Lambda SnapStart&lt;/a&gt;.&lt;/p&gt;
+    /// Lambda couldn't regenerate the SnapStart snapshot for the function. SnapStart-enabled functions
+    /// periodically regenerate snapshots when their underlying runtime or dependencies change; this
+    /// regeneration failed. Wait for Lambda to retry, or update the function's configuration to trigger a
+    /// new snapshot. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">Lambda SnapStart</see>.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public SnapStartRegenerationFailureException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +35,12 @@ public sealed partial class SnapStartRegenerationFailureException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

@@ -7,43 +7,46 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for the &lt;code&gt;MultipartUpload&lt;/code&gt; for the Amazon S3 object.&lt;/p&gt;
+/// Container for the <c>MultipartUpload</c> for the Amazon S3 object.
 /// </summary>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;The algorithm that was used to create a checksum of the object.&lt;/p&gt;
+/// The algorithm that was used to create a checksum of the object.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;The checksum type that is used to calculate the object’s checksum value. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The checksum type that is used to calculate the object’s checksum value. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="Initiated">
-/// &lt;p&gt;Date and time at which the multipart upload was initiated.&lt;/p&gt;
+/// Date and time at which the multipart upload was initiated.
 /// </param>
 /// <param name="Initiator">
-/// &lt;p&gt;Identifies who initiated the multipart upload.&lt;/p&gt;
+/// Identifies who initiated the multipart upload.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;Key of the object for which the multipart upload was initiated.&lt;/p&gt;
+/// Key of the object for which the multipart upload was initiated.
 /// </param>
 /// <param name="Owner">
-/// &lt;p&gt;Specifies the owner of the object that is part of the multipart upload. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - The bucket owner is returned as the
-/// object owner for all the objects.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the owner of the object that is part of the multipart upload.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - The bucket owner is returned as the object owner for all the
+/// objects.
+/// </para>
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;The class of storage used to store the object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; -
-/// Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The class of storage used to store the object.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - Directory buckets only support <c>EXPRESS_ONEZONE</c> (the
+/// S3 Express One Zone storage class) in Availability Zones and <c>ONEZONE_IA</c> (the S3 One
+/// Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </param>
 /// <param name="UploadId">
-/// &lt;p&gt;Upload ID that identifies the multipart upload.&lt;/p&gt;
+/// Upload ID that identifies the multipart upload.
 /// </param>
 public sealed record class MultipartUpload(
     global::Com.Amazonaws.S3.ChecksumAlgorithm? ChecksumAlgorithm = null,

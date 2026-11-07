@@ -5,10 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Specific schema validation configuration settings that tell Lambda the message attributes you want to validate and filter using your schema registry.&lt;/p&gt;
+/// Specific schema validation configuration settings that tell Lambda the message attributes you want
+/// to validate and filter using your schema registry.
 /// </summary>
 /// <param name="Attribute">
-/// &lt;p&gt; The attributes you want your schema registry to validate and filter for. If you selected &lt;code&gt;JSON&lt;/code&gt; as the &lt;code&gt;EventRecordFormat&lt;/code&gt;, Lambda also deserializes the selected message attributes. &lt;/p&gt;
+/// The attributes you want your schema registry to validate and filter for. If you selected <c>JSON</c>
+/// as the <c>EventRecordFormat</c>, Lambda also deserializes the selected message attributes.
 /// </param>
 public sealed record class KafkaSchemaValidationConfig(
     KafkaSchemaValidationAttribute? Attribute = null

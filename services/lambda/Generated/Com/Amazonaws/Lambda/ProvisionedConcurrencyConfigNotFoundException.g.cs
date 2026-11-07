@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The specified configuration does not exist.&lt;/p&gt;
+/// The specified configuration does not exist.
 /// </summary>
 public sealed partial class ProvisionedConcurrencyConfigNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified configuration does not exist.&lt;/p&gt;
+    /// The specified configuration does not exist.
     /// </summary>
     public ProvisionedConcurrencyConfigNotFoundException(
         string? message = null,

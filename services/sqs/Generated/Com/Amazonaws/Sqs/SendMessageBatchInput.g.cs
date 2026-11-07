@@ -7,16 +7,17 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="Entries">
-/// &lt;p&gt;A list of &lt;code&gt;
-/// &lt;a&gt;SendMessageBatchRequestEntry&lt;/a&gt;
-/// &lt;/code&gt; items.&lt;/p&gt;
+/// A list of <c> SendMessageBatchRequestEntry </c> items.
 /// </param>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue to which batched messages are sent.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue to which batched messages are sent.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 public sealed record class SendMessageBatchInput(
     IReadOnlyList<SendMessageBatchRequestEntry> Entries,

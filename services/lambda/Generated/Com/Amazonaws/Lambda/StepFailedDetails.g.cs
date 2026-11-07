@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a step that failed.&lt;/p&gt;
+/// Details about a step that failed.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the step failure.&lt;/p&gt;
+/// Details about the step failure.
 /// </param>
 /// <param name="RetryDetails">
-/// &lt;p&gt;Information about retry attempts for this step operation.&lt;/p&gt;
+/// Information about retry attempts for this step operation.
 /// </param>
 public sealed record class StepFailedDetails(
     EventError Error,

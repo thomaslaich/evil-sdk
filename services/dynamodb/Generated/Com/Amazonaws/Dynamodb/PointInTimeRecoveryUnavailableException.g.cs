@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Point in time recovery has not yet been enabled for this source table.&lt;/p&gt;
+/// Point in time recovery has not yet been enabled for this source table.
 /// </summary>
 public sealed partial class PointInTimeRecoveryUnavailableException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Point in time recovery has not yet been enabled for this source table.&lt;/p&gt;
+    /// Point in time recovery has not yet been enabled for this source table.
     /// </summary>
     public PointInTimeRecoveryUnavailableException(string? message = null)
         : base(message) { }

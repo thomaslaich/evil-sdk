@@ -7,20 +7,19 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;Amazon Web Services credentials for API authentication.&lt;/p&gt;
+/// Amazon Web Services credentials for API authentication.
 /// </summary>
 /// <param name="AccessKeyId">
-/// &lt;p&gt;The access key ID that identifies the temporary security credentials.&lt;/p&gt;
+/// The access key ID that identifies the temporary security credentials.
 /// </param>
 /// <param name="Expiration">
-/// &lt;p&gt;The date on which the current credentials expire.&lt;/p&gt;
+/// The date on which the current credentials expire.
 /// </param>
 /// <param name="SecretAccessKey">
-/// &lt;p&gt;The secret access key that can be used to sign requests.&lt;/p&gt;
+/// The secret access key that can be used to sign requests.
 /// </param>
 /// <param name="SessionToken">
-/// &lt;p&gt;The token that users must pass to the service API to use the temporary
-/// credentials.&lt;/p&gt;
+/// The token that users must pass to the service API to use the temporary credentials.
 /// </param>
 public sealed record class Credentials(
     string AccessKeyId,

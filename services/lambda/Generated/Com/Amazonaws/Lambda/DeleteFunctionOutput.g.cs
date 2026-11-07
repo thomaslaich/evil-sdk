@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#DeleteFunctionOutput.
 /// </summary>
 /// <param name="StatusCode">
-/// &lt;p&gt;The HTTP status code returned by the operation.&lt;/p&gt;
+/// The HTTP status code returned by the operation.
 /// </param>
 public sealed record class DeleteFunctionOutput(int? StatusCode = null);

@@ -10,67 +10,186 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateFunctionConfigurationInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; – &lt;code&gt;my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; – &lt;code&gt;123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="CapacityProviderConfig">
-/// &lt;p&gt;Configuration for the capacity provider that manages compute resources for Lambda functions.&lt;/p&gt;
+/// Configuration for the capacity provider that manages compute resources for Lambda functions.
 /// </param>
 /// <param name="DeadLetterConfig">
-/// &lt;p&gt;A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq&quot;&gt;Dead-letter queues&lt;/a&gt;.&lt;/p&gt;
+/// A dead-letter queue configuration that specifies the queue or topic where Lambda sends asynchronous
+/// events when they fail processing. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq">Dead-letter
+/// queues</see>.
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;A description of the function.&lt;/p&gt;
+/// A description of the function.
 /// </param>
 /// <param name="DurableConfig">
-/// &lt;p&gt;Configuration settings for &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable functions&lt;/a&gt;, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.&lt;/p&gt;
+/// Configuration settings for
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+/// functions</see>, including execution timeout, retention period for execution history, and an
+/// optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your
+/// durable execution's payload data, including input, output, and error payloads.
 /// </param>
 /// <param name="Environment">
-/// &lt;p&gt;Environment variables that are accessible from function code during execution.&lt;/p&gt;
+/// Environment variables that are accessible from function code during execution.
 /// </param>
 /// <param name="EphemeralStorage">
-/// &lt;p&gt;The size of the function's &lt;code&gt;/tmp&lt;/code&gt; directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage&quot;&gt;Configuring ephemeral storage (console)&lt;/a&gt;.&lt;/p&gt;
+/// The size of the function's <c>/tmp</c> directory in MB. The default value is 512, but can be any
+/// whole number between 512 and 10,240 MB. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage">Configuring
+/// ephemeral storage (console)</see>.
 /// </param>
 /// <param name="FileSystemConfigs">
-/// &lt;p&gt;Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.&lt;/p&gt;
+/// Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
 /// </param>
 /// <param name="Handler">
-/// &lt;p&gt;The name of the method within your code that Lambda calls to run your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html&quot;&gt;Lambda programming model&lt;/a&gt;.&lt;/p&gt;
+/// The name of the method within your code that Lambda calls to run your function. Handler is required
+/// if the deployment package is a .zip file archive. The format includes the file name. It can also
+/// include namespaces and other qualifiers, depending on the runtime. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html">Lambda
+/// programming model</see>.
 /// </param>
 /// <param name="ImageConfig">
-/// &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms&quot;&gt;Container image configuration values&lt;/a&gt; that override the values in the container image Docker file.&lt;/p&gt;
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms">Container
+/// image configuration values</see> that override the values in the container image Docker file.
 /// </param>
 /// <param name="KMSKeyArn">
-/// &lt;p&gt;The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt the following resources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption&quot;&gt;environment variables&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html&quot;&gt;Lambda SnapStart&lt;/a&gt; snapshots.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;When used with &lt;code&gt;SourceKMSKeyArn&lt;/code&gt;, the unzipped version of the .zip deployment package that's used for function invocations. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/encrypt-zip-package.html#enable-zip-custom-encryption&quot;&gt; Specifying a customer managed key for Lambda&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;The optimized version of the container image that's used for function invocations. Note that this is not the same key that's used to protect your container image in the Amazon Elastic Container Registry (Amazon ECR). For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-lifecycle&quot;&gt;Function lifecycle&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;If you don't provide a customer managed key, Lambda uses an &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk&quot;&gt;Amazon Web Services owned key&lt;/a&gt; or an &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk&quot;&gt;Amazon Web Services managed key&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt the
+/// following resources:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// The function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption">environment
+/// variables</see>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html">Lambda
+/// SnapStart</see> snapshots.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// When used with <c>SourceKMSKeyArn</c>, the unzipped version of the .zip deployment package that's
+/// used for function invocations. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/encrypt-zip-package.html#enable-zip-custom-encryption">Specifying
+/// a customer managed key for Lambda</see>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The optimized version of the container image that's used for function invocations. Note that this is
+/// not the same key that's used to protect your container image in the Amazon Elastic Container
+/// Registry (Amazon ECR). For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-lifecycle">Function
+/// lifecycle</see>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// If you don't provide a customer managed key, Lambda uses an
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk">Amazon
+/// Web Services owned key</see> or an
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk">Amazon
+/// Web Services managed key</see>.
+/// </para>
 /// </param>
 /// <param name="Layers">
-/// &lt;p&gt;A list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;function layers&lt;/a&gt; to add to the function's execution environment. Specify each layer by its ARN, including the version.&lt;/p&gt;
+/// A list of
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">function
+/// layers</see> to add to the function's execution environment. Specify each layer by its ARN,
+/// including the version.
 /// </param>
 /// <param name="LoggingConfig">
-/// &lt;p&gt;The function's Amazon CloudWatch Logs configuration settings.&lt;/p&gt;
+/// The function's Amazon CloudWatch Logs configuration settings.
 /// </param>
 /// <param name="MemorySize">
-/// &lt;p&gt;The amount of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console&quot;&gt;memory available to the function&lt;/a&gt; at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.&lt;/p&gt;
+/// The amount of
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console">memory
+/// available to the function</see> at runtime. Increasing the function memory also increases its CPU
+/// allocation. The default value is 128 MB. The value can be any multiple of 1 MB.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;Update the function only if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it.&lt;/p&gt;
+/// Update the function only if the revision ID matches the ID that's specified. Use this option to
+/// avoid modifying a function that has changed since you last read it.
 /// </param>
 /// <param name="Role">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the function's execution role.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the function's execution role.
 /// </param>
 /// <param name="Runtime">
-/// &lt;p&gt;The identifier of the function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt; runtime&lt;/a&gt;. Runtime is required if the deployment package is a .zip file archive. Specifying a runtime results in an error if you're deploying a function using a container image.&lt;/p&gt; &lt;p&gt;The following list includes deprecated runtimes. Lambda blocks creating new functions and updating existing functions shortly after each runtime is deprecated. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels&quot;&gt;Runtime use after deprecation&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For a list of all currently supported runtimes, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported&quot;&gt;Supported runtimes&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// The identifier of the function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime</see>. Runtime
+/// is required if the deployment package is a .zip file archive. Specifying a runtime results in an
+/// error if you're deploying a function using a container image.
+/// </para>
+/// <para>
+/// The following list includes deprecated runtimes. Lambda blocks creating new functions and updating
+/// existing functions shortly after each runtime is deprecated. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels">Runtime
+/// use after deprecation</see>.
+/// </para>
+/// <para>
+/// For a list of all currently supported runtimes, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported">Supported
+/// runtimes</see>.
+/// </para>
 /// </param>
 /// <param name="SnapStart">
-/// &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html&quot;&gt;SnapStart&lt;/a&gt; setting.&lt;/p&gt;
+/// The function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">SnapStart</see> setting.
 /// </param>
 /// <param name="Timeout">
-/// &lt;p&gt;The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html&quot;&gt;Lambda execution environment&lt;/a&gt;.&lt;/p&gt;
+/// The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default
+/// is 3 seconds, and the maximum allowed value is 900 seconds. For functions using Lambda Managed
+/// Instances, asynchronous invocations and event source mapping invocations (except Amazon MQ and
+/// Amazon DocumentDB) support a maximum allowed value of 5,400 seconds (90 minutes). For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html">Lambda execution
+/// environment</see>.
 /// </param>
 /// <param name="TracingConfig">
-/// &lt;p&gt;Set &lt;code&gt;Mode&lt;/code&gt; to &lt;code&gt;Active&lt;/code&gt; to sample and trace a subset of incoming requests with &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html&quot;&gt;X-Ray&lt;/a&gt;.&lt;/p&gt;
+/// Set <c>Mode</c> to <c>Active</c> to sample and trace a subset of incoming requests with
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray</see>.
 /// </param>
 /// <param name="VpcConfig">
-/// &lt;p&gt;For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html&quot;&gt;Configuring a Lambda function to access resources in a VPC&lt;/a&gt;.&lt;/p&gt;
+/// For network connectivity to Amazon Web Services resources in a VPC, specify a list of security
+/// groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the
+/// internet only through that VPC. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html">Configuring a Lambda
+/// function to access resources in a VPC</see>.
 /// </param>
 public sealed record class UpdateFunctionConfigurationInput(
     string FunctionName,

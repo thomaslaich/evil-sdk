@@ -5,13 +5,14 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration that defines the scaling behavior for a Lambda Managed Instances function, including the minimum and maximum number of execution environments that can be provisioned.&lt;/p&gt;
+/// Configuration that defines the scaling behavior for a Lambda Managed Instances function, including
+/// the minimum and maximum number of execution environments that can be provisioned.
 /// </summary>
 /// <param name="MaxExecutionEnvironments">
-/// &lt;p&gt;The maximum number of execution environments that can be provisioned for the function.&lt;/p&gt;
+/// The maximum number of execution environments that can be provisioned for the function.
 /// </param>
 /// <param name="MinExecutionEnvironments">
-/// &lt;p&gt;The minimum number of execution environments to maintain for the function.&lt;/p&gt;
+/// The minimum number of execution environments to maintain for the function.
 /// </param>
 public sealed record class FunctionScalingConfig(
     int? MaxExecutionEnvironments = null,

@@ -7,10 +7,39 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The metrics configuration for your event source. Use this configuration object to define which metrics you want your event source mapping to produce.&lt;/p&gt;
+/// The metrics configuration for your event source. Use this configuration object to define which
+/// metrics you want your event source mapping to produce.
 /// </summary>
 /// <param name="Metrics">
-/// &lt;p&gt; The metrics you want your event source mapping to produce, including &lt;code&gt;EventCount&lt;/code&gt;, &lt;code&gt;ErrorCount&lt;/code&gt;, &lt;code&gt;KafkaMetrics&lt;/code&gt;. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;EventCount&lt;/code&gt; to receive metrics related to the number of events processed by your event source mapping.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ErrorCount&lt;/code&gt; (Amazon MSK and self-managed Apache Kafka) to receive metrics related to the number of errors in your event source mapping processing.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;KafkaMetrics&lt;/code&gt; (Amazon MSK and self-managed Apache Kafka) to receive metrics related to the Kafka consumers from your event source mapping.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt; For more information about these metrics, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics&quot;&gt; Event source mapping metrics&lt;/a&gt;. &lt;/p&gt;
+/// <para>
+/// The metrics you want your event source mapping to produce, including <c>EventCount</c>,
+/// <c>ErrorCount</c>, <c>KafkaMetrics</c>.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>EventCount</c> to receive metrics related to the number of events processed by your event source
+/// mapping.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ErrorCount</c> (Amazon MSK and self-managed Apache Kafka) to receive metrics related to the
+/// number of errors in your event source mapping processing.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KafkaMetrics</c> (Amazon MSK and self-managed Apache Kafka) to receive metrics related to the
+/// Kafka consumers from your event source mapping.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about these metrics, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics">Event
+/// source mapping metrics</see>.
+/// </para>
 /// </param>
 public sealed record class EventSourceMappingMetricsConfig(
     IReadOnlyList<EventSourceMappingMetric>? Metrics = null

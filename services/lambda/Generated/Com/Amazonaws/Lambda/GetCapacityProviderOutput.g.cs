@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetCapacityProviderOutput.
 /// </summary>
 /// <param name="CapacityProvider">
-/// &lt;p&gt;Information about the capacity provider, including its configuration and current state.&lt;/p&gt;
+/// Information about the capacity provider, including its configuration and current state.
 /// </param>
 public sealed record class GetCapacityProviderOutput(
     global::Com.Amazonaws.Lambda.CapacityProvider CapacityProvider

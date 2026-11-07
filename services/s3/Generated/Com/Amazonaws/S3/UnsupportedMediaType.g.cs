@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The annotation payload is not valid UTF-8 encoded text.&lt;/p&gt;
+/// The annotation payload is not valid UTF-8 encoded text.
 /// </summary>
 public sealed partial class UnsupportedMediaType : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The annotation payload is not valid UTF-8 encoded text.&lt;/p&gt;
+    /// The annotation payload is not valid UTF-8 encoded text.
     /// </summary>
     public UnsupportedMediaType(string? message = null)
         : base(message) { }

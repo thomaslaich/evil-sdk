@@ -7,27 +7,35 @@ using NSmithy.Core.Serde;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container element for object ownership for a bucket's ownership controls.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;BucketOwnerPreferred&lt;/code&gt; - Objects uploaded to the bucket change ownership to the bucket
-/// owner if the objects are uploaded with the &lt;code&gt;bucket-owner-full-control&lt;/code&gt; canned ACL.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ObjectWriter&lt;/code&gt; - The uploading account will own the object if the object is uploaded with
-/// the &lt;code&gt;bucket-owner-full-control&lt;/code&gt; canned ACL.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;BucketOwnerEnforced&lt;/code&gt; - Access control lists (ACLs) are disabled and no longer affect
-/// permissions. The bucket owner automatically owns and has full control over every object in the bucket.
-/// The bucket only accepts PUT requests that don't specify an ACL or specify bucket owner full control ACLs
-/// (such as the predefined &lt;code&gt;bucket-owner-full-control&lt;/code&gt; canned ACL or a custom ACL in XML format
-/// that grants the same permissions).&lt;/p&gt;
-/// &lt;p&gt;By default, &lt;code&gt;ObjectOwnership&lt;/code&gt; is set to &lt;code&gt;BucketOwnerEnforced&lt;/code&gt; and ACLs are
-/// disabled. We recommend keeping ACLs disabled, except in uncommon use cases where you must control access
-/// for each object individually. For more information about S3 Object Ownership, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html&quot;&gt;Controlling
-/// ownership of objects and disabling ACLs for your bucket&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets. Directory buckets use the bucket owner enforced setting for S3 Object Ownership.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The container element for object ownership for a bucket's ownership controls.
+/// </para>
+/// <para>
+/// <c>BucketOwnerPreferred</c> - Objects uploaded to the bucket change ownership to the bucket owner if
+/// the objects are uploaded with the <c>bucket-owner-full-control</c> canned ACL.
+/// </para>
+/// <para>
+/// <c>ObjectWriter</c> - The uploading account will own the object if the object is uploaded with the
+/// <c>bucket-owner-full-control</c> canned ACL.
+/// </para>
+/// <para>
+/// <c>BucketOwnerEnforced</c> - Access control lists (ACLs) are disabled and no longer affect
+/// permissions. The bucket owner automatically owns and has full control over every object in the
+/// bucket. The bucket only accepts PUT requests that don't specify an ACL or specify bucket owner full
+/// control ACLs (such as the predefined <c>bucket-owner-full-control</c> canned ACL or a custom ACL in
+/// XML format that grants the same permissions).
+/// </para>
+/// <para>
+/// By default, <c>ObjectOwnership</c> is set to <c>BucketOwnerEnforced</c> and ACLs are disabled. We
+/// recommend keeping ACLs disabled, except in uncommon use cases where you must control access for each
+/// object individually. For more information about S3 Object Ownership, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">Controlling
+/// ownership of objects and disabling ACLs for your bucket</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets. Directory buckets use the
+/// bucket owner enforced setting for S3 Object Ownership.
+/// </para>
 /// </summary>
 public readonly partial record struct ObjectOwnership(string Value)
     : IStringEnumValue<ObjectOwnership>

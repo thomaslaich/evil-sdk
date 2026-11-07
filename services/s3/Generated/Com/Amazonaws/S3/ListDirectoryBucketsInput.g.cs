@@ -8,14 +8,13 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListDirectoryBucketsInput.
 /// </summary>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;
-/// &lt;code&gt;ContinuationToken&lt;/code&gt; indicates to Amazon S3 that the list is being continued on buckets in this
-/// account with a token. &lt;code&gt;ContinuationToken&lt;/code&gt; is obfuscated and is not a real bucket name. You
-/// can use this &lt;code&gt;ContinuationToken&lt;/code&gt; for the pagination of the list results. &lt;/p&gt;
+/// <c>ContinuationToken</c> indicates to Amazon S3 that the list is being continued on buckets in this
+/// account with a token. <c>ContinuationToken</c> is obfuscated and is not a real bucket name. You can
+/// use this <c>ContinuationToken</c> for the pagination of the list results.
 /// </param>
 /// <param name="MaxDirectoryBuckets">
-/// &lt;p&gt;Maximum number of buckets to be returned in response. When the number is more than the count of
-/// buckets that are owned by an Amazon Web Services account, return all the buckets in response.&lt;/p&gt;
+/// Maximum number of buckets to be returned in response. When the number is more than the count of
+/// buckets that are owned by an Amazon Web Services account, return all the buckets in response.
 /// </param>
 public sealed record class ListDirectoryBucketsInput(
     string? ContinuationToken = null,

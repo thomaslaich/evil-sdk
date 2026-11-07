@@ -10,31 +10,31 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListObjectAnnotationsOutput.
 /// </summary>
 /// <param name="AnnotationCount">
-/// &lt;p&gt;The number of annotations returned.&lt;/p&gt;
+/// The number of annotations returned.
 /// </param>
 /// <param name="AnnotationPrefix">
-/// &lt;p&gt;The prefix used to filter the response.&lt;/p&gt;
+/// The prefix used to filter the response.
 /// </param>
 /// <param name="Annotations">
-/// &lt;p&gt;The list of annotations attached to the object.&lt;/p&gt;
+/// The list of annotations attached to the object.
 /// </param>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name.&lt;/p&gt;
+/// The bucket name.
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;The continuation token used in this request.&lt;/p&gt;
+/// The continuation token used in this request.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="MaxAnnotationResults">
-/// &lt;p&gt;The maximum number of annotations returned in the response.&lt;/p&gt;
+/// The maximum number of annotations returned in the response.
 /// </param>
 /// <param name="NextContinuationToken">
-/// &lt;p&gt;The continuation token to use to retrieve the next page of results.&lt;/p&gt;
+/// The continuation token to use to retrieve the next page of results.
 /// </param>
 /// <param name="ObjectVersionId">
-/// &lt;p&gt;The version ID of the object.&lt;/p&gt;
+/// The version ID of the object.
 /// </param>
 public sealed record class ListObjectAnnotationsOutput(
     int? AnnotationCount = null,

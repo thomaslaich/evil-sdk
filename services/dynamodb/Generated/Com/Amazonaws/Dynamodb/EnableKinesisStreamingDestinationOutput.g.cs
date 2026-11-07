@@ -8,16 +8,16 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#EnableKinesisStreamingDestinationOutput.
 /// </summary>
 /// <param name="DestinationStatus">
-/// &lt;p&gt;The current status of the replication.&lt;/p&gt;
+/// The current status of the replication.
 /// </param>
 /// <param name="EnableKinesisStreamingConfiguration">
-/// &lt;p&gt;The destination for the Kinesis streaming information that is being enabled.&lt;/p&gt;
+/// The destination for the Kinesis streaming information that is being enabled.
 /// </param>
 /// <param name="StreamArn">
-/// &lt;p&gt;The ARN for the specific Kinesis data stream.&lt;/p&gt;
+/// The ARN for the specific Kinesis data stream.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table being modified.&lt;/p&gt;
+/// The name of the table being modified.
 /// </param>
 public sealed record class EnableKinesisStreamingDestinationOutput(
     global::Com.Amazonaws.Dynamodb.DestinationStatus? DestinationStatus = null,

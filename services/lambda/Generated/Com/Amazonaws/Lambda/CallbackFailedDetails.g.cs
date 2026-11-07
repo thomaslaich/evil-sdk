@@ -5,9 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains details about a failed callback operation, including error information and the reason for failure.&lt;/p&gt;
+/// Contains details about a failed callback operation, including error information and the reason for
+/// failure.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;An error object that contains details about the failure.&lt;/p&gt;
+/// An error object that contains details about the failure.
 /// </param>
 public sealed record class CallbackFailedDetails(EventError Error);

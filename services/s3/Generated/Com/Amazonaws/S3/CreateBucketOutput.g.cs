@@ -8,14 +8,20 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#CreateBucketOutput.
 /// </summary>
 /// <param name="BucketArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services resources across all
-/// of Amazon Web Services.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter is only supported for S3 directory buckets. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-tagging.html&quot;&gt;Using tags with
-/// directory buckets&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services
+/// resources across all of Amazon Web Services.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter is only supported for S3 directory buckets. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-tagging.html">Using
+/// tags with directory buckets</see>.
+/// </para>
 /// </param>
 /// <param name="Location">
-/// &lt;p&gt;A forward slash followed by the name of the bucket for all account regional namespace buckets and all global general purpose buckets created in us-east-1. For example, &lt;code&gt;/amzn-s3-demo-bucket&lt;/code&gt;. For global general purpose buckets created in other Amazon Web Services Regions, the Location field is the global endpoint URL. For example, &lt;code&gt;http://amzn-s3-demo-bucket.s3.amazonaws.com/&lt;/code&gt;.&lt;/p&gt;
+/// A forward slash followed by the name of the bucket for all account regional namespace buckets and
+/// all global general purpose buckets created in us-east-1. For example, <c>/amzn-s3-demo-bucket</c>.
+/// For global general purpose buckets created in other Amazon Web Services Regions, the Location field
+/// is the global endpoint URL. For example, <c>http://amzn-s3-demo-bucket.s3.amazonaws.com/</c>.
 /// </param>
 public sealed record class CreateBucketOutput(string? BucketArn = null, string? Location = null);

@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; There was an attempt to insert an item with the same primary key as an item that
-/// already exists in the DynamoDB table.&lt;/p&gt;
+/// There was an attempt to insert an item with the same primary key as an item that already exists in
+/// the DynamoDB table.
 /// </summary>
 public sealed partial class DuplicateItemException : Exception
 {
     /// <summary>
-    /// &lt;p&gt; There was an attempt to insert an item with the same primary key as an item that
-    /// already exists in the DynamoDB table.&lt;/p&gt;
+    /// There was an attempt to insert an item with the same primary key as an item that already exists in
+    /// the DynamoDB table.
     /// </summary>
     public DuplicateItemException(string? message = null)
         : base(message) { }

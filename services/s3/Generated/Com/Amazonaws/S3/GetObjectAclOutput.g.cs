@@ -10,10 +10,10 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectAclOutput.
 /// </summary>
 /// <param name="Grants">
-/// &lt;p&gt;A list of grants.&lt;/p&gt;
+/// A list of grants.
 /// </param>
 /// <param name="Owner">
-/// &lt;p&gt; Container for the bucket owner's ID.&lt;/p&gt;
+/// Container for the bucket owner's ID.
 /// </param>
 public sealed record class GetObjectAclOutput(
     IReadOnlyList<Grant>? Grants = null,

@@ -8,29 +8,43 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutPublicAccessBlockInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the Amazon S3 bucket whose &lt;code&gt;PublicAccessBlock&lt;/code&gt; configuration you want to
-/// set.&lt;/p&gt;
+/// The name of the Amazon S3 bucket whose <c>PublicAccessBlock</c> configuration you want to set.
 /// </param>
 /// <param name="PublicAccessBlockConfiguration">
-/// &lt;p&gt;The &lt;code&gt;PublicAccessBlock&lt;/code&gt; configuration that you want to apply to this Amazon S3
-/// bucket. You can enable the configuration options in any combination. For more information
-/// about when Amazon S3 considers a bucket or object public, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status&quot;&gt;The Meaning of &quot;Public&quot;&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The <c>PublicAccessBlock</c> configuration that you want to apply to this Amazon S3 bucket. You can
+/// enable the configuration options in any combination. For more information about when Amazon S3
+/// considers a bucket or object public, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status">The
+/// Meaning of "Public"</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm used to create the checksum for the object when you use the SDK. This header will not provide any
-/// additional functionality if you don't use the SDK. When you send this header, there must be a corresponding &lt;code&gt;x-amz-checksum&lt;/code&gt; or
-/// &lt;code&gt;x-amz-trailer&lt;/code&gt; header sent. Otherwise, Amazon S3 fails the request with the HTTP status code &lt;code&gt;400 Bad Request&lt;/code&gt;. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If you provide an individual checksum, Amazon S3 ignores any provided &lt;code&gt;ChecksumAlgorithm&lt;/code&gt;
-/// parameter.&lt;/p&gt;
+/// <para>
+/// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
+/// will not provide any additional functionality if you don't use the SDK. When you send this header,
+/// there must be a corresponding <c>x-amz-checksum</c> or <c>x-amz-trailer</c> header sent. Otherwise,
+/// Amazon S3 fails the request with the HTTP status code <c>400 Bad Request</c>. For more information,
+/// see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If you provide an individual checksum, Amazon S3 ignores any provided <c>ChecksumAlgorithm</c>
+/// parameter.
+/// </para>
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;The MD5 hash of the &lt;code&gt;PutPublicAccessBlock&lt;/code&gt; request body. &lt;/p&gt;
-/// &lt;p&gt;For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.&lt;/p&gt;
+/// <para>
+/// The MD5 hash of the <c>PutPublicAccessBlock</c> request body.
+/// </para>
+/// <para>
+/// For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services
+/// SDKs, this field is calculated automatically.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 public sealed record class PutPublicAccessBlockInput(
     string Bucket,

@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeTableReplicaAutoScalingInput.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
-/// parameter.&lt;/p&gt;
+/// The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
+/// parameter.
 /// </param>
 public sealed record class DescribeTableReplicaAutoScalingInput(string TableName);

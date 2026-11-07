@@ -7,10 +7,10 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the default server-side-encryption configuration.&lt;/p&gt;
+/// Specifies the default server-side-encryption configuration.
 /// </summary>
 /// <param name="Rules">
-/// &lt;p&gt;Container for information about a particular server-side encryption configuration rule.&lt;/p&gt;
+/// Container for information about a particular server-side encryption configuration rule.
 /// </param>
 public sealed record class ServerSideEncryptionConfiguration(
     IReadOnlyList<ServerSideEncryptionRule> Rules

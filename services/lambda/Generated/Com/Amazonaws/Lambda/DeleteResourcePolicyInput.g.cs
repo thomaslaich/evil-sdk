@@ -8,9 +8,13 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#DeleteResourcePolicyInput.
 /// </summary>
 /// <param name="ResourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Lambda resource you want to delete the policy from. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Lambda resource you want to delete the policy from. You can
+/// use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not
+/// accept wildcard characters.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;The revision ID that the existing policy must match for the deletion to proceed. If the revision ID doesn't match, the operation fails with a &lt;code&gt;PreconditionFailedException&lt;/code&gt; error. To retrieve the current revision ID, use the &lt;a&gt;GetResourcePolicy&lt;/a&gt; operation.&lt;/p&gt;
+/// The revision ID that the existing policy must match for the deletion to proceed. If the revision ID
+/// doesn't match, the operation fails with a <c>PreconditionFailedException</c> error. To retrieve the
+/// current revision ID, use the GetResourcePolicy operation.
 /// </param>
 public sealed record class DeleteResourcePolicyInput(string ResourceArn, string? RevisionId = null);

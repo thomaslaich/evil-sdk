@@ -5,13 +5,16 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration options for callback operations in durable executions, including timeout settings and retry behavior.&lt;/p&gt;
+/// Configuration options for callback operations in durable executions, including timeout settings and
+/// retry behavior.
 /// </summary>
 /// <param name="HeartbeatTimeoutSeconds">
-/// &lt;p&gt;The heartbeat timeout for the callback operation, in seconds. If not specified or set to 0, heartbeat timeout is disabled.&lt;/p&gt;
+/// The heartbeat timeout for the callback operation, in seconds. If not specified or set to 0,
+/// heartbeat timeout is disabled.
 /// </param>
 /// <param name="TimeoutSeconds">
-/// &lt;p&gt;The timeout for the callback operation in seconds. If not specified or set to 0, the callback has no timeout.&lt;/p&gt;
+/// The timeout for the callback operation in seconds. If not specified or set to 0, the callback has no
+/// timeout.
 /// </param>
 public sealed record class CallbackOptions(
     int? HeartbeatTimeoutSeconds = null,

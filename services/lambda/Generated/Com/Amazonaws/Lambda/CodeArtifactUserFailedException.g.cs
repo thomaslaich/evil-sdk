@@ -7,18 +7,22 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function couldn't be invoked because provisioning of its code artifact user failed. Update the function's code package or check the Lambda function's &lt;code&gt;State&lt;/code&gt; and &lt;code&gt;StateReasonCode&lt;/code&gt; for additional context.&lt;/p&gt;
+/// The Lambda function couldn't be invoked because provisioning of its code artifact user failed.
+/// Update the function's code package or check the Lambda function's <c>State</c> and
+/// <c>StateReasonCode</c> for additional context.
 /// </summary>
 public sealed partial class CodeArtifactUserFailedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function couldn't be invoked because provisioning of its code artifact user failed. Update the function's code package or check the Lambda function's &lt;code&gt;State&lt;/code&gt; and &lt;code&gt;StateReasonCode&lt;/code&gt; for additional context.&lt;/p&gt;
+    /// The Lambda function couldn't be invoked because provisioning of its code artifact user failed.
+    /// Update the function's code package or check the Lambda function's <c>State</c> and
+    /// <c>StateReasonCode</c> for additional context.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public CodeArtifactUserFailedException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +31,12 @@ public sealed partial class CodeArtifactUserFailedException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

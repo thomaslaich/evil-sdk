@@ -5,10 +5,13 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue to delete.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue to delete.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 public sealed record class DeleteQueueInput(string QueueUrl);

@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;A document that contains additional information about the authorization status of a
-/// request from an encoded message that is returned in response to an Amazon Web Services request.&lt;/p&gt;
+/// A document that contains additional information about the authorization status of a request from an
+/// encoded message that is returned in response to an Amazon Web Services request.
 /// </summary>
 /// <param name="DecodedMessage">
-/// &lt;p&gt;The API returns a response with the decoded message.&lt;/p&gt;
+/// The API returns a response with the decoded message.
 /// </param>
 public sealed record class DecodeAuthorizationMessageOutput(string? DecodedMessage = null);

@@ -7,15 +7,19 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The request throughput limit was exceeded. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+/// The request throughput limit was exceeded. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda
+/// quotas</see>.
 /// </summary>
 public sealed partial class TooManyRequestsException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request throughput limit was exceeded. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+    /// The request throughput limit was exceeded. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda
+    /// quotas</see>.
     /// </summary>
     /// <param name="retryAfterSeconds">
-    /// &lt;p&gt;The number of seconds the caller should wait before retrying.&lt;/p&gt;
+    /// The number of seconds the caller should wait before retrying.
     /// </param>
     public TooManyRequestsException(
         string? message = null,
@@ -36,7 +40,7 @@ public sealed partial class TooManyRequestsException : Exception
     public string? Type { get; }
 
     /// <summary>
-    /// &lt;p&gt;The number of seconds the caller should wait before retrying.&lt;/p&gt;
+    /// The number of seconds the caller should wait before retrying.
     /// </summary>
     public string? RetryAfterSeconds { get; }
 }

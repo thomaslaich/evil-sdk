@@ -5,16 +5,15 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of a &lt;code&gt;ListTables&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of a <c>ListTables</c> operation.
 /// </summary>
 /// <param name="ExclusiveStartTableName">
-/// &lt;p&gt;The first table name that this operation will evaluate. Use the value that was
-/// returned for &lt;code&gt;LastEvaluatedTableName&lt;/code&gt; in a previous operation, so that you
-/// can obtain the next page of results.&lt;/p&gt;
+/// The first table name that this operation will evaluate. Use the value that was returned for
+/// <c>LastEvaluatedTableName</c> in a previous operation, so that you can obtain the next page of
+/// results.
 /// </param>
 /// <param name="Limit">
-/// &lt;p&gt;A maximum number of table names to return. If this parameter is not specified, the
-/// limit is 100.&lt;/p&gt;
+/// A maximum number of table names to return. If this parameter is not specified, the limit is 100.
 /// </param>
 public sealed record class ListTablesInput(
     string? ExclusiveStartTableName = null,

@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a wait operation that succeeded.&lt;/p&gt;
+/// Details about a wait operation that succeeded.
 /// </summary>
 /// <param name="Duration">
-/// &lt;p&gt;The wait duration, in seconds.&lt;/p&gt;
+/// The wait duration, in seconds.
 /// </param>
 public sealed record class WaitSucceededDetails(int? Duration = null);

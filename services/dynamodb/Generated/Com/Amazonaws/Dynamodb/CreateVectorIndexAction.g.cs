@@ -7,30 +7,27 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A new vector index to be added to a table.&lt;/p&gt;
+/// A new vector index to be added to a table.
 /// </summary>
 /// <param name="Dimensions">
-/// &lt;p&gt;The number of dimensions in each vector.&lt;/p&gt;
+/// The number of dimensions in each vector.
 /// </param>
 /// <param name="DistanceFunction">
-/// &lt;p&gt;The distance function used to calculate similarity. Valid values:
-/// &lt;code&gt;COSINE&lt;/code&gt;, &lt;code&gt;EUCLIDEAN&lt;/code&gt;, &lt;code&gt;DOT_PRODUCT&lt;/code&gt;.&lt;/p&gt;
+/// The distance function used to calculate similarity. Valid values: <c>COSINE</c>, <c>EUCLIDEAN</c>,
+/// <c>DOT_PRODUCT</c>.
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the vector index. Must be unique within the table.&lt;/p&gt;
+/// The name of the vector index. Must be unique within the table.
 /// </param>
 /// <param name="Projection">
-/// &lt;p&gt;Specifies attributes that are copied (projected) from the table into the vector
-/// index.&lt;/p&gt;
+/// Specifies attributes that are copied (projected) from the table into the vector index.
 /// </param>
 /// <param name="VectorAttribute">
-/// &lt;p&gt;The attribute that contains vector embeddings. If multiple vector indexes
-/// reference the same attribute, they must all use the same number of
-/// dimensions.&lt;/p&gt;
+/// The attribute that contains vector embeddings. If multiple vector indexes reference the same
+/// attribute, they must all use the same number of dimensions.
 /// </param>
 /// <param name="SearchSchema">
-/// &lt;p&gt;The partition key and inline filter attribute definitions for the vector
-/// index.&lt;/p&gt;
+/// The partition key and inline filter attribute definitions for the vector index.
 /// </param>
 public sealed record class CreateVectorIndexAction(
     long Dimensions,

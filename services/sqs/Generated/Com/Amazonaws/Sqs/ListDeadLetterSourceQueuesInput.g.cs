@@ -5,19 +5,21 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of a dead-letter queue.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of a dead-letter queue.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 /// <param name="MaxResults">
-/// &lt;p&gt;Maximum number of results to include in the response. Value range is 1 to 1000. You
-/// must set &lt;code&gt;MaxResults&lt;/code&gt; to receive a value for &lt;code&gt;NextToken&lt;/code&gt; in the
-/// response.&lt;/p&gt;
+/// Maximum number of results to include in the response. Value range is 1 to 1000. You must set
+/// <c>MaxResults</c> to receive a value for <c>NextToken</c> in the response.
 /// </param>
 /// <param name="NextToken">
-/// &lt;p&gt;Pagination token to request the next set of results.&lt;/p&gt;
+/// Pagination token to request the next set of results.
 /// </param>
 public sealed record class ListDeadLetterSourceQueuesInput(
     string QueueUrl,

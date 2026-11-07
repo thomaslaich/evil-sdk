@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies JSON as request's output serialization format.&lt;/p&gt;
+/// Specifies JSON as request's output serialization format.
 /// </summary>
 /// <param name="RecordDelimiter">
-/// &lt;p&gt;The value used to separate individual records in the output. If no value is specified, Amazon S3 uses a
-/// newline character ('\n').&lt;/p&gt;
+/// The value used to separate individual records in the output. If no value is specified, Amazon S3
+/// uses a newline character ('\n').
 /// </param>
 public sealed record class JSONOutput(string? RecordDelimiter = null);

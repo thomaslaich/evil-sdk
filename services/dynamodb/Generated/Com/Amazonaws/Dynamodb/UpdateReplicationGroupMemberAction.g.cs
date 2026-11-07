@@ -7,30 +7,28 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a replica to be modified.&lt;/p&gt;
+/// Represents a replica to be modified.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The Region where the replica exists.&lt;/p&gt;
+/// The Region where the replica exists.
 /// </param>
 /// <param name="GlobalSecondaryIndexes">
-/// &lt;p&gt;Replica-specific global secondary index settings.&lt;/p&gt;
+/// Replica-specific global secondary index settings.
 /// </param>
 /// <param name="KMSMasterKeyId">
-/// &lt;p&gt;The KMS key of the replica that should be used for KMS
-/// encryption. To specify a key, use its key ID, Amazon Resource Name (ARN), alias name, or
-/// alias ARN. Note that you should only provide this parameter if the key is different from
-/// the default DynamoDB KMS key &lt;code&gt;alias/aws/dynamodb&lt;/code&gt;.&lt;/p&gt;
+/// The KMS key of the replica that should be used for KMS encryption. To specify a key, use its key ID,
+/// Amazon Resource Name (ARN), alias name, or alias ARN. Note that you should only provide this
+/// parameter if the key is different from the default DynamoDB KMS key <c>alias/aws/dynamodb</c>.
 /// </param>
 /// <param name="OnDemandThroughputOverride">
-/// &lt;p&gt;Overrides the maximum on-demand throughput for the replica table.&lt;/p&gt;
+/// Overrides the maximum on-demand throughput for the replica table.
 /// </param>
 /// <param name="ProvisionedThroughputOverride">
-/// &lt;p&gt;Replica-specific provisioned throughput. If not specified, uses the source table's
-/// provisioned throughput settings.&lt;/p&gt;
+/// Replica-specific provisioned throughput. If not specified, uses the source table's provisioned
+/// throughput settings.
 /// </param>
 /// <param name="TableClassOverride">
-/// &lt;p&gt;Replica-specific table class. If not specified, uses the source table's table
-/// class.&lt;/p&gt;
+/// Replica-specific table class. If not specified, uses the source table's table class.
 /// </param>
 public sealed record class UpdateReplicationGroupMemberAction(
     string RegionName,

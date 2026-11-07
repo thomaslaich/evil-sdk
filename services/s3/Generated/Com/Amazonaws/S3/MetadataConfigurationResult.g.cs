@@ -5,27 +5,19 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;
 /// The S3 Metadata configuration for a general purpose bucket.
-/// &lt;/p&gt;
 /// </summary>
 /// <param name="DestinationResult">
-/// &lt;p&gt;
 /// The destination settings for a metadata configuration.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="AnnotationTableConfigurationResult">
-/// &lt;p&gt;The annotation table configuration result, if an annotation table is configured.&lt;/p&gt;
+/// The annotation table configuration result, if an annotation table is configured.
 /// </param>
 /// <param name="InventoryTableConfigurationResult">
-/// &lt;p&gt;
 /// The inventory table configuration for a metadata configuration.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="JournalTableConfigurationResult">
-/// &lt;p&gt;
 /// The journal table configuration for a metadata configuration.
-/// &lt;/p&gt;
 /// </param>
 public sealed record class MetadataConfigurationResult(
     global::Com.Amazonaws.S3.DestinationResult DestinationResult,

@@ -7,20 +7,18 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The request could not be fulfilled because the identity provider (IDP) that was asked
-/// to verify the incoming identity token could not be reached. This is often a transient
-/// error caused by network conditions. Retry the request a limited number of times so that
-/// you don't exceed the request rate. If the error persists, the identity provider might be
-/// down or not responding.&lt;/p&gt;
+/// The request could not be fulfilled because the identity provider (IDP) that was asked to verify the
+/// incoming identity token could not be reached. This is often a transient error caused by network
+/// conditions. Retry the request a limited number of times so that you don't exceed the request rate.
+/// If the error persists, the identity provider might be down or not responding.
 /// </summary>
 public sealed partial class IDPCommunicationErrorException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request could not be fulfilled because the identity provider (IDP) that was asked
-    /// to verify the incoming identity token could not be reached. This is often a transient
-    /// error caused by network conditions. Retry the request a limited number of times so that
-    /// you don't exceed the request rate. If the error persists, the identity provider might be
-    /// down or not responding.&lt;/p&gt;
+    /// The request could not be fulfilled because the identity provider (IDP) that was asked to verify the
+    /// incoming identity token could not be reached. This is often a transient error caused by network
+    /// conditions. Retry the request a limited number of times so that you don't exceed the request rate.
+    /// If the error persists, the identity provider might be down or not responding.
     /// </summary>
     public IDPCommunicationErrorException(string? message = null)
         : base(message) { }

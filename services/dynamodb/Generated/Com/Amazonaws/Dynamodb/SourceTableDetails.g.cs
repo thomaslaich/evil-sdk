@@ -8,49 +8,51 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains the details of the table when the backup was created. &lt;/p&gt;
+/// Contains the details of the table when the backup was created.
 /// </summary>
 /// <param name="KeySchema">
-/// &lt;p&gt;Schema of the table. &lt;/p&gt;
+/// Schema of the table.
 /// </param>
 /// <param name="ProvisionedThroughput">
-/// &lt;p&gt;Read IOPs and Write IOPS on the table when the backup was created.&lt;/p&gt;
+/// Read IOPs and Write IOPS on the table when the backup was created.
 /// </param>
 /// <param name="TableCreationDateTime">
-/// &lt;p&gt;Time when the source table was created. &lt;/p&gt;
+/// Time when the source table was created.
 /// </param>
 /// <param name="TableId">
-/// &lt;p&gt;Unique identifier for the table for which the backup was created. &lt;/p&gt;
+/// Unique identifier for the table for which the backup was created.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table for which the backup was created. &lt;/p&gt;
+/// The name of the table for which the backup was created.
 /// </param>
 /// <param name="BillingMode">
-/// &lt;p&gt;Controls how you are charged for read and write throughput and how you manage
-/// capacity. This setting can be changed later.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PROVISIONED&lt;/code&gt; - Sets the read/write capacity mode to
-/// &lt;code&gt;PROVISIONED&lt;/code&gt;. We recommend using &lt;code&gt;PROVISIONED&lt;/code&gt; for
-/// predictable workloads.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; - Sets the read/write capacity mode to
-/// &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt;. We recommend using
-/// &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; for unpredictable workloads. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Controls how you are charged for read and write throughput and how you manage capacity. This setting
+/// can be changed later.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>PROVISIONED</c> - Sets the read/write capacity mode to <c>PROVISIONED</c>. We recommend using
+/// <c>PROVISIONED</c> for predictable workloads.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>PAY_PER_REQUEST</c> - Sets the read/write capacity mode to <c>PAY_PER_REQUEST</c>. We recommend
+/// using <c>PAY_PER_REQUEST</c> for unpredictable workloads.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="ItemCount">
-/// &lt;p&gt;Number of items in the table. Note that this is an approximate value. &lt;/p&gt;
+/// Number of items in the table. Note that this is an approximate value.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt;ARN of the table for which backup was created. &lt;/p&gt;
+/// ARN of the table for which backup was created.
 /// </param>
 /// <param name="TableSizeBytes">
-/// &lt;p&gt;Size of the table in bytes. Note that this is an approximate value.&lt;/p&gt;
+/// Size of the table in bytes. Note that this is an approximate value.
 /// </param>
 public sealed record class SourceTableDetails(
     IReadOnlyList<KeySchemaElement> KeySchema,

@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;STS is not activated in the requested region for the account that is being asked to
-/// generate credentials. The account administrator must use the IAM console to activate
-/// STS in that region. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html#sts-regions-activate-deactivate&quot;&gt;Activating and Deactivating STS in an Amazon Web Services Region&lt;/a&gt; in the &lt;i&gt;IAM
-/// User Guide&lt;/i&gt;.&lt;/p&gt;
+/// STS is not activated in the requested region for the account that is being asked to generate
+/// credentials. The account administrator must use the IAM console to activate STS in that region. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html#sts-regions-activate-deactivate">Activating
+/// and Deactivating STS in an Amazon Web Services Region</see> in the <i>IAM User Guide</i>.
 /// </summary>
 public sealed partial class RegionDisabledException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;STS is not activated in the requested region for the account that is being asked to
-    /// generate credentials. The account administrator must use the IAM console to activate
-    /// STS in that region. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html#sts-regions-activate-deactivate&quot;&gt;Activating and Deactivating STS in an Amazon Web Services Region&lt;/a&gt; in the &lt;i&gt;IAM
-    /// User Guide&lt;/i&gt;.&lt;/p&gt;
+    /// STS is not activated in the requested region for the account that is being asked to generate
+    /// credentials. The account administrator must use the IAM console to activate STS in that region. For
+    /// more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html#sts-regions-activate-deactivate">Activating
+    /// and Deactivating STS in an Amazon Web Services Region</see> in the <i>IAM User Guide</i>.
     /// </summary>
     public RegionDisabledException(string? message = null)
         : base(message) { }

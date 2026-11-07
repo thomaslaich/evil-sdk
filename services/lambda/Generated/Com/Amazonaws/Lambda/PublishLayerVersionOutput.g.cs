@@ -10,31 +10,46 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PublishLayerVersionOutput.
 /// </summary>
 /// <param name="CompatibleArchitectures">
-/// &lt;p&gt;A list of compatible &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architectures&lt;/a&gt;.&lt;/p&gt;
+/// A list of compatible
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+/// architectures</see>.
 /// </param>
 /// <param name="CompatibleRuntimes">
-/// &lt;p&gt;The layer's compatible runtimes.&lt;/p&gt; &lt;p&gt;The following list includes deprecated runtimes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels&quot;&gt;Runtime use after deprecation&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For a list of all currently supported runtimes, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported&quot;&gt;Supported runtimes&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// The layer's compatible runtimes.
+/// </para>
+/// <para>
+/// The following list includes deprecated runtimes. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels">Runtime
+/// use after deprecation</see>.
+/// </para>
+/// <para>
+/// For a list of all currently supported runtimes, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported">Supported
+/// runtimes</see>.
+/// </para>
 /// </param>
 /// <param name="Content">
-/// &lt;p&gt;Details about the layer version.&lt;/p&gt;
+/// Details about the layer version.
 /// </param>
 /// <param name="CreatedDate">
-/// &lt;p&gt;The date that the layer version was created, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date that the layer version was created, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;The description of the version.&lt;/p&gt;
+/// The description of the version.
 /// </param>
 /// <param name="LayerArn">
-/// &lt;p&gt;The ARN of the layer.&lt;/p&gt;
+/// The ARN of the layer.
 /// </param>
 /// <param name="LayerVersionArn">
-/// &lt;p&gt;The ARN of the layer version.&lt;/p&gt;
+/// The ARN of the layer version.
 /// </param>
 /// <param name="LicenseInfo">
-/// &lt;p&gt;The layer's software license.&lt;/p&gt;
+/// The layer's software license.
 /// </param>
 /// <param name="Version">
-/// &lt;p&gt;The version number.&lt;/p&gt;
+/// The version number.
 /// </param>
 public sealed record class PublishLayerVersionOutput(
     IReadOnlyList<Architecture>? CompatibleArchitectures = null,

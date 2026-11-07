@@ -11,47 +11,58 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeContributorInsightsOutput.
 /// </summary>
 /// <param name="ContributorInsightsMode">
-/// &lt;p&gt;The mode of CloudWatch Contributor Insights for DynamoDB that determines
-/// which events are emitted. Can be set to track all access and throttled events or throttled
-/// events only.&lt;/p&gt;
+/// The mode of CloudWatch Contributor Insights for DynamoDB that determines which events are emitted.
+/// Can be set to track all access and throttled events or throttled events only.
 /// </param>
 /// <param name="ContributorInsightsRuleList">
-/// &lt;p&gt;List of names of the associated contributor insights rules.&lt;/p&gt;
+/// List of names of the associated contributor insights rules.
 /// </param>
 /// <param name="ContributorInsightsStatus">
-/// &lt;p&gt;Current status of contributor insights.&lt;/p&gt;
+/// Current status of contributor insights.
 /// </param>
 /// <param name="FailureException">
-/// &lt;p&gt;Returns information about the last failure that was encountered.&lt;/p&gt;
-/// &lt;p&gt;The most common exceptions for a FAILED status are:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;LimitExceededException - Per-account Amazon CloudWatch Contributor Insights
-/// rule limit reached. Please disable Contributor Insights for other tables/indexes
-/// OR disable Contributor Insights rules before retrying.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;AccessDeniedException - Amazon CloudWatch Contributor Insights rules cannot be
-/// modified due to insufficient permissions.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;AccessDeniedException - Failed to create service-linked role for Contributor
-/// Insights due to insufficient permissions.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;InternalServerError - Failed to create Amazon CloudWatch Contributor Insights
-/// rules. Please retry request.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Returns information about the last failure that was encountered.
+/// </para>
+/// <para>
+/// The most common exceptions for a FAILED status are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// LimitExceededException - Per-account Amazon CloudWatch Contributor Insights rule limit reached.
+/// Please disable Contributor Insights for other tables/indexes OR disable Contributor Insights rules
+/// before retrying.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// AccessDeniedException - Amazon CloudWatch Contributor Insights rules cannot be modified due to
+/// insufficient permissions.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// AccessDeniedException - Failed to create service-linked role for Contributor Insights due to
+/// insufficient permissions.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// InternalServerError - Failed to create Amazon CloudWatch Contributor Insights rules. Please retry
+/// request.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index being described.&lt;/p&gt;
+/// The name of the global secondary index being described.
 /// </param>
 /// <param name="LastUpdateDateTime">
-/// &lt;p&gt;Timestamp of the last time the status was changed.&lt;/p&gt;
+/// Timestamp of the last time the status was changed.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table being described.&lt;/p&gt;
+/// The name of the table being described.
 /// </param>
 public sealed record class DescribeContributorInsightsOutput(
     global::Com.Amazonaws.Dynamodb.ContributorInsightsMode? ContributorInsightsMode = null,

@@ -7,13 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;VPC configuration that specifies the network settings for compute instances managed by the capacity provider.&lt;/p&gt;
+/// VPC configuration that specifies the network settings for compute instances managed by the capacity
+/// provider.
 /// </summary>
 /// <param name="SecurityGroupIds">
-/// &lt;p&gt;A list of security group IDs that control network access for compute instances managed by the capacity provider.&lt;/p&gt;
+/// A list of security group IDs that control network access for compute instances managed by the
+/// capacity provider.
 /// </param>
 /// <param name="SubnetIds">
-/// &lt;p&gt;A list of subnet IDs where the capacity provider launches compute instances.&lt;/p&gt;
+/// A list of subnet IDs where the capacity provider launches compute instances.
 /// </param>
 public sealed record class CapacityProviderVpcConfig(
     IReadOnlyList<string> SecurityGroupIds,

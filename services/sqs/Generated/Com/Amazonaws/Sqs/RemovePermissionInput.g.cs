@@ -5,16 +5,17 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="Label">
-/// &lt;p&gt;The identification of the permission to remove. This is the label added using the
-/// &lt;code&gt;
-/// &lt;a&gt;AddPermission&lt;/a&gt;
-/// &lt;/code&gt; action.&lt;/p&gt;
+/// The identification of the permission to remove. This is the label added using the <c> AddPermission
+/// </c> action.
 /// </param>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue from which permissions are removed.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue from which permissions are removed.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 public sealed record class RemovePermissionInput(string Label, string QueueUrl);

@@ -5,11 +5,11 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Replica-specific provisioned throughput settings. If not specified, uses the source
-/// table's provisioned throughput settings.&lt;/p&gt;
+/// Replica-specific provisioned throughput settings. If not specified, uses the source table's
+/// provisioned throughput settings.
 /// </summary>
 /// <param name="ReadCapacityUnits">
-/// &lt;p&gt;Replica-specific read capacity units. If not specified, uses the source table's read
-/// capacity settings.&lt;/p&gt;
+/// Replica-specific read capacity units. If not specified, uses the source table's read capacity
+/// settings.
 /// </param>
 public sealed record class ProvisionedThroughputOverride(long? ReadCapacityUnits = null);

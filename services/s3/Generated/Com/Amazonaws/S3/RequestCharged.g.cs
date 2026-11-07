@@ -7,12 +7,16 @@ using NSmithy.Core.Serde;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;If present, indicates that the requester was successfully charged for the request. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html&quot;&gt;Using Requester Pays buckets for storage transfers and usage&lt;/a&gt; in the &lt;i&gt;Amazon Simple
-/// Storage Service user guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If present, indicates that the requester was successfully charged for the request. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html">Using
+/// Requester Pays buckets for storage transfers and usage</see> in the <i>Amazon Simple Storage Service
+/// user guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </summary>
 public readonly partial record struct RequestCharged(string Value)
     : IStringEnumValue<RequestCharged>

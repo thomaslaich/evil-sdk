@@ -5,40 +5,43 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;An update to be applied to an operation during checkpointing.&lt;/p&gt;
+/// An update to be applied to an operation during checkpointing.
 /// </summary>
 /// <param name="Action">
-/// &lt;p&gt;The action to take on the operation.&lt;/p&gt;
+/// The action to take on the operation.
 /// </param>
 /// <param name="Id">
-/// &lt;p&gt;The unique identifier for this operation.&lt;/p&gt;
+/// The unique identifier for this operation.
 /// </param>
 /// <param name="Type">
-/// &lt;p&gt;The type of operation to update.&lt;/p&gt;
+/// The type of operation to update.
 /// </param>
 /// <param name="ContextOptions">
-/// &lt;p&gt;Options for context operations.&lt;/p&gt;
+/// Options for context operations.
 /// </param>
 /// <param name="Error">
-/// &lt;p&gt;The error information for failed operations.&lt;/p&gt;
+/// The error information for failed operations.
 /// </param>
 /// <param name="Name">
-/// &lt;p&gt;The customer-provided name for this operation.&lt;/p&gt;
+/// The customer-provided name for this operation.
 /// </param>
 /// <param name="ParentId">
-/// &lt;p&gt;The unique identifier of the parent operation, if this operation is running within a child context.&lt;/p&gt;
+/// The unique identifier of the parent operation, if this operation is running within a child context.
 /// </param>
 /// <param name="Payload">
-/// &lt;p&gt;The payload for successful operations. The maximum payload size is 6 MB for synchronous &lt;code&gt;EXECUTION&lt;/code&gt; operations (RequestResponse invocationType), 1 MB for asynchronous &lt;code&gt;EXECUTION&lt;/code&gt; (Event invocationType) and &lt;code&gt;CHAINED_INVOKE&lt;/code&gt; operations, and 256 KB for &lt;code&gt;CONTEXT&lt;/code&gt;, &lt;code&gt;STEP&lt;/code&gt;, &lt;code&gt;WAIT&lt;/code&gt;, and &lt;code&gt;CALLBACK&lt;/code&gt; operations.&lt;/p&gt;
+/// The payload for successful operations. The maximum payload size is 6 MB for synchronous
+/// <c>EXECUTION</c> operations (RequestResponse invocationType), 1 MB for asynchronous <c>EXECUTION</c>
+/// (Event invocationType) and <c>CHAINED_INVOKE</c> operations, and 256 KB for <c>CONTEXT</c>,
+/// <c>STEP</c>, <c>WAIT</c>, and <c>CALLBACK</c> operations.
 /// </param>
 /// <param name="StepOptions">
-/// &lt;p&gt;Options for step operations.&lt;/p&gt;
+/// Options for step operations.
 /// </param>
 /// <param name="SubType">
-/// &lt;p&gt;The subtype of the operation, providing additional categorization.&lt;/p&gt;
+/// The subtype of the operation, providing additional categorization.
 /// </param>
 /// <param name="WaitOptions">
-/// &lt;p&gt;Options for wait operations.&lt;/p&gt;
+/// Options for wait operations.
 /// </param>
 public sealed record class OperationUpdate(
     OperationAction Action,

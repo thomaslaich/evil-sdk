@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#SelectObjectContentOutput.
 /// </summary>
 /// <param name="Payload">
-/// &lt;p&gt;The array of results.&lt;/p&gt;
+/// The array of results.
 /// </param>
 public sealed record class SelectObjectContentOutput(
     IAsyncEnumerable<SelectObjectContentEventStream>? Payload = null

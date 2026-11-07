@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda could not unzip the deployment package.&lt;/p&gt;
+/// Lambda could not unzip the deployment package.
 /// </summary>
 public sealed partial class InvalidZipFileException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda could not unzip the deployment package.&lt;/p&gt;
+    /// Lambda could not unzip the deployment package.
     /// </summary>
     public InvalidZipFileException(string? message = null, string? type = null)
         : base(message)

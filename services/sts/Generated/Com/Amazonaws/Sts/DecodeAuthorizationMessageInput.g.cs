@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Sts;
 /// Represents the Smithy structure com.amazonaws.sts#DecodeAuthorizationMessageInput.
 /// </summary>
 /// <param name="EncodedMessage">
-/// &lt;p&gt;The encoded message that was returned with the response.&lt;/p&gt;
+/// The encoded message that was returned with the response.
 /// </param>
 public sealed record class DecodeAuthorizationMessageInput(string EncodedMessage);

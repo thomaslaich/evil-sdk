@@ -5,14 +5,13 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a witness Region in a MRSC global table. &lt;/p&gt;
+/// Represents the properties of a witness Region in a MRSC global table.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The name of the Amazon Web Services Region that serves as a witness for the MRSC global
-/// table.&lt;/p&gt;
+/// The name of the Amazon Web Services Region that serves as a witness for the MRSC global table.
 /// </param>
 /// <param name="WitnessStatus">
-/// &lt;p&gt;The current status of the witness Region in the MRSC global table.&lt;/p&gt;
+/// The current status of the witness Region in the MRSC global table.
 /// </param>
 public sealed record class GlobalTableWitnessDescription(
     string? RegionName = null,

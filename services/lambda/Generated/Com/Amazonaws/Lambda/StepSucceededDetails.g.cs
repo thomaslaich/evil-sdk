@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a step that succeeded.&lt;/p&gt;
+/// Details about a step that succeeded.
 /// </summary>
 /// <param name="Result">
-/// &lt;p&gt;The response payload from the successful operation.&lt;/p&gt;
+/// The response payload from the successful operation.
 /// </param>
 /// <param name="RetryDetails">
-/// &lt;p&gt;Information about retry attempts for this step operation.&lt;/p&gt;
+/// Information about retry attempts for this step operation.
 /// </param>
 public sealed record class StepSucceededDetails(
     EventResult Result,

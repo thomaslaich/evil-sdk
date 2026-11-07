@@ -5,11 +5,9 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Encloses the &lt;code&gt;Id&lt;/code&gt; of an entry in &lt;code&gt;
-/// &lt;a&gt;ChangeMessageVisibilityBatch&lt;/a&gt;.&lt;/code&gt;
-/// &lt;/p&gt;
+/// Encloses the <c>Id</c> of an entry in <c> ChangeMessageVisibilityBatch.</c>
 /// </summary>
 /// <param name="Id">
-/// &lt;p&gt;Represents a message whose visibility timeout has been changed successfully.&lt;/p&gt;
+/// Represents a message whose visibility timeout has been changed successfully.
 /// </param>
 public sealed record class ChangeMessageVisibilityBatchResultEntry(string Id);

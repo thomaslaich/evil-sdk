@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda received an unexpected Amazon EC2 client exception while setting up for the Lambda function.&lt;/p&gt;
+/// Lambda received an unexpected Amazon EC2 client exception while setting up for the Lambda function.
 /// </summary>
 public sealed partial class EC2UnexpectedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda received an unexpected Amazon EC2 client exception while setting up for the Lambda function.&lt;/p&gt;
+    /// Lambda received an unexpected Amazon EC2 client exception while setting up for the Lambda function.
     /// </summary>
     public EC2UnexpectedException(
         string? message = null,

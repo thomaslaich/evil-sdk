@@ -5,18 +5,21 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the information about the bucket that will be created. For more information about
-/// directory buckets, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html&quot;&gt;Directory buckets&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the information about the bucket that will be created. For more information about
+/// directory buckets, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html">Directory
+/// buckets</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported by directory buckets.
+/// </para>
 /// </summary>
 /// <param name="DataRedundancy">
-/// &lt;p&gt;The number of Zone (Availability Zone or Local Zone) that's used for redundancy for the bucket.&lt;/p&gt;
+/// The number of Zone (Availability Zone or Local Zone) that's used for redundancy for the bucket.
 /// </param>
 /// <param name="Type">
-/// &lt;p&gt;The type of bucket.&lt;/p&gt;
+/// The type of bucket.
 /// </param>
 public sealed record class BucketInfo(
     global::Com.Amazonaws.S3.DataRedundancy? DataRedundancy = null,

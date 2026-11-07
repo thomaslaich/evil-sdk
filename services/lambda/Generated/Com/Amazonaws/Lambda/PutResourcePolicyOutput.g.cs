@@ -8,10 +8,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutResourcePolicyOutput.
 /// </summary>
 /// <param name="Policy">
-/// &lt;p&gt;The resource-based policy that Lambda adds to the resource.&lt;/p&gt;
+/// The resource-based policy that Lambda adds to the resource.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;The revision ID of the policy that Lambda adds to your Lambda resource.&lt;/p&gt;
+/// The revision ID of the policy that Lambda adds to your Lambda resource.
 /// </param>
 public sealed record class PutResourcePolicyOutput(
     string? Policy = null,

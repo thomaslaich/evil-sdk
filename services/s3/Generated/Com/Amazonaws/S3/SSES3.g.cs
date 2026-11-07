@@ -5,6 +5,6 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the use of SSE-S3 to encrypt delivered inventory reports.&lt;/p&gt;
+/// Specifies the use of SSE-S3 to encrypt delivered inventory reports.
 /// </summary>
 public sealed record class SSES3;

@@ -7,12 +7,16 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The request payload exceeded the &lt;code&gt;Invoke&lt;/code&gt; request body JSON input quota. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+/// The request payload exceeded the <c>Invoke</c> request body JSON input quota. For more information,
+/// see <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+/// quotas</see>.
 /// </summary>
 public sealed partial class RequestTooLargeException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request payload exceeded the &lt;code&gt;Invoke&lt;/code&gt; request body JSON input quota. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+    /// The request payload exceeded the <c>Invoke</c> request body JSON input quota. For more information,
+    /// see <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+    /// quotas</see>.
     /// </summary>
     public RequestTooLargeException(string? message = null, string? type = null)
         : base(message)

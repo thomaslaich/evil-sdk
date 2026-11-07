@@ -7,16 +7,16 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The
+/// A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The
 /// operator must have at least two predicates in any combination, and an object must match all of the
-/// predicates for the filter to apply.&lt;/p&gt;
+/// predicates for the filter to apply.
 /// </summary>
 /// <param name="Prefix">
-/// &lt;p&gt;The prefix to use when evaluating an AND predicate: The prefix that an object must have to be
-/// included in the metrics results.&lt;/p&gt;
+/// The prefix to use when evaluating an AND predicate: The prefix that an object must have to be
+/// included in the metrics results.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;The list of tags to use when evaluating an AND predicate.&lt;/p&gt;
+/// The list of tags to use when evaluating an AND predicate.
 /// </param>
 public sealed record class AnalyticsAndOperator(
     string? Prefix = null,

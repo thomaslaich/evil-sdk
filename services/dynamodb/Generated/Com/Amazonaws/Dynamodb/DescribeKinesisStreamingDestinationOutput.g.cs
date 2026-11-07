@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeKinesisStreamingDestinationOutput.
 /// </summary>
 /// <param name="KinesisDataStreamDestinations">
-/// &lt;p&gt;The list of replica structures for the table being described.&lt;/p&gt;
+/// The list of replica structures for the table being described.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table being described.&lt;/p&gt;
+/// The name of the table being described.
 /// </param>
 public sealed record class DescribeKinesisStreamingDestinationOutput(
     IReadOnlyList<KinesisDataStreamDestination>? KinesisDataStreamDestinations = null,

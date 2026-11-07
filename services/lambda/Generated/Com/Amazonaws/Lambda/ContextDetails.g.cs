@@ -5,16 +5,17 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a durable execution context.&lt;/p&gt;
+/// Details about a durable execution context.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the context failure.&lt;/p&gt;
+/// Details about the context failure.
 /// </param>
 /// <param name="ReplayChildren">
-/// &lt;p&gt;Whether the state data of child operations of this completed context should be included in the invoke payload and &lt;code&gt;GetDurableExecutionState&lt;/code&gt; response.&lt;/p&gt;
+/// Whether the state data of child operations of this completed context should be included in the
+/// invoke payload and <c>GetDurableExecutionState</c> response.
 /// </param>
 /// <param name="Result">
-/// &lt;p&gt;The response payload from the context.&lt;/p&gt;
+/// The response payload from the context.
 /// </param>
 public sealed record class ContextDetails(
     ErrorObject? Error = null,

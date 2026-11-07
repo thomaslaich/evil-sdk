@@ -5,13 +5,14 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains details about an error that occurred when Lambda attempted to retrieve a function's deployment package.&lt;/p&gt;
+/// Contains details about an error that occurred when Lambda attempted to retrieve a function's
+/// deployment package.
 /// </summary>
 /// <param name="ErrorCode">
-/// &lt;p&gt;The error code that identifies why Lambda failed to retrieve the deployment package.&lt;/p&gt;
+/// The error code that identifies why Lambda failed to retrieve the deployment package.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;The human-readable message that describes why Lambda failed to retrieve the deployment package.&lt;/p&gt;
+/// The human-readable message that describes why Lambda failed to retrieve the deployment package.
 /// </param>
 public sealed record class FunctionCodeLocationError(
     string? ErrorCode = null,

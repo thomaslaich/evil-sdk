@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Error code 400. Unsupported operation.&lt;/p&gt;
+/// Error code 400. Unsupported operation.
 /// </summary>
 public sealed partial class UnsupportedOperation : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Error code 400. Unsupported operation.&lt;/p&gt;
+    /// Error code 400. Unsupported operation.
     /// </summary>
     public UnsupportedOperation(string? message = null)
         : base(message) { }

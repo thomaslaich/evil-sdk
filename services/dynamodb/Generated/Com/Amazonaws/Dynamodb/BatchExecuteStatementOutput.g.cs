@@ -10,12 +10,12 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#BatchExecuteStatementOutput.
 /// </summary>
 /// <param name="ConsumedCapacity">
-/// &lt;p&gt;The capacity units consumed by the entire operation. The values of the list are
-/// ordered according to the ordering of the statements.&lt;/p&gt;
+/// The capacity units consumed by the entire operation. The values of the list are ordered according to
+/// the ordering of the statements.
 /// </param>
 /// <param name="Responses">
-/// &lt;p&gt;The response to each PartiQL statement in the batch. The values of the list are
-/// ordered according to the ordering of the request statements.&lt;/p&gt;
+/// The response to each PartiQL statement in the batch. The values of the list are ordered according to
+/// the ordering of the request statements.
 /// </param>
 public sealed record class BatchExecuteStatementOutput(
     IReadOnlyList<global::Com.Amazonaws.Dynamodb.ConsumedCapacity>? ConsumedCapacity = null,

@@ -8,13 +8,14 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutRuntimeManagementConfigOutput.
 /// </summary>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The ARN of the function&lt;/p&gt;
+/// The ARN of the function
 /// </param>
 /// <param name="UpdateRuntimeOn">
-/// &lt;p&gt;The runtime update mode.&lt;/p&gt;
+/// The runtime update mode.
 /// </param>
 /// <param name="RuntimeVersionArn">
-/// &lt;p&gt;The ARN of the runtime the function is configured to use. If the runtime update mode is &lt;b&gt;manual&lt;/b&gt;, the ARN is returned, otherwise &lt;code&gt;null&lt;/code&gt; is returned.&lt;/p&gt;
+/// The ARN of the runtime the function is configured to use. If the runtime update mode is
+/// <b>manual</b>, the ARN is returned, otherwise <c>null</c> is returned.
 /// </param>
 public sealed record class PutRuntimeManagementConfigOutput(
     string FunctionArn,

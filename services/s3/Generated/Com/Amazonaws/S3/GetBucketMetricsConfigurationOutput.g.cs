@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketMetricsConfigurationOutput.
 /// </summary>
 /// <param name="MetricsConfiguration">
-/// &lt;p&gt;Specifies the metrics configuration.&lt;/p&gt;
+/// Specifies the metrics configuration.
 /// </param>
 public sealed record class GetBucketMetricsConfigurationOutput(
     global::Com.Amazonaws.S3.MetricsConfiguration? MetricsConfiguration = null

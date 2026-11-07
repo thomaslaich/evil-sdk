@@ -7,20 +7,20 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for the objects to delete.&lt;/p&gt;
+/// Container for the objects to delete.
 /// </summary>
 /// <param name="Objects">
-/// &lt;p&gt;The object to delete.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, an object
-/// that's composed entirely of whitespace characters is not supported by the &lt;code&gt;DeleteObjects&lt;/code&gt;
-/// API operation. The request will receive a &lt;code&gt;400 Bad Request&lt;/code&gt; error and none of the objects
-/// in the request will be deleted.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The object to delete.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, an object that's composed entirely of
+/// whitespace characters is not supported by the <c>DeleteObjects</c> API operation. The request will
+/// receive a <c>400 Bad Request</c> error and none of the objects in the request will be deleted.
+/// </para>
 /// </param>
 /// <param name="Quiet">
-/// &lt;p&gt;Element to enable quiet mode for the request. When you add this element, you must set its value to
-/// &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+/// Element to enable quiet mode for the request. When you add this element, you must set its value to
+/// <c>true</c>.
 /// </param>
 public sealed record class Delete(IReadOnlyList<ObjectIdentifier> Objects, bool? Quiet = null);

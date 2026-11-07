@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The trade-in token provided in the request has expired and can no longer be exchanged
-/// for credentials. Request a new token and retry the operation.&lt;/p&gt;
+/// The trade-in token provided in the request has expired and can no longer be exchanged for
+/// credentials. Request a new token and retry the operation.
 /// </summary>
 public sealed partial class ExpiredTradeInTokenException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The trade-in token provided in the request has expired and can no longer be exchanged
-    /// for credentials. Request a new token and retry the operation.&lt;/p&gt;
+    /// The trade-in token provided in the request has expired and can no longer be exchanged for
+    /// credentials. Request a new token and retry the operation.
     /// </summary>
     public ExpiredTradeInTokenException(string? message = null)
         : base(message) { }

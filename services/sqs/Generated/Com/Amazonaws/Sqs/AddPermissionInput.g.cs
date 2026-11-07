@@ -7,33 +7,44 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="AWSAccountIds">
-/// &lt;p&gt;The Amazon Web Services account numbers of the &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P&quot;&gt;principals&lt;/a&gt; who are to receive
-/// permission. For information about locating the Amazon Web Services account identification, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html#sqs-api-request-authentication&quot;&gt;Your Amazon Web Services Identifiers&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Amazon Web Services account numbers of the
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P">principals</see> who are
+/// to receive permission. For information about locating the Amazon Web Services account
+/// identification, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html#sqs-api-request-authentication">Your
+/// Amazon Web Services Identifiers</see> in the <i>Amazon SQS Developer Guide</i>.
 /// </param>
 /// <param name="Actions">
-/// &lt;p&gt;The action the client wants to allow for the specified principal. Valid values: the
-/// name of any action or &lt;code&gt;*&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For more information about these actions, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-overview-of-managing-access.html&quot;&gt;Overview of Managing Access Permissions to Your Amazon Simple Queue Service
-/// Resource&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;Specifying &lt;code&gt;SendMessage&lt;/code&gt;, &lt;code&gt;DeleteMessage&lt;/code&gt;, or
-/// &lt;code&gt;ChangeMessageVisibility&lt;/code&gt; for &lt;code&gt;ActionName.n&lt;/code&gt; also grants
-/// permissions for the corresponding batch versions of those actions:
-/// &lt;code&gt;SendMessageBatch&lt;/code&gt;, &lt;code&gt;DeleteMessageBatch&lt;/code&gt;, and
-/// &lt;code&gt;ChangeMessageVisibilityBatch&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// The action the client wants to allow for the specified principal. Valid values: the name of any
+/// action or <c>*</c>.
+/// </para>
+/// <para>
+/// For more information about these actions, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-overview-of-managing-access.html">Overview
+/// of Managing Access Permissions to Your Amazon Simple Queue Service Resource</see> in the <i>Amazon
+/// SQS Developer Guide</i>.
+/// </para>
+/// <para>
+/// Specifying <c>SendMessage</c>, <c>DeleteMessage</c>, or <c>ChangeMessageVisibility</c> for
+/// <c>ActionName.n</c> also grants permissions for the corresponding batch versions of those actions:
+/// <c>SendMessageBatch</c>, <c>DeleteMessageBatch</c>, and <c>ChangeMessageVisibilityBatch</c>.
+/// </para>
 /// </param>
 /// <param name="Label">
-/// &lt;p&gt;The unique identification of the permission you're setting (for example,
-/// &lt;code&gt;AliceSendMessage&lt;/code&gt;). Maximum 80 characters. Allowed characters include
-/// alphanumeric characters, hyphens (&lt;code&gt;-&lt;/code&gt;), and underscores
-/// (&lt;code&gt;_&lt;/code&gt;).&lt;/p&gt;
+/// The unique identification of the permission you're setting (for example, <c>AliceSendMessage</c>).
+/// Maximum 80 characters. Allowed characters include alphanumeric characters, hyphens (<c>-</c>), and
+/// underscores (<c>_</c>).
 /// </param>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue to which permissions are added.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue to which permissions are added.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 public sealed record class AddPermissionInput(
     IReadOnlyList<string> AWSAccountIds,

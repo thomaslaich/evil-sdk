@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;There is another ongoing conflicting backup control plane operation on the table.
-/// The backup is either being created, deleted or restored to a table.&lt;/p&gt;
+/// There is another ongoing conflicting backup control plane operation on the table. The backup is
+/// either being created, deleted or restored to a table.
 /// </summary>
 public sealed partial class BackupInUseException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;There is another ongoing conflicting backup control plane operation on the table.
-    /// The backup is either being created, deleted or restored to a table.&lt;/p&gt;
+    /// There is another ongoing conflicting backup control plane operation on the table. The backup is
+    /// either being created, deleted or restored to a table.
     /// </summary>
     public BackupInUseException(string? message = null)
         : base(message) { }

@@ -10,16 +10,16 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketWebsiteOutput.
 /// </summary>
 /// <param name="ErrorDocument">
-/// &lt;p&gt;The object key name of the website error document to use for 4XX class errors.&lt;/p&gt;
+/// The object key name of the website error document to use for 4XX class errors.
 /// </param>
 /// <param name="IndexDocument">
-/// &lt;p&gt;The name of the index document for the website (for example &lt;code&gt;index.html&lt;/code&gt;).&lt;/p&gt;
+/// The name of the index document for the website (for example <c>index.html</c>).
 /// </param>
 /// <param name="RedirectAllRequestsTo">
-/// &lt;p&gt;Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.&lt;/p&gt;
+/// Specifies the redirect behavior of all requests to a website endpoint of an Amazon S3 bucket.
 /// </param>
 /// <param name="RoutingRules">
-/// &lt;p&gt;Rules that define when a redirect is applied and the redirect behavior.&lt;/p&gt;
+/// Rules that define when a redirect is applied and the redirect behavior.
 /// </param>
 public sealed record class GetBucketWebsiteOutput(
     global::Com.Amazonaws.S3.ErrorDocument? ErrorDocument = null,

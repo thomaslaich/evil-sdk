@@ -7,23 +7,14 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;For each message in the batch, the response contains a &lt;code&gt;
-/// &lt;a&gt;DeleteMessageBatchResultEntry&lt;/a&gt;
-/// &lt;/code&gt; tag if the message is deleted
-/// or a &lt;code&gt;
-/// &lt;a&gt;BatchResultErrorEntry&lt;/a&gt;
-/// &lt;/code&gt; tag if the message can't be
-/// deleted.&lt;/p&gt;
+/// For each message in the batch, the response contains a <c> DeleteMessageBatchResultEntry </c> tag if
+/// the message is deleted or a <c> BatchResultErrorEntry </c> tag if the message can't be deleted.
 /// </summary>
 /// <param name="Failed">
-/// &lt;p&gt;A list of &lt;code&gt;
-/// &lt;a&gt;BatchResultErrorEntry&lt;/a&gt;
-/// &lt;/code&gt; items.&lt;/p&gt;
+/// A list of <c> BatchResultErrorEntry </c> items.
 /// </param>
 /// <param name="Successful">
-/// &lt;p&gt;A list of &lt;code&gt;
-/// &lt;a&gt;DeleteMessageBatchResultEntry&lt;/a&gt;
-/// &lt;/code&gt; items.&lt;/p&gt;
+/// A list of <c> DeleteMessageBatchResultEntry </c> items.
 /// </param>
 public sealed record class DeleteMessageBatchOutput(
     IReadOnlyList<BatchResultErrorEntry> Failed,

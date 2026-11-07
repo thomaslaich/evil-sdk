@@ -8,23 +8,25 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Throughput exceeds the current throughput quota for your account. For detailed
-/// information about why the request was throttled and the ARN of the impacted resource,
-/// find the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; field in the returned exception. Contact &lt;a href=&quot;https://aws.amazon.com/support&quot;&gt;Amazon Web Services Support&lt;/a&gt; to request a quota
-/// increase.&lt;/p&gt;
+/// Throughput exceeds the current throughput quota for your account. For detailed information about why
+/// the request was throttled and the ARN of the impacted resource, find the
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+/// field in the returned exception. Contact <see href="https://aws.amazon.com/support">Amazon Web
+/// Services Support</see> to request a quota increase.
 /// </summary>
 public sealed partial class RequestLimitExceeded : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Throughput exceeds the current throughput quota for your account. For detailed
-    /// information about why the request was throttled and the ARN of the impacted resource,
-    /// find the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; field in the returned exception. Contact &lt;a href=&quot;https://aws.amazon.com/support&quot;&gt;Amazon Web Services Support&lt;/a&gt; to request a quota
-    /// increase.&lt;/p&gt;
+    /// Throughput exceeds the current throughput quota for your account. For detailed information about why
+    /// the request was throttled and the ARN of the impacted resource, find the
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// field in the returned exception. Contact <see href="https://aws.amazon.com/support">Amazon Web
+    /// Services Support</see> to request a quota increase.
     /// </summary>
     /// <param name="throttlingReasons">
-    /// &lt;p&gt;A list of &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; that
-    /// provide detailed diagnostic information about why the request was throttled.
-    /// &lt;/p&gt;
+    /// A list of
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// that provide detailed diagnostic information about why the request was throttled.
     /// </param>
     public RequestLimitExceeded(
         string? message = null,
@@ -38,9 +40,9 @@ public sealed partial class RequestLimitExceeded : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;A list of &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; that
-    /// provide detailed diagnostic information about why the request was throttled.
-    /// &lt;/p&gt;
+    /// A list of
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// that provide detailed diagnostic information about why the request was throttled.
     /// </summary>
     public IReadOnlyList<ThrottlingReason>? ThrottlingReasons { get; }
 }

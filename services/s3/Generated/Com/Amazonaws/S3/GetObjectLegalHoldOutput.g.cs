@@ -8,6 +8,6 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectLegalHoldOutput.
 /// </summary>
 /// <param name="LegalHold">
-/// &lt;p&gt;The current legal hold status for the specified object.&lt;/p&gt;
+/// The current legal hold status for the specified object.
 /// </param>
 public sealed record class GetObjectLegalHoldOutput(ObjectLockLegalHold? LegalHold = null);

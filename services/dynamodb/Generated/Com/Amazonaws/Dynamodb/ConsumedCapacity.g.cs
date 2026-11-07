@@ -7,40 +7,38 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The capacity units consumed by an operation. The data returned includes the total
-/// provisioned throughput consumed, along with statistics for the table and any indexes
-/// involved in the operation. &lt;code&gt;ConsumedCapacity&lt;/code&gt; is only returned if the request
-/// asked for it. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html&quot;&gt;Provisioned capacity mode&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// The capacity units consumed by an operation. The data returned includes the total provisioned
+/// throughput consumed, along with statistics for the table and any indexes involved in the operation.
+/// <c>ConsumedCapacity</c> is only returned if the request asked for it. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html">Provisioned
+/// capacity mode</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </summary>
 /// <param name="CapacityUnits">
-/// &lt;p&gt;The total number of capacity units consumed by the operation.&lt;/p&gt;
+/// The total number of capacity units consumed by the operation.
 /// </param>
 /// <param name="GlobalSecondaryIndexes">
-/// &lt;p&gt;The amount of throughput consumed on each global index affected by the
-/// operation.&lt;/p&gt;
+/// The amount of throughput consumed on each global index affected by the operation.
 /// </param>
 /// <param name="LocalSecondaryIndexes">
-/// &lt;p&gt;The amount of throughput consumed on each local index affected by the
-/// operation.&lt;/p&gt;
+/// The amount of throughput consumed on each local index affected by the operation.
 /// </param>
 /// <param name="ReadCapacityUnits">
-/// &lt;p&gt;The total number of read capacity units consumed by the operation.&lt;/p&gt;
+/// The total number of read capacity units consumed by the operation.
 /// </param>
 /// <param name="Table">
-/// &lt;p&gt;The amount of throughput consumed on the table affected by the operation.&lt;/p&gt;
+/// The amount of throughput consumed on the table affected by the operation.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table that was affected by the operation. If you had specified the
-/// Amazon Resource Name (ARN) of a table in the input, you'll see the table ARN in the response.&lt;/p&gt;
+/// The name of the table that was affected by the operation. If you had specified the Amazon Resource
+/// Name (ARN) of a table in the input, you'll see the table ARN in the response.
 /// </param>
 /// <param name="VectorIndexes">
-/// &lt;p&gt;The amount of throughput consumed on each vector index affected by the operation.
-/// Each entry contains &lt;code&gt;VectorWriteRequestBytes&lt;/code&gt; (for write operations) or
-/// &lt;code&gt;VectorSearchRequestBytes&lt;/code&gt; (for search operations).&lt;/p&gt;
+/// The amount of throughput consumed on each vector index affected by the operation. Each entry
+/// contains <c>VectorWriteRequestBytes</c> (for write operations) or <c>VectorSearchRequestBytes</c>
+/// (for search operations).
 /// </param>
 /// <param name="WriteCapacityUnits">
-/// &lt;p&gt;The total number of write capacity units consumed by the operation.&lt;/p&gt;
+/// The total number of write capacity units consumed by the operation.
 /// </param>
 public sealed record class ConsumedCapacity(
     double? CapacityUnits = null,

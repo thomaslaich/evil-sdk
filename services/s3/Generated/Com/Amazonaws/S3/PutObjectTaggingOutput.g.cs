@@ -8,6 +8,6 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectTaggingOutput.
 /// </summary>
 /// <param name="VersionId">
-/// &lt;p&gt;The versionId of the object the tag-set was added to.&lt;/p&gt;
+/// The versionId of the object the tag-set was added to.
 /// </param>
 public sealed record class PutObjectTaggingOutput(string? VersionId = null);

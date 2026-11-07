@@ -5,21 +5,24 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The &lt;code&gt;Filter&lt;/code&gt; is used to identify objects that the S3 Intelligent-Tiering configuration
-/// applies to.&lt;/p&gt;
+/// The <c>Filter</c> is used to identify objects that the S3 Intelligent-Tiering configuration applies
+/// to.
 /// </summary>
 /// <param name="And">
-/// &lt;p&gt;A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The
-/// operator must have at least two predicates, and an object must match all of the predicates in order for
-/// the filter to apply.&lt;/p&gt;
+/// A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The
+/// operator must have at least two predicates, and an object must match all of the predicates in order
+/// for the filter to apply.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;An object key name prefix that identifies the subset of objects to which the rule applies.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// An object key name prefix that identifies the subset of objects to which the rule applies.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 public sealed record class IntelligentTieringFilter(
     IntelligentTieringAndOperator? And = null,

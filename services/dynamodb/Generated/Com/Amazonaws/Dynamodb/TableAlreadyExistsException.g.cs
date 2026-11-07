@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A target table with the specified name already exists. &lt;/p&gt;
+/// A target table with the specified name already exists.
 /// </summary>
 public sealed partial class TableAlreadyExistsException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;A target table with the specified name already exists. &lt;/p&gt;
+    /// A target table with the specified name already exists.
     /// </summary>
     public TableAlreadyExistsException(string? message = null)
         : base(message) { }

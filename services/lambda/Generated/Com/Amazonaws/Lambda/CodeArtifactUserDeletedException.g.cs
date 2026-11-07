@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function couldn't be invoked because its code artifact user has been deleted. Wait for Lambda to provision a new code artifact user, or update the function's code package to recreate it.&lt;/p&gt;
+/// The Lambda function couldn't be invoked because its code artifact user has been deleted. Wait for
+/// Lambda to provision a new code artifact user, or update the function's code package to recreate it.
 /// </summary>
 public sealed partial class CodeArtifactUserDeletedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function couldn't be invoked because its code artifact user has been deleted. Wait for Lambda to provision a new code artifact user, or update the function's code package to recreate it.&lt;/p&gt;
+    /// The Lambda function couldn't be invoked because its code artifact user has been deleted. Wait for
+    /// Lambda to provision a new code artifact user, or update the function's code package to recreate it.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public CodeArtifactUserDeletedException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +29,12 @@ public sealed partial class CodeArtifactUserDeletedException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

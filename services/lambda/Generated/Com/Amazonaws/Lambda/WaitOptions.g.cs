@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Specifies how long to pause the durable execution.&lt;/p&gt;
+/// Specifies how long to pause the durable execution.
 /// </summary>
 /// <param name="WaitSeconds">
-/// &lt;p&gt;The duration to wait, in seconds.&lt;/p&gt;
+/// The duration to wait, in seconds.
 /// </param>
 public sealed record class WaitOptions(int? WaitSeconds = null);

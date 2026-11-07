@@ -7,253 +7,318 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of a &lt;code&gt;Scan&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of a <c>Scan</c> operation.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table containing the requested items or if you provide
-/// &lt;code&gt;IndexName&lt;/code&gt;, the name of the table to which that index belongs.&lt;/p&gt;
-/// &lt;p&gt;You can also provide the Amazon Resource Name (ARN) of the table in this parameter.&lt;/p&gt;
+/// <para>
+/// The name of the table containing the requested items or if you provide <c>IndexName</c>, the name of
+/// the table to which that index belongs.
+/// </para>
+/// <para>
+/// You can also provide the Amazon Resource Name (ARN) of the table in this parameter.
+/// </para>
 /// </param>
 /// <param name="AttributesToGet">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;ProjectionExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html&quot;&gt;AttributesToGet&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>ProjectionExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ConditionalOperator">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;FilterExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html&quot;&gt;ConditionalOperator&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>FilterExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ConsistentRead">
-/// &lt;p&gt;A Boolean value that determines the read consistency model during the scan:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If &lt;code&gt;ConsistentRead&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;, then the data returned
-/// from &lt;code&gt;Scan&lt;/code&gt; might not contain the results from other recently
-/// completed write operations (&lt;code&gt;PutItem&lt;/code&gt;, &lt;code&gt;UpdateItem&lt;/code&gt;, or
-/// &lt;code&gt;DeleteItem&lt;/code&gt;).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If &lt;code&gt;ConsistentRead&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;, then all of the write
-/// operations that completed before the &lt;code&gt;Scan&lt;/code&gt; began are guaranteed to
-/// be contained in the &lt;code&gt;Scan&lt;/code&gt; response.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;The default setting for &lt;code&gt;ConsistentRead&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;The &lt;code&gt;ConsistentRead&lt;/code&gt; parameter is not supported on global secondary
-/// indexes. If you scan a global secondary index with &lt;code&gt;ConsistentRead&lt;/code&gt; set to
-/// true, you will receive a &lt;code&gt;ValidationException&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// A Boolean value that determines the read consistency model during the scan:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// If <c>ConsistentRead</c> is <c>false</c>, then the data returned from <c>Scan</c> might not contain
+/// the results from other recently completed write operations (<c>PutItem</c>, <c>UpdateItem</c>, or
+/// <c>DeleteItem</c>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// If <c>ConsistentRead</c> is <c>true</c>, then all of the write operations that completed before the
+/// <c>Scan</c> began are guaranteed to be contained in the <c>Scan</c> response.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The default setting for <c>ConsistentRead</c> is <c>false</c>.
+/// </para>
+/// <para>
+/// The <c>ConsistentRead</c> parameter is not supported on global secondary indexes. If you scan a
+/// global secondary index with <c>ConsistentRead</c> set to true, you will receive a
+/// <c>ValidationException</c>.
+/// </para>
 /// </param>
 /// <param name="ExclusiveStartKey">
-/// &lt;p&gt;The primary key of the first item that this operation will evaluate. Use the value
-/// that was returned for &lt;code&gt;LastEvaluatedKey&lt;/code&gt; in the previous operation.&lt;/p&gt;
-/// &lt;p&gt;The data type for &lt;code&gt;ExclusiveStartKey&lt;/code&gt; must be String, Number or Binary. No
-/// set data types are allowed.&lt;/p&gt;
-/// &lt;p&gt;In a parallel scan, a &lt;code&gt;Scan&lt;/code&gt; request that includes
-/// &lt;code&gt;ExclusiveStartKey&lt;/code&gt; must specify the same segment whose previous
-/// &lt;code&gt;Scan&lt;/code&gt; returned the corresponding value of
-/// &lt;code&gt;LastEvaluatedKey&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// The primary key of the first item that this operation will evaluate. Use the value that was returned
+/// for <c>LastEvaluatedKey</c> in the previous operation.
+/// </para>
+/// <para>
+/// The data type for <c>ExclusiveStartKey</c> must be String, Number or Binary. No set data types are
+/// allowed.
+/// </para>
+/// <para>
+/// In a parallel scan, a <c>Scan</c> request that includes <c>ExclusiveStartKey</c> must specify the
+/// same segment whose previous <c>Scan</c> returned the corresponding value of <c>LastEvaluatedKey</c>.
+/// </para>
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression. The following
-/// are some use cases for using &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To access an attribute whose name conflicts with a DynamoDB reserved
-/// word.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To create a placeholder for repeating occurrences of an attribute name in an
-/// expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To prevent special characters in an attribute name from being misinterpreted
-/// in an expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;Use the &lt;b&gt;#&lt;/b&gt; character in an expression to dereference
-/// an attribute name. For example, consider the following attribute name:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Percentile&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;The name of this attribute conflicts with a reserved word, so it cannot be used
-/// directly in an expression. (For the complete list of reserved words, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html&quot;&gt;Reserved Words&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;). To work around this, you could specify the following for
-/// &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;{&quot;#P&quot;:&quot;Percentile&quot;}&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;You could then use this substitution in an expression, as in this example:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;#P = :val&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Tokens that begin with the &lt;b&gt;:&lt;/b&gt; character are
-/// &lt;i&gt;expression attribute values&lt;/i&gt;, which are placeholders for the
-/// actual value at runtime.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For more information on expression attribute names, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html&quot;&gt;Specifying Item Attributes&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// One or more substitution tokens for attribute names in an expression. The following are some use
+/// cases for using <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// To access an attribute whose name conflicts with a DynamoDB reserved word.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To create a placeholder for repeating occurrences of an attribute name in an expression.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To prevent special characters in an attribute name from being misinterpreted in an expression.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Use the <b>#</b> character in an expression to dereference an attribute name. For example, consider
+/// the following attribute name:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>Percentile</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The name of this attribute conflicts with a reserved word, so it cannot be used directly in an
+/// expression. (For the complete list of reserved words, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+/// Words</see> in the <i>Amazon DynamoDB Developer Guide</i>). To work around this, you could specify
+/// the following for <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>{"#P":"Percentile"}</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You could then use this substitution in an expression, as in this example:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>#P = :val</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> Tokens that begin with the <b>:</b> character are <i>expression attribute values</i>,
+/// which are placeholders for the actual value at runtime.
+/// </para>
+/// <para>
+/// For more information on expression attribute names, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Specifying
+/// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression.&lt;/p&gt;
-/// &lt;p&gt;Use the &lt;b&gt;:&lt;/b&gt; (colon) character in an expression to
-/// dereference an attribute value. For example, suppose that you wanted to check whether
-/// the value of the &lt;code&gt;ProductStatus&lt;/code&gt; attribute was one of the following: &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Available | Backordered | Discontinued&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;You would first need to specify &lt;code&gt;ExpressionAttributeValues&lt;/code&gt; as
-/// follows:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;{ &quot;:avail&quot;:{&quot;S&quot;:&quot;Available&quot;}, &quot;:back&quot;:{&quot;S&quot;:&quot;Backordered&quot;},
-/// &quot;:disc&quot;:{&quot;S&quot;:&quot;Discontinued&quot;} }&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;You could then use these values in an expression, such as this:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProductStatus IN (:avail, :back, :disc)&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;For more information on expression attribute values, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html&quot;&gt;Condition Expressions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// One or more values that can be substituted in an expression.
+/// </para>
+/// <para>
+/// Use the <b>:</b> (colon) character in an expression to dereference an attribute value. For example,
+/// suppose that you wanted to check whether the value of the <c>ProductStatus</c> attribute was one of
+/// the following:
+/// </para>
+/// <para>
+/// <c>Available | Backordered | Discontinued</c>
+/// </para>
+/// <para>
+/// You would first need to specify <c>ExpressionAttributeValues</c> as follows:
+/// </para>
+/// <para>
+/// <c>{ ":avail":{"S":"Available"}, ":back":{"S":"Backordered"}, ":disc":{"S":"Discontinued"} }</c>
+/// </para>
+/// <para>
+/// You could then use these values in an expression, such as this:
+/// </para>
+/// <para>
+/// <c>ProductStatus IN (:avail, :back, :disc)</c>
+/// </para>
+/// <para>
+/// For more information on expression attribute values, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Condition
+/// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="FilterExpression">
-/// &lt;p&gt;A string that contains conditions that DynamoDB applies after the &lt;code&gt;Scan&lt;/code&gt;
-/// operation, but before the data is returned to you. Items that do not satisfy the
-/// &lt;code&gt;FilterExpression&lt;/code&gt; criteria are not returned.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;A &lt;code&gt;FilterExpression&lt;/code&gt; is applied after the items have already been read;
-/// the process of filtering does not consume any additional read capacity units.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.FilterExpression&quot;&gt;Filter
-/// Expressions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// A string that contains conditions that DynamoDB applies after the <c>Scan</c> operation, but before
+/// the data is returned to you. Items that do not satisfy the <c>FilterExpression</c> criteria are not
+/// returned.
+/// </para>
+/// <para>
+/// <b>Note:</b> A <c>FilterExpression</c> is applied after the items have already been read; the
+/// process of filtering does not consume any additional read capacity units.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.FilterExpression">Filter
+/// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of a secondary index to scan. This index can be any local secondary index or
-/// global secondary index. Note that if you use the &lt;code&gt;IndexName&lt;/code&gt; parameter, you
-/// must also provide &lt;code&gt;TableName&lt;/code&gt;.&lt;/p&gt;
+/// The name of a secondary index to scan. This index can be any local secondary index or global
+/// secondary index. Note that if you use the <c>IndexName</c> parameter, you must also provide
+/// <c>TableName</c>.
 /// </param>
 /// <param name="Limit">
-/// &lt;p&gt;The maximum number of items to evaluate (not necessarily the number of matching
-/// items). If DynamoDB processes the number of items up to the limit while processing the
-/// results, it stops the operation and returns the matching values up to that point, and a
-/// key in &lt;code&gt;LastEvaluatedKey&lt;/code&gt; to apply in a subsequent operation, so that you can
-/// pick up where you left off. Also, if the processed dataset size exceeds 1 MB before
-/// DynamoDB reaches this limit, it stops the operation and returns the matching values up
-/// to the limit, and a key in &lt;code&gt;LastEvaluatedKey&lt;/code&gt; to apply in a subsequent
-/// operation to continue the operation. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html&quot;&gt;Working with Queries&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// The maximum number of items to evaluate (not necessarily the number of matching items). If DynamoDB
+/// processes the number of items up to the limit while processing the results, it stops the operation
+/// and returns the matching values up to that point, and a key in <c>LastEvaluatedKey</c> to apply in a
+/// subsequent operation, so that you can pick up where you left off. Also, if the processed dataset
+/// size exceeds 1 MB before DynamoDB reaches this limit, it stops the operation and returns the
+/// matching values up to the limit, and a key in <c>LastEvaluatedKey</c> to apply in a subsequent
+/// operation to continue the operation. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html">Working
+/// with Queries</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ProjectionExpression">
-/// &lt;p&gt;A string that identifies one or more attributes to retrieve from the specified table
-/// or index. These attributes can include scalars, sets, or elements of a JSON document.
-/// The attributes in the expression must be separated by commas.&lt;/p&gt;
-/// &lt;p&gt;If no attribute names are specified, then all attributes will be returned. If any of
-/// the requested attributes are not found, they will not appear in the result.&lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html&quot;&gt;Specifying Item Attributes&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// A string that identifies one or more attributes to retrieve from the specified table or index. These
+/// attributes can include scalars, sets, or elements of a JSON document. The attributes in the
+/// expression must be separated by commas.
+/// </para>
+/// <para>
+/// If no attribute names are specified, then all attributes will be returned. If any of the requested
+/// attributes are not found, they will not appear in the result.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Specifying
+/// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ScanFilter">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;FilterExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html&quot;&gt;ScanFilter&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>FilterExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="Segment">
-/// &lt;p&gt;For a parallel &lt;code&gt;Scan&lt;/code&gt; request, &lt;code&gt;Segment&lt;/code&gt; identifies an
-/// individual segment to be scanned by an application worker.&lt;/p&gt;
-/// &lt;p&gt;Segment IDs are zero-based, so the first segment is always 0. For example, if you want
-/// to use four application threads to scan a table or an index, then the first thread
-/// specifies a &lt;code&gt;Segment&lt;/code&gt; value of 0, the second thread specifies 1, and so
-/// on.&lt;/p&gt;
-/// &lt;p&gt;The value of &lt;code&gt;LastEvaluatedKey&lt;/code&gt; returned from a parallel &lt;code&gt;Scan&lt;/code&gt;
-/// request must be used as &lt;code&gt;ExclusiveStartKey&lt;/code&gt; with the same segment ID in a
-/// subsequent &lt;code&gt;Scan&lt;/code&gt; operation.&lt;/p&gt;
-/// &lt;p&gt;The value for &lt;code&gt;Segment&lt;/code&gt; must be greater than or equal to 0, and less than
-/// the value provided for &lt;code&gt;TotalSegments&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;If you provide &lt;code&gt;Segment&lt;/code&gt;, you must also provide
-/// &lt;code&gt;TotalSegments&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// For a parallel <c>Scan</c> request, <c>Segment</c> identifies an individual segment to be scanned by
+/// an application worker.
+/// </para>
+/// <para>
+/// Segment IDs are zero-based, so the first segment is always 0. For example, if you want to use four
+/// application threads to scan a table or an index, then the first thread specifies a <c>Segment</c>
+/// value of 0, the second thread specifies 1, and so on.
+/// </para>
+/// <para>
+/// The value of <c>LastEvaluatedKey</c> returned from a parallel <c>Scan</c> request must be used as
+/// <c>ExclusiveStartKey</c> with the same segment ID in a subsequent <c>Scan</c> operation.
+/// </para>
+/// <para>
+/// The value for <c>Segment</c> must be greater than or equal to 0, and less than the value provided
+/// for <c>TotalSegments</c>.
+/// </para>
+/// <para>
+/// If you provide <c>Segment</c>, you must also provide <c>TotalSegments</c>.
+/// </para>
 /// </param>
 /// <param name="Select">
-/// &lt;p&gt;The attributes to be returned in the result. You can retrieve all item attributes,
-/// specific item attributes, the count of matching items, or in the case of an index, some
-/// or all of the attributes projected into the index.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL_ATTRIBUTES&lt;/code&gt; - Returns all of the item attributes from the
-/// specified table or index. If you query a local secondary index, then for each
-/// matching item in the index, DynamoDB fetches the entire item from the parent
-/// table. If the index is configured to project all item attributes, then all of
-/// the data can be obtained from the local secondary index, and no fetching is
-/// required.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL_PROJECTED_ATTRIBUTES&lt;/code&gt; - Allowed only when querying an index.
-/// Retrieves all attributes that have been projected into the index. If the index
-/// is configured to project all attributes, this return value is equivalent to
-/// specifying &lt;code&gt;ALL_ATTRIBUTES&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;COUNT&lt;/code&gt; - Returns the number of matching items, rather than the
-/// matching items themselves. Note that this uses the same quantity of read
-/// capacity units as getting the items, and is subject to the same item size
-/// calculations.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SPECIFIC_ATTRIBUTES&lt;/code&gt; - Returns only the attributes listed in
-/// &lt;code&gt;ProjectionExpression&lt;/code&gt;. This return value is equivalent to
-/// specifying &lt;code&gt;ProjectionExpression&lt;/code&gt; without specifying any value for
-/// &lt;code&gt;Select&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;If you query or scan a local secondary index and request only attributes that
-/// are projected into that index, the operation reads only the index and not the
-/// table. If any of the requested attributes are not projected into the local
-/// secondary index, DynamoDB fetches each of these attributes from the parent
-/// table. This extra fetching incurs additional throughput cost and latency.&lt;/p&gt;
-/// &lt;p&gt;If you query or scan a global secondary index, you can only request attributes
-/// that are projected into the index. Global secondary index queries cannot fetch
-/// attributes from the parent table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;If neither &lt;code&gt;Select&lt;/code&gt; nor &lt;code&gt;ProjectionExpression&lt;/code&gt; are specified,
-/// DynamoDB defaults to &lt;code&gt;ALL_ATTRIBUTES&lt;/code&gt; when accessing a table, and
-/// &lt;code&gt;ALL_PROJECTED_ATTRIBUTES&lt;/code&gt; when accessing an index. You cannot use both
-/// &lt;code&gt;Select&lt;/code&gt; and &lt;code&gt;ProjectionExpression&lt;/code&gt; together in a single
-/// request, unless the value for &lt;code&gt;Select&lt;/code&gt; is &lt;code&gt;SPECIFIC_ATTRIBUTES&lt;/code&gt;.
-/// (This usage is equivalent to specifying &lt;code&gt;ProjectionExpression&lt;/code&gt; without any
-/// value for &lt;code&gt;Select&lt;/code&gt;.)&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;If you use the &lt;code&gt;ProjectionExpression&lt;/code&gt; parameter, then the value for
-/// &lt;code&gt;Select&lt;/code&gt; can only be &lt;code&gt;SPECIFIC_ATTRIBUTES&lt;/code&gt;. Any other
-/// value for &lt;code&gt;Select&lt;/code&gt; will return an error.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The attributes to be returned in the result. You can retrieve all item attributes, specific item
+/// attributes, the count of matching items, or in the case of an index, some or all of the attributes
+/// projected into the index.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ALL_ATTRIBUTES</c> - Returns all of the item attributes from the specified table or index. If you
+/// query a local secondary index, then for each matching item in the index, DynamoDB fetches the entire
+/// item from the parent table. If the index is configured to project all item attributes, then all of
+/// the data can be obtained from the local secondary index, and no fetching is required.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL_PROJECTED_ATTRIBUTES</c> - Allowed only when querying an index. Retrieves all attributes that
+/// have been projected into the index. If the index is configured to project all attributes, this
+/// return value is equivalent to specifying <c>ALL_ATTRIBUTES</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>COUNT</c> - Returns the number of matching items, rather than the matching items themselves. Note
+/// that this uses the same quantity of read capacity units as getting the items, and is subject to the
+/// same item size calculations.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>SPECIFIC_ATTRIBUTES</c> - Returns only the attributes listed in <c>ProjectionExpression</c>. This
+/// return value is equivalent to specifying <c>ProjectionExpression</c> without specifying any value
+/// for <c>Select</c>.
+/// </para>
+/// <para>
+/// If you query or scan a local secondary index and request only attributes that are projected into
+/// that index, the operation reads only the index and not the table. If any of the requested attributes
+/// are not projected into the local secondary index, DynamoDB fetches each of these attributes from the
+/// parent table. This extra fetching incurs additional throughput cost and latency.
+/// </para>
+/// <para>
+/// If you query or scan a global secondary index, you can only request attributes that are projected
+/// into the index. Global secondary index queries cannot fetch attributes from the parent table.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// If neither <c>Select</c> nor <c>ProjectionExpression</c> are specified, DynamoDB defaults to
+/// <c>ALL_ATTRIBUTES</c> when accessing a table, and <c>ALL_PROJECTED_ATTRIBUTES</c> when accessing an
+/// index. You cannot use both <c>Select</c> and <c>ProjectionExpression</c> together in a single
+/// request, unless the value for <c>Select</c> is <c>SPECIFIC_ATTRIBUTES</c>. (This usage is equivalent
+/// to specifying <c>ProjectionExpression</c> without any value for <c>Select</c>.)
+/// </para>
+/// <para>
+/// <b>Note:</b> If you use the <c>ProjectionExpression</c> parameter, then the value for <c>Select</c>
+/// can only be <c>SPECIFIC_ATTRIBUTES</c>. Any other value for <c>Select</c> will return an error.
+/// </para>
 /// </param>
 /// <param name="TotalSegments">
-/// &lt;p&gt;For a parallel &lt;code&gt;Scan&lt;/code&gt; request, &lt;code&gt;TotalSegments&lt;/code&gt; represents the
-/// total number of segments into which the &lt;code&gt;Scan&lt;/code&gt; operation will be divided. The
-/// value of &lt;code&gt;TotalSegments&lt;/code&gt; corresponds to the number of application workers
-/// that will perform the parallel scan. For example, if you want to use four application
-/// threads to scan a table or an index, specify a &lt;code&gt;TotalSegments&lt;/code&gt; value of
-/// 4.&lt;/p&gt;
-/// &lt;p&gt;The value for &lt;code&gt;TotalSegments&lt;/code&gt; must be greater than or equal to 1, and less
-/// than or equal to 1000000. If you specify a &lt;code&gt;TotalSegments&lt;/code&gt; value of 1, the
-/// &lt;code&gt;Scan&lt;/code&gt; operation will be sequential rather than parallel.&lt;/p&gt;
-/// &lt;p&gt;If you specify &lt;code&gt;TotalSegments&lt;/code&gt;, you must also specify
-/// &lt;code&gt;Segment&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// For a parallel <c>Scan</c> request, <c>TotalSegments</c> represents the total number of segments
+/// into which the <c>Scan</c> operation will be divided. The value of <c>TotalSegments</c> corresponds
+/// to the number of application workers that will perform the parallel scan. For example, if you want
+/// to use four application threads to scan a table or an index, specify a <c>TotalSegments</c> value of
+/// 4.
+/// </para>
+/// <para>
+/// The value for <c>TotalSegments</c> must be greater than or equal to 1, and less than or equal to
+/// 1000000. If you specify a <c>TotalSegments</c> value of 1, the <c>Scan</c> operation will be
+/// sequential rather than parallel.
+/// </para>
+/// <para>
+/// If you specify <c>TotalSegments</c>, you must also specify <c>Segment</c>.
+/// </para>
 /// </param>
 public sealed record class ScanInput(
     string TableName,

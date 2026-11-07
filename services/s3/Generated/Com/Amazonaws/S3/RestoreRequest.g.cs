@@ -5,42 +5,50 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for restore job parameters.&lt;/p&gt;
+/// Container for restore job parameters.
 /// </summary>
 /// <param name="Days">
-/// &lt;p&gt;Lifetime of the active copy in days. Do not use with restores that specify
-/// &lt;code&gt;OutputLocation&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;The Days element is required for regular restores, and must not be provided for select
-/// requests.&lt;/p&gt;
+/// <para>
+/// Lifetime of the active copy in days. Do not use with restores that specify <c>OutputLocation</c>.
+/// </para>
+/// <para>
+/// The Days element is required for regular restores, and must not be provided for select requests.
+/// </para>
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;The optional description for the job.&lt;/p&gt;
+/// The optional description for the job.
 /// </param>
 /// <param name="GlacierJobParameters">
-/// &lt;p&gt;S3 Glacier related parameters pertaining to this job. Do not use with restores that specify
-/// &lt;code&gt;OutputLocation&lt;/code&gt;.&lt;/p&gt;
+/// S3 Glacier related parameters pertaining to this job. Do not use with restores that specify
+/// <c>OutputLocation</c>.
 /// </param>
 /// <param name="OutputLocation">
-/// &lt;p&gt;Describes the location where the restore job's output is stored.&lt;/p&gt;
+/// Describes the location where the restore job's output is stored.
 /// </param>
 /// <param name="SelectParameters">
-/// &lt;important&gt;
-/// &lt;p&gt;Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can
-/// continue to use the feature as usual. &lt;a href=&quot;http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/&quot;&gt;Learn more&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;p&gt;Describes the parameters for Select job types.&lt;/p&gt;
+/// <para>
+/// <b>Important:</b> Amazon S3 Select is no longer available to new customers. Existing customers of
+/// Amazon S3 Select can continue to use the feature as usual.
+/// <see href="http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/">Learn
+/// more</see>
+/// </para>
+/// <para>
+/// Describes the parameters for Select job types.
+/// </para>
 /// </param>
 /// <param name="Tier">
-/// &lt;p&gt;Retrieval tier at which the restore will be processed.&lt;/p&gt;
+/// Retrieval tier at which the restore will be processed.
 /// </param>
 /// <param name="Type">
-/// &lt;important&gt;
-/// &lt;p&gt;Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can
-/// continue to use the feature as usual. &lt;a href=&quot;http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/&quot;&gt;Learn more&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;p&gt;Type of restore request.&lt;/p&gt;
+/// <para>
+/// <b>Important:</b> Amazon S3 Select is no longer available to new customers. Existing customers of
+/// Amazon S3 Select can continue to use the feature as usual.
+/// <see href="http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/">Learn
+/// more</see>
+/// </para>
+/// <para>
+/// Type of restore request.
+/// </para>
 /// </param>
 public sealed record class RestoreRequest(
     int? Days = null,

@@ -5,7 +5,7 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container element for an ownership control rule.&lt;/p&gt;
+/// The container element for an ownership control rule.
 /// </summary>
 public sealed record class OwnershipControlsRule(
     global::Com.Amazonaws.S3.ObjectOwnership ObjectOwnership

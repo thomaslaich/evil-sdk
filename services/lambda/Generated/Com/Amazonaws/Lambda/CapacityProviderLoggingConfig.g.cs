@@ -5,13 +5,18 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The capacity provider's Amazon CloudWatch Logs configuration settings.&lt;/p&gt;
+/// The capacity provider's Amazon CloudWatch Logs configuration settings.
 /// </summary>
 /// <param name="LogGroup">
-/// &lt;p&gt;The name of the Amazon CloudWatch log group the capacity provider sends logs to. By default, Lambda capacity providers send logs to a default log group named &lt;code&gt;/aws/lambda/capacity-provider/&amp;lt;capacity provider name&amp;gt;&lt;/code&gt;. To use a different log group, enter an existing log group or enter a new log group name.&lt;/p&gt;
+/// The name of the Amazon CloudWatch log group the capacity provider sends logs to. By default, Lambda
+/// capacity providers send logs to a default log group named
+/// <c>/aws/lambda/capacity-provider/&lt;capacity provider name&gt;</c>. To use a different log group,
+/// enter an existing log group or enter a new log group name.
 /// </param>
 /// <param name="SystemLogLevel">
-/// &lt;p&gt;Set this property to filter the system logs for your capacity provider that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where &lt;code&gt;DEBUG&lt;/code&gt; is the highest level and &lt;code&gt;WARN&lt;/code&gt; is the lowest.&lt;/p&gt;
+/// Set this property to filter the system logs for your capacity provider that Lambda sends to
+/// CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where
+/// <c>DEBUG</c> is the highest level and <c>WARN</c> is the lowest.
 /// </param>
 public sealed record class CapacityProviderLoggingConfig(
     string? LogGroup = null,

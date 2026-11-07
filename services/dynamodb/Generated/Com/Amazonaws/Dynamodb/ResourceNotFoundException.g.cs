@@ -7,23 +7,23 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The operation tried to access a nonexistent table or index. The resource might not
-/// be specified correctly, or its status might not be &lt;code&gt;ACTIVE&lt;/code&gt;.&lt;/p&gt;
+/// The operation tried to access a nonexistent table or index. The resource might not be specified
+/// correctly, or its status might not be <c>ACTIVE</c>.
 /// </summary>
 public sealed partial class ResourceNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The operation tried to access a nonexistent table or index. The resource might not
-    /// be specified correctly, or its status might not be &lt;code&gt;ACTIVE&lt;/code&gt;.&lt;/p&gt;
+    /// The operation tried to access a nonexistent table or index. The resource might not be specified
+    /// correctly, or its status might not be <c>ACTIVE</c>.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The resource which is being requested does not exist.&lt;/p&gt;
+    /// The resource which is being requested does not exist.
     /// </param>
     public ResourceNotFoundException(string? message = null)
         : base(message) { }
 
     /// <summary>
-    /// &lt;p&gt;The resource which is being requested does not exist.&lt;/p&gt;
+    /// The resource which is being requested does not exist.
     /// </summary>
     public override string Message => base.Message!;
 }

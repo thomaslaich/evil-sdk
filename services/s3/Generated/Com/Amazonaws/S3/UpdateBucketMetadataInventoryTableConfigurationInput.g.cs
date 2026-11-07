@@ -8,31 +8,21 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#UpdateBucketMetadataInventoryTableConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;
-/// The general purpose bucket that corresponds to the metadata configuration that you want to
-/// enable or disable an inventory table for.
-/// &lt;/p&gt;
+/// The general purpose bucket that corresponds to the metadata configuration that you want to enable or
+/// disable an inventory table for.
 /// </param>
 /// <param name="InventoryTableConfiguration">
-/// &lt;p&gt;
 /// The contents of your inventory table configuration.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;
 /// The checksum algorithm to use with your inventory table configuration.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;
-/// The &lt;code&gt;Content-MD5&lt;/code&gt; header for the inventory table configuration.
-/// &lt;/p&gt;
+/// The <c>Content-MD5</c> header for the inventory table configuration.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;
 /// The expected owner of the general purpose bucket that corresponds to the metadata table
 /// configuration that you want to enable or disable an inventory table for.
-/// &lt;/p&gt;
 /// </param>
 public sealed record class UpdateBucketMetadataInventoryTableConfigurationInput(
     string Bucket,

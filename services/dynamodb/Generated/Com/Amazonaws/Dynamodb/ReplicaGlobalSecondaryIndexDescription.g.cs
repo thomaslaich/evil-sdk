@@ -5,20 +5,20 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a replica global secondary index.&lt;/p&gt;
+/// Represents the properties of a replica global secondary index.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index.&lt;/p&gt;
+/// The name of the global secondary index.
 /// </param>
 /// <param name="OnDemandThroughputOverride">
-/// &lt;p&gt;Overrides the maximum on-demand throughput for the specified global secondary index in
-/// the specified replica table.&lt;/p&gt;
+/// Overrides the maximum on-demand throughput for the specified global secondary index in the specified
+/// replica table.
 /// </param>
 /// <param name="ProvisionedThroughputOverride">
-/// &lt;p&gt;If not described, uses the source table GSI's read capacity settings.&lt;/p&gt;
+/// If not described, uses the source table GSI's read capacity settings.
 /// </param>
 /// <param name="WarmThroughput">
-/// &lt;p&gt;Represents the warm throughput of the global secondary index for this replica.&lt;/p&gt;
+/// Represents the warm throughput of the global secondary index for this replica.
 /// </param>
 public sealed record class ReplicaGlobalSecondaryIndexDescription(
     string? IndexName = null,

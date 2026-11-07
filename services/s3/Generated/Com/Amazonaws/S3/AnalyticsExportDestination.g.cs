@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Where to publish the analytics results.&lt;/p&gt;
+/// Where to publish the analytics results.
 /// </summary>
 /// <param name="S3BucketDestination">
-/// &lt;p&gt;A destination signifying output to an S3 bucket.&lt;/p&gt;
+/// A destination signifying output to an S3 bucket.
 /// </param>
 public sealed record class AnalyticsExportDestination(
     AnalyticsS3BucketDestination S3BucketDestination

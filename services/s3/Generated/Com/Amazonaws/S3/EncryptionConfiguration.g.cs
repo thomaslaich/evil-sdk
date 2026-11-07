@@ -5,19 +5,24 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies encryption-related information for an Amazon S3 bucket that is a destination for replicated
-/// objects.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;If you're specifying a customer managed KMS key, we recommend using a fully qualified KMS key
-/// ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester’s account.
-/// This behavior can result in data that's encrypted with a KMS key that belongs to the requester, and
-/// not the bucket owner.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies encryption-related information for an Amazon S3 bucket that is a destination for
+/// replicated objects.
+/// </para>
+/// <para>
+/// <b>Note:</b> If you're specifying a customer managed KMS key, we recommend using a fully qualified
+/// KMS key ARN. If you use a KMS key alias instead, then KMS resolves the key within the requester’s
+/// account. This behavior can result in data that's encrypted with a KMS key that belongs to the
+/// requester, and not the bucket owner.
+/// </para>
 /// </summary>
 /// <param name="ReplicaKmsKeyID">
-/// &lt;p&gt;Specifies the ID (Key ARN or Alias ARN) of the customer managed Amazon Web Services KMS key stored in Amazon Web Services Key
-/// Management Service (KMS) for the destination bucket. Amazon S3 uses this key to encrypt replica objects. Amazon S3
-/// only supports symmetric encryption KMS keys. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html&quot;&gt;Asymmetric keys in Amazon Web Services KMS&lt;/a&gt; in the
-/// &lt;i&gt;Amazon Web Services Key Management Service Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// Specifies the ID (Key ARN or Alias ARN) of the customer managed Amazon Web Services KMS key stored
+/// in Amazon Web Services Key Management Service (KMS) for the destination bucket. Amazon S3 uses this
+/// key to encrypt replica objects. Amazon S3 only supports symmetric encryption KMS keys. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html">Asymmetric
+/// keys in Amazon Web Services KMS</see> in the <i>Amazon Web Services Key Management Service Developer
+/// Guide</i>.
 /// </param>
 public sealed record class EncryptionConfiguration(string? ReplicaKmsKeyID = null);

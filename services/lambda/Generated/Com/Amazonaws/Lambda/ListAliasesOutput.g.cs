@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListAliasesOutput.
 /// </summary>
 /// <param name="Aliases">
-/// &lt;p&gt;A list of aliases.&lt;/p&gt;
+/// A list of aliases.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListAliasesOutput(
     IReadOnlyList<AliasConfiguration>? Aliases = null,

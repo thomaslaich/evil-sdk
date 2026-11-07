@@ -10,16 +10,14 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateTableReplicaAutoScalingInput.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the global table to be updated. You can also provide the Amazon Resource Name (ARN) of the
-/// table in this parameter.&lt;/p&gt;
+/// The name of the global table to be updated. You can also provide the Amazon Resource Name (ARN) of
+/// the table in this parameter.
 /// </param>
 /// <param name="GlobalSecondaryIndexUpdates">
-/// &lt;p&gt;Represents the auto scaling settings of the global secondary indexes of the replica to
-/// be updated.&lt;/p&gt;
+/// Represents the auto scaling settings of the global secondary indexes of the replica to be updated.
 /// </param>
 /// <param name="ReplicaUpdates">
-/// &lt;p&gt;Represents the auto scaling settings of replicas of the table that will be
-/// modified.&lt;/p&gt;
+/// Represents the auto scaling settings of replicas of the table that will be modified.
 /// </param>
 public sealed record class UpdateTableReplicaAutoScalingInput(
     string TableName,

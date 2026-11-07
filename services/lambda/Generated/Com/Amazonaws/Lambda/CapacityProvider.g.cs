@@ -5,34 +5,34 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A capacity provider manages compute resources for Lambda functions.&lt;/p&gt;
+/// A capacity provider manages compute resources for Lambda functions.
 /// </summary>
 /// <param name="CapacityProviderArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the capacity provider.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the capacity provider.
 /// </param>
 /// <param name="PermissionsConfig">
-/// &lt;p&gt;The permissions configuration for the capacity provider.&lt;/p&gt;
+/// The permissions configuration for the capacity provider.
 /// </param>
 /// <param name="State">
-/// &lt;p&gt;The current state of the capacity provider.&lt;/p&gt;
+/// The current state of the capacity provider.
 /// </param>
 /// <param name="VpcConfig">
-/// &lt;p&gt;The VPC configuration for the capacity provider.&lt;/p&gt;
+/// The VPC configuration for the capacity provider.
 /// </param>
 /// <param name="CapacityProviderScalingConfig">
-/// &lt;p&gt;The scaling configuration for the capacity provider.&lt;/p&gt;
+/// The scaling configuration for the capacity provider.
 /// </param>
 /// <param name="InstanceRequirements">
-/// &lt;p&gt;The instance requirements for compute resources managed by the capacity provider.&lt;/p&gt;
+/// The instance requirements for compute resources managed by the capacity provider.
 /// </param>
 /// <param name="KmsKeyArn">
-/// &lt;p&gt;The ARN of the KMS key used to encrypt the capacity provider's resources.&lt;/p&gt;
+/// The ARN of the KMS key used to encrypt the capacity provider's resources.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date and time when the capacity provider was last modified.&lt;/p&gt;
+/// The date and time when the capacity provider was last modified.
 /// </param>
 /// <param name="TelemetryConfig">
-/// &lt;p&gt;The telemetry configuration for the capacity provider, including logging settings.&lt;/p&gt;
+/// The telemetry configuration for the capacity provider, including logging settings.
 /// </param>
 public sealed record class CapacityProvider(
     string CapacityProviderArn,

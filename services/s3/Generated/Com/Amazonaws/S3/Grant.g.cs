@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for grant information.&lt;/p&gt;
+/// Container for grant information.
 /// </summary>
 /// <param name="Grantee">
-/// &lt;p&gt;The person being granted permissions.&lt;/p&gt;
+/// The person being granted permissions.
 /// </param>
 /// <param name="Permission">
-/// &lt;p&gt;Specifies the permission given to the grantee.&lt;/p&gt;
+/// Specifies the permission given to the grantee.
 /// </param>
 public sealed record class Grant(
     global::Com.Amazonaws.S3.Grantee? Grantee = null,

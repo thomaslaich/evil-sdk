@@ -5,44 +5,41 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;
 /// The journal table configuration for the S3 Metadata configuration.
-/// &lt;/p&gt;
 /// </summary>
 /// <param name="RecordExpiration">
-/// &lt;p&gt;
 /// The journal table record expiration settings for the journal table.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;
 /// The name of the journal table.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="TableStatus">
-/// &lt;p&gt; The status of the journal table. The status values are: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The journal table is in the process of being created in the specified
-/// table bucket.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The journal table has been created successfully, and records are being
-/// delivered to the table. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;FAILED&lt;/code&gt; - Amazon S3 is unable to create the journal table, or Amazon S3 is unable to deliver
-/// records.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The status of the journal table. The status values are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The journal table is in the process of being created in the specified table
+/// bucket.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The journal table has been created successfully, and records are being delivered to
+/// the table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>FAILED</c> - Amazon S3 is unable to create the journal table, or Amazon S3 is unable to deliver
+/// records.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt;
 /// The Amazon Resource Name (ARN) for the journal table.
-/// &lt;/p&gt;
 /// </param>
 public sealed record class JournalTableConfigurationResult(
     global::Com.Amazonaws.S3.RecordExpiration RecordExpiration,

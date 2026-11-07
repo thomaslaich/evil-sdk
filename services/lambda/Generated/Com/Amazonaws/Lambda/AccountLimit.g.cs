@@ -5,22 +5,24 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Limits that are related to concurrency and storage. All file and storage sizes are in bytes.&lt;/p&gt;
+/// Limits that are related to concurrency and storage. All file and storage sizes are in bytes.
 /// </summary>
 /// <param name="CodeSizeUnzipped">
-/// &lt;p&gt;The maximum size of a function's deployment package and layers when they're extracted.&lt;/p&gt;
+/// The maximum size of a function's deployment package and layers when they're extracted.
 /// </param>
 /// <param name="CodeSizeZipped">
-/// &lt;p&gt;The maximum size of a deployment package when it's uploaded directly to Lambda. Use Amazon S3 for larger files.&lt;/p&gt;
+/// The maximum size of a deployment package when it's uploaded directly to Lambda. Use Amazon S3 for
+/// larger files.
 /// </param>
 /// <param name="ConcurrentExecutions">
-/// &lt;p&gt;The maximum number of simultaneous function executions.&lt;/p&gt;
+/// The maximum number of simultaneous function executions.
 /// </param>
 /// <param name="TotalCodeSize">
-/// &lt;p&gt;The amount of storage space that you can use for all deployment packages and layer archives.&lt;/p&gt;
+/// The amount of storage space that you can use for all deployment packages and layer archives.
 /// </param>
 /// <param name="UnreservedConcurrentExecutions">
-/// &lt;p&gt;The maximum number of simultaneous function executions, minus the capacity that's reserved for individual functions with &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;.&lt;/p&gt;
+/// The maximum number of simultaneous function executions, minus the capacity that's reserved for
+/// individual functions with PutFunctionConcurrency.
 /// </param>
 public sealed record class AccountLimit(
     long? CodeSizeUnzipped = null,

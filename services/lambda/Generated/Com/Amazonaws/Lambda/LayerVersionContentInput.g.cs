@@ -5,22 +5,39 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A ZIP archive that contains the contents of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. You can specify either an Amazon S3 location, or upload a layer archive directly.&lt;/p&gt;
+/// A ZIP archive that contains the contents of an
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</see>. You can specify either an Amazon S3 location, or upload a layer archive directly.
 /// </summary>
 /// <param name="S3Bucket">
-/// &lt;p&gt;The Amazon S3 bucket of the layer archive.&lt;/p&gt;
+/// The Amazon S3 bucket of the layer archive.
 /// </param>
 /// <param name="S3Key">
-/// &lt;p&gt;The Amazon S3 key of the layer archive.&lt;/p&gt;
+/// The Amazon S3 key of the layer archive.
 /// </param>
 /// <param name="S3ObjectStorageMode">
-/// &lt;p&gt;Specifies how the layer archive is stored. Valid values:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;COPY&lt;/code&gt; (default) – Uploads a copy of your layer archive to Lambda.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;REFERENCE&lt;/code&gt; – Lambda references the layer archive from the specified Amazon S3 bucket.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// Specifies how the layer archive is stored. Valid values:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>COPY</c> (default) – Uploads a copy of your layer archive to Lambda.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>REFERENCE</c> – Lambda references the layer archive from the specified Amazon S3 bucket.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="S3ObjectVersion">
-/// &lt;p&gt;For versioned objects, the version of the layer archive object to use.&lt;/p&gt;
+/// For versioned objects, the version of the layer archive object to use.
 /// </param>
 /// <param name="ZipFile">
-/// &lt;p&gt;The base64-encoded contents of the layer archive. Amazon Web Services SDK and Amazon Web Services CLI clients handle the encoding for you.&lt;/p&gt;
+/// The base64-encoded contents of the layer archive. Amazon Web Services SDK and Amazon Web Services
+/// CLI clients handle the encoding for you.
 /// </param>
 public sealed record class LayerVersionContentInput(
     string? S3Bucket = null,

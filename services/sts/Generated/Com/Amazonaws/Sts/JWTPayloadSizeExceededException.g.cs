@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The requested token payload size exceeds the maximum allowed size. Reduce the number of request tags included in the &lt;code&gt;GetWebIdentityToken&lt;/code&gt; API call to reduce the token payload size.&lt;/p&gt;
+/// The requested token payload size exceeds the maximum allowed size. Reduce the number of request tags
+/// included in the <c>GetWebIdentityToken</c> API call to reduce the token payload size.
 /// </summary>
 public sealed partial class JWTPayloadSizeExceededException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The requested token payload size exceeds the maximum allowed size. Reduce the number of request tags included in the &lt;code&gt;GetWebIdentityToken&lt;/code&gt; API call to reduce the token payload size.&lt;/p&gt;
+    /// The requested token payload size exceeds the maximum allowed size. Reduce the number of request tags
+    /// included in the <c>GetWebIdentityToken</c> API call to reduce the token payload size.
     /// </summary>
     public JWTPayloadSizeExceededException(string? message = null)
         : base(message) { }

@@ -5,26 +5,30 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Specifies the action to add a new witness Region to a MRSC global table. A MRSC global
-/// table can be configured with either three replicas, or with two replicas and one
-/// witness.&lt;/p&gt;
+/// Specifies the action to add a new witness Region to a MRSC global table. A MRSC global table can be
+/// configured with either three replicas, or with two replicas and one witness.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The Amazon Web Services Region name to be added as a witness Region for the MRSC global
-/// table. The witness must be in a different Region than the replicas and within the same
-/// Region set:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US Region set: US East (N. Virginia), US East (Ohio), US West (Oregon)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;EU Region set: Europe (Ireland), Europe (London), Europe (Paris), Europe
-/// (Frankfurt)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;AP Region set: Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific
-/// (Osaka)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The Amazon Web Services Region name to be added as a witness Region for the MRSC global table. The
+/// witness must be in a different Region than the replicas and within the same Region set:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// US Region set: US East (N. Virginia), US East (Ohio), US West (Oregon)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// EU Region set: Europe (Ireland), Europe (London), Europe (Paris), Europe (Frankfurt)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// AP Region set: Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Osaka)
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class CreateGlobalTableWitnessGroupMemberAction(string RegionName);

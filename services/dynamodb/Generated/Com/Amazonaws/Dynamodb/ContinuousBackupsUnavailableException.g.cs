@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Backups have not yet been enabled for this table.&lt;/p&gt;
+/// Backups have not yet been enabled for this table.
 /// </summary>
 public sealed partial class ContinuousBackupsUnavailableException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Backups have not yet been enabled for this table.&lt;/p&gt;
+    /// Backups have not yet been enabled for this table.
     /// </summary>
     public ContinuousBackupsUnavailableException(string? message = null)
         : base(message) { }

@@ -5,16 +5,17 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes the versioning state of an Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html&quot;&gt;PUT Bucket
-/// versioning&lt;/a&gt; in the &lt;i&gt;Amazon S3 API Reference&lt;/i&gt;.&lt;/p&gt;
+/// Describes the versioning state of an Amazon S3 bucket. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html">PUT
+/// Bucket versioning</see> in the <i>Amazon S3 API Reference</i>.
 /// </summary>
 /// <param name="MFADelete">
-/// &lt;p&gt;Specifies whether MFA delete is enabled in the bucket versioning configuration. This element is only
-/// returned if the bucket has been configured with MFA delete. If the bucket has never been so configured,
-/// this element is not returned.&lt;/p&gt;
+/// Specifies whether MFA delete is enabled in the bucket versioning configuration. This element is only
+/// returned if the bucket has been configured with MFA delete. If the bucket has never been so
+/// configured, this element is not returned.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;The versioning state of the bucket.&lt;/p&gt;
+/// The versioning state of the bucket.
 /// </param>
 public sealed record class VersioningConfiguration(
     global::Com.Amazonaws.S3.MFADelete? MFADelete = null,

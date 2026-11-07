@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html&quot;&gt;X-Ray&lt;/a&gt; tracing configuration. To sample and record incoming requests, set &lt;code&gt;Mode&lt;/code&gt; to &lt;code&gt;Active&lt;/code&gt;.&lt;/p&gt;
+/// The function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray</see> tracing
+/// configuration. To sample and record incoming requests, set <c>Mode</c> to <c>Active</c>.
 /// </summary>
 /// <param name="Mode">
-/// &lt;p&gt;The tracing mode.&lt;/p&gt;
+/// The tracing mode.
 /// </param>
 public sealed record class TracingConfig(TracingMode? Mode = null);

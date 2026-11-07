@@ -10,9 +10,9 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#UntagQueueInput.
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the queue.&lt;/p&gt;
+/// The URL of the queue.
 /// </param>
 /// <param name="TagKeys">
-/// &lt;p&gt;The list of tags to be removed from the specified queue.&lt;/p&gt;
+/// The list of tags to be removed from the specified queue.
 /// </param>
 public sealed record class UntagQueueInput(string QueueUrl, IReadOnlyList<string> TagKeys);

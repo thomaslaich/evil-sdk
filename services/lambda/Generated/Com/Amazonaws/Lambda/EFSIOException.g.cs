@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;An error occurred when reading from or writing to a connected file system.&lt;/p&gt;
+/// An error occurred when reading from or writing to a connected file system.
 /// </summary>
 public sealed partial class EFSIOException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;An error occurred when reading from or writing to a connected file system.&lt;/p&gt;
+    /// An error occurred when reading from or writing to a connected file system.
     /// </summary>
     public EFSIOException(string? message = null, string? type = null)
         : base(message)

@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The function's X-Ray tracing configuration.&lt;/p&gt;
+/// The function's X-Ray tracing configuration.
 /// </summary>
 /// <param name="Mode">
-/// &lt;p&gt;The tracing mode.&lt;/p&gt;
+/// The tracing mode.
 /// </param>
 public sealed record class TracingConfigResponse(TracingMode? Mode = null);

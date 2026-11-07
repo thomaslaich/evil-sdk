@@ -8,19 +8,25 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetDurableExecutionHistoryInput.
 /// </summary>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the durable execution.
 /// </param>
 /// <param name="IncludeExecutionData">
-/// &lt;p&gt;Specifies whether to include execution data such as step results and callback payloads in the history events. Set to &lt;code&gt;true&lt;/code&gt; to include data, or &lt;code&gt;false&lt;/code&gt; to exclude it for a more compact response. The default is &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+/// Specifies whether to include execution data such as step results and callback payloads in the
+/// history events. Set to <c>true</c> to include data, or <c>false</c> to exclude it for a more compact
+/// response. The default is <c>true</c>.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;If &lt;code&gt;NextMarker&lt;/code&gt; was returned from a previous request, use this value to retrieve the next page of results. Each pagination token expires after 24 hours.&lt;/p&gt;
+/// If <c>NextMarker</c> was returned from a previous request, use this value to retrieve the next page
+/// of results. Each pagination token expires after 24 hours.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;The maximum number of history events to return per call. You can use &lt;code&gt;Marker&lt;/code&gt; to retrieve additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses the default.&lt;/p&gt;
+/// The maximum number of history events to return per call. You can use <c>Marker</c> to retrieve
+/// additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses
+/// the default.
 /// </param>
 /// <param name="ReverseOrder">
-/// &lt;p&gt;When set to &lt;code&gt;true&lt;/code&gt;, returns the history events in reverse chronological order (newest first). By default, events are returned in chronological order (oldest first).&lt;/p&gt;
+/// When set to <c>true</c>, returns the history events in reverse chronological order (newest first).
+/// By default, events are returned in chronological order (oldest first).
 /// </param>
 public sealed record class GetDurableExecutionHistoryInput(
     string DurableExecutionArn,

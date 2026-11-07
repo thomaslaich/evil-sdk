@@ -7,16 +7,18 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The VPC security groups and subnets that are attached to a Lambda function. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html&quot;&gt;Configuring a Lambda function to access resources in a VPC&lt;/a&gt;.&lt;/p&gt;
+/// The VPC security groups and subnets that are attached to a Lambda function. For more information,
+/// see <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html">Configuring a
+/// Lambda function to access resources in a VPC</see>.
 /// </summary>
 /// <param name="Ipv6AllowedForDualStack">
-/// &lt;p&gt;Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets.&lt;/p&gt;
+/// Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets.
 /// </param>
 /// <param name="SecurityGroupIds">
-/// &lt;p&gt;A list of VPC security group IDs.&lt;/p&gt;
+/// A list of VPC security group IDs.
 /// </param>
 /// <param name="SubnetIds">
-/// &lt;p&gt;A list of VPC subnet IDs.&lt;/p&gt;
+/// A list of VPC subnet IDs.
 /// </param>
 public sealed record class VpcConfig(
     bool? Ipv6AllowedForDualStack = null,

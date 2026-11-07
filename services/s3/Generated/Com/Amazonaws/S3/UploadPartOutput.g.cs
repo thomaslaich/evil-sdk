@@ -8,96 +8,102 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#UploadPartOutput.
 /// </summary>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with
-/// Key Management Service (KMS) keys (SSE-KMS).&lt;/p&gt;
+/// Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with Key
+/// Management Service (KMS) keys (SSE-KMS).
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32C&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32C</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;CRC64NVME&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>CRC64NVME</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;MD5&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>MD5</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;The Base64 encoded, 160-bit &lt;code&gt;SHA1&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 160-bit <c>SHA1</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;The Base64 encoded, 256-bit &lt;code&gt;SHA256&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 256-bit <c>SHA256</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;The Base64 encoded, 512-bit &lt;code&gt;SHA512&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 512-bit <c>SHA512</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;XXHASH128&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>XXHASH128</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH3&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH3</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH64&lt;/code&gt; checksum of the part. This will only be present if
-/// the checksum was provided in the request. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH64</c> checksum of the part. This will only be present if the
+/// checksum was provided in the request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;Entity tag for the uploaded object.&lt;/p&gt;
+/// Entity tag for the uploaded object.
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to confirm the encryption algorithm that's used.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to confirm the encryption algorithm that's used.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to provide the round-trip message integrity verification of the customer-provided
-/// encryption key.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to provide the round-trip message integrity verification of the
+/// customer-provided encryption key.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;If present, indicates the ID of the KMS key that was used for object encryption.&lt;/p&gt;
+/// If present, indicates the ID of the KMS key that was used for object encryption.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side
-/// encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <para>
+/// <b>Note:</b> When accessing data stored in Amazon FSx file systems using S3 access points, the only
+/// valid server side encryption option is <c>aws:fsx</c>.
+/// </para>
 /// </param>
 public sealed record class UploadPartOutput(
     bool? BucketKeyEnabled = null,

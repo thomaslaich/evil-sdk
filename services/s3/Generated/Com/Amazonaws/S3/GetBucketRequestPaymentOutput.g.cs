@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketRequestPaymentOutput.
 /// </summary>
 /// <param name="Payer">
-/// &lt;p&gt;Specifies who pays for the download and request fees.&lt;/p&gt;
+/// Specifies who pays for the download and request fees.
 /// </param>
 public sealed record class GetBucketRequestPaymentOutput(
     global::Com.Amazonaws.S3.Payer? Payer = null

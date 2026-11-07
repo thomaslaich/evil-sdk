@@ -8,52 +8,52 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectAnnotationOutput.
 /// </summary>
 /// <param name="AnnotationName">
-/// &lt;p&gt;The name of the annotation.&lt;/p&gt;
+/// The name of the annotation.
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;The CRC32 checksum of the stored annotation.&lt;/p&gt;
+/// The CRC32 checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;The CRC32C checksum of the stored annotation.&lt;/p&gt;
+/// The CRC32C checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;The CRC64NVME checksum of the stored annotation.&lt;/p&gt;
+/// The CRC64NVME checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;The MD5 checksum of the stored annotation.&lt;/p&gt;
+/// The MD5 checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;The SHA1 checksum of the stored annotation.&lt;/p&gt;
+/// The SHA1 checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;The SHA256 checksum of the stored annotation.&lt;/p&gt;
+/// The SHA256 checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;The SHA512 checksum of the stored annotation.&lt;/p&gt;
+/// The SHA512 checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;The type of checksum used.&lt;/p&gt;
+/// The type of checksum used.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;The XXHASH128 checksum of the stored annotation.&lt;/p&gt;
+/// The XXHASH128 checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;The XXHASH3 checksum of the stored annotation.&lt;/p&gt;
+/// The XXHASH3 checksum of the stored annotation.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;The XXHASH64 checksum of the stored annotation.&lt;/p&gt;
+/// The XXHASH64 checksum of the stored annotation.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;The entity tag of the annotation.&lt;/p&gt;
+/// The entity tag of the annotation.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="ObjectVersionId">
-/// &lt;p&gt;The version ID of the object that the annotation was attached to.&lt;/p&gt;
+/// The version ID of the object that the annotation was attached to.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used to encrypt the annotation.&lt;/p&gt;
+/// The server-side encryption algorithm used to encrypt the annotation.
 /// </param>
 public sealed record class PutObjectAnnotationOutput(
     string? AnnotationName = null,

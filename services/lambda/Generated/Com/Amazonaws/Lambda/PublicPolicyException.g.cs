@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The resource-based policy you tried to add to the Lambda resource would grant public access to it, which isn't allowed.&lt;/p&gt;
+/// The resource-based policy you tried to add to the Lambda resource would grant public access to it,
+/// which isn't allowed.
 /// </summary>
 public sealed partial class PublicPolicyException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The resource-based policy you tried to add to the Lambda resource would grant public access to it, which isn't allowed.&lt;/p&gt;
+    /// The resource-based policy you tried to add to the Lambda resource would grant public access to it,
+    /// which isn't allowed.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public PublicPolicyException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +29,12 @@ public sealed partial class PublicPolicyException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

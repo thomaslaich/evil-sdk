@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a chained invocation that succeeded.&lt;/p&gt;
+/// Details about a chained invocation that succeeded.
 /// </summary>
 /// <param name="Result">
-/// &lt;p&gt;The response payload from the successful operation.&lt;/p&gt;
+/// The response payload from the successful operation.
 /// </param>
 public sealed record class ChainedInvokeSucceededDetails(EventResult Result);

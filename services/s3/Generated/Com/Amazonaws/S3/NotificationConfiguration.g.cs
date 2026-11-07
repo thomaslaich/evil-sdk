@@ -7,22 +7,21 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for specifying the notification configuration of the bucket. If this element is empty,
-/// notifications are turned off for the bucket.&lt;/p&gt;
+/// A container for specifying the notification configuration of the bucket. If this element is empty,
+/// notifications are turned off for the bucket.
 /// </summary>
 /// <param name="EventBridgeConfiguration">
-/// &lt;p&gt;Enables delivery of events to Amazon EventBridge.&lt;/p&gt;
+/// Enables delivery of events to Amazon EventBridge.
 /// </param>
 /// <param name="LambdaFunctionConfigurations">
-/// &lt;p&gt;Describes the Lambda functions to invoke and the events for which to invoke them.&lt;/p&gt;
+/// Describes the Lambda functions to invoke and the events for which to invoke them.
 /// </param>
 /// <param name="QueueConfigurations">
-/// &lt;p&gt;The Amazon Simple Queue Service queues to publish messages to and the events for which to publish
-/// messages.&lt;/p&gt;
+/// The Amazon Simple Queue Service queues to publish messages to and the events for which to publish
+/// messages.
 /// </param>
 /// <param name="TopicConfigurations">
-/// &lt;p&gt;The topic to which notifications are sent and the events for which notifications are
-/// generated.&lt;/p&gt;
+/// The topic to which notifications are sent and the events for which notifications are generated.
 /// </param>
 public sealed record class NotificationConfiguration(
     global::Com.Amazonaws.S3.EventBridgeConfiguration? EventBridgeConfiguration = null,

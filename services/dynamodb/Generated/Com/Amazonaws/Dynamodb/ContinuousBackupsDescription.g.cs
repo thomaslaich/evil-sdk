@@ -5,16 +5,13 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the continuous backups and point in time recovery settings on the
-/// table.&lt;/p&gt;
+/// Represents the continuous backups and point in time recovery settings on the table.
 /// </summary>
 /// <param name="ContinuousBackupsStatus">
-/// &lt;p&gt;
-/// &lt;code&gt;ContinuousBackupsStatus&lt;/code&gt; can be one of the following states: ENABLED,
-/// DISABLED&lt;/p&gt;
+/// <c>ContinuousBackupsStatus</c> can be one of the following states: ENABLED, DISABLED
 /// </param>
 /// <param name="PointInTimeRecoveryDescription">
-/// &lt;p&gt;The description of the point in time recovery settings applied to the table.&lt;/p&gt;
+/// The description of the point in time recovery settings applied to the table.
 /// </param>
 public sealed record class ContinuousBackupsDescription(
     global::Com.Amazonaws.Dynamodb.ContinuousBackupsStatus ContinuousBackupsStatus,

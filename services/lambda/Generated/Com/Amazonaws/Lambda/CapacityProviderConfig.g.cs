@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration for the capacity provider that manages compute resources for Lambda functions.&lt;/p&gt;
+/// Configuration for the capacity provider that manages compute resources for Lambda functions.
 /// </summary>
 /// <param name="LambdaManagedInstancesCapacityProviderConfig">
-/// &lt;p&gt;Configuration for Lambda-managed instances used by the capacity provider.&lt;/p&gt;
+/// Configuration for Lambda-managed instances used by the capacity provider.
 /// </param>
 public sealed record class CapacityProviderConfig(
     global::Com.Amazonaws.Lambda.LambdaManagedInstancesCapacityProviderConfig LambdaManagedInstancesCapacityProviderConfig

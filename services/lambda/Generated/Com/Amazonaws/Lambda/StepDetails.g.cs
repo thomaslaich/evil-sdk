@@ -7,19 +7,21 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a step operation.&lt;/p&gt;
+/// Details about a step operation.
 /// </summary>
 /// <param name="Attempt">
-/// &lt;p&gt;The current attempt number for this step.&lt;/p&gt;
+/// The current attempt number for this step.
 /// </param>
 /// <param name="Error">
-/// &lt;p&gt;Details about the step failure.&lt;/p&gt;
+/// Details about the step failure.
 /// </param>
 /// <param name="NextAttemptTimestamp">
-/// &lt;p&gt;The date and time when the next attempt is scheduled, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD). Only populated when the step is in a pending state.&lt;/p&gt;
+/// The date and time when the next attempt is scheduled, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
+/// Only populated when the step is in a pending state.
 /// </param>
 /// <param name="Result">
-/// &lt;p&gt;The JSON response payload from the step operation.&lt;/p&gt;
+/// The JSON response payload from the step operation.
 /// </param>
 public sealed record class StepDetails(
     int? Attempt = null,

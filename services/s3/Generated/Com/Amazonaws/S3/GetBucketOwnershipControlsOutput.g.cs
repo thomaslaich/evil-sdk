@@ -8,8 +8,8 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketOwnershipControlsOutput.
 /// </summary>
 /// <param name="OwnershipControls">
-/// &lt;p&gt;The &lt;code&gt;OwnershipControls&lt;/code&gt; (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter)
-/// currently in effect for this Amazon S3 bucket.&lt;/p&gt;
+/// The <c>OwnershipControls</c> (BucketOwnerEnforced, BucketOwnerPreferred, or ObjectWriter) currently
+/// in effect for this Amazon S3 bucket.
 /// </param>
 public sealed record class GetBucketOwnershipControlsOutput(
     global::Com.Amazonaws.S3.OwnershipControls? OwnershipControls = null

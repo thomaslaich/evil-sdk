@@ -8,10 +8,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetLayerVersionPolicyOutput.
 /// </summary>
 /// <param name="Policy">
-/// &lt;p&gt;The policy document.&lt;/p&gt;
+/// The policy document.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;A unique identifier for the current revision of the policy.&lt;/p&gt;
+/// A unique identifier for the current revision of the policy.
 /// </param>
 public sealed record class GetLayerVersionPolicyOutput(
     string? Policy = null,

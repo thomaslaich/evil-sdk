@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The batch request doesn't contain any entries.&lt;/p&gt;
+/// The batch request doesn't contain any entries.
 /// </summary>
 public sealed partial class EmptyBatchRequest : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The batch request doesn't contain any entries.&lt;/p&gt;
+    /// The batch request doesn't contain any entries.
     /// </summary>
     public EmptyBatchRequest(string? message = null)
         : base(message) { }

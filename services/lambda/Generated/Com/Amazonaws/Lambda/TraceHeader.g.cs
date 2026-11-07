@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains trace headers for the Lambda durable execution.&lt;/p&gt;
+/// Contains trace headers for the Lambda durable execution.
 /// </summary>
 /// <param name="XAmznTraceId">
-/// &lt;p&gt;The X-Ray trace header associated with the durable execution.&lt;/p&gt;
+/// The X-Ray trace header associated with the durable execution.
 /// </param>
 public sealed record class TraceHeader(string? XAmznTraceId = null);

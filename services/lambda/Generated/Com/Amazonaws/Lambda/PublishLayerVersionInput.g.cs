@@ -10,22 +10,53 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PublishLayerVersionInput.
 /// </summary>
 /// <param name="Content">
-/// &lt;p&gt;The function layer archive.&lt;/p&gt;
+/// The function layer archive.
 /// </param>
 /// <param name="LayerName">
-/// &lt;p&gt;The name or Amazon Resource Name (ARN) of the layer.&lt;/p&gt;
+/// The name or Amazon Resource Name (ARN) of the layer.
 /// </param>
 /// <param name="CompatibleArchitectures">
-/// &lt;p&gt;A list of compatible &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architectures&lt;/a&gt;.&lt;/p&gt;
+/// A list of compatible
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+/// architectures</see>.
 /// </param>
 /// <param name="CompatibleRuntimes">
-/// &lt;p&gt;A list of compatible &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;function runtimes&lt;/a&gt;. Used for filtering with &lt;a&gt;ListLayers&lt;/a&gt; and &lt;a&gt;ListLayerVersions&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;The following list includes deprecated runtimes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy&quot;&gt;Runtime deprecation policy&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// A list of compatible
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">function
+/// runtimes</see>. Used for filtering with ListLayers and ListLayerVersions.
+/// </para>
+/// <para>
+/// The following list includes deprecated runtimes. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy">Runtime
+/// deprecation policy</see>.
+/// </para>
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;The description of the version.&lt;/p&gt;
+/// The description of the version.
 /// </param>
 /// <param name="LicenseInfo">
-/// &lt;p&gt;The layer's software license. It can be any of the following:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;An &lt;a href=&quot;https://spdx.org/licenses/&quot;&gt;SPDX license identifier&lt;/a&gt;. For example, &lt;code&gt;MIT&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;The URL of a license hosted on the internet. For example, &lt;code&gt;https://opensource.org/licenses/MIT&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;The full text of the license.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// The layer's software license. It can be any of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// An <see href="https://spdx.org/licenses/">SPDX license identifier</see>. For example, <c>MIT</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The URL of a license hosted on the internet. For example,
+/// <c>https://opensource.org/licenses/MIT</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The full text of the license.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class PublishLayerVersionInput(
     LayerVersionContentInput Content,

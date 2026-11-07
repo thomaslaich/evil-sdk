@@ -7,16 +7,16 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; You have attempted to add more parts than the maximum of 10000 that are allowed for this object.
-/// You can use the CopyObject operation to copy this object to another and then add more data to the newly
-/// copied object. &lt;/p&gt;
+/// You have attempted to add more parts than the maximum of 10000 that are allowed for this object. You
+/// can use the CopyObject operation to copy this object to another and then add more data to the newly
+/// copied object.
 /// </summary>
 public sealed partial class TooManyParts : Exception
 {
     /// <summary>
-    /// &lt;p&gt; You have attempted to add more parts than the maximum of 10000 that are allowed for this object.
-    /// You can use the CopyObject operation to copy this object to another and then add more data to the newly
-    /// copied object. &lt;/p&gt;
+    /// You have attempted to add more parts than the maximum of 10000 that are allowed for this object. You
+    /// can use the CopyObject operation to copy this object to another and then add more data to the newly
+    /// copied object.
     /// </summary>
     public TooManyParts(string? message = null)
         : base(message) { }

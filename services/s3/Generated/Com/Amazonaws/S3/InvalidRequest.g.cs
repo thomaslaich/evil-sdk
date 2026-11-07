@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A parameter or header in your request isn't valid. For details, see the description of this API
-/// operation.&lt;/p&gt;
+/// A parameter or header in your request isn't valid. For details, see the description of this API
+/// operation.
 /// </summary>
 public sealed partial class InvalidRequest : Exception
 {
     /// <summary>
-    /// &lt;p&gt;A parameter or header in your request isn't valid. For details, see the description of this API
-    /// operation.&lt;/p&gt;
+    /// A parameter or header in your request isn't valid. For details, see the description of this API
+    /// operation.
     /// </summary>
     public InvalidRequest(string? message = null)
         : base(message) { }

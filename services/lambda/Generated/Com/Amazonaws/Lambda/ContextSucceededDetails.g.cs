@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a context that succeeded.&lt;/p&gt;
+/// Details about a context that succeeded.
 /// </summary>
 /// <param name="Result">
-/// &lt;p&gt;The JSON response payload from the successful context.&lt;/p&gt;
+/// The JSON response payload from the successful context.
 /// </param>
 public sealed record class ContextSucceededDetails(EventResult Result);

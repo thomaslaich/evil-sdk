@@ -7,9 +7,10 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a wait operation.&lt;/p&gt;
+/// Details about a wait operation.
 /// </summary>
 /// <param name="ScheduledEndTimestamp">
-/// &lt;p&gt;The date and time when the wait operation is scheduled to complete, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when the wait operation is scheduled to complete, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 public sealed record class WaitDetails(DateTimeOffset? ScheduledEndTimestamp = null);

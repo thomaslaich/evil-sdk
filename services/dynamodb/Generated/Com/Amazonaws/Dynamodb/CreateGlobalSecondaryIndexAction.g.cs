@@ -7,37 +7,38 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a new global secondary index to be added to an existing table.&lt;/p&gt;
+/// Represents a new global secondary index to be added to an existing table.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index to be created.&lt;/p&gt;
+/// The name of the global secondary index to be created.
 /// </param>
 /// <param name="KeySchema">
-/// &lt;p&gt;The key schema for the global secondary index.
-/// Global secondary index supports up to 4 partition and up to 4 sort keys.&lt;/p&gt;
+/// The key schema for the global secondary index. Global secondary index supports up to 4 partition and
+/// up to 4 sort keys.
 /// </param>
 /// <param name="Projection">
-/// &lt;p&gt;Represents attributes that are copied (projected) from the table into an index. These
-/// are in addition to the primary key attributes and index key attributes, which are
-/// automatically projected.&lt;/p&gt;
+/// Represents attributes that are copied (projected) from the table into an index. These are in
+/// addition to the primary key attributes and index key attributes, which are automatically projected.
 /// </param>
 /// <param name="OnDemandThroughput">
-/// &lt;p&gt;The maximum number of read and write units for the global secondary index being
-/// created. If you use this parameter, you must specify &lt;code&gt;MaxReadRequestUnits&lt;/code&gt;,
-/// &lt;code&gt;MaxWriteRequestUnits&lt;/code&gt;, or both. You must use either &lt;code&gt;OnDemand
-/// Throughput&lt;/code&gt; or &lt;code&gt;ProvisionedThroughput&lt;/code&gt; based on your table's
-/// capacity mode.&lt;/p&gt;
+/// The maximum number of read and write units for the global secondary index being created. If you use
+/// this parameter, you must specify <c>MaxReadRequestUnits</c>, <c>MaxWriteRequestUnits</c>, or both.
+/// You must use either <c>OnDemand Throughput</c> or <c>ProvisionedThroughput</c> based on your table's
+/// capacity mode.
 /// </param>
 /// <param name="ProvisionedThroughput">
-/// &lt;p&gt;Represents the provisioned throughput settings for the specified global secondary
-/// index.&lt;/p&gt;
-/// &lt;p&gt;For current minimum and maximum provisioned throughput values, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html&quot;&gt;Service,
-/// Account, and Table Quotas&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Represents the provisioned throughput settings for the specified global secondary index.
+/// </para>
+/// <para>
+/// For current minimum and maximum provisioned throughput values, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Service,
+/// Account, and Table Quotas</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="WarmThroughput">
-/// &lt;p&gt;Represents the warm throughput value (in read units per second and write units per
-/// second) when creating a secondary index.&lt;/p&gt;
+/// Represents the warm throughput value (in read units per second and write units per second) when
+/// creating a secondary index.
 /// </param>
 public sealed record class CreateGlobalSecondaryIndexAction(
     string IndexName,

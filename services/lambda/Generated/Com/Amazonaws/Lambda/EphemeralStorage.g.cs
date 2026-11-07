@@ -5,9 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The size of the function's &lt;code&gt;/tmp&lt;/code&gt; directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage&quot;&gt;Configuring ephemeral storage (console)&lt;/a&gt;.&lt;/p&gt;
+/// The size of the function's <c>/tmp</c> directory in MB. The default value is 512, but can be any
+/// whole number between 512 and 10,240 MB. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage">Configuring
+/// ephemeral storage (console)</see>.
 /// </summary>
 /// <param name="Size">
-/// &lt;p&gt;The size of the function's &lt;code&gt;/tmp&lt;/code&gt; directory.&lt;/p&gt;
+/// The size of the function's <c>/tmp</c> directory.
 /// </param>
 public sealed record class EphemeralStorage(int Size);

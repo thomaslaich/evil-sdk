@@ -7,37 +7,42 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The user-specified message attribute value. For string data types, the
-/// &lt;code&gt;Value&lt;/code&gt; attribute has the same restrictions on the content as the message
-/// body. For more information, see &lt;code&gt;
-/// &lt;a&gt;SendMessage&lt;/a&gt;.&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Name&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt;, &lt;code&gt;value&lt;/code&gt; and the message body must not
-/// be empty or null. All parts of the message attribute, including &lt;code&gt;Name&lt;/code&gt;,
-/// &lt;code&gt;Type&lt;/code&gt;, and &lt;code&gt;Value&lt;/code&gt;, are part of the message size restriction
-/// (1 MiB or 1,048,576 bytes).&lt;/p&gt;
+/// <para>
+/// The user-specified message attribute value. For string data types, the <c>Value</c> attribute has
+/// the same restrictions on the content as the message body. For more information, see <c>
+/// SendMessage.</c>
+/// </para>
+/// <para>
+/// <c>Name</c>, <c>type</c>, <c>value</c> and the message body must not be empty or null. All parts of
+/// the message attribute, including <c>Name</c>, <c>Type</c>, and <c>Value</c>, are part of the message
+/// size restriction (1 MiB or 1,048,576 bytes).
+/// </para>
 /// </summary>
 /// <param name="DataType">
-/// &lt;p&gt;Amazon SQS supports the following logical data types: &lt;code&gt;String&lt;/code&gt;,
-/// &lt;code&gt;Number&lt;/code&gt;, and &lt;code&gt;Binary&lt;/code&gt;. For the &lt;code&gt;Number&lt;/code&gt; data type,
-/// you must use &lt;code&gt;StringValue&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;You can also append custom labels. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes&quot;&gt;Amazon SQS Message Attributes&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Amazon SQS supports the following logical data types: <c>String</c>, <c>Number</c>, and
+/// <c>Binary</c>. For the <c>Number</c> data type, you must use <c>StringValue</c>.
+/// </para>
+/// <para>
+/// You can also append custom labels. For more information, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">Amazon
+/// SQS Message Attributes</see> in the <i>Amazon SQS Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="BinaryListValues">
-/// &lt;p&gt;Not implemented. Reserved for future use.&lt;/p&gt;
+/// Not implemented. Reserved for future use.
 /// </param>
 /// <param name="BinaryValue">
-/// &lt;p&gt;Binary type attributes can store any binary data, such as compressed data, encrypted
-/// data, or images.&lt;/p&gt;
+/// Binary type attributes can store any binary data, such as compressed data, encrypted data, or
+/// images.
 /// </param>
 /// <param name="StringListValues">
-/// &lt;p&gt;Not implemented. Reserved for future use.&lt;/p&gt;
+/// Not implemented. Reserved for future use.
 /// </param>
 /// <param name="StringValue">
-/// &lt;p&gt;Strings are Unicode with UTF-8 binary encoding. For a list of code values, see &lt;a href=&quot;http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters&quot;&gt;ASCII Printable
-/// Characters&lt;/a&gt;.&lt;/p&gt;
+/// Strings are Unicode with UTF-8 binary encoding. For a list of code values, see
+/// <see href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters">ASCII Printable
+/// Characters</see>.
 /// </param>
 public sealed record class MessageAttributeValue(
     string DataType,

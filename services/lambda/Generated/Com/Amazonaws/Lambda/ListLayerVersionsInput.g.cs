@@ -8,19 +8,33 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListLayerVersionsInput.
 /// </summary>
 /// <param name="LayerName">
-/// &lt;p&gt;The name or Amazon Resource Name (ARN) of the layer.&lt;/p&gt;
+/// The name or Amazon Resource Name (ARN) of the layer.
 /// </param>
 /// <param name="CompatibleArchitecture">
-/// &lt;p&gt;The compatible &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
+/// The compatible
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+/// architecture</see>.
 /// </param>
 /// <param name="CompatibleRuntime">
-/// &lt;p&gt;A runtime identifier.&lt;/p&gt; &lt;p&gt;The following list includes deprecated runtimes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels&quot;&gt;Runtime use after deprecation&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For a list of all currently supported runtimes, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported&quot;&gt;Supported runtimes&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// A runtime identifier.
+/// </para>
+/// <para>
+/// The following list includes deprecated runtimes. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels">Runtime
+/// use after deprecation</see>.
+/// </para>
+/// <para>
+/// For a list of all currently supported runtimes, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported">Supported
+/// runtimes</see>.
+/// </para>
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;A pagination token returned by a previous call.&lt;/p&gt;
+/// A pagination token returned by a previous call.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;The maximum number of versions to return.&lt;/p&gt;
+/// The maximum number of versions to return.
 /// </param>
 public sealed record class ListLayerVersionsInput(
     string LayerName,

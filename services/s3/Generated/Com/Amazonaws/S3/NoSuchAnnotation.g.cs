@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The specified annotation does not exist on this object.&lt;/p&gt;
+/// The specified annotation does not exist on this object.
 /// </summary>
 public sealed partial class NoSuchAnnotation : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified annotation does not exist on this object.&lt;/p&gt;
+    /// The specified annotation does not exist on this object.
     /// </summary>
     public NoSuchAnnotation(string? message = null)
         : base(message) { }

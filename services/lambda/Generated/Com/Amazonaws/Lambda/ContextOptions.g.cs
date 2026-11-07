@@ -5,9 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration options for a durable execution context.&lt;/p&gt;
+/// Configuration options for a durable execution context.
 /// </summary>
 /// <param name="ReplayChildren">
-/// &lt;p&gt;Whether the state data of children of the completed context should be included in the invoke payload and &lt;code&gt;GetDurableExecutionState&lt;/code&gt; response.&lt;/p&gt;
+/// Whether the state data of children of the completed context should be included in the invoke payload
+/// and <c>GetDurableExecutionState</c> response.
 /// </param>
 public sealed record class ContextOptions(bool? ReplayChildren = null);

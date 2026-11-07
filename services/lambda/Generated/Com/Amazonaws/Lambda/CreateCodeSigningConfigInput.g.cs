@@ -10,16 +10,16 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#CreateCodeSigningConfigInput.
 /// </summary>
 /// <param name="AllowedPublishers">
-/// &lt;p&gt;Signing profiles for this code signing configuration.&lt;/p&gt;
+/// Signing profiles for this code signing configuration.
 /// </param>
 /// <param name="CodeSigningPolicies">
-/// &lt;p&gt;The code signing policies define the actions to take if the validation checks fail. &lt;/p&gt;
+/// The code signing policies define the actions to take if the validation checks fail.
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;Descriptive name for this code signing configuration.&lt;/p&gt;
+/// Descriptive name for this code signing configuration.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;A list of tags to add to the code signing configuration.&lt;/p&gt;
+/// A list of tags to add to the code signing configuration.
 /// </param>
 public sealed record class CreateCodeSigningConfigInput(
     global::Com.Amazonaws.Lambda.AllowedPublishers AllowedPublishers,

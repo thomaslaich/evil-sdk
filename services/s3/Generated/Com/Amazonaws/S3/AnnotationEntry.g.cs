@@ -8,27 +8,27 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes a single annotation attached to an object, including its name, last modified time,
-/// size, ETag, checksum algorithm, and replication status. Returned in the response from
-/// &lt;code&gt;ListObjectAnnotations&lt;/code&gt;.&lt;/p&gt;
+/// Describes a single annotation attached to an object, including its name, last modified time, size,
+/// ETag, checksum algorithm, and replication status. Returned in the response from
+/// <c>ListObjectAnnotations</c>.
 /// </summary>
 /// <param name="AnnotationName">
-/// &lt;p&gt;The name of the annotation.&lt;/p&gt;
+/// The name of the annotation.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date and time the annotation was last modified.&lt;/p&gt;
+/// The date and time the annotation was last modified.
 /// </param>
 /// <param name="Size">
-/// &lt;p&gt;The size of the annotation payload, in bytes.&lt;/p&gt;
+/// The size of the annotation payload, in bytes.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;The checksum algorithm used for the annotation.&lt;/p&gt;
+/// The checksum algorithm used for the annotation.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;The entity tag of the annotation.&lt;/p&gt;
+/// The entity tag of the annotation.
 /// </param>
 /// <param name="ReplicationStatus">
-/// &lt;p&gt;The replication status of the annotation.&lt;/p&gt;
+/// The replication status of the annotation.
 /// </param>
 public sealed record class AnnotationEntry(
     string AnnotationName,

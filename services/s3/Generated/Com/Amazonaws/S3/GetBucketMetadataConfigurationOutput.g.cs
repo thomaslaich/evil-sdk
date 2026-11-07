@@ -8,9 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketMetadataConfigurationOutput.
 /// </summary>
 /// <param name="GetBucketMetadataConfigurationResult">
-/// &lt;p&gt;
 /// The metadata configuration for the general purpose bucket.
-/// &lt;/p&gt;
 /// </param>
 public sealed record class GetBucketMetadataConfigurationOutput(
     global::Com.Amazonaws.S3.GetBucketMetadataConfigurationResult? GetBucketMetadataConfigurationResult =

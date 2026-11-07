@@ -7,15 +7,19 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The durable execution with the specified name has already been started. Each durable execution name must be unique within the function. Use a different name or check the status of the existing execution.&lt;/p&gt;
+/// The durable execution with the specified name has already been started. Each durable execution name
+/// must be unique within the function. Use a different name or check the status of the existing
+/// execution.
 /// </summary>
 public sealed partial class DurableExecutionAlreadyStartedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The durable execution with the specified name has already been started. Each durable execution name must be unique within the function. Use a different name or check the status of the existing execution.&lt;/p&gt;
+    /// The durable execution with the specified name has already been started. Each durable execution name
+    /// must be unique within the function. Use a different name or check the status of the existing
+    /// execution.
     /// </summary>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public DurableExecutionAlreadyStartedException(string? message = null, string? type = null)
         : base(message)
@@ -26,7 +30,7 @@ public sealed partial class DurableExecutionAlreadyStartedException : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

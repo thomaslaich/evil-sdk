@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;A queue with this name already exists. Amazon SQS returns this error only if the request
-/// includes attributes whose values differ from those of the existing queue.&lt;/p&gt;
+/// A queue with this name already exists. Amazon SQS returns this error only if the request includes
+/// attributes whose values differ from those of the existing queue.
 /// </summary>
 public sealed partial class QueueNameExists : Exception
 {
     /// <summary>
-    /// &lt;p&gt;A queue with this name already exists. Amazon SQS returns this error only if the request
-    /// includes attributes whose values differ from those of the existing queue.&lt;/p&gt;
+    /// A queue with this name already exists. Amazon SQS returns this error only if the request includes
+    /// attributes whose values differ from those of the existing queue.
     /// </summary>
     public QueueNameExists(string? message = null)
         : base(message) { }

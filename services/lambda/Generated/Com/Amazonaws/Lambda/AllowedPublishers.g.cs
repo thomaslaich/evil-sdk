@@ -7,9 +7,10 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;List of signing profiles that can sign a code package. &lt;/p&gt;
+/// List of signing profiles that can sign a code package.
 /// </summary>
 /// <param name="SigningProfileVersionArns">
-/// &lt;p&gt;The Amazon Resource Name (ARN) for each of the signing profiles. A signing profile defines a trusted user who can sign a code package. &lt;/p&gt;
+/// The Amazon Resource Name (ARN) for each of the signing profiles. A signing profile defines a trusted
+/// user who can sign a code package.
 /// </param>
 public sealed record class AllowedPublishers(IReadOnlyList<string> SigningProfileVersionArns);

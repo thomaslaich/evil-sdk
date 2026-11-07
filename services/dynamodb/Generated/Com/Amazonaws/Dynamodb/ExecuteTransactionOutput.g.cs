@@ -10,11 +10,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ExecuteTransactionOutput.
 /// </summary>
 /// <param name="ConsumedCapacity">
-/// &lt;p&gt;The capacity units consumed by the entire operation. The values of the list are
-/// ordered according to the ordering of the statements.&lt;/p&gt;
+/// The capacity units consumed by the entire operation. The values of the list are ordered according to
+/// the ordering of the statements.
 /// </param>
 /// <param name="Responses">
-/// &lt;p&gt;The response to a PartiQL transaction.&lt;/p&gt;
+/// The response to a PartiQL transaction.
 /// </param>
 public sealed record class ExecuteTransactionOutput(
     IReadOnlyList<global::Com.Amazonaws.Dynamodb.ConsumedCapacity>? ConsumedCapacity = null,

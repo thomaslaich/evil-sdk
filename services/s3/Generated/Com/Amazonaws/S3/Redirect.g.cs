@@ -5,42 +5,46 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies how requests are redirected. In the event of an error, you can specify a different error
-/// code to return.&lt;/p&gt;
+/// Specifies how requests are redirected. In the event of an error, you can specify a different error
+/// code to return.
 /// </summary>
 /// <param name="HostName">
-/// &lt;p&gt;The host name to use in the redirect request.&lt;/p&gt;
+/// The host name to use in the redirect request.
 /// </param>
 /// <param name="HttpRedirectCode">
-/// &lt;p&gt;The HTTP redirect code to use on the response. Not required if one of the siblings is
-/// present.&lt;/p&gt;
+/// The HTTP redirect code to use on the response. Not required if one of the siblings is present.
 /// </param>
 /// <param name="Protocol">
-/// &lt;p&gt;Protocol to use when redirecting requests. The default is the protocol that is used in the original
-/// request.&lt;/p&gt;
+/// Protocol to use when redirecting requests. The default is the protocol that is used in the original
+/// request.
 /// </param>
 /// <param name="ReplaceKeyPrefixWith">
-/// &lt;p&gt;The object key prefix to use in the redirect request. For example, to redirect requests for all
-/// pages with prefix &lt;code&gt;docs/&lt;/code&gt; (objects in the &lt;code&gt;docs/&lt;/code&gt; folder) to
-/// &lt;code&gt;documents/&lt;/code&gt;, you can set a condition block with &lt;code&gt;KeyPrefixEquals&lt;/code&gt; set to
-/// &lt;code&gt;docs/&lt;/code&gt; and in the Redirect set &lt;code&gt;ReplaceKeyPrefixWith&lt;/code&gt; to
-/// &lt;code&gt;/documents&lt;/code&gt;. Not required if one of the siblings is present. Can be present only if
-/// &lt;code&gt;ReplaceKeyWith&lt;/code&gt; is not provided.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// The object key prefix to use in the redirect request. For example, to redirect requests for all
+/// pages with prefix <c>docs/</c> (objects in the <c>docs/</c> folder) to <c>documents/</c>, you can
+/// set a condition block with <c>KeyPrefixEquals</c> set to <c>docs/</c> and in the Redirect set
+/// <c>ReplaceKeyPrefixWith</c> to <c>/documents</c>. Not required if one of the siblings is present.
+/// Can be present only if <c>ReplaceKeyWith</c> is not provided.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 /// <param name="ReplaceKeyWith">
-/// &lt;p&gt;The specific object key to use in the redirect request. For example, redirect request to
-/// &lt;code&gt;error.html&lt;/code&gt;. Not required if one of the siblings is present. Can be present only if
-/// &lt;code&gt;ReplaceKeyPrefixWith&lt;/code&gt; is not provided.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// The specific object key to use in the redirect request. For example, redirect request to
+/// <c>error.html</c>. Not required if one of the siblings is present. Can be present only if
+/// <c>ReplaceKeyPrefixWith</c> is not provided.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 public sealed record class Redirect(
     string? HostName = null,

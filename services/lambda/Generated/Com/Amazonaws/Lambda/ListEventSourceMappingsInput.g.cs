@@ -8,16 +8,85 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListEventSourceMappingsInput.
 /// </summary>
 /// <param name="EventSourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the event source.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Amazon Kinesis&lt;/b&gt; – The ARN of the data stream or a stream consumer.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Amazon DynamoDB Streams&lt;/b&gt; – The ARN of the stream.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Amazon Simple Queue Service&lt;/b&gt; – The ARN of the queue.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Amazon Managed Streaming for Apache Kafka&lt;/b&gt; – The ARN of the cluster or the ARN of the VPC connection (for &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc&quot;&gt;cross-account event source mappings&lt;/a&gt;).&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Amazon MQ&lt;/b&gt; – The ARN of the broker.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Amazon DocumentDB&lt;/b&gt; – The ARN of the DocumentDB change stream.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// The Amazon Resource Name (ARN) of the event source.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Amazon Kinesis</b> – The ARN of the data stream or a stream consumer.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Amazon DynamoDB Streams</b> – The ARN of the stream.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Amazon Simple Queue Service</b> – The ARN of the queue.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Amazon Managed Streaming for Apache Kafka</b> – The ARN of the cluster or the ARN of the VPC
+/// connection (for
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc">cross-account
+/// event source mappings</see>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Amazon MQ</b> – The ARN of the broker.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Amazon DocumentDB</b> – The ARN of the DocumentDB change stream.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; – &lt;code&gt;MyFunction&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:MyFunction&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Version or Alias ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; – &lt;code&gt;123456789012:function:MyFunction&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>MyFunction</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Version or Alias ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:MyFunction</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it's
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;A pagination token returned by a previous call.&lt;/p&gt;
+/// A pagination token returned by a previous call.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;The maximum number of event source mappings to return. Note that ListEventSourceMappings returns a maximum of 100 items in each response, even if you set the number higher.&lt;/p&gt;
+/// The maximum number of event source mappings to return. Note that ListEventSourceMappings returns a
+/// maximum of 100 items in each response, even if you set the number higher.
 /// </param>
 public sealed record class ListEventSourceMappingsInput(
     string? EventSourceArn = null,

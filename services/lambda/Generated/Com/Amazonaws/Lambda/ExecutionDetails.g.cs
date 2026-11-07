@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;.&lt;/p&gt;
+/// Details about a
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+/// execution</see>.
 /// </summary>
 /// <param name="InputPayload">
-/// &lt;p&gt;The original input payload provided for the durable execution.&lt;/p&gt;
+/// The original input payload provided for the durable execution.
 /// </param>
 public sealed record class ExecutionDetails(string? InputPayload = null);

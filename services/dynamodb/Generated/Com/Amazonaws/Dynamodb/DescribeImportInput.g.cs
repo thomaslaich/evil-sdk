@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeImportInput.
 /// </summary>
 /// <param name="ImportArn">
-/// &lt;p&gt; The Amazon Resource Name (ARN) associated with the table you're importing to. &lt;/p&gt;
+/// The Amazon Resource Name (ARN) associated with the table you're importing to.
 /// </param>
 public sealed record class DescribeImportInput(string ImportArn);

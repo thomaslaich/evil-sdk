@@ -7,58 +7,75 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A lifecycle rule for individual objects in an Amazon S3 bucket.&lt;/p&gt;
-/// &lt;p&gt;For more information see, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html&quot;&gt;Managing your storage lifecycle&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// A lifecycle rule for individual objects in an Amazon S3 bucket.
+/// </para>
+/// <para>
+/// For more information see,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html">Managing
+/// your storage lifecycle</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being
-/// applied.&lt;/p&gt;
+/// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being
+/// applied.
 /// </param>
 /// <param name="Expiration">
-/// &lt;p&gt;Specifies the expiration for the lifecycle of the object in the form of date, days and, whether the
-/// object has a delete marker.&lt;/p&gt;
+/// Specifies the expiration for the lifecycle of the object in the form of date, days and, whether the
+/// object has a delete marker.
 /// </param>
 /// <param name="Filter">
-/// &lt;p&gt;The &lt;code&gt;Filter&lt;/code&gt; is used to identify objects that a Lifecycle Rule applies to. A
-/// &lt;code&gt;Filter&lt;/code&gt; must have exactly one of &lt;code&gt;Prefix&lt;/code&gt;, &lt;code&gt;Tag&lt;/code&gt;,
-/// &lt;code&gt;ObjectSizeGreaterThan&lt;/code&gt;, &lt;code&gt;ObjectSizeLessThan&lt;/code&gt;, or &lt;code&gt;And&lt;/code&gt; specified.
-/// &lt;code&gt;Filter&lt;/code&gt; is required if the &lt;code&gt;LifecycleRule&lt;/code&gt; does not contain a
-/// &lt;code&gt;Prefix&lt;/code&gt; element.&lt;/p&gt;
-/// &lt;p&gt;For more information about &lt;code&gt;Tag&lt;/code&gt; filters, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-filters.html&quot;&gt;Adding filters to Lifecycle rules&lt;/a&gt;
-/// in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Tag&lt;/code&gt; filters are not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The <c>Filter</c> is used to identify objects that a Lifecycle Rule applies to. A <c>Filter</c> must
+/// have exactly one of <c>Prefix</c>, <c>Tag</c>, <c>ObjectSizeGreaterThan</c>,
+/// <c>ObjectSizeLessThan</c>, or <c>And</c> specified. <c>Filter</c> is required if the
+/// <c>LifecycleRule</c> does not contain a <c>Prefix</c> element.
+/// </para>
+/// <para>
+/// For more information about <c>Tag</c> filters, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-filters.html">Adding
+/// filters to Lifecycle rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> <c>Tag</c> filters are not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ID">
-/// &lt;p&gt;Unique identifier for the rule. The value cannot be longer than 255 characters.&lt;/p&gt;
+/// Unique identifier for the rule. The value cannot be longer than 255 characters.
 /// </param>
 /// <param name="NoncurrentVersionTransitions">
-/// &lt;p&gt;Specifies the transition rule for the lifecycle rule that describes when noncurrent objects
+/// <para>
+/// Specifies the transition rule for the lifecycle rule that describes when noncurrent objects
 /// transition to a specific storage class. If your bucket is versioning-enabled (or versioning is
-/// suspended), you can set this action to request that Amazon S3 transition noncurrent object versions to a
-/// specific storage class at a set period in the object's lifetime.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// suspended), you can set this action to request that Amazon S3 transition noncurrent object versions
+/// to a specific storage class at a set period in the object's lifetime.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt; The general purpose bucket prefix that identifies one or more objects to which the rule applies. We recommend using &lt;code&gt;Filter&lt;/code&gt; instead of &lt;code&gt;Prefix&lt;/code&gt; for new PUTs. Previous configurations where a prefix is defined will continue to operate as before.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// The general purpose bucket prefix that identifies one or more objects to which the rule applies. We
+/// recommend using <c>Filter</c> instead of <c>Prefix</c> for new PUTs. Previous configurations where a
+/// prefix is defined will continue to operate as before.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 /// <param name="Transitions">
-/// &lt;p&gt;Specifies when an Amazon S3 object transitions to a specified storage class.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies when an Amazon S3 object transitions to a specified storage class.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 public sealed record class LifecycleRule(
     ExpirationStatus Status,

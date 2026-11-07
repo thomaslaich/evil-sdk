@@ -7,21 +7,21 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;An error occurred on the server side.&lt;/p&gt;
+/// An error occurred on the server side.
 /// </summary>
 public sealed partial class InternalServerError : Exception
 {
     /// <summary>
-    /// &lt;p&gt;An error occurred on the server side.&lt;/p&gt;
+    /// An error occurred on the server side.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The server encountered an internal error trying to fulfill the request.&lt;/p&gt;
+    /// The server encountered an internal error trying to fulfill the request.
     /// </param>
     public InternalServerError(string? message = null)
         : base(message) { }
 
     /// <summary>
-    /// &lt;p&gt;The server encountered an internal error trying to fulfill the request.&lt;/p&gt;
+    /// The server encountered an internal error trying to fulfill the request.
     /// </summary>
     public override string Message => base.Message!;
 }

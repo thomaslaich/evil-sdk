@@ -5,19 +5,19 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes the serialization format of the object.&lt;/p&gt;
+/// Describes the serialization format of the object.
 /// </summary>
 /// <param name="CSV">
-/// &lt;p&gt;Describes the serialization of a CSV-encoded object.&lt;/p&gt;
+/// Describes the serialization of a CSV-encoded object.
 /// </param>
 /// <param name="CompressionType">
-/// &lt;p&gt;Specifies object's compression format. Valid values: NONE, GZIP, BZIP2. Default Value: NONE.&lt;/p&gt;
+/// Specifies object's compression format. Valid values: NONE, GZIP, BZIP2. Default Value: NONE.
 /// </param>
 /// <param name="JSON">
-/// &lt;p&gt;Specifies JSON as object's input serialization format.&lt;/p&gt;
+/// Specifies JSON as object's input serialization format.
 /// </param>
 /// <param name="Parquet">
-/// &lt;p&gt;Specifies Parquet as object's input serialization format.&lt;/p&gt;
+/// Specifies Parquet as object's input serialization format.
 /// </param>
 public sealed record class InputSerialization(
     CSVInput? CSV = null,

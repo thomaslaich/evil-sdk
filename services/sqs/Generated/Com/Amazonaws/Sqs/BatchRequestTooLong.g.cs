@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The length of all the messages put together is more than the limit.&lt;/p&gt;
+/// The length of all the messages put together is more than the limit.
 /// </summary>
 public sealed partial class BatchRequestTooLong : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The length of all the messages put together is more than the limit.&lt;/p&gt;
+    /// The length of all the messages put together is more than the limit.
     /// </summary>
     public BatchRequestTooLong(string? message = null)
         : base(message) { }

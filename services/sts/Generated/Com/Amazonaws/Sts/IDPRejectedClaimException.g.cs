@@ -7,18 +7,26 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The identity provider (IdP) reported that authentication failed. This might be because
-/// the claim is invalid.&lt;/p&gt;
-/// &lt;p&gt;If this error is returned for the &lt;code&gt;AssumeRoleWithWebIdentity&lt;/code&gt; operation, it
-/// can also mean that the claim has expired or has been explicitly revoked. &lt;/p&gt;
+/// <para>
+/// The identity provider (IdP) reported that authentication failed. This might be because the claim is
+/// invalid.
+/// </para>
+/// <para>
+/// If this error is returned for the <c>AssumeRoleWithWebIdentity</c> operation, it can also mean that
+/// the claim has expired or has been explicitly revoked.
+/// </para>
 /// </summary>
 public sealed partial class IDPRejectedClaimException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The identity provider (IdP) reported that authentication failed. This might be because
-    /// the claim is invalid.&lt;/p&gt;
-    /// &lt;p&gt;If this error is returned for the &lt;code&gt;AssumeRoleWithWebIdentity&lt;/code&gt; operation, it
-    /// can also mean that the claim has expired or has been explicitly revoked. &lt;/p&gt;
+    /// <para>
+    /// The identity provider (IdP) reported that authentication failed. This might be because the claim is
+    /// invalid.
+    /// </para>
+    /// <para>
+    /// If this error is returned for the <c>AssumeRoleWithWebIdentity</c> operation, it can also mean that
+    /// the claim has expired or has been explicitly revoked.
+    /// </para>
     /// </summary>
     public IDPRejectedClaimException(string? message = null)
         : base(message) { }

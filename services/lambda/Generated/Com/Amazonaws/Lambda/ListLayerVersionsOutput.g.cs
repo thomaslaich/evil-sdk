@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListLayerVersionsOutput.
 /// </summary>
 /// <param name="LayerVersions">
-/// &lt;p&gt;A list of versions.&lt;/p&gt;
+/// A list of versions.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;A pagination token returned when the response doesn't contain all versions.&lt;/p&gt;
+/// A pagination token returned when the response doesn't contain all versions.
 /// </param>
 public sealed record class ListLayerVersionsOutput(
     IReadOnlyList<LayerVersionsListItem>? LayerVersions = null,

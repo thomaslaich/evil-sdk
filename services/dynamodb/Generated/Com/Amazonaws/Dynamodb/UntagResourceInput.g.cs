@@ -10,11 +10,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UntagResourceInput.
 /// </summary>
 /// <param name="ResourceArn">
-/// &lt;p&gt;The DynamoDB resource that the tags will be removed from. This value is an Amazon
-/// Resource Name (ARN).&lt;/p&gt;
+/// The DynamoDB resource that the tags will be removed from. This value is an Amazon Resource Name
+/// (ARN).
 /// </param>
 /// <param name="TagKeys">
-/// &lt;p&gt;A list of tag keys. Existing tags of the resource whose keys are members of this list
-/// will be removed from the DynamoDB resource.&lt;/p&gt;
+/// A list of tag keys. Existing tags of the resource whose keys are members of this list will be
+/// removed from the DynamoDB resource.
 /// </param>
 public sealed record class UntagResourceInput(string ResourceArn, IReadOnlyList<string> TagKeys);

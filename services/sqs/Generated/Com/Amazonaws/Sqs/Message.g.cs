@@ -7,78 +7,82 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;An Amazon SQS message.&lt;/p&gt;
+/// An Amazon SQS message.
 /// </summary>
 /// <param name="Attributes">
-/// &lt;p&gt;A map of the attributes requested in &lt;code&gt;
-/// &lt;a&gt;ReceiveMessage&lt;/a&gt;
-/// &lt;/code&gt; to
-/// their respective values. Supported attributes:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ApproximateReceiveCount&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ApproximateFirstReceiveTimestamp&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MessageDeduplicationId&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MessageGroupId&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SenderId&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SentTimestamp&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SequenceNumber&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ApproximateFirstReceiveTimestamp&lt;/code&gt; and &lt;code&gt;SentTimestamp&lt;/code&gt; are each
-/// returned as an integer representing the &lt;a href=&quot;http://en.wikipedia.org/wiki/Unix_time&quot;&gt;epoch time&lt;/a&gt; in
-/// milliseconds.&lt;/p&gt;
+/// <para>
+/// A map of the attributes requested in <c> ReceiveMessage </c> to their respective values. Supported
+/// attributes:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ApproximateReceiveCount</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ApproximateFirstReceiveTimestamp</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MessageDeduplicationId</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MessageGroupId</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SenderId</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SentTimestamp</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SequenceNumber</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <c>ApproximateFirstReceiveTimestamp</c> and <c>SentTimestamp</c> are each returned as an integer
+/// representing the <see href="http://en.wikipedia.org/wiki/Unix_time">epoch time</see> in
+/// milliseconds.
+/// </para>
 /// </param>
 /// <param name="Body">
-/// &lt;p&gt;The message's contents (not URL-encoded).&lt;/p&gt;
+/// The message's contents (not URL-encoded).
 /// </param>
 /// <param name="MD5OfBody">
-/// &lt;p&gt;An MD5 digest of the non-URL-encoded message body string.&lt;/p&gt;
+/// An MD5 digest of the non-URL-encoded message body string.
 /// </param>
 /// <param name="MD5OfMessageAttributes">
-/// &lt;p&gt;An MD5 digest of the non-URL-encoded message attribute string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see &lt;a href=&quot;https://www.ietf.org/rfc/rfc1321.txt&quot;&gt;RFC1321&lt;/a&gt;.&lt;/p&gt;
+/// An MD5 digest of the non-URL-encoded message attribute string. You can use this attribute to verify
+/// that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating
+/// the MD5 digest. For information about MD5, see
+/// <see href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</see>.
 /// </param>
 /// <param name="MessageAttributes">
-/// &lt;p&gt;Each message attribute consists of a &lt;code&gt;Name&lt;/code&gt;, &lt;code&gt;Type&lt;/code&gt;,
-/// and &lt;code&gt;Value&lt;/code&gt;. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes&quot;&gt;Amazon SQS
-/// message attributes&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// Each message attribute consists of a <c>Name</c>, <c>Type</c>, and <c>Value</c>. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">Amazon
+/// SQS message attributes</see> in the <i>Amazon SQS Developer Guide</i>.
 /// </param>
 /// <param name="MessageId">
-/// &lt;p&gt;A unique identifier for the message. A &lt;code&gt;MessageId&lt;/code&gt;is considered unique
-/// across all Amazon Web Services accounts for an extended period of time.&lt;/p&gt;
+/// A unique identifier for the message. A <c>MessageId</c>is considered unique across all Amazon Web
+/// Services accounts for an extended period of time.
 /// </param>
 /// <param name="ReceiptHandle">
-/// &lt;p&gt;An identifier associated with the act of receiving the message. A new receipt handle
-/// is returned every time you receive a message. When deleting a message, you provide the
-/// last received receipt handle to delete the message.&lt;/p&gt;
+/// An identifier associated with the act of receiving the message. A new receipt handle is returned
+/// every time you receive a message. When deleting a message, you provide the last received receipt
+/// handle to delete the message.
 /// </param>
 public sealed record class Message(
     IReadOnlyDictionary<string, string>? Attributes = null,

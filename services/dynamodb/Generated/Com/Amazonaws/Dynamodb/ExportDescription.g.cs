@@ -7,96 +7,94 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of the exported table.&lt;/p&gt;
+/// Represents the properties of the exported table.
 /// </summary>
 /// <param name="BilledSizeBytes">
-/// &lt;p&gt;The billable size of the table export.&lt;/p&gt;
+/// The billable size of the table export.
 /// </param>
 /// <param name="ClientToken">
-/// &lt;p&gt;The client token that was provided for the export task. A client token makes calls to
-/// &lt;code&gt;ExportTableToPointInTimeInput&lt;/code&gt; idempotent, meaning that multiple
-/// identical calls have the same effect as one single call.&lt;/p&gt;
+/// The client token that was provided for the export task. A client token makes calls to
+/// <c>ExportTableToPointInTimeInput</c> idempotent, meaning that multiple identical calls have the same
+/// effect as one single call.
 /// </param>
 /// <param name="EndTime">
-/// &lt;p&gt;The time at which the export task completed.&lt;/p&gt;
+/// The time at which the export task completed.
 /// </param>
 /// <param name="ExportArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the table export.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the table export.
 /// </param>
 /// <param name="ExportFormat">
-/// &lt;p&gt;The format of the exported data. Valid values for &lt;code&gt;ExportFormat&lt;/code&gt; are
-/// &lt;code&gt;DYNAMODB_JSON&lt;/code&gt; or &lt;code&gt;ION&lt;/code&gt;.&lt;/p&gt;
+/// The format of the exported data. Valid values for <c>ExportFormat</c> are <c>DYNAMODB_JSON</c> or
+/// <c>ION</c>.
 /// </param>
 /// <param name="ExportManifest">
-/// &lt;p&gt;The name of the manifest file for the export task.&lt;/p&gt;
+/// The name of the manifest file for the export task.
 /// </param>
 /// <param name="ExportStatus">
-/// &lt;p&gt;Export can be in one of the following states: IN_PROGRESS, COMPLETED, or
-/// FAILED.&lt;/p&gt;
+/// Export can be in one of the following states: IN_PROGRESS, COMPLETED, or FAILED.
 /// </param>
 /// <param name="ExportTime">
-/// &lt;p&gt;Point in time from which table data was exported.&lt;/p&gt;
+/// Point in time from which table data was exported.
 /// </param>
 /// <param name="ExportType">
-/// &lt;p&gt;The type of export that was performed. Valid values are &lt;code&gt;FULL_EXPORT&lt;/code&gt; or
-/// &lt;code&gt;INCREMENTAL_EXPORT&lt;/code&gt;.&lt;/p&gt;
+/// The type of export that was performed. Valid values are <c>FULL_EXPORT</c> or
+/// <c>INCREMENTAL_EXPORT</c>.
 /// </param>
 /// <param name="FailureCode">
-/// &lt;p&gt;Status code for the result of the failed export.&lt;/p&gt;
+/// Status code for the result of the failed export.
 /// </param>
 /// <param name="FailureMessage">
-/// &lt;p&gt;Export failure reason description.&lt;/p&gt;
+/// Export failure reason description.
 /// </param>
 /// <param name="FilterSpecification">
-/// &lt;p&gt;The filter criteria applied to the export. When present, only items that match the
-/// specified key conditions and filter expressions are included in the export
-/// output.&lt;/p&gt;
+/// The filter criteria applied to the export. When present, only items that match the specified key
+/// conditions and filter expressions are included in the export output.
 /// </param>
 /// <param name="IncrementalExportSpecification">
-/// &lt;p&gt;Optional object containing the parameters specific to an incremental export.&lt;/p&gt;
+/// Optional object containing the parameters specific to an incremental export.
 /// </param>
 /// <param name="ItemCount">
-/// &lt;p&gt;The number of items exported.&lt;/p&gt;
+/// The number of items exported.
 /// </param>
 /// <param name="S3Bucket">
-/// &lt;p&gt;The name of the Amazon S3 bucket containing the export.&lt;/p&gt;
+/// The name of the Amazon S3 bucket containing the export.
 /// </param>
 /// <param name="S3BucketOwner">
-/// &lt;p&gt;The ID of the Amazon Web Services account that owns the bucket containing the
-/// export.&lt;/p&gt;
+/// The ID of the Amazon Web Services account that owns the bucket containing the export.
 /// </param>
 /// <param name="S3Prefix">
-/// &lt;p&gt;The Amazon S3 bucket prefix used as the file name and path of the exported
-/// snapshot.&lt;/p&gt;
+/// The Amazon S3 bucket prefix used as the file name and path of the exported snapshot.
 /// </param>
 /// <param name="S3SseAlgorithm">
-/// &lt;p&gt;Type of encryption used on the bucket where export data is stored. Valid values for
-/// &lt;code&gt;S3SseAlgorithm&lt;/code&gt; are:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AES256&lt;/code&gt; - server-side encryption with Amazon S3 managed
-/// keys&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KMS&lt;/code&gt; - server-side encryption with KMS managed
-/// keys&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Type of encryption used on the bucket where export data is stored. Valid values for
+/// <c>S3SseAlgorithm</c> are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>AES256</c> - server-side encryption with Amazon S3 managed keys
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KMS</c> - server-side encryption with KMS managed keys
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="S3SseKmsKeyId">
-/// &lt;p&gt;The ID of the KMS managed key used to encrypt the S3 bucket where
-/// export data is stored (if applicable).&lt;/p&gt;
+/// The ID of the KMS managed key used to encrypt the S3 bucket where export data is stored (if
+/// applicable).
 /// </param>
 /// <param name="StartTime">
-/// &lt;p&gt;The time at which the export task began.&lt;/p&gt;
+/// The time at which the export task began.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the table that was exported.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the table that was exported.
 /// </param>
 /// <param name="TableId">
-/// &lt;p&gt;Unique ID of the table that was exported.&lt;/p&gt;
+/// Unique ID of the table that was exported.
 /// </param>
 public sealed record class ExportDescription(
     long? BilledSizeBytes = null,

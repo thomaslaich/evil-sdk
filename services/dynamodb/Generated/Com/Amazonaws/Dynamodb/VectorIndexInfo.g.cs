@@ -7,28 +7,25 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains the configuration of a vector index as it existed at the time a backup
-/// was created.&lt;/p&gt;
+/// Contains the configuration of a vector index as it existed at the time a backup was created.
 /// </summary>
 /// <param name="Dimensions">
-/// &lt;p&gt;The number of dimensions in each vector.&lt;/p&gt;
+/// The number of dimensions in each vector.
 /// </param>
 /// <param name="DistanceFunction">
-/// &lt;p&gt;The distance function used to calculate similarity between vectors.&lt;/p&gt;
+/// The distance function used to calculate similarity between vectors.
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the vector index.&lt;/p&gt;
+/// The name of the vector index.
 /// </param>
 /// <param name="Projection">
-/// &lt;p&gt;Specifies attributes that are copied (projected) from the table into the vector
-/// index.&lt;/p&gt;
+/// Specifies attributes that are copied (projected) from the table into the vector index.
 /// </param>
 /// <param name="SearchSchema">
-/// &lt;p&gt;The search schema that defines partition key and inline filter attributes for
-/// the vector index.&lt;/p&gt;
+/// The search schema that defines partition key and inline filter attributes for the vector index.
 /// </param>
 /// <param name="VectorAttribute">
-/// &lt;p&gt;The vector attribute configuration for the index.&lt;/p&gt;
+/// The vector attribute configuration for the index.
 /// </param>
 public sealed record class VectorIndexInfo(
     long? Dimensions = null,

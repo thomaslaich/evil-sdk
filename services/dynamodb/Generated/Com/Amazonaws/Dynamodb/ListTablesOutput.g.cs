@@ -7,21 +7,29 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of a &lt;code&gt;ListTables&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of a <c>ListTables</c> operation.
 /// </summary>
 /// <param name="LastEvaluatedTableName">
-/// &lt;p&gt;The name of the last table in the current page of results. Use this value as the
-/// &lt;code&gt;ExclusiveStartTableName&lt;/code&gt; in a new request to obtain the next page of
-/// results, until all the table names are returned.&lt;/p&gt;
-/// &lt;p&gt;If you do not receive a &lt;code&gt;LastEvaluatedTableName&lt;/code&gt; value in the response,
-/// this means that there are no more table names to be retrieved.&lt;/p&gt;
+/// <para>
+/// The name of the last table in the current page of results. Use this value as the
+/// <c>ExclusiveStartTableName</c> in a new request to obtain the next page of results, until all the
+/// table names are returned.
+/// </para>
+/// <para>
+/// If you do not receive a <c>LastEvaluatedTableName</c> value in the response, this means that there
+/// are no more table names to be retrieved.
+/// </para>
 /// </param>
 /// <param name="TableNames">
-/// &lt;p&gt;The names of the tables associated with the current account at the current endpoint.
-/// The maximum size of this array is 100.&lt;/p&gt;
-/// &lt;p&gt;If &lt;code&gt;LastEvaluatedTableName&lt;/code&gt; also appears in the output, you can use this
-/// value as the &lt;code&gt;ExclusiveStartTableName&lt;/code&gt; parameter in a subsequent
-/// &lt;code&gt;ListTables&lt;/code&gt; request and obtain the next page of results.&lt;/p&gt;
+/// <para>
+/// The names of the tables associated with the current account at the current endpoint. The maximum
+/// size of this array is 100.
+/// </para>
+/// <para>
+/// If <c>LastEvaluatedTableName</c> also appears in the output, you can use this value as the
+/// <c>ExclusiveStartTableName</c> parameter in a subsequent <c>ListTables</c> request and obtain the
+/// next page of results.
+/// </para>
 /// </param>
 public sealed record class ListTablesOutput(
     string? LastEvaluatedTableName = null,

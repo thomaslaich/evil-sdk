@@ -8,18 +8,18 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateContributorInsightsInput.
 /// </summary>
 /// <param name="ContributorInsightsAction">
-/// &lt;p&gt;Represents the contributor insights action.&lt;/p&gt;
+/// Represents the contributor insights action.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
-/// parameter.&lt;/p&gt;
+/// The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
+/// parameter.
 /// </param>
 /// <param name="ContributorInsightsMode">
-/// &lt;p&gt;Specifies whether to track all access and throttled events or throttled events only for
-/// the DynamoDB table or index.&lt;/p&gt;
+/// Specifies whether to track all access and throttled events or throttled events only for the DynamoDB
+/// table or index.
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The global secondary index name, if applicable.&lt;/p&gt;
+/// The global secondary index name, if applicable.
 /// </param>
 public sealed record class UpdateContributorInsightsInput(
     global::Com.Amazonaws.Dynamodb.ContributorInsightsAction ContributorInsightsAction,

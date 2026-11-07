@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The request was rejected because the policy document was malformed. The error message
-/// describes the specific error.&lt;/p&gt;
+/// The request was rejected because the policy document was malformed. The error message describes the
+/// specific error.
 /// </summary>
 public sealed partial class MalformedPolicyDocumentException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was rejected because the policy document was malformed. The error message
-    /// describes the specific error.&lt;/p&gt;
+    /// The request was rejected because the policy document was malformed. The error message describes the
+    /// specific error.
     /// </summary>
     public MalformedPolicyDocumentException(string? message = null)
         : base(message) { }

@@ -7,14 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The specified &lt;code&gt;ExportTime&lt;/code&gt; is outside of the point in time recovery
-/// window.&lt;/p&gt;
+/// The specified <c>ExportTime</c> is outside of the point in time recovery window.
 /// </summary>
 public sealed partial class InvalidExportTimeException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified &lt;code&gt;ExportTime&lt;/code&gt; is outside of the point in time recovery
-    /// window.&lt;/p&gt;
+    /// The specified <c>ExportTime</c> is outside of the point in time recovery window.
     /// </summary>
     public InvalidExportTimeException(string? message = null)
         : base(message) { }

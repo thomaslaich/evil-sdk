@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;This action is not allowed against this storage tier.&lt;/p&gt;
+/// This action is not allowed against this storage tier.
 /// </summary>
 public sealed partial class ObjectAlreadyInActiveTierError : Exception
 {
     /// <summary>
-    /// &lt;p&gt;This action is not allowed against this storage tier.&lt;/p&gt;
+    /// This action is not allowed against this storage tier.
     /// </summary>
     public ObjectAlreadyInActiveTierError(string? message = null)
         : base(message) { }

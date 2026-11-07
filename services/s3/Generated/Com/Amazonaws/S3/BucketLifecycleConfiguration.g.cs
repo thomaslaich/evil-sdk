@@ -7,11 +7,11 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the lifecycle configuration for objects in an Amazon S3 bucket. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html&quot;&gt;Object Lifecycle
-/// Management&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// Specifies the lifecycle configuration for objects in an Amazon S3 bucket. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html">Object
+/// Lifecycle Management</see> in the <i>Amazon S3 User Guide</i>.
 /// </summary>
 /// <param name="Rules">
-/// &lt;p&gt;A lifecycle rule for individual objects in an Amazon S3 bucket.&lt;/p&gt;
+/// A lifecycle rule for individual objects in an Amazon S3 bucket.
 /// </param>
 public sealed record class BucketLifecycleConfiguration(IReadOnlyList<LifecycleRule> Rules);

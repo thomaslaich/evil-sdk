@@ -7,34 +7,40 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the auto scaling configuration for a global table.&lt;/p&gt;
+/// Represents the auto scaling configuration for a global table.
 /// </summary>
 /// <param name="Replicas">
-/// &lt;p&gt;Represents replicas of the global table.&lt;/p&gt;
+/// Represents replicas of the global table.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table.&lt;/p&gt;
+/// The name of the table.
 /// </param>
 /// <param name="TableStatus">
-/// &lt;p&gt;The current state of the table:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The table is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The table is being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The table is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The table is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of the table:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The table is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The table is being updated.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The table is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The table is ready for use.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class TableAutoScalingDescription(
     IReadOnlyList<ReplicaAutoScalingDescription>? Replicas = null,

@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a replica to be added.&lt;/p&gt;
+/// Represents a replica to be added.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The Region of the replica to be added.&lt;/p&gt;
+/// The Region of the replica to be added.
 /// </param>
 public sealed record class CreateReplicaAction(string RegionName);

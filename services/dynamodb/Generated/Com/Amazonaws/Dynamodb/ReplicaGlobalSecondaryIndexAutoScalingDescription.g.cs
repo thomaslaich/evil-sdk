@@ -5,34 +5,38 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the auto scaling configuration for a replica global secondary index.&lt;/p&gt;
+/// Represents the auto scaling configuration for a replica global secondary index.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index.&lt;/p&gt;
+/// The name of the global secondary index.
 /// </param>
 /// <param name="IndexStatus">
-/// &lt;p&gt;The current state of the replica global secondary index:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The index is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The table/index configuration is being updated. The
-/// table/index remains available for data operations when
-/// &lt;code&gt;UPDATING&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The index is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The index is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of the replica global secondary index:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The index is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The table/index configuration is being updated. The table/index remains available
+/// for data operations when <c>UPDATING</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The index is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The index is ready for use.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class ReplicaGlobalSecondaryIndexAutoScalingDescription(
     string? IndexName = null,

@@ -7,13 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The results of an operation to update or read environment variables. If the operation succeeds, the response contains the environment variables. If it fails, the response contains details about the error.&lt;/p&gt;
+/// The results of an operation to update or read environment variables. If the operation succeeds, the
+/// response contains the environment variables. If it fails, the response contains details about the
+/// error.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Error messages for environment variables that couldn't be applied.&lt;/p&gt;
+/// Error messages for environment variables that couldn't be applied.
 /// </param>
 /// <param name="Variables">
-/// &lt;p&gt;Environment variable key-value pairs. Omitted from CloudTrail logs.&lt;/p&gt;
+/// Environment variable key-value pairs. Omitted from CloudTrail logs.
 /// </param>
 public sealed record class EnvironmentResponse(
     EnvironmentError? Error = null,

@@ -5,18 +5,18 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the warm throughput value (in read units per second and write units per
-/// second) of the table. Warm throughput is applicable for DynamoDB Standard-IA tables and
-/// specifies the minimum provisioned capacity maintained for immediate data access.&lt;/p&gt;
+/// Represents the warm throughput value (in read units per second and write units per second) of the
+/// table. Warm throughput is applicable for DynamoDB Standard-IA tables and specifies the minimum
+/// provisioned capacity maintained for immediate data access.
 /// </summary>
 /// <param name="ReadUnitsPerSecond">
-/// &lt;p&gt;Represents the base table's warm throughput value in read units per second.&lt;/p&gt;
+/// Represents the base table's warm throughput value in read units per second.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;Represents warm throughput value of the base table.&lt;/p&gt;
+/// Represents warm throughput value of the base table.
 /// </param>
 /// <param name="WriteUnitsPerSecond">
-/// &lt;p&gt;Represents the base table's warm throughput value in write units per second.&lt;/p&gt;
+/// Represents the base table's warm throughput value in write units per second.
 /// </param>
 public sealed record class TableWarmThroughputDescription(
     long? ReadUnitsPerSecond = null,

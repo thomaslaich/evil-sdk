@@ -7,14 +7,24 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The batch request contains more entries than permissible. For Amazon SQS, the
-/// maximum number of entries you can include in a single &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html&quot;&gt;SendMessageBatch&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessageBatch.html&quot;&gt;DeleteMessageBatch&lt;/a&gt;, or &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibilityBatch.html&quot;&gt;ChangeMessageVisibilityBatch&lt;/a&gt; request is 10.&lt;/p&gt;
+/// The batch request contains more entries than permissible. For Amazon SQS, the maximum number of
+/// entries you can include in a single
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html">SendMessageBatch</see>,
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessageBatch.html">DeleteMessageBatch</see>,
+/// or
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibilityBatch.html">ChangeMessageVisibilityBatch</see>
+/// request is 10.
 /// </summary>
 public sealed partial class TooManyEntriesInBatchRequest : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The batch request contains more entries than permissible. For Amazon SQS, the
-    /// maximum number of entries you can include in a single &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html&quot;&gt;SendMessageBatch&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessageBatch.html&quot;&gt;DeleteMessageBatch&lt;/a&gt;, or &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibilityBatch.html&quot;&gt;ChangeMessageVisibilityBatch&lt;/a&gt; request is 10.&lt;/p&gt;
+    /// The batch request contains more entries than permissible. For Amazon SQS, the maximum number of
+    /// entries you can include in a single
+    /// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html">SendMessageBatch</see>,
+    /// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessageBatch.html">DeleteMessageBatch</see>,
+    /// or
+    /// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibilityBatch.html">ChangeMessageVisibilityBatch</see>
+    /// request is 10.
     /// </summary>
     public TooManyEntriesInBatchRequest(string? message = null)
         : base(message) { }

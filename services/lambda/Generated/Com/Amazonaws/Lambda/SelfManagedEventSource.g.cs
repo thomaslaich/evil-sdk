@@ -7,10 +7,11 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The self-managed Apache Kafka cluster for your event source.&lt;/p&gt;
+/// The self-managed Apache Kafka cluster for your event source.
 /// </summary>
 /// <param name="Endpoints">
-/// &lt;p&gt;The list of bootstrap servers for your Kafka brokers in the following format: &lt;code&gt;&quot;KAFKA_BOOTSTRAP_SERVERS&quot;: [&quot;abc.xyz.com:xxxx&quot;,&quot;abc2.xyz.com:xxxx&quot;]&lt;/code&gt;.&lt;/p&gt;
+/// The list of bootstrap servers for your Kafka brokers in the following format:
+/// <c>"KAFKA_BOOTSTRAP_SERVERS": ["abc.xyz.com:xxxx","abc2.xyz.com:xxxx"]</c>.
 /// </param>
 public sealed record class SelfManagedEventSource(
     IReadOnlyDictionary<string, IReadOnlyList<string>>? Endpoints = null

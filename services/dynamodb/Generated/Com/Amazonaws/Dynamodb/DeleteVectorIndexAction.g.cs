@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A vector index to be removed from a table.&lt;/p&gt;
+/// A vector index to be removed from a table.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the vector index to delete.&lt;/p&gt;
+/// The name of the vector index to delete.
 /// </param>
 public sealed record class DeleteVectorIndexAction(string IndexName);

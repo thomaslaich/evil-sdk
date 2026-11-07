@@ -5,10 +5,15 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;(Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. Use this configuration object to define the level of logs for your event source mapping. &lt;/p&gt;
+/// (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source.
+/// Use this configuration object to define the level of logs for your event source mapping.
 /// </summary>
 /// <param name="SystemLogLevel">
-/// &lt;p&gt; The log level you want your event source mapping to use. Lambda event poller only sends system logs at the selected level of detail and lower, where &lt;code&gt;DEBUG&lt;/code&gt; is the highest level and &lt;code&gt;WARN&lt;/code&gt; is the lowest. For more information about these metrics, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/esm-logging.html&quot;&gt; Event source mapping logging&lt;/a&gt;. &lt;/p&gt;
+/// The log level you want your event source mapping to use. Lambda event poller only sends system logs
+/// at the selected level of detail and lower, where <c>DEBUG</c> is the highest level and <c>WARN</c>
+/// is the lowest. For more information about these metrics, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/esm-logging.html">Event source mapping
+/// logging</see>.
 /// </param>
 public sealed record class EventSourceMappingLoggingConfig(
     EventSourceMappingSystemLogLevel? SystemLogLevel = null

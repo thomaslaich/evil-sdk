@@ -5,11 +5,13 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the queue from which the &lt;code&gt;PurgeQueue&lt;/code&gt; action deletes
-/// messages.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the queue from which the <c>PurgeQueue</c> action deletes messages.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 public sealed record class PurgeQueueInput(string QueueUrl);

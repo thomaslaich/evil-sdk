@@ -5,15 +5,14 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of an &lt;code&gt;UpdateTimeToLive&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of an <c>UpdateTimeToLive</c> operation.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table to be configured. You can also provide the Amazon Resource Name (ARN) of the
-/// table in this parameter.&lt;/p&gt;
+/// The name of the table to be configured. You can also provide the Amazon Resource Name (ARN) of the
+/// table in this parameter.
 /// </param>
 /// <param name="TimeToLiveSpecification">
-/// &lt;p&gt;Represents the settings used to enable or disable Time to Live for the specified
-/// table.&lt;/p&gt;
+/// Represents the settings used to enable or disable Time to Live for the specified table.
 /// </param>
 public sealed record class UpdateTimeToLiveInput(
     string TableName,

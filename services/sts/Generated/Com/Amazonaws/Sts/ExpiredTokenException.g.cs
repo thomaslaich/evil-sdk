@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The web identity token that was passed is expired or is not valid. Get a new identity
-/// token from the identity provider and then retry the request.&lt;/p&gt;
+/// The web identity token that was passed is expired or is not valid. Get a new identity token from the
+/// identity provider and then retry the request.
 /// </summary>
 public sealed partial class ExpiredTokenException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The web identity token that was passed is expired or is not valid. Get a new identity
-    /// token from the identity provider and then retry the request.&lt;/p&gt;
+    /// The web identity token that was passed is expired or is not valid. Get a new identity token from the
+    /// identity provider and then retry the request.
     /// </summary>
     public ExpiredTokenException(string? message = null)
         : base(message) { }

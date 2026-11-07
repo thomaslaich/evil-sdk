@@ -8,17 +8,16 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DeleteResourcePolicyInput.
 /// </summary>
 /// <param name="ResourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the DynamoDB resource from which the policy will be
-/// removed. The resources you can specify include tables and streams. If you remove the
-/// policy of a table, it will also remove the permissions for the table's indexes defined
-/// in that policy document. This is because index permissions are defined in the table's
-/// policy.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the DynamoDB resource from which the policy will be removed. The
+/// resources you can specify include tables and streams. If you remove the policy of a table, it will
+/// also remove the permissions for the table's indexes defined in that policy document. This is because
+/// index permissions are defined in the table's policy.
 /// </param>
 /// <param name="ExpectedRevisionId">
-/// &lt;p&gt;A string value that you can use to conditionally delete your policy. When you provide
-/// an expected revision ID, if the revision ID of the existing policy on the resource
-/// doesn't match or if there's no policy attached to the resource, the request will fail
-/// and return a &lt;code&gt;PolicyNotFoundException&lt;/code&gt;.&lt;/p&gt;
+/// A string value that you can use to conditionally delete your policy. When you provide an expected
+/// revision ID, if the revision ID of the existing policy on the resource doesn't match or if there's
+/// no policy attached to the resource, the request will fail and return a
+/// <c>PolicyNotFoundException</c>.
 /// </param>
 public sealed record class DeleteResourcePolicyInput(
     string ResourceArn,

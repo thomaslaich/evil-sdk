@@ -8,10 +8,12 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketAccelerateConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket for which the accelerate configuration is retrieved.&lt;/p&gt;
+/// The name of the bucket for which the accelerate configuration is retrieved.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 public sealed record class GetBucketAccelerateConfigurationInput(
     string Bucket,

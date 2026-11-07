@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of an &lt;code&gt;UpdateTable&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of an <c>UpdateTable</c> operation.
 /// </summary>
 /// <param name="TableDescription">
-/// &lt;p&gt;Represents the properties of the table.&lt;/p&gt;
+/// Represents the properties of the table.
 /// </param>
 public sealed record class UpdateTableOutput(
     global::Com.Amazonaws.Dynamodb.TableDescription? TableDescription = null

@@ -10,12 +10,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListImportsOutput.
 /// </summary>
 /// <param name="ImportSummaryList">
-/// &lt;p&gt; A list of &lt;code&gt;ImportSummary&lt;/code&gt; objects. &lt;/p&gt;
+/// A list of <c>ImportSummary</c> objects.
 /// </param>
 /// <param name="NextToken">
-/// &lt;p&gt; If this value is returned, there are additional results to be displayed. To retrieve
-/// them, call &lt;code&gt;ListImports&lt;/code&gt; again, with &lt;code&gt;NextToken&lt;/code&gt; set to this
-/// value. &lt;/p&gt;
+/// If this value is returned, there are additional results to be displayed. To retrieve them, call
+/// <c>ListImports</c> again, with <c>NextToken</c> set to this value.
 /// </param>
 public sealed record class ListImportsOutput(
     IReadOnlyList<ImportSummary>? ImportSummaryList = null,

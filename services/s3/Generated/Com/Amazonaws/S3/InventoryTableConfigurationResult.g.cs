@@ -5,56 +5,53 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;
 /// The inventory table configuration for an S3 Metadata configuration.
-/// &lt;/p&gt;
 /// </summary>
 /// <param name="ConfigurationState">
-/// &lt;p&gt;
-/// The configuration state of the inventory table, indicating whether the inventory table is enabled
-/// or disabled.
-/// &lt;/p&gt;
+/// The configuration state of the inventory table, indicating whether the inventory table is enabled or
+/// disabled.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt;
 /// The Amazon Resource Name (ARN) for the inventory table.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;
 /// The name of the inventory table.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="TableStatus">
-/// &lt;p&gt; The status of the inventory table. The status values are: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The inventory table is in the process of being created in the specified
-/// Amazon Web Services managed table bucket.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;BACKFILLING&lt;/code&gt; - The inventory table is in the process of being backfilled. When
-/// you enable the inventory table for your metadata configuration, the table goes through a
-/// process known as backfilling, during which Amazon S3 scans your general purpose bucket to retrieve
-/// the initial metadata for all objects in the bucket. Depending on the number of objects in your
-/// bucket, this process can take several hours. When the backfilling process is finished, the
-/// status of your inventory table changes from &lt;code&gt;BACKFILLING&lt;/code&gt; to &lt;code&gt;ACTIVE&lt;/code&gt;.
-/// After backfilling is completed, updates to your objects are reflected in the inventory table
-/// within one hour.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The inventory table has been created successfully, and records are being
-/// delivered to the table. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;FAILED&lt;/code&gt; - Amazon S3 is unable to create the inventory table, or Amazon S3 is unable to deliver
-/// records.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The status of the inventory table. The status values are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The inventory table is in the process of being created in the specified Amazon Web
+/// Services managed table bucket.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>BACKFILLING</c> - The inventory table is in the process of being backfilled. When you enable the
+/// inventory table for your metadata configuration, the table goes through a process known as
+/// backfilling, during which Amazon S3 scans your general purpose bucket to retrieve the initial
+/// metadata for all objects in the bucket. Depending on the number of objects in your bucket, this
+/// process can take several hours. When the backfilling process is finished, the status of your
+/// inventory table changes from <c>BACKFILLING</c> to <c>ACTIVE</c>. After backfilling is completed,
+/// updates to your objects are reflected in the inventory table within one hour.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The inventory table has been created successfully, and records are being delivered
+/// to the table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>FAILED</c> - Amazon S3 is unable to create the inventory table, or Amazon S3 is unable to deliver
+/// records.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class InventoryTableConfigurationResult(
     InventoryConfigurationState ConfigurationState,

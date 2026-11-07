@@ -8,16 +8,17 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#RemoveLayerVersionPermissionInput.
 /// </summary>
 /// <param name="LayerName">
-/// &lt;p&gt;The name or Amazon Resource Name (ARN) of the layer.&lt;/p&gt;
+/// The name or Amazon Resource Name (ARN) of the layer.
 /// </param>
 /// <param name="StatementId">
-/// &lt;p&gt;The identifier that was specified when the statement was added.&lt;/p&gt;
+/// The identifier that was specified when the statement was added.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it.&lt;/p&gt;
+/// Only update the policy if the revision ID matches the ID specified. Use this option to avoid
+/// modifying a policy that has changed since you last read it.
 /// </param>
 /// <param name="VersionNumber">
-/// &lt;p&gt;The version number.&lt;/p&gt;
+/// The version number.
 /// </param>
 public sealed record class RemoveLayerVersionPermissionInput(
     string LayerName,

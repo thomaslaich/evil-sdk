@@ -5,27 +5,28 @@
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;Contains the response to a successful &lt;a&gt;GetFederationToken&lt;/a&gt; request,
-/// including temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. &lt;/p&gt;
+/// Contains the response to a successful GetFederationToken request, including temporary Amazon Web
+/// Services credentials that can be used to make Amazon Web Services requests.
 /// </summary>
 /// <param name="Credentials">
-/// &lt;p&gt;The temporary security credentials, which include an access key ID, a secret access key,
-/// and a security (or session) token.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The size of the security token that STS API operations return is not fixed. We
-/// strongly recommend that you make no assumptions about the maximum size.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The temporary security credentials, which include an access key ID, a secret access key, and a
+/// security (or session) token.
+/// </para>
+/// <para>
+/// <b>Note:</b> The size of the security token that STS API operations return is not fixed. We strongly
+/// recommend that you make no assumptions about the maximum size.
+/// </para>
 /// </param>
 /// <param name="FederatedUser">
-/// &lt;p&gt;Identifiers for the federated user associated with the credentials (such as
-/// &lt;code&gt;arn:aws:sts::123456789012:federated-user/Bob&lt;/code&gt; or
-/// &lt;code&gt;123456789012:Bob&lt;/code&gt;). You can use the federated user's ARN in your
-/// resource-based policies, such as an Amazon S3 bucket policy. &lt;/p&gt;
+/// Identifiers for the federated user associated with the credentials (such as
+/// <c>arn:aws:sts::123456789012:federated-user/Bob</c> or <c>123456789012:Bob</c>). You can use the
+/// federated user's ARN in your resource-based policies, such as an Amazon S3 bucket policy.
 /// </param>
 /// <param name="PackedPolicySize">
-/// &lt;p&gt;A percentage value that indicates the packed size of the session policies and session
-/// tags combined passed in the request. The request fails if the packed size is greater than 100 percent,
-/// which means the policies and tags exceeded the allowed space.&lt;/p&gt;
+/// A percentage value that indicates the packed size of the session policies and session tags combined
+/// passed in the request. The request fails if the packed size is greater than 100 percent, which means
+/// the policies and tags exceeded the allowed space.
 /// </param>
 public sealed record class GetFederationTokenOutput(
     global::Com.Amazonaws.Sts.Credentials? Credentials = null,

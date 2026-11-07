@@ -8,13 +8,24 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutResourcePolicyInput.
 /// </summary>
 /// <param name="Policy">
-/// &lt;p&gt;The policy document you want to add to your Lambda resource. This is formatted as a JSON string.&lt;/p&gt; &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;Working with resource-based policies in Lambda&lt;/a&gt; in the &lt;i&gt;Lambda Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The policy document you want to add to your Lambda resource. This is formatted as a JSON string.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">Working
+/// with resource-based policies in Lambda</see> in the <i>Lambda Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ResourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Lambda resource you want to add the policy to. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Lambda resource you want to add the policy to. You can use a
+/// qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept
+/// wildcard characters.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;The revision ID that the existing policy must match for the replacement to proceed. If the revision ID doesn't match, the operation fails with a &lt;code&gt;PreconditionFailedException&lt;/code&gt; error. To retrieve the current revision ID, use the &lt;a&gt;GetResourcePolicy&lt;/a&gt; operation.&lt;/p&gt;
+/// The revision ID that the existing policy must match for the replacement to proceed. If the revision
+/// ID doesn't match, the operation fails with a <c>PreconditionFailedException</c> error. To retrieve
+/// the current revision ID, use the GetResourcePolicy operation.
 /// </param>
 public sealed record class PutResourcePolicyInput(
     string Policy,

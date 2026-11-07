@@ -8,29 +8,42 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectLockConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket whose Object Lock configuration you want to create or replace.&lt;/p&gt;
+/// The bucket whose Object Lock configuration you want to create or replace.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm used to create the checksum for the object when you use the SDK. This header will not provide any
-/// additional functionality if you don't use the SDK. When you send this header, there must be a corresponding &lt;code&gt;x-amz-checksum&lt;/code&gt; or
-/// &lt;code&gt;x-amz-trailer&lt;/code&gt; header sent. Otherwise, Amazon S3 fails the request with the HTTP status code &lt;code&gt;400 Bad Request&lt;/code&gt;. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If you provide an individual checksum, Amazon S3 ignores any provided &lt;code&gt;ChecksumAlgorithm&lt;/code&gt;
-/// parameter.&lt;/p&gt;
+/// <para>
+/// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
+/// will not provide any additional functionality if you don't use the SDK. When you send this header,
+/// there must be a corresponding <c>x-amz-checksum</c> or <c>x-amz-trailer</c> header sent. Otherwise,
+/// Amazon S3 fails the request with the HTTP status code <c>400 Bad Request</c>. For more information,
+/// see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If you provide an individual checksum, Amazon S3 ignores any provided <c>ChecksumAlgorithm</c>
+/// parameter.
+/// </para>
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;The MD5 hash for the request body.&lt;/p&gt;
-/// &lt;p&gt;For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.&lt;/p&gt;
+/// <para>
+/// The MD5 hash for the request body.
+/// </para>
+/// <para>
+/// For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services
+/// SDKs, this field is calculated automatically.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="ObjectLockConfiguration">
-/// &lt;p&gt;The Object Lock configuration that you want to apply to the specified bucket.&lt;/p&gt;
+/// The Object Lock configuration that you want to apply to the specified bucket.
 /// </param>
 /// <param name="Token">
-/// &lt;p&gt;A token to allow Object Lock to be enabled for an existing bucket.&lt;/p&gt;
+/// A token to allow Object Lock to be enabled for an existing bucket.
 /// </param>
 public sealed record class PutObjectLockConfigurationInput(
     string Bucket,

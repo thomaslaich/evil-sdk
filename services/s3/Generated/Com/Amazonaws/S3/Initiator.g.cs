@@ -5,22 +5,20 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container element that identifies who initiated the multipart upload. &lt;/p&gt;
+/// Container element that identifies who initiated the multipart upload.
 /// </summary>
 /// <param name="DisplayName">
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <b>Note:</b> This functionality is not supported for directory buckets.
 /// </param>
 /// <param name="ID">
-/// &lt;p&gt;If the principal is an Amazon Web Services account, it provides the Canonical User ID. If the principal is an
-/// IAM User, it provides a user ARN value.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - If the principal is an Amazon Web Services account,
-/// it provides the Amazon Web Services account ID. If the principal is an IAM User, it provides a user ARN
-/// value.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the principal is an Amazon Web Services account, it provides the Canonical User ID. If the
+/// principal is an IAM User, it provides a user ARN value.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - If the principal is an Amazon Web Services account, it
+/// provides the Amazon Web Services account ID. If the principal is an IAM User, it provides a user ARN
+/// value.
+/// </para>
 /// </param>
 public sealed record class Initiator(string? DisplayName = null, string? ID = null);

@@ -5,15 +5,15 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Amazon S3 key format for log objects. Only one format, PartitionedPrefix or SimplePrefix, is
-/// allowed.&lt;/p&gt;
+/// Amazon S3 key format for log objects. Only one format, PartitionedPrefix or SimplePrefix, is
+/// allowed.
 /// </summary>
 /// <param name="PartitionedPrefix">
-/// &lt;p&gt;Partitioned S3 key for log objects.&lt;/p&gt;
+/// Partitioned S3 key for log objects.
 /// </param>
 /// <param name="SimplePrefix">
-/// &lt;p&gt;To use the simple format for S3 keys for log objects. To specify SimplePrefix format, set
-/// SimplePrefix to {}.&lt;/p&gt;
+/// To use the simple format for S3 keys for log objects. To specify SimplePrefix format, set
+/// SimplePrefix to {}.
 /// </param>
 public sealed record class TargetObjectKeyFormat(
     global::Com.Amazonaws.S3.PartitionedPrefix? PartitionedPrefix = null,

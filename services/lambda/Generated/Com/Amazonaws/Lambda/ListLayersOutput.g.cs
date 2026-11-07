@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListLayersOutput.
 /// </summary>
 /// <param name="Layers">
-/// &lt;p&gt;A list of function layers.&lt;/p&gt;
+/// A list of function layers.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;A pagination token returned when the response doesn't contain all layers.&lt;/p&gt;
+/// A pagination token returned when the response doesn't contain all layers.
 /// </param>
 public sealed record class ListLayersOutput(
     IReadOnlyList<LayersListItem>? Layers = null,

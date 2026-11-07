@@ -5,17 +5,17 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains the description of the backup created for the table.&lt;/p&gt;
+/// Contains the description of the backup created for the table.
 /// </summary>
 /// <param name="BackupDetails">
-/// &lt;p&gt;Contains the details of the backup created for the table. &lt;/p&gt;
+/// Contains the details of the backup created for the table.
 /// </param>
 /// <param name="SourceTableDetails">
-/// &lt;p&gt;Contains the details of the table when the backup was created. &lt;/p&gt;
+/// Contains the details of the table when the backup was created.
 /// </param>
 /// <param name="SourceTableFeatureDetails">
-/// &lt;p&gt;Contains the details of the features enabled on the table when the backup was created.
-/// For example, LSIs, GSIs, streams, TTL.&lt;/p&gt;
+/// Contains the details of the features enabled on the table when the backup was created. For example,
+/// LSIs, GSIs, streams, TTL.
 /// </param>
 public sealed record class BackupDescription(
     global::Com.Amazonaws.Dynamodb.BackupDetails? BackupDetails = null,

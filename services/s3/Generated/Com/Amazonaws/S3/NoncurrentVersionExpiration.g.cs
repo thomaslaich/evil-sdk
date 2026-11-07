@@ -5,34 +5,42 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the
-/// noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning
-/// enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in
-/// the object's lifetime.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the
+/// noncurrent object versions. You set this lifecycle configuration action on a bucket that has
+/// versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a
+/// specific period in the object's lifetime.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </summary>
 /// <param name="NewerNoncurrentVersions">
-/// &lt;p&gt;Specifies how many noncurrent versions Amazon S3 will retain. You can specify up to 100 noncurrent
-/// versions to retain. Amazon S3 will permanently delete any additional noncurrent versions beyond the specified
-/// number to retain. For more information about noncurrent versions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html&quot;&gt;Lifecycle configuration elements&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies how many noncurrent versions Amazon S3 will retain. You can specify up to 100 noncurrent
+/// versions to retain. Amazon S3 will permanently delete any additional noncurrent versions beyond the
+/// specified number to retain. For more information about noncurrent versions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html">Lifecycle
+/// configuration elements</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 /// <param name="NoncurrentDays">
-/// &lt;p&gt;Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated action.
-/// The value must be a non-zero positive integer. For information about the noncurrent days calculations,
-/// see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations&quot;&gt;How Amazon S3 Calculates
-/// When an Object Became Noncurrent&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated
+/// action. The value must be a non-zero positive integer. For information about the noncurrent days
+/// calculations, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations">How
+/// Amazon S3 Calculates When an Object Became Noncurrent</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 public sealed record class NoncurrentVersionExpiration(
     int? NewerNoncurrentVersions = null,

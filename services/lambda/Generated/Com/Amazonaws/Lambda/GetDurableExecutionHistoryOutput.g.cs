@@ -7,13 +7,17 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The response from the GetDurableExecutionHistory operation, containing the execution history and events.&lt;/p&gt;
+/// The response from the GetDurableExecutionHistory operation, containing the execution history and
+/// events.
 /// </summary>
 /// <param name="Events">
-/// &lt;p&gt;An array of execution history events, ordered chronologically unless &lt;code&gt;ReverseOrder&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;. Each event represents a significant occurrence during the execution, such as step completion or callback resolution.&lt;/p&gt;
+/// An array of execution history events, ordered chronologically unless <c>ReverseOrder</c> is set to
+/// <c>true</c>. Each event represents a significant occurrence during the execution, such as step
+/// completion or callback resolution.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;If present, indicates that more history events are available. Use this value as the &lt;code&gt;Marker&lt;/code&gt; parameter in a subsequent request to retrieve the next page of results.&lt;/p&gt;
+/// If present, indicates that more history events are available. Use this value as the <c>Marker</c>
+/// parameter in a subsequent request to retrieve the next page of results.
 /// </param>
 public sealed record class GetDurableExecutionHistoryOutput(
     IReadOnlyList<Event> Events,

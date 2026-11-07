@@ -5,11 +5,10 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Overrides the on-demand throughput settings for this replica table. If you don't
-/// specify a value for this parameter, it uses the source table's on-demand throughput
-/// settings.&lt;/p&gt;
+/// Overrides the on-demand throughput settings for this replica table. If you don't specify a value for
+/// this parameter, it uses the source table's on-demand throughput settings.
 /// </summary>
 /// <param name="MaxReadRequestUnits">
-/// &lt;p&gt;Maximum number of read request units for the specified replica table.&lt;/p&gt;
+/// Maximum number of read request units for the specified replica table.
 /// </param>
 public sealed record class OnDemandThroughputOverride(long? MaxReadRequestUnits = null);

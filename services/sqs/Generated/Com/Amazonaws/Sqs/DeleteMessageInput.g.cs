@@ -5,13 +5,16 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue from which messages are deleted.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue from which messages are deleted.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 /// <param name="ReceiptHandle">
-/// &lt;p&gt;The receipt handle associated with the message to delete.&lt;/p&gt;
+/// The receipt handle associated with the message to delete.
 /// </param>
 public sealed record class DeleteMessageInput(string QueueUrl, string ReceiptHandle);

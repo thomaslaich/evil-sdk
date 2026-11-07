@@ -7,14 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Ensure that the &lt;code&gt;QueueUrl&lt;/code&gt; is correct and that the queue has not been
-/// deleted.&lt;/p&gt;
+/// Ensure that the <c>QueueUrl</c> is correct and that the queue has not been deleted.
 /// </summary>
 public sealed partial class QueueDoesNotExist : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Ensure that the &lt;code&gt;QueueUrl&lt;/code&gt; is correct and that the queue has not been
-    /// deleted.&lt;/p&gt;
+    /// Ensure that the <c>QueueUrl</c> is correct and that the queue has not been deleted.
     /// </summary>
     public QueueDoesNotExist(string? message = null)
         : base(message) { }

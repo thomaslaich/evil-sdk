@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't decrypt the environment variables because the KMS key was not found. Check the function's KMS key settings.&lt;/p&gt;
+/// Lambda couldn't decrypt the environment variables because the KMS key was not found. Check the
+/// function's KMS key settings.
 /// </summary>
 public sealed partial class KMSNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't decrypt the environment variables because the KMS key was not found. Check the function's KMS key settings.&lt;/p&gt;
+    /// Lambda couldn't decrypt the environment variables because the KMS key was not found. Check the
+    /// function's KMS key settings.
     /// </summary>
     public KMSNotFoundException(string? message = null, string? type = null)
         : base(message)

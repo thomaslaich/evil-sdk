@@ -5,13 +5,17 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A configuration object that specifies the destination of an event after Lambda processes it. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt;
+/// A configuration object that specifies the destination of an event after Lambda processes it. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations">Adding
+/// a destination</see>.
 /// </summary>
 /// <param name="OnFailure">
-/// &lt;p&gt;The destination configuration for failed invocations.&lt;/p&gt;
+/// The destination configuration for failed invocations.
 /// </param>
 /// <param name="OnSuccess">
-/// &lt;p&gt;The destination configuration for successful invocations. Not supported in &lt;code&gt;CreateEventSourceMapping&lt;/code&gt; or &lt;code&gt;UpdateEventSourceMapping&lt;/code&gt;.&lt;/p&gt;
+/// The destination configuration for successful invocations. Not supported in
+/// <c>CreateEventSourceMapping</c> or <c>UpdateEventSourceMapping</c>.
 /// </param>
 public sealed record class DestinationConfig(
     global::Com.Amazonaws.Lambda.OnFailure? OnFailure = null,

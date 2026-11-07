@@ -10,18 +10,19 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#TransactWriteItemsOutput.
 /// </summary>
 /// <param name="ConsumedCapacity">
-/// &lt;p&gt;The capacity units consumed by the entire &lt;code&gt;TransactWriteItems&lt;/code&gt; operation.
-/// The values of the list are ordered according to the ordering of the
-/// &lt;code&gt;TransactItems&lt;/code&gt; request parameter. &lt;/p&gt;
-/// &lt;p&gt;If the table has vector indexes, each element also includes a
-/// &lt;code&gt;VectorIndexes&lt;/code&gt; field with &lt;code&gt;VectorWriteRequestBytes&lt;/code&gt; consumed
-/// for each affected vector index.&lt;/p&gt;
+/// <para>
+/// The capacity units consumed by the entire <c>TransactWriteItems</c> operation. The values of the
+/// list are ordered according to the ordering of the <c>TransactItems</c> request parameter.
+/// </para>
+/// <para>
+/// If the table has vector indexes, each element also includes a <c>VectorIndexes</c> field with
+/// <c>VectorWriteRequestBytes</c> consumed for each affected vector index.
+/// </para>
 /// </param>
 /// <param name="ItemCollectionMetrics">
-/// &lt;p&gt;A list of tables that were processed by &lt;code&gt;TransactWriteItems&lt;/code&gt; and, for each
-/// table, information about any item collections that were affected by individual
-/// &lt;code&gt;UpdateItem&lt;/code&gt;, &lt;code&gt;PutItem&lt;/code&gt;, or &lt;code&gt;DeleteItem&lt;/code&gt;
-/// operations. &lt;/p&gt;
+/// A list of tables that were processed by <c>TransactWriteItems</c> and, for each table, information
+/// about any item collections that were affected by individual <c>UpdateItem</c>, <c>PutItem</c>, or
+/// <c>DeleteItem</c> operations.
 /// </param>
 public sealed record class TransactWriteItemsOutput(
     IReadOnlyList<global::Com.Amazonaws.Dynamodb.ConsumedCapacity>? ConsumedCapacity = null,

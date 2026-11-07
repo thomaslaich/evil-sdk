@@ -8,10 +8,12 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetResourcePolicyOutput.
 /// </summary>
 /// <param name="Policy">
-/// &lt;p&gt;The resource-based policy attached to the Lambda resource you specified.&lt;/p&gt;
+/// The resource-based policy attached to the Lambda resource you specified.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;The revision ID of the policy. Pass this value as the &lt;code&gt;RevisionId&lt;/code&gt; in a &lt;a&gt;PutResourcePolicy&lt;/a&gt; or &lt;a&gt;DeleteResourcePolicy&lt;/a&gt; request. Doing so ensures the operation acts on the expected version of the policy.&lt;/p&gt;
+/// The revision ID of the policy. Pass this value as the <c>RevisionId</c> in a PutResourcePolicy or
+/// DeleteResourcePolicy request. Doing so ensures the operation acts on the expected version of the
+/// policy.
 /// </param>
 public sealed record class GetResourcePolicyOutput(
     string? Policy = null,

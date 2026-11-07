@@ -5,16 +5,16 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A response confirming that the event stream is complete.&lt;/p&gt;
+/// A response confirming that the event stream is complete.
 /// </summary>
 /// <param name="ErrorCode">
-/// &lt;p&gt;An error code.&lt;/p&gt;
+/// An error code.
 /// </param>
 /// <param name="ErrorDetails">
-/// &lt;p&gt;The details of any returned error.&lt;/p&gt;
+/// The details of any returned error.
 /// </param>
 /// <param name="LogResult">
-/// &lt;p&gt;The last 4 KB of the execution log, which is base64-encoded.&lt;/p&gt;
+/// The last 4 KB of the execution log, which is base64-encoded.
 /// </param>
 public sealed record class InvokeWithResponseStreamCompleteEvent(
     string? ErrorCode = null,

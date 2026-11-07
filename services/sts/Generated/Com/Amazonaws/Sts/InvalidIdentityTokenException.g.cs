@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The web identity token that was passed could not be validated by Amazon Web Services. Get a new
-/// identity token from the identity provider and then retry the request.&lt;/p&gt;
+/// The web identity token that was passed could not be validated by Amazon Web Services. Get a new
+/// identity token from the identity provider and then retry the request.
 /// </summary>
 public sealed partial class InvalidIdentityTokenException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The web identity token that was passed could not be validated by Amazon Web Services. Get a new
-    /// identity token from the identity provider and then retry the request.&lt;/p&gt;
+    /// The web identity token that was passed could not be validated by Amazon Web Services. Get a new
+    /// identity token from the identity provider and then retry the request.
     /// </summary>
     public InvalidIdentityTokenException(string? message = null)
         : base(message) { }

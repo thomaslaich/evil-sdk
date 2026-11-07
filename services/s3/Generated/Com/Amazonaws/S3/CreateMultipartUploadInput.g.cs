@@ -11,527 +11,793 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#CreateMultipartUploadInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket where the multipart upload is initiated and where the object is
-/// uploaded.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The name of the bucket where the multipart upload is initiated and where the object is uploaded.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;Object key for which the multipart upload is to be initiated.&lt;/p&gt;
+/// Object key for which the multipart upload is to be initiated.
 /// </param>
 /// <param name="ACL">
-/// &lt;p&gt;The canned ACL to apply to the object. Amazon S3 supports a set of predefined ACLs, known as
-/// &lt;i&gt;canned ACLs&lt;/i&gt;. Each canned ACL has a predefined set of grantees and permissions.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL&quot;&gt;Canned ACL&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;By default, all objects are private. Only the owner has full access control. When uploading an
-/// object, you can grant access permissions to individual Amazon Web Services accounts or to predefined groups defined by
-/// Amazon S3. These permissions are then added to the access control list (ACL) on the new object. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html&quot;&gt;Using
-/// ACLs&lt;/a&gt;. One way to grant the permissions using the request headers is to specify a canned ACL
-/// with the &lt;code&gt;x-amz-acl&lt;/code&gt; request header.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The canned ACL to apply to the object. Amazon S3 supports a set of predefined ACLs, known as
+/// <i>canned ACLs</i>. Each canned ACL has a predefined set of grantees and permissions. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL">Canned
+/// ACL</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// By default, all objects are private. Only the owner has full access control. When uploading an
+/// object, you can grant access permissions to individual Amazon Web Services accounts or to predefined
+/// groups defined by Amazon S3. These permissions are then added to the access control list (ACL) on
+/// the new object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html">Using ACLs</see>.
+/// One way to grant the permissions using the request headers is to specify a canned ACL with the
+/// <c>x-amz-acl</c> request header.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with
-/// server-side encryption using Key Management Service (KMS) keys (SSE-KMS).&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - Setting this header to
-/// &lt;code&gt;true&lt;/code&gt; causes Amazon S3 to use an S3 Bucket Key for object encryption with
-/// SSE-KMS. Also, specifying this header with a PUT action doesn't affect bucket-level settings for S3
-/// Bucket Key.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - S3 Bucket Keys are always enabled for &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;PUT&lt;/code&gt; operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets
-/// to directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops&quot;&gt;the Copy operation in Batch Operations&lt;/a&gt;, or
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job&quot;&gt;the import jobs&lt;/a&gt;. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.&lt;/p&gt;
+/// <para>
+/// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side
+/// encryption using Key Management Service (KMS) keys (SSE-KMS).
+/// </para>
+/// <para>
+/// <b>General purpose buckets</b> - Setting this header to <c>true</c> causes Amazon S3 to use an S3
+/// Bucket Key for object encryption with SSE-KMS. Also, specifying this header with a PUT action
+/// doesn't affect bucket-level settings for S3 Bucket Key.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - S3 Bucket Keys are always enabled for <c>GET</c> and <c>PUT</c>
+/// operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you
+/// copy SSE-KMS encrypted objects from general purpose buckets to directory buckets, from directory
+/// buckets to general purpose buckets, or between directory buckets, through
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops">the
+/// Copy operation in Batch Operations</see>, or
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job">the import
+/// jobs</see>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a
+/// KMS-encrypted object.
+/// </para>
 /// </param>
 /// <param name="CacheControl">
-/// &lt;p&gt;Specifies caching behavior along the request/reply chain.&lt;/p&gt;
+/// Specifies caching behavior along the request/reply chain.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// Indicates the algorithm that you want Amazon S3 to use to create the checksum for the object. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value. For
-/// more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value.
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ContentDisposition">
-/// &lt;p&gt;Specifies presentational information for the object.&lt;/p&gt;
+/// Specifies presentational information for the object.
 /// </param>
 /// <param name="ContentEncoding">
-/// &lt;p&gt;Specifies what content encodings have been applied to the object and thus what decoding mechanisms
-/// must be applied to obtain the media-type referenced by the Content-Type header field.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;For directory buckets, only the &lt;code&gt;aws-chunked&lt;/code&gt; value is supported in this header field.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies what content encodings have been applied to the object and thus what decoding mechanisms
+/// must be applied to obtain the media-type referenced by the Content-Type header field.
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, only the <c>aws-chunked</c> value is supported in this header
+/// field.
+/// </para>
 /// </param>
 /// <param name="ContentLanguage">
-/// &lt;p&gt;The language that the content is in.&lt;/p&gt;
+/// The language that the content is in.
 /// </param>
 /// <param name="ContentType">
-/// &lt;p&gt;A standard MIME type describing the format of the object data.&lt;/p&gt;
+/// A standard MIME type describing the format of the object data.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="Expires">
-/// &lt;p&gt;The date and time at which the object is no longer cacheable.&lt;/p&gt;
+/// The date and time at which the object is no longer cacheable.
 /// </param>
 /// <param name="GrantFullControl">
-/// &lt;p&gt;Specify access permissions explicitly to give the grantee READ, READ_ACP, and WRITE_ACP permissions
-/// on the object.&lt;/p&gt;
-/// &lt;p&gt;By default, all objects are private. Only the owner has full access control. When uploading an
-/// object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or
-/// groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html&quot;&gt;Access Control List (ACL)
-/// Overview&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;You specify each grantee as a type=value pair, where the type is one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;id&lt;/code&gt; – if the value specified is the canonical user ID of an Amazon Web Services account&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;uri&lt;/code&gt; – if you are granting permissions to a predefined group&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;emailAddress&lt;/code&gt; – if the value specified is the email address of an
-/// Amazon Web Services account&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US East (N. Virginia)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US West (N. California)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; US West (Oregon)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; Asia Pacific (Singapore)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Sydney)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Tokyo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Europe (Ireland)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;South America (São Paulo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For a list of all the Amazon S3 supported Regions and endpoints, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region&quot;&gt;Regions and Endpoints&lt;/a&gt; in the Amazon Web Services General Reference.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For example, the following &lt;code&gt;x-amz-grant-read&lt;/code&gt; header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-grant-read: id=&quot;11112222333&quot;, id=&quot;444455556666&quot; &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specify access permissions explicitly to give the grantee READ, READ_ACP, and WRITE_ACP permissions
+/// on the object.
+/// </para>
+/// <para>
+/// By default, all objects are private. Only the owner has full access control. When uploading an
+/// object, you can use this header to explicitly grant access permissions to specific Amazon Web
+/// Services accounts or groups. This header maps to specific permissions that Amazon S3 supports in an
+/// ACL. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">Access Control List
+/// (ACL) Overview</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// You specify each grantee as a type=value pair, where the type is one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>id</c> – if the value specified is the canonical user ID of an Amazon Web Services account
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>uri</c> – if you are granting permissions to a predefined group
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>emailAddress</c> – if the value specified is the email address of an Amazon Web Services account
+/// </para>
+/// <para>
+/// <b>Note:</b> Using email addresses to specify a grantee is only supported in the following Amazon
+/// Web Services Regions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// US East (N. Virginia)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (N. California)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (Oregon)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Singapore)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Sydney)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Tokyo)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Europe (Ireland)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// South America (São Paulo)
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For a list of all the Amazon S3 supported Regions and endpoints, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions and
+/// Endpoints</see> in the Amazon Web Services General Reference.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For example, the following <c>x-amz-grant-read</c> header grants the Amazon Web Services accounts
+/// identified by account IDs permissions to read object data and its metadata:
+/// </para>
+/// <para>
+/// <c>x-amz-grant-read: id="11112222333", id="444455556666" </c>
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GrantRead">
-/// &lt;p&gt;Specify access permissions explicitly to allow grantee to read the object data and its
-/// metadata.&lt;/p&gt;
-/// &lt;p&gt;By default, all objects are private. Only the owner has full access control. When uploading an
-/// object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or
-/// groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html&quot;&gt;Access Control List (ACL)
-/// Overview&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;You specify each grantee as a type=value pair, where the type is one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;id&lt;/code&gt; – if the value specified is the canonical user ID of an Amazon Web Services account&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;uri&lt;/code&gt; – if you are granting permissions to a predefined group&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;emailAddress&lt;/code&gt; – if the value specified is the email address of an
-/// Amazon Web Services account&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US East (N. Virginia)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US West (N. California)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; US West (Oregon)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; Asia Pacific (Singapore)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Sydney)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Tokyo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Europe (Ireland)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;South America (São Paulo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For a list of all the Amazon S3 supported Regions and endpoints, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region&quot;&gt;Regions and Endpoints&lt;/a&gt; in the Amazon Web Services General Reference.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For example, the following &lt;code&gt;x-amz-grant-read&lt;/code&gt; header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-grant-read: id=&quot;11112222333&quot;, id=&quot;444455556666&quot; &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specify access permissions explicitly to allow grantee to read the object data and its metadata.
+/// </para>
+/// <para>
+/// By default, all objects are private. Only the owner has full access control. When uploading an
+/// object, you can use this header to explicitly grant access permissions to specific Amazon Web
+/// Services accounts or groups. This header maps to specific permissions that Amazon S3 supports in an
+/// ACL. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">Access Control List
+/// (ACL) Overview</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// You specify each grantee as a type=value pair, where the type is one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>id</c> – if the value specified is the canonical user ID of an Amazon Web Services account
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>uri</c> – if you are granting permissions to a predefined group
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>emailAddress</c> – if the value specified is the email address of an Amazon Web Services account
+/// </para>
+/// <para>
+/// <b>Note:</b> Using email addresses to specify a grantee is only supported in the following Amazon
+/// Web Services Regions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// US East (N. Virginia)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (N. California)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (Oregon)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Singapore)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Sydney)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Tokyo)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Europe (Ireland)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// South America (São Paulo)
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For a list of all the Amazon S3 supported Regions and endpoints, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions and
+/// Endpoints</see> in the Amazon Web Services General Reference.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For example, the following <c>x-amz-grant-read</c> header grants the Amazon Web Services accounts
+/// identified by account IDs permissions to read object data and its metadata:
+/// </para>
+/// <para>
+/// <c>x-amz-grant-read: id="11112222333", id="444455556666" </c>
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GrantReadACP">
-/// &lt;p&gt;Specify access permissions explicitly to allows grantee to read the object ACL.&lt;/p&gt;
-/// &lt;p&gt;By default, all objects are private. Only the owner has full access control. When uploading an
-/// object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or
-/// groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html&quot;&gt;Access Control List (ACL)
-/// Overview&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;You specify each grantee as a type=value pair, where the type is one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;id&lt;/code&gt; – if the value specified is the canonical user ID of an Amazon Web Services account&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;uri&lt;/code&gt; – if you are granting permissions to a predefined group&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;emailAddress&lt;/code&gt; – if the value specified is the email address of an
-/// Amazon Web Services account&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US East (N. Virginia)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US West (N. California)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; US West (Oregon)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; Asia Pacific (Singapore)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Sydney)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Tokyo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Europe (Ireland)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;South America (São Paulo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For a list of all the Amazon S3 supported Regions and endpoints, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region&quot;&gt;Regions and Endpoints&lt;/a&gt; in the Amazon Web Services General Reference.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For example, the following &lt;code&gt;x-amz-grant-read&lt;/code&gt; header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-grant-read: id=&quot;11112222333&quot;, id=&quot;444455556666&quot; &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specify access permissions explicitly to allows grantee to read the object ACL.
+/// </para>
+/// <para>
+/// By default, all objects are private. Only the owner has full access control. When uploading an
+/// object, you can use this header to explicitly grant access permissions to specific Amazon Web
+/// Services accounts or groups. This header maps to specific permissions that Amazon S3 supports in an
+/// ACL. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">Access Control List
+/// (ACL) Overview</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// You specify each grantee as a type=value pair, where the type is one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>id</c> – if the value specified is the canonical user ID of an Amazon Web Services account
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>uri</c> – if you are granting permissions to a predefined group
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>emailAddress</c> – if the value specified is the email address of an Amazon Web Services account
+/// </para>
+/// <para>
+/// <b>Note:</b> Using email addresses to specify a grantee is only supported in the following Amazon
+/// Web Services Regions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// US East (N. Virginia)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (N. California)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (Oregon)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Singapore)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Sydney)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Tokyo)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Europe (Ireland)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// South America (São Paulo)
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For a list of all the Amazon S3 supported Regions and endpoints, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions and
+/// Endpoints</see> in the Amazon Web Services General Reference.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For example, the following <c>x-amz-grant-read</c> header grants the Amazon Web Services accounts
+/// identified by account IDs permissions to read object data and its metadata:
+/// </para>
+/// <para>
+/// <c>x-amz-grant-read: id="11112222333", id="444455556666" </c>
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GrantWriteACP">
-/// &lt;p&gt;Specify access permissions explicitly to allows grantee to allow grantee to write the ACL for the
-/// applicable object.&lt;/p&gt;
-/// &lt;p&gt;By default, all objects are private. Only the owner has full access control. When uploading an
-/// object, you can use this header to explicitly grant access permissions to specific Amazon Web Services accounts or
-/// groups. This header maps to specific permissions that Amazon S3 supports in an ACL. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html&quot;&gt;Access Control List (ACL)
-/// Overview&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;You specify each grantee as a type=value pair, where the type is one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;id&lt;/code&gt; – if the value specified is the canonical user ID of an Amazon Web Services account&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;uri&lt;/code&gt; – if you are granting permissions to a predefined group&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;emailAddress&lt;/code&gt; – if the value specified is the email address of an
-/// Amazon Web Services account&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Using email addresses to specify a grantee is only supported in the following Amazon Web Services Regions: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US East (N. Virginia)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;US West (N. California)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; US West (Oregon)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; Asia Pacific (Singapore)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Sydney)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Asia Pacific (Tokyo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Europe (Ireland)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;South America (São Paulo)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For a list of all the Amazon S3 supported Regions and endpoints, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region&quot;&gt;Regions and Endpoints&lt;/a&gt; in the Amazon Web Services General Reference.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For example, the following &lt;code&gt;x-amz-grant-read&lt;/code&gt; header grants the Amazon Web Services accounts identified by account IDs permissions to read object data and its metadata:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-grant-read: id=&quot;11112222333&quot;, id=&quot;444455556666&quot; &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specify access permissions explicitly to allows grantee to allow grantee to write the ACL for the
+/// applicable object.
+/// </para>
+/// <para>
+/// By default, all objects are private. Only the owner has full access control. When uploading an
+/// object, you can use this header to explicitly grant access permissions to specific Amazon Web
+/// Services accounts or groups. This header maps to specific permissions that Amazon S3 supports in an
+/// ACL. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">Access Control List
+/// (ACL) Overview</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// You specify each grantee as a type=value pair, where the type is one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>id</c> – if the value specified is the canonical user ID of an Amazon Web Services account
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>uri</c> – if you are granting permissions to a predefined group
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>emailAddress</c> – if the value specified is the email address of an Amazon Web Services account
+/// </para>
+/// <para>
+/// <b>Note:</b> Using email addresses to specify a grantee is only supported in the following Amazon
+/// Web Services Regions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// US East (N. Virginia)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (N. California)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// US West (Oregon)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Singapore)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Sydney)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Asia Pacific (Tokyo)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Europe (Ireland)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// South America (São Paulo)
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For a list of all the Amazon S3 supported Regions and endpoints, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions and
+/// Endpoints</see> in the Amazon Web Services General Reference.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For example, the following <c>x-amz-grant-read</c> header grants the Amazon Web Services accounts
+/// identified by account IDs permissions to read object data and its metadata:
+/// </para>
+/// <para>
+/// <c>x-amz-grant-read: id="11112222333", id="444455556666" </c>
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Metadata">
-/// &lt;p&gt;A map of metadata to store with the object in S3.&lt;/p&gt;
+/// A map of metadata to store with the object in S3.
 /// </param>
 /// <param name="ObjectLockEventHold">
-/// &lt;p&gt;Specifies the event hold status to apply to the uploaded object. Set to &lt;code&gt;ON&lt;/code&gt; to enable
-/// or &lt;code&gt;OFF&lt;/code&gt; to disable.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the event hold status to apply to the uploaded object. Set to <c>ON</c> to enable or
+/// <c>OFF</c> to disable.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEventHoldDurationDays">
-/// &lt;p&gt;Specifies the event hold duration in days to apply to the uploaded object. You cannot
-/// specify a duration in both days and years.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the event hold duration in days to apply to the uploaded object. You cannot specify a
+/// duration in both days and years.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEventHoldDurationYears">
-/// &lt;p&gt;Specifies the event hold duration in years to apply to the uploaded object. You cannot
-/// specify a duration in both days and years.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the event hold duration in years to apply to the uploaded object. You cannot specify a
+/// duration in both days and years.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockLegalHoldStatus">
-/// &lt;p&gt;Specifies whether you want to apply a legal hold to the uploaded object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether you want to apply a legal hold to the uploaded object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockMode">
-/// &lt;p&gt;Specifies the Object Lock mode that you want to apply to the uploaded object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the Object Lock mode that you want to apply to the uploaded object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockRetainUntilDate">
-/// &lt;p&gt;Specifies the date and time when you want the Object Lock to expire.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the date and time when you want the Object Lock to expire.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;Specifies the algorithm to use when encrypting the object (for example, AES256).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the algorithm to use when encrypting the object (for example, AES256).
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKey">
-/// &lt;p&gt;Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is
-/// used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must
-/// be appropriate for use with the algorithm specified in the
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt; header.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value
+/// is used to store the object and then it is discarded; Amazon S3 does not store the encryption key.
+/// The key must be appropriate for use with the algorithm specified in the
+/// <c>x-amz-server-side-encryption-customer-algorithm</c> header.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321. Amazon S3
-/// uses this header for a message integrity check to ensure that the encryption key was transmitted without
-/// error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321.
+/// Amazon S3 uses this header for a message integrity check to ensure that the encryption key was
+/// transmitted without error.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSEncryptionContext">
-/// &lt;p&gt;Specifies the Amazon Web Services KMS Encryption Context to use for object encryption. The value of
-/// this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - You can optionally provide an explicit encryption context value. The value must match the default encryption context - the bucket Amazon Resource Name (ARN). An additional encryption context value is not supported. &lt;/p&gt;
+/// <para>
+/// Specifies the Amazon Web Services KMS Encryption Context to use for object encryption. The value of
+/// this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption
+/// context as key-value pairs.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - You can optionally provide an explicit encryption context value. The
+/// value must match the default encryption context - the bucket Amazon Resource Name (ARN). An
+/// additional encryption context value is not supported.
+/// </para>
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption. If the KMS key doesn't exist in the same
-/// account that's issuing the command, you must use the full Key ARN not the Key ID.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - If you specify &lt;code&gt;x-amz-server-side-encryption&lt;/code&gt; with &lt;code&gt;aws:kms&lt;/code&gt; or &lt;code&gt;aws:kms:dsse&lt;/code&gt;, this header specifies the ID (Key ID, Key ARN, or Key Alias) of the KMS
-/// key to use. If you specify
-/// &lt;code&gt;x-amz-server-side-encryption:aws:kms&lt;/code&gt; or
-/// &lt;code&gt;x-amz-server-side-encryption:aws:kms:dsse&lt;/code&gt;, but do not provide &lt;code&gt;x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt;, Amazon S3 uses the Amazon Web Services managed key
-/// (&lt;code&gt;aws/s3&lt;/code&gt;) to protect the data.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - To encrypt data using SSE-KMS, it's recommended to specify the
-/// &lt;code&gt;x-amz-server-side-encryption&lt;/code&gt; header to &lt;code&gt;aws:kms&lt;/code&gt;. Then, the &lt;code&gt;x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt; header implicitly uses
-/// the bucket's default KMS customer managed key ID. If you want to explicitly set the &lt;code&gt;
-/// x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt; header, it must match the bucket's default customer managed key (using key ID or ARN, not alias). Your SSE-KMS configuration can only support 1 &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk&quot;&gt;customer managed key&lt;/a&gt; per directory bucket's lifetime.
-/// The &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk&quot;&gt;Amazon Web Services managed key&lt;/a&gt; (&lt;code&gt;aws/s3&lt;/code&gt;) isn't supported.
-///
-/// Incorrect key specification results in an HTTP &lt;code&gt;400 Bad Request&lt;/code&gt; error. &lt;/p&gt;
+/// <para>
+/// Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption. If the KMS
+/// key doesn't exist in the same account that's issuing the command, you must use the full Key ARN not
+/// the Key ID.
+/// </para>
+/// <para>
+/// <b>General purpose buckets</b> - If you specify <c>x-amz-server-side-encryption</c> with
+/// <c>aws:kms</c> or <c>aws:kms:dsse</c>, this header specifies the ID (Key ID, Key ARN, or Key Alias)
+/// of the KMS key to use. If you specify <c>x-amz-server-side-encryption:aws:kms</c> or
+/// <c>x-amz-server-side-encryption:aws:kms:dsse</c>, but do not provide
+/// <c>x-amz-server-side-encryption-aws-kms-key-id</c>, Amazon S3 uses the Amazon Web Services managed
+/// key (<c>aws/s3</c>) to protect the data.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - To encrypt data using SSE-KMS, it's recommended to specify the
+/// <c>x-amz-server-side-encryption</c> header to <c>aws:kms</c>. Then, the
+/// <c>x-amz-server-side-encryption-aws-kms-key-id</c> header implicitly uses the bucket's default KMS
+/// customer managed key ID. If you want to explicitly set the <c>
+/// x-amz-server-side-encryption-aws-kms-key-id</c> header, it must match the bucket's default customer
+/// managed key (using key ID or ARN, not alias). Your SSE-KMS configuration can only support 1
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk">customer
+/// managed key</see> per directory bucket's lifetime. The
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk">Amazon
+/// Web Services managed key</see> (<c>aws/s3</c>) isn't supported. Incorrect key specification results
+/// in an HTTP <c>400 Bad Request</c> error.
+/// </para>
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; -
-/// For directory buckets, there are only two supported options for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (&lt;code&gt;AES256&lt;/code&gt;) and server-side encryption with KMS keys (SSE-KMS) (&lt;code&gt;aws:kms&lt;/code&gt;). We recommend that the bucket's default encryption uses the desired encryption configuration and you don't override the bucket default encryption in your
-/// &lt;code&gt;CreateSession&lt;/code&gt; requests or &lt;code&gt;PUT&lt;/code&gt; object requests. Then, new objects
-/// are automatically encrypted with the desired encryption settings. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html&quot;&gt;Protecting data with server-side encryption&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;. For more information about the encryption overriding behaviors in directory buckets, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-specifying-kms-encryption.html&quot;&gt;Specifying server-side encryption with KMS for new object uploads&lt;/a&gt;. &lt;/p&gt;
-/// &lt;p&gt;In the Zonal endpoint API calls (except &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;) using the REST API, the encryption request headers must match the encryption settings that are specified in the &lt;code&gt;CreateSession&lt;/code&gt; request.
-/// You can't override the values of the encryption settings (&lt;code&gt;x-amz-server-side-encryption&lt;/code&gt;, &lt;code&gt;x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt;, &lt;code&gt;x-amz-server-side-encryption-context&lt;/code&gt;, and &lt;code&gt;x-amz-server-side-encryption-bucket-key-enabled&lt;/code&gt;) that are specified in the &lt;code&gt;CreateSession&lt;/code&gt; request.
-/// You don't need to explicitly specify these encryption settings values in Zonal endpoint API calls, and
-/// Amazon S3 will use the encryption settings values from the &lt;code&gt;CreateSession&lt;/code&gt; request to protect new objects in the directory bucket.
-/// &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When you use the CLI or the Amazon Web Services SDKs, for &lt;code&gt;CreateSession&lt;/code&gt;, the session token refreshes automatically to avoid service interruptions when a session expires. The CLI or the Amazon Web Services SDKs use the bucket's default encryption configuration for the
-/// &lt;code&gt;CreateSession&lt;/code&gt; request. It's not supported to override the encryption settings values in the &lt;code&gt;CreateSession&lt;/code&gt; request.
-/// So in the Zonal endpoint API calls (except &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;),
-/// the encryption request headers must match the default encryption configuration of the directory bucket.
-///
-/// &lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 access points for Amazon FSx &lt;/b&gt; - When accessing data stored in
-/// Amazon FSx file systems using S3 access points, the only valid server side encryption option is
-/// &lt;code&gt;aws:fsx&lt;/code&gt;. All Amazon FSx file systems have encryption configured by default and are
-/// encrypted at rest. Data is automatically encrypted before being written to the file system, and
-/// automatically decrypted as it is read. These processes are handled transparently by Amazon FSx.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <b>Directory buckets </b> - For directory buckets, there are only two supported options for
+/// server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (<c>AES256</c>)
+/// and server-side encryption with KMS keys (SSE-KMS) (<c>aws:kms</c>). We recommend that the bucket's
+/// default encryption uses the desired encryption configuration and you don't override the bucket
+/// default encryption in your <c>CreateSession</c> requests or <c>PUT</c> object requests. Then, new
+/// objects are automatically encrypted with the desired encryption settings. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html">Protecting
+/// data with server-side encryption</see> in the <i>Amazon S3 User Guide</i>. For more information
+/// about the encryption overriding behaviors in directory buckets, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-specifying-kms-encryption.html">Specifying
+/// server-side encryption with KMS for new object uploads</see>.
+/// </para>
+/// <para>
+/// In the Zonal endpoint API calls (except
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>)
+/// using the REST API, the encryption request headers must match the encryption settings that are
+/// specified in the <c>CreateSession</c> request. You can't override the values of the encryption
+/// settings (<c>x-amz-server-side-encryption</c>, <c>x-amz-server-side-encryption-aws-kms-key-id</c>,
+/// <c>x-amz-server-side-encryption-context</c>, and
+/// <c>x-amz-server-side-encryption-bucket-key-enabled</c>) that are specified in the
+/// <c>CreateSession</c> request. You don't need to explicitly specify these encryption settings values
+/// in Zonal endpoint API calls, and Amazon S3 will use the encryption settings values from the
+/// <c>CreateSession</c> request to protect new objects in the directory bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> When you use the CLI or the Amazon Web Services SDKs, for <c>CreateSession</c>, the
+/// session token refreshes automatically to avoid service interruptions when a session expires. The CLI
+/// or the Amazon Web Services SDKs use the bucket's default encryption configuration for the
+/// <c>CreateSession</c> request. It's not supported to override the encryption settings values in the
+/// <c>CreateSession</c> request. So in the Zonal endpoint API calls (except
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>),
+/// the encryption request headers must match the default encryption configuration of the directory
+/// bucket.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>S3 access points for Amazon FSx </b> - When accessing data stored in Amazon FSx file systems
+/// using S3 access points, the only valid server side encryption option is <c>aws:fsx</c>. All Amazon
+/// FSx file systems have encryption configured by default and are encrypted at rest. Data is
+/// automatically encrypted before being written to the file system, and automatically decrypted as it
+/// is read. These processes are handled transparently by Amazon FSx.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD
-/// storage class provides high durability and high availability. Depending on performance needs, you can
-/// specify a different Storage Class. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html&quot;&gt;Storage Classes&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in
-/// Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in
-/// Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Amazon S3 on Outposts only uses the OUTPOSTS Storage Class.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD
+/// storage class provides high durability and high availability. Depending on performance needs, you
+/// can specify a different Storage Class. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html">Storage
+/// Classes</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Directory buckets only support <c>EXPRESS_ONEZONE</c> (the S3 Express One Zone storage class) in
+/// Availability Zones and <c>ONEZONE_IA</c> (the S3 One Zone-Infrequent Access storage class) in
+/// Dedicated Local Zones.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Amazon S3 on Outposts only uses the OUTPOSTS Storage Class.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Tagging">
-/// &lt;p&gt;The tag-set for the object. The tag-set must be encoded as URL Query parameters.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The tag-set for the object. The tag-set must be encoded as URL Query parameters.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="WebsiteRedirectLocation">
-/// &lt;p&gt;If the bucket is configured as a website, redirects requests for this object to another object in
+/// <para>
+/// If the bucket is configured as a website, redirects requests for this object to another object in
 /// the same bucket or to an external URL. Amazon S3 stores the value of this header in the object
-/// metadata.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// metadata.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class CreateMultipartUploadInput(
     string Bucket,

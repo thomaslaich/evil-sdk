@@ -8,19 +8,23 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The request was denied due to request throttling. For detailed information about why
-/// the request was throttled and the ARN of the impacted resource, find the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; field in the returned exception.&lt;/p&gt;
+/// The request was denied due to request throttling. For detailed information about why the request was
+/// throttled and the ARN of the impacted resource, find the
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+/// field in the returned exception.
 /// </summary>
 public sealed partial class ThrottlingException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was denied due to request throttling. For detailed information about why
-    /// the request was throttled and the ARN of the impacted resource, find the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; field in the returned exception.&lt;/p&gt;
+    /// The request was denied due to request throttling. For detailed information about why the request was
+    /// throttled and the ARN of the impacted resource, find the
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// field in the returned exception.
     /// </summary>
     /// <param name="throttlingReasons">
-    /// &lt;p&gt;A list of &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; that
-    /// provide detailed diagnostic information about why the request was throttled.
-    /// &lt;/p&gt;
+    /// A list of
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// that provide detailed diagnostic information about why the request was throttled.
     /// </param>
     public ThrottlingException(
         string? message = null,
@@ -34,9 +38,9 @@ public sealed partial class ThrottlingException : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;A list of &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; that
-    /// provide detailed diagnostic information about why the request was throttled.
-    /// &lt;/p&gt;
+    /// A list of
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// that provide detailed diagnostic information about why the request was throttled.
     /// </summary>
     public IReadOnlyList<ThrottlingReason>? ThrottlingReasons { get; }
 }

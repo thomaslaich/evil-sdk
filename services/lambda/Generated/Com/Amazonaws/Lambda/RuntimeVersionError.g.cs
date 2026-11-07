@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Any error returned when the runtime version information for the function could not be retrieved.&lt;/p&gt;
+/// Any error returned when the runtime version information for the function could not be retrieved.
 /// </summary>
 /// <param name="ErrorCode">
-/// &lt;p&gt;The error code.&lt;/p&gt;
+/// The error code.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;The error message.&lt;/p&gt;
+/// The error message.
 /// </param>
 public sealed record class RuntimeVersionError(string? ErrorCode = null, string? Message = null);

@@ -10,7 +10,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketTaggingOutput.
 /// </summary>
 /// <param name="TagSet">
-/// &lt;p&gt;Contains the tag set.&lt;/p&gt;
+/// Contains the tag set.
 /// </param>
 public sealed record class GetBucketTaggingOutput(
     IReadOnlyList<global::Com.Amazonaws.S3.Tag> TagSet

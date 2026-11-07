@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the S3 Inventory configuration for an Amazon S3 bucket.&lt;/p&gt;
+/// Specifies the S3 Inventory configuration for an Amazon S3 bucket.
 /// </summary>
 /// <param name="S3BucketDestination">
-/// &lt;p&gt;Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where
-/// inventory results are published.&lt;/p&gt;
+/// Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where
+/// inventory results are published.
 /// </param>
 public sealed record class InventoryDestination(InventoryS3BucketDestination S3BucketDestination);

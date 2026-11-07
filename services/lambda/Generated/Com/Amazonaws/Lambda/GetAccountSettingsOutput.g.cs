@@ -8,10 +8,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetAccountSettingsOutput.
 /// </summary>
 /// <param name="AccountLimit">
-/// &lt;p&gt;Limits that are related to concurrency and code storage.&lt;/p&gt;
+/// Limits that are related to concurrency and code storage.
 /// </param>
 /// <param name="AccountUsage">
-/// &lt;p&gt;The number of functions and amount of storage in use.&lt;/p&gt;
+/// The number of functions and amount of storage in use.
 /// </param>
 public sealed record class GetAccountSettingsOutput(
     global::Com.Amazonaws.Lambda.AccountLimit? AccountLimit = null,

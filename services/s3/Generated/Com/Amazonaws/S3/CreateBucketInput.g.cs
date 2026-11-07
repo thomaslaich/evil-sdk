@@ -8,81 +8,113 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#CreateBucketInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket to create.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html&quot;&gt;Bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - When you use this operation with a directory bucket, you must use path-style requests in the format &lt;code&gt;https://s3express-control.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com/&lt;i&gt;bucket-name&lt;/i&gt;
-/// &lt;/code&gt;. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;DOC-EXAMPLE-BUCKET&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;
-/// &lt;/p&gt;
+/// <para>
+/// The name of the bucket to create.
+/// </para>
+/// <para>
+/// <b>General purpose buckets</b> - For information about bucket naming restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Bucket
+/// naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use
+/// path-style requests in the format
+/// <c>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i> </c>.
+/// Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen
+/// Zone (Availability Zone or Local Zone). Bucket names must also follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>
+/// </para>
 /// </param>
 /// <param name="ACL">
-/// &lt;p&gt;The canned ACL to apply to the bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The canned ACL to apply to the bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="BucketNamespace">
-/// &lt;p&gt;Specifies the namespace where you want to create your general purpose bucket. When you create a
-/// general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to
-/// create a bucket in your account regional namespace. Your account regional namespace is a subdivision of
-/// the global namespace that only your account can create buckets in. For more information on bucket
-/// namespaces, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/gpbucketnamespaces.html&quot;&gt;Namespaces for general purpose buckets&lt;/a&gt;.&lt;/p&gt;
-/// &lt;p&gt;General purpose buckets in your account regional namespace must follow a specific naming convention. These
-/// buckets consist of a bucket name prefix that you create, and a suffix that contains your 12-digit Amazon Web Services
-/// Account ID, the Amazon Web Services Region code, and ends with &lt;code&gt;-an&lt;/code&gt;. Bucket names must follow the format
-/// &lt;code&gt;bucket-name-prefix-accountId-region-an&lt;/code&gt; (for example,
-/// &lt;code&gt;amzn-s3-demo-bucket-111122223333-us-west-2-an&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html#account-regional-naming-rules&quot;&gt;Account regional namespace naming rules&lt;/a&gt;
-/// in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the namespace where you want to create your general purpose bucket. When you create a
+/// general purpose bucket, you can choose to create a bucket in the shared global namespace or you can
+/// choose to create a bucket in your account regional namespace. Your account regional namespace is a
+/// subdivision of the global namespace that only your account can create buckets in. For more
+/// information on bucket namespaces, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/gpbucketnamespaces.html">Namespaces
+/// for general purpose buckets</see>.
+/// </para>
+/// <para>
+/// General purpose buckets in your account regional namespace must follow a specific naming convention.
+/// These buckets consist of a bucket name prefix that you create, and a suffix that contains your
+/// 12-digit Amazon Web Services Account ID, the Amazon Web Services Region code, and ends with
+/// <c>-an</c>. Bucket names must follow the format <c>bucket-name-prefix-accountId-region-an</c> (for
+/// example, <c>amzn-s3-demo-bucket-111122223333-us-west-2-an</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html#account-regional-naming-rules">Account
+/// regional namespace naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="CreateBucketConfiguration">
-/// &lt;p&gt;The configuration information for the bucket.&lt;/p&gt;
+/// The configuration information for the bucket.
 /// </param>
 /// <param name="GrantFullControl">
-/// &lt;p&gt;Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="GrantRead">
-/// &lt;p&gt;Allows grantee to list the objects in the bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee to list the objects in the bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="GrantReadACP">
-/// &lt;p&gt;Allows grantee to read the bucket ACL.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee to read the bucket ACL.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="GrantWrite">
-/// &lt;p&gt;Allows grantee to create new objects in the bucket.&lt;/p&gt;
-/// &lt;p&gt;For the bucket and object owners of existing objects, also allows deletions and overwrites of those
-/// objects.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee to create new objects in the bucket.
+/// </para>
+/// <para>
+/// For the bucket and object owners of existing objects, also allows deletions and overwrites of those
+/// objects.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="GrantWriteACP">
-/// &lt;p&gt;Allows grantee to write the ACL for the applicable bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee to write the ACL for the applicable bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEnabledForBucket">
-/// &lt;p&gt;Specifies whether you want S3 Object Lock to be enabled for the new bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether you want S3 Object Lock to be enabled for the new bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class CreateBucketInput(
     string Bucket,

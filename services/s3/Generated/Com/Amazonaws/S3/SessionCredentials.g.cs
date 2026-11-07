@@ -7,32 +7,31 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The established temporary security credentials of the session.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - These session credentials are only
-/// supported for the authentication and authorization of Zonal endpoint API operations on directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The established temporary security credentials of the session.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - These session credentials are only supported for the
+/// authentication and authorization of Zonal endpoint API operations on directory buckets.
+/// </para>
 /// </summary>
 /// <param name="AccessKeyId">
-/// &lt;p&gt;A unique identifier that's associated with a secret access key. The access key ID and the secret
-/// access key are used together to sign programmatic Amazon Web Services requests cryptographically. &lt;/p&gt;
+/// A unique identifier that's associated with a secret access key. The access key ID and the secret
+/// access key are used together to sign programmatic Amazon Web Services requests cryptographically.
 /// </param>
 /// <param name="Expiration">
-/// &lt;p&gt;Temporary security credentials expire after a specified interval. After temporary credentials
+/// Temporary security credentials expire after a specified interval. After temporary credentials
 /// expire, any calls that you make with those credentials will fail. So you must generate a new set of
 /// temporary credentials. Temporary credentials cannot be extended or refreshed beyond the original
-/// specified interval.&lt;/p&gt;
+/// specified interval.
 /// </param>
 /// <param name="SecretAccessKey">
-/// &lt;p&gt;A key that's used with the access key ID to cryptographically sign programmatic Amazon Web Services requests.
-/// Signing a request identifies the sender and prevents the request from being altered. &lt;/p&gt;
+/// A key that's used with the access key ID to cryptographically sign programmatic Amazon Web Services
+/// requests. Signing a request identifies the sender and prevents the request from being altered.
 /// </param>
 /// <param name="SessionToken">
-/// &lt;p&gt;A part of the temporary security credentials. The session token is used to validate the temporary
+/// A part of the temporary security credentials. The session token is used to validate the temporary
 /// security credentials.
-///
-/// &lt;/p&gt;
 /// </param>
 public sealed record class SessionCredentials(
     string AccessKeyId,

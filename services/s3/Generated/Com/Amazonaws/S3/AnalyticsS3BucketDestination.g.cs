@@ -5,24 +5,26 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Contains information about where to publish the analytics results.&lt;/p&gt;
+/// Contains information about where to publish the analytics results.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the bucket to which data is exported.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the bucket to which data is exported.
 /// </param>
 /// <param name="Format">
-/// &lt;p&gt;Specifies the file format used when exporting data to Amazon S3.&lt;/p&gt;
+/// Specifies the file format used when exporting data to Amazon S3.
 /// </param>
 /// <param name="BucketAccountId">
-/// &lt;p&gt;The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not
-/// validated before exporting data.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt; Although this value is optional, we strongly recommend that you set it to help prevent problems
-/// if the destination bucket ownership changes. &lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not
+/// validated before exporting data.
+/// </para>
+/// <para>
+/// <b>Note:</b> Although this value is optional, we strongly recommend that you set it to help prevent
+/// problems if the destination bucket ownership changes.
+/// </para>
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;The prefix to use when exporting data. The prefix is prepended to all results.&lt;/p&gt;
+/// The prefix to use when exporting data. The prefix is prepended to all results.
 /// </param>
 public sealed record class AnalyticsS3BucketDestination(
     string Bucket,

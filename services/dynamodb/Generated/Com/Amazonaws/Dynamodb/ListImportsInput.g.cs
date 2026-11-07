@@ -8,16 +8,14 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListImportsInput.
 /// </summary>
 /// <param name="NextToken">
-/// &lt;p&gt; An optional string that, if supplied, must be copied from the output of a previous
-/// call to &lt;code&gt;ListImports&lt;/code&gt;. When provided in this manner, the API fetches the next
-/// page of results. &lt;/p&gt;
+/// An optional string that, if supplied, must be copied from the output of a previous call to
+/// <c>ListImports</c>. When provided in this manner, the API fetches the next page of results.
 /// </param>
 /// <param name="PageSize">
-/// &lt;p&gt; The number of &lt;code&gt;ImportSummary &lt;/code&gt;objects returned in a single page. &lt;/p&gt;
+/// The number of <c>ImportSummary </c>objects returned in a single page.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt; The Amazon Resource Name (ARN) associated with the table that was imported to.
-/// &lt;/p&gt;
+/// The Amazon Resource Name (ARN) associated with the table that was imported to.
 /// </param>
 public sealed record class ListImportsInput(
     string? NextToken = null,

@@ -7,347 +7,400 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of a &lt;code&gt;CreateTable&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of a <c>CreateTable</c> operation.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table to create. You can also provide the Amazon Resource Name (ARN) of the table in
-/// this parameter.&lt;/p&gt;
+/// The name of the table to create. You can also provide the Amazon Resource Name (ARN) of the table in
+/// this parameter.
 /// </param>
 /// <param name="AttributeDefinitions">
-/// &lt;p&gt;An array of attributes that describe the key schema for the table and indexes.&lt;/p&gt;
+/// An array of attributes that describe the key schema for the table and indexes.
 /// </param>
 /// <param name="BillingMode">
-/// &lt;p&gt;Controls how you are charged for read and write throughput and how you manage
-/// capacity. This setting can be changed later.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; - We recommend using &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt;
-/// for most DynamoDB workloads. &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; sets the billing mode
-/// to &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html&quot;&gt;On-demand capacity mode&lt;/a&gt;. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PROVISIONED&lt;/code&gt; - We recommend using &lt;code&gt;PROVISIONED&lt;/code&gt; for
-/// steady workloads with predictable growth where capacity requirements can be
-/// reliably forecasted. &lt;code&gt;PROVISIONED&lt;/code&gt; sets the billing mode to &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html&quot;&gt;Provisioned capacity mode&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Controls how you are charged for read and write throughput and how you manage capacity. This setting
+/// can be changed later.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>PAY_PER_REQUEST</c> - We recommend using <c>PAY_PER_REQUEST</c> for most DynamoDB workloads.
+/// <c>PAY_PER_REQUEST</c> sets the billing mode to
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html">On-demand
+/// capacity mode</see>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>PROVISIONED</c> - We recommend using <c>PROVISIONED</c> for steady workloads with predictable
+/// growth where capacity requirements can be reliably forecasted. <c>PROVISIONED</c> sets the billing
+/// mode to
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html">Provisioned
+/// capacity mode</see>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="DeletionProtectionEnabled">
-/// &lt;p&gt;Indicates whether deletion protection is to be enabled (true) or disabled (false) on
-/// the table.&lt;/p&gt;
+/// Indicates whether deletion protection is to be enabled (true) or disabled (false) on the table.
 /// </param>
 /// <param name="GlobalSecondaryIndexes">
-/// &lt;p&gt;One or more global secondary indexes (the maximum is 20) to be created on the table.
-/// Each global secondary index in the array includes the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexName&lt;/code&gt; - The name of the global secondary index. Must be unique
-/// only for this table.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeySchema&lt;/code&gt; - Specifies the key schema for the global secondary
-/// index. Each global secondary index supports up to 4 partition keys and up to 4 sort keys.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Projection&lt;/code&gt; - Specifies attributes that are copied (projected) from
-/// the table into the index. These are in addition to the primary key attributes
-/// and index key attributes, which are automatically projected. Each attribute
-/// specification is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProjectionType&lt;/code&gt; - One of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KEYS_ONLY&lt;/code&gt; - Only the index and primary keys are
-/// projected into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;INCLUDE&lt;/code&gt; - Only the specified table attributes are
-/// projected into the index. The list of projected attributes is in
-/// &lt;code&gt;NonKeyAttributes&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL&lt;/code&gt; - All of the table attributes are projected
-/// into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NonKeyAttributes&lt;/code&gt; - A list of one or more non-key attribute
-/// names that are projected into the secondary index. The total count of
-/// attributes provided in &lt;code&gt;NonKeyAttributes&lt;/code&gt;, summed across all
-/// of the secondary indexes, must not exceed 100. If you project the same
-/// attribute into two different indexes, this counts as two distinct
-/// attributes when determining the total. This limit only applies when you
-/// specify the ProjectionType of &lt;code&gt;INCLUDE&lt;/code&gt;. You still can
-/// specify the ProjectionType of &lt;code&gt;ALL&lt;/code&gt; to project all attributes
-/// from the source table, even if the table has more than 100
-/// attributes.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProvisionedThroughput&lt;/code&gt; - The provisioned throughput settings for the
-/// global secondary index, consisting of read and write capacity units.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// One or more global secondary indexes (the maximum is 20) to be created on the table. Each global
+/// secondary index in the array includes the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>IndexName</c> - The name of the global secondary index. Must be unique only for this table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KeySchema</c> - Specifies the key schema for the global secondary index. Each global secondary
+/// index supports up to 4 partition keys and up to 4 sort keys.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>Projection</c> - Specifies attributes that are copied (projected) from the table into the index.
+/// These are in addition to the primary key attributes and index key attributes, which are
+/// automatically projected. Each attribute specification is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <c>ProjectionType</c> - One of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>KEYS_ONLY</c> - Only the index and primary keys are projected into the index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>INCLUDE</c> - Only the specified table attributes are projected into the index. The list of
+/// projected attributes is in <c>NonKeyAttributes</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL</c> - All of the table attributes are projected into the index.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>NonKeyAttributes</c> - A list of one or more non-key attribute names that are projected into the
+/// secondary index. The total count of attributes provided in <c>NonKeyAttributes</c>, summed across
+/// all of the secondary indexes, must not exceed 100. If you project the same attribute into two
+/// different indexes, this counts as two distinct attributes when determining the total. This limit
+/// only applies when you specify the ProjectionType of <c>INCLUDE</c>. You still can specify the
+/// ProjectionType of <c>ALL</c> to project all attributes from the source table, even if the table has
+/// more than 100 attributes.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ProvisionedThroughput</c> - The provisioned throughput settings for the global secondary index,
+/// consisting of read and write capacity units.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GlobalTableSettingsReplicationMode">
-/// &lt;p&gt;Controls the settings synchronization mode for the global table. For multi-account global tables,
+/// Controls the settings synchronization mode for the global table. For multi-account global tables,
 /// this parameter is required and the only supported value is ENABLED. For same-account global tables,
 /// this parameter is set to ENABLED_WITH_OVERRIDES.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="GlobalTableSourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the source table used for the creation
-/// of a multi-account global table.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the source table used for the creation of a multi-account global
+/// table.
 /// </param>
 /// <param name="KeySchema">
-/// &lt;p&gt;Specifies the attributes that make up the primary key for a table or an index. The
-/// attributes in &lt;code&gt;KeySchema&lt;/code&gt; must also be defined in the
-/// &lt;code&gt;AttributeDefinitions&lt;/code&gt; array. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html&quot;&gt;Data
-/// Model&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;Each &lt;code&gt;KeySchemaElement&lt;/code&gt; in the array is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeName&lt;/code&gt; - The name of this key attribute.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeyType&lt;/code&gt; - The role that the key attribute will assume:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;HASH&lt;/code&gt; - partition key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;RANGE&lt;/code&gt; - sort key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The partition key of an item is also known as its &lt;i&gt;hash
-/// attribute&lt;/i&gt;. The term &quot;hash attribute&quot; derives from the DynamoDB usage
-/// of an internal hash function to evenly distribute data items across partitions,
-/// based on their partition key values.&lt;/p&gt;
-/// &lt;p&gt;The sort key of an item is also known as its &lt;i&gt;range attribute&lt;/i&gt;.
-/// The term &quot;range attribute&quot; derives from the way DynamoDB stores items with the same
-/// partition key physically close together, in sorted order by the sort key
-/// value.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For a simple primary key (partition key), you must provide exactly one element with a
-/// &lt;code&gt;KeyType&lt;/code&gt; of &lt;code&gt;HASH&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For a composite primary key (partition key and sort key), you must provide exactly two
-/// elements, in this order: The first element must have a &lt;code&gt;KeyType&lt;/code&gt; of
-/// &lt;code&gt;HASH&lt;/code&gt;, and the second element must have a &lt;code&gt;KeyType&lt;/code&gt; of
-/// &lt;code&gt;RANGE&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key&quot;&gt;Working with Tables&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Specifies the attributes that make up the primary key for a table or an index. The attributes in
+/// <c>KeySchema</c> must also be defined in the <c>AttributeDefinitions</c> array. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html">Data
+/// Model</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
+/// <para>
+/// Each <c>KeySchemaElement</c> in the array is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>AttributeName</c> - The name of this key attribute.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>KeyType</c> - The role that the key attribute will assume:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>HASH</c> - partition key
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>RANGE</c> - sort key
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> The partition key of an item is also known as its <i>hash attribute</i>. The term "hash
+/// attribute" derives from the DynamoDB usage of an internal hash function to evenly distribute data
+/// items across partitions, based on their partition key values.
+/// </para>
+/// <para>
+/// The sort key of an item is also known as its <i>range attribute</i>. The term "range attribute"
+/// derives from the way DynamoDB stores items with the same partition key physically close together, in
+/// sorted order by the sort key value.
+/// </para>
+/// <para>
+/// For a simple primary key (partition key), you must provide exactly one element with a <c>KeyType</c>
+/// of <c>HASH</c>.
+/// </para>
+/// <para>
+/// For a composite primary key (partition key and sort key), you must provide exactly two elements, in
+/// this order: The first element must have a <c>KeyType</c> of <c>HASH</c>, and the second element must
+/// have a <c>KeyType</c> of <c>RANGE</c>.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key">Working
+/// with Tables</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="LocalSecondaryIndexes">
-/// &lt;p&gt;One or more local secondary indexes (the maximum is 5) to be created on the table.
-/// Each index is scoped to a given partition key value. There is a 10 GB size limit per
-/// partition key value; otherwise, the size of a local secondary index is
-/// unconstrained.&lt;/p&gt;
-/// &lt;p&gt;Each local secondary index in the array includes the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexName&lt;/code&gt; - The name of the local secondary index. Must be unique
-/// only for this table.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeySchema&lt;/code&gt; - Specifies the key schema for the local secondary index.
-/// The key schema must begin with the same partition key as the table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Projection&lt;/code&gt; - Specifies attributes that are copied (projected) from
-/// the table into the index. These are in addition to the primary key attributes
-/// and index key attributes, which are automatically projected. Each attribute
-/// specification is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProjectionType&lt;/code&gt; - One of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KEYS_ONLY&lt;/code&gt; - Only the index and primary keys are
-/// projected into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;INCLUDE&lt;/code&gt; - Only the specified table attributes are
-/// projected into the index. The list of projected attributes is in
-/// &lt;code&gt;NonKeyAttributes&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL&lt;/code&gt; - All of the table attributes are projected
-/// into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NonKeyAttributes&lt;/code&gt; - A list of one or more non-key attribute
-/// names that are projected into the secondary index. The total count of
-/// attributes provided in &lt;code&gt;NonKeyAttributes&lt;/code&gt;, summed across all
-/// of the secondary indexes, must not exceed 100. If you project the same
-/// attribute into two different indexes, this counts as two distinct
-/// attributes when determining the total. This limit only applies when you
-/// specify the ProjectionType of &lt;code&gt;INCLUDE&lt;/code&gt;. You still can
-/// specify the ProjectionType of &lt;code&gt;ALL&lt;/code&gt; to project all attributes
-/// from the source table, even if the table has more than 100
-/// attributes.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// One or more local secondary indexes (the maximum is 5) to be created on the table. Each index is
+/// scoped to a given partition key value. There is a 10 GB size limit per partition key value;
+/// otherwise, the size of a local secondary index is unconstrained.
+/// </para>
+/// <para>
+/// Each local secondary index in the array includes the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>IndexName</c> - The name of the local secondary index. Must be unique only for this table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KeySchema</c> - Specifies the key schema for the local secondary index. The key schema must begin
+/// with the same partition key as the table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>Projection</c> - Specifies attributes that are copied (projected) from the table into the index.
+/// These are in addition to the primary key attributes and index key attributes, which are
+/// automatically projected. Each attribute specification is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <c>ProjectionType</c> - One of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>KEYS_ONLY</c> - Only the index and primary keys are projected into the index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>INCLUDE</c> - Only the specified table attributes are projected into the index. The list of
+/// projected attributes is in <c>NonKeyAttributes</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL</c> - All of the table attributes are projected into the index.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>NonKeyAttributes</c> - A list of one or more non-key attribute names that are projected into the
+/// secondary index. The total count of attributes provided in <c>NonKeyAttributes</c>, summed across
+/// all of the secondary indexes, must not exceed 100. If you project the same attribute into two
+/// different indexes, this counts as two distinct attributes when determining the total. This limit
+/// only applies when you specify the ProjectionType of <c>INCLUDE</c>. You still can specify the
+/// ProjectionType of <c>ALL</c> to project all attributes from the source table, even if the table has
+/// more than 100 attributes.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="OnDemandThroughput">
-/// &lt;p&gt;Sets the maximum number of read and write units for the specified table in on-demand
-/// capacity mode. If you use this parameter, you must specify
-/// &lt;code&gt;MaxReadRequestUnits&lt;/code&gt;, &lt;code&gt;MaxWriteRequestUnits&lt;/code&gt;, or both.&lt;/p&gt;
+/// Sets the maximum number of read and write units for the specified table in on-demand capacity mode.
+/// If you use this parameter, you must specify <c>MaxReadRequestUnits</c>, <c>MaxWriteRequestUnits</c>,
+/// or both.
 /// </param>
 /// <param name="ProvisionedThroughput">
-/// &lt;p&gt;Represents the provisioned throughput settings for a specified table or index. The
-/// settings can be modified using the &lt;code&gt;UpdateTable&lt;/code&gt; operation.&lt;/p&gt;
-/// &lt;p&gt; If you set BillingMode as &lt;code&gt;PROVISIONED&lt;/code&gt;, you must specify this property.
-/// If you set BillingMode as &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt;, you cannot specify this
-/// property.&lt;/p&gt;
-/// &lt;p&gt;For current minimum and maximum provisioned throughput values, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html&quot;&gt;Service,
-/// Account, and Table Quotas&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Represents the provisioned throughput settings for a specified table or index. The settings can be
+/// modified using the <c>UpdateTable</c> operation.
+/// </para>
+/// <para>
+/// If you set BillingMode as <c>PROVISIONED</c>, you must specify this property. If you set BillingMode
+/// as <c>PAY_PER_REQUEST</c>, you cannot specify this property.
+/// </para>
+/// <para>
+/// For current minimum and maximum provisioned throughput values, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Service,
+/// Account, and Table Quotas</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ResourcePolicy">
-/// &lt;p&gt;An Amazon Web Services resource-based policy document in JSON format that will be
-/// attached to the table.&lt;/p&gt;
-/// &lt;p&gt;When you attach a resource-based policy while creating a table, the policy application
-/// is &lt;i&gt;strongly consistent&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;The maximum size supported for a resource-based policy document is 20 KB. DynamoDB counts whitespaces when calculating the size of a policy against this
-/// limit. For a full list of all considerations that apply for resource-based policies, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html&quot;&gt;Resource-based
-/// policy considerations&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;You need to specify the &lt;code&gt;CreateTable&lt;/code&gt; and
-/// &lt;code&gt;PutResourcePolicy&lt;/code&gt;
-/// IAM actions for authorizing a user to create a table with a
-/// resource-based policy.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// An Amazon Web Services resource-based policy document in JSON format that will be attached to the
+/// table.
+/// </para>
+/// <para>
+/// When you attach a resource-based policy while creating a table, the policy application is
+/// <i>strongly consistent</i>.
+/// </para>
+/// <para>
+/// The maximum size supported for a resource-based policy document is 20 KB. DynamoDB counts
+/// whitespaces when calculating the size of a policy against this limit. For a full list of all
+/// considerations that apply for resource-based policies, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html">Resource-based
+/// policy considerations</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> You need to specify the <c>CreateTable</c> and <c>PutResourcePolicy</c> IAM actions for
+/// authorizing a user to create a table with a resource-based policy.
+/// </para>
 /// </param>
 /// <param name="SSESpecification">
-/// &lt;p&gt;Represents the settings used to enable server-side encryption.&lt;/p&gt;
+/// Represents the settings used to enable server-side encryption.
 /// </param>
 /// <param name="StreamSpecification">
-/// &lt;p&gt;The settings for DynamoDB Streams on the table. These settings consist of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;StreamEnabled&lt;/code&gt; - Indicates whether DynamoDB Streams is to be enabled
-/// (true) or disabled (false).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;StreamViewType&lt;/code&gt; - When an item in the table is modified,
-/// &lt;code&gt;StreamViewType&lt;/code&gt; determines what information is written to the
-/// table's stream. Valid values for &lt;code&gt;StreamViewType&lt;/code&gt; are:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KEYS_ONLY&lt;/code&gt; - Only the key attributes of the modified item
-/// are written to the stream.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NEW_IMAGE&lt;/code&gt; - The entire item, as it appears after it was
-/// modified, is written to the stream.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;OLD_IMAGE&lt;/code&gt; - The entire item, as it appeared before it was
-/// modified, is written to the stream.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NEW_AND_OLD_IMAGES&lt;/code&gt; - Both the new and the old item images
-/// of the item are written to the stream.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The settings for DynamoDB Streams on the table. These settings consist of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>StreamEnabled</c> - Indicates whether DynamoDB Streams is to be enabled (true) or disabled
+/// (false).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>StreamViewType</c> - When an item in the table is modified, <c>StreamViewType</c> determines what
+/// information is written to the table's stream. Valid values for <c>StreamViewType</c> are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>KEYS_ONLY</c> - Only the key attributes of the modified item are written to the stream.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>NEW_IMAGE</c> - The entire item, as it appears after it was modified, is written to the stream.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>OLD_IMAGE</c> - The entire item, as it appeared before it was modified, is written to the stream.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>NEW_AND_OLD_IMAGES</c> - Both the new and the old item images of the item are written to the
+/// stream.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="TableClass">
-/// &lt;p&gt;The table class of the new table. Valid values are &lt;code&gt;STANDARD&lt;/code&gt; and
-/// &lt;code&gt;STANDARD_INFREQUENT_ACCESS&lt;/code&gt;.&lt;/p&gt;
+/// The table class of the new table. Valid values are <c>STANDARD</c> and
+/// <c>STANDARD_INFREQUENT_ACCESS</c>.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;A list of key-value pairs to label the table. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html&quot;&gt;Tagging
-/// for DynamoDB&lt;/a&gt;.&lt;/p&gt;
+/// A list of key-value pairs to label the table. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
+/// for DynamoDB</see>.
 /// </param>
 /// <param name="VectorIndexes">
-/// &lt;p&gt;One or more vector indexes to be created on the table. Each vector index enables
-/// similarity search on a vector attribute. Each element in the list consists of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexName&lt;/code&gt; - The name of the vector index. Must be unique
-/// within the table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;VectorAttribute&lt;/code&gt; - The attribute that contains vector
-/// embeddings. If multiple vector indexes reference the same attribute, they
-/// must all use the same number of dimensions.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Dimensions&lt;/code&gt; - The number of dimensions in each vector.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DistanceFunction&lt;/code&gt; - The distance function used to calculate
-/// similarity. Valid values: &lt;code&gt;COSINE&lt;/code&gt;, &lt;code&gt;EUCLIDEAN&lt;/code&gt;,
-/// &lt;code&gt;DOT_PRODUCT&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Projection&lt;/code&gt; - Specifies attributes that are copied (projected)
-/// from the table into the vector index. The total number of projected
-/// non-key attributes is shared across the vector attribute (counts as 1)
-/// and &lt;code&gt;INLINE_FILTER&lt;/code&gt; search schema elements (each counts as 1).
-/// &lt;code&gt;HASH&lt;/code&gt; search schema elements do not count toward this
-/// limit.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SearchSchema&lt;/code&gt; - (Optional) Defines the partition key
-/// (&lt;code&gt;HASH&lt;/code&gt;) and inline filter (&lt;code&gt;INLINE_FILTER&lt;/code&gt;) attributes
-/// for the vector index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// One or more vector indexes to be created on the table. Each vector index enables similarity search
+/// on a vector attribute. Each element in the list consists of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>IndexName</c> - The name of the vector index. Must be unique within the table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>VectorAttribute</c> - The attribute that contains vector embeddings. If multiple vector indexes
+/// reference the same attribute, they must all use the same number of dimensions.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Dimensions</c> - The number of dimensions in each vector.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DistanceFunction</c> - The distance function used to calculate similarity. Valid values:
+/// <c>COSINE</c>, <c>EUCLIDEAN</c>, <c>DOT_PRODUCT</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Projection</c> - Specifies attributes that are copied (projected) from the table into the vector
+/// index. The total number of projected non-key attributes is shared across the vector attribute
+/// (counts as 1) and <c>INLINE_FILTER</c> search schema elements (each counts as 1). <c>HASH</c> search
+/// schema elements do not count toward this limit.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SearchSchema</c> - (Optional) Defines the partition key (<c>HASH</c>) and inline filter
+/// (<c>INLINE_FILTER</c>) attributes for the vector index.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="WarmThroughput">
-/// &lt;p&gt;Represents the warm throughput (in read units per second and write units per second)
-/// for creating a table.&lt;/p&gt;
+/// Represents the warm throughput (in read units per second and write units per second) for creating a
+/// table.
 /// </param>
 public sealed record class CreateTableInput(
     string TableName,

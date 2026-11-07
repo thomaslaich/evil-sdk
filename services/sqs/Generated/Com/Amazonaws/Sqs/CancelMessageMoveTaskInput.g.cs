@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#CancelMessageMoveTaskInput.
 /// </summary>
 /// <param name="TaskHandle">
-/// &lt;p&gt;An identifier associated with a message movement task.&lt;/p&gt;
+/// An identifier associated with a message movement task.
 /// </param>
 public sealed record class CancelMessageMoveTaskInput(string TaskHandle);

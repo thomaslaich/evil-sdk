@@ -10,215 +10,302 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name containing the object. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Object Lambda access points&lt;/b&gt; - When you use this action with an Object Lambda access point, you must direct requests to the Object Lambda access point hostname. The Object Lambda access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-object-lambda.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The bucket name containing the object.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Object Lambda access points</b> - When you use this action with an Object Lambda access point,
+/// you must direct requests to the Object Lambda access point hostname. The Object Lambda access point
+/// hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-object-lambda.<i>Region</i>.amazonaws.com.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;Key of the object to get.&lt;/p&gt;
+/// Key of the object to get.
 /// </param>
 /// <param name="ChecksumMode">
-/// &lt;p&gt;To retrieve the checksum, this mode must be enabled.&lt;/p&gt;
+/// To retrieve the checksum, this mode must be enabled.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="IfMatch">
-/// &lt;p&gt;Return the object only if its entity tag (ETag) is the same as the one specified in this header;
-/// otherwise, return a &lt;code&gt;412 Precondition Failed&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;If-Match&lt;/code&gt; and &lt;code&gt;If-Unmodified-Since&lt;/code&gt; headers are present in the
-/// request as follows: &lt;code&gt;If-Match&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;, and;
-/// &lt;code&gt;If-Unmodified-Since&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;; then, S3 returns &lt;code&gt;200
-/// OK&lt;/code&gt; and the data requested. &lt;/p&gt;
-/// &lt;p&gt;For more information about conditional requests, see &lt;a href=&quot;https://tools.ietf.org/html/rfc7232&quot;&gt;RFC 7232&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Return the object only if its entity tag (ETag) is the same as the one specified in this header;
+/// otherwise, return a <c>412 Precondition Failed</c> error.
+/// </para>
+/// <para>
+/// If both of the <c>If-Match</c> and <c>If-Unmodified-Since</c> headers are present in the request as
+/// follows: <c>If-Match</c> condition evaluates to <c>true</c>, and; <c>If-Unmodified-Since</c>
+/// condition evaluates to <c>false</c>; then, S3 returns <c>200 OK</c> and the data requested.
+/// </para>
+/// <para>
+/// For more information about conditional requests, see
+/// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>.
+/// </para>
 /// </param>
 /// <param name="IfModifiedSince">
-/// &lt;p&gt;Return the object only if it has been modified since the specified time; otherwise, return a
-/// &lt;code&gt;304 Not Modified&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;If-None-Match&lt;/code&gt; and &lt;code&gt;If-Modified-Since&lt;/code&gt; headers are present in
-/// the request as follows:&lt;code&gt; If-None-Match&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;, and;
-/// &lt;code&gt;If-Modified-Since&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;; then, S3 returns &lt;code&gt;304
-/// Not Modified&lt;/code&gt; status code.&lt;/p&gt;
-/// &lt;p&gt;For more information about conditional requests, see &lt;a href=&quot;https://tools.ietf.org/html/rfc7232&quot;&gt;RFC 7232&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Return the object only if it has been modified since the specified time; otherwise, return a <c>304
+/// Not Modified</c> error.
+/// </para>
+/// <para>
+/// If both of the <c>If-None-Match</c> and <c>If-Modified-Since</c> headers are present in the request
+/// as follows:<c> If-None-Match</c> condition evaluates to <c>false</c>, and; <c>If-Modified-Since</c>
+/// condition evaluates to <c>true</c>; then, S3 returns <c>304 Not Modified</c> status code.
+/// </para>
+/// <para>
+/// For more information about conditional requests, see
+/// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>.
+/// </para>
 /// </param>
 /// <param name="IfNoneMatch">
-/// &lt;p&gt;Return the object only if its entity tag (ETag) is different from the one specified in this header;
-/// otherwise, return a &lt;code&gt;304 Not Modified&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;If-None-Match&lt;/code&gt; and &lt;code&gt;If-Modified-Since&lt;/code&gt; headers are present in
-/// the request as follows:&lt;code&gt; If-None-Match&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;, and;
-/// &lt;code&gt;If-Modified-Since&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;; then, S3 returns &lt;code&gt;304
-/// Not Modified&lt;/code&gt; HTTP status code.&lt;/p&gt;
-/// &lt;p&gt;For more information about conditional requests, see &lt;a href=&quot;https://tools.ietf.org/html/rfc7232&quot;&gt;RFC 7232&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Return the object only if its entity tag (ETag) is different from the one specified in this header;
+/// otherwise, return a <c>304 Not Modified</c> error.
+/// </para>
+/// <para>
+/// If both of the <c>If-None-Match</c> and <c>If-Modified-Since</c> headers are present in the request
+/// as follows:<c> If-None-Match</c> condition evaluates to <c>false</c>, and; <c>If-Modified-Since</c>
+/// condition evaluates to <c>true</c>; then, S3 returns <c>304 Not Modified</c> HTTP status code.
+/// </para>
+/// <para>
+/// For more information about conditional requests, see
+/// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>.
+/// </para>
 /// </param>
 /// <param name="IfUnmodifiedSince">
-/// &lt;p&gt;Return the object only if it has not been modified since the specified time; otherwise, return a
-/// &lt;code&gt;412 Precondition Failed&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;If-Match&lt;/code&gt; and &lt;code&gt;If-Unmodified-Since&lt;/code&gt; headers are present in the
-/// request as follows: &lt;code&gt;If-Match&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;, and;
-/// &lt;code&gt;If-Unmodified-Since&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;; then, S3 returns &lt;code&gt;200
-/// OK&lt;/code&gt; and the data requested. &lt;/p&gt;
-/// &lt;p&gt;For more information about conditional requests, see &lt;a href=&quot;https://tools.ietf.org/html/rfc7232&quot;&gt;RFC 7232&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Return the object only if it has not been modified since the specified time; otherwise, return a
+/// <c>412 Precondition Failed</c> error.
+/// </para>
+/// <para>
+/// If both of the <c>If-Match</c> and <c>If-Unmodified-Since</c> headers are present in the request as
+/// follows: <c>If-Match</c> condition evaluates to <c>true</c>, and; <c>If-Unmodified-Since</c>
+/// condition evaluates to <c>false</c>; then, S3 returns <c>200 OK</c> and the data requested.
+/// </para>
+/// <para>
+/// For more information about conditional requests, see
+/// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>.
+/// </para>
 /// </param>
 /// <param name="PartNumber">
-/// &lt;p&gt;Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively
+/// Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively
 /// performs a 'ranged' GET request for the part specified. Useful for downloading just a part of an
-/// object.&lt;/p&gt;
+/// object.
 /// </param>
 /// <param name="Range">
-/// &lt;p&gt;Downloads the specified byte range of an object. For more information about the HTTP Range header,
-/// see &lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc9110.html#name-range&quot;&gt;https://www.rfc-editor.org/rfc/rfc9110.html#name-range&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Amazon S3 doesn't support retrieving multiple ranges of data per &lt;code&gt;GET&lt;/code&gt; request.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Downloads the specified byte range of an object. For more information about the HTTP Range header,
+/// see
+/// <see href="https://www.rfc-editor.org/rfc/rfc9110.html#name-range">https://www.rfc-editor.org/rfc/rfc9110.html#name-range</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Amazon S3 doesn't support retrieving multiple ranges of data per <c>GET</c> request.
+/// </para>
 /// </param>
 /// <param name="ResponseCacheControl">
-/// &lt;p&gt;Sets the &lt;code&gt;Cache-Control&lt;/code&gt; header of the response.&lt;/p&gt;
+/// Sets the <c>Cache-Control</c> header of the response.
 /// </param>
 /// <param name="ResponseContentDisposition">
-/// &lt;p&gt;Sets the &lt;code&gt;Content-Disposition&lt;/code&gt; header of the response.&lt;/p&gt;
+/// Sets the <c>Content-Disposition</c> header of the response.
 /// </param>
 /// <param name="ResponseContentEncoding">
-/// &lt;p&gt;Sets the &lt;code&gt;Content-Encoding&lt;/code&gt; header of the response.&lt;/p&gt;
+/// Sets the <c>Content-Encoding</c> header of the response.
 /// </param>
 /// <param name="ResponseContentLanguage">
-/// &lt;p&gt;Sets the &lt;code&gt;Content-Language&lt;/code&gt; header of the response.&lt;/p&gt;
+/// Sets the <c>Content-Language</c> header of the response.
 /// </param>
 /// <param name="ResponseContentType">
-/// &lt;p&gt;Sets the &lt;code&gt;Content-Type&lt;/code&gt; header of the response.&lt;/p&gt;
+/// Sets the <c>Content-Type</c> header of the response.
 /// </param>
 /// <param name="ResponseExpires">
-/// &lt;p&gt;Sets the &lt;code&gt;Expires&lt;/code&gt; header of the response.&lt;/p&gt;
+/// Sets the <c>Expires</c> header of the response.
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;Specifies the algorithm to use when decrypting the object (for example, &lt;code&gt;AES256&lt;/code&gt;).&lt;/p&gt;
-/// &lt;p&gt;If you encrypt an object by using server-side encryption with customer-provided encryption keys
-/// (SSE-C) when you store the object in Amazon S3, then when you GET the object, you must use the following
-/// headers:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-key&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-key-MD5&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information about SSE-C, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html&quot;&gt;Server-Side Encryption (Using
-/// Customer-Provided Encryption Keys)&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the algorithm to use when decrypting the object (for example, <c>AES256</c>).
+/// </para>
+/// <para>
+/// If you encrypt an object by using server-side encryption with customer-provided encryption keys
+/// (SSE-C) when you store the object in Amazon S3, then when you GET the object, you must use the
+/// following headers:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-algorithm</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-key</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-key-MD5</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about SSE-C, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html">Server-Side
+/// Encryption (Using Customer-Provided Encryption Keys)</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKey">
-/// &lt;p&gt;Specifies the customer-provided encryption key that you originally provided for Amazon S3 to encrypt the
-/// data before storing it. This value is used to decrypt the object when recovering it and must match the
-/// one used when storing the data. The key must be appropriate for use with the algorithm specified in the
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt; header.&lt;/p&gt;
-/// &lt;p&gt;If you encrypt an object by using server-side encryption with customer-provided encryption keys
-/// (SSE-C) when you store the object in Amazon S3, then when you GET the object, you must use the following
-/// headers:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-key&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-key-MD5&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information about SSE-C, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html&quot;&gt;Server-Side Encryption (Using
-/// Customer-Provided Encryption Keys)&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the customer-provided encryption key that you originally provided for Amazon S3 to encrypt
+/// the data before storing it. This value is used to decrypt the object when recovering it and must
+/// match the one used when storing the data. The key must be appropriate for use with the algorithm
+/// specified in the <c>x-amz-server-side-encryption-customer-algorithm</c> header.
+/// </para>
+/// <para>
+/// If you encrypt an object by using server-side encryption with customer-provided encryption keys
+/// (SSE-C) when you store the object in Amazon S3, then when you GET the object, you must use the
+/// following headers:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-algorithm</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-key</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-key-MD5</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about SSE-C, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html">Server-Side
+/// Encryption (Using Customer-Provided Encryption Keys)</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321. Amazon S3
-/// uses this header for a message integrity check to ensure that the encryption key was transmitted without
-/// error.&lt;/p&gt;
-/// &lt;p&gt;If you encrypt an object by using server-side encryption with customer-provided encryption keys
-/// (SSE-C) when you store the object in Amazon S3, then when you GET the object, you must use the following
-/// headers:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-key&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-server-side-encryption-customer-key-MD5&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information about SSE-C, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html&quot;&gt;Server-Side Encryption (Using
-/// Customer-Provided Encryption Keys)&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the 128-bit MD5 digest of the customer-provided encryption key according to RFC 1321.
+/// Amazon S3 uses this header for a message integrity check to ensure that the encryption key was
+/// transmitted without error.
+/// </para>
+/// <para>
+/// If you encrypt an object by using server-side encryption with customer-provided encryption keys
+/// (SSE-C) when you store the object in Amazon S3, then when you GET the object, you must use the
+/// following headers:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-algorithm</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-key</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>x-amz-server-side-encryption-customer-key-MD5</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about SSE-C, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html">Server-Side
+/// Encryption (Using Customer-Provided Encryption Keys)</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;Version ID used to reference a specific version of the object.&lt;/p&gt;
-/// &lt;p&gt;By default, the &lt;code&gt;GetObject&lt;/code&gt; operation returns the current version of an object. To return
-/// a different version, use the &lt;code&gt;versionId&lt;/code&gt; subresource.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If you include a &lt;code&gt;versionId&lt;/code&gt; in your request header, you must have the
-/// &lt;code&gt;s3:GetObjectVersion&lt;/code&gt; permission to access a specific version of an object. The
-/// &lt;code&gt;s3:GetObject&lt;/code&gt; permission is not required in this scenario.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If you request the current version of an object without a specific &lt;code&gt;versionId&lt;/code&gt; in
-/// the request header, only the &lt;code&gt;s3:GetObject&lt;/code&gt; permission is required. The
-/// &lt;code&gt;s3:GetObjectVersion&lt;/code&gt; permission is not required in this scenario.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - S3 Versioning isn't enabled and supported for directory buckets. For this API operation, only the &lt;code&gt;null&lt;/code&gt; value of the version ID is supported by directory buckets.
-/// You can only specify &lt;code&gt;null&lt;/code&gt; to the &lt;code&gt;versionId&lt;/code&gt; query parameter in the
-/// request.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For more information about versioning, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html&quot;&gt;PutBucketVersioning&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Version ID used to reference a specific version of the object.
+/// </para>
+/// <para>
+/// By default, the <c>GetObject</c> operation returns the current version of an object. To return a
+/// different version, use the <c>versionId</c> subresource.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// If you include a <c>versionId</c> in your request header, you must have the
+/// <c>s3:GetObjectVersion</c> permission to access a specific version of an object. The
+/// <c>s3:GetObject</c> permission is not required in this scenario.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// If you request the current version of an object without a specific <c>versionId</c> in the request
+/// header, only the <c>s3:GetObject</c> permission is required. The <c>s3:GetObjectVersion</c>
+/// permission is not required in this scenario.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Directory buckets</b> - S3 Versioning isn't enabled and supported for directory buckets. For this
+/// API operation, only the <c>null</c> value of the version ID is supported by directory buckets. You
+/// can only specify <c>null</c> to the <c>versionId</c> query parameter in the request.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about versioning, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html">PutBucketVersioning</see>.
+/// </para>
 /// </param>
 public sealed record class GetObjectInput(
     string Bucket,

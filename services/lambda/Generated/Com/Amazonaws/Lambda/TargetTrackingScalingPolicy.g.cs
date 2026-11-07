@@ -5,13 +5,15 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A scaling policy for the capacity provider that automatically adjusts capacity to maintain a target value for a specific metric.&lt;/p&gt;
+/// A scaling policy for the capacity provider that automatically adjusts capacity to maintain a target
+/// value for a specific metric.
 /// </summary>
 /// <param name="PredefinedMetricType">
-/// &lt;p&gt;The predefined metric type to track for scaling decisions.&lt;/p&gt;
+/// The predefined metric type to track for scaling decisions.
 /// </param>
 /// <param name="TargetValue">
-/// &lt;p&gt;The target value for the metric that the scaling policy attempts to maintain through scaling actions.&lt;/p&gt;
+/// The target value for the metric that the scaling policy attempts to maintain through scaling
+/// actions.
 /// </param>
 public sealed record class TargetTrackingScalingPolicy(
     CapacityProviderPredefinedMetricType PredefinedMetricType,

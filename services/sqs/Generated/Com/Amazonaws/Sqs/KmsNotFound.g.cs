@@ -7,14 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The request was rejected because the specified entity or resource could not be found.
-/// &lt;/p&gt;
+/// The request was rejected because the specified entity or resource could not be found.
 /// </summary>
 public sealed partial class KmsNotFound : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was rejected because the specified entity or resource could not be found.
-    /// &lt;/p&gt;
+    /// The request was rejected because the specified entity or resource could not be found.
     /// </summary>
     public KmsNotFound(string? message = null)
         : base(message) { }

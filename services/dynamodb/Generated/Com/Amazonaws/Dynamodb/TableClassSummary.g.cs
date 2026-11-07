@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains details of the table class.&lt;/p&gt;
+/// Contains details of the table class.
 /// </summary>
 /// <param name="LastUpdateDateTime">
-/// &lt;p&gt;The date and time at which the table class was last updated.&lt;/p&gt;
+/// The date and time at which the table class was last updated.
 /// </param>
 /// <param name="TableClass">
-/// &lt;p&gt;The table class of the specified table. Valid values are &lt;code&gt;STANDARD&lt;/code&gt; and
-/// &lt;code&gt;STANDARD_INFREQUENT_ACCESS&lt;/code&gt;.&lt;/p&gt;
+/// The table class of the specified table. Valid values are <c>STANDARD</c> and
+/// <c>STANDARD_INFREQUENT_ACCESS</c>.
 /// </param>
 public sealed record class TableClassSummary(
     DateTimeOffset? LastUpdateDateTime = null,

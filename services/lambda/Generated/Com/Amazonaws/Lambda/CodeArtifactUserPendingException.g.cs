@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function couldn't be invoked because its code artifact user is still being provisioned. Wait for the function's &lt;code&gt;State&lt;/code&gt; to become &lt;code&gt;Active&lt;/code&gt; and try the request again.&lt;/p&gt;
+/// The Lambda function couldn't be invoked because its code artifact user is still being provisioned.
+/// Wait for the function's <c>State</c> to become <c>Active</c> and try the request again.
 /// </summary>
 public sealed partial class CodeArtifactUserPendingException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function couldn't be invoked because its code artifact user is still being provisioned. Wait for the function's &lt;code&gt;State&lt;/code&gt; to become &lt;code&gt;Active&lt;/code&gt; and try the request again.&lt;/p&gt;
+    /// The Lambda function couldn't be invoked because its code artifact user is still being provisioned.
+    /// Wait for the function's <c>State</c> to become <c>Active</c> and try the request again.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public CodeArtifactUserPendingException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +29,12 @@ public sealed partial class CodeArtifactUserPendingException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

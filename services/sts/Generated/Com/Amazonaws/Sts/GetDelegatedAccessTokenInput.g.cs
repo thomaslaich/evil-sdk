@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Sts;
 /// Represents the Smithy structure com.amazonaws.sts#GetDelegatedAccessTokenInput.
 /// </summary>
 /// <param name="TradeInToken">
-/// &lt;p&gt;The token to exchange for temporary Amazon Web Services credentials. This token must be valid and
-/// unexpired at the time of the request.&lt;/p&gt;
+/// The token to exchange for temporary Amazon Web Services credentials. This token must be valid and
+/// unexpired at the time of the request.
 /// </param>
 public sealed record class GetDelegatedAccessTokenInput(string TradeInToken);

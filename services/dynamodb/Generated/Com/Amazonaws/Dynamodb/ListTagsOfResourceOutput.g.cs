@@ -10,11 +10,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListTagsOfResourceOutput.
 /// </summary>
 /// <param name="NextToken">
-/// &lt;p&gt;If this value is returned, there are additional results to be displayed. To retrieve
-/// them, call ListTagsOfResource again, with NextToken set to this value.&lt;/p&gt;
+/// If this value is returned, there are additional results to be displayed. To retrieve them, call
+/// ListTagsOfResource again, with NextToken set to this value.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;The tags currently associated with the Amazon DynamoDB resource.&lt;/p&gt;
+/// The tags currently associated with the Amazon DynamoDB resource.
 /// </param>
 public sealed record class ListTagsOfResourceOutput(
     string? NextToken = null,

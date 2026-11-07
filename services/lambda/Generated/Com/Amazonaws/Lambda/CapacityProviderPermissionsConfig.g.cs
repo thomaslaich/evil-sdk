@@ -5,10 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration that specifies the permissions required for the capacity provider to manage compute resources.&lt;/p&gt;
+/// Configuration that specifies the permissions required for the capacity provider to manage compute
+/// resources.
 /// </summary>
 /// <param name="CapacityProviderOperatorRoleArn">
-/// &lt;p&gt;The ARN of the IAM role that the capacity provider uses to manage compute instances and other Amazon Web Services resources.&lt;/p&gt;
+/// The ARN of the IAM role that the capacity provider uses to manage compute instances and other Amazon
+/// Web Services resources.
 /// </param>
 public sealed record class CapacityProviderPermissionsConfig(
     string CapacityProviderOperatorRoleArn

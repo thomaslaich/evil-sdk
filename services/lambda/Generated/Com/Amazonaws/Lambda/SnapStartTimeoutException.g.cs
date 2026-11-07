@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't restore the snapshot within the timeout limit.&lt;/p&gt;
+/// Lambda couldn't restore the snapshot within the timeout limit.
 /// </summary>
 public sealed partial class SnapStartTimeoutException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't restore the snapshot within the timeout limit.&lt;/p&gt;
+    /// Lambda couldn't restore the snapshot within the timeout limit.
     /// </summary>
     public SnapStartTimeoutException(string? message = null, string? type = null)
         : base(message)

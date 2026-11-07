@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The code signature failed the integrity check. If the integrity check fails, then Lambda blocks deployment, even if the code signing policy is set to WARN.&lt;/p&gt;
+/// The code signature failed the integrity check. If the integrity check fails, then Lambda blocks
+/// deployment, even if the code signing policy is set to WARN.
 /// </summary>
 public sealed partial class InvalidCodeSignatureException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The code signature failed the integrity check. If the integrity check fails, then Lambda blocks deployment, even if the code signing policy is set to WARN.&lt;/p&gt;
+    /// The code signature failed the integrity check. If the integrity check fails, then Lambda blocks
+    /// deployment, even if the code signing policy is set to WARN.
     /// </summary>
     public InvalidCodeSignatureException(string? message = null, string? type = null)
         : base(message)

@@ -7,43 +7,45 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Information about an operation within a durable execution.&lt;/p&gt;
+/// Information about an operation within a durable execution.
 /// </summary>
 /// <param name="Id">
-/// &lt;p&gt;The unique identifier for this operation.&lt;/p&gt;
+/// The unique identifier for this operation.
 /// </param>
 /// <param name="StartTimestamp">
-/// &lt;p&gt;The date and time when the operation started, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when the operation started, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;The current status of the operation.&lt;/p&gt;
+/// The current status of the operation.
 /// </param>
 /// <param name="Type">
-/// &lt;p&gt;The type of operation.&lt;/p&gt;
+/// The type of operation.
 /// </param>
 /// <param name="ContextDetails">
-/// &lt;p&gt;Details about the context, if this operation represents a context.&lt;/p&gt;
+/// Details about the context, if this operation represents a context.
 /// </param>
 /// <param name="EndTimestamp">
-/// &lt;p&gt;The date and time when the operation ended, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when the operation ended, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="ExecutionDetails">
-/// &lt;p&gt;Details about the execution, if this operation represents an execution.&lt;/p&gt;
+/// Details about the execution, if this operation represents an execution.
 /// </param>
 /// <param name="Name">
-/// &lt;p&gt;The customer-provided name for this operation.&lt;/p&gt;
+/// The customer-provided name for this operation.
 /// </param>
 /// <param name="ParentId">
-/// &lt;p&gt;The unique identifier of the parent operation, if this operation is running within a child context.&lt;/p&gt;
+/// The unique identifier of the parent operation, if this operation is running within a child context.
 /// </param>
 /// <param name="StepDetails">
-/// &lt;p&gt;Details about the step, if this operation represents a step.&lt;/p&gt;
+/// Details about the step, if this operation represents a step.
 /// </param>
 /// <param name="SubType">
-/// &lt;p&gt;The subtype of the operation, providing additional categorization.&lt;/p&gt;
+/// The subtype of the operation, providing additional categorization.
 /// </param>
 /// <param name="WaitDetails">
-/// &lt;p&gt;Details about the wait operation, if this operation represents a wait.&lt;/p&gt;
+/// Details about the wait operation, if this operation represents a wait.
 /// </param>
 public sealed record class Operation(
     string Id,

@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateCodeSigningConfigOutput.
 /// </summary>
 /// <param name="CodeSigningConfig">
-/// &lt;p&gt;The code signing configuration&lt;/p&gt;
+/// The code signing configuration
 /// </param>
 public sealed record class UpdateCodeSigningConfigOutput(
     global::Com.Amazonaws.Lambda.CodeSigningConfig CodeSigningConfig

@@ -5,13 +5,18 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.&lt;/p&gt;
+/// Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event
+/// source.
 /// </summary>
 /// <param name="ConsumerGroupId">
-/// &lt;p&gt;The identifier for the Kafka consumer group to join. The consumer group ID must be unique among all your Kafka event sources. After creating a Kafka event source mapping with the consumer group ID specified, you cannot update this value. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-consumer-group-id&quot;&gt;Customizable consumer group ID&lt;/a&gt;.&lt;/p&gt;
+/// The identifier for the Kafka consumer group to join. The consumer group ID must be unique among all
+/// your Kafka event sources. After creating a Kafka event source mapping with the consumer group ID
+/// specified, you cannot update this value. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-consumer-group-id">Customizable
+/// consumer group ID</see>.
 /// </param>
 /// <param name="SchemaRegistryConfig">
-/// &lt;p&gt;Specific configuration settings for a Kafka schema registry.&lt;/p&gt;
+/// Specific configuration settings for a Kafka schema registry.
 /// </param>
 public sealed record class AmazonManagedKafkaEventSourceConfig(
     string? ConsumerGroupId = null,

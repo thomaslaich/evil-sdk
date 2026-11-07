@@ -8,31 +8,51 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutBucketVersioningInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name.&lt;/p&gt;
+/// The bucket name.
 /// </param>
 /// <param name="VersioningConfiguration">
-/// &lt;p&gt;Container for setting the versioning state.&lt;/p&gt;
+/// Container for setting the versioning state.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any
-/// additional functionality if you don't use the SDK. When you send this header, there must be a corresponding &lt;code&gt;x-amz-checksum&lt;/code&gt; or
-/// &lt;code&gt;x-amz-trailer&lt;/code&gt; header sent. Otherwise, Amazon S3 fails the request with the HTTP status code &lt;code&gt;400 Bad Request&lt;/code&gt;. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If you provide an individual checksum, Amazon S3 ignores any provided &lt;code&gt;ChecksumAlgorithm&lt;/code&gt;
-/// parameter.&lt;/p&gt;
+/// <para>
+/// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
+/// header will not provide any additional functionality if you don't use the SDK. When you send this
+/// header, there must be a corresponding <c>x-amz-checksum</c> or <c>x-amz-trailer</c> header sent.
+/// Otherwise, Amazon S3 fails the request with the HTTP status code <c>400 Bad Request</c>. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If you provide an individual checksum, Amazon S3 ignores any provided <c>ChecksumAlgorithm</c>
+/// parameter.
+/// </para>
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;&gt;The Base64 encoded 128-bit &lt;code&gt;MD5&lt;/code&gt; digest of the data. You must use this header as a
-/// message integrity check to verify that the request body was not corrupted in transit. For more
-/// information, see &lt;a href=&quot;http://www.ietf.org/rfc/rfc1864.txt&quot;&gt;RFC 1864&lt;/a&gt;.&lt;/p&gt;
-/// &lt;p&gt;For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.&lt;/p&gt;
+/// <para>
+/// &gt;The Base64 encoded 128-bit <c>MD5</c> digest of the data. You must use this header as a message
+/// integrity check to verify that the request body was not corrupted in transit. For more information,
+/// see <see href="http://www.ietf.org/rfc/rfc1864.txt">RFC 1864</see>.
+/// </para>
+/// <para>
+/// For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services
+/// SDKs, this field is calculated automatically.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="MFA">
-/// &lt;p&gt;The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device. The serial number is the number that uniquely identifies the MFA device. For physical MFA devices, this is the unique serial number that's provided with the device. For virtual MFA devices, the serial number is the device ARN. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/manage-versioning-examples.html&quot;&gt;Enabling versioning on buckets&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html&quot;&gt;Configuring MFA delete&lt;/a&gt; in the &lt;i&gt;Amazon Simple Storage Service User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The concatenation of the authentication device's serial number, a space, and the value that is
+/// displayed on your authentication device. The serial number is the number that uniquely identifies
+/// the MFA device. For physical MFA devices, this is the unique serial number that's provided with the
+/// device. For virtual MFA devices, the serial number is the device ARN. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/manage-versioning-examples.html">Enabling
+/// versioning on buckets</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html">Configuring
+/// MFA delete</see> in the <i>Amazon Simple Storage Service User Guide</i>.
 /// </param>
 public sealed record class PutBucketVersioningInput(
     string Bucket,

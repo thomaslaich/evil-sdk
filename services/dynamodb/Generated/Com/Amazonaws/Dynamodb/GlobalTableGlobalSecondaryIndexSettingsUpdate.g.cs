@@ -5,21 +5,18 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the settings of a global secondary index for a global table that will be
-/// modified.&lt;/p&gt;
+/// Represents the settings of a global secondary index for a global table that will be modified.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index. The name must be unique among all other
-/// indexes on this table.&lt;/p&gt;
+/// The name of the global secondary index. The name must be unique among all other indexes on this
+/// table.
 /// </param>
 /// <param name="ProvisionedWriteCapacityAutoScalingSettingsUpdate">
-/// &lt;p&gt;Auto scaling settings for managing a global secondary index's write capacity
-/// units.&lt;/p&gt;
+/// Auto scaling settings for managing a global secondary index's write capacity units.
 /// </param>
 /// <param name="ProvisionedWriteCapacityUnits">
-/// &lt;p&gt;The maximum number of writes consumed per second before DynamoDB returns a
-/// &lt;code&gt;ThrottlingException.&lt;/code&gt;
-/// &lt;/p&gt;
+/// The maximum number of writes consumed per second before DynamoDB returns a
+/// <c>ThrottlingException.</c>
 /// </param>
 public sealed record class GlobalTableGlobalSecondaryIndexSettingsUpdate(
     string IndexName,

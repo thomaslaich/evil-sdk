@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The outbound web identity federation feature is not enabled for this account. To use
-/// this feature, you must first enable it through the Amazon Web Services Management Console or API.&lt;/p&gt;
+/// The outbound web identity federation feature is not enabled for this account. To use this feature,
+/// you must first enable it through the Amazon Web Services Management Console or API.
 /// </summary>
 public sealed partial class OutboundWebIdentityFederationDisabledException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The outbound web identity federation feature is not enabled for this account. To use
-    /// this feature, you must first enable it through the Amazon Web Services Management Console or API.&lt;/p&gt;
+    /// The outbound web identity federation feature is not enabled for this account. To use this feature,
+    /// you must first enable it through the Amazon Web Services Management Console or API.
     /// </summary>
     public OutboundWebIdentityFederationDisabledException(string? message = null)
         : base(message) { }

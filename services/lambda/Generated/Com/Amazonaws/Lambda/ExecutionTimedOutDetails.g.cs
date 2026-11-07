@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt; that timed out.&lt;/p&gt;
+/// Details about a
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+/// execution</see> that timed out.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the execution timeout.&lt;/p&gt;
+/// Details about the execution timeout.
 /// </param>
 public sealed record class ExecutionTimedOutDetails(EventError? Error = null);

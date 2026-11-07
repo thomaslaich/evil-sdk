@@ -11,31 +11,33 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListDurableExecutionsByFunctionInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function. You can specify a function name, a partial ARN, or a full ARN.&lt;/p&gt;
+/// The name or ARN of the Lambda function. You can specify a function name, a partial ARN, or a full
+/// ARN.
 /// </param>
 /// <param name="DurableExecutionName">
-/// &lt;p&gt;Filter executions by name. Only executions with names that matches this string are returned.&lt;/p&gt;
+/// Filter executions by name. Only executions with names that matches this string are returned.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;Pagination token from a previous request to continue retrieving results.&lt;/p&gt;
+/// Pagination token from a previous request to continue retrieving results.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;Maximum number of executions to return (1-1000). Default is 100.&lt;/p&gt;
+/// Maximum number of executions to return (1-1000). Default is 100.
 /// </param>
 /// <param name="Qualifier">
-/// &lt;p&gt;The function version to filter executions by. If you don't specify a qualifier, this operation returns executions across all versions of the Lambda function.&lt;/p&gt;
+/// The function version to filter executions by. If you don't specify a qualifier, this operation
+/// returns executions across all versions of the Lambda function.
 /// </param>
 /// <param name="ReverseOrder">
-/// &lt;p&gt;Set to true to return results in chronological order (oldest first). Default is false.&lt;/p&gt;
+/// Set to true to return results in chronological order (oldest first). Default is false.
 /// </param>
 /// <param name="StartedAfter">
-/// &lt;p&gt;Filter executions that started after this timestamp (ISO 8601 format).&lt;/p&gt;
+/// Filter executions that started after this timestamp (ISO 8601 format).
 /// </param>
 /// <param name="StartedBefore">
-/// &lt;p&gt;Filter executions that started before this timestamp (ISO 8601 format).&lt;/p&gt;
+/// Filter executions that started before this timestamp (ISO 8601 format).
 /// </param>
 /// <param name="Statuses">
-/// &lt;p&gt;Filter executions by status. Valid values: RUNNING, SUCCEEDED, FAILED, TIMED_OUT, STOPPED.&lt;/p&gt;
+/// Filter executions by status. Valid values: RUNNING, SUCCEEDED, FAILED, TIMED_OUT, STOPPED.
 /// </param>
 public sealed record class ListDurableExecutionsByFunctionInput(
     string FunctionName,

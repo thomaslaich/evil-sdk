@@ -8,13 +8,14 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListFunctionsByCodeSigningConfigInput.
 /// </summary>
 /// <param name="CodeSigningConfigArn">
-/// &lt;p&gt;The The Amazon Resource Name (ARN) of the code signing configuration.&lt;/p&gt;
+/// The The Amazon Resource Name (ARN) of the code signing configuration.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;Specify the pagination token that's returned by a previous request to retrieve the next page of results.&lt;/p&gt;
+/// Specify the pagination token that's returned by a previous request to retrieve the next page of
+/// results.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;Maximum number of items to return.&lt;/p&gt;
+/// Maximum number of items to return.
 /// </param>
 public sealed record class ListFunctionsByCodeSigningConfigInput(
     string CodeSigningConfigArn,

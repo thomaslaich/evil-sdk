@@ -5,13 +5,128 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;To secure and define access to your event source, you can specify the authentication protocol, VPC components, or virtual host.&lt;/p&gt;
+/// To secure and define access to your event source, you can specify the authentication protocol, VPC
+/// components, or virtual host.
 /// </summary>
 /// <param name="Type">
-/// &lt;p&gt;The type of authentication protocol, VPC components, or virtual host for your event source. For example: &lt;code&gt;&quot;Type&quot;:&quot;SASL_SCRAM_512_AUTH&quot;&lt;/code&gt;.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BASIC_AUTH&lt;/code&gt; – (Amazon MQ) The Secrets Manager secret that stores your broker credentials.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BASIC_AUTH&lt;/code&gt; – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL/PLAIN authentication of your Apache Kafka brokers.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;VPC_SUBNET&lt;/code&gt; – (Self-managed Apache Kafka) The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your self-managed Apache Kafka cluster.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;VPC_SECURITY_GROUP&lt;/code&gt; – (Self-managed Apache Kafka) The VPC security group used to manage access to your self-managed Apache Kafka brokers.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;SASL_SCRAM_256_AUTH&lt;/code&gt; – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;SASL_SCRAM_512_AUTH&lt;/code&gt; – (Amazon MSK, Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;VIRTUAL_HOST&lt;/code&gt; –- (RabbitMQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source. This property cannot be specified in an UpdateEventSourceMapping API call.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;CLIENT_CERTIFICATE_TLS_AUTH&lt;/code&gt; – (Amazon MSK, self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;SERVER_ROOT_CA_CERTIFICATE&lt;/code&gt; – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OAUTHBEARER_AUTH&lt;/code&gt; – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the OAuth 2.0 credentials that Lambda uses for SASL/OAUTHBEARER authentication with your Apache Kafka brokers. For the contents of the secret, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret&quot;&gt;Configuring the OAuth secret&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OAUTHBEARER_SCOPE&lt;/code&gt; – (Self-managed Apache Kafka) The OAuth 2.0 scope that Lambda requests when it acquires an access token. The &lt;code&gt;URI&lt;/code&gt; field holds the scope value, not a secret ARN. This type requires &lt;code&gt;OAUTHBEARER_AUTH&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OAUTHBEARER_AUDIENCE&lt;/code&gt; – (Self-managed Apache Kafka) The OAuth 2.0 audience that Lambda requests when it acquires an access token. The &lt;code&gt;URI&lt;/code&gt; field holds the audience value, not a secret ARN. This type requires either &lt;code&gt;OAUTHBEARER_AUTH&lt;/code&gt; or &lt;code&gt;IAM_OAUTHBEARER_AUTH&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OAUTHBEARER_LOGICAL_CLUSTER&lt;/code&gt; – (Self-managed Apache Kafka) The logical cluster identifier that Lambda sends to a Confluent Cloud broker. The &lt;code&gt;URI&lt;/code&gt; field holds the identifier, not a secret ARN. This type requires &lt;code&gt;OAUTHBEARER_AUTH&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OAUTHBEARER_IDENTITY_POOL&lt;/code&gt; – (Self-managed Apache Kafka) The identity pool identifier that Lambda sends to a Confluent Cloud broker. The &lt;code&gt;URI&lt;/code&gt; field holds the identifier, not a secret ARN. This type requires &lt;code&gt;OAUTHBEARER_AUTH&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;IAM_AUTH&lt;/code&gt; – (Self-managed Apache Kafka) Authenticate with Identity and Access Management (IAM). Your function's execution role signs each connection, so there is no secret to provide. Omit the &lt;code&gt;URI&lt;/code&gt; field for this type.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;IAM_OAUTHBEARER_AUTH&lt;/code&gt; – (Self-managed Apache Kafka) Authenticate with an Amazon Web Services web identity token over SASL/OAUTHBEARER. Lambda requests the token for your function's execution role, so there is no secret to provide. Omit the &lt;code&gt;URI&lt;/code&gt; field for this type. This type requires &lt;code&gt;OAUTHBEARER_AUDIENCE&lt;/code&gt; and does not support the other &lt;code&gt;OAUTHBEARER&lt;/code&gt; types.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// The type of authentication protocol, VPC components, or virtual host for your event source. For
+/// example: <c>"Type":"SASL_SCRAM_512_AUTH"</c>.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>BASIC_AUTH</c> – (Amazon MQ) The Secrets Manager secret that stores your broker credentials.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>BASIC_AUTH</c> – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for
+/// SASL/PLAIN authentication of your Apache Kafka brokers.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>VPC_SUBNET</c> – (Self-managed Apache Kafka) The subnets associated with your VPC. Lambda
+/// connects to these subnets to fetch data from your self-managed Apache Kafka cluster.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>VPC_SECURITY_GROUP</c> – (Self-managed Apache Kafka) The VPC security group used to manage access
+/// to your self-managed Apache Kafka brokers.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SASL_SCRAM_256_AUTH</c> – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key
+/// used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SASL_SCRAM_512_AUTH</c> – (Amazon MSK, Self-managed Apache Kafka) The Secrets Manager ARN of your
+/// secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>VIRTUAL_HOST</c> –- (RabbitMQ) The name of the virtual host in your RabbitMQ broker. Lambda uses
+/// this RabbitMQ host as the event source. This property cannot be specified in an
+/// UpdateEventSourceMapping API call.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CLIENT_CERTIFICATE_TLS_AUTH</c> – (Amazon MSK, self-managed Apache Kafka) The Secrets Manager ARN
+/// of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and
+/// private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SERVER_ROOT_CA_CERTIFICATE</c> – (Self-managed Apache Kafka) The Secrets Manager ARN of your
+/// secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache
+/// Kafka brokers.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>OAUTHBEARER_AUTH</c> – (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key
+/// containing the OAuth 2.0 credentials that Lambda uses for SASL/OAUTHBEARER authentication with your
+/// Apache Kafka brokers. For the contents of the secret, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret">Configuring
+/// the OAuth secret</see>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>OAUTHBEARER_SCOPE</c> – (Self-managed Apache Kafka) The OAuth 2.0 scope that Lambda requests when
+/// it acquires an access token. The <c>URI</c> field holds the scope value, not a secret ARN. This type
+/// requires <c>OAUTHBEARER_AUTH</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>OAUTHBEARER_AUDIENCE</c> – (Self-managed Apache Kafka) The OAuth 2.0 audience that Lambda
+/// requests when it acquires an access token. The <c>URI</c> field holds the audience value, not a
+/// secret ARN. This type requires either <c>OAUTHBEARER_AUTH</c> or <c>IAM_OAUTHBEARER_AUTH</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>OAUTHBEARER_LOGICAL_CLUSTER</c> – (Self-managed Apache Kafka) The logical cluster identifier that
+/// Lambda sends to a Confluent Cloud broker. The <c>URI</c> field holds the identifier, not a secret
+/// ARN. This type requires <c>OAUTHBEARER_AUTH</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>OAUTHBEARER_IDENTITY_POOL</c> – (Self-managed Apache Kafka) The identity pool identifier that
+/// Lambda sends to a Confluent Cloud broker. The <c>URI</c> field holds the identifier, not a secret
+/// ARN. This type requires <c>OAUTHBEARER_AUTH</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IAM_AUTH</c> – (Self-managed Apache Kafka) Authenticate with Identity and Access Management
+/// (IAM). Your function's execution role signs each connection, so there is no secret to provide. Omit
+/// the <c>URI</c> field for this type.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IAM_OAUTHBEARER_AUTH</c> – (Self-managed Apache Kafka) Authenticate with an Amazon Web Services
+/// web identity token over SASL/OAUTHBEARER. Lambda requests the token for your function's execution
+/// role, so there is no secret to provide. Omit the <c>URI</c> field for this type. This type requires
+/// <c>OAUTHBEARER_AUDIENCE</c> and does not support the other <c>OAUTHBEARER</c> types.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="URI">
-/// &lt;p&gt;The value for your chosen configuration in &lt;code&gt;Type&lt;/code&gt;. For example: &lt;code&gt;&quot;URI&quot;: &quot;arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName&quot;&lt;/code&gt;.&lt;/p&gt;
+/// The value for your chosen configuration in <c>Type</c>. For example: <c>"URI":
+/// "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName"</c>.
 /// </param>
 public sealed record class SourceAccessConfiguration(
     SourceAccessType? Type = null,

@@ -7,15 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the configuration for publishing messages to an Amazon Simple Queue Service (Amazon SQS)
-/// queue when Amazon S3 detects specified events.&lt;/p&gt;
+/// Specifies the configuration for publishing messages to an Amazon Simple Queue Service (Amazon SQS)
+/// queue when Amazon S3 detects specified events.
 /// </summary>
 /// <param name="Events">
-/// &lt;p&gt;A collection of bucket events for which to send notifications&lt;/p&gt;
+/// A collection of bucket events for which to send notifications
 /// </param>
 /// <param name="QueueArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Amazon SQS queue to which Amazon S3 publishes a message when it
-/// detects events of the specified type.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Amazon SQS queue to which Amazon S3 publishes a message when
+/// it detects events of the specified type.
 /// </param>
 public sealed record class QueueConfiguration(
     IReadOnlyList<Event> Events,

@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#GetResourcePolicyInput.
 /// </summary>
 /// <param name="ResourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the DynamoDB resource to which the policy is attached. The
-/// resources you can specify include tables and streams.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the DynamoDB resource to which the policy is attached. The
+/// resources you can specify include tables and streams.
 /// </param>
 public sealed record class GetResourcePolicyInput(string ResourceArn);

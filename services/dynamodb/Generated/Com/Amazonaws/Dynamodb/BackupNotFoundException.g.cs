@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Backup not found for the given BackupARN. &lt;/p&gt;
+/// Backup not found for the given BackupARN.
 /// </summary>
 public sealed partial class BackupNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Backup not found for the given BackupARN. &lt;/p&gt;
+    /// Backup not found for the given BackupARN.
     /// </summary>
     public BackupNotFoundException(string? message = null)
         : base(message) { }

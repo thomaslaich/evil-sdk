@@ -7,7 +7,9 @@ using NSmithy.Core.Serde;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The method Lambda uses to store a function's deployment package — either by copying the package into Lambda-managed storage (&lt;code&gt;COPY&lt;/code&gt;) or by referencing it directly from the source Amazon S3 bucket (&lt;code&gt;REFERENCE&lt;/code&gt;).&lt;/p&gt;
+/// The method Lambda uses to store a function's deployment package — either by copying the package into
+/// Lambda-managed storage (<c>COPY</c>) or by referencing it directly from the source Amazon S3 bucket
+/// (<c>REFERENCE</c>).
 /// </summary>
 public readonly partial record struct S3ObjectStorageMode(string Value)
     : IStringEnumValue<S3ObjectStorageMode>
@@ -18,12 +20,13 @@ public readonly partial record struct S3ObjectStorageMode(string Value)
     }
 
     /// <summary>
-    /// &lt;p&gt;The default storage mode. Uploads a copy of your deployment package to Lambda.&lt;/p&gt;
+    /// The default storage mode. Uploads a copy of your deployment package to Lambda.
     /// </summary>
     public static S3ObjectStorageMode Copy { get; } = new("COPY");
 
     /// <summary>
-    /// &lt;p&gt;The reference storage mode. Lambda references the deployment package from the specified Amazon S3 bucket without uploading a copy.&lt;/p&gt;
+    /// The reference storage mode. Lambda references the deployment package from the specified Amazon S3
+    /// bucket without uploading a copy.
     /// </summary>
     public static S3ObjectStorageMode Reference { get; } = new("REFERENCE");
 

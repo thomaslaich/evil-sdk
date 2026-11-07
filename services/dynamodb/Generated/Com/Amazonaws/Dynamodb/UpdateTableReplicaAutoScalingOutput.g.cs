@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateTableReplicaAutoScalingOutput.
 /// </summary>
 /// <param name="TableAutoScalingDescription">
-/// &lt;p&gt;Returns information about the auto scaling settings of a table with replicas.&lt;/p&gt;
+/// Returns information about the auto scaling settings of a table with replicas.
 /// </param>
 public sealed record class UpdateTableReplicaAutoScalingOutput(
     global::Com.Amazonaws.Dynamodb.TableAutoScalingDescription? TableAutoScalingDescription = null

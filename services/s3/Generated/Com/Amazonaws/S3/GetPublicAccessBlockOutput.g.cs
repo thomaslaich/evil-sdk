@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetPublicAccessBlockOutput.
 /// </summary>
 /// <param name="PublicAccessBlockConfiguration">
-/// &lt;p&gt;The &lt;code&gt;PublicAccessBlock&lt;/code&gt; configuration currently in effect for this Amazon S3 bucket.&lt;/p&gt;
+/// The <c>PublicAccessBlock</c> configuration currently in effect for this Amazon S3 bucket.
 /// </param>
 public sealed record class GetPublicAccessBlockOutput(
     global::Com.Amazonaws.S3.PublicAccessBlockConfiguration? PublicAccessBlockConfiguration = null

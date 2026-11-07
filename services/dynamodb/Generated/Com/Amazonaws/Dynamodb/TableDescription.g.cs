@@ -8,486 +8,549 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a table.&lt;/p&gt;
+/// Represents the properties of a table.
 /// </summary>
 /// <param name="ArchivalSummary">
-/// &lt;p&gt;Contains information about the table archive.&lt;/p&gt;
+/// Contains information about the table archive.
 /// </param>
 /// <param name="AttributeDefinitions">
-/// &lt;p&gt;An array of &lt;code&gt;AttributeDefinition&lt;/code&gt; objects. Each of these objects describes
-/// one attribute in the table and index key schema.&lt;/p&gt;
-/// &lt;p&gt;Each &lt;code&gt;AttributeDefinition&lt;/code&gt; object in this array is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeName&lt;/code&gt; - The name of the attribute.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeType&lt;/code&gt; - The data type for the attribute.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// An array of <c>AttributeDefinition</c> objects. Each of these objects describes one attribute in the
+/// table and index key schema.
+/// </para>
+/// <para>
+/// Each <c>AttributeDefinition</c> object in this array is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>AttributeName</c> - The name of the attribute.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>AttributeType</c> - The data type for the attribute.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="BillingModeSummary">
-/// &lt;p&gt;Contains the details for the read/write capacity mode.&lt;/p&gt;
+/// Contains the details for the read/write capacity mode.
 /// </param>
 /// <param name="CreationDateTime">
-/// &lt;p&gt;The date and time when the table was created, in &lt;a href=&quot;http://www.epochconverter.com/&quot;&gt;UNIX epoch time&lt;/a&gt; format.&lt;/p&gt;
+/// The date and time when the table was created, in <see href="http://www.epochconverter.com/">UNIX
+/// epoch time</see> format.
 /// </param>
 /// <param name="DeletionProtectionEnabled">
-/// &lt;p&gt;Indicates whether deletion protection is enabled (true) or disabled (false) on the
-/// table.&lt;/p&gt;
+/// Indicates whether deletion protection is enabled (true) or disabled (false) on the table.
 /// </param>
 /// <param name="GlobalSecondaryIndexes">
-/// &lt;p&gt;The global secondary indexes, if any, on the table. Each index is scoped to a given
-/// partition key value. Each element is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Backfilling&lt;/code&gt; - If true, then the index is currently in the
-/// backfilling phase. Backfilling occurs only when a new global secondary index is
-/// added to the table. It is the process by which DynamoDB populates the new index
-/// with data from the table. (This attribute does not appear for indexes that were
-/// created during a &lt;code&gt;CreateTable&lt;/code&gt; operation.) &lt;/p&gt;
-/// &lt;p&gt; You can delete an index that is being created during the
-/// &lt;code&gt;Backfilling&lt;/code&gt; phase when &lt;code&gt;IndexStatus&lt;/code&gt; is set to
-/// CREATING and &lt;code&gt;Backfilling&lt;/code&gt; is true. You can't delete the index that
-/// is being created when &lt;code&gt;IndexStatus&lt;/code&gt; is set to CREATING and
-/// &lt;code&gt;Backfilling&lt;/code&gt; is false. (This attribute does not appear for
-/// indexes that were created during a &lt;code&gt;CreateTable&lt;/code&gt; operation.)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexName&lt;/code&gt; - The name of the global secondary index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexSizeBytes&lt;/code&gt; - The total size of the global secondary index, in
-/// bytes. DynamoDB updates this value approximately every six hours. Recent changes
-/// might not be reflected in this value. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexStatus&lt;/code&gt; - The current status of the global secondary
-/// index:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The index is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The index is being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The index is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The index is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ItemCount&lt;/code&gt; - The number of items in the global secondary index.
-/// DynamoDB updates this value approximately every six hours. Recent changes might
-/// not be reflected in this value. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeySchema&lt;/code&gt; - Specifies the complete index key schema. The attribute
-/// names in the key schema must be between 1 and 255 characters (inclusive). The
-/// key schema must begin with the same partition key as the table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Projection&lt;/code&gt; - Specifies attributes that are copied (projected) from
-/// the table into the index. These are in addition to the primary key attributes
-/// and index key attributes, which are automatically projected. Each attribute
-/// specification is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProjectionType&lt;/code&gt; - One of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KEYS_ONLY&lt;/code&gt; - Only the index and primary keys are
-/// projected into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;INCLUDE&lt;/code&gt; - In addition to the attributes described
-/// in &lt;code&gt;KEYS_ONLY&lt;/code&gt;, the secondary index will include
-/// other non-key attributes that you specify.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL&lt;/code&gt; - All of the table attributes are projected
-/// into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NonKeyAttributes&lt;/code&gt; - A list of one or more non-key attribute
-/// names that are projected into the secondary index. The total count of
-/// attributes provided in &lt;code&gt;NonKeyAttributes&lt;/code&gt;, summed across all
-/// of the secondary indexes, must not exceed 100. If you project the same
-/// attribute into two different indexes, this counts as two distinct
-/// attributes when determining the total. This limit only applies when you
-/// specify the ProjectionType of &lt;code&gt;INCLUDE&lt;/code&gt;. You still can
-/// specify the ProjectionType of &lt;code&gt;ALL&lt;/code&gt; to project all attributes
-/// from the source table, even if the table has more than 100
-/// attributes.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProvisionedThroughput&lt;/code&gt; - The provisioned throughput settings for the
-/// global secondary index, consisting of read and write capacity units, along with
-/// data about increases and decreases. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;If the table is in the &lt;code&gt;DELETING&lt;/code&gt; state, no information about indexes will
-/// be returned.&lt;/p&gt;
+/// <para>
+/// The global secondary indexes, if any, on the table. Each index is scoped to a given partition key
+/// value. Each element is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <c>Backfilling</c> - If true, then the index is currently in the backfilling phase. Backfilling
+/// occurs only when a new global secondary index is added to the table. It is the process by which
+/// DynamoDB populates the new index with data from the table. (This attribute does not appear for
+/// indexes that were created during a <c>CreateTable</c> operation.)
+/// </para>
+/// <para>
+/// You can delete an index that is being created during the <c>Backfilling</c> phase when
+/// <c>IndexStatus</c> is set to CREATING and <c>Backfilling</c> is true. You can't delete the index
+/// that is being created when <c>IndexStatus</c> is set to CREATING and <c>Backfilling</c> is false.
+/// (This attribute does not appear for indexes that were created during a <c>CreateTable</c>
+/// operation.)
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IndexName</c> - The name of the global secondary index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IndexSizeBytes</c> - The total size of the global secondary index, in bytes. DynamoDB updates
+/// this value approximately every six hours. Recent changes might not be reflected in this value.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>IndexStatus</c> - The current status of the global secondary index:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The index is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The index is being updated.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The index is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The index is ready for use.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ItemCount</c> - The number of items in the global secondary index. DynamoDB updates this value
+/// approximately every six hours. Recent changes might not be reflected in this value.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KeySchema</c> - Specifies the complete index key schema. The attribute names in the key schema
+/// must be between 1 and 255 characters (inclusive). The key schema must begin with the same partition
+/// key as the table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>Projection</c> - Specifies attributes that are copied (projected) from the table into the index.
+/// These are in addition to the primary key attributes and index key attributes, which are
+/// automatically projected. Each attribute specification is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <c>ProjectionType</c> - One of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>KEYS_ONLY</c> - Only the index and primary keys are projected into the index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>INCLUDE</c> - In addition to the attributes described in <c>KEYS_ONLY</c>, the secondary index
+/// will include other non-key attributes that you specify.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL</c> - All of the table attributes are projected into the index.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>NonKeyAttributes</c> - A list of one or more non-key attribute names that are projected into the
+/// secondary index. The total count of attributes provided in <c>NonKeyAttributes</c>, summed across
+/// all of the secondary indexes, must not exceed 100. If you project the same attribute into two
+/// different indexes, this counts as two distinct attributes when determining the total. This limit
+/// only applies when you specify the ProjectionType of <c>INCLUDE</c>. You still can specify the
+/// ProjectionType of <c>ALL</c> to project all attributes from the source table, even if the table has
+/// more than 100 attributes.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ProvisionedThroughput</c> - The provisioned throughput settings for the global secondary index,
+/// consisting of read and write capacity units, along with data about increases and decreases.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// If the table is in the <c>DELETING</c> state, no information about indexes will be returned.
+/// </para>
 /// </param>
 /// <param name="GlobalTableSettingsReplicationMode">
-/// &lt;p&gt;Indicates one of the settings synchronization modes for the global table:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ENABLED&lt;/code&gt;: Indicates that the settings synchronization mode for the global table
-/// is enabled.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DISABLED&lt;/code&gt;: Indicates that the settings synchronization mode for the global table is
-/// disabled.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ENABLED_WITH_OVERRIDES&lt;/code&gt;: This mode is set by default for a same account global table.
-/// Indicates that certain global table settings can be overridden.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Indicates one of the settings synchronization modes for the global table:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ENABLED</c>: Indicates that the settings synchronization mode for the global table is enabled.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DISABLED</c>: Indicates that the settings synchronization mode for the global table is disabled.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ENABLED_WITH_OVERRIDES</c>: This mode is set by default for a same account global table.
+/// Indicates that certain global table settings can be overridden.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GlobalTableVersion">
-/// &lt;p&gt;Represents the version of &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html&quot;&gt;global tables&lt;/a&gt;
-/// in use, if the table is replicated across Amazon Web Services Regions.&lt;/p&gt;
+/// Represents the version of
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">global
+/// tables</see> in use, if the table is replicated across Amazon Web Services Regions.
 /// </param>
 /// <param name="GlobalTableWitnesses">
-/// &lt;p&gt;The witness Region and its current status in the MRSC global table. Only one witness
-/// Region can be configured per MRSC global table.&lt;/p&gt;
+/// The witness Region and its current status in the MRSC global table. Only one witness Region can be
+/// configured per MRSC global table.
 /// </param>
 /// <param name="ItemCount">
-/// &lt;p&gt;The number of items in the specified table. DynamoDB updates this value approximately
-/// every six hours. Recent changes might not be reflected in this value.&lt;/p&gt;
+/// The number of items in the specified table. DynamoDB updates this value approximately every six
+/// hours. Recent changes might not be reflected in this value.
 /// </param>
 /// <param name="KeySchema">
-/// &lt;p&gt;The primary key structure for the table. Each &lt;code&gt;KeySchemaElement&lt;/code&gt; consists
-/// of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeName&lt;/code&gt; - The name of the attribute.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeyType&lt;/code&gt; - The role of the attribute:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;HASH&lt;/code&gt; - partition key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;RANGE&lt;/code&gt; - sort key&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The partition key of an item is also known as its &lt;i&gt;hash
-/// attribute&lt;/i&gt;. The term &quot;hash attribute&quot; derives from DynamoDB's
-/// usage of an internal hash function to evenly distribute data items across
-/// partitions, based on their partition key values.&lt;/p&gt;
-/// &lt;p&gt;The sort key of an item is also known as its &lt;i&gt;range
-/// attribute&lt;/i&gt;. The term &quot;range attribute&quot; derives from the way
-/// DynamoDB stores items with the same partition key physically close together,
-/// in sorted order by the sort key value.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information about primary keys, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey&quot;&gt;Primary Key&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The primary key structure for the table. Each <c>KeySchemaElement</c> consists of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>AttributeName</c> - The name of the attribute.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>KeyType</c> - The role of the attribute:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>HASH</c> - partition key
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>RANGE</c> - sort key
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> The partition key of an item is also known as its <i>hash attribute</i>. The term "hash
+/// attribute" derives from DynamoDB's usage of an internal hash function to evenly distribute data
+/// items across partitions, based on their partition key values.
+/// </para>
+/// <para>
+/// The sort key of an item is also known as its <i>range attribute</i>. The term "range attribute"
+/// derives from the way DynamoDB stores items with the same partition key physically close together, in
+/// sorted order by the sort key value.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about primary keys, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
+/// Key</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="LatestStreamArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the latest stream for this
-/// table.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) that uniquely identifies the latest stream for this table.
 /// </param>
 /// <param name="LatestStreamLabel">
-/// &lt;p&gt;A timestamp, in ISO 8601 format, for this stream.&lt;/p&gt;
-/// &lt;p&gt;Note that &lt;code&gt;LatestStreamLabel&lt;/code&gt; is not a unique identifier for the stream,
-/// because it is possible that a stream from another table might have the same timestamp.
-/// However, the combination of the following three elements is guaranteed to be
-/// unique:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Amazon Web Services customer ID&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Table name&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;StreamLabel&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// A timestamp, in ISO 8601 format, for this stream.
+/// </para>
+/// <para>
+/// Note that <c>LatestStreamLabel</c> is not a unique identifier for the stream, because it is possible
+/// that a stream from another table might have the same timestamp. However, the combination of the
+/// following three elements is guaranteed to be unique:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Amazon Web Services customer ID
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Table name
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>StreamLabel</c>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="LocalSecondaryIndexes">
-/// &lt;p&gt;Represents one or more local secondary indexes on the table. Each index is scoped to a
-/// given partition key value. Tables with one or more local secondary indexes are subject
-/// to an item collection size limit, where the amount of data within a given item
-/// collection cannot exceed 10 GB. Each element is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexName&lt;/code&gt; - The name of the local secondary index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeySchema&lt;/code&gt; - Specifies the complete index key schema. The attribute
-/// names in the key schema must be between 1 and 255 characters (inclusive). The
-/// key schema must begin with the same partition key as the table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Projection&lt;/code&gt; - Specifies attributes that are copied (projected) from
-/// the table into the index. These are in addition to the primary key attributes
-/// and index key attributes, which are automatically projected. Each attribute
-/// specification is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProjectionType&lt;/code&gt; - One of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KEYS_ONLY&lt;/code&gt; - Only the index and primary keys are
-/// projected into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;INCLUDE&lt;/code&gt; - Only the specified table attributes are
-/// projected into the index. The list of projected attributes is in
-/// &lt;code&gt;NonKeyAttributes&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL&lt;/code&gt; - All of the table attributes are projected
-/// into the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NonKeyAttributes&lt;/code&gt; - A list of one or more non-key attribute
-/// names that are projected into the secondary index. The total count of
-/// attributes provided in &lt;code&gt;NonKeyAttributes&lt;/code&gt;, summed across all
-/// of the secondary indexes, must not exceed 100. If you project the same
-/// attribute into two different indexes, this counts as two distinct
-/// attributes when determining the total. This limit only applies when you
-/// specify the ProjectionType of &lt;code&gt;INCLUDE&lt;/code&gt;. You still can
-/// specify the ProjectionType of &lt;code&gt;ALL&lt;/code&gt; to project all attributes
-/// from the source table, even if the table has more than 100
-/// attributes.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexSizeBytes&lt;/code&gt; - Represents the total size of the index, in bytes.
-/// DynamoDB updates this value approximately every six hours. Recent changes might
-/// not be reflected in this value.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ItemCount&lt;/code&gt; - Represents the number of items in the index. DynamoDB
-/// updates this value approximately every six hours. Recent changes might not be
-/// reflected in this value.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;If the table is in the &lt;code&gt;DELETING&lt;/code&gt; state, no information about indexes will
-/// be returned.&lt;/p&gt;
+/// <para>
+/// Represents one or more local secondary indexes on the table. Each index is scoped to a given
+/// partition key value. Tables with one or more local secondary indexes are subject to an item
+/// collection size limit, where the amount of data within a given item collection cannot exceed 10 GB.
+/// Each element is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>IndexName</c> - The name of the local secondary index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KeySchema</c> - Specifies the complete index key schema. The attribute names in the key schema
+/// must be between 1 and 255 characters (inclusive). The key schema must begin with the same partition
+/// key as the table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>Projection</c> - Specifies attributes that are copied (projected) from the table into the index.
+/// These are in addition to the primary key attributes and index key attributes, which are
+/// automatically projected. Each attribute specification is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <c>ProjectionType</c> - One of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>KEYS_ONLY</c> - Only the index and primary keys are projected into the index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>INCLUDE</c> - Only the specified table attributes are projected into the index. The list of
+/// projected attributes is in <c>NonKeyAttributes</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL</c> - All of the table attributes are projected into the index.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>NonKeyAttributes</c> - A list of one or more non-key attribute names that are projected into the
+/// secondary index. The total count of attributes provided in <c>NonKeyAttributes</c>, summed across
+/// all of the secondary indexes, must not exceed 100. If you project the same attribute into two
+/// different indexes, this counts as two distinct attributes when determining the total. This limit
+/// only applies when you specify the ProjectionType of <c>INCLUDE</c>. You still can specify the
+/// ProjectionType of <c>ALL</c> to project all attributes from the source table, even if the table has
+/// more than 100 attributes.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IndexSizeBytes</c> - Represents the total size of the index, in bytes. DynamoDB updates this
+/// value approximately every six hours. Recent changes might not be reflected in this value.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ItemCount</c> - Represents the number of items in the index. DynamoDB updates this value
+/// approximately every six hours. Recent changes might not be reflected in this value.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// If the table is in the <c>DELETING</c> state, no information about indexes will be returned.
+/// </para>
 /// </param>
 /// <param name="MultiRegionConsistency">
-/// &lt;p&gt;Indicates one of the following consistency modes for a global table:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;EVENTUAL&lt;/code&gt;: Indicates that the global table is configured for
-/// multi-Region eventual consistency (MREC).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;STRONG&lt;/code&gt;: Indicates that the global table is configured for
-/// multi-Region strong consistency (MRSC).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;If you don't specify this field, the global table consistency mode defaults to
-/// &lt;code&gt;EVENTUAL&lt;/code&gt;. For more information about global tables consistency modes,
-/// see &lt;a href=&quot;https://docs.aws.amazon.com/V2globaltables_HowItWorks.html#V2globaltables_HowItWorks.consistency-modes&quot;&gt;
-/// Consistency modes&lt;/a&gt; in DynamoDB developer guide. &lt;/p&gt;
+/// <para>
+/// Indicates one of the following consistency modes for a global table:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>EVENTUAL</c>: Indicates that the global table is configured for multi-Region eventual consistency
+/// (MREC).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>STRONG</c>: Indicates that the global table is configured for multi-Region strong consistency
+/// (MRSC).
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// If you don't specify this field, the global table consistency mode defaults to <c>EVENTUAL</c>. For
+/// more information about global tables consistency modes, see
+/// <see href="https://docs.aws.amazon.com/V2globaltables_HowItWorks.html#V2globaltables_HowItWorks.consistency-modes">Consistency
+/// modes</see> in DynamoDB developer guide.
+/// </para>
 /// </param>
 /// <param name="OnDemandThroughput">
-/// &lt;p&gt;The maximum number of read and write units for the specified on-demand table. If you
-/// use this parameter, you must specify &lt;code&gt;MaxReadRequestUnits&lt;/code&gt;,
-/// &lt;code&gt;MaxWriteRequestUnits&lt;/code&gt;, or both.&lt;/p&gt;
+/// The maximum number of read and write units for the specified on-demand table. If you use this
+/// parameter, you must specify <c>MaxReadRequestUnits</c>, <c>MaxWriteRequestUnits</c>, or both.
 /// </param>
 /// <param name="ProvisionedThroughput">
-/// &lt;p&gt;The provisioned throughput settings for the table, consisting of read and write
-/// capacity units, along with data about increases and decreases.&lt;/p&gt;
+/// The provisioned throughput settings for the table, consisting of read and write capacity units,
+/// along with data about increases and decreases.
 /// </param>
 /// <param name="Replicas">
-/// &lt;p&gt;Represents replicas of the table.&lt;/p&gt;
+/// Represents replicas of the table.
 /// </param>
 /// <param name="RestoreSummary">
-/// &lt;p&gt;Contains details for the restore.&lt;/p&gt;
+/// Contains details for the restore.
 /// </param>
 /// <param name="SSEDescription">
-/// &lt;p&gt;The description of the server-side encryption status on the specified table.&lt;/p&gt;
+/// The description of the server-side encryption status on the specified table.
 /// </param>
 /// <param name="StreamSpecification">
-/// &lt;p&gt;The current DynamoDB Streams configuration for the table.&lt;/p&gt;
+/// The current DynamoDB Streams configuration for the table.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the table.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) that uniquely identifies the table.
 /// </param>
 /// <param name="TableClassSummary">
-/// &lt;p&gt;Contains details of the table class.&lt;/p&gt;
+/// Contains details of the table class.
 /// </param>
 /// <param name="TableId">
-/// &lt;p&gt;A unique identifier for the table, in UUID format, generated by DynamoDB when the
-/// table is created.&lt;/p&gt;
+/// A unique identifier for the table, in UUID format, generated by DynamoDB when the table is created.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table.&lt;/p&gt;
+/// The name of the table.
 /// </param>
 /// <param name="TableSizeBytes">
-/// &lt;p&gt;The total size of the specified table, in bytes. DynamoDB updates this value
-/// approximately every six hours. Recent changes might not be reflected in this
-/// value.&lt;/p&gt;
+/// The total size of the specified table, in bytes. DynamoDB updates this value approximately every six
+/// hours. Recent changes might not be reflected in this value.
 /// </param>
 /// <param name="TableStatus">
-/// &lt;p&gt;The current state of the table:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The table is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The table/index configuration is being updated. The
-/// table/index remains available for data operations when
-/// &lt;code&gt;UPDATING&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The table is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The table is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;INACCESSIBLE_ENCRYPTION_CREDENTIALS&lt;/code&gt; - The KMS key
-/// used to encrypt the table in inaccessible. Table operations may fail due to
-/// failure to use the KMS key. DynamoDB will initiate the
-/// table archival process when a table's KMS key remains
-/// inaccessible for more than seven days. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ARCHIVING&lt;/code&gt; - The table is being archived. Operations are not allowed
-/// until archival is complete. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ARCHIVED&lt;/code&gt; - The table has been archived. See the ArchivalReason for
-/// more information. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of the table:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The table is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The table/index configuration is being updated. The table/index remains available
+/// for data operations when <c>UPDATING</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The table is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The table is ready for use.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>INACCESSIBLE_ENCRYPTION_CREDENTIALS</c> - The KMS key used to encrypt the table in inaccessible.
+/// Table operations may fail due to failure to use the KMS key. DynamoDB will initiate the table
+/// archival process when a table's KMS key remains inaccessible for more than seven days.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ARCHIVING</c> - The table is being archived. Operations are not allowed until archival is
+/// complete.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ARCHIVED</c> - The table has been archived. See the ArchivalReason for more information.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="VectorIndexes">
-/// &lt;p&gt;The vector indexes, if any, on the table. Each element is composed of:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexName&lt;/code&gt; - The name of the vector index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexStatus&lt;/code&gt; - The current status of the vector index:
-/// &lt;code&gt;CREATING&lt;/code&gt;, &lt;code&gt;ACTIVE&lt;/code&gt;, or
-/// &lt;code&gt;DELETING&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Backfilling&lt;/code&gt; - Specifies whether the index is currently
-/// backfilling. During backfill, &lt;code&gt;SearchVectors&lt;/code&gt; operations might
-/// return incomplete results.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;VectorAttribute&lt;/code&gt; - The attribute that contains vector
-/// embeddings.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Dimensions&lt;/code&gt; - The number of dimensions in each
-/// vector.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DistanceFunction&lt;/code&gt; - The distance function used to calculate
-/// similarity (&lt;code&gt;COSINE&lt;/code&gt;, &lt;code&gt;EUCLIDEAN&lt;/code&gt;, or
-/// &lt;code&gt;DOT_PRODUCT&lt;/code&gt;).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SearchSchema&lt;/code&gt; - The partition key and inline filter
-/// attributes for the vector index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Projection&lt;/code&gt; - Specifies attributes that are copied
-/// (projected) from the table into the vector index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexArn&lt;/code&gt; - The Amazon Resource Name (ARN) that uniquely
-/// identifies the index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexSizeBytes&lt;/code&gt; - The total size of the vector index, in
-/// bytes. Amazon DynamoDB updates this value approximately every six hours.
-/// Recent changes might not be reflected in this value.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ItemCount&lt;/code&gt; - The number of items indexed in the vector
-/// index. Amazon DynamoDB updates this value approximately every six hours.
-/// Recent changes might not be reflected in this value.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The vector indexes, if any, on the table. Each element is composed of:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>IndexName</c> - The name of the vector index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IndexStatus</c> - The current status of the vector index: <c>CREATING</c>, <c>ACTIVE</c>, or
+/// <c>DELETING</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Backfilling</c> - Specifies whether the index is currently backfilling. During backfill,
+/// <c>SearchVectors</c> operations might return incomplete results.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>VectorAttribute</c> - The attribute that contains vector embeddings.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Dimensions</c> - The number of dimensions in each vector.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DistanceFunction</c> - The distance function used to calculate similarity (<c>COSINE</c>,
+/// <c>EUCLIDEAN</c>, or <c>DOT_PRODUCT</c>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SearchSchema</c> - The partition key and inline filter attributes for the vector index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Projection</c> - Specifies attributes that are copied (projected) from the table into the vector
+/// index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IndexArn</c> - The Amazon Resource Name (ARN) that uniquely identifies the index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>IndexSizeBytes</c> - The total size of the vector index, in bytes. Amazon DynamoDB updates this
+/// value approximately every six hours. Recent changes might not be reflected in this value.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ItemCount</c> - The number of items indexed in the vector index. Amazon DynamoDB updates this
+/// value approximately every six hours. Recent changes might not be reflected in this value.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="WarmThroughput">
-/// &lt;p&gt;Describes the warm throughput value of the base table.&lt;/p&gt;
+/// Describes the warm throughput value of the base table.
 /// </param>
 public sealed record class TableDescription(
     global::Com.Amazonaws.Dynamodb.ArchivalSummary? ArchivalSummary = null,

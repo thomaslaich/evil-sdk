@@ -5,48 +5,52 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a global secondary index.&lt;/p&gt;
+/// Represents the properties of a global secondary index.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index. The name must be unique among all other
-/// indexes on this table.&lt;/p&gt;
+/// The name of the global secondary index. The name must be unique among all other indexes on this
+/// table.
 /// </param>
 /// <param name="IndexStatus">
-/// &lt;p&gt; The current status of the global secondary index:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The global secondary index is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The global secondary index is being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The global secondary index is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The global secondary index is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current status of the global secondary index:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The global secondary index is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The global secondary index is being updated.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The global secondary index is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The global secondary index is ready for use.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="ProvisionedReadCapacityAutoScalingSettings">
-/// &lt;p&gt;Auto scaling settings for a global secondary index replica's read capacity
-/// units.&lt;/p&gt;
+/// Auto scaling settings for a global secondary index replica's read capacity units.
 /// </param>
 /// <param name="ProvisionedReadCapacityUnits">
-/// &lt;p&gt;The maximum number of strongly consistent reads consumed per second before DynamoDB
-/// returns a &lt;code&gt;ThrottlingException&lt;/code&gt;.&lt;/p&gt;
+/// The maximum number of strongly consistent reads consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>.
 /// </param>
 /// <param name="ProvisionedWriteCapacityAutoScalingSettings">
-/// &lt;p&gt;Auto scaling settings for a global secondary index replica's write capacity
-/// units.&lt;/p&gt;
+/// Auto scaling settings for a global secondary index replica's write capacity units.
 /// </param>
 /// <param name="ProvisionedWriteCapacityUnits">
-/// &lt;p&gt;The maximum number of writes consumed per second before DynamoDB returns a
-/// &lt;code&gt;ThrottlingException&lt;/code&gt;.&lt;/p&gt;
+/// The maximum number of writes consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>.
 /// </param>
 public sealed record class ReplicaGlobalSecondaryIndexSettingsDescription(
     string IndexName,

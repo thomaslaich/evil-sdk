@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The specified receipt handle isn't valid.&lt;/p&gt;
+/// The specified receipt handle isn't valid.
 /// </summary>
 public sealed partial class ReceiptHandleIsInvalid : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified receipt handle isn't valid.&lt;/p&gt;
+    /// The specified receipt handle isn't valid.
     /// </summary>
     public ReceiptHandleIsInvalid(string? message = null)
         : base(message) { }

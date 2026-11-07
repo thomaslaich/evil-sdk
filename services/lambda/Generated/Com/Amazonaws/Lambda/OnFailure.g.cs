@@ -5,9 +5,40 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A destination for events that failed processing. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt;
+/// A destination for events that failed processing. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations">Adding
+/// a destination</see>.
 /// </summary>
 /// <param name="Destination">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the destination resource.&lt;/p&gt; &lt;p&gt;To retain records of failed invocations from &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html&quot;&gt;Kinesis&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html&quot;&gt;DynamoDB&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-on-failure.html&quot;&gt;self-managed Apache Kafka&lt;/a&gt;, or &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-on-failure.html&quot;&gt;Amazon MSK&lt;/a&gt;, you can configure an Amazon SNS topic, Amazon SQS queue, Amazon S3 bucket, or Kafka topic as the destination.&lt;/p&gt; &lt;note&gt; &lt;p&gt;Amazon SNS destinations have a message size limit of 256 KB. If the combined size of the function request and response payload exceeds the limit, Lambda will drop the payload when sending &lt;code&gt;OnFailure&lt;/code&gt; event to the destination. For details on this behavior, refer to &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html&quot;&gt;Retaining records of asynchronous invocations&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;To retain records of failed invocations from &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html&quot;&gt;Kinesis&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html&quot;&gt;DynamoDB&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-smaa-onfailure-destination&quot;&gt;self-managed Kafka&lt;/a&gt; or &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-onfailure-destination&quot;&gt;Amazon MSK&lt;/a&gt;, you can configure an Amazon SNS topic, Amazon SQS queue, or Amazon S3 bucket as the destination.&lt;/p&gt;
+/// <para>
+/// The Amazon Resource Name (ARN) of the destination resource.
+/// </para>
+/// <para>
+/// To retain records of failed invocations from
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html">Kinesis</see>,
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html">DynamoDB</see>,
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-on-failure.html">self-managed Apache
+/// Kafka</see>, or
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-on-failure.html">Amazon MSK</see>, you
+/// can configure an Amazon SNS topic, Amazon SQS queue, Amazon S3 bucket, or Kafka topic as the
+/// destination.
+/// </para>
+/// <para>
+/// <b>Note:</b> Amazon SNS destinations have a message size limit of 256 KB. If the combined size of
+/// the function request and response payload exceeds the limit, Lambda will drop the payload when
+/// sending <c>OnFailure</c> event to the destination. For details on this behavior, refer to
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html">Retaining
+/// records of asynchronous invocations</see>.
+/// </para>
+/// <para>
+/// To retain records of failed invocations from
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html">Kinesis</see>,
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html">DynamoDB</see>,
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-smaa-onfailure-destination">self-managed
+/// Kafka</see> or
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-onfailure-destination">Amazon
+/// MSK</see>, you can configure an Amazon SNS topic, Amazon SQS queue, or Amazon S3 bucket as the
+/// destination.
+/// </para>
 /// </param>
 public sealed record class OnFailure(string? Destination = null);

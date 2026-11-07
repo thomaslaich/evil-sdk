@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The requested bucket name is not available. The bucket namespace is shared by all users of the
-/// system. Select a different name and try again.&lt;/p&gt;
+/// The requested bucket name is not available. The bucket namespace is shared by all users of the
+/// system. Select a different name and try again.
 /// </summary>
 public sealed partial class BucketAlreadyExists : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The requested bucket name is not available. The bucket namespace is shared by all users of the
-    /// system. Select a different name and try again.&lt;/p&gt;
+    /// The requested bucket name is not available. The bucket namespace is shared by all users of the
+    /// system. Select a different name and try again.
     /// </summary>
     public BucketAlreadyExists(string? message = null)
         : base(message) { }

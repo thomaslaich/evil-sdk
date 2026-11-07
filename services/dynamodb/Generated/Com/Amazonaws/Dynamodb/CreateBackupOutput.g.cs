@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#CreateBackupOutput.
 /// </summary>
 /// <param name="BackupDetails">
-/// &lt;p&gt;Contains the details of the backup created for the table.&lt;/p&gt;
+/// Contains the details of the backup created for the table.
 /// </param>
 public sealed record class CreateBackupOutput(
     global::Com.Amazonaws.Dynamodb.BackupDetails? BackupDetails = null

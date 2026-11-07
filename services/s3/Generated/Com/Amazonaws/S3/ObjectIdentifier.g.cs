@@ -7,42 +7,53 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Object Identifier is unique value to identify objects.&lt;/p&gt;
+/// Object Identifier is unique value to identify objects.
 /// </summary>
 /// <param name="Key">
-/// &lt;p&gt;Key name of the object.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// Key name of the object.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;An entity tag (ETag) is an identifier assigned by a web server to a specific version of a resource
-/// found at a URL. This header field makes the request method conditional on &lt;code&gt;ETags&lt;/code&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Entity tags (ETags) for S3 Express One Zone are random alphanumeric strings unique to the object.
-/// &lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// An entity tag (ETag) is an identifier assigned by a web server to a specific version of a resource
+/// found at a URL. This header field makes the request method conditional on <c>ETags</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Entity tags (ETags) for S3 Express One Zone are random alphanumeric strings unique to
+/// the object.
+/// </para>
 /// </param>
 /// <param name="LastModifiedTime">
-/// &lt;p&gt;If present, the objects are deleted only if its modification times matches the provided
-/// &lt;code&gt;Timestamp&lt;/code&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If present, the objects are deleted only if its modification times matches the provided
+/// <c>Timestamp</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Size">
-/// &lt;p&gt;If present, the objects are deleted only if its size matches the provided size in bytes. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If present, the objects are deleted only if its size matches the provided size in bytes.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;Version ID for the specific version of the object to delete.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Version ID for the specific version of the object to delete.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class ObjectIdentifier(
     string Key,

@@ -10,96 +10,114 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListObjectsV2Output.
 /// </summary>
 /// <param name="CommonPrefixes">
-/// &lt;p&gt;All of the keys (up to 1,000) that share the same prefix are grouped together. When counting the
-/// total numbers of returns by this API operation, this group of keys is considered as one item.&lt;/p&gt;
-/// &lt;p&gt;A response can contain &lt;code&gt;CommonPrefixes&lt;/code&gt; only if you specify a delimiter.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; contains all (if there are any) keys between &lt;code&gt;Prefix&lt;/code&gt; and the
-/// next occurrence of the string specified by a delimiter.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; lists keys that act like subdirectories in the directory specified by
-/// &lt;code&gt;Prefix&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For example, if the prefix is &lt;code&gt;notes/&lt;/code&gt; and the delimiter is a slash (&lt;code&gt;/&lt;/code&gt;) as
-/// in &lt;code&gt;notes/summer/july&lt;/code&gt;, the common prefix is &lt;code&gt;notes/summer/&lt;/code&gt;. All of the keys that
-/// roll up into a common prefix count as a single return when calculating the number of returns. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, only prefixes that end in a delimiter (&lt;code&gt;/&lt;/code&gt;) are supported.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - When you query
-/// &lt;code&gt;ListObjectsV2&lt;/code&gt; with a delimiter during in-progress multipart uploads, the
-/// &lt;code&gt;CommonPrefixes&lt;/code&gt; response parameter contains the prefixes that are associated with
-/// the in-progress multipart uploads. For more information about multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html&quot;&gt;Multipart Upload
-/// Overview&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// All of the keys (up to 1,000) that share the same prefix are grouped together. When counting the
+/// total numbers of returns by this API operation, this group of keys is considered as one item.
+/// </para>
+/// <para>
+/// A response can contain <c>CommonPrefixes</c> only if you specify a delimiter.
+/// </para>
+/// <para>
+/// <c>CommonPrefixes</c> contains all (if there are any) keys between <c>Prefix</c> and the next
+/// occurrence of the string specified by a delimiter.
+/// </para>
+/// <para>
+/// <c>CommonPrefixes</c> lists keys that act like subdirectories in the directory specified by
+/// <c>Prefix</c>.
+/// </para>
+/// <para>
+/// For example, if the prefix is <c>notes/</c> and the delimiter is a slash (<c>/</c>) as in
+/// <c>notes/summer/july</c>, the common prefix is <c>notes/summer/</c>. All of the keys that roll up
+/// into a common prefix count as a single return when calculating the number of returns.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter (<c>/</c>)
+/// are supported.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Directory buckets </b> - When you query <c>ListObjectsV2</c> with a delimiter during in-progress
+/// multipart uploads, the <c>CommonPrefixes</c> response parameter contains the prefixes that are
+/// associated with the in-progress multipart uploads. For more information about multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html">Multipart Upload
+/// Overview</see> in the <i>Amazon S3 User Guide</i>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Contents">
-/// &lt;p&gt;Metadata about each object returned.&lt;/p&gt;
+/// Metadata about each object returned.
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt; If &lt;code&gt;ContinuationToken&lt;/code&gt; was sent with the request, it is included in the response. You
-/// can use the returned &lt;code&gt;ContinuationToken&lt;/code&gt; for pagination of the list response.&lt;/p&gt;
+/// If <c>ContinuationToken</c> was sent with the request, it is included in the response. You can use
+/// the returned <c>ContinuationToken</c> for pagination of the list response.
 /// </param>
 /// <param name="Delimiter">
-/// &lt;p&gt;Causes keys that contain the same string between the &lt;code&gt;prefix&lt;/code&gt; and the first occurrence of
-/// the delimiter to be rolled up into a single result element in the &lt;code&gt;CommonPrefixes&lt;/code&gt;
-/// collection. These rolled-up keys are not returned elsewhere in the response. Each rolled-up result
-/// counts as only one return against the &lt;code&gt;MaxKeys&lt;/code&gt; value.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, &lt;code&gt;/&lt;/code&gt; is the only supported delimiter.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Causes keys that contain the same string between the <c>prefix</c> and the first occurrence of the
+/// delimiter to be rolled up into a single result element in the <c>CommonPrefixes</c> collection.
+/// These rolled-up keys are not returned elsewhere in the response. Each rolled-up result counts as
+/// only one return against the <c>MaxKeys</c> value.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, <c>/</c> is the only supported
+/// delimiter.
+/// </para>
 /// </param>
 /// <param name="EncodingType">
-/// &lt;p&gt;Encoding type used by Amazon S3 to encode object key names in the XML response.&lt;/p&gt;
-/// &lt;p&gt;If you specify the &lt;code&gt;encoding-type&lt;/code&gt; request parameter, Amazon S3 includes this element in the
-/// response, and returns encoded key name values in the following response elements:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Delimiter, Prefix, Key,&lt;/code&gt; and &lt;code&gt;StartAfter&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// Encoding type used by Amazon S3 to encode object key names in the XML response.
+/// </para>
+/// <para>
+/// If you specify the <c>encoding-type</c> request parameter, Amazon S3 includes this element in the
+/// response, and returns encoded key name values in the following response elements:
+/// </para>
+/// <para>
+/// <c>Delimiter, Prefix, Key,</c> and <c>StartAfter</c>.
+/// </para>
 /// </param>
 /// <param name="IsTruncated">
-/// &lt;p&gt;Set to &lt;code&gt;false&lt;/code&gt; if all of the results were returned. Set to &lt;code&gt;true&lt;/code&gt; if more keys
-/// are available to return. If the number of results exceeds that specified by &lt;code&gt;MaxKeys&lt;/code&gt;, all of
-/// the results might not be returned.&lt;/p&gt;
+/// Set to <c>false</c> if all of the results were returned. Set to <c>true</c> if more keys are
+/// available to return. If the number of results exceeds that specified by <c>MaxKeys</c>, all of the
+/// results might not be returned.
 /// </param>
 /// <param name="KeyCount">
-/// &lt;p&gt;
-/// &lt;code&gt;KeyCount&lt;/code&gt; is the number of keys returned with this request. &lt;code&gt;KeyCount&lt;/code&gt; will
-/// always be less than or equal to the &lt;code&gt;MaxKeys&lt;/code&gt; field. For example, if you ask for 50 keys,
-/// your result will include 50 keys or fewer.&lt;/p&gt;
+/// <c>KeyCount</c> is the number of keys returned with this request. <c>KeyCount</c> will always be
+/// less than or equal to the <c>MaxKeys</c> field. For example, if you ask for 50 keys, your result
+/// will include 50 keys or fewer.
 /// </param>
 /// <param name="MaxKeys">
-/// &lt;p&gt;Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000
-/// key names. The response might contain fewer keys but will never contain more.&lt;/p&gt;
+/// Sets the maximum number of keys returned in the response. By default, the action returns up to 1,000
+/// key names. The response might contain fewer keys but will never contain more.
 /// </param>
 /// <param name="Name">
-/// &lt;p&gt;The bucket name.&lt;/p&gt;
+/// The bucket name.
 /// </param>
 /// <param name="NextContinuationToken">
-/// &lt;p&gt;
-/// &lt;code&gt;NextContinuationToken&lt;/code&gt; is sent when &lt;code&gt;isTruncated&lt;/code&gt; is true, which means there
-/// are more keys in the bucket that can be listed. The next list requests to Amazon S3 can be continued with
-/// this &lt;code&gt;NextContinuationToken&lt;/code&gt;. &lt;code&gt;NextContinuationToken&lt;/code&gt; is obfuscated and is not a
-/// real key&lt;/p&gt;
+/// <c>NextContinuationToken</c> is sent when <c>isTruncated</c> is true, which means there are more
+/// keys in the bucket that can be listed. The next list requests to Amazon S3 can be continued with
+/// this <c>NextContinuationToken</c>. <c>NextContinuationToken</c> is obfuscated and is not a real key
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Keys that begin with the indicated prefix.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, only prefixes that end in a delimiter (&lt;code&gt;/&lt;/code&gt;) are supported.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Keys that begin with the indicated prefix.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter
+/// (<c>/</c>) are supported.
+/// </para>
 /// </param>
 /// <param name="StartAfter">
-/// &lt;p&gt;If StartAfter was sent with the request, it is included in the response.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If StartAfter was sent with the request, it is included in the response.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class ListObjectsV2Output(
     IReadOnlyList<CommonPrefix>? CommonPrefixes = null,

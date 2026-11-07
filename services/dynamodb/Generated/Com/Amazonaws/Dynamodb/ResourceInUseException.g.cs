@@ -7,49 +7,65 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The operation conflicts with the resource's availability. For example:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;You attempted to recreate an existing table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;You tried to delete a table currently in the &lt;code&gt;CREATING&lt;/code&gt;
-/// state.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;You tried to update a resource that was already being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;When appropriate, wait for the ongoing update to complete and attempt the request
-/// again.&lt;/p&gt;
+/// <para>
+/// The operation conflicts with the resource's availability. For example:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// You attempted to recreate an existing table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// You tried to delete a table currently in the <c>CREATING</c> state.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// You tried to update a resource that was already being updated.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// When appropriate, wait for the ongoing update to complete and attempt the request again.
+/// </para>
 /// </summary>
 public sealed partial class ResourceInUseException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The operation conflicts with the resource's availability. For example:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;You attempted to recreate an existing table.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;You tried to delete a table currently in the &lt;code&gt;CREATING&lt;/code&gt;
-    /// state.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;You tried to update a resource that was already being updated.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;p&gt;When appropriate, wait for the ongoing update to complete and attempt the request
-    /// again.&lt;/p&gt;
+    /// <para>
+    /// The operation conflicts with the resource's availability. For example:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// You attempted to recreate an existing table.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You tried to delete a table currently in the <c>CREATING</c> state.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You tried to update a resource that was already being updated.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// When appropriate, wait for the ongoing update to complete and attempt the request again.
+    /// </para>
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The resource which is being attempted to be changed is in use.&lt;/p&gt;
+    /// The resource which is being attempted to be changed is in use.
     /// </param>
     public ResourceInUseException(string? message = null)
         : base(message) { }
 
     /// <summary>
-    /// &lt;p&gt;The resource which is being attempted to be changed is in use.&lt;/p&gt;
+    /// The resource which is being attempted to be changed is in use.
     /// </summary>
     public override string Message => base.Message!;
 }

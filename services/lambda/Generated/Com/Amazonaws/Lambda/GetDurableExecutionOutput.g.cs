@@ -7,46 +7,61 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The response from the GetDurableExecution operation, containing detailed information about the durable execution.&lt;/p&gt;
+/// The response from the GetDurableExecution operation, containing detailed information about the
+/// durable execution.
 /// </summary>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the durable execution.
 /// </param>
 /// <param name="DurableExecutionName">
-/// &lt;p&gt;The name of the durable execution. This is either the name you provided when invoking the function, or a system-generated unique identifier if no name was provided.&lt;/p&gt;
+/// The name of the durable execution. This is either the name you provided when invoking the function,
+/// or a system-generated unique identifier if no name was provided.
 /// </param>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable
+/// execution.
 /// </param>
 /// <param name="StartTimestamp">
-/// &lt;p&gt;The date and time when the durable execution started, in Unix timestamp format.&lt;/p&gt;
+/// The date and time when the durable execution started, in Unix timestamp format.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;The current status of the durable execution. Valid values are &lt;code&gt;RUNNING&lt;/code&gt;, &lt;code&gt;SUCCEEDED&lt;/code&gt;, &lt;code&gt;FAILED&lt;/code&gt;, &lt;code&gt;TIMED_OUT&lt;/code&gt;, and &lt;code&gt;STOPPED&lt;/code&gt;.&lt;/p&gt;
+/// The current status of the durable execution. Valid values are <c>RUNNING</c>, <c>SUCCEEDED</c>,
+/// <c>FAILED</c>, <c>TIMED_OUT</c>, and <c>STOPPED</c>.
 /// </param>
 /// <param name="DurableConfig">
-/// &lt;p&gt;Configuration settings for the durable execution, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.&lt;/p&gt;
+/// Configuration settings for the durable execution, including execution timeout, retention period for
+/// execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that
+/// is used to encrypt your durable execution's payload data, including input, output, and error
+/// payloads.
 /// </param>
 /// <param name="EndTimestamp">
-/// &lt;p&gt;The date and time when the durable execution ended, in Unix timestamp format. This field is only present if the execution has completed (status is &lt;code&gt;SUCCEEDED&lt;/code&gt;, &lt;code&gt;FAILED&lt;/code&gt;, &lt;code&gt;TIMED_OUT&lt;/code&gt;, or &lt;code&gt;STOPPED&lt;/code&gt;).&lt;/p&gt;
+/// The date and time when the durable execution ended, in Unix timestamp format. This field is only
+/// present if the execution has completed (status is <c>SUCCEEDED</c>, <c>FAILED</c>, <c>TIMED_OUT</c>,
+/// or <c>STOPPED</c>).
 /// </param>
 /// <param name="Error">
-/// &lt;p&gt;Error information if the durable execution failed. This field is only present when the execution status is &lt;code&gt;FAILED&lt;/code&gt;, &lt;code&gt;TIMED_OUT&lt;/code&gt;, or &lt;code&gt;STOPPED&lt;/code&gt;. The combined size of all error fields is limited to 256 KB.&lt;/p&gt;
+/// Error information if the durable execution failed. This field is only present when the execution
+/// status is <c>FAILED</c>, <c>TIMED_OUT</c>, or <c>STOPPED</c>. The combined size of all error fields
+/// is limited to 256 KB.
 /// </param>
 /// <param name="ExecutionDataIncluded">
-/// &lt;p&gt;Indicates whether execution data is included in this response. Returns &lt;code&gt;false&lt;/code&gt; when &lt;code&gt;IncludeExecutionData&lt;/code&gt; is set to &lt;code&gt;false&lt;/code&gt; in the request.&lt;/p&gt;
+/// Indicates whether execution data is included in this response. Returns <c>false</c> when
+/// <c>IncludeExecutionData</c> is set to <c>false</c> in the request.
 /// </param>
 /// <param name="InputPayload">
-/// &lt;p&gt;The JSON input payload that was provided when the durable execution was started. For asynchronous invocations, this is limited to 256 KB. For synchronous invocations, this can be up to 6 MB.&lt;/p&gt;
+/// The JSON input payload that was provided when the durable execution was started. For asynchronous
+/// invocations, this is limited to 256 KB. For synchronous invocations, this can be up to 6 MB.
 /// </param>
 /// <param name="Result">
-/// &lt;p&gt;The JSON result returned by the durable execution if it completed successfully. This field is only present when the execution status is &lt;code&gt;SUCCEEDED&lt;/code&gt;. The result is limited to 256 KB.&lt;/p&gt;
+/// The JSON result returned by the durable execution if it completed successfully. This field is only
+/// present when the execution status is <c>SUCCEEDED</c>. The result is limited to 256 KB.
 /// </param>
 /// <param name="TraceHeader">
-/// &lt;p&gt;The trace headers associated with the durable execution.&lt;/p&gt;
+/// The trace headers associated with the durable execution.
 /// </param>
 /// <param name="Version">
-/// &lt;p&gt;The version of the Lambda function that was invoked for this durable execution. This ensures that all replays during the execution use the same function version.&lt;/p&gt;
+/// The version of the Lambda function that was invoked for this durable execution. This ensures that
+/// all replays during the execution use the same function version.
 /// </param>
 public sealed record class GetDurableExecutionOutput(
     string DurableExecutionArn,

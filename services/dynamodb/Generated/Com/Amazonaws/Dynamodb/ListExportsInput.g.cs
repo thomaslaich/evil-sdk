@@ -8,15 +8,14 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ListExportsInput.
 /// </summary>
 /// <param name="MaxResults">
-/// &lt;p&gt;Maximum number of results to return per page.&lt;/p&gt;
+/// Maximum number of results to return per page.
 /// </param>
 /// <param name="NextToken">
-/// &lt;p&gt;An optional string that, if supplied, must be copied from the output of a previous
-/// call to &lt;code&gt;ListExports&lt;/code&gt;. When provided in this manner, the API fetches the next
-/// page of results.&lt;/p&gt;
+/// An optional string that, if supplied, must be copied from the output of a previous call to
+/// <c>ListExports</c>. When provided in this manner, the API fetches the next page of results.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) associated with the exported table.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) associated with the exported table.
 /// </param>
 public sealed record class ListExportsInput(
     int? MaxResults = null,

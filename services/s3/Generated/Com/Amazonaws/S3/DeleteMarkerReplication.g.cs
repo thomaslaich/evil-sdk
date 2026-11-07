@@ -5,22 +5,33 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies whether Amazon S3 replicates delete markers. If you specify a &lt;code&gt;Filter&lt;/code&gt; in your
-/// replication configuration, you must also include a &lt;code&gt;DeleteMarkerReplication&lt;/code&gt; element. If your
-/// &lt;code&gt;Filter&lt;/code&gt; includes a &lt;code&gt;Tag&lt;/code&gt; element, the &lt;code&gt;DeleteMarkerReplication&lt;/code&gt;
-/// &lt;code&gt;Status&lt;/code&gt; must be set to Disabled, because Amazon S3 does not support replicating delete markers
-/// for tag-based rules. For an example configuration, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config&quot;&gt;Basic Rule
-/// Configuration&lt;/a&gt;. &lt;/p&gt;
-/// &lt;p&gt;For more information about delete marker replication, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html&quot;&gt;Basic Rule Configuration&lt;/a&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;If you are using an earlier version of the replication configuration, Amazon S3 handles replication of
-/// delete markers differently. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations&quot;&gt;Backward Compatibility&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether Amazon S3 replicates delete markers. If you specify a <c>Filter</c> in your
+/// replication configuration, you must also include a <c>DeleteMarkerReplication</c> element. If your
+/// <c>Filter</c> includes a <c>Tag</c> element, the <c>DeleteMarkerReplication</c> <c>Status</c> must
+/// be set to Disabled, because Amazon S3 does not support replicating delete markers for tag-based
+/// rules. For an example configuration, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-config-min-rule-config">Basic
+/// Rule Configuration</see>.
+/// </para>
+/// <para>
+/// For more information about delete marker replication, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/delete-marker-replication.html">Basic
+/// Rule Configuration</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> If you are using an earlier version of the replication configuration, Amazon S3 handles
+/// replication of delete markers differently. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-add-config.html#replication-backward-compat-considerations">Backward
+/// Compatibility</see>.
+/// </para>
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;Indicates whether to replicate delete markers.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Indicates whether to replicate delete markers.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Indicates whether to replicate delete markers.
+/// </para>
+/// <para>
+/// <b>Note:</b> Indicates whether to replicate delete markers.
+/// </para>
 /// </param>
 public sealed record class DeleteMarkerReplication(DeleteMarkerReplicationStatus? Status = null);

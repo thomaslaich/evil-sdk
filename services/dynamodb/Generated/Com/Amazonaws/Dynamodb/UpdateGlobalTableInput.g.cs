@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateGlobalTableInput.
 /// </summary>
 /// <param name="GlobalTableName">
-/// &lt;p&gt;The global table name.&lt;/p&gt;
+/// The global table name.
 /// </param>
 /// <param name="ReplicaUpdates">
-/// &lt;p&gt;A list of Regions that should be added or removed from the global table.&lt;/p&gt;
+/// A list of Regions that should be added or removed from the global table.
 /// </param>
 public sealed record class UpdateGlobalTableInput(
     string GlobalTableName,

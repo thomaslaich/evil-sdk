@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The caller doesn't have the required KMS access.&lt;/p&gt;
+/// The caller doesn't have the required KMS access.
 /// </summary>
 public sealed partial class KmsAccessDenied : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The caller doesn't have the required KMS access.&lt;/p&gt;
+    /// The caller doesn't have the required KMS access.
     /// </summary>
     public KmsAccessDenied(string? message = null)
         : base(message) { }

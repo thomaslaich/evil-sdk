@@ -7,15 +7,17 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The callback ID token has either expired or the callback associated with the token has already been closed.&lt;/p&gt;
+/// The callback ID token has either expired or the callback associated with the token has already been
+/// closed.
 /// </summary>
 public sealed partial class CallbackTimeoutException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The callback ID token has either expired or the callback associated with the token has already been closed.&lt;/p&gt;
+    /// The callback ID token has either expired or the callback associated with the token has already been
+    /// closed.
     /// </summary>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public CallbackTimeoutException(string? message = null, string? type = null)
         : base(message)
@@ -26,7 +28,7 @@ public sealed partial class CallbackTimeoutException : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

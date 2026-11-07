@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;An endpoint information details.&lt;/p&gt;
+/// An endpoint information details.
 /// </summary>
 /// <param name="Address">
-/// &lt;p&gt;IP address of the endpoint.&lt;/p&gt;
+/// IP address of the endpoint.
 /// </param>
 /// <param name="CachePeriodInMinutes">
-/// &lt;p&gt;Endpoint cache time to live (TTL) value.&lt;/p&gt;
+/// Endpoint cache time to live (TTL) value.
 /// </param>
 public sealed record class Endpoint(string Address, long? CachePeriodInMinutes = null);

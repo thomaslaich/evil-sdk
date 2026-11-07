@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda has detected your function being invoked in a recursive loop with other Amazon Web Services resources and stopped your function's invocation.&lt;/p&gt;
+/// Lambda has detected your function being invoked in a recursive loop with other Amazon Web Services
+/// resources and stopped your function's invocation.
 /// </summary>
 public sealed partial class RecursiveInvocationException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda has detected your function being invoked in a recursive loop with other Amazon Web Services resources and stopped your function's invocation.&lt;/p&gt;
+    /// Lambda has detected your function being invoked in a recursive loop with other Amazon Web Services
+    /// resources and stopped your function's invocation.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public RecursiveInvocationException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +29,12 @@ public sealed partial class RecursiveInvocationException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

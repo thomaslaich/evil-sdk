@@ -7,21 +7,21 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;This is used in a Lifecycle Rule Filter to apply a logical AND to two or more predicates. The
+/// This is used in a Lifecycle Rule Filter to apply a logical AND to two or more predicates. The
 /// Lifecycle Rule will apply to any object matching all of the predicates configured inside the And
-/// operator.&lt;/p&gt;
+/// operator.
 /// </summary>
 /// <param name="ObjectSizeGreaterThan">
-/// &lt;p&gt;Minimum object size to which the rule applies.&lt;/p&gt;
+/// Minimum object size to which the rule applies.
 /// </param>
 /// <param name="ObjectSizeLessThan">
-/// &lt;p&gt;Maximum object size to which the rule applies.&lt;/p&gt;
+/// Maximum object size to which the rule applies.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Prefix identifying one or more objects to which the rule applies.&lt;/p&gt;
+/// Prefix identifying one or more objects to which the rule applies.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;All of these tags must exist in the object's tag set in order for the rule to apply.&lt;/p&gt;
+/// All of these tags must exist in the object's tag set in order for the rule to apply.
 /// </param>
 public sealed record class LifecycleRuleAndOperator(
     long? ObjectSizeGreaterThan = null,

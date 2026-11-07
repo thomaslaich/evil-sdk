@@ -7,46 +7,59 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of a &lt;code&gt;Scan&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of a <c>Scan</c> operation.
 /// </summary>
 /// <param name="ConsumedCapacity">
-/// &lt;p&gt;The capacity units consumed by the &lt;code&gt;Scan&lt;/code&gt; operation. The data returned
-/// includes the total provisioned throughput consumed, along with statistics for the table
-/// and any indexes involved in the operation. &lt;code&gt;ConsumedCapacity&lt;/code&gt; is only
-/// returned if the &lt;code&gt;ReturnConsumedCapacity&lt;/code&gt; parameter was specified. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption&quot;&gt;Capacity unit consumption for read operations&lt;/a&gt; in the &lt;i&gt;Amazon
-/// DynamoDB Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// The capacity units consumed by the <c>Scan</c> operation. The data returned includes the total
+/// provisioned throughput consumed, along with statistics for the table and any indexes involved in the
+/// operation. <c>ConsumedCapacity</c> is only returned if the <c>ReturnConsumedCapacity</c> parameter
+/// was specified. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption">Capacity
+/// unit consumption for read operations</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="Count">
-/// &lt;p&gt;The number of items in the response.&lt;/p&gt;
-/// &lt;p&gt;If you set &lt;code&gt;ScanFilter&lt;/code&gt; in the request, then &lt;code&gt;Count&lt;/code&gt; is the
-/// number of items returned after the filter was applied, and &lt;code&gt;ScannedCount&lt;/code&gt; is
-/// the number of matching items before the filter was applied.&lt;/p&gt;
-/// &lt;p&gt;If you did not use a filter in the request, then &lt;code&gt;Count&lt;/code&gt; is the same as
-/// &lt;code&gt;ScannedCount&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// The number of items in the response.
+/// </para>
+/// <para>
+/// If you set <c>ScanFilter</c> in the request, then <c>Count</c> is the number of items returned after
+/// the filter was applied, and <c>ScannedCount</c> is the number of matching items before the filter
+/// was applied.
+/// </para>
+/// <para>
+/// If you did not use a filter in the request, then <c>Count</c> is the same as <c>ScannedCount</c>.
+/// </para>
 /// </param>
 /// <param name="Items">
-/// &lt;p&gt;An array of item attributes that match the scan criteria. Each element in this array
-/// consists of an attribute name and the value for that attribute.&lt;/p&gt;
+/// An array of item attributes that match the scan criteria. Each element in this array consists of an
+/// attribute name and the value for that attribute.
 /// </param>
 /// <param name="LastEvaluatedKey">
-/// &lt;p&gt;The primary key of the item where the operation stopped, inclusive of the previous
-/// result set. Use this value to start a new operation, excluding this value in the new
-/// request.&lt;/p&gt;
-/// &lt;p&gt;If &lt;code&gt;LastEvaluatedKey&lt;/code&gt; is empty, then the &quot;last page&quot; of results has been
-/// processed and there is no more data to be retrieved.&lt;/p&gt;
-/// &lt;p&gt;If &lt;code&gt;LastEvaluatedKey&lt;/code&gt; is not empty, it does not necessarily mean that there
-/// is more data in the result set. The only way to know when you have reached the end of
-/// the result set is when &lt;code&gt;LastEvaluatedKey&lt;/code&gt; is empty.&lt;/p&gt;
+/// <para>
+/// The primary key of the item where the operation stopped, inclusive of the previous result set. Use
+/// this value to start a new operation, excluding this value in the new request.
+/// </para>
+/// <para>
+/// If <c>LastEvaluatedKey</c> is empty, then the "last page" of results has been processed and there is
+/// no more data to be retrieved.
+/// </para>
+/// <para>
+/// If <c>LastEvaluatedKey</c> is not empty, it does not necessarily mean that there is more data in the
+/// result set. The only way to know when you have reached the end of the result set is when
+/// <c>LastEvaluatedKey</c> is empty.
+/// </para>
 /// </param>
 /// <param name="ScannedCount">
-/// &lt;p&gt;The number of items evaluated, before any &lt;code&gt;ScanFilter&lt;/code&gt; is applied. A high
-/// &lt;code&gt;ScannedCount&lt;/code&gt; value with few, or no, &lt;code&gt;Count&lt;/code&gt; results
-/// indicates an inefficient &lt;code&gt;Scan&lt;/code&gt; operation. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count&quot;&gt;Count and
-/// ScannedCount&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If you did not use a filter in the request, then &lt;code&gt;ScannedCount&lt;/code&gt; is the same
-/// as &lt;code&gt;Count&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// The number of items evaluated, before any <c>ScanFilter</c> is applied. A high <c>ScannedCount</c>
+/// value with few, or no, <c>Count</c> results indicates an inefficient <c>Scan</c> operation. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Count">Count
+/// and ScannedCount</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
+/// <para>
+/// If you did not use a filter in the request, then <c>ScannedCount</c> is the same as <c>Count</c>.
+/// </para>
 /// </param>
 public sealed record class ScanOutput(
     global::Com.Amazonaws.Dynamodb.ConsumedCapacity? ConsumedCapacity = null,

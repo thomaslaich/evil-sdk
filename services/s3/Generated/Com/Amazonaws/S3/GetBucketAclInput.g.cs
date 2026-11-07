@@ -8,14 +8,25 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketAclInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;Specifies the S3 bucket whose ACL is being requested.&lt;/p&gt;
-/// &lt;p&gt;When you use this API operation with an access point, provide the alias of the access point in place of the bucket name.&lt;/p&gt;
-/// &lt;p&gt;When you use this API operation with an Object Lambda access point, provide the alias of the Object Lambda access point in place of the bucket name.
-/// If the Object Lambda access point alias in a request is not valid, the error code &lt;code&gt;InvalidAccessPointAliasError&lt;/code&gt; is returned.
-/// For more information about &lt;code&gt;InvalidAccessPointAliasError&lt;/code&gt;, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList&quot;&gt;List of
-/// Error Codes&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Specifies the S3 bucket whose ACL is being requested.
+/// </para>
+/// <para>
+/// When you use this API operation with an access point, provide the alias of the access point in place
+/// of the bucket name.
+/// </para>
+/// <para>
+/// When you use this API operation with an Object Lambda access point, provide the alias of the Object
+/// Lambda access point in place of the bucket name. If the Object Lambda access point alias in a
+/// request is not valid, the error code <c>InvalidAccessPointAliasError</c> is returned. For more
+/// information about <c>InvalidAccessPointAliasError</c>, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ErrorCodeList">List
+/// of Error Codes</see>.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 public sealed record class GetBucketAclInput(string Bucket, string? ExpectedBucketOwner = null);

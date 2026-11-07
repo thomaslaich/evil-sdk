@@ -7,12 +7,16 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda is initializing your function. You can invoke the function when the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;function state&lt;/a&gt; becomes &lt;code&gt;Active&lt;/code&gt;.&lt;/p&gt;
+/// Lambda is initializing your function. You can invoke the function when the
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">function state</see>
+/// becomes <c>Active</c>.
 /// </summary>
 public sealed partial class SnapStartNotReadyException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda is initializing your function. You can invoke the function when the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;function state&lt;/a&gt; becomes &lt;code&gt;Active&lt;/code&gt;.&lt;/p&gt;
+    /// Lambda is initializing your function. You can invoke the function when the
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">function state</see>
+    /// becomes <c>Active</c>.
     /// </summary>
     public SnapStartNotReadyException(string? message = null, string? type = null)
         : base(message)

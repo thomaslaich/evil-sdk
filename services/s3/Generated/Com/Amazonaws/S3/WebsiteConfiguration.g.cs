@@ -7,22 +7,24 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies website configuration parameters for an Amazon S3 bucket.&lt;/p&gt;
+/// Specifies website configuration parameters for an Amazon S3 bucket.
 /// </summary>
 /// <param name="ErrorDocument">
-/// &lt;p&gt;The name of the error document for the website.&lt;/p&gt;
+/// The name of the error document for the website.
 /// </param>
 /// <param name="IndexDocument">
-/// &lt;p&gt;The name of the index document for the website.&lt;/p&gt;
+/// The name of the index document for the website.
 /// </param>
 /// <param name="RedirectAllRequestsTo">
-/// &lt;p&gt;The redirect behavior for every request to this bucket's website endpoint.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;If you specify this property, you can't specify any other property.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// The redirect behavior for every request to this bucket's website endpoint.
+/// </para>
+/// <para>
+/// <b>Important:</b> If you specify this property, you can't specify any other property.
+/// </para>
 /// </param>
 /// <param name="RoutingRules">
-/// &lt;p&gt;Rules that define when a redirect is applied and the redirect behavior.&lt;/p&gt;
+/// Rules that define when a redirect is applied and the redirect behavior.
 /// </param>
 public sealed record class WebsiteConfiguration(
     global::Com.Amazonaws.S3.ErrorDocument? ErrorDocument = null,

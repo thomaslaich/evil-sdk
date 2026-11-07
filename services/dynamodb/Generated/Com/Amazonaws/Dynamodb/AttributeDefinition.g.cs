@@ -5,27 +5,32 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents an attribute for describing the schema for the table and indexes.&lt;/p&gt;
+/// Represents an attribute for describing the schema for the table and indexes.
 /// </summary>
 /// <param name="AttributeName">
-/// &lt;p&gt;A name for the attribute.&lt;/p&gt;
+/// A name for the attribute.
 /// </param>
 /// <param name="AttributeType">
-/// &lt;p&gt;The data type for the attribute, where:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;S&lt;/code&gt; - the attribute is of type String&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;N&lt;/code&gt; - the attribute is of type Number&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;B&lt;/code&gt; - the attribute is of type Binary&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The data type for the attribute, where:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>S</c> - the attribute is of type String
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>N</c> - the attribute is of type Number
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>B</c> - the attribute is of type Binary
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class AttributeDefinition(
     string AttributeName,

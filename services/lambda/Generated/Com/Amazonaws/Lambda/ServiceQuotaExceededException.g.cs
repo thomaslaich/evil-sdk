@@ -7,18 +7,26 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The request would exceed a service quota. For more information about Lambda service quotas, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;. To request a quota increase, see &lt;a href=&quot;https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html&quot;&gt;Requesting a quota increase&lt;/a&gt; in the &lt;i&gt;Service Quotas User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The request would exceed a service quota. For more information about Lambda service quotas, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+/// quotas</see>. To request a quota increase, see
+/// <see href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting
+/// a quota increase</see> in the <i>Service Quotas User Guide</i>.
 /// </summary>
 public sealed partial class ServiceQuotaExceededException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request would exceed a service quota. For more information about Lambda service quotas, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;. To request a quota increase, see &lt;a href=&quot;https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html&quot;&gt;Requesting a quota increase&lt;/a&gt; in the &lt;i&gt;Service Quotas User Guide&lt;/i&gt;.&lt;/p&gt;
+    /// The request would exceed a service quota. For more information about Lambda service quotas, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+    /// quotas</see>. To request a quota increase, see
+    /// <see href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting
+    /// a quota increase</see> in the <i>Service Quotas User Guide</i>.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public ServiceQuotaExceededException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +35,12 @@ public sealed partial class ServiceQuotaExceededException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

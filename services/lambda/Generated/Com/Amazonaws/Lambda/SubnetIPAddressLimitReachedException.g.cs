@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't set up VPC access for the Lambda function because one or more configured subnets has no available IP addresses.&lt;/p&gt;
+/// Lambda couldn't set up VPC access for the Lambda function because one or more configured subnets has
+/// no available IP addresses.
 /// </summary>
 public sealed partial class SubnetIPAddressLimitReachedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't set up VPC access for the Lambda function because one or more configured subnets has no available IP addresses.&lt;/p&gt;
+    /// Lambda couldn't set up VPC access for the Lambda function because one or more configured subnets has
+    /// no available IP addresses.
     /// </summary>
     public SubnetIPAddressLimitReachedException(string? message = null, string? type = null)
         : base(message)

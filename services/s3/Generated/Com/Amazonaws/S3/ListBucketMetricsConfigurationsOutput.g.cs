@@ -10,21 +10,21 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListBucketMetricsConfigurationsOutput.
 /// </summary>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;The marker that is used as a starting point for this metrics configuration list response. This value
-/// is present if it was sent in the request.&lt;/p&gt;
+/// The marker that is used as a starting point for this metrics configuration list response. This value
+/// is present if it was sent in the request.
 /// </param>
 /// <param name="IsTruncated">
-/// &lt;p&gt;Indicates whether the returned list of metrics configurations is complete. A value of true indicates
+/// Indicates whether the returned list of metrics configurations is complete. A value of true indicates
 /// that the list is not complete and the NextContinuationToken will be provided for a subsequent
-/// request.&lt;/p&gt;
+/// request.
 /// </param>
 /// <param name="MetricsConfigurationList">
-/// &lt;p&gt;The list of metrics configurations for a bucket.&lt;/p&gt;
+/// The list of metrics configurations for a bucket.
 /// </param>
 /// <param name="NextContinuationToken">
-/// &lt;p&gt;The marker used to continue a metrics configuration listing that has been truncated. Use the
-/// &lt;code&gt;NextContinuationToken&lt;/code&gt; from a previously truncated list response to continue the listing.
-/// The continuation token is an opaque value that Amazon S3 understands.&lt;/p&gt;
+/// The marker used to continue a metrics configuration listing that has been truncated. Use the
+/// <c>NextContinuationToken</c> from a previously truncated list response to continue the listing. The
+/// continuation token is an opaque value that Amazon S3 understands.
 /// </param>
 public sealed record class ListBucketMetricsConfigurationsOutput(
     string? ContinuationToken = null,

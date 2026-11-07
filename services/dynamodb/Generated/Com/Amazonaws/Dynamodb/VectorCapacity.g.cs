@@ -5,17 +5,15 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The consumed capacity for vector index operations, including vector search request bytes
-/// and vector write request bytes.&lt;/p&gt;
+/// The consumed capacity for vector index operations, including vector search request bytes and vector
+/// write request bytes.
 /// </summary>
 /// <param name="VectorSearchRequestBytes">
-/// &lt;p&gt;The number of vector search request bytes consumed by a
-/// &lt;code&gt;SearchVectors&lt;/code&gt; operation.&lt;/p&gt;
+/// The number of vector search request bytes consumed by a <c>SearchVectors</c> operation.
 /// </param>
 /// <param name="VectorWriteRequestBytes">
-/// &lt;p&gt;The number of vector write request bytes consumed when writing to a vector index.
-/// Reported for write operations that modify attributes indexed by a vector
-/// index.&lt;/p&gt;
+/// The number of vector write request bytes consumed when writing to a vector index. Reported for write
+/// operations that modify attributes indexed by a vector index.
 /// </param>
 public sealed record class VectorCapacity(
     double? VectorSearchRequestBytes = null,

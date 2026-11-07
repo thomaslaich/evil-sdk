@@ -7,24 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;For each message in the batch, the response contains a &lt;code&gt;
-/// &lt;a&gt;SendMessageBatchResultEntry&lt;/a&gt;
-/// &lt;/code&gt; tag if the message succeeds or a
-/// &lt;code&gt;
-/// &lt;a&gt;BatchResultErrorEntry&lt;/a&gt;
-/// &lt;/code&gt; tag if the message
-/// fails.&lt;/p&gt;
+/// For each message in the batch, the response contains a <c> SendMessageBatchResultEntry </c> tag if
+/// the message succeeds or a <c> BatchResultErrorEntry </c> tag if the message fails.
 /// </summary>
 /// <param name="Failed">
-/// &lt;p&gt;A list of &lt;code&gt;
-/// &lt;a&gt;BatchResultErrorEntry&lt;/a&gt;
-/// &lt;/code&gt; items with error
-/// details about each message that can't be enqueued.&lt;/p&gt;
+/// A list of <c> BatchResultErrorEntry </c> items with error details about each message that can't be
+/// enqueued.
 /// </param>
 /// <param name="Successful">
-/// &lt;p&gt;A list of &lt;code&gt;
-/// &lt;a&gt;SendMessageBatchResultEntry&lt;/a&gt;
-/// &lt;/code&gt; items.&lt;/p&gt;
+/// A list of <c> SendMessageBatchResultEntry </c> items.
 /// </param>
 public sealed record class SendMessageBatchOutput(
     IReadOnlyList<BatchResultErrorEntry> Failed,

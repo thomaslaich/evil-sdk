@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a replica to be deleted.&lt;/p&gt;
+/// Represents a replica to be deleted.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The Region where the replica exists.&lt;/p&gt;
+/// The Region where the replica exists.
 /// </param>
 public sealed record class DeleteReplicationGroupMemberAction(string RegionName);

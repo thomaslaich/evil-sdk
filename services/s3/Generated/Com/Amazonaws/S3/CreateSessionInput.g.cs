@@ -8,58 +8,94 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#CreateSessionInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket that you create a session for.&lt;/p&gt;
+/// The name of the bucket that you create a session for.
 /// </param>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with
-/// server-side encryption using KMS keys (SSE-KMS).&lt;/p&gt;
-/// &lt;p&gt;S3 Bucket Keys are always enabled for &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;PUT&lt;/code&gt; operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets
-/// to directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops&quot;&gt;the Copy operation in Batch Operations&lt;/a&gt;, or
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job&quot;&gt;the import jobs&lt;/a&gt;. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.&lt;/p&gt;
+/// <para>
+/// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side
+/// encryption using KMS keys (SSE-KMS).
+/// </para>
+/// <para>
+/// S3 Bucket Keys are always enabled for <c>GET</c> and <c>PUT</c> operations in a directory bucket and
+/// can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from
+/// general purpose buckets to directory buckets, from directory buckets to general purpose buckets, or
+/// between directory buckets, through
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops">the
+/// Copy operation in Batch Operations</see>, or
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job">the import
+/// jobs</see>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a
+/// KMS-encrypted object.
+/// </para>
 /// </param>
 /// <param name="SSEKMSEncryptionContext">
-/// &lt;p&gt;Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use for object encryption. The value of
-/// this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs.
-/// This value is stored as object metadata and automatically gets passed on
-/// to Amazon Web Services KMS for future &lt;code&gt;GetObject&lt;/code&gt; operations on
-/// this object.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - This value must be explicitly added during &lt;code&gt;CopyObject&lt;/code&gt; operations if you want an additional encryption context for your object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context&quot;&gt;Encryption context&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - You can optionally provide an explicit encryption context value. The value must match the default encryption context - the bucket Amazon Resource Name (ARN). An additional encryption context value is not supported. &lt;/p&gt;
+/// <para>
+/// Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use
+/// for object encryption. The value of this header is a Base64 encoded string of a UTF-8 encoded JSON,
+/// which contains the encryption context as key-value pairs. This value is stored as object metadata
+/// and automatically gets passed on to Amazon Web Services KMS for future <c>GetObject</c> operations
+/// on this object.
+/// </para>
+/// <para>
+/// <b>General purpose buckets</b> - This value must be explicitly added during <c>CopyObject</c>
+/// operations if you want an additional encryption context for your object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context">Encryption
+/// context</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - You can optionally provide an explicit encryption context value. The
+/// value must match the default encryption context - the bucket Amazon Resource Name (ARN). An
+/// additional encryption context value is not supported.
+/// </para>
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;If you specify &lt;code&gt;x-amz-server-side-encryption&lt;/code&gt; with &lt;code&gt;aws:kms&lt;/code&gt;, you must specify the &lt;code&gt;
-/// x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt; header with the ID (Key ID or Key ARN) of the KMS
-/// symmetric encryption customer managed key to use. Otherwise, you get an HTTP &lt;code&gt;400 Bad Request&lt;/code&gt; error. Only use the key ID or key ARN. The key alias format of the KMS key isn't supported. Also, if the KMS key doesn't exist in the same
-/// account that't issuing the command, you must use the full Key ARN not the Key ID. &lt;/p&gt;
-/// &lt;p&gt;Your SSE-KMS configuration can only support 1 &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk&quot;&gt;customer managed key&lt;/a&gt; per directory bucket's lifetime.
-/// The &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk&quot;&gt;Amazon Web Services managed key&lt;/a&gt; (&lt;code&gt;aws/s3&lt;/code&gt;) isn't supported.
-/// &lt;/p&gt;
+/// <para>
+/// If you specify <c>x-amz-server-side-encryption</c> with <c>aws:kms</c>, you must specify the <c>
+/// x-amz-server-side-encryption-aws-kms-key-id</c> header with the ID (Key ID or Key ARN) of the KMS
+/// symmetric encryption customer managed key to use. Otherwise, you get an HTTP <c>400 Bad Request</c>
+/// error. Only use the key ID or key ARN. The key alias format of the KMS key isn't supported. Also, if
+/// the KMS key doesn't exist in the same account that't issuing the command, you must use the full Key
+/// ARN not the Key ID.
+/// </para>
+/// <para>
+/// Your SSE-KMS configuration can only support 1
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk">customer
+/// managed key</see> per directory bucket's lifetime. The
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk">Amazon
+/// Web Services managed key</see> (<c>aws/s3</c>) isn't supported.
+/// </para>
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm to use when you store objects in the directory bucket.&lt;/p&gt;
-/// &lt;p&gt;For directory buckets, there are only two supported options for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (&lt;code&gt;AES256&lt;/code&gt;) and server-side encryption with KMS keys (SSE-KMS) (&lt;code&gt;aws:kms&lt;/code&gt;). By default, Amazon S3 encrypts data with SSE-S3.
-/// For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html&quot;&gt;Protecting data with server-side encryption&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 access points for Amazon FSx &lt;/b&gt; - When accessing data stored in Amazon FSx
-/// file systems using S3 access points, the only valid server side encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;. All
-/// Amazon FSx file systems have encryption configured by default and are encrypted at rest. Data is
-/// automatically encrypted before being written to the file system, and automatically decrypted as it is
-/// read. These processes are handled transparently by Amazon FSx.&lt;/p&gt;
+/// <para>
+/// The server-side encryption algorithm to use when you store objects in the directory bucket.
+/// </para>
+/// <para>
+/// For directory buckets, there are only two supported options for server-side encryption: server-side
+/// encryption with Amazon S3 managed keys (SSE-S3) (<c>AES256</c>) and server-side encryption with KMS
+/// keys (SSE-KMS) (<c>aws:kms</c>). By default, Amazon S3 encrypts data with SSE-S3. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html">Protecting
+/// data with server-side encryption</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>S3 access points for Amazon FSx </b> - When accessing data stored in Amazon FSx file systems
+/// using S3 access points, the only valid server side encryption option is <c>aws:fsx</c>. All Amazon
+/// FSx file systems have encryption configured by default and are encrypted at rest. Data is
+/// automatically encrypted before being written to the file system, and automatically decrypted as it
+/// is read. These processes are handled transparently by Amazon FSx.
+/// </para>
 /// </param>
 /// <param name="SessionMode">
-/// &lt;p&gt;Specifies the mode of the session that will be created, either &lt;code&gt;ReadWrite&lt;/code&gt; or
-/// &lt;code&gt;ReadOnly&lt;/code&gt;. If no session mode is specified, the default behavior attempts to create
-/// a session with the maximum allowable privilege. It will first attempt to create a
-/// &lt;code&gt;ReadWrite&lt;/code&gt; session, and if that is not allowed by permissions, it will attempt to create a
-/// &lt;code&gt;ReadOnly&lt;/code&gt; session. If neither session type is allowed, the request will return an Access Denied error. A
-/// &lt;code&gt;ReadWrite&lt;/code&gt; session is capable of executing all the Zonal endpoint API operations on a directory bucket. A
-/// &lt;code&gt;ReadOnly&lt;/code&gt; session is constrained to execute the following Zonal endpoint API operations:
-/// &lt;code&gt;GetObject&lt;/code&gt;, &lt;code&gt;HeadObject&lt;/code&gt;, &lt;code&gt;ListObjectsV2&lt;/code&gt;,
-/// &lt;code&gt;GetObjectAttributes&lt;/code&gt;, &lt;code&gt;ListParts&lt;/code&gt;, and
-/// &lt;code&gt;ListMultipartUploads&lt;/code&gt;.&lt;/p&gt;
+/// Specifies the mode of the session that will be created, either <c>ReadWrite</c> or <c>ReadOnly</c>.
+/// If no session mode is specified, the default behavior attempts to create a session with the maximum
+/// allowable privilege. It will first attempt to create a <c>ReadWrite</c> session, and if that is not
+/// allowed by permissions, it will attempt to create a <c>ReadOnly</c> session. If neither session type
+/// is allowed, the request will return an Access Denied error. A <c>ReadWrite</c> session is capable of
+/// executing all the Zonal endpoint API operations on a directory bucket. A <c>ReadOnly</c> session is
+/// constrained to execute the following Zonal endpoint API operations: <c>GetObject</c>,
+/// <c>HeadObject</c>, <c>ListObjectsV2</c>, <c>GetObjectAttributes</c>, <c>ListParts</c>, and
+/// <c>ListMultipartUploads</c>.
 /// </param>
 public sealed record class CreateSessionInput(
     string Bucket,

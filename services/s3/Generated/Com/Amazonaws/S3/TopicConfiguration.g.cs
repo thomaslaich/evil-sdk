@@ -7,16 +7,17 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for specifying the configuration for publication of messages to an Amazon Simple
-/// Notification Service (Amazon SNS) topic when Amazon S3 detects specified events.&lt;/p&gt;
+/// A container for specifying the configuration for publication of messages to an Amazon Simple
+/// Notification Service (Amazon SNS) topic when Amazon S3 detects specified events.
 /// </summary>
 /// <param name="Events">
-/// &lt;p&gt;The Amazon S3 bucket event about which to send notifications. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html&quot;&gt;Supported Event Types&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Amazon S3 bucket event about which to send notifications. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html">Supported Event
+/// Types</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="TopicArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Amazon SNS topic to which Amazon S3 publishes a message when it
-/// detects events of the specified type.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Amazon SNS topic to which Amazon S3 publishes a message when
+/// it detects events of the specified type.
 /// </param>
 public sealed record class TopicConfiguration(
     IReadOnlyList<Event> Events,

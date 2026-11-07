@@ -7,19 +7,19 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of a &lt;code&gt;GetItem&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of a <c>GetItem</c> operation.
 /// </summary>
 /// <param name="ConsumedCapacity">
-/// &lt;p&gt;The capacity units consumed by the &lt;code&gt;GetItem&lt;/code&gt; operation. The data returned
-/// includes the total provisioned throughput consumed, along with statistics for the table
-/// and any indexes involved in the operation. &lt;code&gt;ConsumedCapacity&lt;/code&gt; is only
-/// returned if the &lt;code&gt;ReturnConsumedCapacity&lt;/code&gt; parameter was specified. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption&quot;&gt;Capacity unit consumption for read operations&lt;/a&gt; in the &lt;i&gt;Amazon
-/// DynamoDB Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// The capacity units consumed by the <c>GetItem</c> operation. The data returned includes the total
+/// provisioned throughput consumed, along with statistics for the table and any indexes involved in the
+/// operation. <c>ConsumedCapacity</c> is only returned if the <c>ReturnConsumedCapacity</c> parameter
+/// was specified. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html#read-operation-consumption">Capacity
+/// unit consumption for read operations</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="Item">
-/// &lt;p&gt;A map of attribute names to &lt;code&gt;AttributeValue&lt;/code&gt; objects, as specified by
-/// &lt;code&gt;ProjectionExpression&lt;/code&gt;.&lt;/p&gt;
+/// A map of attribute names to <c>AttributeValue</c> objects, as specified by
+/// <c>ProjectionExpression</c>.
 /// </param>
 public sealed record class GetItemOutput(
     global::Com.Amazonaws.Dynamodb.ConsumedCapacity? ConsumedCapacity = null,

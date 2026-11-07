@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListVersionsByFunctionOutput.
 /// </summary>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 /// <param name="Versions">
-/// &lt;p&gt;A list of Lambda function versions.&lt;/p&gt;
+/// A list of Lambda function versions.
 /// </param>
 public sealed record class ListVersionsByFunctionOutput(
     string? NextMarker = null,

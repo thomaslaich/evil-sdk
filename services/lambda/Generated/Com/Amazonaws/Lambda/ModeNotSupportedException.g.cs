@@ -7,18 +7,26 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function doesn't support the invocation mode requested. For example, calling &lt;code&gt;Invoke&lt;/code&gt; with &lt;code&gt;InvocationType=RequestResponse&lt;/code&gt; on a function configured for asynchronous-only invocation, or vice versa. For more information about invocation types, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-options.html&quot;&gt;Invoking Lambda functions&lt;/a&gt;.&lt;/p&gt;
+/// The Lambda function doesn't support the invocation mode requested. For example, calling
+/// <c>Invoke</c> with <c>InvocationType=RequestResponse</c> on a function configured for
+/// asynchronous-only invocation, or vice versa. For more information about invocation types, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-options.html">Invoking Lambda
+/// functions</see>.
 /// </summary>
 public sealed partial class ModeNotSupportedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function doesn't support the invocation mode requested. For example, calling &lt;code&gt;Invoke&lt;/code&gt; with &lt;code&gt;InvocationType=RequestResponse&lt;/code&gt; on a function configured for asynchronous-only invocation, or vice versa. For more information about invocation types, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-options.html&quot;&gt;Invoking Lambda functions&lt;/a&gt;.&lt;/p&gt;
+    /// The Lambda function doesn't support the invocation mode requested. For example, calling
+    /// <c>Invoke</c> with <c>InvocationType=RequestResponse</c> on a function configured for
+    /// asynchronous-only invocation, or vice versa. For more information about invocation types, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-options.html">Invoking Lambda
+    /// functions</see>.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public ModeNotSupportedException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +35,12 @@ public sealed partial class ModeNotSupportedException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

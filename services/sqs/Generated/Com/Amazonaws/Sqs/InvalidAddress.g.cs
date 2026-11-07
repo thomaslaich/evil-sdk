@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The specified ID is invalid.&lt;/p&gt;
+/// The specified ID is invalid.
 /// </summary>
 public sealed partial class InvalidAddress : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified ID is invalid.&lt;/p&gt;
+    /// The specified ID is invalid.
     /// </summary>
     public InvalidAddress(string? message = null)
         : base(message) { }

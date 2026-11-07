@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Amazon Web Services KMS throttles requests for the following conditions.&lt;/p&gt;
+/// Amazon Web Services KMS throttles requests for the following conditions.
 /// </summary>
 public sealed partial class KmsThrottled : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Amazon Web Services KMS throttles requests for the following conditions.&lt;/p&gt;
+    /// Amazon Web Services KMS throttles requests for the following conditions.
     /// </summary>
     public KmsThrottled(string? message = null)
         : base(message) { }

@@ -5,13 +5,16 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The response from the CheckpointDurableExecution operation.&lt;/p&gt;
+/// The response from the CheckpointDurableExecution operation.
 /// </summary>
 /// <param name="NewExecutionState">
-/// &lt;p&gt;Updated execution state information that includes any changes that occurred since the last checkpoint, such as completed callbacks or expired timers. This allows the SDK to update its internal state during replay.&lt;/p&gt;
+/// Updated execution state information that includes any changes that occurred since the last
+/// checkpoint, such as completed callbacks or expired timers. This allows the SDK to update its
+/// internal state during replay.
 /// </param>
 /// <param name="CheckpointToken">
-/// &lt;p&gt;A new checkpoint token to use for the next checkpoint operation. This token replaces the one provided in the request and must be used for subsequent checkpoints to maintain proper ordering.&lt;/p&gt;
+/// A new checkpoint token to use for the next checkpoint operation. This token replaces the one
+/// provided in the request and must be used for subsequent checkpoints to maintain proper ordering.
 /// </param>
 public sealed record class CheckpointDurableExecutionOutput(
     CheckpointUpdatedExecutionState NewExecutionState,

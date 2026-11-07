@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#CreateGlobalTableInput.
 /// </summary>
 /// <param name="GlobalTableName">
-/// &lt;p&gt;The global table name.&lt;/p&gt;
+/// The global table name.
 /// </param>
 /// <param name="ReplicationGroup">
-/// &lt;p&gt;The Regions where the global table needs to be created.&lt;/p&gt;
+/// The Regions where the global table needs to be created.
 /// </param>
 public sealed record class CreateGlobalTableInput(
     string GlobalTableName,

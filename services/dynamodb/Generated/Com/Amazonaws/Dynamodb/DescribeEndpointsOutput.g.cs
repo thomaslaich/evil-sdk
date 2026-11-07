@@ -10,6 +10,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeEndpointsOutput.
 /// </summary>
 /// <param name="Endpoints">
-/// &lt;p&gt;List of endpoints.&lt;/p&gt;
+/// List of endpoints.
 /// </param>
 public sealed record class DescribeEndpointsOutput(IReadOnlyList<Endpoint> Endpoints);

@@ -7,25 +7,39 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS&quot;&gt;cross-origin resource sharing (CORS)&lt;/a&gt; settings for your Lambda function URL. Use CORS to grant access to your function URL from any origin. You can also use CORS to control access for specific HTTP headers and methods in requests to your function URL.&lt;/p&gt;
+/// The <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing
+/// (CORS)</see> settings for your Lambda function URL. Use CORS to grant access to your function URL
+/// from any origin. You can also use CORS to control access for specific HTTP headers and methods in
+/// requests to your function URL.
 /// </summary>
 /// <param name="AllowCredentials">
-/// &lt;p&gt;Whether to allow cookies or other credentials in requests to your function URL. The default is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+/// Whether to allow cookies or other credentials in requests to your function URL. The default is
+/// <c>false</c>.
 /// </param>
 /// <param name="AllowHeaders">
-/// &lt;p&gt;The HTTP headers that origins can include in requests to your function URL. For example: &lt;code&gt;Date&lt;/code&gt;, &lt;code&gt;Keep-Alive&lt;/code&gt;, &lt;code&gt;X-Custom-Header&lt;/code&gt;.&lt;/p&gt;
+/// The HTTP headers that origins can include in requests to your function URL. For example:
+/// <c>Date</c>, <c>Keep-Alive</c>, <c>X-Custom-Header</c>.
 /// </param>
 /// <param name="AllowMethods">
-/// &lt;p&gt;The HTTP methods that are allowed when calling your function URL. For example: &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;, or the wildcard character (&lt;code&gt;*&lt;/code&gt;).&lt;/p&gt;
+/// The HTTP methods that are allowed when calling your function URL. For example: <c>GET</c>,
+/// <c>POST</c>, <c>DELETE</c>, or the wildcard character (<c>*</c>).
 /// </param>
 /// <param name="AllowOrigins">
-/// &lt;p&gt;The origins that can access your function URL. You can list any number of specific origins, separated by a comma. For example: &lt;code&gt;https://www.example.com&lt;/code&gt;, &lt;code&gt;http://localhost:60905&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;Alternatively, you can grant access to all origins using the wildcard character (&lt;code&gt;*&lt;/code&gt;).&lt;/p&gt;
+/// <para>
+/// The origins that can access your function URL. You can list any number of specific origins,
+/// separated by a comma. For example: <c>https://www.example.com</c>, <c>http://localhost:60905</c>.
+/// </para>
+/// <para>
+/// Alternatively, you can grant access to all origins using the wildcard character (<c>*</c>).
+/// </para>
 /// </param>
 /// <param name="ExposeHeaders">
-/// &lt;p&gt;The HTTP headers in your function response that you want to expose to origins that call your function URL. For example: &lt;code&gt;Date&lt;/code&gt;, &lt;code&gt;Keep-Alive&lt;/code&gt;, &lt;code&gt;X-Custom-Header&lt;/code&gt;.&lt;/p&gt;
+/// The HTTP headers in your function response that you want to expose to origins that call your
+/// function URL. For example: <c>Date</c>, <c>Keep-Alive</c>, <c>X-Custom-Header</c>.
 /// </param>
 /// <param name="MaxAge">
-/// &lt;p&gt;The maximum amount of time, in seconds, that web browsers can cache results of a preflight request. By default, this is set to &lt;code&gt;0&lt;/code&gt;, which means that the browser doesn't cache results.&lt;/p&gt;
+/// The maximum amount of time, in seconds, that web browsers can cache results of a preflight request.
+/// By default, this is set to <c>0</c>, which means that the browser doesn't cache results.
 /// </param>
 public sealed record class Cors(
     bool? AllowCredentials = null,

@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The code signature failed one or more of the validation checks for signature mismatch or expiry, and the code signing policy is set to ENFORCE. Lambda blocks the deployment.&lt;/p&gt;
+/// The code signature failed one or more of the validation checks for signature mismatch or expiry, and
+/// the code signing policy is set to ENFORCE. Lambda blocks the deployment.
 /// </summary>
 public sealed partial class CodeVerificationFailedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The code signature failed one or more of the validation checks for signature mismatch or expiry, and the code signing policy is set to ENFORCE. Lambda blocks the deployment.&lt;/p&gt;
+    /// The code signature failed one or more of the validation checks for signature mismatch or expiry, and
+    /// the code signing policy is set to ENFORCE. Lambda blocks the deployment.
     /// </summary>
     public CodeVerificationFailedException(string? message = null, string? type = null)
         : base(message)

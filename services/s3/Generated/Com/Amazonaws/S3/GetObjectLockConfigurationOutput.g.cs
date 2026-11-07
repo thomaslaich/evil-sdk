@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectLockConfigurationOutput.
 /// </summary>
 /// <param name="ObjectLockConfiguration">
-/// &lt;p&gt;The specified bucket's Object Lock configuration.&lt;/p&gt;
+/// The specified bucket's Object Lock configuration.
 /// </param>
 public sealed record class GetObjectLockConfigurationOutput(
     global::Com.Amazonaws.S3.ObjectLockConfiguration? ObjectLockConfiguration = null

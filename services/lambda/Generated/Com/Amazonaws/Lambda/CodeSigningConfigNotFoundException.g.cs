@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The specified code signing configuration does not exist.&lt;/p&gt;
+/// The specified code signing configuration does not exist.
 /// </summary>
 public sealed partial class CodeSigningConfigNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified code signing configuration does not exist.&lt;/p&gt;
+    /// The specified code signing configuration does not exist.
     /// </summary>
     public CodeSigningConfigNotFoundException(string? message = null, string? type = null)
         : base(message)

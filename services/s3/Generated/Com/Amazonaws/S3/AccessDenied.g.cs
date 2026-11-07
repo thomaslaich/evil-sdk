@@ -7,16 +7,14 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;
 /// You might receive this error for several reasons. For details, see the description of this API
-/// operation.&lt;/p&gt;
+/// operation.
 /// </summary>
 public sealed partial class AccessDenied : Exception
 {
     /// <summary>
-    /// &lt;p&gt;
     /// You might receive this error for several reasons. For details, see the description of this API
-    /// operation.&lt;/p&gt;
+    /// operation.
     /// </summary>
     public AccessDenied(string? message = null)
         : base(message) { }

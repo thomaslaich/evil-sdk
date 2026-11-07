@@ -5,10 +5,11 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-responses.html&quot;&gt;Interpreting Responses&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-responses.html">Interpreting
+/// Responses</see> in the <i>Amazon SQS Developer Guide</i>.
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the queue.&lt;/p&gt;
+/// The URL of the queue.
 /// </param>
 public sealed record class GetQueueUrlOutput(string? QueueUrl = null);

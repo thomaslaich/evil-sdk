@@ -8,18 +8,18 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A condition specified in the operation failed to be evaluated.&lt;/p&gt;
+/// A condition specified in the operation failed to be evaluated.
 /// </summary>
 public sealed partial class ConditionalCheckFailedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;A condition specified in the operation failed to be evaluated.&lt;/p&gt;
+    /// A condition specified in the operation failed to be evaluated.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The conditional request failed.&lt;/p&gt;
+    /// The conditional request failed.
     /// </param>
     /// <param name="item">
-    /// &lt;p&gt;Item which caused the &lt;code&gt;ConditionalCheckFailedException&lt;/code&gt;.&lt;/p&gt;
+    /// Item which caused the <c>ConditionalCheckFailedException</c>.
     /// </param>
     public ConditionalCheckFailedException(
         string? message = null,
@@ -31,12 +31,12 @@ public sealed partial class ConditionalCheckFailedException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The conditional request failed.&lt;/p&gt;
+    /// The conditional request failed.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;Item which caused the &lt;code&gt;ConditionalCheckFailedException&lt;/code&gt;.&lt;/p&gt;
+    /// Item which caused the <c>ConditionalCheckFailedException</c>.
     /// </summary>
     public IReadOnlyDictionary<string, AttributeValue>? Item { get; }
 }

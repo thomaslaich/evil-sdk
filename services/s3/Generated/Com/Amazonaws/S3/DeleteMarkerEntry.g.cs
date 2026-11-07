@@ -7,22 +7,22 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Information about the delete marker.&lt;/p&gt;
+/// Information about the delete marker.
 /// </summary>
 /// <param name="IsLatest">
-/// &lt;p&gt;Specifies whether the object is (true) or is not (false) the latest version of an object. &lt;/p&gt;
+/// Specifies whether the object is (true) or is not (false) the latest version of an object.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;Date and time when the object was last modified.&lt;/p&gt;
+/// Date and time when the object was last modified.
 /// </param>
 /// <param name="Owner">
-/// &lt;p&gt;The account that created the delete marker. &lt;/p&gt;
+/// The account that created the delete marker.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;Version ID of an object.&lt;/p&gt;
+/// Version ID of an object.
 /// </param>
 public sealed record class DeleteMarkerEntry(
     bool? IsLatest = null,

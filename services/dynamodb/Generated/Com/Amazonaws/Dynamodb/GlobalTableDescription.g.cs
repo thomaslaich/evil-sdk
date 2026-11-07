@@ -8,40 +8,46 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains details about the global table.&lt;/p&gt;
+/// Contains details about the global table.
 /// </summary>
 /// <param name="CreationDateTime">
-/// &lt;p&gt;The creation time of the global table.&lt;/p&gt;
+/// The creation time of the global table.
 /// </param>
 /// <param name="GlobalTableArn">
-/// &lt;p&gt;The unique identifier of the global table.&lt;/p&gt;
+/// The unique identifier of the global table.
 /// </param>
 /// <param name="GlobalTableName">
-/// &lt;p&gt;The global table name.&lt;/p&gt;
+/// The global table name.
 /// </param>
 /// <param name="GlobalTableStatus">
-/// &lt;p&gt;The current state of the global table:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The global table is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The global table is being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The global table is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The global table is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of the global table:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The global table is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The global table is being updated.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The global table is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The global table is ready for use.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="ReplicationGroup">
-/// &lt;p&gt;The Regions where the global table has replicas.&lt;/p&gt;
+/// The Regions where the global table has replicas.
 /// </param>
 public sealed record class GlobalTableDescription(
     DateTimeOffset? CreationDateTime = null,

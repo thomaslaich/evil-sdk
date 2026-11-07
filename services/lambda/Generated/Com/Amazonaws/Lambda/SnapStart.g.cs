@@ -5,9 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html&quot;&gt;Lambda SnapStart&lt;/a&gt; setting. Set &lt;code&gt;ApplyOn&lt;/code&gt; to &lt;code&gt;PublishedVersions&lt;/code&gt; to create a snapshot of the initialized execution environment when you publish a function version.&lt;/p&gt;
+/// The function's <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">Lambda
+/// SnapStart</see> setting. Set <c>ApplyOn</c> to <c>PublishedVersions</c> to create a snapshot of the
+/// initialized execution environment when you publish a function version.
 /// </summary>
 /// <param name="ApplyOn">
-/// &lt;p&gt;Set to &lt;code&gt;PublishedVersions&lt;/code&gt; to create a snapshot of the initialized execution environment when you publish a function version.&lt;/p&gt;
+/// Set to <c>PublishedVersions</c> to create a snapshot of the initialized execution environment when
+/// you publish a function version.
 /// </param>
 public sealed record class SnapStart(SnapStartApplyOn? ApplyOn = null);

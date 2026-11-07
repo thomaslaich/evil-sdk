@@ -5,18 +5,20 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for the &lt;code&gt;Suffix&lt;/code&gt; element.&lt;/p&gt;
+/// Container for the <c>Suffix</c> element.
 /// </summary>
 /// <param name="Suffix">
-/// &lt;p&gt;A suffix that is appended to a request that is for a directory on the website endpoint. (For
-/// example, if the suffix is &lt;code&gt;index.html&lt;/code&gt; and you make a request to
-/// &lt;code&gt;samplebucket/images/&lt;/code&gt;, the data that is returned will be for the object with the key name
-/// &lt;code&gt;images/index.html&lt;/code&gt;.) The suffix must not be empty and must not include a slash
-/// character.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// A suffix that is appended to a request that is for a directory on the website endpoint. (For
+/// example, if the suffix is <c>index.html</c> and you make a request to <c>samplebucket/images/</c>,
+/// the data that is returned will be for the object with the key name <c>images/index.html</c>.) The
+/// suffix must not be empty and must not include a slash character.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 public sealed record class IndexDocument(string Suffix);

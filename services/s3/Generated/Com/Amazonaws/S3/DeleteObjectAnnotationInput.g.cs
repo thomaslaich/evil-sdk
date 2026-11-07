@@ -8,24 +8,28 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteObjectAnnotationInput.
 /// </summary>
 /// <param name="AnnotationName">
-/// &lt;p&gt;The name of the annotation to delete. Annotation names are UTF-8 encoded and cannot start with
-/// &lt;code&gt;aws&lt;/code&gt; or &lt;code&gt;s3&lt;/code&gt; (case-insensitive).&lt;/p&gt;
-/// &lt;p&gt;Length Constraints: Minimum length of 1. Maximum length of 512 bytes.&lt;/p&gt;
+/// <para>
+/// The name of the annotation to delete. Annotation names are UTF-8 encoded and cannot start with
+/// <c>aws</c> or <c>s3</c> (case-insensitive).
+/// </para>
+/// <para>
+/// Length Constraints: Minimum length of 1. Maximum length of 512 bytes.
+/// </para>
 /// </param>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket that contains the object.&lt;/p&gt;
+/// The name of the bucket that contains the object.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner.&lt;/p&gt;
+/// The account ID of the expected bucket owner.
 /// </param>
 /// <param name="ObjectIfMatch">
-/// &lt;p&gt;If specified, the operation only succeeds if the object's ETag matches the provided value.&lt;/p&gt;
+/// If specified, the operation only succeeds if the object's ETag matches the provided value.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID of the object.&lt;/p&gt;
+/// The version ID of the object.
 /// </param>
 public sealed record class DeleteObjectAnnotationInput(
     string AnnotationName,

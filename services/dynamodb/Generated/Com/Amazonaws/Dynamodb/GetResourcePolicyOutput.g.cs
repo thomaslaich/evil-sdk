@@ -8,11 +8,12 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#GetResourcePolicyOutput.
 /// </summary>
 /// <param name="Policy">
-/// &lt;p&gt;The resource-based policy document attached to the resource, which can be a table or
-/// stream, in JSON format.&lt;/p&gt;
+/// The resource-based policy document attached to the resource, which can be a table or stream, in JSON
+/// format.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;A unique string that represents the revision ID of the policy. If you're comparing revision IDs, make sure to always use string comparison logic.&lt;/p&gt;
+/// A unique string that represents the revision ID of the policy. If you're comparing revision IDs,
+/// make sure to always use string comparison logic.
 /// </param>
 public sealed record class GetResourcePolicyOutput(
     string? Policy = null,

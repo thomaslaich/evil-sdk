@@ -10,16 +10,19 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#InvokeWithResponseStreamOutput.
 /// </summary>
 /// <param name="EventStream">
-/// &lt;p&gt;The stream of response payloads.&lt;/p&gt;
+/// The stream of response payloads.
 /// </param>
 /// <param name="ExecutedVersion">
-/// &lt;p&gt;The version of the function that executed. When you invoke a function with an alias, this indicates which version the alias resolved to.&lt;/p&gt;
+/// The version of the function that executed. When you invoke a function with an alias, this indicates
+/// which version the alias resolved to.
 /// </param>
 /// <param name="ResponseStreamContentType">
-/// &lt;p&gt;The type of data the stream is returning.&lt;/p&gt;
+/// The type of data the stream is returning.
 /// </param>
 /// <param name="StatusCode">
-/// &lt;p&gt;For a successful request, the HTTP status code is in the 200 range. For the &lt;code&gt;RequestResponse&lt;/code&gt; invocation type, this status code is 200. For the &lt;code&gt;DryRun&lt;/code&gt; invocation type, this status code is 204.&lt;/p&gt;
+/// For a successful request, the HTTP status code is in the 200 range. For the <c>RequestResponse</c>
+/// invocation type, this status code is 200. For the <c>DryRun</c> invocation type, this status code is
+/// 204.
 /// </param>
 public sealed record class InvokeWithResponseStreamOutput(
     IAsyncEnumerable<InvokeWithResponseStreamResponseEvent>? EventStream = null,

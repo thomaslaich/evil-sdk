@@ -5,9 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains details about a failed chained function invocation, including error information and failure reason.&lt;/p&gt;
+/// Contains details about a failed chained function invocation, including error information and failure
+/// reason.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the chained invocation failure.&lt;/p&gt;
+/// Details about the chained invocation failure.
 /// </param>
 public sealed record class ChainedInvokeFailedDetails(EventError Error);

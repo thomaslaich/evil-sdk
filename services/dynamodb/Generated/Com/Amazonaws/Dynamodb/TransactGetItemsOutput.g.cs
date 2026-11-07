@@ -10,21 +10,23 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#TransactGetItemsOutput.
 /// </summary>
 /// <param name="ConsumedCapacity">
-/// &lt;p&gt;If the &lt;i&gt;ReturnConsumedCapacity&lt;/i&gt; value was &lt;code&gt;TOTAL&lt;/code&gt;, this
-/// is an array of &lt;code&gt;ConsumedCapacity&lt;/code&gt; objects, one for each table addressed by
-/// &lt;code&gt;TransactGetItem&lt;/code&gt; objects in the &lt;i&gt;TransactItems&lt;/i&gt;
-/// parameter. These &lt;code&gt;ConsumedCapacity&lt;/code&gt; objects report the read-capacity units
-/// consumed by the &lt;code&gt;TransactGetItems&lt;/code&gt; call in that table.&lt;/p&gt;
+/// If the <i>ReturnConsumedCapacity</i> value was <c>TOTAL</c>, this is an array of
+/// <c>ConsumedCapacity</c> objects, one for each table addressed by <c>TransactGetItem</c> objects in
+/// the <i>TransactItems</i> parameter. These <c>ConsumedCapacity</c> objects report the read-capacity
+/// units consumed by the <c>TransactGetItems</c> call in that table.
 /// </param>
 /// <param name="Responses">
-/// &lt;p&gt;An ordered array of up to 100 &lt;code&gt;ItemResponse&lt;/code&gt; objects, each of which
-/// corresponds to the &lt;code&gt;TransactGetItem&lt;/code&gt; object in the same position in the
-/// &lt;i&gt;TransactItems&lt;/i&gt; array. Each &lt;code&gt;ItemResponse&lt;/code&gt; object
-/// contains a Map of the name-value pairs that are the projected attributes of the
-/// requested item.&lt;/p&gt;
-/// &lt;p&gt;If a requested item could not be retrieved, the corresponding
-/// &lt;code&gt;ItemResponse&lt;/code&gt; object is Null, or if the requested item has no projected
-/// attributes, the corresponding &lt;code&gt;ItemResponse&lt;/code&gt; object is an empty Map. &lt;/p&gt;
+/// <para>
+/// An ordered array of up to 100 <c>ItemResponse</c> objects, each of which corresponds to the
+/// <c>TransactGetItem</c> object in the same position in the <i>TransactItems</i> array. Each
+/// <c>ItemResponse</c> object contains a Map of the name-value pairs that are the projected attributes
+/// of the requested item.
+/// </para>
+/// <para>
+/// If a requested item could not be retrieved, the corresponding <c>ItemResponse</c> object is Null, or
+/// if the requested item has no projected attributes, the corresponding <c>ItemResponse</c> object is
+/// an empty Map.
+/// </para>
 /// </param>
 public sealed record class TransactGetItemsOutput(
     IReadOnlyList<global::Com.Amazonaws.Dynamodb.ConsumedCapacity>? ConsumedCapacity = null,

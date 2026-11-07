@@ -5,28 +5,19 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;
 /// The destination information for the S3 Metadata configuration.
-/// &lt;/p&gt;
 /// </summary>
 /// <param name="TableBucketArn">
-/// &lt;p&gt;
 /// The Amazon Resource Name (ARN) of the table bucket where the metadata configuration is stored.
-/// &lt;/p&gt;
 /// </param>
 /// <param name="TableBucketType">
-/// &lt;p&gt;
-/// The type of the table bucket where the metadata configuration is stored. The &lt;code&gt;aws&lt;/code&gt;
-/// value indicates an Amazon Web Services managed table bucket, and the &lt;code&gt;customer&lt;/code&gt; value indicates a
-/// customer-managed table bucket. V2 metadata configurations are stored in Amazon Web Services managed table
-/// buckets, and V1 metadata configurations are stored in customer-managed table buckets.
-/// &lt;/p&gt;
+/// The type of the table bucket where the metadata configuration is stored. The <c>aws</c> value
+/// indicates an Amazon Web Services managed table bucket, and the <c>customer</c> value indicates a
+/// customer-managed table bucket. V2 metadata configurations are stored in Amazon Web Services managed
+/// table buckets, and V1 metadata configurations are stored in customer-managed table buckets.
 /// </param>
 /// <param name="TableNamespace">
-/// &lt;p&gt;
-/// The namespace in the table bucket where the metadata tables for a metadata configuration are
-/// stored.
-/// &lt;/p&gt;
+/// The namespace in the table bucket where the metadata tables for a metadata configuration are stored.
 /// </param>
 public sealed record class DestinationResult(
     string? TableBucketArn = null,

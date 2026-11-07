@@ -7,29 +7,25 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; The parameters for the table created as part of the import operation. &lt;/p&gt;
+/// The parameters for the table created as part of the import operation.
 /// </summary>
 /// <param name="AttributeDefinitions">
-/// &lt;p&gt; The attributes of the table created as part of the import operation. &lt;/p&gt;
+/// The attributes of the table created as part of the import operation.
 /// </param>
 /// <param name="KeySchema">
-/// &lt;p&gt; The primary key and option sort key of the table created as part of the import
-/// operation. &lt;/p&gt;
+/// The primary key and option sort key of the table created as part of the import operation.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt; The name of the table created as part of the import operation. &lt;/p&gt;
+/// The name of the table created as part of the import operation.
 /// </param>
 /// <param name="BillingMode">
-/// &lt;p&gt; The billing mode for provisioning the table created as part of the import operation.
-/// &lt;/p&gt;
+/// The billing mode for provisioning the table created as part of the import operation.
 /// </param>
 /// <param name="GlobalSecondaryIndexes">
-/// &lt;p&gt; The Global Secondary Indexes (GSI) of the table to be created as part of the import
-/// operation. &lt;/p&gt;
+/// The Global Secondary Indexes (GSI) of the table to be created as part of the import operation.
 /// </param>
 /// <param name="VectorIndexes">
-/// &lt;p&gt;The vector indexes of the table to be created as part of the import
-/// operation.&lt;/p&gt;
+/// The vector indexes of the table to be created as part of the import operation.
 /// </param>
 public sealed record class TableCreationParameters(
     IReadOnlyList<AttributeDefinition> AttributeDefinitions,

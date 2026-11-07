@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a durable execution that started.&lt;/p&gt;
+/// Details about a durable execution that started.
 /// </summary>
 /// <param name="ExecutionTimeout">
-/// &lt;p&gt;The maximum amount of time that the durable execution is allowed to run, in seconds.&lt;/p&gt;
+/// The maximum amount of time that the durable execution is allowed to run, in seconds.
 /// </param>
 /// <param name="Input">
-/// &lt;p&gt;The input payload provided for the durable execution.&lt;/p&gt;
+/// The input payload provided for the durable execution.
 /// </param>
 public sealed record class ExecutionStartedDetails(int ExecutionTimeout, EventInput Input);

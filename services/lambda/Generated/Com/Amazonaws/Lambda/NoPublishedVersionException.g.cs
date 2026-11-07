@@ -7,15 +7,15 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The function has no published versions available.&lt;/p&gt;
+/// The function has no published versions available.
 /// </summary>
 public sealed partial class NoPublishedVersionException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The function has no published versions available.&lt;/p&gt;
+    /// The function has no published versions available.
     /// </summary>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public NoPublishedVersionException(string? message = null, string? type = null)
         : base(message)
@@ -26,7 +26,7 @@ public sealed partial class NoPublishedVersionException : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

@@ -7,165 +7,207 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of a &lt;code&gt;DeleteItem&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of a <c>DeleteItem</c> operation.
 /// </summary>
 /// <param name="Key">
-/// &lt;p&gt;A map of attribute names to &lt;code&gt;AttributeValue&lt;/code&gt; objects, representing the
-/// primary key of the item to delete.&lt;/p&gt;
-/// &lt;p&gt;For the primary key, you must provide all of the key attributes. For example, with a
-/// simple primary key, you only need to provide a value for the partition key. For a
-/// composite primary key, you must provide values for both the partition key and the sort
-/// key.&lt;/p&gt;
+/// <para>
+/// A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item
+/// to delete.
+/// </para>
+/// <para>
+/// For the primary key, you must provide all of the key attributes. For example, with a simple primary
+/// key, you only need to provide a value for the partition key. For a composite primary key, you must
+/// provide values for both the partition key and the sort key.
+/// </para>
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table from which to delete the item. You can also provide the
-/// Amazon Resource Name (ARN) of the table in this parameter.&lt;/p&gt;
+/// The name of the table from which to delete the item. You can also provide the Amazon Resource Name
+/// (ARN) of the table in this parameter.
 /// </param>
 /// <param name="ConditionExpression">
-/// &lt;p&gt;A condition that must be satisfied in order for a conditional &lt;code&gt;DeleteItem&lt;/code&gt;
-/// to succeed.&lt;/p&gt;
-/// &lt;p&gt;An expression can contain any of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Functions: &lt;code&gt;attribute_exists | attribute_not_exists | attribute_type |
-/// contains | begins_with | size&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;These function names are case-sensitive.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Comparison operators: &lt;code&gt;= | &lt;&gt; |
-/// &lt; | &gt; | &lt;= | &gt;= |
-/// BETWEEN | IN &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; Logical operators: &lt;code&gt;AND | OR | NOT&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information about condition expressions, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html&quot;&gt;Condition Expressions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// A condition that must be satisfied in order for a conditional <c>DeleteItem</c> to succeed.
+/// </para>
+/// <para>
+/// An expression can contain any of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// Functions: <c>attribute_exists | attribute_not_exists | attribute_type | contains | begins_with |
+/// size</c>
+/// </para>
+/// <para>
+/// These function names are case-sensitive.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Comparison operators: <c>= | &lt;&gt; | &lt; | &gt; | &lt;= | &gt;= | BETWEEN | IN </c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Logical operators: <c>AND | OR | NOT</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information about condition expressions, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Condition
+/// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ConditionalOperator">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;ConditionExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html&quot;&gt;ConditionalOperator&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="Expected">
-/// &lt;p&gt;This is a legacy parameter. Use &lt;code&gt;ConditionExpression&lt;/code&gt; instead. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html&quot;&gt;Expected&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// This is a legacy parameter. Use <c>ConditionExpression</c> instead. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.Expected.html">Expected</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression. The following
-/// are some use cases for using &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To access an attribute whose name conflicts with a DynamoDB reserved
-/// word.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To create a placeholder for repeating occurrences of an attribute name in an
-/// expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To prevent special characters in an attribute name from being misinterpreted
-/// in an expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;Use the &lt;b&gt;#&lt;/b&gt; character in an expression to dereference
-/// an attribute name. For example, consider the following attribute name:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Percentile&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;The name of this attribute conflicts with a reserved word, so it cannot be used
-/// directly in an expression. (For the complete list of reserved words, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html&quot;&gt;Reserved Words&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;). To work around this, you could specify the following for
-/// &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;{&quot;#P&quot;:&quot;Percentile&quot;}&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;You could then use this substitution in an expression, as in this example:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;#P = :val&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Tokens that begin with the &lt;b&gt;:&lt;/b&gt; character are
-/// &lt;i&gt;expression attribute values&lt;/i&gt;, which are placeholders for the
-/// actual value at runtime.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For more information on expression attribute names, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html&quot;&gt;Specifying Item Attributes&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// One or more substitution tokens for attribute names in an expression. The following are some use
+/// cases for using <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// To access an attribute whose name conflicts with a DynamoDB reserved word.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To create a placeholder for repeating occurrences of an attribute name in an expression.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To prevent special characters in an attribute name from being misinterpreted in an expression.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Use the <b>#</b> character in an expression to dereference an attribute name. For example, consider
+/// the following attribute name:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>Percentile</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The name of this attribute conflicts with a reserved word, so it cannot be used directly in an
+/// expression. (For the complete list of reserved words, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+/// Words</see> in the <i>Amazon DynamoDB Developer Guide</i>). To work around this, you could specify
+/// the following for <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>{"#P":"Percentile"}</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You could then use this substitution in an expression, as in this example:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>#P = :val</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> Tokens that begin with the <b>:</b> character are <i>expression attribute values</i>,
+/// which are placeholders for the actual value at runtime.
+/// </para>
+/// <para>
+/// For more information on expression attribute names, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Specifying
+/// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression.&lt;/p&gt;
-/// &lt;p&gt;Use the &lt;b&gt;:&lt;/b&gt; (colon) character in an expression to
-/// dereference an attribute value. For example, suppose that you wanted to check whether
-/// the value of the &lt;i&gt;ProductStatus&lt;/i&gt; attribute was one of the following: &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Available | Backordered | Discontinued&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;You would first need to specify &lt;code&gt;ExpressionAttributeValues&lt;/code&gt; as
-/// follows:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;{ &quot;:avail&quot;:{&quot;S&quot;:&quot;Available&quot;}, &quot;:back&quot;:{&quot;S&quot;:&quot;Backordered&quot;},
-/// &quot;:disc&quot;:{&quot;S&quot;:&quot;Discontinued&quot;} }&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;You could then use these values in an expression, such as this:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProductStatus IN (:avail, :back, :disc)&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;For more information on expression attribute values, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html&quot;&gt;Condition Expressions&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// One or more values that can be substituted in an expression.
+/// </para>
+/// <para>
+/// Use the <b>:</b> (colon) character in an expression to dereference an attribute value. For example,
+/// suppose that you wanted to check whether the value of the <i>ProductStatus</i> attribute was one of
+/// the following:
+/// </para>
+/// <para>
+/// <c>Available | Backordered | Discontinued</c>
+/// </para>
+/// <para>
+/// You would first need to specify <c>ExpressionAttributeValues</c> as follows:
+/// </para>
+/// <para>
+/// <c>{ ":avail":{"S":"Available"}, ":back":{"S":"Backordered"}, ":disc":{"S":"Discontinued"} }</c>
+/// </para>
+/// <para>
+/// You could then use these values in an expression, such as this:
+/// </para>
+/// <para>
+/// <c>ProductStatus IN (:avail, :back, :disc)</c>
+/// </para>
+/// <para>
+/// For more information on expression attribute values, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Condition
+/// Expressions</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ReturnItemCollectionMetrics">
-/// &lt;p&gt;Determines whether item collection metrics are returned. If set to &lt;code&gt;SIZE&lt;/code&gt;,
-/// the response includes statistics about item collections, if any, that were modified
-/// during the operation are returned in the response. If set to &lt;code&gt;NONE&lt;/code&gt; (the
-/// default), no statistics are returned.&lt;/p&gt;
+/// Determines whether item collection metrics are returned. If set to <c>SIZE</c>, the response
+/// includes statistics about item collections, if any, that were modified during the operation are
+/// returned in the response. If set to <c>NONE</c> (the default), no statistics are returned.
 /// </param>
 /// <param name="ReturnValues">
-/// &lt;p&gt;Use &lt;code&gt;ReturnValues&lt;/code&gt; if you want to get the item attributes as they appeared
-/// before they were deleted. For &lt;code&gt;DeleteItem&lt;/code&gt;, the valid values are:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;NONE&lt;/code&gt; - If &lt;code&gt;ReturnValues&lt;/code&gt; is not specified, or if its
-/// value is &lt;code&gt;NONE&lt;/code&gt;, then nothing is returned. (This setting is the
-/// default for &lt;code&gt;ReturnValues&lt;/code&gt;.)&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALL_OLD&lt;/code&gt; - The content of the old item is returned.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;There is no additional cost associated with requesting a return value aside from the
-/// small network and processing overhead of receiving a larger response. No read capacity
-/// units are consumed.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The &lt;code&gt;ReturnValues&lt;/code&gt; parameter is used by several DynamoDB operations;
-/// however, &lt;code&gt;DeleteItem&lt;/code&gt; does not recognize any values other than
-/// &lt;code&gt;NONE&lt;/code&gt; or &lt;code&gt;ALL_OLD&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Use <c>ReturnValues</c> if you want to get the item attributes as they appeared before they were
+/// deleted. For <c>DeleteItem</c>, the valid values are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>NONE</c> - If <c>ReturnValues</c> is not specified, or if its value is <c>NONE</c>, then nothing
+/// is returned. (This setting is the default for <c>ReturnValues</c>.)
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ALL_OLD</c> - The content of the old item is returned.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// There is no additional cost associated with requesting a return value aside from the small network
+/// and processing overhead of receiving a larger response. No read capacity units are consumed.
+/// </para>
+/// <para>
+/// <b>Note:</b> The <c>ReturnValues</c> parameter is used by several DynamoDB operations; however,
+/// <c>DeleteItem</c> does not recognize any values other than <c>NONE</c> or <c>ALL_OLD</c>.
+/// </para>
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;An optional parameter that returns the item attributes for a &lt;code&gt;DeleteItem&lt;/code&gt;
-/// operation that failed a condition check.&lt;/p&gt;
-/// &lt;p&gt;There is no additional cost associated with requesting a return value aside from the
-/// small network and processing overhead of receiving a larger response. No read capacity
-/// units are consumed.&lt;/p&gt;
+/// <para>
+/// An optional parameter that returns the item attributes for a <c>DeleteItem</c> operation that failed
+/// a condition check.
+/// </para>
+/// <para>
+/// There is no additional cost associated with requesting a return value aside from the small network
+/// and processing overhead of receiving a larger response. No read capacity units are consumed.
+/// </para>
 /// </param>
 public sealed record class DeleteItemInput(
     IReadOnlyDictionary<string, AttributeValue> Key,

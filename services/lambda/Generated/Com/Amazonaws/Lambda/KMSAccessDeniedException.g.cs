@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't decrypt the environment variables because KMS access was denied. Check the Lambda function's KMS permissions.&lt;/p&gt;
+/// Lambda couldn't decrypt the environment variables because KMS access was denied. Check the Lambda
+/// function's KMS permissions.
 /// </summary>
 public sealed partial class KMSAccessDeniedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't decrypt the environment variables because KMS access was denied. Check the Lambda function's KMS permissions.&lt;/p&gt;
+    /// Lambda couldn't decrypt the environment variables because KMS access was denied. Check the Lambda
+    /// function's KMS permissions.
     /// </summary>
     public KMSAccessDeniedException(string? message = null, string? type = null)
         : base(message)

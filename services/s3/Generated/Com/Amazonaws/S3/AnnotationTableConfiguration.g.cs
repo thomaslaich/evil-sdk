@@ -5,15 +5,15 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the configuration for the annotation table associated with a bucket's Amazon S3 Metadata
+/// Specifies the configuration for the annotation table associated with a bucket's Amazon S3 Metadata
 /// configuration. The annotation table is an Iceberg table that records annotation events for objects
-/// in the bucket.&lt;/p&gt;
+/// in the bucket.
 /// </summary>
 /// <param name="ConfigurationState">
-/// &lt;p&gt;The state of the annotation table. Valid values are &lt;code&gt;ENABLED&lt;/code&gt; and &lt;code&gt;DISABLED&lt;/code&gt;.&lt;/p&gt;
+/// The state of the annotation table. Valid values are <c>ENABLED</c> and <c>DISABLED</c>.
 /// </param>
 /// <param name="Role">
-/// &lt;p&gt;The ARN of the IAM role used to manage the annotation table.&lt;/p&gt;
+/// The ARN of the IAM role used to manage the annotation table.
 /// </param>
 public sealed record class AnnotationTableConfiguration(
     AnnotationConfigurationState ConfigurationState,

@@ -10,44 +10,56 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectAttributesOutput.
 /// </summary>
 /// <param name="Checksum">
-/// &lt;p&gt;The checksum or digest of the object.&lt;/p&gt;
+/// The checksum or digest of the object.
 /// </param>
 /// <param name="DeleteMarker">
-/// &lt;p&gt;Specifies whether the object retrieved was (&lt;code&gt;true&lt;/code&gt;) or was not (&lt;code&gt;false&lt;/code&gt;) a
-/// delete marker. If &lt;code&gt;false&lt;/code&gt;, this response header does not appear in the response. To learn
-/// more about delete markers, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html&quot;&gt;Working with delete markers&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether the object retrieved was (<c>true</c>) or was not (<c>false</c>) a delete marker.
+/// If <c>false</c>, this response header does not appear in the response. To learn more about delete
+/// markers, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html">Working with
+/// delete markers</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;An ETag is an opaque identifier assigned by a web server to a specific version of a resource found
-/// at a URL.&lt;/p&gt;
+/// An ETag is an opaque identifier assigned by a web server to a specific version of a resource found
+/// at a URL.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;Date and time when the object was last modified.&lt;/p&gt;
+/// Date and time when the object was last modified.
 /// </param>
 /// <param name="ObjectParts">
-/// &lt;p&gt;A collection of parts associated with a multipart upload.&lt;/p&gt;
+/// A collection of parts associated with a multipart upload.
 /// </param>
 /// <param name="ObjectSize">
-/// &lt;p&gt;The size of the object in bytes.&lt;/p&gt;
+/// The size of the object in bytes.
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;Provides the storage class information of the object. Amazon S3 returns this header for all objects
-/// except for S3 Standard storage class objects.&lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html&quot;&gt;Storage Classes&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; -
-/// Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Provides the storage class information of the object. Amazon S3 returns this header for all objects
+/// except for S3 Standard storage class objects.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html">Storage
+/// Classes</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - Directory buckets only support <c>EXPRESS_ONEZONE</c> (the
+/// S3 Express One Zone storage class) in Availability Zones and <c>ONEZONE_IA</c> (the S3 One
+/// Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID of the object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The version ID of the object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class GetObjectAttributesOutput(
     global::Com.Amazonaws.S3.Checksum? Checksum = null,

@@ -5,20 +5,14 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;
 /// The inventory table configuration for an S3 Metadata configuration.
-/// &lt;/p&gt;
 /// </summary>
 /// <param name="ConfigurationState">
-/// &lt;p&gt;
-/// The configuration state of the inventory table, indicating whether the inventory table is enabled
-/// or disabled.
-/// &lt;/p&gt;
+/// The configuration state of the inventory table, indicating whether the inventory table is enabled or
+/// disabled.
 /// </param>
 /// <param name="EncryptionConfiguration">
-/// &lt;p&gt;
 /// The encryption configuration for the inventory table.
-/// &lt;/p&gt;
 /// </param>
 public sealed record class InventoryTableConfiguration(
     InventoryConfigurationState ConfigurationState,

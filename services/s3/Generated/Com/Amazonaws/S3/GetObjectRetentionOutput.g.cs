@@ -8,6 +8,6 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectRetentionOutput.
 /// </summary>
 /// <param name="Retention">
-/// &lt;p&gt;The container element for an object's retention settings.&lt;/p&gt;
+/// The container element for an object's retention settings.
 /// </param>
 public sealed record class GetObjectRetentionOutput(ObjectLockRetention? Retention = null);

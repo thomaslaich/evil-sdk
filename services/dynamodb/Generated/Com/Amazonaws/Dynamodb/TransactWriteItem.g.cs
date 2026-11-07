@@ -5,20 +5,20 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A list of requests that can perform update, put, delete, or check operations on
-/// multiple items in one or more tables atomically.&lt;/p&gt;
+/// A list of requests that can perform update, put, delete, or check operations on multiple items in
+/// one or more tables atomically.
 /// </summary>
 /// <param name="ConditionCheck">
-/// &lt;p&gt;A request to perform a check item operation.&lt;/p&gt;
+/// A request to perform a check item operation.
 /// </param>
 /// <param name="Delete">
-/// &lt;p&gt;A request to perform a &lt;code&gt;DeleteItem&lt;/code&gt; operation.&lt;/p&gt;
+/// A request to perform a <c>DeleteItem</c> operation.
 /// </param>
 /// <param name="Put">
-/// &lt;p&gt;A request to perform a &lt;code&gt;PutItem&lt;/code&gt; operation.&lt;/p&gt;
+/// A request to perform a <c>PutItem</c> operation.
 /// </param>
 /// <param name="Update">
-/// &lt;p&gt;A request to perform an &lt;code&gt;UpdateItem&lt;/code&gt; operation.&lt;/p&gt;
+/// A request to perform an <c>UpdateItem</c> operation.
 /// </param>
 public sealed record class TransactWriteItem(
     global::Com.Amazonaws.Dynamodb.ConditionCheck? ConditionCheck = null,

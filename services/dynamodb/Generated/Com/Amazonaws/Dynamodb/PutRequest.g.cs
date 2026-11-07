@@ -7,13 +7,12 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a request to perform a &lt;code&gt;PutItem&lt;/code&gt; operation on an item.&lt;/p&gt;
+/// Represents a request to perform a <c>PutItem</c> operation on an item.
 /// </summary>
 /// <param name="Item">
-/// &lt;p&gt;A map of attribute name to attribute values, representing the primary key of an item
-/// to be processed by &lt;code&gt;PutItem&lt;/code&gt;. All of the table's primary key attributes must
-/// be specified, and their data types must match those of the table's key schema. If any
-/// attributes are present in the item that are part of an index key schema for the table,
-/// their types must match the index key schema.&lt;/p&gt;
+/// A map of attribute name to attribute values, representing the primary key of an item to be processed
+/// by <c>PutItem</c>. All of the table's primary key attributes must be specified, and their data types
+/// must match those of the table's key schema. If any attributes are present in the item that are part
+/// of an index key schema for the table, their types must match the index key schema.
 /// </param>
 public sealed record class PutRequest(IReadOnlyDictionary<string, AttributeValue> Item);

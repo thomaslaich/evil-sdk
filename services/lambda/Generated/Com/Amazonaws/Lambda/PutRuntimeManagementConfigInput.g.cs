@@ -8,16 +8,79 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutRuntimeManagementConfigInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; – &lt;code&gt;my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; – &lt;code&gt;123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="UpdateRuntimeOn">
-/// &lt;p&gt;Specify the runtime update mode.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Auto (default)&lt;/b&gt; - Automatically update to the most recent and secure runtime version using a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html#runtime-management-two-phase&quot;&gt;Two-phase runtime version rollout&lt;/a&gt;. This is the best choice for most customers to ensure they always benefit from runtime updates.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function update&lt;/b&gt; - Lambda updates the runtime of your function to the most recent and secure runtime version when you update your function. This approach synchronizes runtime updates with function deployments, giving you control over when runtime updates are applied and allowing you to detect and mitigate rare runtime update incompatibilities early. When using this setting, you need to regularly update your functions to keep their runtime up-to-date.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Manual&lt;/b&gt; - You specify a runtime version in your function configuration. The function will use this runtime version indefinitely. In the rare case where a new runtime version is incompatible with an existing function, this allows you to roll back your function to an earlier runtime version. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html#runtime-management-rollback&quot;&gt;Roll back a runtime version&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// Specify the runtime update mode.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Auto (default)</b> - Automatically update to the most recent and secure runtime version using a
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html#runtime-management-two-phase">Two-phase
+/// runtime version rollout</see>. This is the best choice for most customers to ensure they always
+/// benefit from runtime updates.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function update</b> - Lambda updates the runtime of your function to the most recent and secure
+/// runtime version when you update your function. This approach synchronizes runtime updates with
+/// function deployments, giving you control over when runtime updates are applied and allowing you to
+/// detect and mitigate rare runtime update incompatibilities early. When using this setting, you need
+/// to regularly update your functions to keep their runtime up-to-date.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Manual</b> - You specify a runtime version in your function configuration. The function will use
+/// this runtime version indefinitely. In the rare case where a new runtime version is incompatible with
+/// an existing function, this allows you to roll back your function to an earlier runtime version. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html#runtime-management-rollback">Roll
+/// back a runtime version</see>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Qualifier">
-/// &lt;p&gt;Specify a version of the function. This can be &lt;code&gt;$LATEST&lt;/code&gt; or a published version number. If no value is specified, the configuration for the &lt;code&gt;$LATEST&lt;/code&gt; version is returned.&lt;/p&gt;
+/// Specify a version of the function. This can be <c>$LATEST</c> or a published version number. If no
+/// value is specified, the configuration for the <c>$LATEST</c> version is returned.
 /// </param>
 /// <param name="RuntimeVersionArn">
-/// &lt;p&gt;The ARN of the runtime version you want the function to use.&lt;/p&gt; &lt;note&gt; &lt;p&gt;This is only required if you're using the &lt;b&gt;Manual&lt;/b&gt; runtime update mode.&lt;/p&gt; &lt;/note&gt;
+/// <para>
+/// The ARN of the runtime version you want the function to use.
+/// </para>
+/// <para>
+/// <b>Note:</b> This is only required if you're using the <b>Manual</b> runtime update mode.
+/// </para>
 /// </param>
 public sealed record class PutRuntimeManagementConfigInput(
     string FunctionName,

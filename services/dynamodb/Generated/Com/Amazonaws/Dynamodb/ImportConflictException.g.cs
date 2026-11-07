@@ -7,16 +7,14 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; There was a conflict when importing from the specified S3 source. This can occur when
-/// the current import conflicts with a previous import request that had the same client
-/// token. &lt;/p&gt;
+/// There was a conflict when importing from the specified S3 source. This can occur when the current
+/// import conflicts with a previous import request that had the same client token.
 /// </summary>
 public sealed partial class ImportConflictException : Exception
 {
     /// <summary>
-    /// &lt;p&gt; There was a conflict when importing from the specified S3 source. This can occur when
-    /// the current import conflicts with a previous import request that had the same client
-    /// token. &lt;/p&gt;
+    /// There was a conflict when importing from the specified S3 source. This can occur when the current
+    /// import conflicts with a previous import request that had the same client token.
     /// </summary>
     public ImportConflictException(string? message = null)
         : base(message) { }

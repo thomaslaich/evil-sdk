@@ -10,43 +10,95 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateFunctionCodeInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; – &lt;code&gt;my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; – &lt;code&gt;123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="Architectures">
-/// &lt;p&gt;The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is &lt;code&gt;x86_64&lt;/code&gt;.&lt;/p&gt;
+/// The instruction set architecture that the function supports. Enter a string array with one of the
+/// valid values (arm64 or x86_64). The default value is <c>x86_64</c>.
 /// </param>
 /// <param name="DryRun">
-/// &lt;p&gt;Set to true to validate the request parameters and access permissions without modifying the function code.&lt;/p&gt;
+/// Set to true to validate the request parameters and access permissions without modifying the function
+/// code.
 /// </param>
 /// <param name="ImageUri">
-/// &lt;p&gt;URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip file archive.&lt;/p&gt;
+/// URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip
+/// file archive.
 /// </param>
 /// <param name="Publish">
-/// &lt;p&gt;Set to true to publish a new version of the function after updating the code. This has the same effect as calling &lt;a&gt;PublishVersion&lt;/a&gt; separately.&lt;/p&gt;
+/// Set to true to publish a new version of the function after updating the code. This has the same
+/// effect as calling PublishVersion separately.
 /// </param>
 /// <param name="PublishTo">
-/// &lt;p&gt;Specifies where to publish the function version or configuration.&lt;/p&gt;
+/// Specifies where to publish the function version or configuration.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;Update the function only if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it.&lt;/p&gt;
+/// Update the function only if the revision ID matches the ID that's specified. Use this option to
+/// avoid modifying a function that has changed since you last read it.
 /// </param>
 /// <param name="S3Bucket">
-/// &lt;p&gt;An Amazon S3 bucket in the same Amazon Web Services Region as your function. The bucket can be in a different Amazon Web Services account. Use only with a function defined with a .zip file archive deployment package.&lt;/p&gt;
+/// An Amazon S3 bucket in the same Amazon Web Services Region as your function. The bucket can be in a
+/// different Amazon Web Services account. Use only with a function defined with a .zip file archive
+/// deployment package.
 /// </param>
 /// <param name="S3Key">
-/// &lt;p&gt;The Amazon S3 key of the deployment package. Use only with a function defined with a .zip file archive deployment package.&lt;/p&gt;
+/// The Amazon S3 key of the deployment package. Use only with a function defined with a .zip file
+/// archive deployment package.
 /// </param>
 /// <param name="S3ObjectStorageMode">
-/// &lt;p&gt;Specifies how the deployment package is stored. Valid values:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;COPY&lt;/code&gt; (default) – Uploads a copy of your deployment package to Lambda.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;REFERENCE&lt;/code&gt; – Lambda references the deployment package from the specified Amazon S3 bucket.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// Specifies how the deployment package is stored. Valid values:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>COPY</c> (default) – Uploads a copy of your deployment package to Lambda.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>REFERENCE</c> – Lambda references the deployment package from the specified Amazon S3 bucket.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="S3ObjectVersion">
-/// &lt;p&gt;For versioned objects, the version of the deployment package object to use.&lt;/p&gt;
+/// For versioned objects, the version of the deployment package object to use.
 /// </param>
 /// <param name="SourceKMSKeyArn">
-/// &lt;p&gt;The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an Amazon Web Services managed key.&lt;/p&gt;
+/// The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your
+/// function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an
+/// Amazon Web Services managed key.
 /// </param>
 /// <param name="ZipFile">
-/// &lt;p&gt;The base64-encoded contents of the deployment package. Amazon Web Services SDK and CLI clients handle the encoding for you. Use only with a function defined with a .zip file archive deployment package.&lt;/p&gt;
+/// The base64-encoded contents of the deployment package. Amazon Web Services SDK and CLI clients
+/// handle the encoding for you. Use only with a function defined with a .zip file archive deployment
+/// package.
 /// </param>
 public sealed record class UpdateFunctionCodeInput(
     string FunctionName,

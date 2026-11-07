@@ -5,16 +5,19 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt; Specific configuration settings for a DocumentDB event source. &lt;/p&gt;
+/// Specific configuration settings for a DocumentDB event source.
 /// </summary>
 /// <param name="CollectionName">
-/// &lt;p&gt; The name of the collection to consume within the database. If you do not specify a collection, Lambda consumes all collections. &lt;/p&gt;
+/// The name of the collection to consume within the database. If you do not specify a collection,
+/// Lambda consumes all collections.
 /// </param>
 /// <param name="DatabaseName">
-/// &lt;p&gt; The name of the database to consume within the DocumentDB cluster. &lt;/p&gt;
+/// The name of the database to consume within the DocumentDB cluster.
 /// </param>
 /// <param name="FullDocument">
-/// &lt;p&gt; Determines what DocumentDB sends to your event stream during document update operations. If set to UpdateLookup, DocumentDB sends a delta describing the changes, along with a copy of the entire document. Otherwise, DocumentDB sends only a partial document that contains the changes. &lt;/p&gt;
+/// Determines what DocumentDB sends to your event stream during document update operations. If set to
+/// UpdateLookup, DocumentDB sends a delta describing the changes, along with a copy of the entire
+/// document. Otherwise, DocumentDB sends only a partial document that contains the changes.
 /// </param>
 public sealed record class DocumentDBEventSourceConfig(
     string? CollectionName = null,

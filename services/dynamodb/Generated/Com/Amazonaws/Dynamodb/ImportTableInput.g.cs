@@ -8,32 +8,35 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ImportTableInput.
 /// </summary>
 /// <param name="InputFormat">
-/// &lt;p&gt; The format of the source data. Valid values for &lt;code&gt;ImportFormat&lt;/code&gt; are
-/// &lt;code&gt;CSV&lt;/code&gt;, &lt;code&gt;DYNAMODB_JSON&lt;/code&gt; or &lt;code&gt;ION&lt;/code&gt;. &lt;/p&gt;
+/// The format of the source data. Valid values for <c>ImportFormat</c> are <c>CSV</c>,
+/// <c>DYNAMODB_JSON</c> or <c>ION</c>.
 /// </param>
 /// <param name="S3BucketSource">
-/// &lt;p&gt; The S3 bucket that provides the source for the import. &lt;/p&gt;
+/// The S3 bucket that provides the source for the import.
 /// </param>
 /// <param name="TableCreationParameters">
-/// &lt;p&gt;Parameters for the table to import the data into. &lt;/p&gt;
+/// Parameters for the table to import the data into.
 /// </param>
 /// <param name="ClientToken">
-/// &lt;p&gt;Providing a &lt;code&gt;ClientToken&lt;/code&gt; makes the call to &lt;code&gt;ImportTableInput&lt;/code&gt;
-/// idempotent, meaning that multiple identical calls have the same effect as one single
-/// call.&lt;/p&gt;
-/// &lt;p&gt;A client token is valid for 8 hours after the first request that uses it is completed.
-/// After 8 hours, any request with the same client token is treated as a new request. Do
-/// not resubmit the same request with the same client token for more than 8 hours, or the
-/// result might not be idempotent.&lt;/p&gt;
-/// &lt;p&gt;If you submit a request with the same client token but a change in other parameters
-/// within the 8-hour idempotency window, DynamoDB returns an
-/// &lt;code&gt;IdempotentParameterMismatch&lt;/code&gt; exception.&lt;/p&gt;
+/// <para>
+/// Providing a <c>ClientToken</c> makes the call to <c>ImportTableInput</c> idempotent, meaning that
+/// multiple identical calls have the same effect as one single call.
+/// </para>
+/// <para>
+/// A client token is valid for 8 hours after the first request that uses it is completed. After 8
+/// hours, any request with the same client token is treated as a new request. Do not resubmit the same
+/// request with the same client token for more than 8 hours, or the result might not be idempotent.
+/// </para>
+/// <para>
+/// If you submit a request with the same client token but a change in other parameters within the
+/// 8-hour idempotency window, DynamoDB returns an <c>IdempotentParameterMismatch</c> exception.
+/// </para>
 /// </param>
 /// <param name="InputCompressionType">
-/// &lt;p&gt; Type of compression to be used on the input coming from the imported table. &lt;/p&gt;
+/// Type of compression to be used on the input coming from the imported table.
 /// </param>
 /// <param name="InputFormatOptions">
-/// &lt;p&gt; Additional properties that specify how the input is formatted, &lt;/p&gt;
+/// Additional properties that specify how the input is formatted,
 /// </param>
 public sealed record class ImportTableInput(
     global::Com.Amazonaws.Dynamodb.InputFormat InputFormat,

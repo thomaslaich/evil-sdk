@@ -10,31 +10,37 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#CreateCapacityProviderInput.
 /// </summary>
 /// <param name="CapacityProviderName">
-/// &lt;p&gt;The name of the capacity provider. &lt;/p&gt;
+/// The name of the capacity provider.
 /// </param>
 /// <param name="PermissionsConfig">
-/// &lt;p&gt;The permissions configuration that specifies the IAM role ARN used by the capacity provider to manage compute resources.&lt;/p&gt;
+/// The permissions configuration that specifies the IAM role ARN used by the capacity provider to
+/// manage compute resources.
 /// </param>
 /// <param name="VpcConfig">
-/// &lt;p&gt;The VPC configuration for the capacity provider, including subnet IDs and security group IDs where compute instances will be launched.&lt;/p&gt;
+/// The VPC configuration for the capacity provider, including subnet IDs and security group IDs where
+/// compute instances will be launched.
 /// </param>
 /// <param name="CapacityProviderScalingConfig">
-/// &lt;p&gt;The scaling configuration that defines how the capacity provider scales compute instances, including maximum vCPU count and scaling policies.&lt;/p&gt;
+/// The scaling configuration that defines how the capacity provider scales compute instances, including
+/// maximum vCPU count and scaling policies.
 /// </param>
 /// <param name="InstanceRequirements">
-/// &lt;p&gt;The instance requirements that specify the compute instance characteristics, including architectures and allowed or excluded instance types.&lt;/p&gt;
+/// The instance requirements that specify the compute instance characteristics, including architectures
+/// and allowed or excluded instance types.
 /// </param>
 /// <param name="KmsKeyArn">
-/// &lt;p&gt;The ARN of the KMS key used to encrypt data associated with the capacity provider.&lt;/p&gt;
+/// The ARN of the KMS key used to encrypt data associated with the capacity provider.
 /// </param>
 /// <param name="PropagateTags">
-/// &lt;p&gt;The tag propagation configuration for the capacity provider. Specifies tags to apply to managed resources at launch.&lt;/p&gt;
+/// The tag propagation configuration for the capacity provider. Specifies tags to apply to managed
+/// resources at launch.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;A list of tags to associate with the capacity provider.&lt;/p&gt;
+/// A list of tags to associate with the capacity provider.
 /// </param>
 /// <param name="TelemetryConfig">
-/// &lt;p&gt;The telemetry configuration for the capacity provider. Specifies logging settings for managed resources.&lt;/p&gt;
+/// The telemetry configuration for the capacity provider. Specifies logging settings for managed
+/// resources.
 /// </param>
 public sealed record class CreateCapacityProviderInput(
     string CapacityProviderName,

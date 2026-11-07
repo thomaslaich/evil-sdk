@@ -17,12 +17,122 @@ using NSmithy.Protocols.RestJson;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;fullname&gt;Lambda&lt;/fullname&gt; &lt;p&gt; &lt;b&gt;Overview&lt;/b&gt; &lt;/p&gt; &lt;p&gt;Lambda is a compute service that lets you run code without provisioning or managing servers. Lambda runs your code on a high-availability compute infrastructure and performs all of the administration of the compute resources, including server and operating system maintenance, capacity provisioning and automatic scaling, code monitoring and logging. With Lambda, you can run code for virtually any type of application or backend service. For more information about the Lambda service, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/welcome.html&quot;&gt;What is Lambda&lt;/a&gt; in the &lt;b&gt;Lambda Developer Guide&lt;/b&gt;.&lt;/p&gt; &lt;p&gt;The &lt;i&gt;Lambda API Reference&lt;/i&gt; provides information about each of the API methods, including details about the parameters in each API request and response. &lt;/p&gt; &lt;p/&gt; &lt;p&gt;You can use Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools to access the API. For installation instructions, see &lt;a href=&quot;http://aws.amazon.com/tools/&quot;&gt;Tools for Amazon Web Services&lt;/a&gt;. &lt;/p&gt; &lt;p&gt;For a list of Region-specific endpoints that Lambda supports, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/lambda-service.html&quot;&gt;Lambda endpoints and quotas &lt;/a&gt; in the &lt;i&gt;Amazon Web Services General Reference.&lt;/i&gt;. &lt;/p&gt; &lt;p&gt;When making the API calls, you will need to authenticate your request by providing a signature. Lambda supports signature version 4. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html&quot;&gt;Signature Version 4 signing process&lt;/a&gt; in the &lt;i&gt;Amazon Web Services General Reference.&lt;/i&gt;. &lt;/p&gt; &lt;p&gt; &lt;b&gt;CA certificates&lt;/b&gt; &lt;/p&gt; &lt;p&gt;Because Amazon Web Services SDKs use the CA certificates from your computer, changes to the certificates on the Amazon Web Services servers can cause connection failures when you attempt to use an SDK. You can prevent these failures by keeping your computer's CA certificates and operating system up-to-date. If you encounter this issue in a corporate environment and do not manage your own computer, you might need to ask an administrator to assist with the update process. The following list shows minimum operating system and Java versions:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;Microsoft Windows versions that have updates from January 2005 or later installed contain at least one of the required CAs in their trust list. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Mac OS X 10.4 with Java for Mac OS X 10.4 Release 5 (February 2007), Mac OS X 10.5 (October 2007), and later versions contain at least one of the required CAs in their trust list. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Red Hat Enterprise Linux 5 (March 2007), 6, and 7 and CentOS 5, 6, and 7 all contain at least one of the required CAs in their default trusted CA list. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Java 1.4.2_12 (May 2006), 5 Update 2 (March 2005), and all later versions, including Java 6 (December 2006), 7, and 8, contain at least one of the required CAs in their default trusted CA list. &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;When accessing the Lambda management console or Lambda API endpoints, whether through browsers or programmatically, you will need to ensure your client machines support any of the following CAs: &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;Amazon Root CA 1&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Starfield Services Root Certificate Authority - G2&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Starfield Class 2 Certification Authority&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Root certificates from the first two authorities are available from &lt;a href=&quot;https://www.amazontrust.com/repository/&quot;&gt;Amazon trust services&lt;/a&gt;, but keeping your computer up-to-date is the more straightforward solution. To learn more about ACM-provided certificates, see &lt;a href=&quot;http://aws.amazon.com/certificate-manager/faqs/#certificates&quot;&gt;Amazon Web Services Certificate Manager FAQs.&lt;/a&gt; &lt;/p&gt;
+/// <para>
+/// <b>Lambda</b>
+/// </para>
+/// <para>
+/// <b>Overview</b>
+/// </para>
+/// <para>
+/// Lambda is a compute service that lets you run code without provisioning or managing servers. Lambda
+/// runs your code on a high-availability compute infrastructure and performs all of the administration
+/// of the compute resources, including server and operating system maintenance, capacity provisioning
+/// and automatic scaling, code monitoring and logging. With Lambda, you can run code for virtually any
+/// type of application or backend service. For more information about the Lambda service, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is Lambda</see> in the
+/// <b>Lambda Developer Guide</b>.
+/// </para>
+/// <para>
+/// The <i>Lambda API Reference</i> provides information about each of the API methods, including
+/// details about the parameters in each API request and response.
+/// </para>
+/// <para>
+/// You can use Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and
+/// command line tools to access the API. For installation instructions, see
+/// <see href="http://aws.amazon.com/tools/">Tools for Amazon Web Services</see>.
+/// </para>
+/// <para>
+/// For a list of Region-specific endpoints that Lambda supports, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html">Lambda endpoints and
+/// quotas</see> in the <i>Amazon Web Services General Reference.</i>.
+/// </para>
+/// <para>
+/// When making the API calls, you will need to authenticate your request by providing a signature.
+/// Lambda supports signature version 4. For more information, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature Version
+/// 4 signing process</see> in the <i>Amazon Web Services General Reference.</i>.
+/// </para>
+/// <para>
+/// <b>CA certificates</b>
+/// </para>
+/// <para>
+/// Because Amazon Web Services SDKs use the CA certificates from your computer, changes to the
+/// certificates on the Amazon Web Services servers can cause connection failures when you attempt to
+/// use an SDK. You can prevent these failures by keeping your computer's CA certificates and operating
+/// system up-to-date. If you encounter this issue in a corporate environment and do not manage your own
+/// computer, you might need to ask an administrator to assist with the update process. The following
+/// list shows minimum operating system and Java versions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Microsoft Windows versions that have updates from January 2005 or later installed contain at least
+/// one of the required CAs in their trust list.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Mac OS X 10.4 with Java for Mac OS X 10.4 Release 5 (February 2007), Mac OS X 10.5 (October 2007),
+/// and later versions contain at least one of the required CAs in their trust list.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Red Hat Enterprise Linux 5 (March 2007), 6, and 7 and CentOS 5, 6, and 7 all contain at least one of
+/// the required CAs in their default trusted CA list.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Java 1.4.2_12 (May 2006), 5 Update 2 (March 2005), and all later versions, including Java 6
+/// (December 2006), 7, and 8, contain at least one of the required CAs in their default trusted CA
+/// list.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// When accessing the Lambda management console or Lambda API endpoints, whether through browsers or
+/// programmatically, you will need to ensure your client machines support any of the following CAs:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Amazon Root CA 1
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Starfield Services Root Certificate Authority - G2
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Starfield Class 2 Certification Authority
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Root certificates from the first two authorities are available from
+/// <see href="https://www.amazontrust.com/repository/">Amazon trust services</see>, but keeping your
+/// computer up-to-date is the more straightforward solution. To learn more about ACM-provided
+/// certificates, see <see href="http://aws.amazon.com/certificate-manager/faqs/#certificates">Amazon
+/// Web Services Certificate Manager FAQs.</see>
+/// </para>
 /// </summary>
 public interface IAWSGirApiServiceClient : IDisposable
 {
     /// <summary>
-    /// &lt;p&gt;Adds permissions to the resource-based policy of a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Use this action to grant layer usage permission to other accounts. You can grant permission to a single account, all accounts in an organization, or all Amazon Web Services accounts. &lt;/p&gt; &lt;p&gt;To revoke permission, call &lt;a&gt;RemoveLayerVersionPermission&lt;/a&gt; with the statement ID that you specified when you added it.&lt;/p&gt;
+    /// <para>
+    /// Adds permissions to the resource-based policy of a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Use this action to grant layer usage permission to other accounts. You can grant
+    /// permission to a single account, all accounts in an organization, or all Amazon Web Services
+    /// accounts.
+    /// </para>
+    /// <para>
+    /// To revoke permission, call RemoveLayerVersionPermission with the statement ID that you specified
+    /// when you added it.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -45,7 +155,30 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Grants a &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying&quot;&gt;principal&lt;/a&gt; permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does not support adding policies to version $LATEST.&lt;/p&gt; &lt;p&gt;To grant permission to another account, specify the account ID as the &lt;code&gt;Principal&lt;/code&gt;. To grant permission to an organization defined in Organizations, specify the organization ID as the &lt;code&gt;PrincipalOrgID&lt;/code&gt;. For Amazon Web Services services, the principal is a domain-style identifier that the service defines, such as &lt;code&gt;s3.amazonaws.com&lt;/code&gt; or &lt;code&gt;sns.amazonaws.com&lt;/code&gt;. For Amazon Web Services services, you can also specify the ARN of the associated resource as the &lt;code&gt;SourceArn&lt;/code&gt;. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function.&lt;/p&gt; &lt;p&gt;This operation adds a statement to a resource-based permissions policy for the function. For more information about function policies, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;Using resource-based policies for Lambda&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Grants a
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying">principal</see>
+    /// permission to use a function. You can apply the policy at the function level, or specify a qualifier
+    /// to restrict access to a single version or alias. If you use a qualifier, the invoker must use the
+    /// full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does
+    /// not support adding policies to version $LATEST.
+    /// </para>
+    /// <para>
+    /// To grant permission to another account, specify the account ID as the <c>Principal</c>. To grant
+    /// permission to an organization defined in Organizations, specify the organization ID as the
+    /// <c>PrincipalOrgID</c>. For Amazon Web Services services, the principal is a domain-style identifier
+    /// that the service defines, such as <c>s3.amazonaws.com</c> or <c>sns.amazonaws.com</c>. For Amazon
+    /// Web Services services, you can also specify the ARN of the associated resource as the
+    /// <c>SourceArn</c>. If you grant permission to a service principal without specifying the source,
+    /// other accounts could potentially configure resources in their account to invoke your Lambda
+    /// function.
+    /// </para>
+    /// <para>
+    /// This operation adds a statement to a resource-based permissions policy for the function. For more
+    /// information about function policies, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">Using
+    /// resource-based policies for Lambda</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -83,7 +216,18 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Saves the progress of a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution during runtime. This API is used by the Lambda durable functions SDK to checkpoint completed steps and schedule asynchronous operations. You typically don't need to call this API directly as the SDK handles checkpointing automatically.&lt;/p&gt; &lt;p&gt;Each checkpoint operation consumes the current checkpoint token and returns a new one for the next checkpoint. This ensures that checkpoints are applied in the correct order and prevents duplicate or out-of-order state updates.&lt;/p&gt;
+    /// <para>
+    /// Saves the progress of a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution during runtime. This API is used by the Lambda durable functions SDK to
+    /// checkpoint completed steps and schedule asynchronous operations. You typically don't need to call
+    /// this API directly as the SDK handles checkpointing automatically.
+    /// </para>
+    /// <para>
+    /// Each checkpoint operation consumes the current checkpoint token and returns a new one for the next
+    /// checkpoint. This ensures that checkpoints are applied in the correct order and prevents duplicate or
+    /// out-of-order state updates.
+    /// </para>
     /// </summary>
     Task<CheckpointDurableExecutionOutput> CheckpointDurableExecutionAsync(
         CheckpointDurableExecutionInput input,
@@ -91,7 +235,17 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt; for a Lambda function version. Use aliases to provide clients with a function identifier that you can update to invoke a different version.&lt;/p&gt; &lt;p&gt;You can also map an alias to split invocation requests between two versions. Use the &lt;code&gt;RoutingConfig&lt;/code&gt; parameter to specify a second version and the percentage of invocation requests that it receives.&lt;/p&gt;
+    /// <para>
+    /// Creates an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see> for
+    /// a Lambda function version. Use aliases to provide clients with a function identifier that you can
+    /// update to invoke a different version.
+    /// </para>
+    /// <para>
+    /// You can also map an alias to split invocation requests between two versions. Use the
+    /// <c>RoutingConfig</c> parameter to specify a second version and the percentage of invocation requests
+    /// that it receives.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -114,7 +268,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates a capacity provider that manages compute resources for Lambda functions&lt;/p&gt;
+    /// Creates a capacity provider that manages compute resources for Lambda functions
     /// </summary>
     Task<CreateCapacityProviderOutput> CreateCapacityProviderAsync(
         CreateCapacityProviderInput input,
@@ -122,7 +276,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates a code signing configuration. A &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html&quot;&gt;code signing configuration&lt;/a&gt; defines a list of allowed signing profiles and defines the code-signing validation policy (action to be taken if deployment validation checks fail). &lt;/p&gt;
+    /// Creates a code signing configuration. A
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html">code signing
+    /// configuration</see> defines a list of allowed signing profiles and defines the code-signing
+    /// validation policy (action to be taken if deployment validation checks fail).
     /// </summary>
     Task<CreateCodeSigningConfigOutput> CreateCodeSigningConfigAsync(
         CreateCodeSigningConfigInput input,
@@ -130,7 +287,146 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and invokes the function.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+    /// <para>
+    /// Creates a mapping between an event source and an Lambda function. Lambda reads items from the event
+    /// source and invokes the function.
+    /// </para>
+    /// <para>
+    /// For details about how to configure different event sources, see the following topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping">Amazon
+    /// MQ and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html">Amazon MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html">Apache Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon
+    /// MSK, and self-managed Apache Kafka):
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch in two and
+    /// retry.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age. The default value
+    /// is infinite (-1). When set to infinite (-1), failed records are retried until the record expires
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries. The default
+    /// value is infinite (-1). When set to infinite (-1), failed records are retried until the record
+    /// expires.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>OnFailure</c> – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or
+    /// Amazon S3 bucket. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations">Adding
+    /// a destination</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following option is available only for DynamoDB and Kinesis event sources:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For information about which configuration parameters apply to each event source, see the following
+    /// topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params">Amazon MQ
+    /// and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms">Amazon
+    /// MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms">Apache
+    /// Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     /// <example>
     /// <para>
@@ -153,7 +449,72 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates a Lambda function. To create a function, you need a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html&quot;&gt;deployment package&lt;/a&gt; and an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role&quot;&gt;execution role&lt;/a&gt;. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use Amazon Web Services services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt;, then you set the package type to &lt;code&gt;Image&lt;/code&gt;. For a container image, the code property must include the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and runtime properties.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;, then you set the package type to &lt;code&gt;Zip&lt;/code&gt;. For a .zip file archive, the code property specifies the location of the .zip file. You must also specify the handler and runtime properties. The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;). If you do not specify the architecture, then the default value is &lt;code&gt;x86-64&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The &lt;code&gt;State&lt;/code&gt;, &lt;code&gt;StateReason&lt;/code&gt;, and &lt;code&gt;StateReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the function is ready to invoke. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the &lt;code&gt;Publish&lt;/code&gt; parameter to create version &lt;code&gt;1&lt;/code&gt; of your function from its initial configuration.&lt;/p&gt; &lt;p&gt;The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;. Function-level settings apply to both the unpublished and published versions of the function, and include tags (&lt;a&gt;TagResource&lt;/a&gt;) and per-function concurrency limits (&lt;a&gt;PutFunctionConcurrency&lt;/a&gt;).&lt;/p&gt; &lt;p&gt;You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with &lt;a&gt;UpdateFunctionCode&lt;/a&gt;, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set of signing profiles, which define the trusted publishers for this function.&lt;/p&gt; &lt;p&gt;If another Amazon Web Services account or an Amazon Web Services service invokes your function, use &lt;a&gt;AddPermission&lt;/a&gt; to grant permission by creating a resource-based Identity and Access Management (IAM) policy. You can grant permissions at the function level, on a version, or on an alias.&lt;/p&gt; &lt;p&gt;To invoke your function directly, use &lt;a&gt;Invoke&lt;/a&gt;. To invoke your function in response to events in other Amazon Web Services services, create an event source mapping (&lt;a&gt;CreateEventSourceMapping&lt;/a&gt;), or configure a function trigger in the other service. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html&quot;&gt;Invoking Lambda functions&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Creates a Lambda function. To create a function, you need a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html">deployment
+    /// package</see> and an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role">execution
+    /// role</see>. The deployment package is a .zip file archive or container image that contains your
+    /// function code. The execution role grants the function permission to use Amazon Web Services
+    /// services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing.
+    /// </para>
+    /// <para>
+    /// If the deployment package is a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container image</see>,
+    /// then you set the package type to <c>Image</c>. For a container image, the code property must include
+    /// the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and
+    /// runtime properties.
+    /// </para>
+    /// <para>
+    /// If the deployment package is a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
+    /// file archive</see>, then you set the package type to <c>Zip</c>. For a .zip file archive, the code
+    /// property specifies the location of the .zip file. You must also specify the handler and runtime
+    /// properties. The code in the deployment package must be compatible with the target instruction set
+    /// architecture of the function (<c>x86-64</c> or <c>arm64</c>). If you do not specify the
+    /// architecture, then the default value is <c>x86-64</c>.
+    /// </para>
+    /// <para>
+    /// When you create a function, Lambda provisions an instance of the function and its supporting
+    /// resources. If your function connects to a VPC, this process can take a minute or so. During this
+    /// time, you can't invoke or modify the function. The <c>State</c>, <c>StateReason</c>, and
+    /// <c>StateReasonCode</c> fields in the response from GetFunctionConfiguration indicate when the
+    /// function is ready to invoke. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda function
+    /// states</see>.
+    /// </para>
+    /// <para>
+    /// A function has an unpublished version, and can have published versions and aliases. The unpublished
+    /// version changes when you update your function's code and configuration. A published version is a
+    /// snapshot of your function code and configuration that can't be changed. An alias is a named resource
+    /// that maps to a version, and can be changed to map to a different version. Use the <c>Publish</c>
+    /// parameter to create version <c>1</c> of your function from its initial configuration.
+    /// </para>
+    /// <para>
+    /// The other parameters let you configure version-specific and function-level settings. You can modify
+    /// version-specific settings later with UpdateFunctionConfiguration. Function-level settings apply to
+    /// both the unpublished and published versions of the function, and include tags (TagResource) and
+    /// per-function concurrency limits (PutFunctionConcurrency).
+    /// </para>
+    /// <para>
+    /// You can use code signing if your deployment package is a .zip file archive. To enable code signing
+    /// for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a
+    /// code package with UpdateFunctionCode, Lambda checks that the code package has a valid signature from
+    /// a trusted publisher. The code-signing configuration includes set of signing profiles, which define
+    /// the trusted publishers for this function.
+    /// </para>
+    /// <para>
+    /// If another Amazon Web Services account or an Amazon Web Services service invokes your function, use
+    /// AddPermission to grant permission by creating a resource-based Identity and Access Management (IAM)
+    /// policy. You can grant permissions at the function level, on a version, or on an alias.
+    /// </para>
+    /// <para>
+    /// To invoke your function directly, use Invoke. To invoke your function in response to events in other
+    /// Amazon Web Services services, create an event source mapping (CreateEventSourceMapping), or
+    /// configure a function trigger in the other service. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html">Invoking Lambda
+    /// functions</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -176,7 +537,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates a Lambda function URL with the specified configuration parameters. A function URL is a dedicated HTTP(S) endpoint that you can use to invoke your function.&lt;/p&gt;
+    /// Creates a Lambda function URL with the specified configuration parameters. A function URL is a
+    /// dedicated HTTP(S) endpoint that you can use to invoke your function.
     /// </summary>
     Task<CreateFunctionUrlConfigOutput> CreateFunctionUrlConfigAsync(
         CreateFunctionUrlConfigInput input,
@@ -184,7 +546,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
+    /// Deletes a Lambda function
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -204,7 +567,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes a capacity provider. You cannot delete a capacity provider that is currently being used by Lambda functions.&lt;/p&gt;
+    /// Deletes a capacity provider. You cannot delete a capacity provider that is currently being used by
+    /// Lambda functions.
     /// </summary>
     Task<DeleteCapacityProviderOutput> DeleteCapacityProviderAsync(
         DeleteCapacityProviderInput input,
@@ -212,7 +576,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes the code signing configuration. You can delete the code signing configuration only if no function is using it. &lt;/p&gt;
+    /// Deletes the code signing configuration. You can delete the code signing configuration only if no
+    /// function is using it.
     /// </summary>
     Task<DeleteCodeSigningConfigOutput> DeleteCodeSigningConfigAsync(
         DeleteCodeSigningConfigInput input,
@@ -220,7 +585,15 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html&quot;&gt;event source mapping&lt;/a&gt;. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When you delete an event source mapping, it enters a &lt;code&gt;Deleting&lt;/code&gt; state and might not be completely deleted for several seconds.&lt;/p&gt;
+    /// <para>
+    /// Deletes an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html">event source
+    /// mapping</see>. You can get the identifier of a mapping from the output of ListEventSourceMappings.
+    /// </para>
+    /// <para>
+    /// When you delete an event source mapping, it enters a <c>Deleting</c> state and might not be
+    /// completely deleted for several seconds.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -243,7 +616,20 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes a Lambda function. To delete a specific function version, use the &lt;code&gt;Qualifier&lt;/code&gt; parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have explicit permissions for &lt;a&gt;DeleteAlias&lt;/a&gt;.&lt;/p&gt; &lt;note&gt; &lt;p&gt;A deleted Lambda function cannot be recovered. Ensure that you specify the correct function name and version before deleting.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;To delete Lambda event source mappings that invoke a function, use &lt;a&gt;DeleteEventSourceMapping&lt;/a&gt;. For Amazon Web Services services and resources that invoke your function directly, delete the trigger in the service where you originally configured it.&lt;/p&gt;
+    /// <para>
+    /// Deletes a Lambda function. To delete a specific function version, use the <c>Qualifier</c>
+    /// parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have
+    /// explicit permissions for DeleteAlias.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> A deleted Lambda function cannot be recovered. Ensure that you specify the correct
+    /// function name and version before deleting.
+    /// </para>
+    /// <para>
+    /// To delete Lambda event source mappings that invoke a function, use DeleteEventSourceMapping. For
+    /// Amazon Web Services services and resources that invoke your function directly, delete the trigger in
+    /// the service where you originally configured it.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -263,7 +649,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Removes the code signing configuration from the function.&lt;/p&gt;
+    /// Removes the code signing configuration from the function.
     /// </summary>
     Task<DeleteFunctionCodeSigningConfigOutput> DeleteFunctionCodeSigningConfigAsync(
         DeleteFunctionCodeSigningConfigInput input,
@@ -271,7 +657,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Removes a concurrent execution limit from a function.&lt;/p&gt;
+    /// Removes a concurrent execution limit from a function.
     /// </summary>
     /// <example>
     /// <para>
@@ -291,7 +677,12 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Deletes the configuration for asynchronous invocation for a function, version, or alias.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -311,7 +702,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes a Lambda function URL. When you delete a function URL, you can't recover it. Creating a new function URL results in a different URL address.&lt;/p&gt;
+    /// Deletes a Lambda function URL. When you delete a function URL, you can't recover it. Creating a new
+    /// function URL results in a different URL address.
     /// </summary>
     Task<DeleteFunctionUrlConfigOutput> DeleteFunctionUrlConfigAsync(
         DeleteFunctionUrlConfigInput input,
@@ -319,7 +711,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Deleted versions can no longer be viewed or added to functions. To avoid breaking functions, a copy of the version remains in Lambda until no functions refer to it.&lt;/p&gt;
+    /// Deletes a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Deleted versions can no longer be viewed or added to functions. To avoid breaking
+    /// functions, a copy of the version remains in Lambda until no functions refer to it.
     /// </summary>
     /// <example>
     /// <para>
@@ -339,7 +734,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes the provisioned concurrency configuration for a function.&lt;/p&gt;
+    /// Deletes the provisioned concurrency configuration for a function.
     /// </summary>
     /// <example>
     /// <para>
@@ -359,7 +754,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Deletes a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based policy&lt;/a&gt; from a Lambda resource.&lt;/p&gt;
+    /// Deletes a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// policy</see> from a Lambda resource.
     /// </summary>
     Task<DeleteResourcePolicyOutput> DeleteResourcePolicyAsync(
         DeleteResourcePolicyInput input,
@@ -367,7 +764,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves details about your account's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/limits.html&quot;&gt;limits&lt;/a&gt; and usage in an Amazon Web Services Region.&lt;/p&gt;
+    /// Retrieves details about your account's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limits</see> and usage in an
+    /// Amazon Web Services Region.
     /// </summary>
     /// <example>
     /// <para>
@@ -390,7 +789,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns details about a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
+    /// Returns details about a Lambda function
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -413,7 +813,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves information about a specific capacity provider, including its configuration, state, and associated resources.&lt;/p&gt;
+    /// Retrieves information about a specific capacity provider, including its configuration, state, and
+    /// associated resources.
     /// </summary>
     Task<GetCapacityProviderOutput> GetCapacityProviderAsync(
         GetCapacityProviderInput input,
@@ -421,7 +822,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns information about the specified code signing configuration.&lt;/p&gt;
+    /// Returns information about the specified code signing configuration.
     /// </summary>
     Task<GetCodeSigningConfigOutput> GetCodeSigningConfigAsync(
         GetCodeSigningConfigInput input,
@@ -429,7 +830,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves detailed information about a specific &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, including its current status, input payload, result or error information, and execution metadata such as start time and usage statistics.&lt;/p&gt;
+    /// Retrieves detailed information about a specific
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, including its current status, input payload, result or error information, and
+    /// execution metadata such as start time and usage statistics.
     /// </summary>
     Task<GetDurableExecutionOutput> GetDurableExecutionAsync(
         GetDurableExecutionInput input,
@@ -437,7 +841,17 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the execution history for a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, showing all the steps, callbacks, and events that occurred during the execution. This provides a detailed audit trail of the execution's progress over time.&lt;/p&gt; &lt;p&gt;The history is available while the execution is running and for a retention period after it completes (1-90 days, default 30 days). You can control whether to include execution data such as step results and callback payloads.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the execution history for a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, showing all the steps, callbacks, and events that occurred during the execution.
+    /// This provides a detailed audit trail of the execution's progress over time.
+    /// </para>
+    /// <para>
+    /// The history is available while the execution is running and for a retention period after it
+    /// completes (1-90 days, default 30 days). You can control whether to include execution data such as
+    /// step results and callback payloads.
+    /// </para>
     /// </summary>
     Task<GetDurableExecutionHistoryOutput> GetDurableExecutionHistoryAsync(
         GetDurableExecutionHistoryInput input,
@@ -445,7 +859,17 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the execution history for a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, showing all the steps, callbacks, and events that occurred during the execution. This provides a detailed audit trail of the execution's progress over time.&lt;/p&gt; &lt;p&gt;The history is available while the execution is running and for a retention period after it completes (1-90 days, default 30 days). You can control whether to include execution data such as step results and callback payloads.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the execution history for a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, showing all the steps, callbacks, and events that occurred during the execution.
+    /// This provides a detailed audit trail of the execution's progress over time.
+    /// </para>
+    /// <para>
+    /// The history is available while the execution is running and for a retention period after it
+    /// completes (1-90 days, default 30 days). You can control whether to include execution data such as
+    /// step results and callback payloads.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<GetDurableExecutionHistoryOutput> GetDurableExecutionHistoryPagesAsync(
         GetDurableExecutionHistoryInput input,
@@ -453,7 +877,17 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the execution history for a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, showing all the steps, callbacks, and events that occurred during the execution. This provides a detailed audit trail of the execution's progress over time.&lt;/p&gt; &lt;p&gt;The history is available while the execution is running and for a retention period after it completes (1-90 days, default 30 days). You can control whether to include execution data such as step results and callback payloads.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the execution history for a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, showing all the steps, callbacks, and events that occurred during the execution.
+    /// This provides a detailed audit trail of the execution's progress over time.
+    /// </para>
+    /// <para>
+    /// The history is available while the execution is running and for a retention period after it
+    /// completes (1-90 days, default 30 days). You can control whether to include execution data such as
+    /// step results and callback payloads.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<Event> GetDurableExecutionHistoryItemsAsync(
         GetDurableExecutionHistoryInput input,
@@ -461,7 +895,17 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the current execution state required for the replay process during &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution. This API is used by the Lambda durable functions SDK to get state information needed for replay. You typically don't need to call this API directly as the SDK handles state management automatically.&lt;/p&gt; &lt;p&gt;The response contains operations ordered by start sequence number in ascending order. Completed operations with children don't include child operation details since they don't need to be replayed.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the current execution state required for the replay process during
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution. This API is used by the Lambda durable functions SDK to get state
+    /// information needed for replay. You typically don't need to call this API directly as the SDK handles
+    /// state management automatically.
+    /// </para>
+    /// <para>
+    /// The response contains operations ordered by start sequence number in ascending order. Completed
+    /// operations with children don't include child operation details since they don't need to be replayed.
+    /// </para>
     /// </summary>
     Task<GetDurableExecutionStateOutput> GetDurableExecutionStateAsync(
         GetDurableExecutionStateInput input,
@@ -469,7 +913,17 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the current execution state required for the replay process during &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution. This API is used by the Lambda durable functions SDK to get state information needed for replay. You typically don't need to call this API directly as the SDK handles state management automatically.&lt;/p&gt; &lt;p&gt;The response contains operations ordered by start sequence number in ascending order. Completed operations with children don't include child operation details since they don't need to be replayed.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the current execution state required for the replay process during
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution. This API is used by the Lambda durable functions SDK to get state
+    /// information needed for replay. You typically don't need to call this API directly as the SDK handles
+    /// state management automatically.
+    /// </para>
+    /// <para>
+    /// The response contains operations ordered by start sequence number in ascending order. Completed
+    /// operations with children don't include child operation details since they don't need to be replayed.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<GetDurableExecutionStateOutput> GetDurableExecutionStatePagesAsync(
         GetDurableExecutionStateInput input,
@@ -477,7 +931,17 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the current execution state required for the replay process during &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution. This API is used by the Lambda durable functions SDK to get state information needed for replay. You typically don't need to call this API directly as the SDK handles state management automatically.&lt;/p&gt; &lt;p&gt;The response contains operations ordered by start sequence number in ascending order. Completed operations with children don't include child operation details since they don't need to be replayed.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the current execution state required for the replay process during
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution. This API is used by the Lambda durable functions SDK to get state
+    /// information needed for replay. You typically don't need to call this API directly as the SDK handles
+    /// state management automatically.
+    /// </para>
+    /// <para>
+    /// The response contains operations ordered by start sequence number in ascending order. Completed
+    /// operations with children don't include child operation details since they don't need to be replayed.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<Operation> GetDurableExecutionStateItemsAsync(
         GetDurableExecutionStateInput input,
@@ -485,7 +949,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns details about an event source mapping. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt;
+    /// Returns details about an event source mapping. You can get the identifier of a mapping from the
+    /// output of ListEventSourceMappings.
     /// </summary>
     /// <example>
     /// <para>
@@ -508,7 +973,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns information about the function or function version, with a link to download the deployment package that's valid for 10 minutes. If you specify a function version, only details that are specific to that version are returned.&lt;/p&gt;
+    /// Returns information about the function or function version, with a link to download the deployment
+    /// package that's valid for 10 minutes. If you specify a function version, only details that are
+    /// specific to that version are returned.
     /// </summary>
     /// <example>
     /// <para>
@@ -633,7 +1100,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns the code signing configuration for the specified function.&lt;/p&gt;
+    /// Returns the code signing configuration for the specified function.
     /// </summary>
     Task<GetFunctionCodeSigningConfigOutput> GetFunctionCodeSigningConfigAsync(
         GetFunctionCodeSigningConfigInput input,
@@ -641,7 +1108,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns details about the reserved concurrency configuration for a function. To set a concurrency limit for a function, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;.&lt;/p&gt;
+    /// Returns details about the reserved concurrency configuration for a function. To set a concurrency
+    /// limit for a function, use PutFunctionConcurrency.
     /// </summary>
     /// <example>
     /// <para>
@@ -664,7 +1132,14 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns the version-specific settings of a Lambda function or version. The output includes only options that can vary between versions of a function. To modify these settings, use &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To get all of a function's details, including function-level settings, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Returns the version-specific settings of a Lambda function or version. The output includes only
+    /// options that can vary between versions of a function. To modify these settings, use
+    /// UpdateFunctionConfiguration.
+    /// </para>
+    /// <para>
+    /// To get all of a function's details, including function-level settings, use GetFunction.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -795,7 +1270,12 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the configuration for asynchronous invocation for a function, version, or alias.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -818,7 +1298,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns your function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html&quot;&gt;recursive loop detection&lt;/a&gt; configuration. &lt;/p&gt;
+    /// Returns your function's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive loop
+    /// detection</see> configuration.
     /// </summary>
     Task<GetFunctionRecursionConfigOutput> GetFunctionRecursionConfigAsync(
         GetFunctionRecursionConfigInput input,
@@ -826,7 +1308,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the scaling configuration for a Lambda Managed Instances function.&lt;/p&gt;
+    /// Retrieves the scaling configuration for a Lambda Managed Instances function.
     /// </summary>
     Task<GetFunctionScalingConfigOutput> GetFunctionScalingConfigAsync(
         GetFunctionScalingConfigInput input,
@@ -834,7 +1316,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns details about a Lambda function URL.&lt;/p&gt;
+    /// Returns details about a Lambda function URL.
     /// </summary>
     Task<GetFunctionUrlConfigOutput> GetFunctionUrlConfigAsync(
         GetFunctionUrlConfigInput input,
@@ -842,7 +1324,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
+    /// Returns information about a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>, with a link to download the layer archive that's valid for 10 minutes.
     /// </summary>
     /// <example>
     /// <para>
@@ -865,7 +1349,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
+    /// Returns information about a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>, with a link to download the layer archive that's valid for 10 minutes.
     /// </summary>
     /// <example>
     /// <para>
@@ -888,7 +1374,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns the permission policy for a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. For more information, see &lt;a&gt;AddLayerVersionPermission&lt;/a&gt;.&lt;/p&gt;
+    /// Returns the permission policy for a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. For more information, see AddLayerVersionPermission.
     /// </summary>
     Task<GetLayerVersionPolicyOutput> GetLayerVersionPolicyAsync(
         GetLayerVersionPolicyInput input,
@@ -896,7 +1384,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based IAM policy&lt;/a&gt; for a function, version, or alias.&lt;/p&gt;
+    /// Returns the
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// IAM policy</see> for a function, version, or alias.
     /// </summary>
     /// <example>
     /// <para>
@@ -919,7 +1409,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the provisioned concurrency configuration for a function's alias or version.&lt;/p&gt;
+    /// Retrieves the provisioned concurrency configuration for a function's alias or version.
     /// </summary>
     /// <example>
     /// <para>
@@ -957,7 +1447,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based policy&lt;/a&gt; attached to a Lambda resource.&lt;/p&gt;
+    /// Retrieves the
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// policy</see> attached to a Lambda resource.
     /// </summary>
     Task<GetResourcePolicyOutput> GetResourcePolicyAsync(
         GetResourcePolicyInput input,
@@ -965,7 +1457,11 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the runtime management configuration for a function's version. If the runtime update mode is &lt;b&gt;Manual&lt;/b&gt;, this includes the ARN of the runtime version and the runtime update mode. If the runtime update mode is &lt;b&gt;Auto&lt;/b&gt; or &lt;b&gt;Function update&lt;/b&gt;, this includes the runtime update mode and &lt;code&gt;null&lt;/code&gt; is returned for the ARN. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html&quot;&gt;Runtime updates&lt;/a&gt;.&lt;/p&gt;
+    /// Retrieves the runtime management configuration for a function's version. If the runtime update mode
+    /// is <b>Manual</b>, this includes the ARN of the runtime version and the runtime update mode. If the
+    /// runtime update mode is <b>Auto</b> or <b>Function update</b>, this includes the runtime update mode
+    /// and <c>null</c> is returned for the ARN. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime updates</see>.
     /// </summary>
     Task<GetRuntimeManagementConfigOutput> GetRuntimeManagementConfigAsync(
         GetRuntimeManagementConfigInput input,
@@ -973,7 +1469,63 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. By default, Lambda invokes your function synchronously (i.e. the&lt;code&gt;InvocationType&lt;/code&gt; is &lt;code&gt;RequestResponse&lt;/code&gt;). To invoke a function asynchronously, set &lt;code&gt;InvocationType&lt;/code&gt; to &lt;code&gt;Event&lt;/code&gt;. Lambda passes the &lt;code&gt;ClientContext&lt;/code&gt; object to your function for synchronous invocations only.&lt;/p&gt; &lt;p&gt;For synchronous invocations, the maximum payload size is 6 MB. For asynchronous invocations, the maximum payload size is 1 MB.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html&quot;&gt;synchronous invocation&lt;/a&gt;, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html&quot;&gt;execution log&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html&quot;&gt;trace&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html&quot;&gt;Error handling and automatic retries in Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt;, Lambda adds events to a queue before sending them to your function. If your function does not have enough capacity to keep up with the queue, events may be lost. Occasionally, your function may receive the same event multiple times, even if no error occurs. To retain events that were not processed, configure your function with a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq&quot;&gt;dead-letter queue&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;quota&lt;/a&gt; errors, or issues with your function's code and configuration. For example, Lambda returns &lt;code&gt;TooManyRequestsException&lt;/code&gt; if running the function would cause you to exceed a concurrency limit at either the account level (&lt;code&gt;ConcurrentInvocationLimitExceeded&lt;/code&gt;) or function level (&lt;code&gt;ReservedFunctionConcurrentInvocationLimitExceeded&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;For functions with a long timeout, your client might disconnect during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings.&lt;/p&gt; &lt;p&gt;This operation requires permission for the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html&quot;&gt;lambda:InvokeFunction&lt;/a&gt; action. For details on how to set up permissions for cross-account invocations, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke&quot;&gt;Granting function access to other accounts&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or
+    /// asynchronously. By default, Lambda invokes your function synchronously (i.e.
+    /// the<c>InvocationType</c> is <c>RequestResponse</c>). To invoke a function asynchronously, set
+    /// <c>InvocationType</c> to <c>Event</c>. Lambda passes the <c>ClientContext</c> object to your
+    /// function for synchronous invocations only.
+    /// </para>
+    /// <para>
+    /// For synchronous invocations, the maximum payload size is 6 MB. For asynchronous invocations, the
+    /// maximum payload size is 1 MB.
+    /// </para>
+    /// <para>
+    /// For <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html">synchronous
+    /// invocation</see>, details about the function response, including errors, are included in the
+    /// response body and headers. For either invocation type, you can find more information in the
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html">execution
+    /// log</see> and
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html">trace</see>.
+    /// </para>
+    /// <para>
+    /// When an error occurs, your function may be invoked multiple times. Retry behavior varies by error
+    /// type, client, event source, and invocation type. For example, if you invoke a function
+    /// asynchronously and it returns an error, Lambda executes the function up to two more times. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html">Error handling and
+    /// automatic retries in Lambda</see>.
+    /// </para>
+    /// <para>
+    /// For <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html">asynchronous
+    /// invocation</see>, Lambda adds events to a queue before sending them to your function. If your
+    /// function does not have enough capacity to keep up with the queue, events may be lost. Occasionally,
+    /// your function may receive the same event multiple times, even if no error occurs. To retain events
+    /// that were not processed, configure your function with a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq">dead-letter
+    /// queue</see>.
+    /// </para>
+    /// <para>
+    /// The status code in the API response doesn't reflect function errors. Error codes are reserved for
+    /// errors that prevent your function from executing, such as permissions errors,
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">quota</see>
+    /// errors, or issues with your function's code and configuration. For example, Lambda returns
+    /// <c>TooManyRequestsException</c> if running the function would cause you to exceed a concurrency
+    /// limit at either the account level (<c>ConcurrentInvocationLimitExceeded</c>) or function level
+    /// (<c>ReservedFunctionConcurrentInvocationLimitExceeded</c>).
+    /// </para>
+    /// <para>
+    /// For functions with a long timeout, your client might disconnect during synchronous invocation while
+    /// it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to
+    /// allow for long connections with timeout or keep-alive settings.
+    /// </para>
+    /// <para>
+    /// This operation requires permission for the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html">lambda:InvokeFunction</see>
+    /// action. For details on how to set up permissions for cross-account invocations, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke">Granting
+    /// function access to other accounts</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1011,7 +1563,20 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;note&gt; &lt;p&gt;For asynchronous function invocation, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;Invokes a function asynchronously.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The payload limit is 256KB. For larger payloads, for up to 1MB, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;note&gt; &lt;p&gt;If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing is turned on.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// <b>Note:</b> For asynchronous function invocation, use Invoke.
+    /// </para>
+    /// <para>
+    /// Invokes a function asynchronously.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The payload limit is 256KB. For larger payloads, for up to 1MB, use Invoke.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray
+    /// active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing is turned
+    /// on.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1034,7 +1599,19 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Configure your Lambda functions to stream response payloads back to clients. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html&quot;&gt;Configuring a Lambda function to stream responses&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;This operation requires permission for the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html&quot;&gt;lambda:InvokeFunction&lt;/a&gt; action. For details on how to set up permissions for cross-account invocations, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke&quot;&gt;Granting function access to other accounts&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Configure your Lambda functions to stream response payloads back to clients. For more information,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html">Configuring
+    /// a Lambda function to stream responses</see>.
+    /// </para>
+    /// <para>
+    /// This operation requires permission for the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html">lambda:InvokeFunction</see>
+    /// action. For details on how to set up permissions for cross-account invocations, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke">Granting
+    /// function access to other accounts</see>.
+    /// </para>
     /// </summary>
     Task<InvokeWithResponseStreamOutput> InvokeWithResponseStreamAsync(
         InvokeWithResponseStreamInput input,
@@ -1042,7 +1619,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">aliases</see>
+    /// for a Lambda function.
     /// </summary>
     /// <example>
     /// <para>
@@ -1065,7 +1644,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">aliases</see>
+    /// for a Lambda function.
     /// </summary>
     IAsyncEnumerable<ListAliasesOutput> ListAliasesPagesAsync(
         ListAliasesInput input,
@@ -1073,7 +1654,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">aliases</see>
+    /// for a Lambda function.
     /// </summary>
     IAsyncEnumerable<AliasConfiguration> ListAliasesItemsAsync(
         ListAliasesInput input,
@@ -1081,7 +1664,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of capacity providers in your account.&lt;/p&gt;
+    /// Returns a list of capacity providers in your account.
     /// </summary>
     Task<ListCapacityProvidersOutput> ListCapacityProvidersAsync(
         ListCapacityProvidersInput input,
@@ -1089,7 +1672,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of capacity providers in your account.&lt;/p&gt;
+    /// Returns a list of capacity providers in your account.
     /// </summary>
     IAsyncEnumerable<ListCapacityProvidersOutput> ListCapacityProvidersPagesAsync(
         ListCapacityProvidersInput input,
@@ -1097,7 +1680,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of capacity providers in your account.&lt;/p&gt;
+    /// Returns a list of capacity providers in your account.
     /// </summary>
     IAsyncEnumerable<CapacityProvider> ListCapacityProvidersItemsAsync(
         ListCapacityProvidersInput input,
@@ -1105,7 +1688,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html&quot;&gt;code signing configurations&lt;/a&gt;. A request returns up to 10,000 configurations per call. You can use the &lt;code&gt;MaxItems&lt;/code&gt; parameter to return fewer configurations per call. &lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
     /// </summary>
     Task<ListCodeSigningConfigsOutput> ListCodeSigningConfigsAsync(
         ListCodeSigningConfigsInput input,
@@ -1113,7 +1699,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html&quot;&gt;code signing configurations&lt;/a&gt;. A request returns up to 10,000 configurations per call. You can use the &lt;code&gt;MaxItems&lt;/code&gt; parameter to return fewer configurations per call. &lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
     /// </summary>
     IAsyncEnumerable<ListCodeSigningConfigsOutput> ListCodeSigningConfigsPagesAsync(
         ListCodeSigningConfigsInput input,
@@ -1121,7 +1710,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html&quot;&gt;code signing configurations&lt;/a&gt;. A request returns up to 10,000 configurations per call. You can use the &lt;code&gt;MaxItems&lt;/code&gt; parameter to return fewer configurations per call. &lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
     /// </summary>
     IAsyncEnumerable<CodeSigningConfig> ListCodeSigningConfigsItemsAsync(
         ListCodeSigningConfigsInput input,
@@ -1129,7 +1721,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable executions&lt;/a&gt; for a specified Lambda function. You can filter the results by execution name, status, and start time range. This API supports pagination for large result sets.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// executions</see> for a specified Lambda function. You can filter the results by execution name,
+    /// status, and start time range. This API supports pagination for large result sets.
     /// </summary>
     Task<ListDurableExecutionsByFunctionOutput> ListDurableExecutionsByFunctionAsync(
         ListDurableExecutionsByFunctionInput input,
@@ -1137,7 +1732,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable executions&lt;/a&gt; for a specified Lambda function. You can filter the results by execution name, status, and start time range. This API supports pagination for large result sets.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// executions</see> for a specified Lambda function. You can filter the results by execution name,
+    /// status, and start time range. This API supports pagination for large result sets.
     /// </summary>
     IAsyncEnumerable<ListDurableExecutionsByFunctionOutput> ListDurableExecutionsByFunctionPagesAsync(
         ListDurableExecutionsByFunctionInput input,
@@ -1145,7 +1743,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable executions&lt;/a&gt; for a specified Lambda function. You can filter the results by execution name, status, and start time range. This API supports pagination for large result sets.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// executions</see> for a specified Lambda function. You can filter the results by execution name,
+    /// status, and start time range. This API supports pagination for large result sets.
     /// </summary>
     IAsyncEnumerable<Execution> ListDurableExecutionsByFunctionItemsAsync(
         ListDurableExecutionsByFunctionInput input,
@@ -1153,7 +1754,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
     /// </summary>
     /// <example>
     /// <para>
@@ -1176,7 +1778,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
     /// </summary>
     IAsyncEnumerable<ListEventSourceMappingsOutput> ListEventSourceMappingsPagesAsync(
         ListEventSourceMappingsInput input,
@@ -1184,7 +1787,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
     /// </summary>
     IAsyncEnumerable<EventSourceMappingConfiguration> ListEventSourceMappingsItemsAsync(
         ListEventSourceMappingsInput input,
@@ -1192,7 +1796,12 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves a list of configurations for asynchronous invocation for a function.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1215,7 +1824,12 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves a list of configurations for asynchronous invocation for a function.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<ListFunctionEventInvokeConfigsOutput> ListFunctionEventInvokeConfigsPagesAsync(
         ListFunctionEventInvokeConfigsInput input,
@@ -1223,7 +1837,12 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves a list of configurations for asynchronous invocation for a function.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<FunctionEventInvokeConfig> ListFunctionEventInvokeConfigsItemsAsync(
         ListFunctionEventInvokeConfigsInput input,
@@ -1231,7 +1850,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda function URLs for the specified function.&lt;/p&gt;
+    /// Returns a list of Lambda function URLs for the specified function.
     /// </summary>
     Task<ListFunctionUrlConfigsOutput> ListFunctionUrlConfigsAsync(
         ListFunctionUrlConfigsInput input,
@@ -1239,7 +1858,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda function URLs for the specified function.&lt;/p&gt;
+    /// Returns a list of Lambda function URLs for the specified function.
     /// </summary>
     IAsyncEnumerable<ListFunctionUrlConfigsOutput> ListFunctionUrlConfigsPagesAsync(
         ListFunctionUrlConfigsInput input,
@@ -1247,7 +1866,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda function URLs for the specified function.&lt;/p&gt;
+    /// Returns a list of Lambda function URLs for the specified function.
     /// </summary>
     IAsyncEnumerable<FunctionUrlConfig> ListFunctionUrlConfigsItemsAsync(
         ListFunctionUrlConfigsInput input,
@@ -1255,7 +1874,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of function versions that are configured to use a specific capacity provider.&lt;/p&gt;
+    /// Returns a list of function versions that are configured to use a specific capacity provider.
     /// </summary>
     Task<ListFunctionVersionsByCapacityProviderOutput> ListFunctionVersionsByCapacityProviderAsync(
         ListFunctionVersionsByCapacityProviderInput input,
@@ -1263,7 +1882,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of function versions that are configured to use a specific capacity provider.&lt;/p&gt;
+    /// Returns a list of function versions that are configured to use a specific capacity provider.
     /// </summary>
     IAsyncEnumerable<ListFunctionVersionsByCapacityProviderOutput> ListFunctionVersionsByCapacityProviderPagesAsync(
         ListFunctionVersionsByCapacityProviderInput input,
@@ -1271,7 +1890,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of function versions that are configured to use a specific capacity provider.&lt;/p&gt;
+    /// Returns a list of function versions that are configured to use a specific capacity provider.
     /// </summary>
     IAsyncEnumerable<FunctionVersionsByCapacityProviderListItem> ListFunctionVersionsByCapacityProviderItemsAsync(
         ListFunctionVersionsByCapacityProviderInput input,
@@ -1279,7 +1898,20 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1302,7 +1934,20 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<ListFunctionsOutput> ListFunctionsPagesAsync(
         ListFunctionsInput input,
@@ -1310,7 +1955,20 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
     /// </summary>
     IAsyncEnumerable<FunctionConfiguration> ListFunctionsItemsAsync(
         ListFunctionsInput input,
@@ -1318,7 +1976,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.&lt;/p&gt;
+    /// List the functions that use the specified code signing configuration. You can use this method prior
+    /// to deleting a code signing configuration, to verify that no functions are using it.
     /// </summary>
     Task<ListFunctionsByCodeSigningConfigOutput> ListFunctionsByCodeSigningConfigAsync(
         ListFunctionsByCodeSigningConfigInput input,
@@ -1326,7 +1985,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.&lt;/p&gt;
+    /// List the functions that use the specified code signing configuration. You can use this method prior
+    /// to deleting a code signing configuration, to verify that no functions are using it.
     /// </summary>
     IAsyncEnumerable<ListFunctionsByCodeSigningConfigOutput> ListFunctionsByCodeSigningConfigPagesAsync(
         ListFunctionsByCodeSigningConfigInput input,
@@ -1334,7 +1994,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.&lt;/p&gt;
+    /// List the functions that use the specified code signing configuration. You can use this method prior
+    /// to deleting a code signing configuration, to verify that no functions are using it.
     /// </summary>
     IAsyncEnumerable<string> ListFunctionsByCodeSigningConfigItemsAsync(
         ListFunctionsByCodeSigningConfigInput input,
@@ -1342,7 +2003,13 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
+    /// Lists the versions of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Versions that have been deleted aren't listed. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only versions that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layer versions that are compatible with that
+    /// architecture.
     /// </summary>
     /// <example>
     /// <para>
@@ -1365,7 +2032,13 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
+    /// Lists the versions of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Versions that have been deleted aren't listed. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only versions that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layer versions that are compatible with that
+    /// architecture.
     /// </summary>
     IAsyncEnumerable<ListLayerVersionsOutput> ListLayerVersionsPagesAsync(
         ListLayerVersionsInput input,
@@ -1373,7 +2046,13 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
+    /// Lists the versions of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Versions that have been deleted aren't listed. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only versions that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layer versions that are compatible with that
+    /// architecture.
     /// </summary>
     IAsyncEnumerable<LayerVersionsListItem> ListLayerVersionsItemsAsync(
         ListLayerVersionsInput input,
@@ -1381,7 +2060,13 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -1404,7 +2089,13 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
     /// </summary>
     IAsyncEnumerable<ListLayersOutput> ListLayersPagesAsync(
         ListLayersInput input,
@@ -1412,7 +2103,13 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
     /// </summary>
     IAsyncEnumerable<LayersListItem> ListLayersItemsAsync(
         ListLayersInput input,
@@ -1420,7 +2117,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
+    /// Retrieves a list of provisioned concurrency configurations for a function.
     /// </summary>
     /// <example>
     /// <para>
@@ -1443,7 +2140,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
+    /// Retrieves a list of provisioned concurrency configurations for a function.
     /// </summary>
     IAsyncEnumerable<ListProvisionedConcurrencyConfigsOutput> ListProvisionedConcurrencyConfigsPagesAsync(
         ListProvisionedConcurrencyConfigsInput input,
@@ -1451,7 +2148,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
+    /// Retrieves a list of provisioned concurrency configurations for a function.
     /// </summary>
     IAsyncEnumerable<ProvisionedConcurrencyConfigListItem> ListProvisionedConcurrencyConfigsItemsAsync(
         ListProvisionedConcurrencyConfigsInput input,
@@ -1459,7 +2156,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a function, event source mapping, or code signing configuration's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt;. You can also view function tags with &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
+    /// Returns a function, event source mapping, or code signing configuration's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</see>. You can also view
+    /// function tags with GetFunction.
     /// </summary>
     /// <example>
     /// <para>
@@ -1482,7 +2181,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">versions</see>,
+    /// with the version-specific configuration of each. Lambda returns up to 50 versions per call.
     /// </summary>
     /// <example>
     /// <para>
@@ -1505,7 +2206,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">versions</see>,
+    /// with the version-specific configuration of each. Lambda returns up to 50 versions per call.
     /// </summary>
     IAsyncEnumerable<ListVersionsByFunctionOutput> ListVersionsByFunctionPagesAsync(
         ListVersionsByFunctionInput input,
@@ -1513,7 +2216,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">versions</see>,
+    /// with the version-specific configuration of each. Lambda returns up to 50 versions per call.
     /// </summary>
     IAsyncEnumerable<FunctionConfiguration> ListVersionsByFunctionItemsAsync(
         ListVersionsByFunctionInput input,
@@ -1521,7 +2226,14 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt; from a ZIP archive. Each time you call &lt;code&gt;PublishLayerVersion&lt;/code&gt; with the same layer name, a new version is created.&lt;/p&gt; &lt;p&gt;Add layers to your function with &lt;a&gt;CreateFunction&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Creates an <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see> from a ZIP archive. Each time you call <c>PublishLayerVersion</c> with the same layer
+    /// name, a new version is created.
+    /// </para>
+    /// <para>
+    /// Add layers to your function with CreateFunction or UpdateFunctionConfiguration.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1544,7 +2256,20 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Creates a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;version&lt;/a&gt; from the current code and configuration of a function. Use versions to create a snapshot of your function code and configuration that doesn't change.&lt;/p&gt; &lt;p&gt;Lambda doesn't publish a version if the function's configuration and code haven't changed since the last version. Use &lt;a&gt;UpdateFunctionCode&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt; to update the function before publishing a version.&lt;/p&gt; &lt;p&gt;Clients can invoke versions directly or with an alias. To create an alias, use &lt;a&gt;CreateAlias&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Creates a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">version</see> from
+    /// the current code and configuration of a function. Use versions to create a snapshot of your function
+    /// code and configuration that doesn't change.
+    /// </para>
+    /// <para>
+    /// Lambda doesn't publish a version if the function's configuration and code haven't changed since the
+    /// last version. Use UpdateFunctionCode or UpdateFunctionConfiguration to update the function before
+    /// publishing a version.
+    /// </para>
+    /// <para>
+    /// Clients can invoke versions directly or with an alias. To create an alias, use CreateAlias.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1567,7 +2292,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Update the code signing configuration for the function. Changes to the code signing configuration take effect the next time a user tries to deploy a code package to the function. &lt;/p&gt;
+    /// Update the code signing configuration for the function. Changes to the code signing configuration
+    /// take effect the next time a user tries to deploy a code package to the function.
     /// </summary>
     Task<PutFunctionCodeSigningConfigOutput> PutFunctionCodeSigningConfigAsync(
         PutFunctionCodeSigningConfigInput input,
@@ -1575,7 +2301,23 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Sets the maximum number of simultaneous executions for a function, and reserves capacity for that concurrency level.&lt;/p&gt; &lt;p&gt;Concurrency settings apply to the function as a whole, including all published versions and the unpublished version. Reserving concurrency both ensures that your function has capacity to process the specified number of events simultaneously, and prevents it from scaling beyond that level. Use &lt;a&gt;GetFunction&lt;/a&gt; to see the current setting for a function.&lt;/p&gt; &lt;p&gt;Use &lt;a&gt;GetAccountSettings&lt;/a&gt; to see your Regional concurrency limit. You can reserve concurrency for as many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for functions that aren't configured with a per-function limit. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html&quot;&gt;Lambda function scaling&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Sets the maximum number of simultaneous executions for a function, and reserves capacity for that
+    /// concurrency level.
+    /// </para>
+    /// <para>
+    /// Concurrency settings apply to the function as a whole, including all published versions and the
+    /// unpublished version. Reserving concurrency both ensures that your function has capacity to process
+    /// the specified number of events simultaneously, and prevents it from scaling beyond that level. Use
+    /// GetFunction to see the current setting for a function.
+    /// </para>
+    /// <para>
+    /// Use GetAccountSettings to see your Regional concurrency limit. You can reserve concurrency for as
+    /// many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for
+    /// functions that aren't configured with a per-function limit. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html">Lambda function
+    /// scaling</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1598,7 +2340,31 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Configures options for &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt; on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use &lt;a&gt;UpdateFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To send an invocation record to a queue, topic, S3 bucket, function, or event bus, specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations&quot;&gt;destination&lt;/a&gt;. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue.&lt;/p&gt; &lt;note&gt; &lt;p&gt;S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Configures options for
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html">asynchronous
+    /// invocation</see> on a function, version, or alias. If a configuration already exists for a function,
+    /// version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To
+    /// set one option without affecting existing settings for other options, use
+    /// UpdateFunctionEventInvokeConfig.
+    /// </para>
+    /// <para>
+    /// By default, Lambda retries an asynchronous invocation twice if the function returns an error. It
+    /// retains events in a queue for up to six hours. When an event fails all processing attempts or stays
+    /// in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events,
+    /// configure a dead-letter queue with UpdateFunctionConfiguration.
+    /// </para>
+    /// <para>
+    /// To send an invocation record to a queue, topic, S3 bucket, function, or event bus, specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</see>.
+    /// You can configure separate destinations for successful invocations (on-success) and events that fail
+    /// all processing attempts (on-failure). You can configure destinations in addition to or instead of a
+    /// dead-letter queue.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> S3 buckets are supported only for on-failure destinations. To retain records of
+    /// successful invocations, use another destination type.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1621,7 +2387,23 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Sets your function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html&quot;&gt;recursive loop detection&lt;/a&gt; configuration.&lt;/p&gt; &lt;p&gt;When you configure a Lambda function to output to the same service or resource that invokes the function, it's possible to create an infinite recursive loop. For example, a Lambda function might write a message to an Amazon Simple Queue Service (Amazon SQS) queue, which then invokes the same function. This invocation causes the function to write another message to the queue, which in turn invokes the function again.&lt;/p&gt; &lt;p&gt;Lambda can detect certain types of recursive loops shortly after they occur. When Lambda detects a recursive loop and your function's recursive loop detection configuration is set to &lt;code&gt;Terminate&lt;/code&gt;, it stops your function being invoked and notifies you.&lt;/p&gt;
+    /// <para>
+    /// Sets your function's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive loop
+    /// detection</see> configuration.
+    /// </para>
+    /// <para>
+    /// When you configure a Lambda function to output to the same service or resource that invokes the
+    /// function, it's possible to create an infinite recursive loop. For example, a Lambda function might
+    /// write a message to an Amazon Simple Queue Service (Amazon SQS) queue, which then invokes the same
+    /// function. This invocation causes the function to write another message to the queue, which in turn
+    /// invokes the function again.
+    /// </para>
+    /// <para>
+    /// Lambda can detect certain types of recursive loops shortly after they occur. When Lambda detects a
+    /// recursive loop and your function's recursive loop detection configuration is set to
+    /// <c>Terminate</c>, it stops your function being invoked and notifies you.
+    /// </para>
     /// </summary>
     Task<PutFunctionRecursionConfigOutput> PutFunctionRecursionConfigAsync(
         PutFunctionRecursionConfigInput input,
@@ -1629,7 +2411,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Sets the scaling configuration for a Lambda Managed Instances function. The scaling configuration defines the minimum and maximum number of execution environments that can be provisioned for the function, allowing you to control scaling behavior and resource allocation.&lt;/p&gt;
+    /// Sets the scaling configuration for a Lambda Managed Instances function. The scaling configuration
+    /// defines the minimum and maximum number of execution environments that can be provisioned for the
+    /// function, allowing you to control scaling behavior and resource allocation.
     /// </summary>
     Task<PutFunctionScalingConfigOutput> PutFunctionScalingConfigAsync(
         PutFunctionScalingConfigInput input,
@@ -1637,7 +2421,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Adds a provisioned concurrency configuration to a function's alias or version.&lt;/p&gt;
+    /// Adds a provisioned concurrency configuration to a function's alias or version.
     /// </summary>
     /// <example>
     /// <para>
@@ -1660,7 +2444,23 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Adds a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based policy&lt;/a&gt; to a Lambda resource. Resource-based policies grant access to other &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-cross-account.html&quot;&gt;Amazon Web Services accounts&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-organization.html&quot;&gt;organizations&lt;/a&gt;, or &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-services.html&quot;&gt;services&lt;/a&gt;. Resource-based policies apply to a single Lambda resource (for example, a function, function version, or function alias).&lt;/p&gt; &lt;important&gt; &lt;p&gt;This operation replaces any existing policy on the Lambda resource. If you previously added permissions using the &lt;a&gt;AddPermission&lt;/a&gt; operation, the new policy overwrites those permissions.&lt;/p&gt; &lt;/important&gt;
+    /// <para>
+    /// Adds a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// policy</see> to a Lambda resource. Resource-based policies grant access to other
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-cross-account.html">Amazon
+    /// Web Services accounts</see>,
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-organization.html">organizations</see>,
+    /// or
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-services.html">services</see>.
+    /// Resource-based policies apply to a single Lambda resource (for example, a function, function
+    /// version, or function alias).
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This operation replaces any existing policy on the Lambda resource. If you
+    /// previously added permissions using the AddPermission operation, the new policy overwrites those
+    /// permissions.
+    /// </para>
     /// </summary>
     Task<PutResourcePolicyOutput> PutResourcePolicyAsync(
         PutResourcePolicyInput input,
@@ -1668,7 +2468,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Sets the runtime management configuration for a function's version. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html&quot;&gt;Runtime updates&lt;/a&gt;.&lt;/p&gt;
+    /// Sets the runtime management configuration for a function's version. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime updates</see>.
     /// </summary>
     Task<PutRuntimeManagementConfigOutput> PutRuntimeManagementConfigAsync(
         PutRuntimeManagementConfigInput input,
@@ -1676,7 +2477,9 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Removes a statement from the permissions policy for a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. For more information, see &lt;a&gt;AddLayerVersionPermission&lt;/a&gt;.&lt;/p&gt;
+    /// Removes a statement from the permissions policy for a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. For more information, see AddLayerVersionPermission.
     /// </summary>
     /// <example>
     /// <para>
@@ -1696,7 +2499,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Revokes function-use permission from an Amazon Web Services service or another Amazon Web Services account. You can get the ID of the statement from the output of &lt;a&gt;GetPolicy&lt;/a&gt;.&lt;/p&gt;
+    /// Revokes function-use permission from an Amazon Web Services service or another Amazon Web Services
+    /// account. You can get the ID of the statement from the output of GetPolicy.
     /// </summary>
     /// <example>
     /// <para>
@@ -1716,7 +2520,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Sends a failure response for a callback operation in a durable execution. Use this API when an external system cannot complete a callback operation successfully.&lt;/p&gt;
+    /// Sends a failure response for a callback operation in a durable execution. Use this API when an
+    /// external system cannot complete a callback operation successfully.
     /// </summary>
     Task<SendDurableExecutionCallbackFailureOutput> SendDurableExecutionCallbackFailureAsync(
         SendDurableExecutionCallbackFailureInput input,
@@ -1724,7 +2529,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Sends a heartbeat signal for a long-running callback operation to prevent timeout. Use this API to extend the callback timeout period while the external operation is still in progress.&lt;/p&gt;
+    /// Sends a heartbeat signal for a long-running callback operation to prevent timeout. Use this API to
+    /// extend the callback timeout period while the external operation is still in progress.
     /// </summary>
     Task<SendDurableExecutionCallbackHeartbeatOutput> SendDurableExecutionCallbackHeartbeatAsync(
         SendDurableExecutionCallbackHeartbeatInput input,
@@ -1732,7 +2538,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Sends a successful completion response for a callback operation in a durable execution. Use this API when an external system has successfully completed a callback operation.&lt;/p&gt;
+    /// Sends a successful completion response for a callback operation in a durable execution. Use this API
+    /// when an external system has successfully completed a callback operation.
     /// </summary>
     Task<SendDurableExecutionCallbackSuccessOutput> SendDurableExecutionCallbackSuccessAsync(
         SendDurableExecutionCallbackSuccessInput input,
@@ -1740,7 +2547,10 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Stops a running &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;. The execution transitions to STOPPED status and cannot be resumed. Any in-progress operations are terminated.&lt;/p&gt;
+    /// Stops a running
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>. The execution transitions to STOPPED status and cannot be resumed. Any in-progress
+    /// operations are terminated.
     /// </summary>
     Task<StopDurableExecutionOutput> StopDurableExecutionAsync(
         StopDurableExecutionInput input,
@@ -1748,7 +2558,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Adds &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; to a function, event source mapping, or code signing configuration.&lt;/p&gt;
+    /// Adds <see href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</see> to a function,
+    /// event source mapping, or code signing configuration.
     /// </summary>
     /// <example>
     /// <para>
@@ -1768,7 +2579,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Removes &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; from a function, event source mapping, or code signing configuration.&lt;/p&gt;
+    /// Removes <see href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</see> from a
+    /// function, event source mapping, or code signing configuration.
     /// </summary>
     /// <example>
     /// <para>
@@ -1788,7 +2600,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration of a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
+    /// Updates the configuration of a Lambda function
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -1811,7 +2624,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration of an existing capacity provider.&lt;/p&gt;
+    /// Updates the configuration of an existing capacity provider.
     /// </summary>
     Task<UpdateCapacityProviderOutput> UpdateCapacityProviderAsync(
         UpdateCapacityProviderInput input,
@@ -1819,7 +2632,8 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Update the code signing configuration. Changes to the code signing configuration take effect the next time a user tries to deploy a code package to the function. &lt;/p&gt;
+    /// Update the code signing configuration. Changes to the code signing configuration take effect the
+    /// next time a user tries to deploy a code package to the function.
     /// </summary>
     Task<UpdateCodeSigningConfigOutput> UpdateCodeSigningConfigAsync(
         UpdateCodeSigningConfigInput input,
@@ -1827,7 +2641,146 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+    /// <para>
+    /// Updates an event source mapping. You can change the function that Lambda invokes, or pause
+    /// invocation and resume later from the same location.
+    /// </para>
+    /// <para>
+    /// For details about how to configure different event sources, see the following topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping">Amazon
+    /// MQ and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html">Amazon MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html">Apache Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon
+    /// MSK, and self-managed Apache Kafka):
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch in two and
+    /// retry.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age. The default value
+    /// is infinite (-1). When set to infinite (-1), failed records are retried until the record expires
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries. The default
+    /// value is infinite (-1). When set to infinite (-1), failed records are retried until the record
+    /// expires.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>OnFailure</c> – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or
+    /// Amazon S3 bucket. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations">Adding
+    /// a destination</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following option is available only for DynamoDB and Kinesis event sources:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For information about which configuration parameters apply to each event source, see the following
+    /// topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params">Amazon MQ
+    /// and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms">Amazon
+    /// MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms">Apache
+    /// Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     /// <example>
     /// <para>
@@ -1850,7 +2803,37 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html&quot;&gt;Configuring code signing for Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Image&lt;/code&gt;, then you must specify the code package in &lt;code&gt;ImageUri&lt;/code&gt; as the URI of a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt; in the Amazon ECR registry.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Zip&lt;/code&gt;, then you must specify the deployment package as a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;. Enter the Amazon S3 bucket and key of the code .zip file location. You can also provide the function code inline using the &lt;code&gt;ZipFile&lt;/code&gt; field.&lt;/p&gt; &lt;p&gt;The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Updates a Lambda function's code. If code signing is enabled for the function, the code package must
+    /// be signed by a trusted publisher. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html">Configuring
+    /// code signing for Lambda</see>.
+    /// </para>
+    /// <para>
+    /// If the function's package type is <c>Image</c>, then you must specify the code package in
+    /// <c>ImageUri</c> as the URI of a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container image</see> in
+    /// the Amazon ECR registry.
+    /// </para>
+    /// <para>
+    /// If the function's package type is <c>Zip</c>, then you must specify the deployment package as a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
+    /// file archive</see>. Enter the Amazon S3 bucket and key of the code .zip file location. You can also
+    /// provide the function code inline using the <c>ZipFile</c> field.
+    /// </para>
+    /// <para>
+    /// The code in the deployment package must be compatible with the target instruction set architecture
+    /// of the function (<c>x86-64</c> or <c>arm64</c>).
+    /// </para>
+    /// <para>
+    /// The function's code is locked when you publish a version. You can't modify the code of a published
+    /// version, only the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For a function defined as a container image, Lambda resolves the image tag to an image
+    /// digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically
+    /// update the function.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1873,7 +2856,27 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Modify the version-specific settings of a Lambda function.&lt;/p&gt; &lt;p&gt;When you update a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but you can still invoke it. The &lt;code&gt;LastUpdateStatus&lt;/code&gt;, &lt;code&gt;LastUpdateStatusReason&lt;/code&gt;, and &lt;code&gt;LastUpdateStatusReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the update is complete and the function is processing events with the new configuration. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version.&lt;/p&gt; &lt;p&gt;To configure function concurrency, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;. To grant invoke permissions to an Amazon Web Services account or Amazon Web Services service, use &lt;a&gt;AddPermission&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Modify the version-specific settings of a Lambda function.
+    /// </para>
+    /// <para>
+    /// When you update a function, Lambda provisions an instance of the function and its supporting
+    /// resources. If your function connects to a VPC, this process can take a minute. During this time, you
+    /// can't modify the function, but you can still invoke it. The <c>LastUpdateStatus</c>,
+    /// <c>LastUpdateStatusReason</c>, and <c>LastUpdateStatusReasonCode</c> fields in the response from
+    /// GetFunctionConfiguration indicate when the update is complete and the function is processing events
+    /// with the new configuration. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda function
+    /// states</see>.
+    /// </para>
+    /// <para>
+    /// These settings can vary between versions of a function and are locked when you publish a version.
+    /// You can't modify the configuration of a published version, only the unpublished version.
+    /// </para>
+    /// <para>
+    /// To configure function concurrency, use PutFunctionConcurrency. To grant invoke permissions to an
+    /// Amazon Web Services account or Amazon Web Services service, use AddPermission.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1896,7 +2899,12 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Updates the configuration for asynchronous invocation for a function, version, or alias.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -1919,7 +2927,7 @@ public interface IAWSGirApiServiceClient : IDisposable
     );
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration for a Lambda function URL.&lt;/p&gt;
+    /// Updates the configuration for a Lambda function URL.
     /// </summary>
     Task<UpdateFunctionUrlConfigOutput> UpdateFunctionUrlConfigAsync(
         UpdateFunctionUrlConfigInput input,
@@ -1928,7 +2936,107 @@ public interface IAWSGirApiServiceClient : IDisposable
 }
 
 /// <summary>
-/// &lt;fullname&gt;Lambda&lt;/fullname&gt; &lt;p&gt; &lt;b&gt;Overview&lt;/b&gt; &lt;/p&gt; &lt;p&gt;Lambda is a compute service that lets you run code without provisioning or managing servers. Lambda runs your code on a high-availability compute infrastructure and performs all of the administration of the compute resources, including server and operating system maintenance, capacity provisioning and automatic scaling, code monitoring and logging. With Lambda, you can run code for virtually any type of application or backend service. For more information about the Lambda service, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/welcome.html&quot;&gt;What is Lambda&lt;/a&gt; in the &lt;b&gt;Lambda Developer Guide&lt;/b&gt;.&lt;/p&gt; &lt;p&gt;The &lt;i&gt;Lambda API Reference&lt;/i&gt; provides information about each of the API methods, including details about the parameters in each API request and response. &lt;/p&gt; &lt;p/&gt; &lt;p&gt;You can use Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools to access the API. For installation instructions, see &lt;a href=&quot;http://aws.amazon.com/tools/&quot;&gt;Tools for Amazon Web Services&lt;/a&gt;. &lt;/p&gt; &lt;p&gt;For a list of Region-specific endpoints that Lambda supports, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/lambda-service.html&quot;&gt;Lambda endpoints and quotas &lt;/a&gt; in the &lt;i&gt;Amazon Web Services General Reference.&lt;/i&gt;. &lt;/p&gt; &lt;p&gt;When making the API calls, you will need to authenticate your request by providing a signature. Lambda supports signature version 4. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html&quot;&gt;Signature Version 4 signing process&lt;/a&gt; in the &lt;i&gt;Amazon Web Services General Reference.&lt;/i&gt;. &lt;/p&gt; &lt;p&gt; &lt;b&gt;CA certificates&lt;/b&gt; &lt;/p&gt; &lt;p&gt;Because Amazon Web Services SDKs use the CA certificates from your computer, changes to the certificates on the Amazon Web Services servers can cause connection failures when you attempt to use an SDK. You can prevent these failures by keeping your computer's CA certificates and operating system up-to-date. If you encounter this issue in a corporate environment and do not manage your own computer, you might need to ask an administrator to assist with the update process. The following list shows minimum operating system and Java versions:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;Microsoft Windows versions that have updates from January 2005 or later installed contain at least one of the required CAs in their trust list. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Mac OS X 10.4 with Java for Mac OS X 10.4 Release 5 (February 2007), Mac OS X 10.5 (October 2007), and later versions contain at least one of the required CAs in their trust list. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Red Hat Enterprise Linux 5 (March 2007), 6, and 7 and CentOS 5, 6, and 7 all contain at least one of the required CAs in their default trusted CA list. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Java 1.4.2_12 (May 2006), 5 Update 2 (March 2005), and all later versions, including Java 6 (December 2006), 7, and 8, contain at least one of the required CAs in their default trusted CA list. &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;When accessing the Lambda management console or Lambda API endpoints, whether through browsers or programmatically, you will need to ensure your client machines support any of the following CAs: &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;Amazon Root CA 1&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Starfield Services Root Certificate Authority - G2&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Starfield Class 2 Certification Authority&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Root certificates from the first two authorities are available from &lt;a href=&quot;https://www.amazontrust.com/repository/&quot;&gt;Amazon trust services&lt;/a&gt;, but keeping your computer up-to-date is the more straightforward solution. To learn more about ACM-provided certificates, see &lt;a href=&quot;http://aws.amazon.com/certificate-manager/faqs/#certificates&quot;&gt;Amazon Web Services Certificate Manager FAQs.&lt;/a&gt; &lt;/p&gt;
+/// <para>
+/// <b>Lambda</b>
+/// </para>
+/// <para>
+/// <b>Overview</b>
+/// </para>
+/// <para>
+/// Lambda is a compute service that lets you run code without provisioning or managing servers. Lambda
+/// runs your code on a high-availability compute infrastructure and performs all of the administration
+/// of the compute resources, including server and operating system maintenance, capacity provisioning
+/// and automatic scaling, code monitoring and logging. With Lambda, you can run code for virtually any
+/// type of application or backend service. For more information about the Lambda service, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is Lambda</see> in the
+/// <b>Lambda Developer Guide</b>.
+/// </para>
+/// <para>
+/// The <i>Lambda API Reference</i> provides information about each of the API methods, including
+/// details about the parameters in each API request and response.
+/// </para>
+/// <para>
+/// You can use Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and
+/// command line tools to access the API. For installation instructions, see
+/// <see href="http://aws.amazon.com/tools/">Tools for Amazon Web Services</see>.
+/// </para>
+/// <para>
+/// For a list of Region-specific endpoints that Lambda supports, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html">Lambda endpoints and
+/// quotas</see> in the <i>Amazon Web Services General Reference.</i>.
+/// </para>
+/// <para>
+/// When making the API calls, you will need to authenticate your request by providing a signature.
+/// Lambda supports signature version 4. For more information, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature Version
+/// 4 signing process</see> in the <i>Amazon Web Services General Reference.</i>.
+/// </para>
+/// <para>
+/// <b>CA certificates</b>
+/// </para>
+/// <para>
+/// Because Amazon Web Services SDKs use the CA certificates from your computer, changes to the
+/// certificates on the Amazon Web Services servers can cause connection failures when you attempt to
+/// use an SDK. You can prevent these failures by keeping your computer's CA certificates and operating
+/// system up-to-date. If you encounter this issue in a corporate environment and do not manage your own
+/// computer, you might need to ask an administrator to assist with the update process. The following
+/// list shows minimum operating system and Java versions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Microsoft Windows versions that have updates from January 2005 or later installed contain at least
+/// one of the required CAs in their trust list.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Mac OS X 10.4 with Java for Mac OS X 10.4 Release 5 (February 2007), Mac OS X 10.5 (October 2007),
+/// and later versions contain at least one of the required CAs in their trust list.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Red Hat Enterprise Linux 5 (March 2007), 6, and 7 and CentOS 5, 6, and 7 all contain at least one of
+/// the required CAs in their default trusted CA list.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Java 1.4.2_12 (May 2006), 5 Update 2 (March 2005), and all later versions, including Java 6
+/// (December 2006), 7, and 8, contain at least one of the required CAs in their default trusted CA
+/// list.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// When accessing the Lambda management console or Lambda API endpoints, whether through browsers or
+/// programmatically, you will need to ensure your client machines support any of the following CAs:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Amazon Root CA 1
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Starfield Services Root Certificate Authority - G2
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Starfield Class 2 Certification Authority
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Root certificates from the first two authorities are available from
+/// <see href="https://www.amazontrust.com/repository/">Amazon trust services</see>, but keeping your
+/// computer up-to-date is the more straightforward solution. To learn more about ACM-provided
+/// certificates, see <see href="http://aws.amazon.com/certificate-manager/faqs/#certificates">Amazon
+/// Web Services Certificate Manager FAQs.</see>
+/// </para>
 /// </summary>
 public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
 {
@@ -6239,7 +7347,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     public void Dispose() => environment.Dispose();
 
     /// <summary>
-    /// &lt;p&gt;Adds permissions to the resource-based policy of a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Use this action to grant layer usage permission to other accounts. You can grant permission to a single account, all accounts in an organization, or all Amazon Web Services accounts. &lt;/p&gt; &lt;p&gt;To revoke permission, call &lt;a&gt;RemoveLayerVersionPermission&lt;/a&gt; with the statement ID that you specified when you added it.&lt;/p&gt;
+    /// <para>
+    /// Adds permissions to the resource-based policy of a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Use this action to grant layer usage permission to other accounts. You can grant
+    /// permission to a single account, all accounts in an organization, or all Amazon Web Services
+    /// accounts.
+    /// </para>
+    /// <para>
+    /// To revoke permission, call RemoveLayerVersionPermission with the statement ID that you specified
+    /// when you added it.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -6266,7 +7384,30 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Grants a &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying&quot;&gt;principal&lt;/a&gt; permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does not support adding policies to version $LATEST.&lt;/p&gt; &lt;p&gt;To grant permission to another account, specify the account ID as the &lt;code&gt;Principal&lt;/code&gt;. To grant permission to an organization defined in Organizations, specify the organization ID as the &lt;code&gt;PrincipalOrgID&lt;/code&gt;. For Amazon Web Services services, the principal is a domain-style identifier that the service defines, such as &lt;code&gt;s3.amazonaws.com&lt;/code&gt; or &lt;code&gt;sns.amazonaws.com&lt;/code&gt;. For Amazon Web Services services, you can also specify the ARN of the associated resource as the &lt;code&gt;SourceArn&lt;/code&gt;. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function.&lt;/p&gt; &lt;p&gt;This operation adds a statement to a resource-based permissions policy for the function. For more information about function policies, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;Using resource-based policies for Lambda&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Grants a
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying">principal</see>
+    /// permission to use a function. You can apply the policy at the function level, or specify a qualifier
+    /// to restrict access to a single version or alias. If you use a qualifier, the invoker must use the
+    /// full Amazon Resource Name (ARN) of that version or alias to invoke the function. Note: Lambda does
+    /// not support adding policies to version $LATEST.
+    /// </para>
+    /// <para>
+    /// To grant permission to another account, specify the account ID as the <c>Principal</c>. To grant
+    /// permission to an organization defined in Organizations, specify the organization ID as the
+    /// <c>PrincipalOrgID</c>. For Amazon Web Services services, the principal is a domain-style identifier
+    /// that the service defines, such as <c>s3.amazonaws.com</c> or <c>sns.amazonaws.com</c>. For Amazon
+    /// Web Services services, you can also specify the ARN of the associated resource as the
+    /// <c>SourceArn</c>. If you grant permission to a service principal without specifying the source,
+    /// other accounts could potentially configure resources in their account to invoke your Lambda
+    /// function.
+    /// </para>
+    /// <para>
+    /// This operation adds a statement to a resource-based permissions policy for the function. For more
+    /// information about function policies, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">Using
+    /// resource-based policies for Lambda</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -6308,7 +7449,18 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Saves the progress of a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution during runtime. This API is used by the Lambda durable functions SDK to checkpoint completed steps and schedule asynchronous operations. You typically don't need to call this API directly as the SDK handles checkpointing automatically.&lt;/p&gt; &lt;p&gt;Each checkpoint operation consumes the current checkpoint token and returns a new one for the next checkpoint. This ensures that checkpoints are applied in the correct order and prevents duplicate or out-of-order state updates.&lt;/p&gt;
+    /// <para>
+    /// Saves the progress of a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution during runtime. This API is used by the Lambda durable functions SDK to
+    /// checkpoint completed steps and schedule asynchronous operations. You typically don't need to call
+    /// this API directly as the SDK handles checkpointing automatically.
+    /// </para>
+    /// <para>
+    /// Each checkpoint operation consumes the current checkpoint token and returns a new one for the next
+    /// checkpoint. This ensures that checkpoints are applied in the correct order and prevents duplicate or
+    /// out-of-order state updates.
+    /// </para>
     /// </summary>
     public Task<CheckpointDurableExecutionOutput> CheckpointDurableExecutionAsync(
         CheckpointDurableExecutionInput input,
@@ -6321,7 +7473,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt; for a Lambda function version. Use aliases to provide clients with a function identifier that you can update to invoke a different version.&lt;/p&gt; &lt;p&gt;You can also map an alias to split invocation requests between two versions. Use the &lt;code&gt;RoutingConfig&lt;/code&gt; parameter to specify a second version and the percentage of invocation requests that it receives.&lt;/p&gt;
+    /// <para>
+    /// Creates an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see> for
+    /// a Lambda function version. Use aliases to provide clients with a function identifier that you can
+    /// update to invoke a different version.
+    /// </para>
+    /// <para>
+    /// You can also map an alias to split invocation requests between two versions. Use the
+    /// <c>RoutingConfig</c> parameter to specify a second version and the percentage of invocation requests
+    /// that it receives.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -6348,7 +7510,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates a capacity provider that manages compute resources for Lambda functions&lt;/p&gt;
+    /// Creates a capacity provider that manages compute resources for Lambda functions
     /// </summary>
     public Task<CreateCapacityProviderOutput> CreateCapacityProviderAsync(
         CreateCapacityProviderInput input,
@@ -6360,7 +7522,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates a code signing configuration. A &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html&quot;&gt;code signing configuration&lt;/a&gt; defines a list of allowed signing profiles and defines the code-signing validation policy (action to be taken if deployment validation checks fail). &lt;/p&gt;
+    /// Creates a code signing configuration. A
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html">code signing
+    /// configuration</see> defines a list of allowed signing profiles and defines the code-signing
+    /// validation policy (action to be taken if deployment validation checks fail).
     /// </summary>
     public Task<CreateCodeSigningConfigOutput> CreateCodeSigningConfigAsync(
         CreateCodeSigningConfigInput input,
@@ -6372,7 +7537,146 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and invokes the function.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+    /// <para>
+    /// Creates a mapping between an event source and an Lambda function. Lambda reads items from the event
+    /// source and invokes the function.
+    /// </para>
+    /// <para>
+    /// For details about how to configure different event sources, see the following topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping">Amazon
+    /// MQ and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html">Amazon MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html">Apache Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon
+    /// MSK, and self-managed Apache Kafka):
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch in two and
+    /// retry.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age. The default value
+    /// is infinite (-1). When set to infinite (-1), failed records are retried until the record expires
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries. The default
+    /// value is infinite (-1). When set to infinite (-1), failed records are retried until the record
+    /// expires.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>OnFailure</c> – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or
+    /// Amazon S3 bucket. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations">Adding
+    /// a destination</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following option is available only for DynamoDB and Kinesis event sources:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For information about which configuration parameters apply to each event source, see the following
+    /// topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params">Amazon MQ
+    /// and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms">Amazon
+    /// MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms">Apache
+    /// Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     /// <example>
     /// <para>
@@ -6399,7 +7703,72 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates a Lambda function. To create a function, you need a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html&quot;&gt;deployment package&lt;/a&gt; and an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role&quot;&gt;execution role&lt;/a&gt;. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use Amazon Web Services services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt;, then you set the package type to &lt;code&gt;Image&lt;/code&gt;. For a container image, the code property must include the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and runtime properties.&lt;/p&gt; &lt;p&gt;If the deployment package is a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;, then you set the package type to &lt;code&gt;Zip&lt;/code&gt;. For a .zip file archive, the code property specifies the location of the .zip file. You must also specify the handler and runtime properties. The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;). If you do not specify the architecture, then the default value is &lt;code&gt;x86-64&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The &lt;code&gt;State&lt;/code&gt;, &lt;code&gt;StateReason&lt;/code&gt;, and &lt;code&gt;StateReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the function is ready to invoke. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the &lt;code&gt;Publish&lt;/code&gt; parameter to create version &lt;code&gt;1&lt;/code&gt; of your function from its initial configuration.&lt;/p&gt; &lt;p&gt;The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;. Function-level settings apply to both the unpublished and published versions of the function, and include tags (&lt;a&gt;TagResource&lt;/a&gt;) and per-function concurrency limits (&lt;a&gt;PutFunctionConcurrency&lt;/a&gt;).&lt;/p&gt; &lt;p&gt;You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with &lt;a&gt;UpdateFunctionCode&lt;/a&gt;, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set of signing profiles, which define the trusted publishers for this function.&lt;/p&gt; &lt;p&gt;If another Amazon Web Services account or an Amazon Web Services service invokes your function, use &lt;a&gt;AddPermission&lt;/a&gt; to grant permission by creating a resource-based Identity and Access Management (IAM) policy. You can grant permissions at the function level, on a version, or on an alias.&lt;/p&gt; &lt;p&gt;To invoke your function directly, use &lt;a&gt;Invoke&lt;/a&gt;. To invoke your function in response to events in other Amazon Web Services services, create an event source mapping (&lt;a&gt;CreateEventSourceMapping&lt;/a&gt;), or configure a function trigger in the other service. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html&quot;&gt;Invoking Lambda functions&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Creates a Lambda function. To create a function, you need a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html">deployment
+    /// package</see> and an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role">execution
+    /// role</see>. The deployment package is a .zip file archive or container image that contains your
+    /// function code. The execution role grants the function permission to use Amazon Web Services
+    /// services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing.
+    /// </para>
+    /// <para>
+    /// If the deployment package is a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container image</see>,
+    /// then you set the package type to <c>Image</c>. For a container image, the code property must include
+    /// the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and
+    /// runtime properties.
+    /// </para>
+    /// <para>
+    /// If the deployment package is a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
+    /// file archive</see>, then you set the package type to <c>Zip</c>. For a .zip file archive, the code
+    /// property specifies the location of the .zip file. You must also specify the handler and runtime
+    /// properties. The code in the deployment package must be compatible with the target instruction set
+    /// architecture of the function (<c>x86-64</c> or <c>arm64</c>). If you do not specify the
+    /// architecture, then the default value is <c>x86-64</c>.
+    /// </para>
+    /// <para>
+    /// When you create a function, Lambda provisions an instance of the function and its supporting
+    /// resources. If your function connects to a VPC, this process can take a minute or so. During this
+    /// time, you can't invoke or modify the function. The <c>State</c>, <c>StateReason</c>, and
+    /// <c>StateReasonCode</c> fields in the response from GetFunctionConfiguration indicate when the
+    /// function is ready to invoke. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda function
+    /// states</see>.
+    /// </para>
+    /// <para>
+    /// A function has an unpublished version, and can have published versions and aliases. The unpublished
+    /// version changes when you update your function's code and configuration. A published version is a
+    /// snapshot of your function code and configuration that can't be changed. An alias is a named resource
+    /// that maps to a version, and can be changed to map to a different version. Use the <c>Publish</c>
+    /// parameter to create version <c>1</c> of your function from its initial configuration.
+    /// </para>
+    /// <para>
+    /// The other parameters let you configure version-specific and function-level settings. You can modify
+    /// version-specific settings later with UpdateFunctionConfiguration. Function-level settings apply to
+    /// both the unpublished and published versions of the function, and include tags (TagResource) and
+    /// per-function concurrency limits (PutFunctionConcurrency).
+    /// </para>
+    /// <para>
+    /// You can use code signing if your deployment package is a .zip file archive. To enable code signing
+    /// for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a
+    /// code package with UpdateFunctionCode, Lambda checks that the code package has a valid signature from
+    /// a trusted publisher. The code-signing configuration includes set of signing profiles, which define
+    /// the trusted publishers for this function.
+    /// </para>
+    /// <para>
+    /// If another Amazon Web Services account or an Amazon Web Services service invokes your function, use
+    /// AddPermission to grant permission by creating a resource-based Identity and Access Management (IAM)
+    /// policy. You can grant permissions at the function level, on a version, or on an alias.
+    /// </para>
+    /// <para>
+    /// To invoke your function directly, use Invoke. To invoke your function in response to events in other
+    /// Amazon Web Services services, create an event source mapping (CreateEventSourceMapping), or
+    /// configure a function trigger in the other service. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html">Invoking Lambda
+    /// functions</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -6426,7 +7795,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates a Lambda function URL with the specified configuration parameters. A function URL is a dedicated HTTP(S) endpoint that you can use to invoke your function.&lt;/p&gt;
+    /// Creates a Lambda function URL with the specified configuration parameters. A function URL is a
+    /// dedicated HTTP(S) endpoint that you can use to invoke your function.
     /// </summary>
     public Task<CreateFunctionUrlConfigOutput> CreateFunctionUrlConfigAsync(
         CreateFunctionUrlConfigInput input,
@@ -6438,7 +7808,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
+    /// Deletes a Lambda function
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -6462,7 +7833,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes a capacity provider. You cannot delete a capacity provider that is currently being used by Lambda functions.&lt;/p&gt;
+    /// Deletes a capacity provider. You cannot delete a capacity provider that is currently being used by
+    /// Lambda functions.
     /// </summary>
     public Task<DeleteCapacityProviderOutput> DeleteCapacityProviderAsync(
         DeleteCapacityProviderInput input,
@@ -6474,7 +7846,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes the code signing configuration. You can delete the code signing configuration only if no function is using it. &lt;/p&gt;
+    /// Deletes the code signing configuration. You can delete the code signing configuration only if no
+    /// function is using it.
     /// </summary>
     public Task<DeleteCodeSigningConfigOutput> DeleteCodeSigningConfigAsync(
         DeleteCodeSigningConfigInput input,
@@ -6486,7 +7859,15 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html&quot;&gt;event source mapping&lt;/a&gt;. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When you delete an event source mapping, it enters a &lt;code&gt;Deleting&lt;/code&gt; state and might not be completely deleted for several seconds.&lt;/p&gt;
+    /// <para>
+    /// Deletes an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html">event source
+    /// mapping</see>. You can get the identifier of a mapping from the output of ListEventSourceMappings.
+    /// </para>
+    /// <para>
+    /// When you delete an event source mapping, it enters a <c>Deleting</c> state and might not be
+    /// completely deleted for several seconds.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -6513,7 +7894,20 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes a Lambda function. To delete a specific function version, use the &lt;code&gt;Qualifier&lt;/code&gt; parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have explicit permissions for &lt;a&gt;DeleteAlias&lt;/a&gt;.&lt;/p&gt; &lt;note&gt; &lt;p&gt;A deleted Lambda function cannot be recovered. Ensure that you specify the correct function name and version before deleting.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;To delete Lambda event source mappings that invoke a function, use &lt;a&gt;DeleteEventSourceMapping&lt;/a&gt;. For Amazon Web Services services and resources that invoke your function directly, delete the trigger in the service where you originally configured it.&lt;/p&gt;
+    /// <para>
+    /// Deletes a Lambda function. To delete a specific function version, use the <c>Qualifier</c>
+    /// parameter. Otherwise, all versions and aliases are deleted. This doesn't require the user to have
+    /// explicit permissions for DeleteAlias.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> A deleted Lambda function cannot be recovered. Ensure that you specify the correct
+    /// function name and version before deleting.
+    /// </para>
+    /// <para>
+    /// To delete Lambda event source mappings that invoke a function, use DeleteEventSourceMapping. For
+    /// Amazon Web Services services and resources that invoke your function directly, delete the trigger in
+    /// the service where you originally configured it.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -6537,7 +7931,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Removes the code signing configuration from the function.&lt;/p&gt;
+    /// Removes the code signing configuration from the function.
     /// </summary>
     public Task<DeleteFunctionCodeSigningConfigOutput> DeleteFunctionCodeSigningConfigAsync(
         DeleteFunctionCodeSigningConfigInput input,
@@ -6553,7 +7947,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Removes a concurrent execution limit from a function.&lt;/p&gt;
+    /// Removes a concurrent execution limit from a function.
     /// </summary>
     /// <example>
     /// <para>
@@ -6577,7 +7971,12 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Deletes the configuration for asynchronous invocation for a function, version, or alias.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -6605,7 +8004,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes a Lambda function URL. When you delete a function URL, you can't recover it. Creating a new function URL results in a different URL address.&lt;/p&gt;
+    /// Deletes a Lambda function URL. When you delete a function URL, you can't recover it. Creating a new
+    /// function URL results in a different URL address.
     /// </summary>
     public Task<DeleteFunctionUrlConfigOutput> DeleteFunctionUrlConfigAsync(
         DeleteFunctionUrlConfigInput input,
@@ -6617,7 +8017,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Deleted versions can no longer be viewed or added to functions. To avoid breaking functions, a copy of the version remains in Lambda until no functions refer to it.&lt;/p&gt;
+    /// Deletes a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Deleted versions can no longer be viewed or added to functions. To avoid breaking
+    /// functions, a copy of the version remains in Lambda until no functions refer to it.
     /// </summary>
     /// <example>
     /// <para>
@@ -6641,7 +8044,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes the provisioned concurrency configuration for a function.&lt;/p&gt;
+    /// Deletes the provisioned concurrency configuration for a function.
     /// </summary>
     /// <example>
     /// <para>
@@ -6669,7 +8072,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Deletes a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based policy&lt;/a&gt; from a Lambda resource.&lt;/p&gt;
+    /// Deletes a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// policy</see> from a Lambda resource.
     /// </summary>
     public Task<DeleteResourcePolicyOutput> DeleteResourcePolicyAsync(
         DeleteResourcePolicyInput input,
@@ -6681,7 +8086,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves details about your account's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/limits.html&quot;&gt;limits&lt;/a&gt; and usage in an Amazon Web Services Region.&lt;/p&gt;
+    /// Retrieves details about your account's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limits</see> and usage in an
+    /// Amazon Web Services Region.
     /// </summary>
     /// <example>
     /// <para>
@@ -6708,7 +8115,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns details about a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
+    /// Returns details about a Lambda function
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -6735,7 +8143,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves information about a specific capacity provider, including its configuration, state, and associated resources.&lt;/p&gt;
+    /// Retrieves information about a specific capacity provider, including its configuration, state, and
+    /// associated resources.
     /// </summary>
     public Task<GetCapacityProviderOutput> GetCapacityProviderAsync(
         GetCapacityProviderInput input,
@@ -6747,7 +8156,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns information about the specified code signing configuration.&lt;/p&gt;
+    /// Returns information about the specified code signing configuration.
     /// </summary>
     public Task<GetCodeSigningConfigOutput> GetCodeSigningConfigAsync(
         GetCodeSigningConfigInput input,
@@ -6759,7 +8168,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves detailed information about a specific &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, including its current status, input payload, result or error information, and execution metadata such as start time and usage statistics.&lt;/p&gt;
+    /// Retrieves detailed information about a specific
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, including its current status, input payload, result or error information, and
+    /// execution metadata such as start time and usage statistics.
     /// </summary>
     public Task<GetDurableExecutionOutput> GetDurableExecutionAsync(
         GetDurableExecutionInput input,
@@ -6771,7 +8183,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the execution history for a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, showing all the steps, callbacks, and events that occurred during the execution. This provides a detailed audit trail of the execution's progress over time.&lt;/p&gt; &lt;p&gt;The history is available while the execution is running and for a retention period after it completes (1-90 days, default 30 days). You can control whether to include execution data such as step results and callback payloads.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the execution history for a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, showing all the steps, callbacks, and events that occurred during the execution.
+    /// This provides a detailed audit trail of the execution's progress over time.
+    /// </para>
+    /// <para>
+    /// The history is available while the execution is running and for a retention period after it
+    /// completes (1-90 days, default 30 days). You can control whether to include execution data such as
+    /// step results and callback payloads.
+    /// </para>
     /// </summary>
     public Task<GetDurableExecutionHistoryOutput> GetDurableExecutionHistoryAsync(
         GetDurableExecutionHistoryInput input,
@@ -6783,7 +8205,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the execution history for a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, showing all the steps, callbacks, and events that occurred during the execution. This provides a detailed audit trail of the execution's progress over time.&lt;/p&gt; &lt;p&gt;The history is available while the execution is running and for a retention period after it completes (1-90 days, default 30 days). You can control whether to include execution data such as step results and callback payloads.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the execution history for a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, showing all the steps, callbacks, and events that occurred during the execution.
+    /// This provides a detailed audit trail of the execution's progress over time.
+    /// </para>
+    /// <para>
+    /// The history is available while the execution is running and for a retention period after it
+    /// completes (1-90 days, default 30 days). You can control whether to include execution data such as
+    /// step results and callback payloads.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<GetDurableExecutionHistoryOutput> GetDurableExecutionHistoryPagesAsync(
         GetDurableExecutionHistoryInput input,
@@ -6806,7 +8238,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the execution history for a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;, showing all the steps, callbacks, and events that occurred during the execution. This provides a detailed audit trail of the execution's progress over time.&lt;/p&gt; &lt;p&gt;The history is available while the execution is running and for a retention period after it completes (1-90 days, default 30 days). You can control whether to include execution data such as step results and callback payloads.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the execution history for a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>, showing all the steps, callbacks, and events that occurred during the execution.
+    /// This provides a detailed audit trail of the execution's progress over time.
+    /// </para>
+    /// <para>
+    /// The history is available while the execution is running and for a retention period after it
+    /// completes (1-90 days, default 30 days). You can control whether to include execution data such as
+    /// step results and callback payloads.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<Event> GetDurableExecutionHistoryItemsAsync(
         GetDurableExecutionHistoryInput input,
@@ -6831,7 +8273,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the current execution state required for the replay process during &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution. This API is used by the Lambda durable functions SDK to get state information needed for replay. You typically don't need to call this API directly as the SDK handles state management automatically.&lt;/p&gt; &lt;p&gt;The response contains operations ordered by start sequence number in ascending order. Completed operations with children don't include child operation details since they don't need to be replayed.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the current execution state required for the replay process during
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution. This API is used by the Lambda durable functions SDK to get state
+    /// information needed for replay. You typically don't need to call this API directly as the SDK handles
+    /// state management automatically.
+    /// </para>
+    /// <para>
+    /// The response contains operations ordered by start sequence number in ascending order. Completed
+    /// operations with children don't include child operation details since they don't need to be replayed.
+    /// </para>
     /// </summary>
     public Task<GetDurableExecutionStateOutput> GetDurableExecutionStateAsync(
         GetDurableExecutionStateInput input,
@@ -6843,7 +8295,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the current execution state required for the replay process during &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution. This API is used by the Lambda durable functions SDK to get state information needed for replay. You typically don't need to call this API directly as the SDK handles state management automatically.&lt;/p&gt; &lt;p&gt;The response contains operations ordered by start sequence number in ascending order. Completed operations with children don't include child operation details since they don't need to be replayed.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the current execution state required for the replay process during
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution. This API is used by the Lambda durable functions SDK to get state
+    /// information needed for replay. You typically don't need to call this API directly as the SDK handles
+    /// state management automatically.
+    /// </para>
+    /// <para>
+    /// The response contains operations ordered by start sequence number in ascending order. Completed
+    /// operations with children don't include child operation details since they don't need to be replayed.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<GetDurableExecutionStateOutput> GetDurableExecutionStatePagesAsync(
         GetDurableExecutionStateInput input,
@@ -6866,7 +8328,17 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the current execution state required for the replay process during &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable function&lt;/a&gt; execution. This API is used by the Lambda durable functions SDK to get state information needed for replay. You typically don't need to call this API directly as the SDK handles state management automatically.&lt;/p&gt; &lt;p&gt;The response contains operations ordered by start sequence number in ascending order. Completed operations with children don't include child operation details since they don't need to be replayed.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the current execution state required for the replay process during
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// function</see> execution. This API is used by the Lambda durable functions SDK to get state
+    /// information needed for replay. You typically don't need to call this API directly as the SDK handles
+    /// state management automatically.
+    /// </para>
+    /// <para>
+    /// The response contains operations ordered by start sequence number in ascending order. Completed
+    /// operations with children don't include child operation details since they don't need to be replayed.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<Operation> GetDurableExecutionStateItemsAsync(
         GetDurableExecutionStateInput input,
@@ -6891,7 +8363,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns details about an event source mapping. You can get the identifier of a mapping from the output of &lt;a&gt;ListEventSourceMappings&lt;/a&gt;.&lt;/p&gt;
+    /// Returns details about an event source mapping. You can get the identifier of a mapping from the
+    /// output of ListEventSourceMappings.
     /// </summary>
     /// <example>
     /// <para>
@@ -6918,7 +8391,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns information about the function or function version, with a link to download the deployment package that's valid for 10 minutes. If you specify a function version, only details that are specific to that version are returned.&lt;/p&gt;
+    /// Returns information about the function or function version, with a link to download the deployment
+    /// package that's valid for 10 minutes. If you specify a function version, only details that are
+    /// specific to that version are returned.
     /// </summary>
     /// <example>
     /// <para>
@@ -7092,7 +8567,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
         );
 
     /// <summary>
-    /// &lt;p&gt;Returns the code signing configuration for the specified function.&lt;/p&gt;
+    /// Returns the code signing configuration for the specified function.
     /// </summary>
     public Task<GetFunctionCodeSigningConfigOutput> GetFunctionCodeSigningConfigAsync(
         GetFunctionCodeSigningConfigInput input,
@@ -7104,7 +8579,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns details about the reserved concurrency configuration for a function. To set a concurrency limit for a function, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;.&lt;/p&gt;
+    /// Returns details about the reserved concurrency configuration for a function. To set a concurrency
+    /// limit for a function, use PutFunctionConcurrency.
     /// </summary>
     /// <example>
     /// <para>
@@ -7131,7 +8607,14 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns the version-specific settings of a Lambda function or version. The output includes only options that can vary between versions of a function. To modify these settings, use &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To get all of a function's details, including function-level settings, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Returns the version-specific settings of a Lambda function or version. The output includes only
+    /// options that can vary between versions of a function. To modify these settings, use
+    /// UpdateFunctionConfiguration.
+    /// </para>
+    /// <para>
+    /// To get all of a function's details, including function-level settings, use GetFunction.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -7315,7 +8798,12 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
         );
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves the configuration for asynchronous invocation for a function, version, or alias.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -7342,7 +8830,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns your function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html&quot;&gt;recursive loop detection&lt;/a&gt; configuration. &lt;/p&gt;
+    /// Returns your function's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive loop
+    /// detection</see> configuration.
     /// </summary>
     public Task<GetFunctionRecursionConfigOutput> GetFunctionRecursionConfigAsync(
         GetFunctionRecursionConfigInput input,
@@ -7354,7 +8844,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the scaling configuration for a Lambda Managed Instances function.&lt;/p&gt;
+    /// Retrieves the scaling configuration for a Lambda Managed Instances function.
     /// </summary>
     public Task<GetFunctionScalingConfigOutput> GetFunctionScalingConfigAsync(
         GetFunctionScalingConfigInput input,
@@ -7366,7 +8856,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns details about a Lambda function URL.&lt;/p&gt;
+    /// Returns details about a Lambda function URL.
     /// </summary>
     public Task<GetFunctionUrlConfigOutput> GetFunctionUrlConfigAsync(
         GetFunctionUrlConfigInput input,
@@ -7378,7 +8868,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
+    /// Returns information about a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>, with a link to download the layer archive that's valid for 10 minutes.
     /// </summary>
     /// <example>
     /// <para>
@@ -7405,7 +8897,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns information about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;, with a link to download the layer archive that's valid for 10 minutes.&lt;/p&gt;
+    /// Returns information about a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>, with a link to download the layer archive that's valid for 10 minutes.
     /// </summary>
     /// <example>
     /// <para>
@@ -7432,7 +8926,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns the permission policy for a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. For more information, see &lt;a&gt;AddLayerVersionPermission&lt;/a&gt;.&lt;/p&gt;
+    /// Returns the permission policy for a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. For more information, see AddLayerVersionPermission.
     /// </summary>
     public Task<GetLayerVersionPolicyOutput> GetLayerVersionPolicyAsync(
         GetLayerVersionPolicyInput input,
@@ -7444,7 +8940,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based IAM policy&lt;/a&gt; for a function, version, or alias.&lt;/p&gt;
+    /// Returns the
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// IAM policy</see> for a function, version, or alias.
     /// </summary>
     /// <example>
     /// <para>
@@ -7471,7 +8969,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the provisioned concurrency configuration for a function's alias or version.&lt;/p&gt;
+    /// Retrieves the provisioned concurrency configuration for a function's alias or version.
     /// </summary>
     /// <example>
     /// <para>
@@ -7517,7 +9015,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based policy&lt;/a&gt; attached to a Lambda resource.&lt;/p&gt;
+    /// Retrieves the
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// policy</see> attached to a Lambda resource.
     /// </summary>
     public Task<GetResourcePolicyOutput> GetResourcePolicyAsync(
         GetResourcePolicyInput input,
@@ -7529,7 +9029,11 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves the runtime management configuration for a function's version. If the runtime update mode is &lt;b&gt;Manual&lt;/b&gt;, this includes the ARN of the runtime version and the runtime update mode. If the runtime update mode is &lt;b&gt;Auto&lt;/b&gt; or &lt;b&gt;Function update&lt;/b&gt;, this includes the runtime update mode and &lt;code&gt;null&lt;/code&gt; is returned for the ARN. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html&quot;&gt;Runtime updates&lt;/a&gt;.&lt;/p&gt;
+    /// Retrieves the runtime management configuration for a function's version. If the runtime update mode
+    /// is <b>Manual</b>, this includes the ARN of the runtime version and the runtime update mode. If the
+    /// runtime update mode is <b>Auto</b> or <b>Function update</b>, this includes the runtime update mode
+    /// and <c>null</c> is returned for the ARN. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime updates</see>.
     /// </summary>
     public Task<GetRuntimeManagementConfigOutput> GetRuntimeManagementConfigAsync(
         GetRuntimeManagementConfigInput input,
@@ -7541,7 +9045,63 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously. By default, Lambda invokes your function synchronously (i.e. the&lt;code&gt;InvocationType&lt;/code&gt; is &lt;code&gt;RequestResponse&lt;/code&gt;). To invoke a function asynchronously, set &lt;code&gt;InvocationType&lt;/code&gt; to &lt;code&gt;Event&lt;/code&gt;. Lambda passes the &lt;code&gt;ClientContext&lt;/code&gt; object to your function for synchronous invocations only.&lt;/p&gt; &lt;p&gt;For synchronous invocations, the maximum payload size is 6 MB. For asynchronous invocations, the maximum payload size is 1 MB.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html&quot;&gt;synchronous invocation&lt;/a&gt;, details about the function response, including errors, are included in the response body and headers. For either invocation type, you can find more information in the &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html&quot;&gt;execution log&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html&quot;&gt;trace&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;When an error occurs, your function may be invoked multiple times. Retry behavior varies by error type, client, event source, and invocation type. For example, if you invoke a function asynchronously and it returns an error, Lambda executes the function up to two more times. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html&quot;&gt;Error handling and automatic retries in Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt;, Lambda adds events to a queue before sending them to your function. If your function does not have enough capacity to keep up with the queue, events may be lost. Occasionally, your function may receive the same event multiple times, even if no error occurs. To retain events that were not processed, configure your function with a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq&quot;&gt;dead-letter queue&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;The status code in the API response doesn't reflect function errors. Error codes are reserved for errors that prevent your function from executing, such as permissions errors, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;quota&lt;/a&gt; errors, or issues with your function's code and configuration. For example, Lambda returns &lt;code&gt;TooManyRequestsException&lt;/code&gt; if running the function would cause you to exceed a concurrency limit at either the account level (&lt;code&gt;ConcurrentInvocationLimitExceeded&lt;/code&gt;) or function level (&lt;code&gt;ReservedFunctionConcurrentInvocationLimitExceeded&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;For functions with a long timeout, your client might disconnect during synchronous invocation while it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to allow for long connections with timeout or keep-alive settings.&lt;/p&gt; &lt;p&gt;This operation requires permission for the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html&quot;&gt;lambda:InvokeFunction&lt;/a&gt; action. For details on how to set up permissions for cross-account invocations, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke&quot;&gt;Granting function access to other accounts&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or
+    /// asynchronously. By default, Lambda invokes your function synchronously (i.e.
+    /// the<c>InvocationType</c> is <c>RequestResponse</c>). To invoke a function asynchronously, set
+    /// <c>InvocationType</c> to <c>Event</c>. Lambda passes the <c>ClientContext</c> object to your
+    /// function for synchronous invocations only.
+    /// </para>
+    /// <para>
+    /// For synchronous invocations, the maximum payload size is 6 MB. For asynchronous invocations, the
+    /// maximum payload size is 1 MB.
+    /// </para>
+    /// <para>
+    /// For <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html">synchronous
+    /// invocation</see>, details about the function response, including errors, are included in the
+    /// response body and headers. For either invocation type, you can find more information in the
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions.html">execution
+    /// log</see> and
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html">trace</see>.
+    /// </para>
+    /// <para>
+    /// When an error occurs, your function may be invoked multiple times. Retry behavior varies by error
+    /// type, client, event source, and invocation type. For example, if you invoke a function
+    /// asynchronously and it returns an error, Lambda executes the function up to two more times. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html">Error handling and
+    /// automatic retries in Lambda</see>.
+    /// </para>
+    /// <para>
+    /// For <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html">asynchronous
+    /// invocation</see>, Lambda adds events to a queue before sending them to your function. If your
+    /// function does not have enough capacity to keep up with the queue, events may be lost. Occasionally,
+    /// your function may receive the same event multiple times, even if no error occurs. To retain events
+    /// that were not processed, configure your function with a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq">dead-letter
+    /// queue</see>.
+    /// </para>
+    /// <para>
+    /// The status code in the API response doesn't reflect function errors. Error codes are reserved for
+    /// errors that prevent your function from executing, such as permissions errors,
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">quota</see>
+    /// errors, or issues with your function's code and configuration. For example, Lambda returns
+    /// <c>TooManyRequestsException</c> if running the function would cause you to exceed a concurrency
+    /// limit at either the account level (<c>ConcurrentInvocationLimitExceeded</c>) or function level
+    /// (<c>ReservedFunctionConcurrentInvocationLimitExceeded</c>).
+    /// </para>
+    /// <para>
+    /// For functions with a long timeout, your client might disconnect during synchronous invocation while
+    /// it waits for a response. Configure your HTTP client, SDK, firewall, proxy, or operating system to
+    /// allow for long connections with timeout or keep-alive settings.
+    /// </para>
+    /// <para>
+    /// This operation requires permission for the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html">lambda:InvokeFunction</see>
+    /// action. For details on how to set up permissions for cross-account invocations, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke">Granting
+    /// function access to other accounts</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -7583,7 +9143,20 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;note&gt; &lt;p&gt;For asynchronous function invocation, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;p&gt;Invokes a function asynchronously.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The payload limit is 256KB. For larger payloads, for up to 1MB, use &lt;a&gt;Invoke&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; &lt;note&gt; &lt;p&gt;If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing is turned on.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// <b>Note:</b> For asynchronous function invocation, use Invoke.
+    /// </para>
+    /// <para>
+    /// Invokes a function asynchronously.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The payload limit is 256KB. For larger payloads, for up to 1MB, use Invoke.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray
+    /// active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing is turned
+    /// on.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -7610,7 +9183,19 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Configure your Lambda functions to stream response payloads back to clients. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html&quot;&gt;Configuring a Lambda function to stream responses&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;This operation requires permission for the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html&quot;&gt;lambda:InvokeFunction&lt;/a&gt; action. For details on how to set up permissions for cross-account invocations, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke&quot;&gt;Granting function access to other accounts&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Configure your Lambda functions to stream response payloads back to clients. For more information,
+    /// see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html">Configuring
+    /// a Lambda function to stream responses</see>.
+    /// </para>
+    /// <para>
+    /// This operation requires permission for the
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html">lambda:InvokeFunction</see>
+    /// action. For details on how to set up permissions for cross-account invocations, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke">Granting
+    /// function access to other accounts</see>.
+    /// </para>
     /// </summary>
     public Task<InvokeWithResponseStreamOutput> InvokeWithResponseStreamAsync(
         InvokeWithResponseStreamInput input,
@@ -7622,7 +9207,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">aliases</see>
+    /// for a Lambda function.
     /// </summary>
     /// <example>
     /// <para>
@@ -7649,7 +9236,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">aliases</see>
+    /// for a Lambda function.
     /// </summary>
     public async IAsyncEnumerable<ListAliasesOutput> ListAliasesPagesAsync(
         ListAliasesInput input,
@@ -7670,7 +9259,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;aliases&lt;/a&gt; for a Lambda function.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">aliases</see>
+    /// for a Lambda function.
     /// </summary>
     public async IAsyncEnumerable<AliasConfiguration> ListAliasesItemsAsync(
         ListAliasesInput input,
@@ -7694,7 +9285,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of capacity providers in your account.&lt;/p&gt;
+    /// Returns a list of capacity providers in your account.
     /// </summary>
     public Task<ListCapacityProvidersOutput> ListCapacityProvidersAsync(
         ListCapacityProvidersInput input,
@@ -7706,7 +9297,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of capacity providers in your account.&lt;/p&gt;
+    /// Returns a list of capacity providers in your account.
     /// </summary>
     public async IAsyncEnumerable<ListCapacityProvidersOutput> ListCapacityProvidersPagesAsync(
         ListCapacityProvidersInput input,
@@ -7729,7 +9320,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of capacity providers in your account.&lt;/p&gt;
+    /// Returns a list of capacity providers in your account.
     /// </summary>
     public async IAsyncEnumerable<CapacityProvider> ListCapacityProvidersItemsAsync(
         ListCapacityProvidersInput input,
@@ -7754,7 +9345,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html&quot;&gt;code signing configurations&lt;/a&gt;. A request returns up to 10,000 configurations per call. You can use the &lt;code&gt;MaxItems&lt;/code&gt; parameter to return fewer configurations per call. &lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
     /// </summary>
     public Task<ListCodeSigningConfigsOutput> ListCodeSigningConfigsAsync(
         ListCodeSigningConfigsInput input,
@@ -7766,7 +9360,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html&quot;&gt;code signing configurations&lt;/a&gt;. A request returns up to 10,000 configurations per call. You can use the &lt;code&gt;MaxItems&lt;/code&gt; parameter to return fewer configurations per call. &lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
     /// </summary>
     public async IAsyncEnumerable<ListCodeSigningConfigsOutput> ListCodeSigningConfigsPagesAsync(
         ListCodeSigningConfigsInput input,
@@ -7789,7 +9386,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html&quot;&gt;code signing configurations&lt;/a&gt;. A request returns up to 10,000 configurations per call. You can use the &lt;code&gt;MaxItems&lt;/code&gt; parameter to return fewer configurations per call. &lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
     /// </summary>
     public async IAsyncEnumerable<CodeSigningConfig> ListCodeSigningConfigsItemsAsync(
         ListCodeSigningConfigsInput input,
@@ -7814,7 +9414,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable executions&lt;/a&gt; for a specified Lambda function. You can filter the results by execution name, status, and start time range. This API supports pagination for large result sets.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// executions</see> for a specified Lambda function. You can filter the results by execution name,
+    /// status, and start time range. This API supports pagination for large result sets.
     /// </summary>
     public Task<ListDurableExecutionsByFunctionOutput> ListDurableExecutionsByFunctionAsync(
         ListDurableExecutionsByFunctionInput input,
@@ -7830,7 +9433,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable executions&lt;/a&gt; for a specified Lambda function. You can filter the results by execution name, status, and start time range. This API supports pagination for large result sets.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// executions</see> for a specified Lambda function. You can filter the results by execution name,
+    /// status, and start time range. This API supports pagination for large result sets.
     /// </summary>
     public async IAsyncEnumerable<ListDurableExecutionsByFunctionOutput> ListDurableExecutionsByFunctionPagesAsync(
         ListDurableExecutionsByFunctionInput input,
@@ -7853,7 +9459,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable executions&lt;/a&gt; for a specified Lambda function. You can filter the results by execution name, status, and start time range. This API supports pagination for large result sets.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// executions</see> for a specified Lambda function. You can filter the results by execution name,
+    /// status, and start time range. This API supports pagination for large result sets.
     /// </summary>
     public async IAsyncEnumerable<Execution> ListDurableExecutionsByFunctionItemsAsync(
         ListDurableExecutionsByFunctionInput input,
@@ -7878,7 +9487,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
     /// </summary>
     /// <example>
     /// <para>
@@ -7905,7 +9515,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
     /// </summary>
     public async IAsyncEnumerable<ListEventSourceMappingsOutput> ListEventSourceMappingsPagesAsync(
         ListEventSourceMappingsInput input,
@@ -7928,7 +9539,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists event source mappings. Specify an &lt;code&gt;EventSourceArn&lt;/code&gt; to show only event source mappings for a single event source.&lt;/p&gt;
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
     /// </summary>
     public async IAsyncEnumerable<EventSourceMappingConfiguration> ListEventSourceMappingsItemsAsync(
         ListEventSourceMappingsInput input,
@@ -7953,7 +9565,12 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves a list of configurations for asynchronous invocation for a function.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -7980,7 +9597,12 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves a list of configurations for asynchronous invocation for a function.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<ListFunctionEventInvokeConfigsOutput> ListFunctionEventInvokeConfigsPagesAsync(
         ListFunctionEventInvokeConfigsInput input,
@@ -8003,7 +9625,12 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of configurations for asynchronous invocation for a function.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Retrieves a list of configurations for asynchronous invocation for a function.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<FunctionEventInvokeConfig> ListFunctionEventInvokeConfigsItemsAsync(
         ListFunctionEventInvokeConfigsInput input,
@@ -8028,7 +9655,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda function URLs for the specified function.&lt;/p&gt;
+    /// Returns a list of Lambda function URLs for the specified function.
     /// </summary>
     public Task<ListFunctionUrlConfigsOutput> ListFunctionUrlConfigsAsync(
         ListFunctionUrlConfigsInput input,
@@ -8040,7 +9667,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda function URLs for the specified function.&lt;/p&gt;
+    /// Returns a list of Lambda function URLs for the specified function.
     /// </summary>
     public async IAsyncEnumerable<ListFunctionUrlConfigsOutput> ListFunctionUrlConfigsPagesAsync(
         ListFunctionUrlConfigsInput input,
@@ -8063,7 +9690,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda function URLs for the specified function.&lt;/p&gt;
+    /// Returns a list of Lambda function URLs for the specified function.
     /// </summary>
     public async IAsyncEnumerable<FunctionUrlConfig> ListFunctionUrlConfigsItemsAsync(
         ListFunctionUrlConfigsInput input,
@@ -8088,7 +9715,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of function versions that are configured to use a specific capacity provider.&lt;/p&gt;
+    /// Returns a list of function versions that are configured to use a specific capacity provider.
     /// </summary>
     public Task<ListFunctionVersionsByCapacityProviderOutput> ListFunctionVersionsByCapacityProviderAsync(
         ListFunctionVersionsByCapacityProviderInput input,
@@ -8104,7 +9731,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of function versions that are configured to use a specific capacity provider.&lt;/p&gt;
+    /// Returns a list of function versions that are configured to use a specific capacity provider.
     /// </summary>
     public async IAsyncEnumerable<ListFunctionVersionsByCapacityProviderOutput> ListFunctionVersionsByCapacityProviderPagesAsync(
         ListFunctionVersionsByCapacityProviderInput input,
@@ -8127,7 +9754,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of function versions that are configured to use a specific capacity provider.&lt;/p&gt;
+    /// Returns a list of function versions that are configured to use a specific capacity provider.
     /// </summary>
     public async IAsyncEnumerable<FunctionVersionsByCapacityProviderListItem> ListFunctionVersionsByCapacityProviderItemsAsync(
         ListFunctionVersionsByCapacityProviderInput input,
@@ -8152,7 +9779,20 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -8179,7 +9819,20 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<ListFunctionsOutput> ListFunctionsPagesAsync(
         ListFunctionsInput input,
@@ -8200,7 +9853,20 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.&lt;/p&gt; &lt;p&gt;Set &lt;code&gt;FunctionVersion&lt;/code&gt; to &lt;code&gt;ALL&lt;/code&gt; to include all published versions of each function in addition to the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;The &lt;code&gt;ListFunctions&lt;/code&gt; operation returns a subset of the &lt;a&gt;FunctionConfiguration&lt;/a&gt; fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version, use &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
     /// </summary>
     public async IAsyncEnumerable<FunctionConfiguration> ListFunctionsItemsAsync(
         ListFunctionsInput input,
@@ -8224,7 +9890,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.&lt;/p&gt;
+    /// List the functions that use the specified code signing configuration. You can use this method prior
+    /// to deleting a code signing configuration, to verify that no functions are using it.
     /// </summary>
     public Task<ListFunctionsByCodeSigningConfigOutput> ListFunctionsByCodeSigningConfigAsync(
         ListFunctionsByCodeSigningConfigInput input,
@@ -8240,7 +9907,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.&lt;/p&gt;
+    /// List the functions that use the specified code signing configuration. You can use this method prior
+    /// to deleting a code signing configuration, to verify that no functions are using it.
     /// </summary>
     public async IAsyncEnumerable<ListFunctionsByCodeSigningConfigOutput> ListFunctionsByCodeSigningConfigPagesAsync(
         ListFunctionsByCodeSigningConfigInput input,
@@ -8263,7 +9931,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.&lt;/p&gt;
+    /// List the functions that use the specified code signing configuration. You can use this method prior
+    /// to deleting a code signing configuration, to verify that no functions are using it.
     /// </summary>
     public async IAsyncEnumerable<string> ListFunctionsByCodeSigningConfigItemsAsync(
         ListFunctionsByCodeSigningConfigInput input,
@@ -8288,7 +9957,13 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
+    /// Lists the versions of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Versions that have been deleted aren't listed. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only versions that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layer versions that are compatible with that
+    /// architecture.
     /// </summary>
     /// <example>
     /// <para>
@@ -8315,7 +9990,13 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
+    /// Lists the versions of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Versions that have been deleted aren't listed. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only versions that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layer versions that are compatible with that
+    /// architecture.
     /// </summary>
     public async IAsyncEnumerable<ListLayerVersionsOutput> ListLayerVersionsPagesAsync(
         ListLayerVersionsInput input,
@@ -8336,7 +10017,13 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists the versions of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. Versions that have been deleted aren't listed. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.&lt;/p&gt;
+    /// Lists the versions of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. Versions that have been deleted aren't listed. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only versions that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layer versions that are compatible with that
+    /// architecture.
     /// </summary>
     public async IAsyncEnumerable<LayerVersionsListItem> ListLayerVersionsItemsAsync(
         ListLayerVersionsInput input,
@@ -8360,7 +10047,13 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -8387,7 +10080,13 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
     /// </summary>
     public async IAsyncEnumerable<ListLayersOutput> ListLayersPagesAsync(
         ListLayersInput input,
@@ -8408,7 +10107,13 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Lists &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html&quot;&gt;Lambda layers&lt;/a&gt; and shows information about the latest version of each. Specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html&quot;&gt;runtime identifier&lt;/a&gt; to list only layers that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layers that are compatible with that &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architecture&lt;/a&gt;.&lt;/p&gt;
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
     /// </summary>
     public async IAsyncEnumerable<LayersListItem> ListLayersItemsAsync(
         ListLayersInput input,
@@ -8432,7 +10137,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
+    /// Retrieves a list of provisioned concurrency configurations for a function.
     /// </summary>
     /// <example>
     /// <para>
@@ -8463,7 +10168,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
+    /// Retrieves a list of provisioned concurrency configurations for a function.
     /// </summary>
     public async IAsyncEnumerable<ListProvisionedConcurrencyConfigsOutput> ListProvisionedConcurrencyConfigsPagesAsync(
         ListProvisionedConcurrencyConfigsInput input,
@@ -8486,7 +10191,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Retrieves a list of provisioned concurrency configurations for a function.&lt;/p&gt;
+    /// Retrieves a list of provisioned concurrency configurations for a function.
     /// </summary>
     public async IAsyncEnumerable<ProvisionedConcurrencyConfigListItem> ListProvisionedConcurrencyConfigsItemsAsync(
         ListProvisionedConcurrencyConfigsInput input,
@@ -8511,7 +10216,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a function, event source mapping, or code signing configuration's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt;. You can also view function tags with &lt;a&gt;GetFunction&lt;/a&gt;.&lt;/p&gt;
+    /// Returns a function, event source mapping, or code signing configuration's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</see>. You can also view
+    /// function tags with GetFunction.
     /// </summary>
     /// <example>
     /// <para>
@@ -8538,7 +10245,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">versions</see>,
+    /// with the version-specific configuration of each. Lambda returns up to 50 versions per call.
     /// </summary>
     /// <example>
     /// <para>
@@ -8565,7 +10274,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">versions</see>,
+    /// with the version-specific configuration of each. Lambda returns up to 50 versions per call.
     /// </summary>
     public async IAsyncEnumerable<ListVersionsByFunctionOutput> ListVersionsByFunctionPagesAsync(
         ListVersionsByFunctionInput input,
@@ -8588,7 +10299,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Returns a list of &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;versions&lt;/a&gt;, with the version-specific configuration of each. Lambda returns up to 50 versions per call.&lt;/p&gt;
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">versions</see>,
+    /// with the version-specific configuration of each. Lambda returns up to 50 versions per call.
     /// </summary>
     public async IAsyncEnumerable<FunctionConfiguration> ListVersionsByFunctionItemsAsync(
         ListVersionsByFunctionInput input,
@@ -8613,7 +10326,14 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt; from a ZIP archive. Each time you call &lt;code&gt;PublishLayerVersion&lt;/code&gt; with the same layer name, a new version is created.&lt;/p&gt; &lt;p&gt;Add layers to your function with &lt;a&gt;CreateFunction&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Creates an <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see> from a ZIP archive. Each time you call <c>PublishLayerVersion</c> with the same layer
+    /// name, a new version is created.
+    /// </para>
+    /// <para>
+    /// Add layers to your function with CreateFunction or UpdateFunctionConfiguration.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -8640,7 +10360,20 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Creates a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html&quot;&gt;version&lt;/a&gt; from the current code and configuration of a function. Use versions to create a snapshot of your function code and configuration that doesn't change.&lt;/p&gt; &lt;p&gt;Lambda doesn't publish a version if the function's configuration and code haven't changed since the last version. Use &lt;a&gt;UpdateFunctionCode&lt;/a&gt; or &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt; to update the function before publishing a version.&lt;/p&gt; &lt;p&gt;Clients can invoke versions directly or with an alias. To create an alias, use &lt;a&gt;CreateAlias&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Creates a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">version</see> from
+    /// the current code and configuration of a function. Use versions to create a snapshot of your function
+    /// code and configuration that doesn't change.
+    /// </para>
+    /// <para>
+    /// Lambda doesn't publish a version if the function's configuration and code haven't changed since the
+    /// last version. Use UpdateFunctionCode or UpdateFunctionConfiguration to update the function before
+    /// publishing a version.
+    /// </para>
+    /// <para>
+    /// Clients can invoke versions directly or with an alias. To create an alias, use CreateAlias.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -8667,7 +10400,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Update the code signing configuration for the function. Changes to the code signing configuration take effect the next time a user tries to deploy a code package to the function. &lt;/p&gt;
+    /// Update the code signing configuration for the function. Changes to the code signing configuration
+    /// take effect the next time a user tries to deploy a code package to the function.
     /// </summary>
     public Task<PutFunctionCodeSigningConfigOutput> PutFunctionCodeSigningConfigAsync(
         PutFunctionCodeSigningConfigInput input,
@@ -8679,7 +10413,23 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Sets the maximum number of simultaneous executions for a function, and reserves capacity for that concurrency level.&lt;/p&gt; &lt;p&gt;Concurrency settings apply to the function as a whole, including all published versions and the unpublished version. Reserving concurrency both ensures that your function has capacity to process the specified number of events simultaneously, and prevents it from scaling beyond that level. Use &lt;a&gt;GetFunction&lt;/a&gt; to see the current setting for a function.&lt;/p&gt; &lt;p&gt;Use &lt;a&gt;GetAccountSettings&lt;/a&gt; to see your Regional concurrency limit. You can reserve concurrency for as many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for functions that aren't configured with a per-function limit. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html&quot;&gt;Lambda function scaling&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Sets the maximum number of simultaneous executions for a function, and reserves capacity for that
+    /// concurrency level.
+    /// </para>
+    /// <para>
+    /// Concurrency settings apply to the function as a whole, including all published versions and the
+    /// unpublished version. Reserving concurrency both ensures that your function has capacity to process
+    /// the specified number of events simultaneously, and prevents it from scaling beyond that level. Use
+    /// GetFunction to see the current setting for a function.
+    /// </para>
+    /// <para>
+    /// Use GetAccountSettings to see your Regional concurrency limit. You can reserve concurrency for as
+    /// many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for
+    /// functions that aren't configured with a per-function limit. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html">Lambda function
+    /// scaling</see>.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -8706,7 +10456,31 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Configures options for &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html&quot;&gt;asynchronous invocation&lt;/a&gt; on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use &lt;a&gt;UpdateFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with &lt;a&gt;UpdateFunctionConfiguration&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;To send an invocation record to a queue, topic, S3 bucket, function, or event bus, specify a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations&quot;&gt;destination&lt;/a&gt;. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue.&lt;/p&gt; &lt;note&gt; &lt;p&gt;S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Configures options for
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html">asynchronous
+    /// invocation</see> on a function, version, or alias. If a configuration already exists for a function,
+    /// version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To
+    /// set one option without affecting existing settings for other options, use
+    /// UpdateFunctionEventInvokeConfig.
+    /// </para>
+    /// <para>
+    /// By default, Lambda retries an asynchronous invocation twice if the function returns an error. It
+    /// retains events in a queue for up to six hours. When an event fails all processing attempts or stays
+    /// in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events,
+    /// configure a dead-letter queue with UpdateFunctionConfiguration.
+    /// </para>
+    /// <para>
+    /// To send an invocation record to a queue, topic, S3 bucket, function, or event bus, specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</see>.
+    /// You can configure separate destinations for successful invocations (on-success) and events that fail
+    /// all processing attempts (on-failure). You can configure destinations in addition to or instead of a
+    /// dead-letter queue.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> S3 buckets are supported only for on-failure destinations. To retain records of
+    /// successful invocations, use another destination type.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -8733,7 +10507,23 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Sets your function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html&quot;&gt;recursive loop detection&lt;/a&gt; configuration.&lt;/p&gt; &lt;p&gt;When you configure a Lambda function to output to the same service or resource that invokes the function, it's possible to create an infinite recursive loop. For example, a Lambda function might write a message to an Amazon Simple Queue Service (Amazon SQS) queue, which then invokes the same function. This invocation causes the function to write another message to the queue, which in turn invokes the function again.&lt;/p&gt; &lt;p&gt;Lambda can detect certain types of recursive loops shortly after they occur. When Lambda detects a recursive loop and your function's recursive loop detection configuration is set to &lt;code&gt;Terminate&lt;/code&gt;, it stops your function being invoked and notifies you.&lt;/p&gt;
+    /// <para>
+    /// Sets your function's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive loop
+    /// detection</see> configuration.
+    /// </para>
+    /// <para>
+    /// When you configure a Lambda function to output to the same service or resource that invokes the
+    /// function, it's possible to create an infinite recursive loop. For example, a Lambda function might
+    /// write a message to an Amazon Simple Queue Service (Amazon SQS) queue, which then invokes the same
+    /// function. This invocation causes the function to write another message to the queue, which in turn
+    /// invokes the function again.
+    /// </para>
+    /// <para>
+    /// Lambda can detect certain types of recursive loops shortly after they occur. When Lambda detects a
+    /// recursive loop and your function's recursive loop detection configuration is set to
+    /// <c>Terminate</c>, it stops your function being invoked and notifies you.
+    /// </para>
     /// </summary>
     public Task<PutFunctionRecursionConfigOutput> PutFunctionRecursionConfigAsync(
         PutFunctionRecursionConfigInput input,
@@ -8745,7 +10535,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Sets the scaling configuration for a Lambda Managed Instances function. The scaling configuration defines the minimum and maximum number of execution environments that can be provisioned for the function, allowing you to control scaling behavior and resource allocation.&lt;/p&gt;
+    /// Sets the scaling configuration for a Lambda Managed Instances function. The scaling configuration
+    /// defines the minimum and maximum number of execution environments that can be provisioned for the
+    /// function, allowing you to control scaling behavior and resource allocation.
     /// </summary>
     public Task<PutFunctionScalingConfigOutput> PutFunctionScalingConfigAsync(
         PutFunctionScalingConfigInput input,
@@ -8757,7 +10549,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Adds a provisioned concurrency configuration to a function's alias or version.&lt;/p&gt;
+    /// Adds a provisioned concurrency configuration to a function's alias or version.
     /// </summary>
     /// <example>
     /// <para>
@@ -8788,7 +10580,23 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Adds a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html&quot;&gt;resource-based policy&lt;/a&gt; to a Lambda resource. Resource-based policies grant access to other &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-cross-account.html&quot;&gt;Amazon Web Services accounts&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-organization.html&quot;&gt;organizations&lt;/a&gt;, or &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-services.html&quot;&gt;services&lt;/a&gt;. Resource-based policies apply to a single Lambda resource (for example, a function, function version, or function alias).&lt;/p&gt; &lt;important&gt; &lt;p&gt;This operation replaces any existing policy on the Lambda resource. If you previously added permissions using the &lt;a&gt;AddPermission&lt;/a&gt; operation, the new policy overwrites those permissions.&lt;/p&gt; &lt;/important&gt;
+    /// <para>
+    /// Adds a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
+    /// policy</see> to a Lambda resource. Resource-based policies grant access to other
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-cross-account.html">Amazon
+    /// Web Services accounts</see>,
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-organization.html">organizations</see>,
+    /// or
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-services.html">services</see>.
+    /// Resource-based policies apply to a single Lambda resource (for example, a function, function
+    /// version, or function alias).
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This operation replaces any existing policy on the Lambda resource. If you
+    /// previously added permissions using the AddPermission operation, the new policy overwrites those
+    /// permissions.
+    /// </para>
     /// </summary>
     public Task<PutResourcePolicyOutput> PutResourcePolicyAsync(
         PutResourcePolicyInput input,
@@ -8800,7 +10608,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Sets the runtime management configuration for a function's version. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html&quot;&gt;Runtime updates&lt;/a&gt;.&lt;/p&gt;
+    /// Sets the runtime management configuration for a function's version. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime updates</see>.
     /// </summary>
     public Task<PutRuntimeManagementConfigOutput> PutRuntimeManagementConfigAsync(
         PutRuntimeManagementConfigInput input,
@@ -8812,7 +10621,9 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Removes a statement from the permissions policy for a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;. For more information, see &lt;a&gt;AddLayerVersionPermission&lt;/a&gt;.&lt;/p&gt;
+    /// Removes a statement from the permissions policy for a version of an
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+    /// layer</see>. For more information, see AddLayerVersionPermission.
     /// </summary>
     /// <example>
     /// <para>
@@ -8836,7 +10647,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Revokes function-use permission from an Amazon Web Services service or another Amazon Web Services account. You can get the ID of the statement from the output of &lt;a&gt;GetPolicy&lt;/a&gt;.&lt;/p&gt;
+    /// Revokes function-use permission from an Amazon Web Services service or another Amazon Web Services
+    /// account. You can get the ID of the statement from the output of GetPolicy.
     /// </summary>
     /// <example>
     /// <para>
@@ -8860,7 +10672,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Sends a failure response for a callback operation in a durable execution. Use this API when an external system cannot complete a callback operation successfully.&lt;/p&gt;
+    /// Sends a failure response for a callback operation in a durable execution. Use this API when an
+    /// external system cannot complete a callback operation successfully.
     /// </summary>
     public Task<SendDurableExecutionCallbackFailureOutput> SendDurableExecutionCallbackFailureAsync(
         SendDurableExecutionCallbackFailureInput input,
@@ -8876,7 +10689,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Sends a heartbeat signal for a long-running callback operation to prevent timeout. Use this API to extend the callback timeout period while the external operation is still in progress.&lt;/p&gt;
+    /// Sends a heartbeat signal for a long-running callback operation to prevent timeout. Use this API to
+    /// extend the callback timeout period while the external operation is still in progress.
     /// </summary>
     public Task<SendDurableExecutionCallbackHeartbeatOutput> SendDurableExecutionCallbackHeartbeatAsync(
         SendDurableExecutionCallbackHeartbeatInput input,
@@ -8892,7 +10706,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Sends a successful completion response for a callback operation in a durable execution. Use this API when an external system has successfully completed a callback operation.&lt;/p&gt;
+    /// Sends a successful completion response for a callback operation in a durable execution. Use this API
+    /// when an external system has successfully completed a callback operation.
     /// </summary>
     public Task<SendDurableExecutionCallbackSuccessOutput> SendDurableExecutionCallbackSuccessAsync(
         SendDurableExecutionCallbackSuccessInput input,
@@ -8908,7 +10723,10 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Stops a running &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;. The execution transitions to STOPPED status and cannot be resumed. Any in-progress operations are terminated.&lt;/p&gt;
+    /// Stops a running
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+    /// execution</see>. The execution transitions to STOPPED status and cannot be resumed. Any in-progress
+    /// operations are terminated.
     /// </summary>
     public Task<StopDurableExecutionOutput> StopDurableExecutionAsync(
         StopDurableExecutionInput input,
@@ -8920,7 +10738,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Adds &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; to a function, event source mapping, or code signing configuration.&lt;/p&gt;
+    /// Adds <see href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</see> to a function,
+    /// event source mapping, or code signing configuration.
     /// </summary>
     /// <example>
     /// <para>
@@ -8944,7 +10763,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Removes &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt; from a function, event source mapping, or code signing configuration.&lt;/p&gt;
+    /// Removes <see href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</see> from a
+    /// function, event source mapping, or code signing configuration.
     /// </summary>
     /// <example>
     /// <para>
@@ -8968,7 +10788,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration of a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
+    /// Updates the configuration of a Lambda function
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see>.
     /// </summary>
     /// <example>
     /// <para>
@@ -8995,7 +10816,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration of an existing capacity provider.&lt;/p&gt;
+    /// Updates the configuration of an existing capacity provider.
     /// </summary>
     public Task<UpdateCapacityProviderOutput> UpdateCapacityProviderAsync(
         UpdateCapacityProviderInput input,
@@ -9007,7 +10828,8 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Update the code signing configuration. Changes to the code signing configuration take effect the next time a user tries to deploy a code package to the function. &lt;/p&gt;
+    /// Update the code signing configuration. Changes to the code signing configuration take effect the
+    /// next time a user tries to deploy a code package to the function.
     /// </summary>
     public Task<UpdateCodeSigningConfigOutput> UpdateCodeSigningConfigAsync(
         UpdateCodeSigningConfigInput input,
@@ -9019,7 +10841,146 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location.&lt;/p&gt; &lt;p&gt;For details about how to configure different event sources, see the following topics. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka):&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BisectBatchOnFunctionError&lt;/code&gt; – If the function returns an error, split the batch in two and retry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRecordAgeInSeconds&lt;/code&gt; – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;MaximumRetryAttempts&lt;/code&gt; – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OnFailure&lt;/code&gt; – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or Amazon S3 bucket. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations&quot;&gt;Adding a destination&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The following option is available only for DynamoDB and Kinesis event sources:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ParallelizationFactor&lt;/code&gt; – Process multiple batches from each shard concurrently.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;For information about which configuration parameters apply to each event source, see the following topics.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params&quot;&gt; Amazon DynamoDB Streams&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params&quot;&gt; Amazon Kinesis&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params&quot;&gt; Amazon SQS&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params&quot;&gt; Amazon MQ and RabbitMQ&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms&quot;&gt; Amazon MSK&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms&quot;&gt; Apache Kafka&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration&quot;&gt; Amazon DocumentDB&lt;/a&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+    /// <para>
+    /// Updates an event source mapping. You can change the function that Lambda invokes, or pause
+    /// invocation and resume later from the same location.
+    /// </para>
+    /// <para>
+    /// For details about how to configure different event sources, see the following topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping">Amazon
+    /// MQ and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html">Amazon MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html">Apache Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following error handling options are available for stream sources (DynamoDB, Kinesis, Amazon
+    /// MSK, and self-managed Apache Kafka):
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch in two and
+    /// retry.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age. The default value
+    /// is infinite (-1). When set to infinite (-1), failed records are retried until the record expires
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries. The default
+    /// value is infinite (-1). When set to infinite (-1), failed records are retried until the record
+    /// expires.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <c>OnFailure</c> – Send discarded records to an Amazon SQS queue, Amazon SNS topic, Kafka topic, or
+    /// Amazon S3 bucket. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html#invocation-async-destinations">Adding
+    /// a destination</see>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The following option is available only for DynamoDB and Kinesis event sources:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// For information about which configuration parameters apply to each event source, see the following
+    /// topics.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params">Amazon
+    /// DynamoDB Streams</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params">Amazon
+    /// Kinesis</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params">Amazon
+    /// SQS</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params">Amazon MQ
+    /// and RabbitMQ</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms">Amazon
+    /// MSK</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms">Apache
+    /// Kafka</see>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration">Amazon
+    /// DocumentDB</see>
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     /// <example>
     /// <para>
@@ -9046,7 +11007,37 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html&quot;&gt;Configuring code signing for Lambda&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Image&lt;/code&gt;, then you must specify the code package in &lt;code&gt;ImageUri&lt;/code&gt; as the URI of a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html&quot;&gt;container image&lt;/a&gt; in the Amazon ECR registry.&lt;/p&gt; &lt;p&gt;If the function's package type is &lt;code&gt;Zip&lt;/code&gt;, then you must specify the deployment package as a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip&quot;&gt;.zip file archive&lt;/a&gt;. Enter the Amazon S3 bucket and key of the code .zip file location. You can also provide the function code inline using the &lt;code&gt;ZipFile&lt;/code&gt; field.&lt;/p&gt; &lt;p&gt;The code in the deployment package must be compatible with the target instruction set architecture of the function (&lt;code&gt;x86-64&lt;/code&gt; or &lt;code&gt;arm64&lt;/code&gt;).&lt;/p&gt; &lt;p&gt;The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.&lt;/p&gt; &lt;note&gt; &lt;p&gt;For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function.&lt;/p&gt; &lt;/note&gt;
+    /// <para>
+    /// Updates a Lambda function's code. If code signing is enabled for the function, the code package must
+    /// be signed by a trusted publisher. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html">Configuring
+    /// code signing for Lambda</see>.
+    /// </para>
+    /// <para>
+    /// If the function's package type is <c>Image</c>, then you must specify the code package in
+    /// <c>ImageUri</c> as the URI of a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container image</see> in
+    /// the Amazon ECR registry.
+    /// </para>
+    /// <para>
+    /// If the function's package type is <c>Zip</c>, then you must specify the deployment package as a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
+    /// file archive</see>. Enter the Amazon S3 bucket and key of the code .zip file location. You can also
+    /// provide the function code inline using the <c>ZipFile</c> field.
+    /// </para>
+    /// <para>
+    /// The code in the deployment package must be compatible with the target instruction set architecture
+    /// of the function (<c>x86-64</c> or <c>arm64</c>).
+    /// </para>
+    /// <para>
+    /// The function's code is locked when you publish a version. You can't modify the code of a published
+    /// version, only the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> For a function defined as a container image, Lambda resolves the image tag to an image
+    /// digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically
+    /// update the function.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -9073,7 +11064,27 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Modify the version-specific settings of a Lambda function.&lt;/p&gt; &lt;p&gt;When you update a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but you can still invoke it. The &lt;code&gt;LastUpdateStatus&lt;/code&gt;, &lt;code&gt;LastUpdateStatusReason&lt;/code&gt;, and &lt;code&gt;LastUpdateStatusReasonCode&lt;/code&gt; fields in the response from &lt;a&gt;GetFunctionConfiguration&lt;/a&gt; indicate when the update is complete and the function is processing events with the new configuration. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html&quot;&gt;Lambda function states&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version.&lt;/p&gt; &lt;p&gt;To configure function concurrency, use &lt;a&gt;PutFunctionConcurrency&lt;/a&gt;. To grant invoke permissions to an Amazon Web Services account or Amazon Web Services service, use &lt;a&gt;AddPermission&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Modify the version-specific settings of a Lambda function.
+    /// </para>
+    /// <para>
+    /// When you update a function, Lambda provisions an instance of the function and its supporting
+    /// resources. If your function connects to a VPC, this process can take a minute. During this time, you
+    /// can't modify the function, but you can still invoke it. The <c>LastUpdateStatus</c>,
+    /// <c>LastUpdateStatusReason</c>, and <c>LastUpdateStatusReasonCode</c> fields in the response from
+    /// GetFunctionConfiguration indicate when the update is complete and the function is processing events
+    /// with the new configuration. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda function
+    /// states</see>.
+    /// </para>
+    /// <para>
+    /// These settings can vary between versions of a function and are locked when you publish a version.
+    /// You can't modify the configuration of a published version, only the unpublished version.
+    /// </para>
+    /// <para>
+    /// To configure function concurrency, use PutFunctionConcurrency. To grant invoke permissions to an
+    /// Amazon Web Services account or Amazon Web Services service, use AddPermission.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -9100,7 +11111,12 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration for asynchronous invocation for a function, version, or alias.&lt;/p&gt; &lt;p&gt;To configure options for asynchronous invocation, use &lt;a&gt;PutFunctionEventInvokeConfig&lt;/a&gt;.&lt;/p&gt;
+    /// <para>
+    /// Updates the configuration for asynchronous invocation for a function, version, or alias.
+    /// </para>
+    /// <para>
+    /// To configure options for asynchronous invocation, use PutFunctionEventInvokeConfig.
+    /// </para>
     /// </summary>
     /// <example>
     /// <para>
@@ -9131,7 +11147,7 @@ public sealed class AWSGirApiServiceClient : IAWSGirApiServiceClient
     }
 
     /// <summary>
-    /// &lt;p&gt;Updates the configuration for a Lambda function URL.&lt;/p&gt;
+    /// Updates the configuration for a Lambda function URL.
     /// </summary>
     public Task<UpdateFunctionUrlConfigOutput> UpdateFunctionUrlConfigAsync(
         UpdateFunctionUrlConfigInput input,

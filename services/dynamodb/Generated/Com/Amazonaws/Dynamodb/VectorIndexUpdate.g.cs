@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A vector index to be added to or removed from a table.&lt;/p&gt;
+/// A vector index to be added to or removed from a table.
 /// </summary>
 /// <param name="Create">
-/// &lt;p&gt;The configuration for creating a new vector index on the table.&lt;/p&gt;
+/// The configuration for creating a new vector index on the table.
 /// </param>
 /// <param name="Delete">
-/// &lt;p&gt;The configuration for deleting an existing vector index from the table.&lt;/p&gt;
+/// The configuration for deleting an existing vector index from the table.
 /// </param>
 public sealed record class VectorIndexUpdate(
     CreateVectorIndexAction? Create = null,

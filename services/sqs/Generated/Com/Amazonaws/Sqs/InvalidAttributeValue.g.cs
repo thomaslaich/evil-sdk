@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;A queue attribute value is invalid.&lt;/p&gt;
+/// A queue attribute value is invalid.
 /// </summary>
 public sealed partial class InvalidAttributeValue : Exception
 {
     /// <summary>
-    /// &lt;p&gt;A queue attribute value is invalid.&lt;/p&gt;
+    /// A queue attribute value is invalid.
     /// </summary>
     public InvalidAttributeValue(string? message = null)
         : base(message) { }

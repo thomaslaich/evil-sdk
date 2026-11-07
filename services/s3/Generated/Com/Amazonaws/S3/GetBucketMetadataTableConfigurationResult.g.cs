@@ -5,39 +5,47 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; The V1 S3 Metadata configuration for a general purpose bucket. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;If you created your S3 Metadata configuration before July 15, 2025, we recommend that you delete
-/// and re-create your configuration by using &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html&quot;&gt;CreateBucketMetadataConfiguration&lt;/a&gt; so that you can expire journal table records and create
-/// a live inventory table.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The V1 S3 Metadata configuration for a general purpose bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> If you created your S3 Metadata configuration before July 15, 2025, we recommend that
+/// you delete and re-create your configuration by using
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketMetadataConfiguration.html">CreateBucketMetadataConfiguration</see>
+/// so that you can expire journal table records and create a live inventory table.
+/// </para>
 /// </summary>
 /// <param name="MetadataTableConfigurationResult">
-/// &lt;p&gt; The V1 S3 Metadata configuration for a general purpose bucket. &lt;/p&gt;
+/// The V1 S3 Metadata configuration for a general purpose bucket.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt; The status of the metadata table. The status values are: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The metadata table is in the process of being created in the specified
-/// table bucket.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The metadata table has been created successfully, and records are being
-/// delivered to the table. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;FAILED&lt;/code&gt; - Amazon S3 is unable to create the metadata table, or Amazon S3 is unable to deliver
-/// records. See &lt;code&gt;ErrorDetails&lt;/code&gt; for details.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The status of the metadata table. The status values are:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The metadata table is in the process of being created in the specified table
+/// bucket.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The metadata table has been created successfully, and records are being delivered to
+/// the table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>FAILED</c> - Amazon S3 is unable to create the metadata table, or Amazon S3 is unable to deliver
+/// records. See <c>ErrorDetails</c> for details.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Error">
-/// &lt;p&gt; If the &lt;code&gt;CreateBucketMetadataTableConfiguration&lt;/code&gt; request succeeds, but S3 Metadata was
-/// unable to create the table, this structure contains the error code and error message. &lt;/p&gt;
+/// If the <c>CreateBucketMetadataTableConfiguration</c> request succeeds, but S3 Metadata was unable to
+/// create the table, this structure contains the error code and error message.
 /// </param>
 public sealed record class GetBucketMetadataTableConfigurationResult(
     global::Com.Amazonaws.S3.MetadataTableConfigurationResult MetadataTableConfigurationResult,

@@ -7,19 +7,19 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;An object that contains error information.&lt;/p&gt;
+/// An object that contains error information.
 /// </summary>
 /// <param name="ErrorData">
-/// &lt;p&gt;Machine-readable error data.&lt;/p&gt;
+/// Machine-readable error data.
 /// </param>
 /// <param name="ErrorMessage">
-/// &lt;p&gt;A human-readable error message.&lt;/p&gt;
+/// A human-readable error message.
 /// </param>
 /// <param name="ErrorType">
-/// &lt;p&gt;The error type.&lt;/p&gt;
+/// The error type.
 /// </param>
 /// <param name="StackTrace">
-/// &lt;p&gt;Stack trace information for the error.&lt;/p&gt;
+/// Stack trace information for the error.
 /// </param>
 public sealed record class ErrorObject(
     string? ErrorData = null,

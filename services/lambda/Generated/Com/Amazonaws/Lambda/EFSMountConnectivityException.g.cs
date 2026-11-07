@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function couldn't make a network connection to the configured file system.&lt;/p&gt;
+/// The Lambda function couldn't make a network connection to the configured file system.
 /// </summary>
 public sealed partial class EFSMountConnectivityException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function couldn't make a network connection to the configured file system.&lt;/p&gt;
+    /// The Lambda function couldn't make a network connection to the configured file system.
     /// </summary>
     public EFSMountConnectivityException(string? message = null, string? type = null)
         : base(message)

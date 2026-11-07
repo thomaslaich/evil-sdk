@@ -10,6 +10,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#StopDurableExecutionOutput.
 /// </summary>
 /// <param name="StopTimestamp">
-/// &lt;p&gt;The timestamp when the execution was stopped (ISO 8601 format).&lt;/p&gt;
+/// The timestamp when the execution was stopped (ISO 8601 format).
 /// </param>
 public sealed record class StopDurableExecutionOutput(DateTimeOffset StopTimestamp);

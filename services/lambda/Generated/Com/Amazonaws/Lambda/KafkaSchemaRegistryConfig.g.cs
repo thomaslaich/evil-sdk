@@ -7,19 +7,52 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Specific configuration settings for a Kafka schema registry.&lt;/p&gt;
+/// Specific configuration settings for a Kafka schema registry.
 /// </summary>
 /// <param name="AccessConfigs">
-/// &lt;p&gt;An array of access configuration objects that tell Lambda how to authenticate with your schema registry.&lt;/p&gt;
+/// An array of access configuration objects that tell Lambda how to authenticate with your schema
+/// registry.
 /// </param>
 /// <param name="EventRecordFormat">
-/// &lt;p&gt;The record format that Lambda delivers to your function after schema validation.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;Choose &lt;code&gt;JSON&lt;/code&gt; to have Lambda deliver the record to your function as a standard JSON object.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Choose &lt;code&gt;SOURCE&lt;/code&gt; to have Lambda deliver the record to your function in its original source format. Lambda removes all schema metadata, such as the schema ID, before sending the record to your function.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// The record format that Lambda delivers to your function after schema validation.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Choose <c>JSON</c> to have Lambda deliver the record to your function as a standard JSON object.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Choose <c>SOURCE</c> to have Lambda deliver the record to your function in its original source
+/// format. Lambda removes all schema metadata, such as the schema ID, before sending the record to your
+/// function.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="SchemaRegistryURI">
-/// &lt;p&gt;The URI for your schema registry. The correct URI format depends on the type of schema registry you're using.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;For Glue schema registries, use the ARN of the registry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;For Confluent schema registries, use the URL of the registry.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// The URI for your schema registry. The correct URI format depends on the type of schema registry
+/// you're using.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// For Glue schema registries, use the ARN of the registry.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// For Confluent schema registries, use the URL of the registry.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="SchemaValidationConfigs">
-/// &lt;p&gt;An array of schema validation configuration objects, which tell Lambda the message attributes you want to validate and filter using your schema registry.&lt;/p&gt;
+/// An array of schema validation configuration objects, which tell Lambda the message attributes you
+/// want to validate and filter using your schema registry.
 /// </param>
 public sealed record class KafkaSchemaRegistryConfig(
     IReadOnlyList<KafkaSchemaRegistryAccessConfig>? AccessConfigs = null,

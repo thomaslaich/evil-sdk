@@ -5,20 +5,20 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Describes a Kinesis data stream destination.&lt;/p&gt;
+/// Describes a Kinesis data stream destination.
 /// </summary>
 /// <param name="ApproximateCreationDateTimePrecision">
-/// &lt;p&gt;The precision of the Kinesis data stream timestamp. The values are either
-/// &lt;code&gt;MILLISECOND&lt;/code&gt; or &lt;code&gt;MICROSECOND&lt;/code&gt;.&lt;/p&gt;
+/// The precision of the Kinesis data stream timestamp. The values are either <c>MILLISECOND</c> or
+/// <c>MICROSECOND</c>.
 /// </param>
 /// <param name="DestinationStatus">
-/// &lt;p&gt;The current status of replication.&lt;/p&gt;
+/// The current status of replication.
 /// </param>
 /// <param name="DestinationStatusDescription">
-/// &lt;p&gt;The human-readable string that corresponds to the replica status.&lt;/p&gt;
+/// The human-readable string that corresponds to the replica status.
 /// </param>
 /// <param name="StreamArn">
-/// &lt;p&gt;The ARN for a specific Kinesis data stream.&lt;/p&gt;
+/// The ARN for a specific Kinesis data stream.
 /// </param>
 public sealed record class KinesisDataStreamDestination(
     global::Com.Amazonaws.Dynamodb.ApproximateCreationDateTimePrecision? ApproximateCreationDateTimePrecision =

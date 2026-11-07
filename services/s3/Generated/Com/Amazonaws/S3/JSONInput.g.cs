@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies JSON as object's input serialization format.&lt;/p&gt;
+/// Specifies JSON as object's input serialization format.
 /// </summary>
 /// <param name="Type">
-/// &lt;p&gt;The type of JSON. Valid values: Document, Lines.&lt;/p&gt;
+/// The type of JSON. Valid values: Document, Lines.
 /// </param>
 public sealed record class JSONInput(JSONType? Type = null);

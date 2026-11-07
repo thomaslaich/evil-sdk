@@ -5,13 +5,18 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html&quot;&gt;SnapStart&lt;/a&gt; setting.&lt;/p&gt;
+/// The function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">SnapStart</see> setting.
 /// </summary>
 /// <param name="ApplyOn">
-/// &lt;p&gt;When set to &lt;code&gt;PublishedVersions&lt;/code&gt;, Lambda creates a snapshot of the execution environment when you publish a function version.&lt;/p&gt;
+/// When set to <c>PublishedVersions</c>, Lambda creates a snapshot of the execution environment when
+/// you publish a function version.
 /// </param>
 /// <param name="OptimizationStatus">
-/// &lt;p&gt;When you provide a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html#versioning-versions-using&quot;&gt;qualified Amazon Resource Name (ARN)&lt;/a&gt;, this response element indicates whether SnapStart is activated for the specified function version.&lt;/p&gt;
+/// When you provide a
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html#versioning-versions-using">qualified
+/// Amazon Resource Name (ARN)</see>, this response element indicates whether SnapStart is activated for
+/// the specified function version.
 /// </param>
 public sealed record class SnapStartResponse(
     SnapStartApplyOn? ApplyOn = null,

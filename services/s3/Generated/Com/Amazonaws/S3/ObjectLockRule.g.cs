@@ -5,21 +5,28 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container element for an Object Lock rule.&lt;/p&gt;
+/// The container element for an Object Lock rule.
 /// </summary>
 /// <param name="DefaultRetention">
-/// &lt;p&gt;The default Object Lock retention settings for new objects in this bucket. You can
-/// specify:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A default retention period, by using &lt;code&gt;Days&lt;/code&gt; or &lt;code&gt;Years&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A default event hold duration, by using &lt;code&gt;DefaultEventHold&lt;/code&gt;. This setting also
-/// uses days or years.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;You can set one or both. You cannot use days and years in the same setting.&lt;/p&gt;
+/// <para>
+/// The default Object Lock retention settings for new objects in this bucket. You can specify:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// A default retention period, by using <c>Days</c> or <c>Years</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// A default event hold duration, by using <c>DefaultEventHold</c>. This setting also uses days or
+/// years.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You can set one or both. You cannot use days and years in the same setting.
+/// </para>
 /// </param>
 public sealed record class ObjectLockRule(
     global::Com.Amazonaws.S3.DefaultRetention? DefaultRetention = null

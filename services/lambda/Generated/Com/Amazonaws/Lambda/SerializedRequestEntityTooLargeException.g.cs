@@ -7,15 +7,15 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The request payload exceeded the maximum allowed size for serialized request entities.&lt;/p&gt;
+/// The request payload exceeded the maximum allowed size for serialized request entities.
 /// </summary>
 public sealed partial class SerializedRequestEntityTooLargeException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request payload exceeded the maximum allowed size for serialized request entities.&lt;/p&gt;
+    /// The request payload exceeded the maximum allowed size for serialized request entities.
     /// </summary>
     /// <param name="type">
-    /// &lt;p&gt;The error type.&lt;/p&gt;
+    /// The error type.
     /// </param>
     public SerializedRequestEntityTooLargeException(string? message = null, string? type = null)
         : base(message)
@@ -26,7 +26,7 @@ public sealed partial class SerializedRequestEntityTooLargeException : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The error type.&lt;/p&gt;
+    /// The error type.
     /// </summary>
     public string? Type { get; }
 }

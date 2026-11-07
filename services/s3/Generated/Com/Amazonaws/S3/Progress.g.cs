@@ -5,16 +5,16 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;This data type contains information about progress of an operation.&lt;/p&gt;
+/// This data type contains information about progress of an operation.
 /// </summary>
 /// <param name="BytesProcessed">
-/// &lt;p&gt;The current number of uncompressed object bytes processed.&lt;/p&gt;
+/// The current number of uncompressed object bytes processed.
 /// </param>
 /// <param name="BytesReturned">
-/// &lt;p&gt;The current number of bytes of records payload data returned.&lt;/p&gt;
+/// The current number of bytes of records payload data returned.
 /// </param>
 /// <param name="BytesScanned">
-/// &lt;p&gt;The current number of object bytes scanned.&lt;/p&gt;
+/// The current number of object bytes scanned.
 /// </param>
 public sealed record class Progress(
     long? BytesProcessed = null,

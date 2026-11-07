@@ -5,18 +5,17 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container element for Object Lock configuration parameters.&lt;/p&gt;
+/// The container element for Object Lock configuration parameters.
 /// </summary>
 /// <param name="ObjectLockEnabled">
-/// &lt;p&gt;Indicates whether this bucket has an Object Lock configuration enabled. Enable
-/// &lt;code&gt;ObjectLockEnabled&lt;/code&gt; when you apply &lt;code&gt;ObjectLockConfiguration&lt;/code&gt; to a bucket.
-/// &lt;/p&gt;
+/// Indicates whether this bucket has an Object Lock configuration enabled. Enable
+/// <c>ObjectLockEnabled</c> when you apply <c>ObjectLockConfiguration</c> to a bucket.
 /// </param>
 /// <param name="Rule">
-/// &lt;p&gt;Specifies the Object Lock rule for the specified object. Enable the this rule when you apply
-/// &lt;code&gt;ObjectLockConfiguration&lt;/code&gt; to a bucket. Bucket settings require both a mode and a period.
-/// The period can be either &lt;code&gt;Days&lt;/code&gt; or &lt;code&gt;Years&lt;/code&gt; but you must select one. You cannot
-/// specify &lt;code&gt;Days&lt;/code&gt; and &lt;code&gt;Years&lt;/code&gt; at the same time.&lt;/p&gt;
+/// Specifies the Object Lock rule for the specified object. Enable the this rule when you apply
+/// <c>ObjectLockConfiguration</c> to a bucket. Bucket settings require both a mode and a period. The
+/// period can be either <c>Days</c> or <c>Years</c> but you must select one. You cannot specify
+/// <c>Days</c> and <c>Years</c> at the same time.
 /// </param>
 public sealed record class ObjectLockConfiguration(
     global::Com.Amazonaws.S3.ObjectLockEnabled? ObjectLockEnabled = null,

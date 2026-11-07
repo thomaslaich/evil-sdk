@@ -5,32 +5,36 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The &lt;code&gt;Filter&lt;/code&gt; is used to identify objects that a Lifecycle Rule applies to. A
-/// &lt;code&gt;Filter&lt;/code&gt; can have exactly one of &lt;code&gt;Prefix&lt;/code&gt;, &lt;code&gt;Tag&lt;/code&gt;,
-/// &lt;code&gt;ObjectSizeGreaterThan&lt;/code&gt;, &lt;code&gt;ObjectSizeLessThan&lt;/code&gt;, or &lt;code&gt;And&lt;/code&gt; specified. If
-/// the &lt;code&gt;Filter&lt;/code&gt; element is left empty, the Lifecycle Rule applies to all objects in the
-/// bucket.&lt;/p&gt;
+/// The <c>Filter</c> is used to identify objects that a Lifecycle Rule applies to. A <c>Filter</c> can
+/// have exactly one of <c>Prefix</c>, <c>Tag</c>, <c>ObjectSizeGreaterThan</c>,
+/// <c>ObjectSizeLessThan</c>, or <c>And</c> specified. If the <c>Filter</c> element is left empty, the
+/// Lifecycle Rule applies to all objects in the bucket.
 /// </summary>
 /// <param name="ObjectSizeGreaterThan">
-/// &lt;p&gt;Minimum object size to which the rule applies.&lt;/p&gt;
+/// Minimum object size to which the rule applies.
 /// </param>
 /// <param name="ObjectSizeLessThan">
-/// &lt;p&gt;Maximum object size to which the rule applies.&lt;/p&gt;
+/// Maximum object size to which the rule applies.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Prefix identifying one or more objects to which the rule applies.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// Prefix identifying one or more objects to which the rule applies.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 /// <param name="Tag">
-/// &lt;p&gt;This tag must exist in the object's tag set in order for the rule to apply.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// This tag must exist in the object's tag set in order for the rule to apply.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 public sealed record class LifecycleRuleFilter(
     LifecycleRuleAndOperator? And = null,

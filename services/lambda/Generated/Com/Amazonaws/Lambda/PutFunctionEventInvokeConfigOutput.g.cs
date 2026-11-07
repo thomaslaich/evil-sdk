@@ -10,19 +10,55 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutFunctionEventInvokeConfigOutput.
 /// </summary>
 /// <param name="DestinationConfig">
-/// &lt;p&gt;A destination for events after they have been sent to a function for processing.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Destinations&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function&lt;/b&gt; - The Amazon Resource Name (ARN) of a Lambda function.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Queue&lt;/b&gt; - The ARN of a standard SQS queue.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Bucket&lt;/b&gt; - The ARN of an Amazon S3 bucket.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Topic&lt;/b&gt; - The ARN of a standard SNS topic.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Event Bus&lt;/b&gt; - The ARN of an Amazon EventBridge event bus.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;note&gt; &lt;p&gt;S3 buckets are supported only for on-failure destinations. To retain records of successful invocations, use another destination type.&lt;/p&gt; &lt;/note&gt;
+/// <para>
+/// A destination for events after they have been sent to a function for processing.
+/// </para>
+/// <para>
+/// <b>Destinations</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function</b> - The Amazon Resource Name (ARN) of a Lambda function.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Queue</b> - The ARN of a standard SQS queue.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Bucket</b> - The ARN of an Amazon S3 bucket.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Topic</b> - The ARN of a standard SNS topic.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Event Bus</b> - The ARN of an Amazon EventBridge event bus.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> S3 buckets are supported only for on-failure destinations. To retain records of
+/// successful invocations, use another destination type.
+/// </para>
 /// </param>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the function.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the function.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date and time that the configuration was last updated.&lt;/p&gt;
+/// The date and time that the configuration was last updated.
 /// </param>
 /// <param name="MaximumEventAgeInSeconds">
-/// &lt;p&gt;The maximum age of a request that Lambda sends to a function for processing.&lt;/p&gt;
+/// The maximum age of a request that Lambda sends to a function for processing.
 /// </param>
 /// <param name="MaximumRetryAttempts">
-/// &lt;p&gt;The maximum number of times to retry when the function returns an error.&lt;/p&gt;
+/// The maximum number of times to retry when the function returns an error.
 /// </param>
 public sealed record class PutFunctionEventInvokeConfigOutput(
     global::Com.Amazonaws.Lambda.DestinationConfig? DestinationConfig = null,

@@ -5,23 +5,30 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Sets the maximum number of read and write units for the specified on-demand table. If
-/// you use this parameter, you must specify &lt;code&gt;MaxReadRequestUnits&lt;/code&gt;,
-/// &lt;code&gt;MaxWriteRequestUnits&lt;/code&gt;, or both.&lt;/p&gt;
+/// Sets the maximum number of read and write units for the specified on-demand table. If you use this
+/// parameter, you must specify <c>MaxReadRequestUnits</c>, <c>MaxWriteRequestUnits</c>, or both.
 /// </summary>
 /// <param name="MaxReadRequestUnits">
-/// &lt;p&gt;Maximum number of read request units for the specified table.&lt;/p&gt;
-/// &lt;p&gt;To specify a maximum &lt;code&gt;OnDemandThroughput&lt;/code&gt; on your table, set the value of
-/// &lt;code&gt;MaxReadRequestUnits&lt;/code&gt; as greater than or equal to 1. To remove the
-/// maximum &lt;code&gt;OnDemandThroughput&lt;/code&gt; that is currently set on your table, set the
-/// value of &lt;code&gt;MaxReadRequestUnits&lt;/code&gt; to -1.&lt;/p&gt;
+/// <para>
+/// Maximum number of read request units for the specified table.
+/// </para>
+/// <para>
+/// To specify a maximum <c>OnDemandThroughput</c> on your table, set the value of
+/// <c>MaxReadRequestUnits</c> as greater than or equal to 1. To remove the maximum
+/// <c>OnDemandThroughput</c> that is currently set on your table, set the value of
+/// <c>MaxReadRequestUnits</c> to -1.
+/// </para>
 /// </param>
 /// <param name="MaxWriteRequestUnits">
-/// &lt;p&gt;Maximum number of write request units for the specified table.&lt;/p&gt;
-/// &lt;p&gt;To specify a maximum &lt;code&gt;OnDemandThroughput&lt;/code&gt; on your table, set the value of
-/// &lt;code&gt;MaxWriteRequestUnits&lt;/code&gt; as greater than or equal to 1. To remove the
-/// maximum &lt;code&gt;OnDemandThroughput&lt;/code&gt; that is currently set on your table, set the
-/// value of &lt;code&gt;MaxWriteRequestUnits&lt;/code&gt; to -1.&lt;/p&gt;
+/// <para>
+/// Maximum number of write request units for the specified table.
+/// </para>
+/// <para>
+/// To specify a maximum <c>OnDemandThroughput</c> on your table, set the value of
+/// <c>MaxWriteRequestUnits</c> as greater than or equal to 1. To remove the maximum
+/// <c>OnDemandThroughput</c> that is currently set on your table, set the value of
+/// <c>MaxWriteRequestUnits</c> to -1.
+/// </para>
 /// </param>
 public sealed record class OnDemandThroughput(
     long? MaxReadRequestUnits = null,

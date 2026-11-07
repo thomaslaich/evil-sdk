@@ -8,109 +8,141 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutBucketPolicyInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - When you use this operation with a directory bucket, you must use path-style requests in the format &lt;code&gt;https://s3express-control.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com/&lt;i&gt;bucket-name&lt;/i&gt;
-/// &lt;/code&gt;. Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;DOC-EXAMPLE-BUCKET&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;
-/// &lt;/p&gt;
+/// <para>
+/// The name of the bucket.
+/// </para>
+/// <para>
+/// <b>Directory buckets </b> - When you use this operation with a directory bucket, you must use
+/// path-style requests in the format
+/// <c>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i> </c>.
+/// Virtual-hosted-style requests aren't supported. Directory bucket names must be unique in the chosen
+/// Zone (Availability Zone or Local Zone). Bucket names must also follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>DOC-EXAMPLE-BUCKET</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>
+/// </para>
 /// </param>
 /// <param name="Policy">
-/// &lt;p&gt;The bucket policy as a JSON document.&lt;/p&gt;
-/// &lt;p&gt;For directory buckets, the only IAM action supported in the bucket policy is
-/// &lt;code&gt;s3express:CreateSession&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// The bucket policy as a JSON document.
+/// </para>
+/// <para>
+/// For directory buckets, the only IAM action supported in the bucket policy is
+/// <c>s3express:CreateSession</c>.
+/// </para>
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm used to create the checksum for the request when you use the SDK. This header will not provide any
-/// additional functionality if you don't use the SDK. When you send this header, there must be a corresponding &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; or
-/// &lt;code&gt;x-amz-trailer&lt;/code&gt; header sent. Otherwise, Amazon S3 fails the request with the HTTP status code &lt;code&gt;400 Bad Request&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For the &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; header, replace &lt;code&gt;
-/// &lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; with the supported algorithm from the following list: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC32&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC32C&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC64NVME&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MD5&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA1&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA256&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA512&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH3&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH64&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH128&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If the individual checksum value you provide through &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; doesn't match the checksum algorithm you set through &lt;code&gt;x-amz-sdk-checksum-algorithm&lt;/code&gt;, Amazon S3 fails the request with a &lt;code&gt;BadDigest&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;For directory buckets, when you use Amazon Web Services SDKs, &lt;code&gt;CRC32&lt;/code&gt; is the default checksum algorithm that's used for performance.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Indicates the algorithm used to create the checksum for the request when you use the SDK. This
+/// header will not provide any additional functionality if you don't use the SDK. When you send this
+/// header, there must be a corresponding <c>x-amz-checksum-<i>algorithm</i> </c> or
+/// <c>x-amz-trailer</c> header sent. Otherwise, Amazon S3 fails the request with the HTTP status code
+/// <c>400 Bad Request</c>.
+/// </para>
+/// <para>
+/// For the <c>x-amz-checksum-<i>algorithm</i> </c> header, replace <c> <i>algorithm</i> </c> with the
+/// supported algorithm from the following list:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CRC32</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CRC32C</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CRC64NVME</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MD5</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA1</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA256</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA512</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH3</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH64</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH128</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If the individual checksum value you provide through <c>x-amz-checksum-<i>algorithm</i> </c> doesn't
+/// match the checksum algorithm you set through <c>x-amz-sdk-checksum-algorithm</c>, Amazon S3 fails
+/// the request with a <c>BadDigest</c> error.
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, when you use Amazon Web Services SDKs, <c>CRC32</c> is the
+/// default checksum algorithm that's used for performance.
+/// </para>
 /// </param>
 /// <param name="ConfirmRemoveSelfBucketAccess">
-/// &lt;p&gt;Set this parameter to true to confirm that you want to remove your permissions to change this bucket
-/// policy in the future.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Set this parameter to true to confirm that you want to remove your permissions to change this bucket
+/// policy in the future.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;The MD5 hash of the request body.&lt;/p&gt;
-/// &lt;p&gt;For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services SDKs, this field is calculated automatically.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The MD5 hash of the request body.
+/// </para>
+/// <para>
+/// For requests made using the Amazon Web Services Command Line Interface (CLI) or Amazon Web Services
+/// SDKs, this field is calculated automatically.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;For directory buckets, this header is not supported in this API operation. If you specify this header, the request fails with the HTTP status code
-/// &lt;code&gt;501 Not Implemented&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, this header is not supported in this API operation. If you
+/// specify this header, the request fails with the HTTP status code <c>501 Not Implemented</c>.
+/// </para>
 /// </param>
 public sealed record class PutBucketPolicyInput(
     string Bucket,

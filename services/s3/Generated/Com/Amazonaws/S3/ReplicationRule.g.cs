@@ -5,48 +5,59 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies which Amazon S3 objects to replicate and where to store the replicas.&lt;/p&gt;
+/// Specifies which Amazon S3 objects to replicate and where to store the replicas.
 /// </summary>
 /// <param name="Destination">
-/// &lt;p&gt;A container for information about the replication destination and its configurations including
-/// enabling the S3 Replication Time Control (S3 RTC).&lt;/p&gt;
+/// A container for information about the replication destination and its configurations including
+/// enabling the S3 Replication Time Control (S3 RTC).
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;Specifies whether the rule is enabled.&lt;/p&gt;
+/// Specifies whether the rule is enabled.
 /// </param>
 /// <param name="ExistingObjectReplication">
-/// &lt;p&gt;Optional configuration to replicate existing source bucket objects. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter is no longer supported. To replicate existing objects, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html&quot;&gt;Replicating
-/// existing objects with S3 Batch Replication&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Optional configuration to replicate existing source bucket objects.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter is no longer supported. To replicate existing objects, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html">Replicating
+/// existing objects with S3 Batch Replication</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="ID">
-/// &lt;p&gt;A unique identifier for the rule. The maximum value is 255 characters.&lt;/p&gt;
+/// A unique identifier for the rule. The maximum value is 255 characters.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;An object key name prefix that identifies the object or objects to which the rule applies. The
-/// maximum prefix length is 1,024 characters. To include all objects in a bucket, specify an empty string.
-/// &lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// An object key name prefix that identifies the object or objects to which the rule applies. The
+/// maximum prefix length is 1,024 characters. To include all objects in a bucket, specify an empty
+/// string.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 /// <param name="Priority">
-/// &lt;p&gt;The priority indicates which rule has precedence whenever two or more replication rules conflict.
-/// Amazon S3 will attempt to replicate objects according to all replication rules. However, if there are two or
-/// more rules with the same destination bucket, then objects will be replicated according to the rule with
-/// the highest priority. The higher the number, the higher the priority. &lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html&quot;&gt;Replication&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The priority indicates which rule has precedence whenever two or more replication rules conflict.
+/// Amazon S3 will attempt to replicate objects according to all replication rules. However, if there
+/// are two or more rules with the same destination bucket, then objects will be replicated according to
+/// the rule with the highest priority. The higher the number, the higher the priority.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html">Replication</see> in
+/// the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="SourceSelectionCriteria">
-/// &lt;p&gt;A container that describes additional filters for identifying the source objects that you want to
-/// replicate. You can choose to enable or disable the replication of these objects. Currently, Amazon S3
-/// supports only the filter that you can specify for objects created with server-side encryption using a
-/// customer managed key stored in Amazon Web Services Key Management Service (SSE-KMS).&lt;/p&gt;
+/// A container that describes additional filters for identifying the source objects that you want to
+/// replicate. You can choose to enable or disable the replication of these objects. Currently, Amazon
+/// S3 supports only the filter that you can specify for objects created with server-side encryption
+/// using a customer managed key stored in Amazon Web Services Key Management Service (SSE-KMS).
 /// </param>
 public sealed record class ReplicationRule(
     global::Com.Amazonaws.S3.Destination Destination,

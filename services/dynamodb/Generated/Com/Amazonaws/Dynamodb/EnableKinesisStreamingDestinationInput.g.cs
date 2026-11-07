@@ -8,14 +8,14 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#EnableKinesisStreamingDestinationInput.
 /// </summary>
 /// <param name="StreamArn">
-/// &lt;p&gt;The ARN for a Kinesis data stream.&lt;/p&gt;
+/// The ARN for a Kinesis data stream.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the DynamoDB table. You can also provide the Amazon Resource Name (ARN) of the
-/// table in this parameter.&lt;/p&gt;
+/// The name of the DynamoDB table. You can also provide the Amazon Resource Name (ARN) of the table in
+/// this parameter.
 /// </param>
 /// <param name="EnableKinesisStreamingConfiguration">
-/// &lt;p&gt;The source for the Kinesis streaming information that is being enabled.&lt;/p&gt;
+/// The source for the Kinesis streaming information that is being enabled.
 /// </param>
 public sealed record class EnableKinesisStreamingDestinationInput(
     string StreamArn,

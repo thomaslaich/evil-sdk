@@ -8,76 +8,90 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;An object consists of data and its descriptive metadata.&lt;/p&gt;
+/// An object consists of data and its descriptive metadata.
 /// </summary>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;The algorithm that was used to create a checksum of the object.&lt;/p&gt;
+/// The algorithm that was used to create a checksum of the object.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;The checksum type that is used to calculate the object’s checksum value. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The checksum type that is used to calculate the object’s checksum value. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;The entity tag is a hash of the object. The ETag reflects changes only to the contents of an object,
+/// <para>
+/// The entity tag is a hash of the object. The ETag reflects changes only to the contents of an object,
 /// not its metadata. The ETag may or may not be an MD5 digest of the object data. Whether or not it is
-/// depends on how the object was created and how it is encrypted as described below:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Objects created by the PUT Object, POST Object, or Copy operation, or through the Amazon Web Services
-/// Management Console, and are encrypted by SSE-S3 or plaintext, have ETags that are an MD5 digest of
-/// their object data.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Objects created by the PUT Object, POST Object, or Copy operation, or through the Amazon Web Services
-/// Management Console, and are encrypted by SSE-C or SSE-KMS, have ETags that are not an MD5 digest of
-/// their object data.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If an object is created by either the Multipart Upload or Part Copy operation, the ETag is not
-/// an MD5 digest, regardless of the method of encryption. If an object is larger than 16 MB, the Amazon Web Services
-/// Management Console will upload or copy that object as a Multipart Upload, and therefore the ETag
-/// will not be an MD5 digest.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - MD5 is not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// depends on how the object was created and how it is encrypted as described below:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Objects created by the PUT Object, POST Object, or Copy operation, or through the Amazon Web
+/// Services Management Console, and are encrypted by SSE-S3 or plaintext, have ETags that are an MD5
+/// digest of their object data.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Objects created by the PUT Object, POST Object, or Copy operation, or through the Amazon Web
+/// Services Management Console, and are encrypted by SSE-C or SSE-KMS, have ETags that are not an MD5
+/// digest of their object data.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// If an object is created by either the Multipart Upload or Part Copy operation, the ETag is not an
+/// MD5 digest, regardless of the method of encryption. If an object is larger than 16 MB, the Amazon
+/// Web Services Management Console will upload or copy that object as a Multipart Upload, and therefore
+/// the ETag will not be an MD5 digest.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - MD5 is not supported by directory buckets.
+/// </para>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The name that you assign to an object. You use the object key to retrieve the object.&lt;/p&gt;
+/// The name that you assign to an object. You use the object key to retrieve the object.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;Creation date of the object.&lt;/p&gt;
+/// Creation date of the object.
 /// </param>
 /// <param name="Owner">
-/// &lt;p&gt;The owner of the object&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - The bucket owner is returned as the
-/// object owner.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The owner of the object
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - The bucket owner is returned as the object owner.
+/// </para>
 /// </param>
 /// <param name="RestoreStatus">
-/// &lt;p&gt;Specifies the restoration status of an object. Objects in certain storage classes must be restored
+/// <para>
+/// Specifies the restoration status of an object. Objects in certain storage classes must be restored
 /// before they can be retrieved. For more information about these storage classes and how to work with
-/// archived objects, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html&quot;&gt;
-/// Working with archived objects&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets. Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// archived objects, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html">Working with
+/// archived objects</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets. Directory buckets only
+/// support <c>EXPRESS_ONEZONE</c> (the S3 Express One Zone storage class) in Availability Zones and
+/// <c>ONEZONE_IA</c> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </param>
 /// <param name="Size">
-/// &lt;p&gt;Size in bytes of the object&lt;/p&gt;
+/// Size in bytes of the object
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;The class of storage used to store the object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; -
-/// Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The class of storage used to store the object.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - Directory buckets only support <c>EXPRESS_ONEZONE</c> (the
+/// S3 Express One Zone storage class) in Availability Zones and <c>ONEZONE_IA</c> (the S3 One
+/// Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </param>
 public sealed record class Object(
     IReadOnlyList<global::Com.Amazonaws.S3.ChecksumAlgorithm>? ChecksumAlgorithm = null,

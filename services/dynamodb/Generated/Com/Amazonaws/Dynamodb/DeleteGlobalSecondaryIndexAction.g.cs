@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a global secondary index to be deleted from an existing table.&lt;/p&gt;
+/// Represents a global secondary index to be deleted from an existing table.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index to be deleted.&lt;/p&gt;
+/// The name of the global secondary index to be deleted.
 /// </param>
 public sealed record class DeleteGlobalSecondaryIndexAction(string IndexName);

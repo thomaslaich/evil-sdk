@@ -5,25 +5,33 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A new witness to be added to a new global table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;An existing witness to be removed from an existing global table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;You can configure one witness per MRSC global table.&lt;/p&gt;
+/// <para>
+/// Represents one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// A new witness to be added to a new global table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// An existing witness to be removed from an existing global table.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You can configure one witness per MRSC global table.
+/// </para>
 /// </summary>
 /// <param name="Create">
-/// &lt;p&gt;Specifies a witness Region to be added to a new MRSC global table. The witness must be
-/// added when creating the MRSC global table.&lt;/p&gt;
+/// Specifies a witness Region to be added to a new MRSC global table. The witness must be added when
+/// creating the MRSC global table.
 /// </param>
 /// <param name="Delete">
-/// &lt;p&gt;Specifies a witness Region to be removed from an existing global table. Must be done
-/// in conjunction with removing a replica. The deletion of both a witness and replica
-/// converts the remaining replica to a single-Region DynamoDB table.&lt;/p&gt;
+/// Specifies a witness Region to be removed from an existing global table. Must be done in conjunction
+/// with removing a replica. The deletion of both a witness and replica converts the remaining replica
+/// to a single-Region DynamoDB table.
 /// </param>
 public sealed record class GlobalTableWitnessGroupUpdate(
     CreateGlobalTableWitnessGroupMemberAction? Create = null,

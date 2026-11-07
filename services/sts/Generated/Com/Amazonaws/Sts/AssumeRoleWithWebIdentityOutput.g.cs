@@ -5,66 +5,72 @@
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;Contains the response to a successful &lt;a&gt;AssumeRoleWithWebIdentity&lt;/a&gt;
-/// request, including temporary Amazon Web Services credentials that can be used to make Amazon Web Services requests. &lt;/p&gt;
+/// Contains the response to a successful AssumeRoleWithWebIdentity request, including temporary Amazon
+/// Web Services credentials that can be used to make Amazon Web Services requests.
 /// </summary>
 /// <param name="AssumedRoleUser">
-/// &lt;p&gt;The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers that you
-/// can use to refer to the resulting temporary security credentials. For example, you can
-/// reference these credentials as a principal in a resource-based policy by using the ARN or
-/// assumed role ID. The ARN and ID include the &lt;code&gt;RoleSessionName&lt;/code&gt; that you specified
-/// when you called &lt;code&gt;AssumeRole&lt;/code&gt;. &lt;/p&gt;
+/// The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers that you can use to
+/// refer to the resulting temporary security credentials. For example, you can reference these
+/// credentials as a principal in a resource-based policy by using the ARN or assumed role ID. The ARN
+/// and ID include the <c>RoleSessionName</c> that you specified when you called <c>AssumeRole</c>.
 /// </param>
 /// <param name="Audience">
-/// &lt;p&gt;The intended audience (also known as client ID) of the web identity token. This is
-/// traditionally the client identifier issued to the application that requested the web
-/// identity token.&lt;/p&gt;
+/// The intended audience (also known as client ID) of the web identity token. This is traditionally the
+/// client identifier issued to the application that requested the web identity token.
 /// </param>
 /// <param name="Credentials">
-/// &lt;p&gt;The temporary security credentials, which include an access key ID, a secret access key,
-/// and a security token.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The size of the security token that STS API operations return is not fixed. We
-/// strongly recommend that you make no assumptions about the maximum size.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The temporary security credentials, which include an access key ID, a secret access key, and a
+/// security token.
+/// </para>
+/// <para>
+/// <b>Note:</b> The size of the security token that STS API operations return is not fixed. We strongly
+/// recommend that you make no assumptions about the maximum size.
+/// </para>
 /// </param>
 /// <param name="PackedPolicySize">
-/// &lt;p&gt;A percentage value that indicates the packed size of the session policies and session
-/// tags combined passed in the request. The request fails if the packed size is greater than 100 percent,
-/// which means the policies and tags exceeded the allowed space.&lt;/p&gt;
+/// A percentage value that indicates the packed size of the session policies and session tags combined
+/// passed in the request. The request fails if the packed size is greater than 100 percent, which means
+/// the policies and tags exceeded the allowed space.
 /// </param>
 /// <param name="Provider">
-/// &lt;p&gt; The issuing authority of the web identity token presented. For OpenID Connect ID
-/// tokens, this contains the value of the &lt;code&gt;iss&lt;/code&gt; field. For OAuth 2.0 access tokens,
-/// this contains the value of the &lt;code&gt;ProviderId&lt;/code&gt; parameter that was passed in the
-/// &lt;code&gt;AssumeRoleWithWebIdentity&lt;/code&gt; request.&lt;/p&gt;
+/// The issuing authority of the web identity token presented. For OpenID Connect ID tokens, this
+/// contains the value of the <c>iss</c> field. For OAuth 2.0 access tokens, this contains the value of
+/// the <c>ProviderId</c> parameter that was passed in the <c>AssumeRoleWithWebIdentity</c> request.
 /// </param>
 /// <param name="SourceIdentity">
-/// &lt;p&gt;The value of the source identity that is returned in the JSON web token (JWT) from the
-/// identity provider.&lt;/p&gt;
-/// &lt;p&gt;You can require users to set a source identity value when they assume a role. You do
-/// this by using the &lt;code&gt;sts:SourceIdentity&lt;/code&gt; condition key in a role trust policy.
-/// That way, actions that are taken with the role are associated with that user. After the
-/// source identity is set, the value cannot be changed. It is present in the request for all
-/// actions that are taken by the role and persists across &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts&quot;&gt;chained role&lt;/a&gt;
-/// sessions. You can configure your identity provider to use an attribute associated with your
-/// users, like user name or email, as the source identity when calling
-/// &lt;code&gt;AssumeRoleWithWebIdentity&lt;/code&gt;. You do this by adding a claim to the JSON web
-/// token. To learn more about OIDC tokens and claims, see &lt;a href=&quot;https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html&quot;&gt;Using Tokens with User Pools&lt;/a&gt; in the &lt;i&gt;Amazon Cognito Developer Guide&lt;/i&gt;.
-/// For more information about using source identity, see &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html&quot;&gt;Monitor and control
-/// actions taken with assumed roles&lt;/a&gt; in the
-/// &lt;i&gt;IAM User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;The regex used to validate this parameter is a string of characters
-/// consisting of upper- and lower-case alphanumeric characters with no spaces. You can
-/// also include underscores or any of the following characters: =,.@-&lt;/p&gt;
+/// <para>
+/// The value of the source identity that is returned in the JSON web token (JWT) from the identity
+/// provider.
+/// </para>
+/// <para>
+/// You can require users to set a source identity value when they assume a role. You do this by using
+/// the <c>sts:SourceIdentity</c> condition key in a role trust policy. That way, actions that are taken
+/// with the role are associated with that user. After the source identity is set, the value cannot be
+/// changed. It is present in the request for all actions that are taken by the role and persists across
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_roles_terms-and-concepts">chained
+/// role</see> sessions. You can configure your identity provider to use an attribute associated with
+/// your users, like user name or email, as the source identity when calling
+/// <c>AssumeRoleWithWebIdentity</c>. You do this by adding a claim to the JSON web token. To learn more
+/// about OIDC tokens and claims, see
+/// <see href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html">Using
+/// Tokens with User Pools</see> in the <i>Amazon Cognito Developer Guide</i>. For more information
+/// about using source identity, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html">Monitor
+/// and control actions taken with assumed roles</see> in the <i>IAM User Guide</i>.
+/// </para>
+/// <para>
+/// The regex used to validate this parameter is a string of characters consisting of upper- and
+/// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
+/// following characters: =,.@-
+/// </para>
 /// </param>
 /// <param name="SubjectFromWebIdentityToken">
-/// &lt;p&gt;The unique user identifier that is returned by the identity provider. This identifier is
-/// associated with the &lt;code&gt;WebIdentityToken&lt;/code&gt; that was submitted with the
-/// &lt;code&gt;AssumeRoleWithWebIdentity&lt;/code&gt; call. The identifier is typically unique to the
-/// user and the application that acquired the &lt;code&gt;WebIdentityToken&lt;/code&gt; (pairwise
-/// identifier). For OpenID Connect ID tokens, this field contains the value returned by the
-/// identity provider as the token's &lt;code&gt;sub&lt;/code&gt; (Subject) claim. &lt;/p&gt;
+/// The unique user identifier that is returned by the identity provider. This identifier is associated
+/// with the <c>WebIdentityToken</c> that was submitted with the <c>AssumeRoleWithWebIdentity</c> call.
+/// The identifier is typically unique to the user and the application that acquired the
+/// <c>WebIdentityToken</c> (pairwise identifier). For OpenID Connect ID tokens, this field contains the
+/// value returned by the identity provider as the token's <c>sub</c> (Subject) claim.
 /// </param>
 public sealed record class AssumeRoleWithWebIdentityOutput(
     global::Com.Amazonaws.Sts.AssumedRoleUser? AssumedRoleUser = null,

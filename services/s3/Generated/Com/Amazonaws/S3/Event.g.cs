@@ -7,7 +7,7 @@ using NSmithy.Core.Serde;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The bucket event for which to send notifications.&lt;/p&gt;
+/// The bucket event for which to send notifications.
 /// </summary>
 public readonly partial record struct Event(string Value) : IStringEnumValue<Event>
 {

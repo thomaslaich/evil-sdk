@@ -10,11 +10,11 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListDirectoryBucketsOutput.
 /// </summary>
 /// <param name="Buckets">
-/// &lt;p&gt;The list of buckets owned by the requester. &lt;/p&gt;
+/// The list of buckets owned by the requester.
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;If &lt;code&gt;ContinuationToken&lt;/code&gt; was sent with the request, it is included in the response. You can
-/// use the returned &lt;code&gt;ContinuationToken&lt;/code&gt; for pagination of the list response.&lt;/p&gt;
+/// If <c>ContinuationToken</c> was sent with the request, it is included in the response. You can use
+/// the returned <c>ContinuationToken</c> for pagination of the list response.
 /// </param>
 public sealed record class ListDirectoryBucketsOutput(
     IReadOnlyList<Bucket>? Buckets = null,

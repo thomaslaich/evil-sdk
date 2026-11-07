@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;A list of received messages.&lt;/p&gt;
+/// A list of received messages.
 /// </summary>
 /// <param name="Messages">
-/// &lt;p&gt;A list of messages.&lt;/p&gt;
+/// A list of messages.
 /// </param>
 public sealed record class ReceiveMessageOutput(IReadOnlyList<Message>? Messages = null);

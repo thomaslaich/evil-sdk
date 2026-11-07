@@ -8,13 +8,14 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutFunctionScalingConfigInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt;
+/// The name or ARN of the Lambda function.
 /// </param>
 /// <param name="Qualifier">
-/// &lt;p&gt;Specify a version or alias to set the scaling configuration for a published version of the function.&lt;/p&gt;
+/// Specify a version or alias to set the scaling configuration for a published version of the function.
 /// </param>
 /// <param name="FunctionScalingConfig">
-/// &lt;p&gt;The scaling configuration to apply to the function, including minimum and maximum execution environment limits.&lt;/p&gt;
+/// The scaling configuration to apply to the function, including minimum and maximum execution
+/// environment limits.
 /// </param>
 public sealed record class PutFunctionScalingConfigInput(
     string FunctionName,

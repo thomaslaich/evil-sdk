@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for Payer.&lt;/p&gt;
+/// Container for Payer.
 /// </summary>
 /// <param name="Payer">
-/// &lt;p&gt;Specifies who pays for the download and request fees.&lt;/p&gt;
+/// Specifies who pays for the download and request fees.
 /// </param>
 public sealed record class RequestPaymentConfiguration(global::Com.Amazonaws.S3.Payer Payer);

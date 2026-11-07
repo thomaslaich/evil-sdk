@@ -5,10 +5,20 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Code signing configuration &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html#config-codesigning-policies&quot;&gt;policies&lt;/a&gt; specify the validation failure action for signature mismatch or expiry.&lt;/p&gt;
+/// Code signing configuration
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html#config-codesigning-policies">policies</see>
+/// specify the validation failure action for signature mismatch or expiry.
 /// </summary>
 /// <param name="UntrustedArtifactOnDeployment">
-/// &lt;p&gt;Code signing configuration policy for deployment validation failure. If you set the policy to &lt;code&gt;Enforce&lt;/code&gt;, Lambda blocks the deployment request if signature validation checks fail. If you set the policy to &lt;code&gt;Warn&lt;/code&gt;, Lambda allows the deployment and issues a new Amazon CloudWatch metric (&lt;code&gt;SignatureValidationErrors&lt;/code&gt;) and also stores the warning in the CloudTrail log.&lt;/p&gt; &lt;p&gt;Default value: &lt;code&gt;Warn&lt;/code&gt; &lt;/p&gt;
+/// <para>
+/// Code signing configuration policy for deployment validation failure. If you set the policy to
+/// <c>Enforce</c>, Lambda blocks the deployment request if signature validation checks fail. If you set
+/// the policy to <c>Warn</c>, Lambda allows the deployment and issues a new Amazon CloudWatch metric
+/// (<c>SignatureValidationErrors</c>) and also stores the warning in the CloudTrail log.
+/// </para>
+/// <para>
+/// Default value: <c>Warn</c>
+/// </para>
 /// </param>
 public sealed record class CodeSigningPolicies(
     CodeSigningPolicy? UntrustedArtifactOnDeployment = null

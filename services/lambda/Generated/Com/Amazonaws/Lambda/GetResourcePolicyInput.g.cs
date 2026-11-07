@@ -8,6 +8,8 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetResourcePolicyInput.
 /// </summary>
 /// <param name="ResourceArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Lambda resource you want to retrieve the policy for. You can use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not accept wildcard characters.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Lambda resource you want to retrieve the policy for. You can
+/// use a qualified or an unqualified ARN. The value must be a complete ARN, and the operation does not
+/// accept wildcard characters.
 /// </param>
 public sealed record class GetResourcePolicyInput(string ResourceArn);

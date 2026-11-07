@@ -8,8 +8,7 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#StartMessageMoveTaskOutput.
 /// </summary>
 /// <param name="TaskHandle">
-/// &lt;p&gt;An identifier associated with a message movement task. You can use this identifier to
-/// cancel a specified message movement task using the &lt;code&gt;CancelMessageMoveTask&lt;/code&gt;
-/// action.&lt;/p&gt;
+/// An identifier associated with a message movement task. You can use this identifier to cancel a
+/// specified message movement task using the <c>CancelMessageMoveTask</c> action.
 /// </param>
 public sealed record class StartMessageMoveTaskOutput(string? TaskHandle = null);

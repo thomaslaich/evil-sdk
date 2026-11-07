@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListCodeSigningConfigsOutput.
 /// </summary>
 /// <param name="CodeSigningConfigs">
-/// &lt;p&gt;The code signing configurations&lt;/p&gt;
+/// The code signing configurations
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListCodeSigningConfigsOutput(
     IReadOnlyList<CodeSigningConfig>? CodeSigningConfigs = null,

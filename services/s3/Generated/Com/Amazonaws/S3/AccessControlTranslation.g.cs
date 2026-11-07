@@ -5,10 +5,11 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for information about access control for replicas.&lt;/p&gt;
+/// A container for information about access control for replicas.
 /// </summary>
 /// <param name="Owner">
-/// &lt;p&gt;Specifies the replica ownership. For default and valid values, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTreplication.html&quot;&gt;PUT bucket replication&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 API Reference&lt;/i&gt;.&lt;/p&gt;
+/// Specifies the replica ownership. For default and valid values, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTreplication.html">PUT bucket
+/// replication</see> in the <i>Amazon S3 API Reference</i>.
 /// </param>
 public sealed record class AccessControlTranslation(OwnerOverride Owner);

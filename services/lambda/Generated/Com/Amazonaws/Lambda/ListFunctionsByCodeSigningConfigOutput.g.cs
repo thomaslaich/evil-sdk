@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListFunctionsByCodeSigningConfigOutput.
 /// </summary>
 /// <param name="FunctionArns">
-/// &lt;p&gt;The function ARNs. &lt;/p&gt;
+/// The function ARNs.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListFunctionsByCodeSigningConfigOutput(
     IReadOnlyList<string>? FunctionArns = null,

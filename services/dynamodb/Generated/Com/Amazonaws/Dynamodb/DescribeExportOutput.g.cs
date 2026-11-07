@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeExportOutput.
 /// </summary>
 /// <param name="ExportDescription">
-/// &lt;p&gt;Represents the properties of the export.&lt;/p&gt;
+/// Represents the properties of the export.
 /// </param>
 public sealed record class DescribeExportOutput(
     global::Com.Amazonaws.Dynamodb.ExportDescription? ExportDescription = null

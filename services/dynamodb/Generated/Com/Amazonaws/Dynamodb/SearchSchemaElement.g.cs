@@ -5,27 +5,29 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;An element in the search schema of a vector index.&lt;/p&gt;
+/// An element in the search schema of a vector index.
 /// </summary>
 /// <param name="AttributeName">
-/// &lt;p&gt;The name of the attribute.&lt;/p&gt;
+/// The name of the attribute.
 /// </param>
 /// <param name="SearchSchemaElementType">
-/// &lt;p&gt;The role of the attribute in the search schema. Valid values:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;HASH&lt;/code&gt; - A partition key that partitions the vector index for
-/// independent scaling. When specified, you must provide this attribute's value
-/// in the &lt;code&gt;SearchConditionExpression&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;INLINE_FILTER&lt;/code&gt; - An attribute projected into the vector index
-/// for filtering at the storage layer during search. Inline filters are
-/// optional in the &lt;code&gt;SearchConditionExpression&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The role of the attribute in the search schema. Valid values:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>HASH</c> - A partition key that partitions the vector index for independent scaling. When
+/// specified, you must provide this attribute's value in the <c>SearchConditionExpression</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>INLINE_FILTER</c> - An attribute projected into the vector index for filtering at the storage
+/// layer during search. Inline filters are optional in the <c>SearchConditionExpression</c>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class SearchSchemaElement(
     string AttributeName,

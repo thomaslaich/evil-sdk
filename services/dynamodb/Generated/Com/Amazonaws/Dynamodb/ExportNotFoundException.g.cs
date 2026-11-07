@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The specified export was not found.&lt;/p&gt;
+/// The specified export was not found.
 /// </summary>
 public sealed partial class ExportNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified export was not found.&lt;/p&gt;
+    /// The specified export was not found.
     /// </summary>
     public ExportNotFoundException(string? message = null)
         : base(message) { }

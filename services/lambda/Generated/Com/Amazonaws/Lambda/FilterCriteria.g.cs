@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt; An object that contains the filters for an event source. &lt;/p&gt;
+/// An object that contains the filters for an event source.
 /// </summary>
 /// <param name="Filters">
-/// &lt;p&gt; A list of filters. &lt;/p&gt;
+/// A list of filters.
 /// </param>
 public sealed record class FilterCriteria(IReadOnlyList<Filter>? Filters = null);

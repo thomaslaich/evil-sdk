@@ -7,30 +7,29 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies a cross-origin access rule for an Amazon S3 bucket.&lt;/p&gt;
+/// Specifies a cross-origin access rule for an Amazon S3 bucket.
 /// </summary>
 /// <param name="AllowedMethods">
-/// &lt;p&gt;An HTTP method that you allow the origin to execute. Valid values are &lt;code&gt;GET&lt;/code&gt;,
-/// &lt;code&gt;PUT&lt;/code&gt;, &lt;code&gt;HEAD&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, and &lt;code&gt;DELETE&lt;/code&gt;.&lt;/p&gt;
+/// An HTTP method that you allow the origin to execute. Valid values are <c>GET</c>, <c>PUT</c>,
+/// <c>HEAD</c>, <c>POST</c>, and <c>DELETE</c>.
 /// </param>
 /// <param name="AllowedOrigins">
-/// &lt;p&gt;One or more origins you want customers to be able to access the bucket from.&lt;/p&gt;
+/// One or more origins you want customers to be able to access the bucket from.
 /// </param>
 /// <param name="AllowedHeaders">
-/// &lt;p&gt;Headers that are specified in the &lt;code&gt;Access-Control-Request-Headers&lt;/code&gt; header. These headers
-/// are allowed in a preflight OPTIONS request. In response to any preflight OPTIONS request, Amazon S3 returns
-/// any requested headers that are allowed.&lt;/p&gt;
+/// Headers that are specified in the <c>Access-Control-Request-Headers</c> header. These headers are
+/// allowed in a preflight OPTIONS request. In response to any preflight OPTIONS request, Amazon S3
+/// returns any requested headers that are allowed.
 /// </param>
 /// <param name="ExposeHeaders">
-/// &lt;p&gt;One or more headers in the response that you want customers to be able to access from their
-/// applications (for example, from a JavaScript &lt;code&gt;XMLHttpRequest&lt;/code&gt; object).&lt;/p&gt;
+/// One or more headers in the response that you want customers to be able to access from their
+/// applications (for example, from a JavaScript <c>XMLHttpRequest</c> object).
 /// </param>
 /// <param name="ID">
-/// &lt;p&gt;Unique identifier for the rule. The value cannot be longer than 255 characters.&lt;/p&gt;
+/// Unique identifier for the rule. The value cannot be longer than 255 characters.
 /// </param>
 /// <param name="MaxAgeSeconds">
-/// &lt;p&gt;The time in seconds that your browser is to cache the preflight response for the specified
-/// resource.&lt;/p&gt;
+/// The time in seconds that your browser is to cache the preflight response for the specified resource.
 /// </param>
 public sealed record class CORSRule(
     IReadOnlyList<string> AllowedMethods,

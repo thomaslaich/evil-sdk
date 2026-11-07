@@ -5,25 +5,25 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of a &lt;code&gt;DescribeLimits&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of a <c>DescribeLimits</c> operation.
 /// </summary>
 /// <param name="AccountMaxReadCapacityUnits">
-/// &lt;p&gt;The maximum total read capacity units that your account allows you to provision across
-/// all of your tables in this Region.&lt;/p&gt;
+/// The maximum total read capacity units that your account allows you to provision across all of your
+/// tables in this Region.
 /// </param>
 /// <param name="AccountMaxWriteCapacityUnits">
-/// &lt;p&gt;The maximum total write capacity units that your account allows you to provision
-/// across all of your tables in this Region.&lt;/p&gt;
+/// The maximum total write capacity units that your account allows you to provision across all of your
+/// tables in this Region.
 /// </param>
 /// <param name="TableMaxReadCapacityUnits">
-/// &lt;p&gt;The maximum read capacity units that your account allows you to provision for a new
-/// table that you are creating in this Region, including the read capacity units
-/// provisioned for its global secondary indexes (GSIs).&lt;/p&gt;
+/// The maximum read capacity units that your account allows you to provision for a new table that you
+/// are creating in this Region, including the read capacity units provisioned for its global secondary
+/// indexes (GSIs).
 /// </param>
 /// <param name="TableMaxWriteCapacityUnits">
-/// &lt;p&gt;The maximum write capacity units that your account allows you to provision for a new
-/// table that you are creating in this Region, including the write capacity units
-/// provisioned for its global secondary indexes (GSIs).&lt;/p&gt;
+/// The maximum write capacity units that your account allows you to provision for a new table that you
+/// are creating in this Region, including the write capacity units provisioned for its global secondary
+/// indexes (GSIs).
 /// </param>
 public sealed record class DescribeLimitsOutput(
     long? AccountMaxReadCapacityUnits = null,

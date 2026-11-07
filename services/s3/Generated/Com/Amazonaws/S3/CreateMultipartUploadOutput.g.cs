@@ -10,79 +10,95 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#CreateMultipartUploadOutput.
 /// </summary>
 /// <param name="AbortDate">
-/// &lt;p&gt;If the bucket has a lifecycle rule configured with an action to abort incomplete multipart uploads
-/// and the prefix in the lifecycle rule matches the object name in the request, the response includes this
-/// header. The header indicates when the initiated multipart upload becomes eligible for an abort
-/// operation. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config&quot;&gt; Aborting
-/// Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;The response also includes the &lt;code&gt;x-amz-abort-rule-id&lt;/code&gt; header that provides the ID of the
-/// lifecycle configuration rule that defines the abort action.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the bucket has a lifecycle rule configured with an action to abort incomplete multipart uploads
+/// and the prefix in the lifecycle rule matches the object name in the request, the response includes
+/// this header. The header indicates when the initiated multipart upload becomes eligible for an abort
+/// operation. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config">Aborting
+/// Incomplete Multipart Uploads Using a Bucket Lifecycle Configuration</see> in the <i>Amazon S3 User
+/// Guide</i>.
+/// </para>
+/// <para>
+/// The response also includes the <c>x-amz-abort-rule-id</c> header that provides the ID of the
+/// lifecycle configuration rule that defines the abort action.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="AbortRuleId">
-/// &lt;p&gt;This header is returned along with the &lt;code&gt;x-amz-abort-date&lt;/code&gt; header. It identifies the
-/// applicable lifecycle configuration rule that defines the action to abort incomplete multipart
-/// uploads.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// This header is returned along with the <c>x-amz-abort-date</c> header. It identifies the applicable
+/// lifecycle configuration rule that defines the action to abort incomplete multipart uploads.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket to which the multipart upload was initiated. Does not return the access point ARN or
-/// access point alias if used.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The name of the bucket to which the multipart upload was initiated. Does not return the access point
+/// ARN or access point alias if used.
+/// </para>
+/// <para>
+/// <b>Note:</b> Access points are not supported by directory buckets.
+/// </para>
 /// </param>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with
-/// Key Management Service (KMS) keys (SSE-KMS).&lt;/p&gt;
+/// Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with Key
+/// Management Service (KMS) keys (SSE-KMS).
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;The algorithm that was used to create a checksum of the object.&lt;/p&gt;
+/// The algorithm that was used to create a checksum of the object.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt; Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum
-/// value. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// Indicates the checksum type that you want Amazon S3 to use to calculate the object’s checksum value.
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;Object key for which the multipart upload was initiated.&lt;/p&gt;
+/// Object key for which the multipart upload was initiated.
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to confirm the encryption algorithm that's used.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to confirm the encryption algorithm that's used.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to provide the round-trip message integrity verification of the customer-provided
-/// encryption key.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to provide the round-trip message integrity verification of the
+/// customer-provided encryption key.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSEncryptionContext">
-/// &lt;p&gt;If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption. The value of
-/// this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs.&lt;/p&gt;
+/// If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption.
+/// The value of this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the
+/// encryption context as key-value pairs.
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;If present, indicates the ID of the KMS key that was used for object encryption.&lt;/p&gt;
+/// If present, indicates the ID of the KMS key that was used for object encryption.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side
-/// encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <para>
+/// <b>Note:</b> When accessing data stored in Amazon FSx file systems using S3 access points, the only
+/// valid server side encryption option is <c>aws:fsx</c>.
+/// </para>
 /// </param>
 /// <param name="UploadId">
-/// &lt;p&gt;ID for the initiated multipart upload.&lt;/p&gt;
+/// ID for the initiated multipart upload.
 /// </param>
 public sealed record class CreateMultipartUploadOutput(
     DateTimeOffset? AbortDate = null,

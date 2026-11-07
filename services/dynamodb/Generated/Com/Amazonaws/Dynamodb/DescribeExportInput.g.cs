@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeExportInput.
 /// </summary>
 /// <param name="ExportArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) associated with the export.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) associated with the export.
 /// </param>
 public sealed record class DescribeExportInput(string ExportArn);

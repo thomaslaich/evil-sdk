@@ -7,37 +7,42 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the provisioned throughput settings for the table, consisting of read and
-/// write capacity units, along with data about increases and decreases.&lt;/p&gt;
+/// Represents the provisioned throughput settings for the table, consisting of read and write capacity
+/// units, along with data about increases and decreases.
 /// </summary>
 /// <param name="LastDecreaseDateTime">
-/// &lt;p&gt;The date and time of the last provisioned throughput decrease for this table.&lt;/p&gt;
+/// The date and time of the last provisioned throughput decrease for this table.
 /// </param>
 /// <param name="LastIncreaseDateTime">
-/// &lt;p&gt;The date and time of the last provisioned throughput increase for this table.&lt;/p&gt;
+/// The date and time of the last provisioned throughput increase for this table.
 /// </param>
 /// <param name="NumberOfDecreasesToday">
-/// &lt;p&gt;The number of provisioned throughput decreases for this table during this UTC calendar
-/// day. For current maximums on provisioned throughput decreases, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html&quot;&gt;Service,
-/// Account, and Table Quotas&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// The number of provisioned throughput decreases for this table during this UTC calendar day. For
+/// current maximums on provisioned throughput decreases, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Service,
+/// Account, and Table Quotas</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </param>
 /// <param name="ReadCapacityUnits">
-/// &lt;p&gt;The maximum number of strongly consistent reads consumed per second before DynamoDB
-/// returns a &lt;code&gt;ThrottlingException&lt;/code&gt;. Eventually consistent reads require less
-/// effort than strongly consistent reads, so a setting of 50 &lt;code&gt;ReadCapacityUnits&lt;/code&gt;
-/// per second provides 100 eventually consistent &lt;code&gt;ReadCapacityUnits&lt;/code&gt; per
-/// second.&lt;/p&gt;
-/// &lt;p&gt;For a table or global secondary index that uses on-demand capacity mode
-/// (&lt;code&gt;PAY_PER_REQUEST&lt;/code&gt;), this value is &lt;code&gt;0&lt;/code&gt;, because on-demand mode
-/// does not use provisioned throughput.&lt;/p&gt;
+/// <para>
+/// The maximum number of strongly consistent reads consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>. Eventually consistent reads require less effort than strongly consistent
+/// reads, so a setting of 50 <c>ReadCapacityUnits</c> per second provides 100 eventually consistent
+/// <c>ReadCapacityUnits</c> per second.
+/// </para>
+/// <para>
+/// For a table or global secondary index that uses on-demand capacity mode (<c>PAY_PER_REQUEST</c>),
+/// this value is <c>0</c>, because on-demand mode does not use provisioned throughput.
+/// </para>
 /// </param>
 /// <param name="WriteCapacityUnits">
-/// &lt;p&gt;The maximum number of writes consumed per second before DynamoDB returns a
-/// &lt;code&gt;ThrottlingException&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For a table or global secondary index that uses on-demand capacity mode
-/// (&lt;code&gt;PAY_PER_REQUEST&lt;/code&gt;), this value is &lt;code&gt;0&lt;/code&gt;, because on-demand mode
-/// does not use provisioned throughput.&lt;/p&gt;
+/// <para>
+/// The maximum number of writes consumed per second before DynamoDB returns a
+/// <c>ThrottlingException</c>.
+/// </para>
+/// <para>
+/// For a table or global secondary index that uses on-demand capacity mode (<c>PAY_PER_REQUEST</c>),
+/// this value is <c>0</c>, because on-demand mode does not use provisioned throughput.
+/// </para>
 /// </param>
 public sealed record class ProvisionedThroughputDescription(
     DateTimeOffset? LastDecreaseDateTime = null,

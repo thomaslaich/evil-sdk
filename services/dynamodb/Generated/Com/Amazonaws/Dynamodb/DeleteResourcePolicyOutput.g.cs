@@ -8,8 +8,12 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DeleteResourcePolicyOutput.
 /// </summary>
 /// <param name="RevisionId">
-/// &lt;p&gt;A unique string that represents the revision ID of the policy. If you're comparing revision IDs, make sure to always use string comparison logic.&lt;/p&gt;
-/// &lt;p&gt;This value will be empty if you make a request against a resource without a
-/// policy.&lt;/p&gt;
+/// <para>
+/// A unique string that represents the revision ID of the policy. If you're comparing revision IDs,
+/// make sure to always use string comparison logic.
+/// </para>
+/// <para>
+/// This value will be empty if you make a request against a resource without a policy.
+/// </para>
 /// </param>
 public sealed record class DeleteResourcePolicyOutput(string? RevisionId = null);

@@ -5,6 +5,6 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for Parquet.&lt;/p&gt;
+/// Container for Parquet.
 /// </summary>
 public sealed record class ParquetInput;

@@ -7,18 +7,16 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The specified action violates a limit. For example, &lt;code&gt;ReceiveMessage&lt;/code&gt;
-/// returns this error if the maximum number of in flight messages is reached and
-/// &lt;code&gt;AddPermission&lt;/code&gt; returns this error if the maximum number of permissions
-/// for the queue is reached.&lt;/p&gt;
+/// The specified action violates a limit. For example, <c>ReceiveMessage</c> returns this error if the
+/// maximum number of in flight messages is reached and <c>AddPermission</c> returns this error if the
+/// maximum number of permissions for the queue is reached.
 /// </summary>
 public sealed partial class OverLimit : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified action violates a limit. For example, &lt;code&gt;ReceiveMessage&lt;/code&gt;
-    /// returns this error if the maximum number of in flight messages is reached and
-    /// &lt;code&gt;AddPermission&lt;/code&gt; returns this error if the maximum number of permissions
-    /// for the queue is reached.&lt;/p&gt;
+    /// The specified action violates a limit. For example, <c>ReceiveMessage</c> returns this error if the
+    /// maximum number of in flight messages is reached and <c>AddPermission</c> returns this error if the
+    /// maximum number of permissions for the queue is reached.
     /// </summary>
     public OverLimit(string? message = null)
         : base(message) { }

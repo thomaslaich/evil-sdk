@@ -5,29 +5,32 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for describing a condition that must be met for the specified redirect to apply. For
-/// example, 1. If request is for pages in the &lt;code&gt;/docs&lt;/code&gt; folder, redirect to the
-/// &lt;code&gt;/documents&lt;/code&gt; folder. 2. If request results in HTTP error 4xx, redirect request to another
-/// host where you might process the error.&lt;/p&gt;
+/// A container for describing a condition that must be met for the specified redirect to apply. For
+/// example, 1. If request is for pages in the <c>/docs</c> folder, redirect to the <c>/documents</c>
+/// folder. 2. If request results in HTTP error 4xx, redirect request to another host where you might
+/// process the error.
 /// </summary>
 /// <param name="HttpErrorCodeReturnedEquals">
-/// &lt;p&gt;The HTTP error code when the redirect is applied. In the event of an error, if the error code equals
-/// this value, then the specified redirect is applied. Required when parent element &lt;code&gt;Condition&lt;/code&gt;
-/// is specified and sibling &lt;code&gt;KeyPrefixEquals&lt;/code&gt; is not specified. If both are specified, then both
-/// must be true for the redirect to be applied.&lt;/p&gt;
+/// The HTTP error code when the redirect is applied. In the event of an error, if the error code equals
+/// this value, then the specified redirect is applied. Required when parent element <c>Condition</c> is
+/// specified and sibling <c>KeyPrefixEquals</c> is not specified. If both are specified, then both must
+/// be true for the redirect to be applied.
 /// </param>
 /// <param name="KeyPrefixEquals">
-/// &lt;p&gt;The object key name prefix when the redirect is applied. For example, to redirect requests for
-/// &lt;code&gt;ExamplePage.html&lt;/code&gt;, the key prefix will be &lt;code&gt;ExamplePage.html&lt;/code&gt;. To redirect
-/// request for all pages with the prefix &lt;code&gt;docs/&lt;/code&gt;, the key prefix will be &lt;code&gt;/docs&lt;/code&gt;,
-/// which identifies all objects in the &lt;code&gt;docs/&lt;/code&gt; folder. Required when the parent element
-/// &lt;code&gt;Condition&lt;/code&gt; is specified and sibling &lt;code&gt;HttpErrorCodeReturnedEquals&lt;/code&gt; is not
-/// specified. If both conditions are specified, both must be true for the redirect to be applied.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// The object key name prefix when the redirect is applied. For example, to redirect requests for
+/// <c>ExamplePage.html</c>, the key prefix will be <c>ExamplePage.html</c>. To redirect request for all
+/// pages with the prefix <c>docs/</c>, the key prefix will be <c>/docs</c>, which identifies all
+/// objects in the <c>docs/</c> folder. Required when the parent element <c>Condition</c> is specified
+/// and sibling <c>HttpErrorCodeReturnedEquals</c> is not specified. If both conditions are specified,
+/// both must be true for the redirect to be applied.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 public sealed record class Condition(
     string? HttpErrorCodeReturnedEquals = null,

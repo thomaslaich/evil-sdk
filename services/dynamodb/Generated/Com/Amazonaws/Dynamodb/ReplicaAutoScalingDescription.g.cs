@@ -7,34 +7,40 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the auto scaling settings of the replica.&lt;/p&gt;
+/// Represents the auto scaling settings of the replica.
 /// </summary>
 /// <param name="GlobalSecondaryIndexes">
-/// &lt;p&gt;Replica-specific global secondary index auto scaling settings.&lt;/p&gt;
+/// Replica-specific global secondary index auto scaling settings.
 /// </param>
 /// <param name="RegionName">
-/// &lt;p&gt;The Region where the replica exists.&lt;/p&gt;
+/// The Region where the replica exists.
 /// </param>
 /// <param name="ReplicaStatus">
-/// &lt;p&gt;The current state of the replica:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The replica is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;UPDATING&lt;/code&gt; - The replica is being updated.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The replica is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The replica is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of the replica:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The replica is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>UPDATING</c> - The replica is being updated.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The replica is being deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The replica is ready for use.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class ReplicaAutoScalingDescription(
     IReadOnlyList<ReplicaGlobalSecondaryIndexAutoScalingDescription>? GlobalSecondaryIndexes = null,

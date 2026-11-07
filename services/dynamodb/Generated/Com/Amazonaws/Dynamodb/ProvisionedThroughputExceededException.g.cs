@@ -8,30 +8,36 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The request was denied due to request throttling. For detailed information about
-/// why the request was throttled and the ARN of the impacted resource, find the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; field in the returned exception. The Amazon Web Services
-/// SDKs for DynamoDB automatically retry requests that receive this exception.
-/// Your request is eventually successful, unless your retry queue is too large to finish.
-/// Reduce the frequency of requests and use exponential backoff. For more information, go
-/// to &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Programming.Errors.html#Programming.Errors.RetryAndBackoff&quot;&gt;Error Retries and Exponential Backoff&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// The request was denied due to request throttling. For detailed information about why the request was
+/// throttled and the ARN of the impacted resource, find the
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+/// field in the returned exception. The Amazon Web Services SDKs for DynamoDB automatically retry
+/// requests that receive this exception. Your request is eventually successful, unless your retry queue
+/// is too large to finish. Reduce the frequency of requests and use exponential backoff. For more
+/// information, go to
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Programming.Errors.html#Programming.Errors.RetryAndBackoff">Error
+/// Retries and Exponential Backoff</see> in the <i>Amazon DynamoDB Developer Guide</i>.
 /// </summary>
 public sealed partial class ProvisionedThroughputExceededException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was denied due to request throttling. For detailed information about
-    /// why the request was throttled and the ARN of the impacted resource, find the &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; field in the returned exception. The Amazon Web Services
-    /// SDKs for DynamoDB automatically retry requests that receive this exception.
-    /// Your request is eventually successful, unless your retry queue is too large to finish.
-    /// Reduce the frequency of requests and use exponential backoff. For more information, go
-    /// to &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Programming.Errors.html#Programming.Errors.RetryAndBackoff&quot;&gt;Error Retries and Exponential Backoff&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer Guide&lt;/i&gt;.&lt;/p&gt;
+    /// The request was denied due to request throttling. For detailed information about why the request was
+    /// throttled and the ARN of the impacted resource, find the
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// field in the returned exception. The Amazon Web Services SDKs for DynamoDB automatically retry
+    /// requests that receive this exception. Your request is eventually successful, unless your retry queue
+    /// is too large to finish. Reduce the frequency of requests and use exponential backoff. For more
+    /// information, go to
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Programming.Errors.html#Programming.Errors.RetryAndBackoff">Error
+    /// Retries and Exponential Backoff</see> in the <i>Amazon DynamoDB Developer Guide</i>.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;You exceeded your maximum allowed provisioned throughput.&lt;/p&gt;
+    /// You exceeded your maximum allowed provisioned throughput.
     /// </param>
     /// <param name="throttlingReasons">
-    /// &lt;p&gt;A list of &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; that
-    /// provide detailed diagnostic information about why the request was throttled.
-    /// &lt;/p&gt;
+    /// A list of
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// that provide detailed diagnostic information about why the request was throttled.
     /// </param>
     public ProvisionedThroughputExceededException(
         string? message = null,
@@ -43,14 +49,14 @@ public sealed partial class ProvisionedThroughputExceededException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;You exceeded your maximum allowed provisioned throughput.&lt;/p&gt;
+    /// You exceeded your maximum allowed provisioned throughput.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;A list of &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html&quot;&gt;ThrottlingReason&lt;/a&gt; that
-    /// provide detailed diagnostic information about why the request was throttled.
-    /// &lt;/p&gt;
+    /// A list of
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ThrottlingReason.html">ThrottlingReason</see>
+    /// that provide detailed diagnostic information about why the request was throttled.
     /// </summary>
     public IReadOnlyList<ThrottlingReason>? ThrottlingReasons { get; }
 }

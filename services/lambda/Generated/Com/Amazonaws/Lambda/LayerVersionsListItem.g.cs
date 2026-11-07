@@ -7,28 +7,45 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a version of an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;.&lt;/p&gt;
+/// Details about a version of an
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</see>.
 /// </summary>
 /// <param name="CompatibleArchitectures">
-/// &lt;p&gt;A list of compatible &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html&quot;&gt;instruction set architectures&lt;/a&gt;.&lt;/p&gt;
+/// A list of compatible
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+/// architectures</see>.
 /// </param>
 /// <param name="CompatibleRuntimes">
-/// &lt;p&gt;The layer's compatible runtimes.&lt;/p&gt; &lt;p&gt;The following list includes deprecated runtimes. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels&quot;&gt;Runtime use after deprecation&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;For a list of all currently supported runtimes, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported&quot;&gt;Supported runtimes&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// The layer's compatible runtimes.
+/// </para>
+/// <para>
+/// The following list includes deprecated runtimes. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels">Runtime
+/// use after deprecation</see>.
+/// </para>
+/// <para>
+/// For a list of all currently supported runtimes, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported">Supported
+/// runtimes</see>.
+/// </para>
 /// </param>
 /// <param name="CreatedDate">
-/// &lt;p&gt;The date that the version was created, in ISO 8601 format. For example, &lt;code&gt;2018-11-27T15:10:45.123+0000&lt;/code&gt;.&lt;/p&gt;
+/// The date that the version was created, in ISO 8601 format. For example,
+/// <c>2018-11-27T15:10:45.123+0000</c>.
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;The description of the version.&lt;/p&gt;
+/// The description of the version.
 /// </param>
 /// <param name="LayerVersionArn">
-/// &lt;p&gt;The ARN of the layer version.&lt;/p&gt;
+/// The ARN of the layer version.
 /// </param>
 /// <param name="LicenseInfo">
-/// &lt;p&gt;The layer's open-source license.&lt;/p&gt;
+/// The layer's open-source license.
 /// </param>
 /// <param name="Version">
-/// &lt;p&gt;The version number.&lt;/p&gt;
+/// The version number.
 /// </param>
 public sealed record class LayerVersionsListItem(
     IReadOnlyList<Architecture>? CompatibleArchitectures = null,

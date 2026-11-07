@@ -8,12 +8,12 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketMetadataTableConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt; The general purpose bucket that corresponds to the metadata table configuration that you want to
-/// retrieve. &lt;/p&gt;
+/// The general purpose bucket that corresponds to the metadata table configuration that you want to
+/// retrieve.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt; The expected owner of the general purpose bucket that you want to retrieve the metadata table
-/// configuration for. &lt;/p&gt;
+/// The expected owner of the general purpose bucket that you want to retrieve the metadata table
+/// configuration for.
 /// </param>
 public sealed record class GetBucketMetadataTableConfigurationInput(
     string Bucket,

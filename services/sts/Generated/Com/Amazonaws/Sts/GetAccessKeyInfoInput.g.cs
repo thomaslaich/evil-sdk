@@ -8,8 +8,12 @@ namespace Com.Amazonaws.Sts;
 /// Represents the Smithy structure com.amazonaws.sts#GetAccessKeyInfoInput.
 /// </summary>
 /// <param name="AccessKeyId">
-/// &lt;p&gt;The identifier of an access key.&lt;/p&gt;
-/// &lt;p&gt;This parameter allows (through its regex pattern) a string of characters that can
-/// consist of any upper- or lowercase letter or digit.&lt;/p&gt;
+/// <para>
+/// The identifier of an access key.
+/// </para>
+/// <para>
+/// This parameter allows (through its regex pattern) a string of characters that can consist of any
+/// upper- or lowercase letter or digit.
+/// </para>
 /// </param>
 public sealed record class GetAccessKeyInfoInput(string AccessKeyId);

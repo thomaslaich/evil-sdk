@@ -12,288 +12,327 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#WriteGetObjectResponseInput.
 /// </summary>
 /// <param name="RequestRoute">
-/// &lt;p&gt;Route prefix to the HTTP URL generated.&lt;/p&gt;
+/// Route prefix to the HTTP URL generated.
 /// </param>
 /// <param name="RequestToken">
-/// &lt;p&gt;A single use encrypted token that maps &lt;code&gt;WriteGetObjectResponse&lt;/code&gt; to the end user
-/// &lt;code&gt;GetObject&lt;/code&gt; request.&lt;/p&gt;
+/// A single use encrypted token that maps <c>WriteGetObjectResponse</c> to the end user
+/// <c>GetObject</c> request.
 /// </param>
 /// <param name="AcceptRanges">
-/// &lt;p&gt;Indicates that a range of bytes was specified.&lt;/p&gt;
+/// Indicates that a range of bytes was specified.
 /// </param>
 /// <param name="Body">
-/// &lt;p&gt;The object data.&lt;/p&gt;
+/// The object data.
 /// </param>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt; Indicates whether the object stored in Amazon S3 uses an S3 bucket key for server-side encryption with
-/// Amazon Web Services KMS (SSE-KMS).&lt;/p&gt;
+/// Indicates whether the object stored in Amazon S3 uses an S3 bucket key for server-side encryption
+/// with Amazon Web Services KMS (SSE-KMS).
 /// </param>
 /// <param name="CacheControl">
-/// &lt;p&gt;Specifies caching behavior along the request/reply chain.&lt;/p&gt;
+/// Specifies caching behavior along the request/reply chain.
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This specifies the Base64 encoded, 32-bit &lt;code&gt;CRC32&lt;/code&gt; checksum of the
-/// object returned by the Object Lambda function. This may not match the checksum for the object stored in
-/// Amazon S3. Amazon S3 will perform validation of the checksum values only when the original &lt;code&gt;GetObject&lt;/code&gt;
-/// request required checksum validation. For more information about checksums, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object
-/// integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
-/// request will fail.&lt;/p&gt;
-/// &lt;p&gt;&lt;/p&gt;
+/// <para>
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This specifies the Base64 encoded, 32-bit <c>CRC32</c> checksum of the
+/// object returned by the Object Lambda function. This may not match the checksum for the object stored
+/// in Amazon S3. Amazon S3 will perform validation of the checksum values only when the original
+/// <c>GetObject</c> request required checksum validation. For more information about checksums, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
+/// request will fail.
+/// </para>
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This specifies the Base64 encoded, 32-bit &lt;code&gt;CRC32C&lt;/code&gt; checksum of the
-/// object returned by the Object Lambda function. This may not match the checksum for the object stored in
-/// Amazon S3. Amazon S3 will perform validation of the checksum values only when the original &lt;code&gt;GetObject&lt;/code&gt;
-/// request required checksum validation. For more information about checksums, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object
-/// integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
-/// request will fail.&lt;/p&gt;
+/// <para>
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This specifies the Base64 encoded, 32-bit <c>CRC32C</c> checksum of the
+/// object returned by the Object Lambda function. This may not match the checksum for the object stored
+/// in Amazon S3. Amazon S3 will perform validation of the checksum values only when the original
+/// <c>GetObject</c> request required checksum validation. For more information about checksums, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
+/// request will fail.
+/// </para>
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 64-bit &lt;code&gt;CRC64NVME&lt;/code&gt;
-/// checksum of the part. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 64-bit <c>CRC64NVME</c> checksum
+/// of the part. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 128-bit &lt;code&gt;MD5&lt;/code&gt;
-/// digest of the part. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 128-bit <c>MD5</c> digest of the
+/// part. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This specifies the Base64 encoded, 160-bit &lt;code&gt;SHA1&lt;/code&gt; digest of the
-/// object returned by the Object Lambda function. This may not match the checksum for the object stored in
-/// Amazon S3. Amazon S3 will perform validation of the checksum values only when the original &lt;code&gt;GetObject&lt;/code&gt;
-/// request required checksum validation. For more information about checksums, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object
-/// integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
-/// request will fail.&lt;/p&gt;
+/// <para>
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This specifies the Base64 encoded, 160-bit <c>SHA1</c> digest of the
+/// object returned by the Object Lambda function. This may not match the checksum for the object stored
+/// in Amazon S3. Amazon S3 will perform validation of the checksum values only when the original
+/// <c>GetObject</c> request required checksum validation. For more information about checksums, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
+/// request will fail.
+/// </para>
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This specifies the Base64 encoded, 256-bit &lt;code&gt;SHA256&lt;/code&gt; digest of the
-/// object returned by the Object Lambda function. This may not match the checksum for the object stored in
-/// Amazon S3. Amazon S3 will perform validation of the checksum values only when the original &lt;code&gt;GetObject&lt;/code&gt;
-/// request required checksum validation. For more information about checksums, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object
-/// integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
-/// request will fail.&lt;/p&gt;
+/// <para>
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This specifies the Base64 encoded, 256-bit <c>SHA256</c> digest of the
+/// object returned by the Object Lambda function. This may not match the checksum for the object stored
+/// in Amazon S3. Amazon S3 will perform validation of the checksum values only when the original
+/// <c>GetObject</c> request required checksum validation. For more information about checksums, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// Only one checksum header can be specified at a time. If you supply multiple checksum headers, this
+/// request will fail.
+/// </para>
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 512-bit &lt;code&gt;SHA512&lt;/code&gt;
-/// digest of the part. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 512-bit <c>SHA512</c> digest of
+/// the part. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 128-bit &lt;code&gt;XXHASH128&lt;/code&gt;
-/// checksum of the part. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 128-bit <c>XXHASH128</c>
+/// checksum of the part. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 64-bit &lt;code&gt;XXHASH3&lt;/code&gt;
-/// checksum of the part. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 64-bit <c>XXHASH3</c> checksum
+/// of the part. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 64-bit &lt;code&gt;XXHASH64&lt;/code&gt;
-/// checksum of the part. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 64-bit <c>XXHASH64</c> checksum
+/// of the part. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ContentDisposition">
-/// &lt;p&gt;Specifies presentational information for the object.&lt;/p&gt;
+/// Specifies presentational information for the object.
 /// </param>
 /// <param name="ContentEncoding">
-/// &lt;p&gt;Specifies what content encodings have been applied to the object and thus what decoding mechanisms
-/// must be applied to obtain the media-type referenced by the Content-Type header field.&lt;/p&gt;
+/// Specifies what content encodings have been applied to the object and thus what decoding mechanisms
+/// must be applied to obtain the media-type referenced by the Content-Type header field.
 /// </param>
 /// <param name="ContentLanguage">
-/// &lt;p&gt;The language the content is in.&lt;/p&gt;
+/// The language the content is in.
 /// </param>
 /// <param name="ContentLength">
-/// &lt;p&gt;The size of the content body in bytes.&lt;/p&gt;
+/// The size of the content body in bytes.
 /// </param>
 /// <param name="ContentRange">
-/// &lt;p&gt;The portion of the object returned in the response.&lt;/p&gt;
+/// The portion of the object returned in the response.
 /// </param>
 /// <param name="ContentType">
-/// &lt;p&gt;A standard MIME type describing the format of the object data.&lt;/p&gt;
+/// A standard MIME type describing the format of the object data.
 /// </param>
 /// <param name="DeleteMarker">
-/// &lt;p&gt;Specifies whether an object stored in Amazon S3 is (&lt;code&gt;true&lt;/code&gt;) or is not (&lt;code&gt;false&lt;/code&gt;) a
-/// delete marker. To learn more about delete markers, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html&quot;&gt;Working with delete markers&lt;/a&gt;.&lt;/p&gt;
+/// Specifies whether an object stored in Amazon S3 is (<c>true</c>) or is not (<c>false</c>) a delete
+/// marker. To learn more about delete markers, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html">Working with
+/// delete markers</see>.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;An opaque identifier assigned by a web server to a specific version of a resource found at a URL.
-/// &lt;/p&gt;
+/// An opaque identifier assigned by a web server to a specific version of a resource found at a URL.
 /// </param>
 /// <param name="ErrorCode">
-/// &lt;p&gt;A string that uniquely identifies an error condition. Returned in the &lt;Code&gt; tag of the error
-/// XML response for a corresponding &lt;code&gt;GetObject&lt;/code&gt; call. Cannot be used with a successful
-/// &lt;code&gt;StatusCode&lt;/code&gt; header or when the transformed object is provided in the body. All error codes
-/// from S3 are sentence-cased. The regular expression (regex) value is
-/// &lt;code&gt;&quot;^[A-Z][a-zA-Z]+$&quot;&lt;/code&gt;.&lt;/p&gt;
+/// A string that uniquely identifies an error condition. Returned in the <c> tag of the error XML
+/// response for a corresponding <c>GetObject</c> call. Cannot be used with a successful
+/// <c>StatusCode</c> header or when the transformed object is provided in the body. All error codes
+/// from S3 are sentence-cased. The regular expression (regex) value is <c>"^[A-Z][a-zA-Z]+$"</c>.</c>
 /// </param>
 /// <param name="ErrorMessage">
-/// &lt;p&gt;Contains a generic description of the error condition. Returned in the &lt;Message&gt; tag of the
-/// error XML response for a corresponding &lt;code&gt;GetObject&lt;/code&gt; call. Cannot be used with a successful
-/// &lt;code&gt;StatusCode&lt;/code&gt; header or when the transformed object is provided in body.&lt;/p&gt;
+/// Contains a generic description of the error condition. Returned in the &lt;Message&gt; tag of the
+/// error XML response for a corresponding <c>GetObject</c> call. Cannot be used with a successful
+/// <c>StatusCode</c> header or when the transformed object is provided in body.
 /// </param>
 /// <param name="Expiration">
-/// &lt;p&gt;If the object expiration is configured (see PUT Bucket lifecycle), the response includes this
-/// header. It includes the &lt;code&gt;expiry-date&lt;/code&gt; and &lt;code&gt;rule-id&lt;/code&gt; key-value pairs that provide
-/// the object expiration information. The value of the &lt;code&gt;rule-id&lt;/code&gt; is URL-encoded. &lt;/p&gt;
+/// If the object expiration is configured (see PUT Bucket lifecycle), the response includes this
+/// header. It includes the <c>expiry-date</c> and <c>rule-id</c> key-value pairs that provide the
+/// object expiration information. The value of the <c>rule-id</c> is URL-encoded.
 /// </param>
 /// <param name="Expires">
-/// &lt;p&gt;The date and time at which the object is no longer cacheable.&lt;/p&gt;
+/// The date and time at which the object is no longer cacheable.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date and time that the object was last modified.&lt;/p&gt;
+/// The date and time that the object was last modified.
 /// </param>
 /// <param name="Metadata">
-/// &lt;p&gt;A map of metadata to store with the object in S3.&lt;/p&gt;
+/// A map of metadata to store with the object in S3.
 /// </param>
 /// <param name="MissingMeta">
-/// &lt;p&gt;Set to the number of metadata entries not returned in &lt;code&gt;x-amz-meta&lt;/code&gt; headers. This can
-/// happen if you create metadata using an API like SOAP that supports more flexible metadata than the REST
-/// API. For example, using SOAP, you can create metadata whose values are not legal HTTP headers.&lt;/p&gt;
+/// Set to the number of metadata entries not returned in <c>x-amz-meta</c> headers. This can happen if
+/// you create metadata using an API like SOAP that supports more flexible metadata than the REST API.
+/// For example, using SOAP, you can create metadata whose values are not legal HTTP headers.
 /// </param>
 /// <param name="ObjectLockLegalHoldStatus">
-/// &lt;p&gt;Indicates whether an object stored in Amazon S3 has an active legal hold.&lt;/p&gt;
+/// Indicates whether an object stored in Amazon S3 has an active legal hold.
 /// </param>
 /// <param name="ObjectLockMode">
-/// &lt;p&gt;Indicates whether an object stored in Amazon S3 has Object Lock enabled. For more information about S3
-/// Object Lock, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html&quot;&gt;Object
-/// Lock&lt;/a&gt;.&lt;/p&gt;
+/// Indicates whether an object stored in Amazon S3 has Object Lock enabled. For more information about
+/// S3 Object Lock, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">Object
+/// Lock</see>.
 /// </param>
 /// <param name="ObjectLockRetainUntilDate">
-/// &lt;p&gt;The date and time when Object Lock is configured to expire.&lt;/p&gt;
+/// The date and time when Object Lock is configured to expire.
 /// </param>
 /// <param name="PartsCount">
-/// &lt;p&gt;The count of parts this object has.&lt;/p&gt;
+/// The count of parts this object has.
 /// </param>
 /// <param name="ReplicationStatus">
-/// &lt;p&gt;Indicates if request involves bucket that is either a source or destination in a Replication rule.
-/// For more information about S3 Replication, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html&quot;&gt;Replication&lt;/a&gt;.&lt;/p&gt;
+/// Indicates if request involves bucket that is either a source or destination in a Replication rule.
+/// For more information about S3 Replication, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html">Replication</see>.
 /// </param>
 /// <param name="Restore">
-/// &lt;p&gt;Provides information about object restoration operation and expiration time of the restored object
-/// copy.&lt;/p&gt;
+/// Provides information about object restoration operation and expiration time of the restored object
+/// copy.
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;Encryption algorithm used if server-side encryption with a customer-provided encryption key was
-/// specified for object stored in Amazon S3.&lt;/p&gt;
+/// Encryption algorithm used if server-side encryption with a customer-provided encryption key was
+/// specified for object stored in Amazon S3.
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt; 128-bit MD5 digest of customer-provided encryption key used in Amazon S3 to encrypt data stored in S3.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html&quot;&gt;Protecting data using
-/// server-side encryption with customer-provided encryption keys (SSE-C)&lt;/a&gt;.&lt;/p&gt;
+/// 128-bit MD5 digest of customer-provided encryption key used in Amazon S3 to encrypt data stored in
+/// S3. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html">Protecting
+/// data using server-side encryption with customer-provided encryption keys (SSE-C)</see>.
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt; If present, specifies the ID (Key ID, Key ARN, or Key Alias) of the Amazon Web Services Key Management Service
-/// (Amazon Web Services KMS) symmetric encryption customer managed key that was used for stored in Amazon S3 object. &lt;/p&gt;
+/// If present, specifies the ID (Key ID, Key ARN, or Key Alias) of the Amazon Web Services Key
+/// Management Service (Amazon Web Services KMS) symmetric encryption customer managed key that was used
+/// for stored in Amazon S3 object.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt; The server-side encryption algorithm used when storing requested object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side
-/// encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The server-side encryption algorithm used when storing requested object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <para>
+/// <b>Note:</b> When accessing data stored in Amazon FSx file systems using S3 access points, the only
+/// valid server side encryption option is <c>aws:fsx</c>.
+/// </para>
 /// </param>
 /// <param name="StatusCode">
-/// &lt;p&gt;The integer status code for an HTTP response of a corresponding &lt;code&gt;GetObject&lt;/code&gt; request. The
-/// following is a list of status codes.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;200 - OK&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;206 - Partial Content&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;304 - Not Modified&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;400 - Bad Request&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;401 - Unauthorized&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;403 - Forbidden&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;404 - Not Found&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;405 - Method Not Allowed&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;409 - Conflict&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;411 - Length Required&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;412 - Precondition Failed&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;416 - Range Not Satisfiable&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;500 - Internal Server Error&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;503 - Service Unavailable&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The integer status code for an HTTP response of a corresponding <c>GetObject</c> request. The
+/// following is a list of status codes.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>200 - OK</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>206 - Partial Content</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>304 - Not Modified</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>400 - Bad Request</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>401 - Unauthorized</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>403 - Forbidden</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>404 - Not Found</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>405 - Method Not Allowed</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>409 - Conflict</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>411 - Length Required</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>412 - Precondition Failed</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>416 - Range Not Satisfiable</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>500 - Internal Server Error</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>503 - Service Unavailable</c>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;Provides storage class information of the object. Amazon S3 returns this header for all objects except
-/// for S3 Standard storage class objects.&lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html&quot;&gt;Storage Classes&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Provides storage class information of the object. Amazon S3 returns this header for all objects
+/// except for S3 Standard storage class objects.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html">Storage
+/// Classes</see>.
+/// </para>
 /// </param>
 /// <param name="TagCount">
-/// &lt;p&gt;The number of tags, if any, on the object.&lt;/p&gt;
+/// The number of tags, if any, on the object.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;An ID used to reference a specific version of the object.&lt;/p&gt;
+/// An ID used to reference a specific version of the object.
 /// </param>
 public sealed record class WriteGetObjectResponseInput(
     string RequestRoute,

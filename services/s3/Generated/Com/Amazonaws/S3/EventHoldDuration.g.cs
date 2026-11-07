@@ -5,14 +5,14 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Contains the event hold duration configuration, specified in either days or years.&lt;/p&gt;
+/// Contains the event hold duration configuration, specified in either days or years.
 /// </summary>
 /// <param name="Days">
-/// &lt;p&gt;The number of days for the event hold duration. The minimum value is 1 and the maximum value is
-/// 36,500.&lt;/p&gt;
+/// The number of days for the event hold duration. The minimum value is 1 and the maximum value is
+/// 36,500.
 /// </param>
 /// <param name="Years">
-/// &lt;p&gt;The number of years for the event hold duration. The minimum value is 1 and the maximum value is
-/// 100.&lt;/p&gt;
+/// The number of years for the event hold duration. The minimum value is 1 and the maximum value is
+/// 100.
 /// </param>
 public sealed record class EventHoldDuration(int? Days = null, int? Years = null);

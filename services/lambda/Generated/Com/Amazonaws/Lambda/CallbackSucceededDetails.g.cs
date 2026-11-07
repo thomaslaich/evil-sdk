@@ -5,9 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains details about a successfully completed callback operation, including the result data and completion timestamp.&lt;/p&gt;
+/// Contains details about a successfully completed callback operation, including the result data and
+/// completion timestamp.
 /// </summary>
 /// <param name="Result">
-/// &lt;p&gt;The response payload from the successful operation.&lt;/p&gt;
+/// The response payload from the successful operation.
 /// </param>
 public sealed record class CallbackSucceededDetails(EventResult Result);

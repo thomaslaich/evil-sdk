@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#TagResourceInput.
 /// </summary>
 /// <param name="Resource">
-/// &lt;p&gt;The resource's Amazon Resource Name (ARN).&lt;/p&gt;
+/// The resource's Amazon Resource Name (ARN).
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;A list of tags to apply to the resource.&lt;/p&gt;
+/// A list of tags to apply to the resource.
 /// </param>
 public sealed record class TagResourceInput(
     string Resource,

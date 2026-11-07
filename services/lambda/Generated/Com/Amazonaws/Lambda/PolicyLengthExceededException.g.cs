@@ -7,12 +7,16 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The permissions policy for the resource is too large. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+/// The permissions policy for the resource is too large. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+/// quotas</see>.
 /// </summary>
 public sealed partial class PolicyLengthExceededException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The permissions policy for the resource is too large. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+    /// The permissions policy for the resource is too large. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+    /// quotas</see>.
     /// </summary>
     public PolicyLengthExceededException(string? message = null, string? type = null)
         : base(message)

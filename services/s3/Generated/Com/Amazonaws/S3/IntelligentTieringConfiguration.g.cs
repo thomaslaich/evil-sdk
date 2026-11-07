@@ -7,22 +7,26 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the S3 Intelligent-Tiering configuration for an Amazon S3 bucket.&lt;/p&gt;
-/// &lt;p&gt;For information about the S3 Intelligent-Tiering storage class, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access&quot;&gt;Storage class for
-/// automatically optimizing frequently and infrequently accessed objects&lt;/a&gt;.&lt;/p&gt;
+/// <para>
+/// Specifies the S3 Intelligent-Tiering configuration for an Amazon S3 bucket.
+/// </para>
+/// <para>
+/// For information about the S3 Intelligent-Tiering storage class, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access">Storage
+/// class for automatically optimizing frequently and infrequently accessed objects</see>.
+/// </para>
 /// </summary>
 /// <param name="Id">
-/// &lt;p&gt;The ID used to identify the S3 Intelligent-Tiering configuration.&lt;/p&gt;
+/// The ID used to identify the S3 Intelligent-Tiering configuration.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;Specifies the status of the configuration.&lt;/p&gt;
+/// Specifies the status of the configuration.
 /// </param>
 /// <param name="Tierings">
-/// &lt;p&gt;Specifies the S3 Intelligent-Tiering storage class tier of the configuration.&lt;/p&gt;
+/// Specifies the S3 Intelligent-Tiering storage class tier of the configuration.
 /// </param>
 /// <param name="Filter">
-/// &lt;p&gt;Specifies a bucket filter. The configuration only includes objects that meet the filter's
-/// criteria.&lt;/p&gt;
+/// Specifies a bucket filter. The configuration only includes objects that meet the filter's criteria.
 /// </param>
 public sealed record class IntelligentTieringConfiguration(
     string Id,

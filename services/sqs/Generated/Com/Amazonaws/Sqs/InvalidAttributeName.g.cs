@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The specified attribute doesn't exist.&lt;/p&gt;
+/// The specified attribute doesn't exist.
 /// </summary>
 public sealed partial class InvalidAttributeName : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified attribute doesn't exist.&lt;/p&gt;
+    /// The specified attribute doesn't exist.
     /// </summary>
     public InvalidAttributeName(string? message = null)
         : base(message) { }

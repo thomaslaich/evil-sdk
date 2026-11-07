@@ -5,18 +5,15 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Provides visibility into the number of read and write operations your table or
-/// secondary index can instantaneously support. The settings can be modified using the
-/// &lt;code&gt;UpdateTable&lt;/code&gt; operation to meet the throughput requirements of an
-/// upcoming peak event.&lt;/p&gt;
+/// Provides visibility into the number of read and write operations your table or secondary index can
+/// instantaneously support. The settings can be modified using the <c>UpdateTable</c> operation to meet
+/// the throughput requirements of an upcoming peak event.
 /// </summary>
 /// <param name="ReadUnitsPerSecond">
-/// &lt;p&gt;Represents the number of read operations your base table can instantaneously
-/// support.&lt;/p&gt;
+/// Represents the number of read operations your base table can instantaneously support.
 /// </param>
 /// <param name="WriteUnitsPerSecond">
-/// &lt;p&gt;Represents the number of write operations your base table can instantaneously
-/// support.&lt;/p&gt;
+/// Represents the number of write operations your base table can instantaneously support.
 /// </param>
 public sealed record class WarmThroughput(
     long? ReadUnitsPerSecond = null,

@@ -5,28 +5,42 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The &lt;code&gt;MD5OfMessageBody&lt;/code&gt; and &lt;code&gt;MessageId&lt;/code&gt; elements.&lt;/p&gt;
+/// The <c>MD5OfMessageBody</c> and <c>MessageId</c> elements.
 /// </summary>
 /// <param name="MD5OfMessageAttributes">
-/// &lt;p&gt;An MD5 digest of the non-URL-encoded message attribute string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see &lt;a href=&quot;https://www.ietf.org/rfc/rfc1321.txt&quot;&gt;RFC1321&lt;/a&gt;.&lt;/p&gt;
+/// An MD5 digest of the non-URL-encoded message attribute string. You can use this attribute to verify
+/// that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating
+/// the MD5 digest. For information about MD5, see
+/// <see href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</see>.
 /// </param>
 /// <param name="MD5OfMessageBody">
-/// &lt;p&gt;An MD5 digest of the non-URL-encoded message body string. You can use this attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest. For information about MD5, see &lt;a href=&quot;https://www.ietf.org/rfc/rfc1321.txt&quot;&gt;RFC1321&lt;/a&gt;.&lt;/p&gt;
+/// An MD5 digest of the non-URL-encoded message body string. You can use this attribute to verify that
+/// Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the
+/// MD5 digest. For information about MD5, see
+/// <see href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</see>.
 /// </param>
 /// <param name="MD5OfMessageSystemAttributes">
-/// &lt;p&gt;An MD5 digest of the non-URL-encoded message system attribute string. You can use this
-/// attribute to verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before creating the MD5 digest.&lt;/p&gt;
+/// An MD5 digest of the non-URL-encoded message system attribute string. You can use this attribute to
+/// verify that Amazon SQS received the message correctly. Amazon SQS URL-decodes the message before
+/// creating the MD5 digest.
 /// </param>
 /// <param name="MessageId">
-/// &lt;p&gt;An attribute containing the &lt;code&gt;MessageId&lt;/code&gt; of the message sent to the queue.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-message-identifiers.html&quot;&gt;Queue and Message Identifiers&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer
-/// Guide&lt;/i&gt;. &lt;/p&gt;
+/// An attribute containing the <c>MessageId</c> of the message sent to the queue. For more information,
+/// see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-message-identifiers.html">Queue
+/// and Message Identifiers</see> in the <i>Amazon SQS Developer Guide</i>.
 /// </param>
 /// <param name="SequenceNumber">
-/// &lt;p&gt;This parameter applies only to FIFO (first-in-first-out) queues.&lt;/p&gt;
-/// &lt;p&gt;The large, non-consecutive number that Amazon SQS assigns to each message.&lt;/p&gt;
-/// &lt;p&gt;The length of &lt;code&gt;SequenceNumber&lt;/code&gt; is 128 bits. &lt;code&gt;SequenceNumber&lt;/code&gt;
-/// continues to increase for a particular &lt;code&gt;MessageGroupId&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// This parameter applies only to FIFO (first-in-first-out) queues.
+/// </para>
+/// <para>
+/// The large, non-consecutive number that Amazon SQS assigns to each message.
+/// </para>
+/// <para>
+/// The length of <c>SequenceNumber</c> is 128 bits. <c>SequenceNumber</c> continues to increase for a
+/// particular <c>MessageGroupId</c>.
+/// </para>
 /// </param>
 public sealed record class SendMessageOutput(
     string? MD5OfMessageAttributes = null,

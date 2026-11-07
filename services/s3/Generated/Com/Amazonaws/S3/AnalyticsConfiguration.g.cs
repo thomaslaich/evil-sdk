@@ -5,19 +5,19 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the configuration and any analyses for the analytics filter of an Amazon S3 bucket.&lt;/p&gt;
+/// Specifies the configuration and any analyses for the analytics filter of an Amazon S3 bucket.
 /// </summary>
 /// <param name="Id">
-/// &lt;p&gt;The ID that identifies the analytics configuration.&lt;/p&gt;
+/// The ID that identifies the analytics configuration.
 /// </param>
 /// <param name="StorageClassAnalysis">
-/// &lt;p&gt; Contains data related to access patterns to be collected and made available to analyze the
-/// tradeoffs between different storage classes. &lt;/p&gt;
+/// Contains data related to access patterns to be collected and made available to analyze the tradeoffs
+/// between different storage classes.
 /// </param>
 /// <param name="Filter">
-/// &lt;p&gt;The filter used to describe a set of objects for analyses. A filter must have exactly one prefix,
+/// The filter used to describe a set of objects for analyses. A filter must have exactly one prefix,
 /// one tag, or one conjunction (AnalyticsAndOperator). If no filter is provided, all objects will be
-/// considered in any analysis.&lt;/p&gt;
+/// considered in any analysis.
 /// </param>
 public sealed record class AnalyticsConfiguration(
     string Id,

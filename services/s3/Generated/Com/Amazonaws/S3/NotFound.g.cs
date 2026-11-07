@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The specified content does not exist.&lt;/p&gt;
+/// The specified content does not exist.
 /// </summary>
 public sealed partial class NotFound : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified content does not exist.&lt;/p&gt;
+    /// The specified content does not exist.
     /// </summary>
     public NotFound(string? message = null)
         : base(message) { }

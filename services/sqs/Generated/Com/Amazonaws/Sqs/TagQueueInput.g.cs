@@ -10,9 +10,9 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#TagQueueInput.
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the queue.&lt;/p&gt;
+/// The URL of the queue.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;The list of tags to be added to the specified queue.&lt;/p&gt;
+/// The list of tags to be added to the specified queue.
 /// </param>
 public sealed record class TagQueueInput(string QueueUrl, IReadOnlyDictionary<string, string> Tags);

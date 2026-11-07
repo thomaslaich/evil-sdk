@@ -7,14 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The request was rejected because the state of the specified resource is not valid for
-/// this request.&lt;/p&gt;
+/// The request was rejected because the state of the specified resource is not valid for this request.
 /// </summary>
 public sealed partial class KmsInvalidState : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was rejected because the state of the specified resource is not valid for
-    /// this request.&lt;/p&gt;
+    /// The request was rejected because the state of the specified resource is not valid for this request.
     /// </summary>
     public KmsInvalidState(string? message = null)
         : base(message) { }

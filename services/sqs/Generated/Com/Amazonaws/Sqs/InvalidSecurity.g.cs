@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The request was not made over HTTPS or did not use SigV4 for signing.&lt;/p&gt;
+/// The request was not made over HTTPS or did not use SigV4 for signing.
 /// </summary>
 public sealed partial class InvalidSecurity : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was not made over HTTPS or did not use SigV4 for signing.&lt;/p&gt;
+    /// The request was not made over HTTPS or did not use SigV4 for signing.
     /// </summary>
     public InvalidSecurity(string? message = null)
         : base(message) { }

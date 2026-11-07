@@ -8,19 +8,20 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#ChangeMessageVisibilityInput.
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue whose message's visibility is changed.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue whose message's visibility is changed.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 /// <param name="ReceiptHandle">
-/// &lt;p&gt;The receipt handle associated with the message, whose visibility timeout is changed.
-/// This parameter is returned by the &lt;code&gt;
-/// &lt;a&gt;ReceiveMessage&lt;/a&gt;
-/// &lt;/code&gt;
-/// action.&lt;/p&gt;
+/// The receipt handle associated with the message, whose visibility timeout is changed. This parameter
+/// is returned by the <c> ReceiveMessage </c> action.
 /// </param>
 /// <param name="VisibilityTimeout">
-/// &lt;p&gt;The new value for the message's visibility timeout (in seconds). Values range:
-/// &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;43200&lt;/code&gt;. Maximum: 12 hours.&lt;/p&gt;
+/// The new value for the message's visibility timeout (in seconds). Values range: <c>0</c> to
+/// <c>43200</c>. Maximum: 12 hours.
 /// </param>
 public sealed record class ChangeMessageVisibilityInput(
     string QueueUrl,

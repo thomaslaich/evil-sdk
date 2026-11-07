@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Details for the requested item.&lt;/p&gt;
+/// Details for the requested item.
 /// </summary>
 /// <param name="Item">
-/// &lt;p&gt;Map of attribute data consisting of the data type and attribute value.&lt;/p&gt;
+/// Map of attribute data consisting of the data type and attribute value.
 /// </param>
 public sealed record class ItemResponse(IReadOnlyDictionary<string, AttributeValue>? Item = null);

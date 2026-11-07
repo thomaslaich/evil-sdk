@@ -5,16 +5,18 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;.&lt;/p&gt;
+/// Details about an
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</see>.
 /// </summary>
 /// <param name="LatestMatchingVersion">
-/// &lt;p&gt;The newest version of the layer.&lt;/p&gt;
+/// The newest version of the layer.
 /// </param>
 /// <param name="LayerArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the function layer.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the function layer.
 /// </param>
 /// <param name="LayerName">
-/// &lt;p&gt;The name of the layer.&lt;/p&gt;
+/// The name of the layer.
 /// </param>
 public sealed record class LayersListItem(
     LayerVersionsListItem? LatestMatchingVersion = null,

@@ -5,6 +5,6 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a step that has started.&lt;/p&gt;
+/// Details about a step that has started.
 /// </summary>
 public sealed record class StepStartedDetails;

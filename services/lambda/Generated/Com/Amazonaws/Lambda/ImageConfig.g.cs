@@ -7,16 +7,20 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration values that override the container image Dockerfile settings. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms&quot;&gt;Container image settings&lt;/a&gt;.&lt;/p&gt;
+/// Configuration values that override the container image Dockerfile settings. For more information,
+/// see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms">Container
+/// image settings</see>.
 /// </summary>
 /// <param name="Command">
-/// &lt;p&gt;Specifies parameters that you want to pass in with ENTRYPOINT.&lt;/p&gt;
+/// Specifies parameters that you want to pass in with ENTRYPOINT.
 /// </param>
 /// <param name="EntryPoint">
-/// &lt;p&gt;Specifies the entry point to their application, which is typically the location of the runtime executable.&lt;/p&gt;
+/// Specifies the entry point to their application, which is typically the location of the runtime
+/// executable.
 /// </param>
 /// <param name="WorkingDirectory">
-/// &lt;p&gt;Specifies the working directory.&lt;/p&gt;
+/// Specifies the working directory.
 /// </param>
 public sealed record class ImageConfig(
     IReadOnlyList<string>? Command = null,

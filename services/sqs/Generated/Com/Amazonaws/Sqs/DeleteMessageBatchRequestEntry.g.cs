@@ -5,17 +5,21 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Encloses a receipt handle and an identifier for it.&lt;/p&gt;
+/// Encloses a receipt handle and an identifier for it.
 /// </summary>
 /// <param name="Id">
-/// &lt;p&gt;The identifier for this particular receipt handle. This is used to communicate the
-/// result.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The &lt;code&gt;Id&lt;/code&gt;s of a batch request need to be unique within a request.&lt;/p&gt;
-/// &lt;p&gt;This identifier can have up to 80 characters. The following characters are accepted: alphanumeric characters, hyphens(-), and underscores (_).&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The identifier for this particular receipt handle. This is used to communicate the result.
+/// </para>
+/// <para>
+/// <b>Note:</b> The <c>Id</c>s of a batch request need to be unique within a request.
+/// </para>
+/// <para>
+/// This identifier can have up to 80 characters. The following characters are accepted: alphanumeric
+/// characters, hyphens(-), and underscores (_).
+/// </para>
 /// </param>
 /// <param name="ReceiptHandle">
-/// &lt;p&gt;A receipt handle.&lt;/p&gt;
+/// A receipt handle.
 /// </param>
 public sealed record class DeleteMessageBatchRequestEntry(string Id, string ReceiptHandle);

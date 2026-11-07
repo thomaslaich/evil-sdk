@@ -10,41 +10,44 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateGlobalTableSettingsInput.
 /// </summary>
 /// <param name="GlobalTableName">
-/// &lt;p&gt;The name of the global table&lt;/p&gt;
+/// The name of the global table
 /// </param>
 /// <param name="GlobalTableBillingMode">
-/// &lt;p&gt;The billing mode of the global table. If &lt;code&gt;GlobalTableBillingMode&lt;/code&gt; is not
-/// specified, the global table defaults to &lt;code&gt;PROVISIONED&lt;/code&gt; capacity billing
-/// mode.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PROVISIONED&lt;/code&gt; - We recommend using &lt;code&gt;PROVISIONED&lt;/code&gt; for
-/// predictable workloads. &lt;code&gt;PROVISIONED&lt;/code&gt; sets the billing mode to &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html&quot;&gt;Provisioned capacity mode&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; - We recommend using &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt;
-/// for unpredictable workloads. &lt;code&gt;PAY_PER_REQUEST&lt;/code&gt; sets the billing mode
-/// to &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html&quot;&gt;On-demand capacity mode&lt;/a&gt;. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The billing mode of the global table. If <c>GlobalTableBillingMode</c> is not specified, the global
+/// table defaults to <c>PROVISIONED</c> capacity billing mode.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>PROVISIONED</c> - We recommend using <c>PROVISIONED</c> for predictable workloads.
+/// <c>PROVISIONED</c> sets the billing mode to
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html">Provisioned
+/// capacity mode</see>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>PAY_PER_REQUEST</c> - We recommend using <c>PAY_PER_REQUEST</c> for unpredictable workloads.
+/// <c>PAY_PER_REQUEST</c> sets the billing mode to
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html">On-demand
+/// capacity mode</see>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GlobalTableGlobalSecondaryIndexSettingsUpdate">
-/// &lt;p&gt;Represents the settings of a global secondary index for a global table that will be
-/// modified.&lt;/p&gt;
+/// Represents the settings of a global secondary index for a global table that will be modified.
 /// </param>
 /// <param name="GlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate">
-/// &lt;p&gt;Auto scaling settings for managing provisioned write capacity for the global
-/// table.&lt;/p&gt;
+/// Auto scaling settings for managing provisioned write capacity for the global table.
 /// </param>
 /// <param name="GlobalTableProvisionedWriteCapacityUnits">
-/// &lt;p&gt;The maximum number of writes consumed per second before DynamoDB returns a
-/// &lt;code&gt;ThrottlingException.&lt;/code&gt;
-/// &lt;/p&gt;
+/// The maximum number of writes consumed per second before DynamoDB returns a
+/// <c>ThrottlingException.</c>
 /// </param>
 /// <param name="ReplicaSettingsUpdate">
-/// &lt;p&gt;Represents the settings for a global table in a Region that will be modified.&lt;/p&gt;
+/// Represents the settings for a global table in a Region that will be modified.
 /// </param>
 public sealed record class UpdateGlobalTableSettingsInput(
     string GlobalTableName,

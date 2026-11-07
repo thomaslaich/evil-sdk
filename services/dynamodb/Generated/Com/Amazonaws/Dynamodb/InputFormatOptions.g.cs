@@ -5,11 +5,10 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; The format options for the data that was imported into the target table. There is one
-/// value, CsvOption.&lt;/p&gt;
+/// The format options for the data that was imported into the target table. There is one value,
+/// CsvOption.
 /// </summary>
 /// <param name="Csv">
-/// &lt;p&gt; The options for imported source files in CSV format. The values are Delimiter and
-/// HeaderList. &lt;/p&gt;
+/// The options for imported source files in CSV format. The values are Delimiter and HeaderList.
 /// </param>
 public sealed record class InputFormatOptions(CsvOptions? Csv = null);

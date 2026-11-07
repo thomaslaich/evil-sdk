@@ -5,14 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;
 /// The S3 Metadata configuration for a general purpose bucket.
-/// &lt;/p&gt;
 /// </summary>
 /// <param name="MetadataConfigurationResult">
-/// &lt;p&gt;
 /// The metadata configuration for a general purpose bucket.
-/// &lt;/p&gt;
 /// </param>
 public sealed record class GetBucketMetadataConfigurationResult(
     global::Com.Amazonaws.S3.MetadataConfigurationResult MetadataConfigurationResult

@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt; A structure within a &lt;code&gt;FilterCriteria&lt;/code&gt; object that defines an event filtering pattern. &lt;/p&gt;
+/// A structure within a <c>FilterCriteria</c> object that defines an event filtering pattern.
 /// </summary>
 /// <param name="Pattern">
-/// &lt;p&gt; A filter pattern. For more information on the syntax of a filter pattern, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax&quot;&gt; Filter rule syntax&lt;/a&gt;. &lt;/p&gt;
+/// A filter pattern. For more information on the syntax of a filter pattern, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax">Filter
+/// rule syntax</see>.
 /// </param>
 public sealed record class Filter(string? Pattern = null);

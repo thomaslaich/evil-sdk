@@ -7,31 +7,29 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a request to perform a &lt;code&gt;DeleteItem&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents a request to perform a <c>DeleteItem</c> operation.
 /// </summary>
 /// <param name="Key">
-/// &lt;p&gt;The primary key of the item to be deleted. Each element consists of an attribute name
-/// and a value for that attribute.&lt;/p&gt;
+/// The primary key of the item to be deleted. Each element consists of an attribute name and a value
+/// for that attribute.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;Name of the table in which the item to be deleted resides. You can also provide the
-/// Amazon Resource Name (ARN) of the table in this parameter.&lt;/p&gt;
+/// Name of the table in which the item to be deleted resides. You can also provide the Amazon Resource
+/// Name (ARN) of the table in this parameter.
 /// </param>
 /// <param name="ConditionExpression">
-/// &lt;p&gt;A condition that must be satisfied in order for a conditional delete to
-/// succeed.&lt;/p&gt;
+/// A condition that must be satisfied in order for a conditional delete to succeed.
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression.&lt;/p&gt;
+/// One or more substitution tokens for attribute names in an expression.
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression.&lt;/p&gt;
+/// One or more values that can be substituted in an expression.
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;Use &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt; to get the item attributes if the
-/// &lt;code&gt;Delete&lt;/code&gt; condition fails. For
-/// &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt;, the valid values are: NONE and
-/// ALL_OLD.&lt;/p&gt;
+/// Use <c>ReturnValuesOnConditionCheckFailure</c> to get the item attributes if the <c>Delete</c>
+/// condition fails. For <c>ReturnValuesOnConditionCheckFailure</c>, the valid values are: NONE and
+/// ALL_OLD.
 /// </param>
 public sealed record class Delete(
     IReadOnlyDictionary<string, AttributeValue> Key,

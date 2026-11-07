@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketPolicyStatusOutput.
 /// </summary>
 /// <param name="PolicyStatus">
-/// &lt;p&gt;The policy status for the specified bucket.&lt;/p&gt;
+/// The policy status for the specified bucket.
 /// </param>
 public sealed record class GetBucketPolicyStatusOutput(
     global::Com.Amazonaws.S3.PolicyStatus? PolicyStatus = null

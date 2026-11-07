@@ -8,11 +8,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateContinuousBackupsInput.
 /// </summary>
 /// <param name="PointInTimeRecoverySpecification">
-/// &lt;p&gt;Represents the settings used to enable point in time recovery.&lt;/p&gt;
+/// Represents the settings used to enable point in time recovery.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
-/// parameter.&lt;/p&gt;
+/// The name of the table. You can also provide the Amazon Resource Name (ARN) of the table in this
+/// parameter.
 /// </param>
 public sealed record class UpdateContinuousBackupsInput(
     global::Com.Amazonaws.Dynamodb.PointInTimeRecoverySpecification PointInTimeRecoverySpecification,

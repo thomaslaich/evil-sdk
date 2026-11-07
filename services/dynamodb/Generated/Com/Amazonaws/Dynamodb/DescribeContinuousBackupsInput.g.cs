@@ -8,8 +8,12 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeContinuousBackupsInput.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;Name of the table for which the customer wants to check the continuous backups and
-/// point in time recovery settings.&lt;/p&gt;
-/// &lt;p&gt;You can also provide the Amazon Resource Name (ARN) of the table in this parameter.&lt;/p&gt;
+/// <para>
+/// Name of the table for which the customer wants to check the continuous backups and point in time
+/// recovery settings.
+/// </para>
+/// <para>
+/// You can also provide the Amazon Resource Name (ARN) of the table in this parameter.
+/// </para>
 /// </param>
 public sealed record class DescribeContinuousBackupsInput(string TableName);

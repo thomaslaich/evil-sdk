@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;There was a conflict when writing to the specified S3 bucket.&lt;/p&gt;
+/// There was a conflict when writing to the specified S3 bucket.
 /// </summary>
 public sealed partial class ExportConflictException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;There was a conflict when writing to the specified S3 bucket.&lt;/p&gt;
+    /// There was a conflict when writing to the specified S3 bucket.
     /// </summary>
     public ExportConflictException(string? message = null)
         : base(message) { }

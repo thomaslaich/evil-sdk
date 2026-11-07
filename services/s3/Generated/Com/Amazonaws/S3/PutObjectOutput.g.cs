@@ -8,149 +8,182 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectOutput.
 /// </summary>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Indicates whether the uploaded object uses an S3 Bucket Key for server-side encryption with
-/// Key Management Service (KMS) keys (SSE-KMS).&lt;/p&gt;
+/// Indicates whether the uploaded object uses an S3 Bucket Key for server-side encryption with Key
+/// Management Service (KMS) keys (SSE-KMS).
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32 checksum&lt;/code&gt; of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32 checksum</c> of the object. This checksum is only present if the
+/// checksum was uploaded with the object. When you use an API operation on an object that was uploaded
+/// using multipart uploads, this value may not be a direct checksum value of the full object. Instead,
+/// it's a calculation based on the checksum values of each individual part. For more information about
+/// how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32C&lt;/code&gt; checksum of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32C</c> checksum of the object. This checksum is only present if
+/// the checksum was uploaded with the object. When you use an API operation on an object that was
+/// uploaded using multipart uploads, this value may not be a direct checksum value of the full object.
+/// Instead, it's a calculation based on the checksum values of each individual part. For more
+/// information about how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;CRC64NVME&lt;/code&gt; checksum of the object. This header is present if
-/// the object was uploaded with the &lt;code&gt;CRC64NVME&lt;/code&gt; checksum algorithm, or if it was uploaded
-/// without a checksum (and Amazon S3 added the default checksum, &lt;code&gt;CRC64NVME&lt;/code&gt;, to the uploaded
-/// object). For more information about how checksums are calculated with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object
-/// integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>CRC64NVME</c> checksum of the object. This header is present if the
+/// object was uploaded with the <c>CRC64NVME</c> checksum algorithm, or if it was uploaded without a
+/// checksum (and Amazon S3 added the default checksum, <c>CRC64NVME</c>, to the uploaded object). For
+/// more information about how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;MD5&lt;/code&gt; digest of the object. This header is present if
-/// the object was uploaded with the &lt;code&gt;MD5&lt;/code&gt; checksum algorithm. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>MD5</c> digest of the object. This header is present if the object
+/// was uploaded with the <c>MD5</c> checksum algorithm. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;The Base64 encoded, 160-bit &lt;code&gt;SHA1&lt;/code&gt; digest of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use the API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 160-bit <c>SHA1</c> digest of the object. This checksum is only present if the
+/// checksum was uploaded with the object. When you use the API operation on an object that was uploaded
+/// using multipart uploads, this value may not be a direct checksum value of the full object. Instead,
+/// it's a calculation based on the checksum values of each individual part. For more information about
+/// how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;The Base64 encoded, 256-bit &lt;code&gt;SHA256&lt;/code&gt; digest of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 256-bit <c>SHA256</c> digest of the object. This checksum is only present if the
+/// checksum was uploaded with the object. When you use an API operation on an object that was uploaded
+/// using multipart uploads, this value may not be a direct checksum value of the full object. Instead,
+/// it's a calculation based on the checksum values of each individual part. For more information about
+/// how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;The Base64 encoded, 512-bit &lt;code&gt;SHA512&lt;/code&gt; digest of the object. This header is present if
-/// the object was uploaded with the &lt;code&gt;SHA512&lt;/code&gt; checksum algorithm. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 512-bit <c>SHA512</c> digest of the object. This header is present if the object
+/// was uploaded with the <c>SHA512</c> checksum algorithm. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;This header specifies the checksum type of the object, which determines how part-level checksums are
-/// combined to create an object-level checksum for multipart objects. For &lt;code&gt;PutObject&lt;/code&gt; uploads,
-/// the checksum type is always &lt;code&gt;FULL_OBJECT&lt;/code&gt;. You can use this header as a data integrity check
-/// to verify that the checksum type that is received is the same checksum that was specified. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header specifies the checksum type of the object, which determines how part-level checksums are
+/// combined to create an object-level checksum for multipart objects. For <c>PutObject</c> uploads, the
+/// checksum type is always <c>FULL_OBJECT</c>. You can use this header as a data integrity check to
+/// verify that the checksum type that is received is the same checksum that was specified. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;XXHASH128&lt;/code&gt; checksum of the object. This header is present if
-/// the object was uploaded with the &lt;code&gt;XXHASH128&lt;/code&gt; checksum algorithm. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>XXHASH128</c> checksum of the object. This header is present if the
+/// object was uploaded with the <c>XXHASH128</c> checksum algorithm. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH3&lt;/code&gt; checksum of the object. This header is present if
-/// the object was uploaded with the &lt;code&gt;XXHASH3&lt;/code&gt; checksum algorithm. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH3</c> checksum of the object. This header is present if the
+/// object was uploaded with the <c>XXHASH3</c> checksum algorithm. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH64&lt;/code&gt; checksum of the object. This header is present if
-/// the object was uploaded with the &lt;code&gt;XXHASH64&lt;/code&gt; checksum algorithm. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH64</c> checksum of the object. This header is present if the
+/// object was uploaded with the <c>XXHASH64</c> checksum algorithm. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;Entity tag for the uploaded object.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets &lt;/b&gt; - To ensure that data is not corrupted
-/// traversing the network, for objects where the ETag is the MD5 digest of the object, you can calculate
-/// the MD5 while putting an object to Amazon S3 and compare the returned ETag to the calculated MD5
-/// value.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; - The ETag for the object in a
-/// directory bucket isn't the MD5 digest of the object.&lt;/p&gt;
+/// <para>
+/// Entity tag for the uploaded object.
+/// </para>
+/// <para>
+/// <b>General purpose buckets </b> - To ensure that data is not corrupted traversing the network, for
+/// objects where the ETag is the MD5 digest of the object, you can calculate the MD5 while putting an
+/// object to Amazon S3 and compare the returned ETag to the calculated MD5 value.
+/// </para>
+/// <para>
+/// <b>Directory buckets </b> - The ETag for the object in a directory bucket isn't the MD5 digest of
+/// the object.
+/// </para>
 /// </param>
 /// <param name="Expiration">
-/// &lt;p&gt;If the expiration is configured for the object (see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html&quot;&gt;PutBucketLifecycleConfiguration&lt;/a&gt;) in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;, the response
-/// includes this header. It includes the &lt;code&gt;expiry-date&lt;/code&gt; and &lt;code&gt;rule-id&lt;/code&gt; key-value pairs
-/// that provide information about object expiration. The value of the &lt;code&gt;rule-id&lt;/code&gt; is
-/// URL-encoded.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object expiration information is not returned in directory buckets and this header returns the
-/// value &quot;&lt;code&gt;NotImplemented&lt;/code&gt;&quot; in all responses for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the expiration is configured for the object (see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html">PutBucketLifecycleConfiguration</see>)
+/// in the <i>Amazon S3 User Guide</i>, the response includes this header. It includes the
+/// <c>expiry-date</c> and <c>rule-id</c> key-value pairs that provide information about object
+/// expiration. The value of the <c>rule-id</c> is URL-encoded.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object expiration information is not returned in directory buckets and this header
+/// returns the value "<c>NotImplemented</c>" in all responses for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to confirm the encryption algorithm that's used.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to confirm the encryption algorithm that's used.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to provide the round-trip message integrity verification of the customer-provided
-/// encryption key.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to provide the round-trip message integrity verification of the
+/// customer-provided encryption key.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSEncryptionContext">
-/// &lt;p&gt;If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption. The value of
-/// this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs.
-/// This value is stored as object metadata and automatically gets
-/// passed on to Amazon Web Services KMS for future &lt;code&gt;GetObject&lt;/code&gt;
-/// operations on this object.&lt;/p&gt;
+/// If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption.
+/// The value of this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the
+/// encryption context as key-value pairs. This value is stored as object metadata and automatically
+/// gets passed on to Amazon Web Services KMS for future <c>GetObject</c> operations on this object.
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;If present, indicates the ID of the KMS key that was used for object encryption.&lt;/p&gt;
+/// If present, indicates the ID of the KMS key that was used for object encryption.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side
-/// encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <para>
+/// <b>Note:</b> When accessing data stored in Amazon FSx file systems using S3 access points, the only
+/// valid server side encryption option is <c>aws:fsx</c>.
+/// </para>
 /// </param>
 /// <param name="Size">
-/// &lt;p&gt; The size of the object in bytes. This value is only be present if you append to an object. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported for objects in the Amazon S3 Express One Zone storage class in
-/// directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The size of the object in bytes. This value is only be present if you append to an object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported for objects in the Amazon S3 Express One Zone
+/// storage class in directory buckets.
+/// </para>
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;Version ID of the object.&lt;/p&gt;
-/// &lt;p&gt;If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the
-/// object being stored. Amazon S3 returns this ID in the response. When you enable versioning for a bucket, if
-/// Amazon S3 receives multiple write requests for the same object simultaneously, it stores all of the objects.
-/// For more information about versioning, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/AddingObjectstoVersioningEnabledBuckets.html&quot;&gt;Adding Objects to
-/// Versioning-Enabled Buckets&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;. For information about
-/// returning the versioning state of a bucket, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html&quot;&gt;GetBucketVersioning&lt;/a&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Version ID of the object.
+/// </para>
+/// <para>
+/// If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the
+/// object being stored. Amazon S3 returns this ID in the response. When you enable versioning for a
+/// bucket, if Amazon S3 receives multiple write requests for the same object simultaneously, it stores
+/// all of the objects. For more information about versioning, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/AddingObjectstoVersioningEnabledBuckets.html">Adding
+/// Objects to Versioning-Enabled Buckets</see> in the <i>Amazon S3 User Guide</i>. For information
+/// about returning the versioning state of a bucket, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html">GetBucketVersioning</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class PutObjectOutput(
     bool? BucketKeyEnabled = null,

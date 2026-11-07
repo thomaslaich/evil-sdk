@@ -7,82 +7,83 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;An event that occurred during the execution of a durable function.&lt;/p&gt;
+/// An event that occurred during the execution of a durable function.
 /// </summary>
 /// <param name="ChainedInvokeStoppedDetails">
-/// &lt;p&gt;Details about a chained invocation that was stopped.&lt;/p&gt;
+/// Details about a chained invocation that was stopped.
 /// </param>
 /// <param name="ChainedInvokeSucceededDetails">
-/// &lt;p&gt;Details about a chained invocation that succeeded.&lt;/p&gt;
+/// Details about a chained invocation that succeeded.
 /// </param>
 /// <param name="ChainedInvokeTimedOutDetails">
-/// &lt;p&gt;Details about a chained invocation that timed out.&lt;/p&gt;
+/// Details about a chained invocation that timed out.
 /// </param>
 /// <param name="ContextFailedDetails">
-/// &lt;p&gt;Details about a context that failed.&lt;/p&gt;
+/// Details about a context that failed.
 /// </param>
 /// <param name="ContextStartedDetails">
-/// &lt;p&gt;Details about a context that started.&lt;/p&gt;
+/// Details about a context that started.
 /// </param>
 /// <param name="ContextSucceededDetails">
-/// &lt;p&gt;Details about a context that succeeded.&lt;/p&gt;
+/// Details about a context that succeeded.
 /// </param>
 /// <param name="EventId">
-/// &lt;p&gt;The unique identifier for this event. Event IDs increment sequentially.&lt;/p&gt;
+/// The unique identifier for this event. Event IDs increment sequentially.
 /// </param>
 /// <param name="EventTimestamp">
-/// &lt;p&gt;The date and time when this event occurred, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when this event occurred, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="EventType">
-/// &lt;p&gt;The type of event that occurred.&lt;/p&gt;
+/// The type of event that occurred.
 /// </param>
 /// <param name="ExecutionFailedDetails">
-/// &lt;p&gt;Details about an execution that failed.&lt;/p&gt;
+/// Details about an execution that failed.
 /// </param>
 /// <param name="ExecutionStartedDetails">
-/// &lt;p&gt;Details about an execution that started.&lt;/p&gt;
+/// Details about an execution that started.
 /// </param>
 /// <param name="ExecutionStoppedDetails">
-/// &lt;p&gt;Details about an execution that was stopped.&lt;/p&gt;
+/// Details about an execution that was stopped.
 /// </param>
 /// <param name="ExecutionSucceededDetails">
-/// &lt;p&gt;Details about an execution that succeeded.&lt;/p&gt;
+/// Details about an execution that succeeded.
 /// </param>
 /// <param name="ExecutionTimedOutDetails">
-/// &lt;p&gt;Details about an execution that timed out.&lt;/p&gt;
+/// Details about an execution that timed out.
 /// </param>
 /// <param name="Id">
-/// &lt;p&gt;The unique identifier for this operation.&lt;/p&gt;
+/// The unique identifier for this operation.
 /// </param>
 /// <param name="InvocationCompletedDetails">
-/// &lt;p&gt;Details about a function invocation that completed.&lt;/p&gt;
+/// Details about a function invocation that completed.
 /// </param>
 /// <param name="Name">
-/// &lt;p&gt;The customer-provided name for this operation.&lt;/p&gt;
+/// The customer-provided name for this operation.
 /// </param>
 /// <param name="ParentId">
-/// &lt;p&gt;The unique identifier of the parent operation, if this operation is running within a child context.&lt;/p&gt;
+/// The unique identifier of the parent operation, if this operation is running within a child context.
 /// </param>
 /// <param name="StepFailedDetails">
-/// &lt;p&gt;Details about a step that failed.&lt;/p&gt;
+/// Details about a step that failed.
 /// </param>
 /// <param name="StepStartedDetails">
-/// &lt;p&gt;Details about a step that started.&lt;/p&gt;
+/// Details about a step that started.
 /// </param>
 /// <param name="StepSucceededDetails">
-/// &lt;p&gt;Details about a step that succeeded.&lt;/p&gt;
+/// Details about a step that succeeded.
 /// </param>
 /// <param name="SubType">
-/// &lt;p&gt;The subtype of the event, providing additional categorization.&lt;/p&gt;
+/// The subtype of the event, providing additional categorization.
 /// </param>
 /// <param name="WaitCancelledDetails">
-/// &lt;p&gt;Details about a wait operation that was cancelled.&lt;/p&gt;
+/// Details about a wait operation that was cancelled.
 /// </param>
 /// <param name="WaitStartedDetails">
-/// &lt;p&gt;Details about a wait operation that started.&lt;/p&gt;
+/// Details about a wait operation that started.
 /// </param>
 /// <param name="WaitSucceededDetails">
-/// &lt;p&gt;Details about a wait operation that succeeded.&lt;/p&gt;
+/// Details about a wait operation that succeeded.
 /// </param>
 public sealed record class Event(
     global::Com.Amazonaws.Lambda.CallbackFailedDetails? CallbackFailedDetails = null,

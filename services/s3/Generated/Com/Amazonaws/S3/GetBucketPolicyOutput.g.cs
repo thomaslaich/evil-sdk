@@ -8,6 +8,6 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketPolicyOutput.
 /// </summary>
 /// <param name="Policy">
-/// &lt;p&gt;The bucket policy as a JSON document.&lt;/p&gt;
+/// The bucket policy as a JSON document.
 /// </param>
 public sealed record class GetBucketPolicyOutput(string? Policy = null);

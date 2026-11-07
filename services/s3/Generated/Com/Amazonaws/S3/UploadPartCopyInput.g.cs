@@ -10,181 +10,279 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#UploadPartCopyInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Copying objects across different Amazon Web Services Regions isn't supported when the source or destination
-/// bucket is in Amazon Web Services Local Zones. The source and destination buckets must have the same parent Amazon Web Services Region.
-/// Otherwise, you get an HTTP &lt;code&gt;400 Bad Request&lt;/code&gt; error with the error code
-/// &lt;code&gt;InvalidRequest&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The bucket name.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Copying objects across different Amazon Web Services Regions isn't supported when the
+/// source or destination bucket is in Amazon Web Services Local Zones. The source and destination
+/// buckets must have the same parent Amazon Web Services Region. Otherwise, you get an HTTP <c>400 Bad
+/// Request</c> error with the error code <c>InvalidRequest</c>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="CopySource">
-/// &lt;p&gt;Specifies the source object for the copy operation. You specify the value in one of two formats,
-/// depending on whether you want to access the source object through an &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html&quot;&gt;access point&lt;/a&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For objects not accessed through an access point, specify the name of the source bucket and key of the
-/// source object, separated by a slash (/). For example, to copy the object
-/// &lt;code&gt;reports/january.pdf&lt;/code&gt; from the bucket &lt;code&gt;awsexamplebucket&lt;/code&gt;, use
-/// &lt;code&gt;awsexamplebucket/reports/january.pdf&lt;/code&gt;. The value must be URL-encoded.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For objects accessed through access points, specify the Amazon Resource Name (ARN) of the object as accessed through the access point, in the format &lt;code&gt;arn:aws:s3:&lt;Region&gt;:&lt;account-id&gt;:accesspoint/&lt;access-point-name&gt;/object/&lt;key&gt;&lt;/code&gt;. For example, to copy the object &lt;code&gt;reports/january.pdf&lt;/code&gt; through access point &lt;code&gt;my-access-point&lt;/code&gt; owned by account &lt;code&gt;123456789012&lt;/code&gt; in Region &lt;code&gt;us-west-2&lt;/code&gt;, use the URL encoding of &lt;code&gt;arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf&lt;/code&gt;. The value must be URL encoded.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Amazon S3 supports copy operations using Access points only when the source and destination buckets are in the same Amazon Web Services Region.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;Alternatively, for objects accessed through Amazon S3 on Outposts, specify the ARN of the object as accessed in the format &lt;code&gt;arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/object/&lt;key&gt;&lt;/code&gt;. For example, to copy the object &lt;code&gt;reports/january.pdf&lt;/code&gt; through outpost &lt;code&gt;my-outpost&lt;/code&gt; owned by account &lt;code&gt;123456789012&lt;/code&gt; in Region &lt;code&gt;us-west-2&lt;/code&gt;, use the URL encoding of &lt;code&gt;arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf&lt;/code&gt;. The value must be URL-encoded.  &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;If your bucket has versioning enabled, you could have multiple versions of the same object. By
-/// default, &lt;code&gt;x-amz-copy-source&lt;/code&gt; identifies the current version of the source object to copy. To
-/// copy a specific version of the source object to copy, append &lt;code&gt;?versionId=&lt;version-id&gt;&lt;/code&gt; to
-/// the &lt;code&gt;x-amz-copy-source&lt;/code&gt; request header (for example, &lt;code&gt;x-amz-copy-source:
-/// /awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893&lt;/code&gt;). &lt;/p&gt;
-/// &lt;p&gt;If the current version is a delete marker and you don't specify a versionId in the
-/// &lt;code&gt;x-amz-copy-source&lt;/code&gt; request header, Amazon S3 returns a &lt;code&gt;404 Not Found&lt;/code&gt; error,
-/// because the object does not exist. If you specify versionId in the &lt;code&gt;x-amz-copy-source&lt;/code&gt; and
-/// the versionId is a delete marker, Amazon S3 returns an HTTP &lt;code&gt;400 Bad Request&lt;/code&gt; error, because you
-/// are not allowed to specify a delete marker as a version for the &lt;code&gt;x-amz-copy-source&lt;/code&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - S3 Versioning isn't enabled and supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the source object for the copy operation. You specify the value in one of two formats,
+/// depending on whether you want to access the source object through an
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html">access
+/// point</see>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// For objects not accessed through an access point, specify the name of the source bucket and key of
+/// the source object, separated by a slash (/). For example, to copy the object
+/// <c>reports/january.pdf</c> from the bucket <c>awsexamplebucket</c>, use
+/// <c>awsexamplebucket/reports/january.pdf</c>. The value must be URL-encoded.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// For objects accessed through access points, specify the Amazon Resource Name (ARN) of the object as
+/// accessed through the access point, in the format
+/// <c>arn:aws:s3:&lt;Region&gt;:&lt;account-id&gt;:accesspoint/&lt;access-point-name&gt;/object/&lt;key&gt;</c>.
+/// For example, to copy the object <c>reports/january.pdf</c> through access point
+/// <c>my-access-point</c> owned by account <c>123456789012</c> in Region <c>us-west-2</c>, use the URL
+/// encoding of
+/// <c>arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf</c>. The
+/// value must be URL encoded.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Amazon S3 supports copy operations using Access points only when the source and destination buckets
+/// are in the same Amazon Web Services Region.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Access points are not supported by directory buckets.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Alternatively, for objects accessed through Amazon S3 on Outposts, specify the ARN of the object as
+/// accessed in the format
+/// <c>arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/object/&lt;key&gt;</c>.
+/// For example, to copy the object <c>reports/january.pdf</c> through outpost <c>my-outpost</c> owned
+/// by account <c>123456789012</c> in Region <c>us-west-2</c>, use the URL encoding of
+/// <c>arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf</c>. The
+/// value must be URL-encoded.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// If your bucket has versioning enabled, you could have multiple versions of the same object. By
+/// default, <c>x-amz-copy-source</c> identifies the current version of the source object to copy. To
+/// copy a specific version of the source object to copy, append <c>?versionId=&lt;version-id&gt;</c> to
+/// the <c>x-amz-copy-source</c> request header (for example, <c>x-amz-copy-source:
+/// /awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893</c>).
+/// </para>
+/// <para>
+/// If the current version is a delete marker and you don't specify a versionId in the
+/// <c>x-amz-copy-source</c> request header, Amazon S3 returns a <c>404 Not Found</c> error, because the
+/// object does not exist. If you specify versionId in the <c>x-amz-copy-source</c> and the versionId is
+/// a delete marker, Amazon S3 returns an HTTP <c>400 Bad Request</c> error, because you are not allowed
+/// to specify a delete marker as a version for the <c>x-amz-copy-source</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - S3 Versioning isn't enabled and supported for directory
+/// buckets.
+/// </para>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;Object key for which the multipart upload was initiated.&lt;/p&gt;
+/// Object key for which the multipart upload was initiated.
 /// </param>
 /// <param name="PartNumber">
-/// &lt;p&gt;Part number of part being copied. This is a positive integer between 1 and 10,000.&lt;/p&gt;
+/// Part number of part being copied. This is a positive integer between 1 and 10,000.
 /// </param>
 /// <param name="UploadId">
-/// &lt;p&gt;Upload ID identifying the multipart upload whose part is being copied.&lt;/p&gt;
+/// Upload ID identifying the multipart upload whose part is being copied.
 /// </param>
 /// <param name="CopySourceIfMatch">
-/// &lt;p&gt;Copies the object if its entity tag (ETag) matches the specified tag.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;x-amz-copy-source-if-match&lt;/code&gt; and
-/// &lt;code&gt;x-amz-copy-source-if-unmodified-since&lt;/code&gt; headers are present in the request as
-/// follows:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-match&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;, and;&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-unmodified-since&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;;&lt;/p&gt;
-/// &lt;p&gt;Amazon S3 returns &lt;code&gt;200 OK&lt;/code&gt; and copies the data.
-/// &lt;/p&gt;
+/// <para>
+/// Copies the object if its entity tag (ETag) matches the specified tag.
+/// </para>
+/// <para>
+/// If both of the <c>x-amz-copy-source-if-match</c> and <c>x-amz-copy-source-if-unmodified-since</c>
+/// headers are present in the request as follows:
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-match</c> condition evaluates to <c>true</c>, and;
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-unmodified-since</c> condition evaluates to <c>false</c>;
+/// </para>
+/// <para>
+/// Amazon S3 returns <c>200 OK</c> and copies the data.
+/// </para>
 /// </param>
 /// <param name="CopySourceIfModifiedSince">
-/// &lt;p&gt;Copies the object if it has been modified since the specified time.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;x-amz-copy-source-if-none-match&lt;/code&gt; and
-/// &lt;code&gt;x-amz-copy-source-if-modified-since&lt;/code&gt; headers are present in the request as follows:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-none-match&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;, and;&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-modified-since&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;;&lt;/p&gt;
-/// &lt;p&gt;Amazon S3 returns &lt;code&gt;412 Precondition Failed&lt;/code&gt; response code.
-/// &lt;/p&gt;
+/// <para>
+/// Copies the object if it has been modified since the specified time.
+/// </para>
+/// <para>
+/// If both of the <c>x-amz-copy-source-if-none-match</c> and <c>x-amz-copy-source-if-modified-since</c>
+/// headers are present in the request as follows:
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-none-match</c> condition evaluates to <c>false</c>, and;
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-modified-since</c> condition evaluates to <c>true</c>;
+/// </para>
+/// <para>
+/// Amazon S3 returns <c>412 Precondition Failed</c> response code.
+/// </para>
 /// </param>
 /// <param name="CopySourceIfNoneMatch">
-/// &lt;p&gt;Copies the object if its entity tag (ETag) is different than the specified ETag.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;x-amz-copy-source-if-none-match&lt;/code&gt; and
-/// &lt;code&gt;x-amz-copy-source-if-modified-since&lt;/code&gt; headers are present in the request as follows:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-none-match&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;, and;&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-modified-since&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;;&lt;/p&gt;
-/// &lt;p&gt;Amazon S3 returns &lt;code&gt;412 Precondition Failed&lt;/code&gt; response code.
-/// &lt;/p&gt;
+/// <para>
+/// Copies the object if its entity tag (ETag) is different than the specified ETag.
+/// </para>
+/// <para>
+/// If both of the <c>x-amz-copy-source-if-none-match</c> and <c>x-amz-copy-source-if-modified-since</c>
+/// headers are present in the request as follows:
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-none-match</c> condition evaluates to <c>false</c>, and;
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-modified-since</c> condition evaluates to <c>true</c>;
+/// </para>
+/// <para>
+/// Amazon S3 returns <c>412 Precondition Failed</c> response code.
+/// </para>
 /// </param>
 /// <param name="CopySourceIfUnmodifiedSince">
-/// &lt;p&gt;Copies the object if it hasn't been modified since the specified time.&lt;/p&gt;
-/// &lt;p&gt;If both of the &lt;code&gt;x-amz-copy-source-if-match&lt;/code&gt; and
-/// &lt;code&gt;x-amz-copy-source-if-unmodified-since&lt;/code&gt; headers are present in the request as
-/// follows:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-match&lt;/code&gt; condition evaluates to &lt;code&gt;true&lt;/code&gt;, and;&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-copy-source-if-unmodified-since&lt;/code&gt; condition evaluates to &lt;code&gt;false&lt;/code&gt;;&lt;/p&gt;
-/// &lt;p&gt;Amazon S3 returns &lt;code&gt;200 OK&lt;/code&gt; and copies the data.
-/// &lt;/p&gt;
+/// <para>
+/// Copies the object if it hasn't been modified since the specified time.
+/// </para>
+/// <para>
+/// If both of the <c>x-amz-copy-source-if-match</c> and <c>x-amz-copy-source-if-unmodified-since</c>
+/// headers are present in the request as follows:
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-match</c> condition evaluates to <c>true</c>, and;
+/// </para>
+/// <para>
+/// <c>x-amz-copy-source-if-unmodified-since</c> condition evaluates to <c>false</c>;
+/// </para>
+/// <para>
+/// Amazon S3 returns <c>200 OK</c> and copies the data.
+/// </para>
 /// </param>
 /// <param name="CopySourceRange">
-/// &lt;p&gt;The range of bytes to copy from the source object. The range value must use the form
+/// The range of bytes to copy from the source object. The range value must use the form
 /// bytes=first-last, where the first and last are the zero-based byte offsets to copy. For example,
-/// bytes=0-9 indicates that you want to copy the first 10 bytes of the source. You can copy a range only if
-/// the source object is greater than 5 MB.&lt;/p&gt;
+/// bytes=0-9 indicates that you want to copy the first 10 bytes of the source. You can copy a range
+/// only if the source object is greater than 5 MB.
 /// </param>
 /// <param name="CopySourceSSECustomerAlgorithm">
-/// &lt;p&gt;Specifies the algorithm to use when decrypting the source object (for example,
-/// &lt;code&gt;AES256&lt;/code&gt;).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the source object is in a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the algorithm to use when decrypting the source object (for example, <c>AES256</c>).
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the source object is in a directory bucket.
+/// </para>
 /// </param>
 /// <param name="CopySourceSSECustomerKey">
-/// &lt;p&gt;Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The
-/// encryption key provided in this header must be one that was used when the source object was
-/// created.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the source object is in a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object.
+/// The encryption key provided in this header must be one that was used when the source object was
+/// created.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the source object is in a directory bucket.
+/// </para>
 /// </param>
 /// <param name="CopySourceSSECustomerKeyMD5">
-/// &lt;p&gt;Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header
-/// for a message integrity check to ensure that the encryption key was transmitted without error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the source object is in a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this
+/// header for a message integrity check to ensure that the encryption key was transmitted without
+/// error.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the source object is in a directory bucket.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected destination bucket owner. If the account ID that you provide does not match the actual owner of the destination bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected destination bucket owner. If the account ID that you provide does not
+/// match the actual owner of the destination bucket, the request fails with the HTTP status code <c>403
+/// Forbidden</c> (access denied).
 /// </param>
 /// <param name="ExpectedSourceBucketOwner">
-/// &lt;p&gt;The account ID of the expected source bucket owner. If the account ID that you provide does not match the actual owner of the source bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected source bucket owner. If the account ID that you provide does not
+/// match the actual owner of the source bucket, the request fails with the HTTP status code <c>403
+/// Forbidden</c> (access denied).
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;Specifies the algorithm to use when encrypting the object (for example, AES256).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the destination bucket is a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the algorithm to use when encrypting the object (for example, AES256).
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the destination bucket is a directory bucket.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKey">
-/// &lt;p&gt;Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is
-/// used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must
-/// be appropriate for use with the algorithm specified in the
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt; header. This must be the same encryption
-/// key specified in the initiate multipart upload request.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the destination bucket is a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value
+/// is used to store the object and then it is discarded; Amazon S3 does not store the encryption key.
+/// The key must be appropriate for use with the algorithm specified in the
+/// <c>x-amz-server-side-encryption-customer-algorithm</c> header. This must be the same encryption key
+/// specified in the initiate multipart upload request.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the destination bucket is a directory bucket.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header
-/// for a message integrity check to ensure that the encryption key was transmitted without error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the destination bucket is a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this
+/// header for a message integrity check to ensure that the encryption key was transmitted without
+/// error.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the destination bucket is a directory bucket.
+/// </para>
 /// </param>
 public sealed record class UploadPartCopyInput(
     string Bucket,

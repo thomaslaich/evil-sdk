@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#UpdateCapacityProviderOutput.
 /// </summary>
 /// <param name="CapacityProvider">
-/// &lt;p&gt;Information about the updated capacity provider.&lt;/p&gt;
+/// Information about the updated capacity provider.
 /// </param>
 public sealed record class UpdateCapacityProviderOutput(
     global::Com.Amazonaws.Lambda.CapacityProvider CapacityProvider

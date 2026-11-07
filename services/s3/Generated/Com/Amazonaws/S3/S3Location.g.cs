@@ -7,28 +7,28 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes an Amazon S3 location that will receive the results of the restore request.&lt;/p&gt;
+/// Describes an Amazon S3 location that will receive the results of the restore request.
 /// </summary>
 /// <param name="BucketName">
-/// &lt;p&gt;The name of the bucket where the restore results will be placed.&lt;/p&gt;
+/// The name of the bucket where the restore results will be placed.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;The prefix that is prepended to the restore results for this request.&lt;/p&gt;
+/// The prefix that is prepended to the restore results for this request.
 /// </param>
 /// <param name="AccessControlList">
-/// &lt;p&gt;A list of grants that control access to the staged results.&lt;/p&gt;
+/// A list of grants that control access to the staged results.
 /// </param>
 /// <param name="CannedACL">
-/// &lt;p&gt;The canned ACL to apply to the restore results.&lt;/p&gt;
+/// The canned ACL to apply to the restore results.
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;The class of storage used to store the restore results.&lt;/p&gt;
+/// The class of storage used to store the restore results.
 /// </param>
 /// <param name="Tagging">
-/// &lt;p&gt;The tag-set that is applied to the restore results.&lt;/p&gt;
+/// The tag-set that is applied to the restore results.
 /// </param>
 /// <param name="UserMetadata">
-/// &lt;p&gt;A list of metadata to store with the restore results in S3.&lt;/p&gt;
+/// A list of metadata to store with the restore results in S3.
 /// </param>
 public sealed record class S3Location(
     string BucketName,

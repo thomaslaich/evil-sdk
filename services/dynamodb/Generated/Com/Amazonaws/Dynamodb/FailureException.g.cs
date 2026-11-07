@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a failure a contributor insights operation.&lt;/p&gt;
+/// Represents a failure a contributor insights operation.
 /// </summary>
 /// <param name="ExceptionDescription">
-/// &lt;p&gt;Description of the failure.&lt;/p&gt;
+/// Description of the failure.
 /// </param>
 /// <param name="ExceptionName">
-/// &lt;p&gt;Exception name.&lt;/p&gt;
+/// Exception name.
 /// </param>
 public sealed record class FailureException(
     string? ExceptionDescription = null,

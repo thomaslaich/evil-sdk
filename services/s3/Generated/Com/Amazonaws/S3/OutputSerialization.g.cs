@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes how results of the Select job are serialized.&lt;/p&gt;
+/// Describes how results of the Select job are serialized.
 /// </summary>
 /// <param name="CSV">
-/// &lt;p&gt;Describes the serialization of CSV-encoded Select results.&lt;/p&gt;
+/// Describes the serialization of CSV-encoded Select results.
 /// </param>
 /// <param name="JSON">
-/// &lt;p&gt;Specifies JSON as request's output serialization format.&lt;/p&gt;
+/// Specifies JSON as request's output serialization format.
 /// </param>
 public sealed record class OutputSerialization(CSVOutput? CSV = null, JSONOutput? JSON = null);

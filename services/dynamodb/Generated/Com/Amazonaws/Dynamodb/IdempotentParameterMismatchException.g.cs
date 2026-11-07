@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;DynamoDB rejected the request because you retried a request with a
-/// different payload but with an idempotent token that was already used.&lt;/p&gt;
+/// DynamoDB rejected the request because you retried a request with a different payload but with an
+/// idempotent token that was already used.
 /// </summary>
 public sealed partial class IdempotentParameterMismatchException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;DynamoDB rejected the request because you retried a request with a
-    /// different payload but with an idempotent token that was already used.&lt;/p&gt;
+    /// DynamoDB rejected the request because you retried a request with a different payload but with an
+    /// idempotent token that was already used.
     /// </summary>
     public IdempotentParameterMismatchException(string? message = null)
         : base(message) { }

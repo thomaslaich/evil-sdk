@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The specified replica is no longer part of the global table.&lt;/p&gt;
+/// The specified replica is no longer part of the global table.
 /// </summary>
 public sealed partial class ReplicaNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified replica is no longer part of the global table.&lt;/p&gt;
+    /// The specified replica is no longer part of the global table.
     /// </summary>
     public ReplicaNotFoundException(string? message = null)
         : base(message) { }

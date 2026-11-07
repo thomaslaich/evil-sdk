@@ -5,28 +5,30 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where
-/// S3 Inventory results are published.&lt;/p&gt;
+/// Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where S3
+/// Inventory results are published.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the bucket where inventory results will be published.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the bucket where inventory results will be published.
 /// </param>
 /// <param name="Format">
-/// &lt;p&gt;Specifies the output format of the inventory results.&lt;/p&gt;
+/// Specifies the output format of the inventory results.
 /// </param>
 /// <param name="AccountId">
-/// &lt;p&gt;The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not
-/// validated before exporting data. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt; Although this value is optional, we strongly recommend that you set it to help prevent problems
-/// if the destination bucket ownership changes. &lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not
+/// validated before exporting data.
+/// </para>
+/// <para>
+/// <b>Note:</b> Although this value is optional, we strongly recommend that you set it to help prevent
+/// problems if the destination bucket ownership changes.
+/// </para>
 /// </param>
 /// <param name="Encryption">
-/// &lt;p&gt;Contains the type of server-side encryption used to encrypt the inventory results.&lt;/p&gt;
+/// Contains the type of server-side encryption used to encrypt the inventory results.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;The prefix that is prepended to all inventory results.&lt;/p&gt;
+/// The prefix that is prepended to all inventory results.
 /// </param>
 public sealed record class InventoryS3BucketDestination(
     string Bucket,

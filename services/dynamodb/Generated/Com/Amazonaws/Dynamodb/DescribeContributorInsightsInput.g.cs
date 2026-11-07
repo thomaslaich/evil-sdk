@@ -8,11 +8,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeContributorInsightsInput.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table to describe. You can also provide the Amazon Resource Name (ARN) of the table in
-/// this parameter.&lt;/p&gt;
+/// The name of the table to describe. You can also provide the Amazon Resource Name (ARN) of the table
+/// in this parameter.
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index to describe, if applicable.&lt;/p&gt;
+/// The name of the global secondary index to describe, if applicable.
 /// </param>
 public sealed record class DescribeContributorInsightsInput(
     string TableName,

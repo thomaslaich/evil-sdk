@@ -7,12 +7,18 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't create an elastic network interface in the VPC, specified as part of Lambda function configuration, because the limit for network interfaces has been reached. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+/// Lambda couldn't create an elastic network interface in the VPC, specified as part of Lambda function
+/// configuration, because the limit for network interfaces has been reached. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+/// quotas</see>.
 /// </summary>
 public sealed partial class ENILimitReachedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't create an elastic network interface in the VPC, specified as part of Lambda function configuration, because the limit for network interfaces has been reached. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html&quot;&gt;Lambda quotas&lt;/a&gt;.&lt;/p&gt;
+    /// Lambda couldn't create an elastic network interface in the VPC, specified as part of Lambda function
+    /// configuration, because the limit for network interfaces has been reached. For more information, see
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+    /// quotas</see>.
     /// </summary>
     public ENILimitReachedException(string? message = null, string? type = null)
         : base(message)

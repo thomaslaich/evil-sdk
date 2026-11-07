@@ -7,10 +7,12 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html&quot;&gt;traffic-shifting&lt;/a&gt; configuration of a Lambda function alias.&lt;/p&gt;
+/// The
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html">traffic-shifting</see>
+/// configuration of a Lambda function alias.
 /// </summary>
 /// <param name="AdditionalVersionWeights">
-/// &lt;p&gt;The second version, and the percentage of traffic that's routed to it.&lt;/p&gt;
+/// The second version, and the percentage of traffic that's routed to it.
 /// </param>
 public sealed record class AliasRoutingConfiguration(
     IReadOnlyDictionary<string, double>? AdditionalVersionWeights = null

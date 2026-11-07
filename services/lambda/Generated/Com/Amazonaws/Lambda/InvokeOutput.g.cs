@@ -8,22 +8,27 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#InvokeOutput.
 /// </summary>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The ARN of the durable execution that was started. This is returned when invoking a durable function and provides a unique identifier for tracking the execution.&lt;/p&gt;
+/// The ARN of the durable execution that was started. This is returned when invoking a durable function
+/// and provides a unique identifier for tracking the execution.
 /// </param>
 /// <param name="ExecutedVersion">
-/// &lt;p&gt;The version of the function that executed. When you invoke a function with an alias, this indicates which version the alias resolved to.&lt;/p&gt;
+/// The version of the function that executed. When you invoke a function with an alias, this indicates
+/// which version the alias resolved to.
 /// </param>
 /// <param name="FunctionError">
-/// &lt;p&gt;If present, indicates that an error occurred during function execution. Details about the error are included in the response payload.&lt;/p&gt;
+/// If present, indicates that an error occurred during function execution. Details about the error are
+/// included in the response payload.
 /// </param>
 /// <param name="LogResult">
-/// &lt;p&gt;The last 4 KB of the execution log, which is base64-encoded.&lt;/p&gt;
+/// The last 4 KB of the execution log, which is base64-encoded.
 /// </param>
 /// <param name="Payload">
-/// &lt;p&gt;The response from the function, or an error object.&lt;/p&gt;
+/// The response from the function, or an error object.
 /// </param>
 /// <param name="StatusCode">
-/// &lt;p&gt;The HTTP status code is in the 200 range for a successful request. For the &lt;code&gt;RequestResponse&lt;/code&gt; invocation type, this status code is 200. For the &lt;code&gt;Event&lt;/code&gt; invocation type, this status code is 202. For the &lt;code&gt;DryRun&lt;/code&gt; invocation type, the status code is 204.&lt;/p&gt;
+/// The HTTP status code is in the 200 range for a successful request. For the <c>RequestResponse</c>
+/// invocation type, this status code is 200. For the <c>Event</c> invocation type, this status code is
+/// 202. For the <c>DryRun</c> invocation type, the status code is 204.
 /// </param>
 public sealed record class InvokeOutput(
     string? DurableExecutionArn = null,

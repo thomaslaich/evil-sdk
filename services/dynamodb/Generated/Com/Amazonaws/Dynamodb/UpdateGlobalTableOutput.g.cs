@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateGlobalTableOutput.
 /// </summary>
 /// <param name="GlobalTableDescription">
-/// &lt;p&gt;Contains the details of the global table.&lt;/p&gt;
+/// Contains the details of the global table.
 /// </param>
 public sealed record class UpdateGlobalTableOutput(
     global::Com.Amazonaws.Dynamodb.GlobalTableDescription? GlobalTableDescription = null

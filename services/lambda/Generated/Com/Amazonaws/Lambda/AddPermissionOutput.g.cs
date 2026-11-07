@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#AddPermissionOutput.
 /// </summary>
 /// <param name="Statement">
-/// &lt;p&gt;The permission statement that's added to the function policy.&lt;/p&gt;
+/// The permission statement that's added to the function policy.
 /// </param>
 public sealed record class AddPermissionOutput(string? Statement = null);

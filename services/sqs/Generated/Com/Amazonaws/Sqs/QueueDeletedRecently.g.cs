@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;You must wait 60 seconds after deleting a queue before you can create another queue
-/// with the same name.&lt;/p&gt;
+/// You must wait 60 seconds after deleting a queue before you can create another queue with the same
+/// name.
 /// </summary>
 public sealed partial class QueueDeletedRecently : Exception
 {
     /// <summary>
-    /// &lt;p&gt;You must wait 60 seconds after deleting a queue before you can create another queue
-    /// with the same name.&lt;/p&gt;
+    /// You must wait 60 seconds after deleting a queue before you can create another queue with the same
+    /// name.
     /// </summary>
     public QueueDeletedRecently(string? message = null)
         : base(message) { }

@@ -10,9 +10,9 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#UntagResourceInput.
 /// </summary>
 /// <param name="Resource">
-/// &lt;p&gt;The resource's Amazon Resource Name (ARN).&lt;/p&gt;
+/// The resource's Amazon Resource Name (ARN).
 /// </param>
 /// <param name="TagKeys">
-/// &lt;p&gt;A list of tag keys to remove from the resource.&lt;/p&gt;
+/// A list of tag keys to remove from the resource.
 /// </param>
 public sealed record class UntagResourceInput(string Resource, IReadOnlyList<string> TagKeys);

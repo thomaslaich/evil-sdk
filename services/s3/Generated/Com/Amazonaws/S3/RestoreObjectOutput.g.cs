@@ -8,8 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#RestoreObjectOutput.
 /// </summary>
 /// <param name="RestoreOutputPath">
-/// &lt;p&gt;Indicates the path in the provided S3 output location where Select results will be restored
-/// to.&lt;/p&gt;
+/// Indicates the path in the provided S3 output location where Select results will be restored to.
 /// </param>
 public sealed record class RestoreObjectOutput(
     global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null,

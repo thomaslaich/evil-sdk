@@ -7,14 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The &lt;code&gt;Id&lt;/code&gt; of a batch entry in a batch request doesn't abide by the
-/// specification.&lt;/p&gt;
+/// The <c>Id</c> of a batch entry in a batch request doesn't abide by the specification.
 /// </summary>
 public sealed partial class InvalidBatchEntryId : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The &lt;code&gt;Id&lt;/code&gt; of a batch entry in a batch request doesn't abide by the
-    /// specification.&lt;/p&gt;
+    /// The <c>Id</c> of a batch entry in a batch request doesn't abide by the specification.
     /// </summary>
     public InvalidBatchEntryId(string? message = null)
         : base(message) { }

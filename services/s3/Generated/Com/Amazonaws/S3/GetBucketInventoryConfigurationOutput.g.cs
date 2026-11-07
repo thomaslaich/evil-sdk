@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketInventoryConfigurationOutput.
 /// </summary>
 /// <param name="InventoryConfiguration">
-/// &lt;p&gt;Specifies the inventory configuration.&lt;/p&gt;
+/// Specifies the inventory configuration.
 /// </param>
 public sealed record class GetBucketInventoryConfigurationOutput(
     global::Com.Amazonaws.S3.InventoryConfiguration? InventoryConfiguration = null

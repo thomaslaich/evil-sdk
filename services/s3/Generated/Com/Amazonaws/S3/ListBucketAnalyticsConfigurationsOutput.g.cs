@@ -10,22 +10,21 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListBucketAnalyticsConfigurationsOutput.
 /// </summary>
 /// <param name="AnalyticsConfigurationList">
-/// &lt;p&gt;The list of analytics configurations for a bucket.&lt;/p&gt;
+/// The list of analytics configurations for a bucket.
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;The marker that is used as a starting point for this analytics configuration list response. This
-/// value is present if it was sent in the request.&lt;/p&gt;
+/// The marker that is used as a starting point for this analytics configuration list response. This
+/// value is present if it was sent in the request.
 /// </param>
 /// <param name="IsTruncated">
-/// &lt;p&gt;Indicates whether the returned list of analytics configurations is complete. A value of true
-/// indicates that the list is not complete and the NextContinuationToken will be provided for a subsequent
-/// request.&lt;/p&gt;
+/// Indicates whether the returned list of analytics configurations is complete. A value of true
+/// indicates that the list is not complete and the NextContinuationToken will be provided for a
+/// subsequent request.
 /// </param>
 /// <param name="NextContinuationToken">
-/// &lt;p&gt;
-/// &lt;code&gt;NextContinuationToken&lt;/code&gt; is sent when &lt;code&gt;isTruncated&lt;/code&gt; is true, which indicates
-/// that there are more analytics configurations to list. The next request must include this
-/// &lt;code&gt;NextContinuationToken&lt;/code&gt;. The token is obfuscated and is not a usable value.&lt;/p&gt;
+/// <c>NextContinuationToken</c> is sent when <c>isTruncated</c> is true, which indicates that there are
+/// more analytics configurations to list. The next request must include this
+/// <c>NextContinuationToken</c>. The token is obfuscated and is not a usable value.
 /// </param>
 public sealed record class ListBucketAnalyticsConfigurationsOutput(
     IReadOnlyList<AnalyticsConfiguration>? AnalyticsConfigurationList = null,

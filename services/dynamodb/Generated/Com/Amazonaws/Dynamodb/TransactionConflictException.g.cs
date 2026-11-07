@@ -7,14 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Operation was rejected because there is an ongoing transaction for the
-/// item.&lt;/p&gt;
+/// Operation was rejected because there is an ongoing transaction for the item.
 /// </summary>
 public sealed partial class TransactionConflictException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Operation was rejected because there is an ongoing transaction for the
-    /// item.&lt;/p&gt;
+    /// Operation was rejected because there is an ongoing transaction for the item.
     /// </summary>
     public TransactionConflictException(string? message = null)
         : base(message) { }

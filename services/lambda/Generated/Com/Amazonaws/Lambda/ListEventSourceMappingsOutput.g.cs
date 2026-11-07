@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListEventSourceMappingsOutput.
 /// </summary>
 /// <param name="EventSourceMappings">
-/// &lt;p&gt;A list of event source mappings.&lt;/p&gt;
+/// A list of event source mappings.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;A pagination token that's returned when the response doesn't contain all event source mappings.&lt;/p&gt;
+/// A pagination token that's returned when the response doesn't contain all event source mappings.
 /// </param>
 public sealed record class ListEventSourceMappingsOutput(
     IReadOnlyList<EventSourceMappingConfiguration>? EventSourceMappings = null,

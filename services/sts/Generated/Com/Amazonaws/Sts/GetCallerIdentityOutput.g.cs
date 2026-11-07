@@ -5,21 +5,20 @@
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;Contains the response to a successful &lt;a&gt;GetCallerIdentity&lt;/a&gt; request,
-/// including information about the entity making the request.&lt;/p&gt;
+/// Contains the response to a successful GetCallerIdentity request, including information about the
+/// entity making the request.
 /// </summary>
 /// <param name="Account">
-/// &lt;p&gt;The Amazon Web Services account ID number of the account that owns or contains the calling
-/// entity.&lt;/p&gt;
+/// The Amazon Web Services account ID number of the account that owns or contains the calling entity.
 /// </param>
 /// <param name="Arn">
-/// &lt;p&gt;The Amazon Web Services ARN associated with the calling entity.&lt;/p&gt;
+/// The Amazon Web Services ARN associated with the calling entity.
 /// </param>
 /// <param name="UserId">
-/// &lt;p&gt;The unique identifier of the calling entity. The exact value depends on the type of
-/// entity that is making the call. The values returned are those listed in the &lt;b&gt;aws:userid&lt;/b&gt; column in the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#principaltable&quot;&gt;Principal
-/// table&lt;/a&gt; found on the &lt;b&gt;Policy Variables&lt;/b&gt; reference
-/// page in the &lt;i&gt;IAM User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The unique identifier of the calling entity. The exact value depends on the type of entity that is
+/// making the call. The values returned are those listed in the <b>aws:userid</b> column in the
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#principaltable">Principal
+/// table</see> found on the <b>Policy Variables</b> reference page in the <i>IAM User Guide</i>.
 /// </param>
 public sealed record class GetCallerIdentityOutput(
     string? Account = null,

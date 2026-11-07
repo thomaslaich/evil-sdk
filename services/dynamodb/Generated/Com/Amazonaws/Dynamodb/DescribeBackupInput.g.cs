@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeBackupInput.
 /// </summary>
 /// <param name="BackupArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) associated with the backup.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) associated with the backup.
 /// </param>
 public sealed record class DescribeBackupInput(string BackupArn);

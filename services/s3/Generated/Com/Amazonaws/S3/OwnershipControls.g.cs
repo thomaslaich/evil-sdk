@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container element for a bucket's ownership controls.&lt;/p&gt;
+/// The container element for a bucket's ownership controls.
 /// </summary>
 /// <param name="Rules">
-/// &lt;p&gt;The container element for an ownership control rule.&lt;/p&gt;
+/// The container element for an ownership control rule.
 /// </param>
 public sealed record class OwnershipControls(IReadOnlyList<OwnershipControlsRule> Rules);

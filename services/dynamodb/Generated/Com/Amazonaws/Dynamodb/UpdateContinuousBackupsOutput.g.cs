@@ -8,8 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateContinuousBackupsOutput.
 /// </summary>
 /// <param name="ContinuousBackupsDescription">
-/// &lt;p&gt;Represents the continuous backups and point in time recovery settings on the
-/// table.&lt;/p&gt;
+/// Represents the continuous backups and point in time recovery settings on the table.
 /// </param>
 public sealed record class UpdateContinuousBackupsOutput(
     global::Com.Amazonaws.Dynamodb.ContinuousBackupsDescription? ContinuousBackupsDescription = null

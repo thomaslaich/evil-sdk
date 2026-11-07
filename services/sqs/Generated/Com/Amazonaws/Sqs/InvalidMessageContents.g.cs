@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The message contains characters outside the allowed set.&lt;/p&gt;
+/// The message contains characters outside the allowed set.
 /// </summary>
 public sealed partial class InvalidMessageContents : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The message contains characters outside the allowed set.&lt;/p&gt;
+    /// The message contains characters outside the allowed set.
     /// </summary>
     public InvalidMessageContents(string? message = null)
         : base(message) { }

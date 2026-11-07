@@ -7,27 +7,29 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; In terms of implementation, a Bucket is a resource. &lt;/p&gt;
+/// In terms of implementation, a Bucket is a resource.
 /// </summary>
 /// <param name="BucketArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services resources across all
-/// of Amazon Web Services.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter is only supported for S3 directory buckets. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-tagging.html&quot;&gt;Using tags with
-/// directory buckets&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services
+/// resources across all of Amazon Web Services.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter is only supported for S3 directory buckets. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-tagging.html">Using
+/// tags with directory buckets</see>.
+/// </para>
 /// </param>
 /// <param name="BucketRegion">
-/// &lt;p&gt;
-/// &lt;code&gt;BucketRegion&lt;/code&gt; indicates the Amazon Web Services region where the bucket is located. If the request
-/// contains at least one valid parameter, it is included in the response.&lt;/p&gt;
+/// <c>BucketRegion</c> indicates the Amazon Web Services region where the bucket is located. If the
+/// request contains at least one valid parameter, it is included in the response.
 /// </param>
 /// <param name="CreationDate">
-/// &lt;p&gt;Date the bucket was created. This date can change when making changes to your bucket, such as
-/// editing its bucket policy.&lt;/p&gt;
+/// Date the bucket was created. This date can change when making changes to your bucket, such as
+/// editing its bucket policy.
 /// </param>
 /// <param name="Name">
-/// &lt;p&gt;The name of the bucket.&lt;/p&gt;
+/// The name of the bucket.
 /// </param>
 public sealed record class Bucket(
     string? BucketArn = null,

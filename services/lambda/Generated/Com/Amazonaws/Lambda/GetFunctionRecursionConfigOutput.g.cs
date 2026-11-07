@@ -8,7 +8,19 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetFunctionRecursionConfigOutput.
 /// </summary>
 /// <param name="RecursiveLoop">
-/// &lt;p&gt;If your function's recursive loop detection configuration is &lt;code&gt;Allow&lt;/code&gt;, Lambda doesn't take any action when it detects your function being invoked as part of a recursive loop.&lt;/p&gt; &lt;p&gt;If your function's recursive loop detection configuration is &lt;code&gt;Terminate&lt;/code&gt;, Lambda stops your function being invoked and notifies you when it detects your function being invoked as part of a recursive loop.&lt;/p&gt; &lt;p&gt;By default, Lambda sets your function's configuration to &lt;code&gt;Terminate&lt;/code&gt;. You can update this configuration using the &lt;a&gt;PutFunctionRecursionConfig&lt;/a&gt; action.&lt;/p&gt;
+/// <para>
+/// If your function's recursive loop detection configuration is <c>Allow</c>, Lambda doesn't take any
+/// action when it detects your function being invoked as part of a recursive loop.
+/// </para>
+/// <para>
+/// If your function's recursive loop detection configuration is <c>Terminate</c>, Lambda stops your
+/// function being invoked and notifies you when it detects your function being invoked as part of a
+/// recursive loop.
+/// </para>
+/// <para>
+/// By default, Lambda sets your function's configuration to <c>Terminate</c>. You can update this
+/// configuration using the PutFunctionRecursionConfig action.
+/// </para>
 /// </param>
 public sealed record class GetFunctionRecursionConfigOutput(
     global::Com.Amazonaws.Lambda.RecursiveLoop? RecursiveLoop = null

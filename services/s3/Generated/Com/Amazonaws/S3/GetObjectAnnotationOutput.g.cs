@@ -11,58 +11,59 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectAnnotationOutput.
 /// </summary>
 /// <param name="AnnotationPayload">
-/// &lt;p&gt;The annotation payload.&lt;/p&gt;
+/// The annotation payload.
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;The CRC32 checksum of the annotation payload.&lt;/p&gt;
+/// The CRC32 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;The CRC32C checksum of the annotation payload.&lt;/p&gt;
+/// The CRC32C checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;The CRC64NVME checksum of the annotation payload.&lt;/p&gt;
+/// The CRC64NVME checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;The MD5 checksum of the annotation payload.&lt;/p&gt;
+/// The MD5 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;The SHA1 checksum of the annotation payload.&lt;/p&gt;
+/// The SHA1 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;The SHA256 checksum of the annotation payload.&lt;/p&gt;
+/// The SHA256 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;The SHA512 checksum of the annotation payload.&lt;/p&gt;
+/// The SHA512 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;The type of checksum used.&lt;/p&gt;
+/// The type of checksum used.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;The XXHASH128 checksum of the annotation payload.&lt;/p&gt;
+/// The XXHASH128 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;The XXHASH3 checksum of the annotation payload.&lt;/p&gt;
+/// The XXHASH3 checksum of the annotation payload.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;The XXHASH64 checksum of the annotation payload.&lt;/p&gt;
+/// The XXHASH64 checksum of the annotation payload.
 /// </param>
 /// <param name="ContentLength">
-/// &lt;p&gt;The size of the annotation payload, in bytes.&lt;/p&gt;
+/// The size of the annotation payload, in bytes.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;The entity tag of the annotation.&lt;/p&gt;
+/// The entity tag of the annotation.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date and time the annotation was last modified.&lt;/p&gt;
+/// The date and time the annotation was last modified.
 /// </param>
 /// <param name="ObjectVersionId">
-/// &lt;p&gt;The version ID of the object that the annotation is attached to.&lt;/p&gt;
+/// The version ID of the object that the annotation is attached to.
 /// </param>
 /// <param name="ReplicationStatus">
-/// &lt;p&gt;The replication status of the annotation. Possible values include &lt;code&gt;PENDING&lt;/code&gt;, &lt;code&gt;COMPLETED&lt;/code&gt;, &lt;code&gt;FAILED&lt;/code&gt;, and &lt;code&gt;REPLICA&lt;/code&gt;.&lt;/p&gt;
+/// The replication status of the annotation. Possible values include <c>PENDING</c>, <c>COMPLETED</c>,
+/// <c>FAILED</c>, and <c>REPLICA</c>.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used.&lt;/p&gt;
+/// The server-side encryption algorithm used.
 /// </param>
 public sealed record class GetObjectAnnotationOutput(
     Stream? AnnotationPayload = null,

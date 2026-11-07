@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The ARN of the runtime and any errors that occured.&lt;/p&gt;
+/// The ARN of the runtime and any errors that occured.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Error response when Lambda is unable to retrieve the runtime version for a function.&lt;/p&gt;
+/// Error response when Lambda is unable to retrieve the runtime version for a function.
 /// </param>
 /// <param name="RuntimeVersionArn">
-/// &lt;p&gt;The ARN of the runtime version you want the function to use.&lt;/p&gt;
+/// The ARN of the runtime version you want the function to use.
 /// </param>
 public sealed record class RuntimeVersionConfig(
     RuntimeVersionError? Error = null,

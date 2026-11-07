@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketIntelligentTieringConfigurationOutput.
 /// </summary>
 /// <param name="IntelligentTieringConfiguration">
-/// &lt;p&gt;Container for S3 Intelligent-Tiering configuration.&lt;/p&gt;
+/// Container for S3 Intelligent-Tiering configuration.
 /// </param>
 public sealed record class GetBucketIntelligentTieringConfigurationOutput(
     global::Com.Amazonaws.S3.IntelligentTieringConfiguration? IntelligentTieringConfiguration = null

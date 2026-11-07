@@ -7,36 +7,35 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains the filter criteria used to limit which items are included in an export.
-/// If you don't include this parameter, all items and attributes are exported.&lt;/p&gt;
+/// Contains the filter criteria used to limit which items are included in an export. If you don't
+/// include this parameter, all items and attributes are exported.
 /// </summary>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionAttributeNames.html&quot;&gt;Expression Attribute Names&lt;/a&gt; in the Amazon DynamoDB Developer Guide.&lt;/p&gt;
+/// One or more substitution tokens for attribute names in an expression. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionAttributeNames.html">Expression
+/// Attribute Names</see> in the Amazon DynamoDB Developer Guide.
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression. For more information,
-/// see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionAttributeValues.html&quot;&gt;Expression Attribute Values&lt;/a&gt; in the Amazon DynamoDB Developer Guide.&lt;/p&gt;
+/// One or more values that can be substituted in an expression. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionAttributeValues.html">Expression
+/// Attribute Values</see> in the Amazon DynamoDB Developer Guide.
 /// </param>
 /// <param name="FilterExpression">
-/// &lt;p&gt;A condition that filters which items are included in the export. This parameter
-/// uses the same syntax as &lt;code&gt;FilterExpression&lt;/code&gt; in &lt;code&gt;Query&lt;/code&gt; and
-/// &lt;code&gt;Scan&lt;/code&gt;. If you don't provide &lt;code&gt;KeyConditionExpression&lt;/code&gt;, this
-/// expression can also reference key attributes. If you don't specify this parameter,
-/// all items are included in the export.&lt;/p&gt;
+/// A condition that filters which items are included in the export. This parameter uses the same syntax
+/// as <c>FilterExpression</c> in <c>Query</c> and <c>Scan</c>. If you don't provide
+/// <c>KeyConditionExpression</c>, this expression can also reference key attributes. If you don't
+/// specify this parameter, all items are included in the export.
 /// </param>
 /// <param name="KeyConditionExpression">
-/// &lt;p&gt;A condition expression that filters items by key values. The expression must test
-/// equality on a single partition key value and can optionally compare a sort key value.
-/// This parameter uses the same syntax as &lt;code&gt;KeyConditionExpression&lt;/code&gt; in
-/// &lt;code&gt;Query&lt;/code&gt;. When you provide this parameter, &lt;code&gt;FilterExpression&lt;/code&gt;
-/// can only reference non-key attributes. If you don't specify this parameter, all items
-/// are eligible for export.&lt;/p&gt;
+/// A condition expression that filters items by key values. The expression must test equality on a
+/// single partition key value and can optionally compare a sort key value. This parameter uses the same
+/// syntax as <c>KeyConditionExpression</c> in <c>Query</c>. When you provide this parameter,
+/// <c>FilterExpression</c> can only reference non-key attributes. If you don't specify this parameter,
+/// all items are eligible for export.
 /// </param>
 /// <param name="ProjectionExpression">
-/// &lt;p&gt;The attributes you want to retrieve for items included in the export. Separate
-/// attribute names in the expression with commas. If you don't specify this parameter,
-/// all attributes are returned.&lt;/p&gt;
+/// The attributes you want to retrieve for items included in the export. Separate attribute names in
+/// the expression with commas. If you don't specify this parameter, all attributes are returned.
 /// </param>
 public sealed record class FilterSpecification(
     IReadOnlyDictionary<string, string>? ExpressionAttributeNames = null,

@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetCodeSigningConfigInput.
 /// </summary>
 /// <param name="CodeSigningConfigArn">
-/// &lt;p&gt;The The Amazon Resource Name (ARN) of the code signing configuration. &lt;/p&gt;
+/// The The Amazon Resource Name (ARN) of the code signing configuration.
 /// </param>
 public sealed record class GetCodeSigningConfigInput(string CodeSigningConfigArn);

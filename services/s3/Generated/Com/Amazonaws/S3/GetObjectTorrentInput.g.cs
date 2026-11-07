@@ -8,13 +8,15 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectTorrentInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket containing the object for which to get the torrent files.&lt;/p&gt;
+/// The name of the bucket containing the object for which to get the torrent files.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key for which to get the information.&lt;/p&gt;
+/// The object key for which to get the information.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 public sealed record class GetObjectTorrentInput(
     string Bucket,

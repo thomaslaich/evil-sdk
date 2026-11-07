@@ -5,6 +5,6 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a context that has started.&lt;/p&gt;
+/// Details about a context that has started.
 /// </summary>
 public sealed record class ContextStartedDetails;

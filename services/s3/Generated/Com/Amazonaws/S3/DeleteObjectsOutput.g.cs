@@ -10,12 +10,11 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteObjectsOutput.
 /// </summary>
 /// <param name="Deleted">
-/// &lt;p&gt;Container element for a successful delete. It identifies the object that was successfully
-/// deleted.&lt;/p&gt;
+/// Container element for a successful delete. It identifies the object that was successfully deleted.
 /// </param>
 /// <param name="Errors">
-/// &lt;p&gt;Container for a failed delete action that describes the object that Amazon S3 attempted to delete and the
-/// error it encountered.&lt;/p&gt;
+/// Container for a failed delete action that describes the object that Amazon S3 attempted to delete
+/// and the error it encountered.
 /// </param>
 public sealed record class DeleteObjectsOutput(
     IReadOnlyList<DeletedObject>? Deleted = null,

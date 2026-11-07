@@ -5,8 +5,8 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies object key name filtering rules. For information about key name filtering, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html&quot;&gt;Configuring
-/// event notifications using object key name filtering&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// Specifies object key name filtering rules. For information about key name filtering, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-filtering.html">Configuring
+/// event notifications using object key name filtering</see> in the <i>Amazon S3 User Guide</i>.
 /// </summary>
 public sealed record class NotificationConfigurationFilter(S3KeyFilter? Key = null);

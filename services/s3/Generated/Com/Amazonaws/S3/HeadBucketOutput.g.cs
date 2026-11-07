@@ -8,35 +8,46 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#HeadBucketOutput.
 /// </summary>
 /// <param name="AccessPointAlias">
-/// &lt;p&gt;Indicates whether the bucket name used in the request is an access point alias.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;For directory buckets, the value of this field is &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Indicates whether the bucket name used in the request is an access point alias.
+/// </para>
+/// <para>
+/// <b>Note:</b> For directory buckets, the value of this field is <c>false</c>.
+/// </para>
 /// </param>
 /// <param name="BucketArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services resources across all
-/// of Amazon Web Services.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter is only supported for S3 directory buckets. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-tagging.html&quot;&gt;Using tags with
-/// directory buckets&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services
+/// resources across all of Amazon Web Services.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter is only supported for S3 directory buckets. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-tagging.html">Using
+/// tags with directory buckets</see>.
+/// </para>
 /// </param>
 /// <param name="BucketLocationName">
-/// &lt;p&gt;The name of the location where the bucket will be created.&lt;/p&gt;
-/// &lt;p&gt;For directory buckets, the Zone ID of the Availability Zone or the Local Zone where the bucket is created. An example
-/// Zone ID value for an Availability Zone is &lt;code&gt;usw2-az1&lt;/code&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The name of the location where the bucket will be created.
+/// </para>
+/// <para>
+/// For directory buckets, the Zone ID of the Availability Zone or the Local Zone where the bucket is
+/// created. An example Zone ID value for an Availability Zone is <c>usw2-az1</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported by directory buckets.
+/// </para>
 /// </param>
 /// <param name="BucketLocationType">
-/// &lt;p&gt;The type of location where the bucket is created.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The type of location where the bucket is created.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported by directory buckets.
+/// </para>
 /// </param>
 /// <param name="BucketRegion">
-/// &lt;p&gt;The Region that the bucket is located.&lt;/p&gt;
+/// The Region that the bucket is located.
 /// </param>
 public sealed record class HeadBucketOutput(
     bool? AccessPointAlias = null,

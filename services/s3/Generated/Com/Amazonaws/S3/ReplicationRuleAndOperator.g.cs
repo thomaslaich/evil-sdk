@@ -7,25 +7,32 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for specifying rule filters. The filters determine the subset of objects to which the
-/// rule applies. This element is required only if you specify more than one filter. &lt;/p&gt;
-/// &lt;p&gt;For example:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If you specify both a &lt;code&gt;Prefix&lt;/code&gt; and a &lt;code&gt;Tag&lt;/code&gt; filter, wrap these filters in
-/// an &lt;code&gt;And&lt;/code&gt; tag. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If you specify a filter based on multiple tags, wrap the &lt;code&gt;Tag&lt;/code&gt; elements in an
-/// &lt;code&gt;And&lt;/code&gt; tag.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// A container for specifying rule filters. The filters determine the subset of objects to which the
+/// rule applies. This element is required only if you specify more than one filter.
+/// </para>
+/// <para>
+/// For example:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// If you specify both a <c>Prefix</c> and a <c>Tag</c> filter, wrap these filters in an <c>And</c>
+/// tag.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// If you specify a filter based on multiple tags, wrap the <c>Tag</c> elements in an <c>And</c> tag.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="Prefix">
-/// &lt;p&gt;An object key name prefix that identifies the subset of objects to which the rule applies.&lt;/p&gt;
+/// An object key name prefix that identifies the subset of objects to which the rule applies.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;An array of tags containing key and value pairs.&lt;/p&gt;
+/// An array of tags containing key and value pairs.
 /// </param>
 public sealed record class ReplicationRuleAndOperator(
     string? Prefix = null,

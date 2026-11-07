@@ -5,24 +5,32 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A new replica to be added to an existing global table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;New parameters for an existing replica.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;An existing replica to be removed from an existing global table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Represents one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// A new replica to be added to an existing global table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// New parameters for an existing replica.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// An existing replica to be removed from an existing global table.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="Create">
-/// &lt;p&gt;The parameters required for creating a replica on an existing global table.&lt;/p&gt;
+/// The parameters required for creating a replica on an existing global table.
 /// </param>
 /// <param name="Delete">
-/// &lt;p&gt;The name of the existing replica to be removed.&lt;/p&gt;
+/// The name of the existing replica to be removed.
 /// </param>
 public sealed record class ReplicaUpdate(
     CreateReplicaAction? Create = null,

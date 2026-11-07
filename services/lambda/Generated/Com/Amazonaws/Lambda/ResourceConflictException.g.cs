@@ -7,18 +7,18 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The resource already exists, or another operation is in progress.&lt;/p&gt;
+/// The resource already exists, or another operation is in progress.
 /// </summary>
 public sealed partial class ResourceConflictException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The resource already exists, or another operation is in progress.&lt;/p&gt;
+    /// The resource already exists, or another operation is in progress.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public ResourceConflictException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +27,12 @@ public sealed partial class ResourceConflictException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

@@ -7,13 +7,15 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Configuration for tag propagation to managed resources launched by the capacity provider.&lt;/p&gt;
+/// Configuration for tag propagation to managed resources launched by the capacity provider.
 /// </summary>
 /// <param name="ExplicitTags">
-/// &lt;p&gt;A list of tags to apply to managed resources when &lt;code&gt;Mode&lt;/code&gt; is set to &lt;code&gt;Explicit&lt;/code&gt;. You can specify up to 40 tags.&lt;/p&gt;
+/// A list of tags to apply to managed resources when <c>Mode</c> is set to <c>Explicit</c>. You can
+/// specify up to 40 tags.
 /// </param>
 /// <param name="Mode">
-/// &lt;p&gt;The tag propagation mode. Set to &lt;code&gt;Explicit&lt;/code&gt; to propagate the tags specified in &lt;code&gt;ExplicitTags&lt;/code&gt; to managed resources. Set to &lt;code&gt;None&lt;/code&gt; to disable tag propagation.&lt;/p&gt;
+/// The tag propagation mode. Set to <c>Explicit</c> to propagate the tags specified in
+/// <c>ExplicitTags</c> to managed resources. Set to <c>None</c> to disable tag propagation.
 /// </param>
 public sealed record class PropagateTags(
     IReadOnlyDictionary<string, string>? ExplicitTags = null,

@@ -5,12 +5,14 @@
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;A reference to the IAM managed policy that is passed as a session policy for a role
-/// session or a federated user session.&lt;/p&gt;
+/// A reference to the IAM managed policy that is passed as a session policy for a role session or a
+/// federated user session.
 /// </summary>
 /// <param name="Arn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the IAM managed policy to use as a session policy
-/// for the role. For more information about ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html&quot;&gt;Amazon Resource Names (ARNs) and Amazon Web Services
-/// Service Namespaces&lt;/a&gt; in the &lt;i&gt;Amazon Web Services General Reference&lt;/i&gt;.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the IAM managed policy to use as a session policy for the role.
+/// For more information about ARNs, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
+/// Resource Names (ARNs) and Amazon Web Services Service Namespaces</see> in the <i>Amazon Web Services
+/// General Reference</i>.
 /// </param>
 public sealed record class PolicyDescriptorType(string? Arn = null);

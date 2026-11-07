@@ -8,7 +8,17 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutFunctionRecursionConfigOutput.
 /// </summary>
 /// <param name="RecursiveLoop">
-/// &lt;p&gt;The status of your function's recursive loop detection configuration.&lt;/p&gt; &lt;p&gt;When this value is set to &lt;code&gt;Allow&lt;/code&gt;and Lambda detects your function being invoked as part of a recursive loop, it doesn't take any action.&lt;/p&gt; &lt;p&gt;When this value is set to &lt;code&gt;Terminate&lt;/code&gt; and Lambda detects your function being invoked as part of a recursive loop, it stops your function being invoked and notifies you. &lt;/p&gt;
+/// <para>
+/// The status of your function's recursive loop detection configuration.
+/// </para>
+/// <para>
+/// When this value is set to <c>Allow</c>and Lambda detects your function being invoked as part of a
+/// recursive loop, it doesn't take any action.
+/// </para>
+/// <para>
+/// When this value is set to <c>Terminate</c> and Lambda detects your function being invoked as part of
+/// a recursive loop, it stops your function being invoked and notifies you.
+/// </para>
 /// </param>
 public sealed record class PutFunctionRecursionConfigOutput(
     global::Com.Amazonaws.Lambda.RecursiveLoop? RecursiveLoop = null

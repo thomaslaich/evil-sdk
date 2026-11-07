@@ -7,13 +7,13 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A list of Lambda functions.&lt;/p&gt;
+/// A list of Lambda functions.
 /// </summary>
 /// <param name="Functions">
-/// &lt;p&gt;A list of Lambda functions.&lt;/p&gt;
+/// A list of Lambda functions.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListFunctionsOutput(
     IReadOnlyList<FunctionConfiguration>? Functions = null,

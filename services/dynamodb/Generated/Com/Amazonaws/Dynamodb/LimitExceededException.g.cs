@@ -7,51 +7,71 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;There is no limit to the number of daily on-demand backups that can be taken. &lt;/p&gt;
-/// &lt;p&gt;For most purposes, up to 500 simultaneous table operations are allowed per account.
-/// These operations include &lt;code&gt;CreateTable&lt;/code&gt;, &lt;code&gt;UpdateTable&lt;/code&gt;,
-/// &lt;code&gt;DeleteTable&lt;/code&gt;,&lt;code&gt;UpdateTimeToLive&lt;/code&gt;,
-/// &lt;code&gt;RestoreTableFromBackup&lt;/code&gt;, and &lt;code&gt;RestoreTableToPointInTime&lt;/code&gt;. &lt;/p&gt;
-/// &lt;p&gt;When you are creating a table with one or more secondary indexes, you can have up
-/// to 250 such requests running at a time. However, if the table or index specifications
-/// are complex, then DynamoDB might temporarily reduce the number of concurrent
-/// operations.&lt;/p&gt;
-/// &lt;p&gt;When importing into DynamoDB, up to 50 simultaneous import table operations are
-/// allowed per account.&lt;/p&gt;
-/// &lt;p&gt;There is a soft account quota of 2,500 tables.&lt;/p&gt;
-/// &lt;p&gt;GetRecords was called with a value of more than 1000 for the limit request
-/// parameter.&lt;/p&gt;
-/// &lt;p&gt;More than 2 processes are reading from the same streams shard at the same time.
-/// Exceeding this limit may result in request throttling.&lt;/p&gt;
+/// <para>
+/// There is no limit to the number of daily on-demand backups that can be taken.
+/// </para>
+/// <para>
+/// For most purposes, up to 500 simultaneous table operations are allowed per account. These operations
+/// include <c>CreateTable</c>, <c>UpdateTable</c>, <c>DeleteTable</c>,<c>UpdateTimeToLive</c>,
+/// <c>RestoreTableFromBackup</c>, and <c>RestoreTableToPointInTime</c>.
+/// </para>
+/// <para>
+/// When you are creating a table with one or more secondary indexes, you can have up to 250 such
+/// requests running at a time. However, if the table or index specifications are complex, then DynamoDB
+/// might temporarily reduce the number of concurrent operations.
+/// </para>
+/// <para>
+/// When importing into DynamoDB, up to 50 simultaneous import table operations are allowed per account.
+/// </para>
+/// <para>
+/// There is a soft account quota of 2,500 tables.
+/// </para>
+/// <para>
+/// GetRecords was called with a value of more than 1000 for the limit request parameter.
+/// </para>
+/// <para>
+/// More than 2 processes are reading from the same streams shard at the same time. Exceeding this limit
+/// may result in request throttling.
+/// </para>
 /// </summary>
 public sealed partial class LimitExceededException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;There is no limit to the number of daily on-demand backups that can be taken. &lt;/p&gt;
-    /// &lt;p&gt;For most purposes, up to 500 simultaneous table operations are allowed per account.
-    /// These operations include &lt;code&gt;CreateTable&lt;/code&gt;, &lt;code&gt;UpdateTable&lt;/code&gt;,
-    /// &lt;code&gt;DeleteTable&lt;/code&gt;,&lt;code&gt;UpdateTimeToLive&lt;/code&gt;,
-    /// &lt;code&gt;RestoreTableFromBackup&lt;/code&gt;, and &lt;code&gt;RestoreTableToPointInTime&lt;/code&gt;. &lt;/p&gt;
-    /// &lt;p&gt;When you are creating a table with one or more secondary indexes, you can have up
-    /// to 250 such requests running at a time. However, if the table or index specifications
-    /// are complex, then DynamoDB might temporarily reduce the number of concurrent
-    /// operations.&lt;/p&gt;
-    /// &lt;p&gt;When importing into DynamoDB, up to 50 simultaneous import table operations are
-    /// allowed per account.&lt;/p&gt;
-    /// &lt;p&gt;There is a soft account quota of 2,500 tables.&lt;/p&gt;
-    /// &lt;p&gt;GetRecords was called with a value of more than 1000 for the limit request
-    /// parameter.&lt;/p&gt;
-    /// &lt;p&gt;More than 2 processes are reading from the same streams shard at the same time.
-    /// Exceeding this limit may result in request throttling.&lt;/p&gt;
+    /// <para>
+    /// There is no limit to the number of daily on-demand backups that can be taken.
+    /// </para>
+    /// <para>
+    /// For most purposes, up to 500 simultaneous table operations are allowed per account. These operations
+    /// include <c>CreateTable</c>, <c>UpdateTable</c>, <c>DeleteTable</c>,<c>UpdateTimeToLive</c>,
+    /// <c>RestoreTableFromBackup</c>, and <c>RestoreTableToPointInTime</c>.
+    /// </para>
+    /// <para>
+    /// When you are creating a table with one or more secondary indexes, you can have up to 250 such
+    /// requests running at a time. However, if the table or index specifications are complex, then DynamoDB
+    /// might temporarily reduce the number of concurrent operations.
+    /// </para>
+    /// <para>
+    /// When importing into DynamoDB, up to 50 simultaneous import table operations are allowed per account.
+    /// </para>
+    /// <para>
+    /// There is a soft account quota of 2,500 tables.
+    /// </para>
+    /// <para>
+    /// GetRecords was called with a value of more than 1000 for the limit request parameter.
+    /// </para>
+    /// <para>
+    /// More than 2 processes are reading from the same streams shard at the same time. Exceeding this limit
+    /// may result in request throttling.
+    /// </para>
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;Too many operations for a given subscriber.&lt;/p&gt;
+    /// Too many operations for a given subscriber.
     /// </param>
     public LimitExceededException(string? message = null)
         : base(message) { }
 
     /// <summary>
-    /// &lt;p&gt;Too many operations for a given subscriber.&lt;/p&gt;
+    /// Too many operations for a given subscriber.
     /// </summary>
     public override string Message => base.Message!;
 }

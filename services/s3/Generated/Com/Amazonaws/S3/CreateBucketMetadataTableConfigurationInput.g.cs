@@ -8,20 +8,20 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#CreateBucketMetadataTableConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt; The general purpose bucket that you want to create the metadata table configuration for. &lt;/p&gt;
+/// The general purpose bucket that you want to create the metadata table configuration for.
 /// </param>
 /// <param name="MetadataTableConfiguration">
-/// &lt;p&gt; The contents of your metadata table configuration. &lt;/p&gt;
+/// The contents of your metadata table configuration.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt; The checksum algorithm to use with your metadata table configuration. &lt;/p&gt;
+/// The checksum algorithm to use with your metadata table configuration.
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt; The &lt;code&gt;Content-MD5&lt;/code&gt; header for the metadata table configuration. &lt;/p&gt;
+/// The <c>Content-MD5</c> header for the metadata table configuration.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt; The expected owner of the general purpose bucket that corresponds to your metadata table configuration.
-/// &lt;/p&gt;
+/// The expected owner of the general purpose bucket that corresponds to your metadata table
+/// configuration.
 /// </param>
 public sealed record class CreateBucketMetadataTableConfigurationInput(
     string Bucket,

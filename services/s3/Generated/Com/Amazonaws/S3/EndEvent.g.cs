@@ -5,7 +5,7 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A message that indicates the request is complete and no more messages will be sent. You should not
-/// assume that the request is complete until the client receives an &lt;code&gt;EndEvent&lt;/code&gt;.&lt;/p&gt;
+/// A message that indicates the request is complete and no more messages will be sent. You should not
+/// assume that the request is complete until the client receives an <c>EndEvent</c>.
 /// </summary>
 public sealed record class EndEvent;

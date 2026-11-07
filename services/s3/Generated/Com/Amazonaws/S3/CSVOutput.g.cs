@@ -5,36 +5,39 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes how uncompressed comma-separated values (CSV)-formatted results are formatted.&lt;/p&gt;
+/// Describes how uncompressed comma-separated values (CSV)-formatted results are formatted.
 /// </summary>
 /// <param name="FieldDelimiter">
-/// &lt;p&gt;The value used to separate individual fields in a record. You can specify an arbitrary
-/// delimiter.&lt;/p&gt;
+/// The value used to separate individual fields in a record. You can specify an arbitrary delimiter.
 /// </param>
 /// <param name="QuoteCharacter">
-/// &lt;p&gt;A single character used for escaping when the field delimiter is part of the value. For example, if
-/// the value is &lt;code&gt;a, b&lt;/code&gt;, Amazon S3 wraps this field value in quotation marks, as follows: &lt;code&gt;&quot; a ,
-/// b &quot;&lt;/code&gt;.&lt;/p&gt;
+/// A single character used for escaping when the field delimiter is part of the value. For example, if
+/// the value is <c>a, b</c>, Amazon S3 wraps this field value in quotation marks, as follows: <c>" a ,
+/// b "</c>.
 /// </param>
 /// <param name="QuoteEscapeCharacter">
-/// &lt;p&gt;The single character used for escaping the quote character inside an already escaped value.&lt;/p&gt;
+/// The single character used for escaping the quote character inside an already escaped value.
 /// </param>
 /// <param name="QuoteFields">
-/// &lt;p&gt;Indicates whether to use quotation marks around output fields. &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ALWAYS&lt;/code&gt;: Always use quotation marks for output fields.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ASNEEDED&lt;/code&gt;: Use quotation marks for output fields when needed.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Indicates whether to use quotation marks around output fields.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ALWAYS</c>: Always use quotation marks for output fields.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ASNEEDED</c>: Use quotation marks for output fields when needed.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="RecordDelimiter">
-/// &lt;p&gt;A single character used to separate individual records in the output. Instead of the default value,
-/// you can specify an arbitrary delimiter.&lt;/p&gt;
+/// A single character used to separate individual records in the output. Instead of the default value,
+/// you can specify an arbitrary delimiter.
 /// </param>
 public sealed record class CSVOutput(
     string? FieldDelimiter = null,

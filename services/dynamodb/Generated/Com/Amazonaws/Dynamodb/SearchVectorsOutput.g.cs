@@ -10,14 +10,12 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#SearchVectorsOutput.
 /// </summary>
 /// <param name="ConsumedCapacity">
-/// &lt;p&gt;The capacity units consumed by the &lt;code&gt;SearchVectors&lt;/code&gt; operation. Contains
-/// &lt;code&gt;VectorSearchRequestBytes&lt;/code&gt;, which represents the vector search capacity
-/// consumed.&lt;/p&gt;
+/// The capacity units consumed by the <c>SearchVectors</c> operation. Contains
+/// <c>VectorSearchRequestBytes</c>, which represents the vector search capacity consumed.
 /// </param>
 /// <param name="SearchResults">
-/// &lt;p&gt;A list of items returned by the vector similarity search, sorted by similarity
-/// with the most similar item first. Each item contains the projected attributes and
-/// a similarity score.&lt;/p&gt;
+/// A list of items returned by the vector similarity search, sorted by similarity with the most similar
+/// item first. Each item contains the projected attributes and a similarity score.
 /// </param>
 public sealed record class SearchVectorsOutput(
     VectorCapacity? ConsumedCapacity = null,

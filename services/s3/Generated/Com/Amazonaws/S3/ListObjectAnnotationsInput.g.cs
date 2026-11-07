@@ -8,25 +8,25 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListObjectAnnotationsInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket that contains the object.&lt;/p&gt;
+/// The name of the bucket that contains the object.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="AnnotationPrefix">
-/// &lt;p&gt;Filter results to annotations whose name begins with the specified prefix.&lt;/p&gt;
+/// Filter results to annotations whose name begins with the specified prefix.
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;Continuation token returned by a previous request to retrieve the next page.&lt;/p&gt;
+/// Continuation token returned by a previous request to retrieve the next page.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner.&lt;/p&gt;
+/// The account ID of the expected bucket owner.
 /// </param>
 /// <param name="MaxAnnotationResults">
-/// &lt;p&gt;The maximum number of annotations to return in the response. Maximum is 1,000.&lt;/p&gt;
+/// The maximum number of annotations to return in the response. Maximum is 1,000.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID of the object.&lt;/p&gt;
+/// The version ID of the object.
 /// </param>
 public sealed record class ListObjectAnnotationsInput(
     string Bucket,

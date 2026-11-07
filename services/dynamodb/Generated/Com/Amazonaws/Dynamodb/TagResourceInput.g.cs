@@ -10,11 +10,11 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#TagResourceInput.
 /// </summary>
 /// <param name="ResourceArn">
-/// &lt;p&gt;Identifies the Amazon DynamoDB resource to which tags should be added. This value is
-/// an Amazon Resource Name (ARN).&lt;/p&gt;
+/// Identifies the Amazon DynamoDB resource to which tags should be added. This value is an Amazon
+/// Resource Name (ARN).
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;The tags to be assigned to the Amazon DynamoDB resource.&lt;/p&gt;
+/// The tags to be assigned to the Amazon DynamoDB resource.
 /// </param>
 public sealed record class TagResourceInput(
     string ResourceArn,

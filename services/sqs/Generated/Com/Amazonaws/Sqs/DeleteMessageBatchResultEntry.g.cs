@@ -5,11 +5,9 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Encloses the &lt;code&gt;Id&lt;/code&gt; of an entry in &lt;code&gt;
-/// &lt;a&gt;DeleteMessageBatch&lt;/a&gt;.&lt;/code&gt;
-/// &lt;/p&gt;
+/// Encloses the <c>Id</c> of an entry in <c> DeleteMessageBatch.</c>
 /// </summary>
 /// <param name="Id">
-/// &lt;p&gt;Represents a successfully deleted message.&lt;/p&gt;
+/// Represents a successfully deleted message.
 /// </param>
 public sealed record class DeleteMessageBatchResultEntry(string Id);

@@ -5,26 +5,23 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the auto scaling settings to be modified for a global table or global
-/// secondary index.&lt;/p&gt;
+/// Represents the auto scaling settings to be modified for a global table or global secondary index.
 /// </summary>
 /// <param name="AutoScalingDisabled">
-/// &lt;p&gt;Disabled auto scaling for this global table or global secondary index.&lt;/p&gt;
+/// Disabled auto scaling for this global table or global secondary index.
 /// </param>
 /// <param name="AutoScalingRoleArn">
-/// &lt;p&gt;Role ARN used for configuring auto scaling policy.&lt;/p&gt;
+/// Role ARN used for configuring auto scaling policy.
 /// </param>
 /// <param name="MaximumUnits">
-/// &lt;p&gt;The maximum capacity units that a global table or global secondary index should be
-/// scaled up to.&lt;/p&gt;
+/// The maximum capacity units that a global table or global secondary index should be scaled up to.
 /// </param>
 /// <param name="MinimumUnits">
-/// &lt;p&gt;The minimum capacity units that a global table or global secondary index should be
-/// scaled down to.&lt;/p&gt;
+/// The minimum capacity units that a global table or global secondary index should be scaled down to.
 /// </param>
 /// <param name="ScalingPolicyUpdate">
-/// &lt;p&gt;The scaling policy to apply for scaling target global table or global secondary index
-/// capacity units.&lt;/p&gt;
+/// The scaling policy to apply for scaling target global table or global secondary index capacity
+/// units.
 /// </param>
 public sealed record class AutoScalingSettingsUpdate(
     bool? AutoScalingDisabled = null,

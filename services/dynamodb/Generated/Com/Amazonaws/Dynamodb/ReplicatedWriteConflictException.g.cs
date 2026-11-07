@@ -8,16 +8,16 @@ using NSmithy.Core;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The request was rejected because one or more items in the request are being modified
-/// by a request in another Region. &lt;/p&gt;
+/// The request was rejected because one or more items in the request are being modified by a request in
+/// another Region.
 /// </summary>
 public sealed partial class ReplicatedWriteConflictException : Exception, ISmithyRetryableError
 {
     bool ISmithyRetryableError.IsThrottlingError => false;
 
     /// <summary>
-    /// &lt;p&gt;The request was rejected because one or more items in the request are being modified
-    /// by a request in another Region. &lt;/p&gt;
+    /// The request was rejected because one or more items in the request are being modified by a request in
+    /// another Region.
     /// </summary>
     public ReplicatedWriteConflictException(string? message = null)
         : base(message) { }

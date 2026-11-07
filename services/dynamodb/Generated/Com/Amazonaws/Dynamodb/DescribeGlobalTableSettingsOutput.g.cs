@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeGlobalTableSettingsOutput.
 /// </summary>
 /// <param name="GlobalTableName">
-/// &lt;p&gt;The name of the global table.&lt;/p&gt;
+/// The name of the global table.
 /// </param>
 /// <param name="ReplicaSettings">
-/// &lt;p&gt;The Region-specific settings for the global table.&lt;/p&gt;
+/// The Region-specific settings for the global table.
 /// </param>
 public sealed record class DescribeGlobalTableSettingsOutput(
     string? GlobalTableName = null,

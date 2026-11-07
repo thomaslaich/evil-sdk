@@ -8,40 +8,83 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#AddPermissionInput.
 /// </summary>
 /// <param name="Action">
-/// &lt;p&gt;The action that the principal can use on the function. For example, &lt;code&gt;lambda:InvokeFunction&lt;/code&gt; or &lt;code&gt;lambda:GetFunction&lt;/code&gt;.&lt;/p&gt;
+/// The action that the principal can use on the function. For example, <c>lambda:InvokeFunction</c> or
+/// <c>lambda:GetFunction</c>.
 /// </param>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function, version, or alias.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; – &lt;code&gt;my-function&lt;/code&gt; (name-only), &lt;code&gt;my-function:v1&lt;/code&gt; (with alias).&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; – &lt;code&gt;123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function, version, or alias.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:v1</c> (with alias).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You can append a version number or alias to any of the formats. The length constraint applies only
+/// to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="Principal">
-/// &lt;p&gt;The Amazon Web Services service, Amazon Web Services account, IAM user, or IAM role that invokes the function. If you specify a service, use &lt;code&gt;SourceArn&lt;/code&gt; or &lt;code&gt;SourceAccount&lt;/code&gt; to limit who can invoke the function through that service.&lt;/p&gt;
+/// The Amazon Web Services service, Amazon Web Services account, IAM user, or IAM role that invokes the
+/// function. If you specify a service, use <c>SourceArn</c> or <c>SourceAccount</c> to limit who can
+/// invoke the function through that service.
 /// </param>
 /// <param name="StatementId">
-/// &lt;p&gt;A statement identifier that differentiates the statement from others in the same policy.&lt;/p&gt;
+/// A statement identifier that differentiates the statement from others in the same policy.
 /// </param>
 /// <param name="EventSourceToken">
-/// &lt;p&gt;For Alexa Smart Home functions, a token that the invoker must supply.&lt;/p&gt;
+/// For Alexa Smart Home functions, a token that the invoker must supply.
 /// </param>
 /// <param name="FunctionUrlAuthType">
-/// &lt;p&gt;The type of authentication that your function URL uses. Set to &lt;code&gt;AWS_IAM&lt;/code&gt; if you want to restrict access to authenticated users only. Set to &lt;code&gt;NONE&lt;/code&gt; if you want to bypass IAM authentication to create a public endpoint. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html&quot;&gt;Control access to Lambda function URLs&lt;/a&gt;.&lt;/p&gt;
+/// The type of authentication that your function URL uses. Set to <c>AWS_IAM</c> if you want to
+/// restrict access to authenticated users only. Set to <c>NONE</c> if you want to bypass IAM
+/// authentication to create a public endpoint. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html">Control access to Lambda
+/// function URLs</see>.
 /// </param>
 /// <param name="InvokedViaFunctionUrl">
-/// &lt;p&gt;Indicates whether the permission applies when the function is invoked through a function URL. &lt;/p&gt;
+/// Indicates whether the permission applies when the function is invoked through a function URL.
 /// </param>
 /// <param name="PrincipalOrgID">
-/// &lt;p&gt;The identifier for your organization in Organizations. Use this to grant permissions to all the Amazon Web Services accounts under this organization.&lt;/p&gt;
+/// The identifier for your organization in Organizations. Use this to grant permissions to all the
+/// Amazon Web Services accounts under this organization.
 /// </param>
 /// <param name="Qualifier">
-/// &lt;p&gt;Specify a version or alias to add permissions to a published version of the function.&lt;/p&gt;
+/// Specify a version or alias to add permissions to a published version of the function.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;Update the policy only if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it.&lt;/p&gt;
+/// Update the policy only if the revision ID matches the ID that's specified. Use this option to avoid
+/// modifying a policy that has changed since you last read it.
 /// </param>
 /// <param name="SourceAccount">
-/// &lt;p&gt;For Amazon Web Services service, the ID of the Amazon Web Services account that owns the resource. Use this together with &lt;code&gt;SourceArn&lt;/code&gt; to ensure that the specified account owns the resource. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account.&lt;/p&gt;
+/// For Amazon Web Services service, the ID of the Amazon Web Services account that owns the resource.
+/// Use this together with <c>SourceArn</c> to ensure that the specified account owns the resource. It
+/// is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account.
 /// </param>
 /// <param name="SourceArn">
-/// &lt;p&gt;For Amazon Web Services services, the ARN of the Amazon Web Services resource that invokes the function. For example, an Amazon S3 bucket or Amazon SNS topic.&lt;/p&gt; &lt;p&gt;Note that Lambda configures the comparison using the &lt;code&gt;StringLike&lt;/code&gt; operator.&lt;/p&gt;
+/// <para>
+/// For Amazon Web Services services, the ARN of the Amazon Web Services resource that invokes the
+/// function. For example, an Amazon S3 bucket or Amazon SNS topic.
+/// </para>
+/// <para>
+/// Note that Lambda configures the comparison using the <c>StringLike</c> operator.
+/// </para>
 /// </param>
 public sealed record class AddPermissionInput(
     string Action,

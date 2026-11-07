@@ -8,23 +8,30 @@ namespace Com.Amazonaws.Sts;
 /// Represents the Smithy structure com.amazonaws.sts#AssumeRootOutput.
 /// </summary>
 /// <param name="Credentials">
-/// &lt;p&gt;The temporary security credentials, which include an access key ID, a secret access key,
-/// and a security token.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The size of the security token that STS API operations return is not fixed. We
-/// strongly recommend that you make no assumptions about the maximum size.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The temporary security credentials, which include an access key ID, a secret access key, and a
+/// security token.
+/// </para>
+/// <para>
+/// <b>Note:</b> The size of the security token that STS API operations return is not fixed. We strongly
+/// recommend that you make no assumptions about the maximum size.
+/// </para>
 /// </param>
 /// <param name="SourceIdentity">
-/// &lt;p&gt;The source identity specified by the principal that is calling the
-/// &lt;code&gt;AssumeRoot&lt;/code&gt; operation.&lt;/p&gt;
-/// &lt;p&gt;You can use the &lt;code&gt;aws:SourceIdentity&lt;/code&gt; condition key to control access based on
-/// the value of source identity. For more information about using source identity, see &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html&quot;&gt;Monitor and control
-/// actions taken with assumed roles&lt;/a&gt; in the
-/// &lt;i&gt;IAM User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;The regex used to validate this parameter is a string of characters consisting of upper-
-/// and lower-case alphanumeric characters with no spaces. You can also include underscores or
-/// any of the following characters: =,.@-&lt;/p&gt;
+/// <para>
+/// The source identity specified by the principal that is calling the <c>AssumeRoot</c> operation.
+/// </para>
+/// <para>
+/// You can use the <c>aws:SourceIdentity</c> condition key to control access based on the value of
+/// source identity. For more information about using source identity, see
+/// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html">Monitor
+/// and control actions taken with assumed roles</see> in the <i>IAM User Guide</i>.
+/// </para>
+/// <para>
+/// The regex used to validate this parameter is a string of characters consisting of upper- and
+/// lower-case alphanumeric characters with no spaces. You can also include underscores or any of the
+/// following characters: =,.@-
+/// </para>
 /// </param>
 public sealed record class AssumeRootOutput(
     global::Com.Amazonaws.Sts.Credentials? Credentials = null,

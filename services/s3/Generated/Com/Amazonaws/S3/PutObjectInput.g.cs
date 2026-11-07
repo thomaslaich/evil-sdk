@@ -12,517 +12,720 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#PutObjectInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name to which the PUT action was initiated. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The bucket name to which the PUT action was initiated.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;Object key for which the PUT action was initiated.&lt;/p&gt;
+/// Object key for which the PUT action was initiated.
 /// </param>
 /// <param name="ACL">
-/// &lt;p&gt;The canned ACL to apply to the object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL&quot;&gt;Canned ACL&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;When adding a new object, you can use headers to grant ACL-based permissions to individual
-/// Amazon Web Services accounts or to predefined groups defined by Amazon S3. These permissions are then added to the ACL on
-/// the object. By default, all objects are private. Only the owner has full access control. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html&quot;&gt;Access Control
-/// List (ACL) Overview&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-using-rest-api.html&quot;&gt;Managing ACLs Using the REST API&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If the bucket that you're uploading objects to uses the bucket owner enforced setting for S3 Object
-/// Ownership, ACLs are disabled and no longer affect permissions. Buckets that use this setting only accept
-/// PUT requests that don't specify an ACL or PUT requests that specify bucket owner full control ACLs, such
-/// as the &lt;code&gt;bucket-owner-full-control&lt;/code&gt; canned ACL or an equivalent form of this ACL expressed in
-/// the XML format. PUT requests that contain other ACLs (for example, custom grants to certain
-/// Amazon Web Services accounts) fail and return a &lt;code&gt;400&lt;/code&gt; error with the error code
-/// &lt;code&gt;AccessControlListNotSupported&lt;/code&gt;. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html&quot;&gt; Controlling ownership of objects and
-/// disabling ACLs&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The canned ACL to apply to the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL">Canned
+/// ACL</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// When adding a new object, you can use headers to grant ACL-based permissions to individual Amazon
+/// Web Services accounts or to predefined groups defined by Amazon S3. These permissions are then added
+/// to the ACL on the object. By default, all objects are private. Only the owner has full access
+/// control. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html">Access Control List
+/// (ACL) Overview</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-using-rest-api.html">Managing ACLs
+/// Using the REST API</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If the bucket that you're uploading objects to uses the bucket owner enforced setting for S3 Object
+/// Ownership, ACLs are disabled and no longer affect permissions. Buckets that use this setting only
+/// accept PUT requests that don't specify an ACL or PUT requests that specify bucket owner full control
+/// ACLs, such as the <c>bucket-owner-full-control</c> canned ACL or an equivalent form of this ACL
+/// expressed in the XML format. PUT requests that contain other ACLs (for example, custom grants to
+/// certain Amazon Web Services accounts) fail and return a <c>400</c> error with the error code
+/// <c>AccessControlListNotSupported</c>. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">Controlling
+/// ownership of objects and disabling ACLs</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Body">
-/// &lt;p&gt;Object data.&lt;/p&gt;
+/// Object data.
 /// </param>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with
-/// server-side encryption using Key Management Service (KMS) keys (SSE-KMS).&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - Setting this header to
-/// &lt;code&gt;true&lt;/code&gt; causes Amazon S3 to use an S3 Bucket Key for object encryption with
-/// SSE-KMS. Also, specifying this header with a PUT action doesn't affect bucket-level settings for S3
-/// Bucket Key.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - S3 Bucket Keys are always enabled for &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;PUT&lt;/code&gt; operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets
-/// to directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops&quot;&gt;the Copy operation in Batch Operations&lt;/a&gt;, or
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job&quot;&gt;the import jobs&lt;/a&gt;. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.&lt;/p&gt;
+/// <para>
+/// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side
+/// encryption using Key Management Service (KMS) keys (SSE-KMS).
+/// </para>
+/// <para>
+/// <b>General purpose buckets</b> - Setting this header to <c>true</c> causes Amazon S3 to use an S3
+/// Bucket Key for object encryption with SSE-KMS. Also, specifying this header with a PUT action
+/// doesn't affect bucket-level settings for S3 Bucket Key.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - S3 Bucket Keys are always enabled for <c>GET</c> and <c>PUT</c>
+/// operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you
+/// copy SSE-KMS encrypted objects from general purpose buckets to directory buckets, from directory
+/// buckets to general purpose buckets, or between directory buckets, through
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops">the
+/// Copy operation in Batch Operations</see>, or
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job">the import
+/// jobs</see>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a
+/// KMS-encrypted object.
+/// </para>
 /// </param>
 /// <param name="CacheControl">
-/// &lt;p&gt;Can be used to specify caching behavior along the request/reply chain. For more information, see
-/// &lt;a href=&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9&quot;&gt;http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9&lt;/a&gt;.&lt;/p&gt;
+/// Can be used to specify caching behavior along the request/reply chain. For more information, see
+/// <see href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9">http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9</see>.
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm used to create the checksum for the object when you use the SDK. This header will not provide any
-/// additional functionality if you don't use the SDK. When you send this header, there must be a corresponding &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; or
-/// &lt;code&gt;x-amz-trailer&lt;/code&gt; header sent. Otherwise, Amazon S3 fails the request with the HTTP status code &lt;code&gt;400 Bad Request&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For the &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; header, replace &lt;code&gt;
-/// &lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; with the supported algorithm from the following list: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC32&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC32C&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC64NVME&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MD5&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA1&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA256&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA512&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH3&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH64&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH128&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If the individual checksum value you provide through &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; doesn't match the checksum algorithm you set through &lt;code&gt;x-amz-sdk-checksum-algorithm&lt;/code&gt;, Amazon S3 fails the request with a &lt;code&gt;BadDigest&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The &lt;code&gt;Content-MD5&lt;/code&gt; or &lt;code&gt;x-amz-sdk-checksum-algorithm&lt;/code&gt; header is required for
-/// any request to upload an object with a retention period configured using Amazon S3 Object Lock. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html#object-lock-put-object&quot;&gt;Uploading objects
-/// to an Object Lock enabled bucket &lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For directory buckets, when you use Amazon Web Services SDKs, &lt;code&gt;CRC32&lt;/code&gt; is the default checksum algorithm that's used for performance.&lt;/p&gt;
+/// <para>
+/// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
+/// will not provide any additional functionality if you don't use the SDK. When you send this header,
+/// there must be a corresponding <c>x-amz-checksum-<i>algorithm</i> </c> or <c>x-amz-trailer</c> header
+/// sent. Otherwise, Amazon S3 fails the request with the HTTP status code <c>400 Bad Request</c>.
+/// </para>
+/// <para>
+/// For the <c>x-amz-checksum-<i>algorithm</i> </c> header, replace <c> <i>algorithm</i> </c> with the
+/// supported algorithm from the following list:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CRC32</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CRC32C</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CRC64NVME</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MD5</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA1</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA256</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA512</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH3</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH64</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH128</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If the individual checksum value you provide through <c>x-amz-checksum-<i>algorithm</i> </c> doesn't
+/// match the checksum algorithm you set through <c>x-amz-sdk-checksum-algorithm</c>, Amazon S3 fails
+/// the request with a <c>BadDigest</c> error.
+/// </para>
+/// <para>
+/// <b>Note:</b> The <c>Content-MD5</c> or <c>x-amz-sdk-checksum-algorithm</c> header is required for
+/// any request to upload an object with a retention period configured using Amazon S3 Object Lock. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html#object-lock-put-object">Uploading
+/// objects to an Object Lock enabled bucket</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// For directory buckets, when you use Amazon Web Services SDKs, <c>CRC32</c> is the default checksum
+/// algorithm that's used for performance.
+/// </para>
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-/// This header specifies the Base64 encoded, 32-bit &lt;code&gt;CRC32&lt;/code&gt; checksum of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 32-bit <c>CRC32</c> checksum of
+/// the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-/// This header specifies the Base64 encoded, 32-bit &lt;code&gt;CRC32C&lt;/code&gt; checksum of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 32-bit <c>CRC32C</c> checksum of
+/// the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 64-bit &lt;code&gt;CRC64NVME&lt;/code&gt;
-/// checksum of the object. The &lt;code&gt;CRC64NVME&lt;/code&gt; checksum is always a full object checksum. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 64-bit <c>CRC64NVME</c> checksum
+/// of the object. The <c>CRC64NVME</c> checksum is always a full object checksum. For more information,
+/// see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 128-bit &lt;code&gt;MD5&lt;/code&gt;
-/// digest of the object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 128-bit <c>MD5</c> digest of the
+/// object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-/// This header specifies the Base64 encoded, 160-bit &lt;code&gt;SHA1&lt;/code&gt; digest of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 160-bit <c>SHA1</c> digest of
+/// the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data that was originally sent.
-/// This header specifies the Base64 encoded, 256-bit &lt;code&gt;SHA256&lt;/code&gt; digest of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 256-bit <c>SHA256</c> digest of
+/// the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 512-bit &lt;code&gt;SHA512&lt;/code&gt;
-/// digest of the object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 512-bit <c>SHA512</c> digest of
+/// the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 128-bit &lt;code&gt;XXHASH128&lt;/code&gt;
-/// checksum of the object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 128-bit <c>XXHASH128</c>
+/// checksum of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 64-bit &lt;code&gt;XXHASH3&lt;/code&gt;
-/// checksum of the object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 64-bit <c>XXHASH3</c> checksum
+/// of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;This header can be used as a data integrity check to verify that the data received is the same data
-/// that was originally sent. This header specifies the Base64 encoded, 64-bit &lt;code&gt;XXHASH64&lt;/code&gt;
-/// checksum of the object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// This header can be used as a data integrity check to verify that the data received is the same data
+/// that was originally sent. This header specifies the Base64 encoded, 64-bit <c>XXHASH64</c> checksum
+/// of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ContentDisposition">
-/// &lt;p&gt;Specifies presentational information for the object. For more information, see &lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc6266#section-4&quot;&gt;https://www.rfc-editor.org/rfc/rfc6266#section-4&lt;/a&gt;.&lt;/p&gt;
+/// Specifies presentational information for the object. For more information, see
+/// <see href="https://www.rfc-editor.org/rfc/rfc6266#section-4">https://www.rfc-editor.org/rfc/rfc6266#section-4</see>.
 /// </param>
 /// <param name="ContentEncoding">
-/// &lt;p&gt;Specifies what content encodings have been applied to the object and thus what decoding mechanisms
+/// Specifies what content encodings have been applied to the object and thus what decoding mechanisms
 /// must be applied to obtain the media-type referenced by the Content-Type header field. For more
-/// information, see &lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding&quot;&gt;https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding&lt;/a&gt;.&lt;/p&gt;
+/// information, see
+/// <see href="https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding">https://www.rfc-editor.org/rfc/rfc9110.html#field.content-encoding</see>.
 /// </param>
 /// <param name="ContentLanguage">
-/// &lt;p&gt;The language the content is in.&lt;/p&gt;
+/// The language the content is in.
 /// </param>
 /// <param name="ContentLength">
-/// &lt;p&gt;Size of the body in bytes. This parameter is useful when the size of the body cannot be determined
-/// automatically. For more information, see &lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc9110.html#name-content-length&quot;&gt;https://www.rfc-editor.org/rfc/rfc9110.html#name-content-length&lt;/a&gt;.&lt;/p&gt;
+/// Size of the body in bytes. This parameter is useful when the size of the body cannot be determined
+/// automatically. For more information, see
+/// <see href="https://www.rfc-editor.org/rfc/rfc9110.html#name-content-length">https://www.rfc-editor.org/rfc/rfc9110.html#name-content-length</see>.
 /// </param>
 /// <param name="ContentMD5">
-/// &lt;p&gt;The Base64 encoded 128-bit &lt;code&gt;MD5&lt;/code&gt; digest of the message (without the headers) according to
-/// RFC 1864. This header can be used as a message integrity check to verify that the data is the same data
-/// that was originally sent. Although it is optional, we recommend using the Content-MD5 mechanism as an
-/// end-to-end integrity check. For more information about REST request authentication, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html&quot;&gt;REST
-/// Authentication&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;The &lt;code&gt;Content-MD5&lt;/code&gt; or &lt;code&gt;x-amz-sdk-checksum-algorithm&lt;/code&gt; header is required for
-/// any request to upload an object with a retention period configured using Amazon S3 Object Lock. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html#object-lock-put-object&quot;&gt;Uploading objects
-/// to an Object Lock enabled bucket &lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The Base64 encoded 128-bit <c>MD5</c> digest of the message (without the headers) according to RFC
+/// 1864. This header can be used as a message integrity check to verify that the data is the same data
+/// that was originally sent. Although it is optional, we recommend using the Content-MD5 mechanism as
+/// an end-to-end integrity check. For more information about REST request authentication, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html">REST
+/// Authentication</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> The <c>Content-MD5</c> or <c>x-amz-sdk-checksum-algorithm</c> header is required for
+/// any request to upload an object with a retention period configured using Amazon S3 Object Lock. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html#object-lock-put-object">Uploading
+/// objects to an Object Lock enabled bucket</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ContentType">
-/// &lt;p&gt;A standard MIME type describing the format of the contents. For more information, see &lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type&quot;&gt;https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type&lt;/a&gt;.&lt;/p&gt;
+/// A standard MIME type describing the format of the contents. For more information, see
+/// <see href="https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type">https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type</see>.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="Expires">
-/// &lt;p&gt;The date and time at which the object is no longer cacheable. For more information, see &lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc7234#section-5.3&quot;&gt;https://www.rfc-editor.org/rfc/rfc7234#section-5.3&lt;/a&gt;.&lt;/p&gt;
+/// The date and time at which the object is no longer cacheable. For more information, see
+/// <see href="https://www.rfc-editor.org/rfc/rfc7234#section-5.3">https://www.rfc-editor.org/rfc/rfc7234#section-5.3</see>.
 /// </param>
 /// <param name="GrantFullControl">
-/// &lt;p&gt;Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GrantRead">
-/// &lt;p&gt;Allows grantee to read the object data and its metadata.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee to read the object data and its metadata.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GrantReadACP">
-/// &lt;p&gt;Allows grantee to read the object ACL.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee to read the object ACL.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="GrantWriteACP">
-/// &lt;p&gt;Allows grantee to write the ACL for the applicable object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;This functionality is not supported for Amazon S3 on Outposts.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Allows grantee to write the ACL for the applicable object.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// This functionality is not supported for directory buckets.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// This functionality is not supported for Amazon S3 on Outposts.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="IfMatch">
-/// &lt;p&gt;Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches
-/// the ETag of the object in S3. If the ETag values do not match, the operation returns a &lt;code&gt;412
-/// Precondition Failed&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;p&gt;If a conflicting operation occurs during the upload S3 returns a &lt;code&gt;409
-/// ConditionalRequestConflict&lt;/code&gt; response. On a 409 failure you should fetch the object's ETag and
-/// retry the upload.&lt;/p&gt;
-/// &lt;p&gt;Expects the ETag value as a string.&lt;/p&gt;
-/// &lt;p&gt;For more information about conditional requests, see &lt;a href=&quot;https://tools.ietf.org/html/rfc7232&quot;&gt;RFC 7232&lt;/a&gt;, or &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html&quot;&gt;Conditional requests&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Uploads the object only if the ETag (entity tag) value provided during the WRITE operation matches
+/// the ETag of the object in S3. If the ETag values do not match, the operation returns a <c>412
+/// Precondition Failed</c> error.
+/// </para>
+/// <para>
+/// If a conflicting operation occurs during the upload S3 returns a <c>409
+/// ConditionalRequestConflict</c> response. On a 409 failure you should fetch the object's ETag and
+/// retry the upload.
+/// </para>
+/// <para>
+/// Expects the ETag value as a string.
+/// </para>
+/// <para>
+/// For more information about conditional requests, see
+/// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>, or
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html">Conditional
+/// requests</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="IfNoneMatch">
-/// &lt;p&gt;Uploads the object only if the object key name does not already exist in the bucket specified.
-/// Otherwise, Amazon S3 returns a &lt;code&gt;412 Precondition Failed&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;p&gt;If a conflicting operation occurs during the upload S3 returns a &lt;code&gt;409
-/// ConditionalRequestConflict&lt;/code&gt; response. On a 409 failure you should retry the upload.&lt;/p&gt;
-/// &lt;p&gt;Expects the '*' (asterisk) character.&lt;/p&gt;
-/// &lt;p&gt;For more information about conditional requests, see &lt;a href=&quot;https://tools.ietf.org/html/rfc7232&quot;&gt;RFC 7232&lt;/a&gt;, or &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html&quot;&gt;Conditional requests&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Uploads the object only if the object key name does not already exist in the bucket specified.
+/// Otherwise, Amazon S3 returns a <c>412 Precondition Failed</c> error.
+/// </para>
+/// <para>
+/// If a conflicting operation occurs during the upload S3 returns a <c>409
+/// ConditionalRequestConflict</c> response. On a 409 failure you should retry the upload.
+/// </para>
+/// <para>
+/// Expects the '*' (asterisk) character.
+/// </para>
+/// <para>
+/// For more information about conditional requests, see
+/// <see href="https://tools.ietf.org/html/rfc7232">RFC 7232</see>, or
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-requests.html">Conditional
+/// requests</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="Metadata">
-/// &lt;p&gt;A map of metadata to store with the object in S3.&lt;/p&gt;
+/// A map of metadata to store with the object in S3.
 /// </param>
 /// <param name="ObjectLockEventHold">
-/// &lt;p&gt;Specifies the event hold status to apply to this object. Set to &lt;code&gt;ON&lt;/code&gt; to enable or
-/// &lt;code&gt;OFF&lt;/code&gt; to disable.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the event hold status to apply to this object. Set to <c>ON</c> to enable or <c>OFF</c> to
+/// disable.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEventHoldDurationDays">
-/// &lt;p&gt;Specifies the event hold duration in days to apply to this object. You cannot specify a
-/// duration in both days and years.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the event hold duration in days to apply to this object. You cannot specify a duration in
+/// both days and years.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEventHoldDurationYears">
-/// &lt;p&gt;Specifies the event hold duration in years to apply to this object. You cannot specify a
-/// duration in both days and years.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the event hold duration in years to apply to this object. You cannot specify a duration in
+/// both days and years.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockLegalHoldStatus">
-/// &lt;p&gt;Specifies whether a legal hold will be applied to this object. For more information about S3 Object
-/// Lock, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html&quot;&gt;Object Lock&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether a legal hold will be applied to this object. For more information about S3 Object
+/// Lock, see <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Object
+/// Lock</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockMode">
-/// &lt;p&gt;The Object Lock mode that you want to apply to this object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The Object Lock mode that you want to apply to this object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockRetainUntilDate">
-/// &lt;p&gt;The date and time when you want this object's Object Lock to expire. Must be formatted as a
-/// timestamp parameter.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The date and time when you want this object's Object Lock to expire. Must be formatted as a
+/// timestamp parameter.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;Specifies the algorithm to use when encrypting the object (for example, &lt;code&gt;AES256&lt;/code&gt;).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the algorithm to use when encrypting the object (for example, <c>AES256</c>).
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKey">
-/// &lt;p&gt;Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value is
-/// used to store the object and then it is discarded; Amazon S3 does not store the encryption key. The key must
-/// be appropriate for use with the algorithm specified in the
-/// &lt;code&gt;x-amz-server-side-encryption-customer-algorithm&lt;/code&gt; header.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data. This value
+/// is used to store the object and then it is discarded; Amazon S3 does not store the encryption key.
+/// The key must be appropriate for use with the algorithm specified in the
+/// <c>x-amz-server-side-encryption-customer-algorithm</c> header.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header
-/// for a message integrity check to ensure that the encryption key was transmitted without error.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this
+/// header for a message integrity check to ensure that the encryption key was transmitted without
+/// error.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSEncryptionContext">
-/// &lt;p&gt;Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use for object encryption. The value of
-/// this header is a Base64 encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs.
-/// This value is stored as object metadata and automatically gets passed on
-/// to Amazon Web Services KMS for future &lt;code&gt;GetObject&lt;/code&gt; operations on
-/// this object.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - This value must be explicitly added during &lt;code&gt;CopyObject&lt;/code&gt; operations if you want an additional encryption context for your object. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context&quot;&gt;Encryption context&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - You can optionally provide an explicit encryption context value. The value must match the default encryption context - the bucket Amazon Resource Name (ARN). An additional encryption context value is not supported. &lt;/p&gt;
+/// <para>
+/// Specifies the Amazon Web Services KMS Encryption Context as an additional encryption context to use
+/// for object encryption. The value of this header is a Base64 encoded string of a UTF-8 encoded JSON,
+/// which contains the encryption context as key-value pairs. This value is stored as object metadata
+/// and automatically gets passed on to Amazon Web Services KMS for future <c>GetObject</c> operations
+/// on this object.
+/// </para>
+/// <para>
+/// <b>General purpose buckets</b> - This value must be explicitly added during <c>CopyObject</c>
+/// operations if you want an additional encryption context for your object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context">Encryption
+/// context</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - You can optionally provide an explicit encryption context value. The
+/// value must match the default encryption context - the bucket Amazon Resource Name (ARN). An
+/// additional encryption context value is not supported.
+/// </para>
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption. If the KMS key doesn't exist in the same
-/// account that's issuing the command, you must use the full Key ARN not the Key ID.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - If you specify &lt;code&gt;x-amz-server-side-encryption&lt;/code&gt; with &lt;code&gt;aws:kms&lt;/code&gt; or &lt;code&gt;aws:kms:dsse&lt;/code&gt;, this header specifies the ID (Key ID, Key ARN, or Key Alias) of the KMS
-/// key to use. If you specify
-/// &lt;code&gt;x-amz-server-side-encryption:aws:kms&lt;/code&gt; or
-/// &lt;code&gt;x-amz-server-side-encryption:aws:kms:dsse&lt;/code&gt;, but do not provide &lt;code&gt;x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt;, Amazon S3 uses the Amazon Web Services managed key
-/// (&lt;code&gt;aws/s3&lt;/code&gt;) to protect the data.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - To encrypt data using SSE-KMS, it's recommended to specify the
-/// &lt;code&gt;x-amz-server-side-encryption&lt;/code&gt; header to &lt;code&gt;aws:kms&lt;/code&gt;. Then, the &lt;code&gt;x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt; header implicitly uses
-/// the bucket's default KMS customer managed key ID. If you want to explicitly set the &lt;code&gt;
-/// x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt; header, it must match the bucket's default customer managed key (using key ID or ARN, not alias). Your SSE-KMS configuration can only support 1 &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk&quot;&gt;customer managed key&lt;/a&gt; per directory bucket's lifetime.
-/// The &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk&quot;&gt;Amazon Web Services managed key&lt;/a&gt; (&lt;code&gt;aws/s3&lt;/code&gt;) isn't supported.
-///
-/// Incorrect key specification results in an HTTP &lt;code&gt;400 Bad Request&lt;/code&gt; error. &lt;/p&gt;
+/// <para>
+/// Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption. If the KMS
+/// key doesn't exist in the same account that's issuing the command, you must use the full Key ARN not
+/// the Key ID.
+/// </para>
+/// <para>
+/// <b>General purpose buckets</b> - If you specify <c>x-amz-server-side-encryption</c> with
+/// <c>aws:kms</c> or <c>aws:kms:dsse</c>, this header specifies the ID (Key ID, Key ARN, or Key Alias)
+/// of the KMS key to use. If you specify <c>x-amz-server-side-encryption:aws:kms</c> or
+/// <c>x-amz-server-side-encryption:aws:kms:dsse</c>, but do not provide
+/// <c>x-amz-server-side-encryption-aws-kms-key-id</c>, Amazon S3 uses the Amazon Web Services managed
+/// key (<c>aws/s3</c>) to protect the data.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - To encrypt data using SSE-KMS, it's recommended to specify the
+/// <c>x-amz-server-side-encryption</c> header to <c>aws:kms</c>. Then, the
+/// <c>x-amz-server-side-encryption-aws-kms-key-id</c> header implicitly uses the bucket's default KMS
+/// customer managed key ID. If you want to explicitly set the <c>
+/// x-amz-server-side-encryption-aws-kms-key-id</c> header, it must match the bucket's default customer
+/// managed key (using key ID or ARN, not alias). Your SSE-KMS configuration can only support 1
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk">customer
+/// managed key</see> per directory bucket's lifetime. The
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk">Amazon
+/// Web Services managed key</see> (<c>aws/s3</c>) isn't supported. Incorrect key specification results
+/// in an HTTP <c>400 Bad Request</c> error.
+/// </para>
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm that was used when you store this object in Amazon S3 or
-/// Amazon FSx.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets &lt;/b&gt; - You have four mutually exclusive
-/// options to protect data using server-side encryption in Amazon S3, depending on how you choose to manage
-/// the encryption keys. Specifically, the encryption key options are Amazon S3 managed keys (SSE-S3),
-/// Amazon Web Services KMS keys (SSE-KMS or DSSE-KMS), and customer-provided keys (SSE-C). Amazon S3 encrypts data with
-/// server-side encryption by using Amazon S3 managed keys (SSE-S3) by default. You can optionally tell Amazon S3
-/// to encrypt data at rest by using server-side encryption with other key options. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html&quot;&gt;Using Server-Side Encryption&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; -
-/// For directory buckets, there are only two supported options for server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (&lt;code&gt;AES256&lt;/code&gt;) and server-side encryption with KMS keys (SSE-KMS) (&lt;code&gt;aws:kms&lt;/code&gt;). We recommend that the bucket's default encryption uses the desired encryption configuration and you don't override the bucket default encryption in your
-/// &lt;code&gt;CreateSession&lt;/code&gt; requests or &lt;code&gt;PUT&lt;/code&gt; object requests. Then, new objects
-/// are automatically encrypted with the desired encryption settings. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html&quot;&gt;Protecting data with server-side encryption&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;. For more information about the encryption overriding behaviors in directory buckets, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-specifying-kms-encryption.html&quot;&gt;Specifying server-side encryption with KMS for new object uploads&lt;/a&gt;. &lt;/p&gt;
-/// &lt;p&gt;In the Zonal endpoint API calls (except &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;) using the REST API, the encryption request headers must match the encryption settings that are specified in the &lt;code&gt;CreateSession&lt;/code&gt; request.
-/// You can't override the values of the encryption settings (&lt;code&gt;x-amz-server-side-encryption&lt;/code&gt;, &lt;code&gt;x-amz-server-side-encryption-aws-kms-key-id&lt;/code&gt;, &lt;code&gt;x-amz-server-side-encryption-context&lt;/code&gt;, and &lt;code&gt;x-amz-server-side-encryption-bucket-key-enabled&lt;/code&gt;) that are specified in the &lt;code&gt;CreateSession&lt;/code&gt; request.
-/// You don't need to explicitly specify these encryption settings values in Zonal endpoint API calls, and
-/// Amazon S3 will use the encryption settings values from the &lt;code&gt;CreateSession&lt;/code&gt; request to protect new objects in the directory bucket.
-/// &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When you use the CLI or the Amazon Web Services SDKs, for &lt;code&gt;CreateSession&lt;/code&gt;, the session token refreshes automatically to avoid service interruptions when a session expires. The CLI or the Amazon Web Services SDKs use the bucket's default encryption configuration for the
-/// &lt;code&gt;CreateSession&lt;/code&gt; request. It's not supported to override the encryption settings values in the &lt;code&gt;CreateSession&lt;/code&gt; request.
-/// So in the Zonal endpoint API calls (except &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;),
-/// the encryption request headers must match the default encryption configuration of the directory bucket.
-///
-/// &lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 access points for Amazon FSx &lt;/b&gt; - When accessing data stored in
-/// Amazon FSx file systems using S3 access points, the only valid server side encryption option is
-/// &lt;code&gt;aws:fsx&lt;/code&gt;. All Amazon FSx file systems have encryption configured by default and are
-/// encrypted at rest. Data is automatically encrypted before being written to the file system, and
-/// automatically decrypted as it is read. These processes are handled transparently by Amazon FSx.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The server-side encryption algorithm that was used when you store this object in Amazon S3 or Amazon
+/// FSx.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>General purpose buckets </b> - You have four mutually exclusive options to protect data using
+/// server-side encryption in Amazon S3, depending on how you choose to manage the encryption keys.
+/// Specifically, the encryption key options are Amazon S3 managed keys (SSE-S3), Amazon Web Services
+/// KMS keys (SSE-KMS or DSSE-KMS), and customer-provided keys (SSE-C). Amazon S3 encrypts data with
+/// server-side encryption by using Amazon S3 managed keys (SSE-S3) by default. You can optionally tell
+/// Amazon S3 to encrypt data at rest by using server-side encryption with other key options. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html">Using
+/// Server-Side Encryption</see> in the <i>Amazon S3 User Guide</i>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <b>Directory buckets </b> - For directory buckets, there are only two supported options for
+/// server-side encryption: server-side encryption with Amazon S3 managed keys (SSE-S3) (<c>AES256</c>)
+/// and server-side encryption with KMS keys (SSE-KMS) (<c>aws:kms</c>). We recommend that the bucket's
+/// default encryption uses the desired encryption configuration and you don't override the bucket
+/// default encryption in your <c>CreateSession</c> requests or <c>PUT</c> object requests. Then, new
+/// objects are automatically encrypted with the desired encryption settings. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-serv-side-encryption.html">Protecting
+/// data with server-side encryption</see> in the <i>Amazon S3 User Guide</i>. For more information
+/// about the encryption overriding behaviors in directory buckets, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-specifying-kms-encryption.html">Specifying
+/// server-side encryption with KMS for new object uploads</see>.
+/// </para>
+/// <para>
+/// In the Zonal endpoint API calls (except
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>)
+/// using the REST API, the encryption request headers must match the encryption settings that are
+/// specified in the <c>CreateSession</c> request. You can't override the values of the encryption
+/// settings (<c>x-amz-server-side-encryption</c>, <c>x-amz-server-side-encryption-aws-kms-key-id</c>,
+/// <c>x-amz-server-side-encryption-context</c>, and
+/// <c>x-amz-server-side-encryption-bucket-key-enabled</c>) that are specified in the
+/// <c>CreateSession</c> request. You don't need to explicitly specify these encryption settings values
+/// in Zonal endpoint API calls, and Amazon S3 will use the encryption settings values from the
+/// <c>CreateSession</c> request to protect new objects in the directory bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> When you use the CLI or the Amazon Web Services SDKs, for <c>CreateSession</c>, the
+/// session token refreshes automatically to avoid service interruptions when a session expires. The CLI
+/// or the Amazon Web Services SDKs use the bucket's default encryption configuration for the
+/// <c>CreateSession</c> request. It's not supported to override the encryption settings values in the
+/// <c>CreateSession</c> request. So in the Zonal endpoint API calls (except
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>),
+/// the encryption request headers must match the default encryption configuration of the directory
+/// bucket.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>S3 access points for Amazon FSx </b> - When accessing data stored in Amazon FSx file systems
+/// using S3 access points, the only valid server side encryption option is <c>aws:fsx</c>. All Amazon
+/// FSx file systems have encryption configured by default and are encrypted at rest. Data is
+/// automatically encrypted before being written to the file system, and automatically decrypted as it
+/// is read. These processes are handled transparently by Amazon FSx.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD
-/// storage class provides high durability and high availability. Depending on performance needs, you can
-/// specify a different Storage Class. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html&quot;&gt;Storage Classes&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in
-/// Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in
-/// Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Amazon S3 on Outposts only uses the OUTPOSTS Storage Class.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// By default, Amazon S3 uses the STANDARD Storage Class to store newly created objects. The STANDARD
+/// storage class provides high durability and high availability. Depending on performance needs, you
+/// can specify a different Storage Class. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html">Storage
+/// Classes</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Directory buckets only support <c>EXPRESS_ONEZONE</c> (the S3 Express One Zone storage class) in
+/// Availability Zones and <c>ONEZONE_IA</c> (the S3 One Zone-Infrequent Access storage class) in
+/// Dedicated Local Zones.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Amazon S3 on Outposts only uses the OUTPOSTS Storage Class.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Tagging">
-/// &lt;p&gt;The tag-set for the object. The tag-set must be encoded as URL Query parameters. (For example,
-/// &quot;Key1=Value1&quot;)&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The tag-set for the object. The tag-set must be encoded as URL Query parameters. (For example,
+/// "Key1=Value1")
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="WebsiteRedirectLocation">
-/// &lt;p&gt;If the bucket is configured as a website, redirects requests for this object to another object in
-/// the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata. For
-/// information about object metadata, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html&quot;&gt;Object Key and Metadata&lt;/a&gt; in the &lt;i&gt;Amazon S3
-/// User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;In the following example, the request header sets the redirect to an object (anotherPage.html) in
-/// the same bucket:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-website-redirect-location: /anotherPage.html&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;In the following example, the request header sets the object redirect to another website:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-website-redirect-location: http://www.example.com/&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;For more information about website hosting in Amazon S3, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html&quot;&gt;Hosting Websites on Amazon S3&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html&quot;&gt;How to Configure Website Page
-/// Redirects&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the bucket is configured as a website, redirects requests for this object to another object in
+/// the same bucket or to an external URL. Amazon S3 stores the value of this header in the object
+/// metadata. For information about object metadata, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html">Object Key and
+/// Metadata</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// In the following example, the request header sets the redirect to an object (anotherPage.html) in
+/// the same bucket:
+/// </para>
+/// <para>
+/// <c>x-amz-website-redirect-location: /anotherPage.html</c>
+/// </para>
+/// <para>
+/// In the following example, the request header sets the object redirect to another website:
+/// </para>
+/// <para>
+/// <c>x-amz-website-redirect-location: http://www.example.com/</c>
+/// </para>
+/// <para>
+/// For more information about website hosting in Amazon S3, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html">Hosting Websites on
+/// Amazon S3</see> and
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html">How to
+/// Configure Website Page Redirects</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="WriteOffsetBytes">
-/// &lt;p&gt; Specifies the offset for appending data to existing objects in bytes. The offset must be equal to
-/// the size of the existing object being appended to. If no object exists, setting this header to 0 will
-/// create a new object. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is only supported for objects in the Amazon S3 Express One Zone storage class in
-/// directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the offset for appending data to existing objects in bytes. The offset must be equal to
+/// the size of the existing object being appended to. If no object exists, setting this header to 0
+/// will create a new object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is only supported for objects in the Amazon S3 Express One Zone
+/// storage class in directory buckets.
+/// </para>
 /// </param>
 public sealed record class PutObjectInput(
     string Bucket,

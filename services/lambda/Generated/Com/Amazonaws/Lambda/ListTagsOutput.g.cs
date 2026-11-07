@@ -10,6 +10,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListTagsOutput.
 /// </summary>
 /// <param name="Tags">
-/// &lt;p&gt;The function's tags.&lt;/p&gt;
+/// The function's tags.
 /// </param>
 public sealed record class ListTagsOutput(IReadOnlyDictionary<string, string>? Tags = null);

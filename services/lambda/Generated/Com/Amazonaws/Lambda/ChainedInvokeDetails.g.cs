@@ -5,12 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains details about a chained function invocation in a durable execution, including the target function and invocation parameters.&lt;/p&gt;
+/// Contains details about a chained function invocation in a durable execution, including the target
+/// function and invocation parameters.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the chained invocation failure.&lt;/p&gt;
+/// Details about the chained invocation failure.
 /// </param>
 /// <param name="Result">
-/// &lt;p&gt;The response payload from the chained invocation.&lt;/p&gt;
+/// The response payload from the chained invocation.
 /// </param>
 public sealed record class ChainedInvokeDetails(ErrorObject? Error = null, string? Result = null);

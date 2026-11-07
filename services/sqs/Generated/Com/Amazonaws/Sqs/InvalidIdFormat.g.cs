@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The specified receipt handle isn't valid for the current version.&lt;/p&gt;
+/// The specified receipt handle isn't valid for the current version.
 /// </summary>
 public sealed partial class InvalidIdFormat : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified receipt handle isn't valid for the current version.&lt;/p&gt;
+    /// The specified receipt handle isn't valid for the current version.
     /// </summary>
     public InvalidIdFormat(string? message = null)
         : base(message) { }

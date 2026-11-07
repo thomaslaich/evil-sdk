@@ -5,23 +5,27 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Describes a tag. A tag is a key-value pair. You can add up to 50 tags to a single
-/// DynamoDB table. &lt;/p&gt;
-/// &lt;p&gt;Amazon Web Services-assigned tag names and values are automatically assigned the
-/// &lt;code&gt;aws:&lt;/code&gt; prefix, which the user cannot assign. Amazon Web Services-assigned
-/// tag names do not count towards the tag limit of 50. User-assigned tag names have the
-/// prefix &lt;code&gt;user:&lt;/code&gt; in the Cost Allocation Report. You cannot backdate the
-/// application of a tag.&lt;/p&gt;
-/// &lt;p&gt;For an overview on tagging DynamoDB resources, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html&quot;&gt;Tagging
-/// for DynamoDB&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// Describes a tag. A tag is a key-value pair. You can add up to 50 tags to a single DynamoDB table.
+/// </para>
+/// <para>
+/// Amazon Web Services-assigned tag names and values are automatically assigned the <c>aws:</c> prefix,
+/// which the user cannot assign. Amazon Web Services-assigned tag names do not count towards the tag
+/// limit of 50. User-assigned tag names have the prefix <c>user:</c> in the Cost Allocation Report. You
+/// cannot backdate the application of a tag.
+/// </para>
+/// <para>
+/// For an overview on tagging DynamoDB resources, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
+/// for DynamoDB</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
 /// </summary>
 /// <param name="Key">
-/// &lt;p&gt;The key of the tag. Tag keys are case sensitive. Each DynamoDB table can
-/// only have up to one tag with the same key. If you try to add an existing tag (same key),
-/// the existing tag value will be updated to the new value.&lt;/p&gt;
+/// The key of the tag. Tag keys are case sensitive. Each DynamoDB table can only have up to one tag
+/// with the same key. If you try to add an existing tag (same key), the existing tag value will be
+/// updated to the new value.
 /// </param>
 /// <param name="Value">
-/// &lt;p&gt;The value of the tag. Tag values are case-sensitive and can be null.&lt;/p&gt;
+/// The value of the tag. Tag values are case-sensitive and can be null.
 /// </param>
 public sealed record class Tag(string Key, string Value);

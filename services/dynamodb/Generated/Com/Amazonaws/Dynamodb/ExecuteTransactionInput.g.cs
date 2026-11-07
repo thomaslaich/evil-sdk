@@ -10,15 +10,17 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ExecuteTransactionInput.
 /// </summary>
 /// <param name="TransactStatements">
-/// &lt;p&gt;The list of PartiQL statements representing the transaction to run.&lt;/p&gt;
+/// The list of PartiQL statements representing the transaction to run.
 /// </param>
 /// <param name="ClientRequestToken">
-/// &lt;p&gt;Set this value to get remaining results, if &lt;code&gt;NextToken&lt;/code&gt; was returned in the
-/// statement response.&lt;/p&gt;
+/// Set this value to get remaining results, if <c>NextToken</c> was returned in the statement response.
 /// </param>
 /// <param name="ReturnConsumedCapacity">
-/// &lt;p&gt;Determines the level of detail about either provisioned or on-demand throughput
-/// consumption that is returned in the response. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactGetItems.html&quot;&gt;TransactGetItems&lt;/a&gt; and &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactWriteItems.html&quot;&gt;TransactWriteItems&lt;/a&gt;.&lt;/p&gt;
+/// Determines the level of detail about either provisioned or on-demand throughput consumption that is
+/// returned in the response. For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactGetItems.html">TransactGetItems</see>
+/// and
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactWriteItems.html">TransactWriteItems</see>.
 /// </param>
 public sealed record class ExecuteTransactionInput(
     IReadOnlyList<ParameterizedStatement> TransactStatements,

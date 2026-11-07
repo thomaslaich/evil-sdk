@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The annotation name exceeds 512 bytes.&lt;/p&gt;
+/// The annotation name exceeds 512 bytes.
 /// </summary>
 public sealed partial class AnnotationNameTooLong : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The annotation name exceeds 512 bytes.&lt;/p&gt;
+    /// The annotation name exceeds 512 bytes.
     /// </summary>
     public AnnotationNameTooLong(string? message = null)
         : base(message) { }

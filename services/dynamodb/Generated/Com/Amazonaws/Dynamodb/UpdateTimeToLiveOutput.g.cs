@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateTimeToLiveOutput.
 /// </summary>
 /// <param name="TimeToLiveSpecification">
-/// &lt;p&gt;Represents the output of an &lt;code&gt;UpdateTimeToLive&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of an <c>UpdateTimeToLive</c> operation.
 /// </param>
 public sealed record class UpdateTimeToLiveOutput(
     global::Com.Amazonaws.Dynamodb.TimeToLiveSpecification? TimeToLiveSpecification = null

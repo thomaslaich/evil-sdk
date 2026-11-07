@@ -5,9 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Contains details about a callback operation that timed out, including timeout duration and any partial results.&lt;/p&gt;
+/// Contains details about a callback operation that timed out, including timeout duration and any
+/// partial results.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the callback timeout.&lt;/p&gt;
+/// Details about the callback timeout.
 /// </param>
 public sealed record class CallbackTimedOutDetails(EventError Error);

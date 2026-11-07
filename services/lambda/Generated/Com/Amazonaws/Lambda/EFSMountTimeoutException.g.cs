@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function made a network connection to the configured file system, but the mount operation timed out.&lt;/p&gt;
+/// The Lambda function made a network connection to the configured file system, but the mount operation
+/// timed out.
 /// </summary>
 public sealed partial class EFSMountTimeoutException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function made a network connection to the configured file system, but the mount operation timed out.&lt;/p&gt;
+    /// The Lambda function made a network connection to the configured file system, but the mount operation
+    /// timed out.
     /// </summary>
     public EFSMountTimeoutException(string? message = null, string? type = null)
         : base(message)

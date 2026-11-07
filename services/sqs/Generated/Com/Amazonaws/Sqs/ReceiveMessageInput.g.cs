@@ -7,308 +7,365 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Retrieves one or more messages from a specified queue.&lt;/p&gt;
+/// Retrieves one or more messages from a specified queue.
 /// </summary>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue from which messages are received.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue from which messages are received.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 /// <param name="AttributeNames">
-/// &lt;important&gt;
-/// &lt;p&gt;This parameter has been discontinued but will be supported for backward
+/// <para>
+/// <b>Important:</b> This parameter has been discontinued but will be supported for backward
 /// compatibility. To provide attribute names, you are encouraged to use
-/// &lt;code&gt;MessageSystemAttributeNames&lt;/code&gt;. &lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;p&gt;A list of attributes that need to be returned along with each message. These
-/// attributes include:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;All&lt;/code&gt; – Returns all values.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ApproximateFirstReceiveTimestamp&lt;/code&gt; – Returns the time the
-/// message was first received from the queue (&lt;a href=&quot;http://en.wikipedia.org/wiki/Unix_time&quot;&gt;epoch time&lt;/a&gt; in
-/// milliseconds).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ApproximateReceiveCount&lt;/code&gt; – Returns the number of times a
-/// message has been received across all queues but not deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AWSTraceHeader&lt;/code&gt; – Returns the X-Ray trace
-/// header string. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SenderId&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For a user, returns the user ID, for example
-/// &lt;code&gt;ABCDEFGHI1JKLMNOPQ23R&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For an IAM role, returns the IAM role ID, for example
-/// &lt;code&gt;ABCDE1F2GH3I4JK5LMNOP:i-a123b456&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SentTimestamp&lt;/code&gt; – Returns the time the message was sent to the
-/// queue (&lt;a href=&quot;http://en.wikipedia.org/wiki/Unix_time&quot;&gt;epoch time&lt;/a&gt; in
-/// milliseconds).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SqsManagedSseEnabled&lt;/code&gt; – Enables server-side queue encryption
-/// using SQS owned encryption keys. Only one server-side encryption option is
-/// supported per queue (for example, &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html&quot;&gt;SSE-KMS&lt;/a&gt; or &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html&quot;&gt;SSE-SQS&lt;/a&gt;).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MessageDeduplicationId&lt;/code&gt; – Returns the value provided by the
-/// producer that calls the &lt;code&gt;
-/// &lt;a&gt;SendMessage&lt;/a&gt;
-/// &lt;/code&gt;
-/// action.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MessageGroupId&lt;/code&gt; – Returns the value provided by the
-/// producer that calls the &lt;code&gt;
-/// &lt;a&gt;SendMessage&lt;/a&gt;
-/// &lt;/code&gt; action.
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SequenceNumber&lt;/code&gt; – Returns the value provided by
-/// Amazon SQS.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <c>MessageSystemAttributeNames</c>.
+/// </para>
+/// <para>
+/// A list of attributes that need to be returned along with each message. These attributes include:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>All</c> – Returns all values.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ApproximateFirstReceiveTimestamp</c> – Returns the time the message was first received from the
+/// queue (<see href="http://en.wikipedia.org/wiki/Unix_time">epoch time</see> in milliseconds).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ApproximateReceiveCount</c> – Returns the number of times a message has been received across all
+/// queues but not deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>AWSTraceHeader</c> – Returns the X-Ray trace header string.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>SenderId</c>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// For a user, returns the user ID, for example <c>ABCDEFGHI1JKLMNOPQ23R</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// For an IAM role, returns the IAM role ID, for example <c>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</c>.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SentTimestamp</c> – Returns the time the message was sent to the queue
+/// (<see href="http://en.wikipedia.org/wiki/Unix_time">epoch time</see> in milliseconds).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SqsManagedSseEnabled</c> – Enables server-side queue encryption using SQS owned encryption keys.
+/// Only one server-side encryption option is supported per queue (for example,
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html">SSE-KMS</see>
+/// or
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html">SSE-SQS</see>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MessageDeduplicationId</c> – Returns the value provided by the producer that calls the <c>
+/// SendMessage </c> action.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MessageGroupId</c> – Returns the value provided by the producer that calls the <c> SendMessage
+/// </c> action.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SequenceNumber</c> – Returns the value provided by Amazon SQS.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="MaxNumberOfMessages">
-/// &lt;p&gt;The maximum number of messages to return. Amazon SQS never returns more messages than this
-/// value (however, fewer messages might be returned). Valid values: 1 to 10. Default:
-/// 1.&lt;/p&gt;
+/// The maximum number of messages to return. Amazon SQS never returns more messages than this value
+/// (however, fewer messages might be returned). Valid values: 1 to 10. Default: 1.
 /// </param>
 /// <param name="MessageAttributeNames">
-/// &lt;p&gt;The name of the message attribute, where &lt;i&gt;N&lt;/i&gt; is the index.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The name can contain alphanumeric characters and the underscore
-/// (&lt;code&gt;_&lt;/code&gt;), hyphen (&lt;code&gt;-&lt;/code&gt;), and period
-/// (&lt;code&gt;.&lt;/code&gt;).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The name is case-sensitive and must be unique among all attribute names for
-/// the message.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The name must not start with AWS-reserved prefixes such as &lt;code&gt;AWS.&lt;/code&gt;
-/// or &lt;code&gt;Amazon.&lt;/code&gt; (or any casing variants).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The name must not start or end with a period (&lt;code&gt;.&lt;/code&gt;), and it should
-/// not have periods in succession (&lt;code&gt;..&lt;/code&gt;).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The name can be up to 256 characters long.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;When using &lt;code&gt;ReceiveMessage&lt;/code&gt;, you can send a list of attribute names to
-/// receive, or you can return all of the attributes by specifying &lt;code&gt;All&lt;/code&gt; or
-/// &lt;code&gt;.*&lt;/code&gt; in your request. You can also use all message attributes starting
-/// with a prefix, for example &lt;code&gt;bar.*&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// The name of the message attribute, where <i>N</i> is the index.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// The name can contain alphanumeric characters and the underscore (<c>_</c>), hyphen (<c>-</c>), and
+/// period (<c>.</c>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The name is case-sensitive and must be unique among all attribute names for the message.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The name must not start with AWS-reserved prefixes such as <c>AWS.</c> or <c>Amazon.</c> (or any
+/// casing variants).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The name must not start or end with a period (<c>.</c>), and it should not have periods in
+/// succession (<c>..</c>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The name can be up to 256 characters long.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// When using <c>ReceiveMessage</c>, you can send a list of attribute names to receive, or you can
+/// return all of the attributes by specifying <c>All</c> or <c>.*</c> in your request. You can also use
+/// all message attributes starting with a prefix, for example <c>bar.*</c>.
+/// </para>
 /// </param>
 /// <param name="MessageSystemAttributeNames">
-/// &lt;p&gt;A list of attributes that need to be returned along with each message. These
-/// attributes include:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;All&lt;/code&gt; – Returns all values.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ApproximateFirstReceiveTimestamp&lt;/code&gt; – Returns the time the
-/// message was first received from the queue (&lt;a href=&quot;http://en.wikipedia.org/wiki/Unix_time&quot;&gt;epoch time&lt;/a&gt; in
-/// milliseconds).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ApproximateReceiveCount&lt;/code&gt; – Returns the number of times a
-/// message has been received across all queues but not deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AWSTraceHeader&lt;/code&gt; – Returns the X-Ray trace
-/// header string. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SenderId&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For a user, returns the user ID, for example
-/// &lt;code&gt;ABCDEFGHI1JKLMNOPQ23R&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;For an IAM role, returns the IAM role ID, for example
-/// &lt;code&gt;ABCDE1F2GH3I4JK5LMNOP:i-a123b456&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SentTimestamp&lt;/code&gt; – Returns the time the message was sent to the
-/// queue (&lt;a href=&quot;http://en.wikipedia.org/wiki/Unix_time&quot;&gt;epoch time&lt;/a&gt; in
-/// milliseconds).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SqsManagedSseEnabled&lt;/code&gt; – Enables server-side queue encryption
-/// using SQS owned encryption keys. Only one server-side encryption option is
-/// supported per queue (for example, &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html&quot;&gt;SSE-KMS&lt;/a&gt; or &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html&quot;&gt;SSE-SQS&lt;/a&gt;).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MessageDeduplicationId&lt;/code&gt; – Returns the value provided by the
-/// producer that calls the &lt;code&gt;
-/// &lt;a&gt;SendMessage&lt;/a&gt;
-/// &lt;/code&gt;
-/// action.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MessageGroupId&lt;/code&gt; – Returns the value provided by the
-/// producer that calls the &lt;code&gt;
-/// &lt;a&gt;SendMessage&lt;/a&gt;
-/// &lt;/code&gt; action.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SequenceNumber&lt;/code&gt; – Returns the value provided by
-/// Amazon SQS.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// A list of attributes that need to be returned along with each message. These attributes include:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>All</c> – Returns all values.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ApproximateFirstReceiveTimestamp</c> – Returns the time the message was first received from the
+/// queue (<see href="http://en.wikipedia.org/wiki/Unix_time">epoch time</see> in milliseconds).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ApproximateReceiveCount</c> – Returns the number of times a message has been received across all
+/// queues but not deleted.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>AWSTraceHeader</c> – Returns the X-Ray trace header string.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>SenderId</c>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// For a user, returns the user ID, for example <c>ABCDEFGHI1JKLMNOPQ23R</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// For an IAM role, returns the IAM role ID, for example <c>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</c>.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SentTimestamp</c> – Returns the time the message was sent to the queue
+/// (<see href="http://en.wikipedia.org/wiki/Unix_time">epoch time</see> in milliseconds).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SqsManagedSseEnabled</c> – Enables server-side queue encryption using SQS owned encryption keys.
+/// Only one server-side encryption option is supported per queue (for example,
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html">SSE-KMS</see>
+/// or
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html">SSE-SQS</see>).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MessageDeduplicationId</c> – Returns the value provided by the producer that calls the <c>
+/// SendMessage </c> action.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MessageGroupId</c> – Returns the value provided by the producer that calls the <c> SendMessage
+/// </c> action.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SequenceNumber</c> – Returns the value provided by Amazon SQS.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="ReceiveRequestAttemptId">
-/// &lt;p&gt;This parameter applies only to FIFO (first-in-first-out) queues.&lt;/p&gt;
-/// &lt;p&gt;The token used for deduplication of &lt;code&gt;ReceiveMessage&lt;/code&gt; calls. If a networking
-/// issue occurs after a &lt;code&gt;ReceiveMessage&lt;/code&gt; action, and instead of a response you
-/// receive a generic error, it is possible to retry the same action with an identical
-/// &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt; to retrieve the same set of messages, even if
-/// their visibility timeout has not yet expired.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;You can use &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt; only for 5 minutes after a
-/// &lt;code&gt;ReceiveMessage&lt;/code&gt; action.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;When you set &lt;code&gt;FifoQueue&lt;/code&gt;, a caller of the
-/// &lt;code&gt;ReceiveMessage&lt;/code&gt; action can provide a
-/// &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt; explicitly.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;It is possible to retry the &lt;code&gt;ReceiveMessage&lt;/code&gt; action with the same
-/// &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt; if none of the messages have been
-/// modified (deleted or had their visibility changes).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;During a visibility timeout, subsequent calls with the same
-/// &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt; return the same messages and receipt
-/// handles. If a retry occurs within the deduplication interval, it resets the
-/// visibility timeout. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html&quot;&gt;Visibility Timeout&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;If a caller of the &lt;code&gt;ReceiveMessage&lt;/code&gt; action still processes
-/// messages when the visibility timeout expires and messages become visible,
-/// another worker consuming from the same queue can receive the same messages
-/// and therefore process duplicates. Also, if a consumer whose message
-/// processing time is longer than the visibility timeout tries to delete the
-/// processed messages, the action fails with an error.&lt;/p&gt;
-/// &lt;p&gt;To mitigate this effect, ensure that your application observes a safe
-/// threshold before the visibility timeout expires and extend the visibility
-/// timeout as necessary.&lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;While messages with a particular &lt;code&gt;MessageGroupId&lt;/code&gt; are invisible,
-/// no more messages belonging to the same &lt;code&gt;MessageGroupId&lt;/code&gt; are returned
-/// until the visibility timeout expires. You can still receive messages
-/// with another &lt;code&gt;MessageGroupId&lt;/code&gt; from your FIFO queue as long as they are visible.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If a caller of &lt;code&gt;ReceiveMessage&lt;/code&gt; can't track the
-/// &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt;, no retries work until the original
-/// visibility timeout expires. As a result, delays might occur but the messages in
-/// the queue remain in a strict order.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;The maximum length of &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt; is 128 characters.
-/// &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt; can contain alphanumeric characters
-/// (&lt;code&gt;a-z&lt;/code&gt;, &lt;code&gt;A-Z&lt;/code&gt;, &lt;code&gt;0-9&lt;/code&gt;) and punctuation
-/// (&lt;code&gt;!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~&lt;/code&gt;).&lt;/p&gt;
-/// &lt;p&gt;For best practices of using &lt;code&gt;ReceiveRequestAttemptId&lt;/code&gt;, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-receiverequestattemptid-request-parameter.html&quot;&gt;Using the ReceiveRequestAttemptId Request Parameter&lt;/a&gt; in the &lt;i&gt;Amazon SQS
-/// Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// This parameter applies only to FIFO (first-in-first-out) queues.
+/// </para>
+/// <para>
+/// The token used for deduplication of <c>ReceiveMessage</c> calls. If a networking issue occurs after
+/// a <c>ReceiveMessage</c> action, and instead of a response you receive a generic error, it is
+/// possible to retry the same action with an identical <c>ReceiveRequestAttemptId</c> to retrieve the
+/// same set of messages, even if their visibility timeout has not yet expired.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// You can use <c>ReceiveRequestAttemptId</c> only for 5 minutes after a <c>ReceiveMessage</c> action.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// When you set <c>FifoQueue</c>, a caller of the <c>ReceiveMessage</c> action can provide a
+/// <c>ReceiveRequestAttemptId</c> explicitly.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// It is possible to retry the <c>ReceiveMessage</c> action with the same
+/// <c>ReceiveRequestAttemptId</c> if none of the messages have been modified (deleted or had their
+/// visibility changes).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// During a visibility timeout, subsequent calls with the same <c>ReceiveRequestAttemptId</c> return
+/// the same messages and receipt handles. If a retry occurs within the deduplication interval, it
+/// resets the visibility timeout. For more information, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Visibility
+/// Timeout</see> in the <i>Amazon SQS Developer Guide</i>.
+/// </para>
+/// <para>
+/// <b>Important:</b> If a caller of the <c>ReceiveMessage</c> action still processes messages when the
+/// visibility timeout expires and messages become visible, another worker consuming from the same queue
+/// can receive the same messages and therefore process duplicates. Also, if a consumer whose message
+/// processing time is longer than the visibility timeout tries to delete the processed messages, the
+/// action fails with an error.
+/// </para>
+/// <para>
+/// To mitigate this effect, ensure that your application observes a safe threshold before the
+/// visibility timeout expires and extend the visibility timeout as necessary.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// While messages with a particular <c>MessageGroupId</c> are invisible, no more messages belonging to
+/// the same <c>MessageGroupId</c> are returned until the visibility timeout expires. You can still
+/// receive messages with another <c>MessageGroupId</c> from your FIFO queue as long as they are
+/// visible.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// If a caller of <c>ReceiveMessage</c> can't track the <c>ReceiveRequestAttemptId</c>, no retries work
+/// until the original visibility timeout expires. As a result, delays might occur but the messages in
+/// the queue remain in a strict order.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The maximum length of <c>ReceiveRequestAttemptId</c> is 128 characters.
+/// <c>ReceiveRequestAttemptId</c> can contain alphanumeric characters (<c>a-z</c>, <c>A-Z</c>,
+/// <c>0-9</c>) and punctuation (<c>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</c>).
+/// </para>
+/// <para>
+/// For best practices of using <c>ReceiveRequestAttemptId</c>, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-receiverequestattemptid-request-parameter.html">Using
+/// the ReceiveRequestAttemptId Request Parameter</see> in the <i>Amazon SQS Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="VisibilityTimeout">
-/// &lt;p&gt;The duration (in seconds) that the received messages are hidden from subsequent
-/// retrieve requests after being retrieved by a &lt;code&gt;ReceiveMessage&lt;/code&gt; request. If not
-/// specified, the default visibility timeout for the queue is used, which is 30
-/// seconds.&lt;/p&gt;
-/// &lt;p&gt;Understanding &lt;code&gt;VisibilityTimeout&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;When a message is received from a queue, it becomes temporarily invisible to
-/// other consumers for the duration of the visibility timeout. This prevents
-/// multiple consumers from processing the same message simultaneously. If the
-/// message is not deleted or its visibility timeout is not extended before the
-/// timeout expires, it becomes visible again and can be retrieved by other
-/// consumers.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Setting an appropriate visibility timeout is crucial. If it's too short, the
-/// message might become visible again before processing is complete, leading to
-/// duplicate processing. If it's too long, it delays the reprocessing of messages
-/// if the initial processing fails.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;You can adjust the visibility timeout using the
-/// &lt;code&gt;--visibility-timeout&lt;/code&gt; parameter in the
-/// &lt;code&gt;receive-message&lt;/code&gt; command to match the processing time required
-/// by your application.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A message that isn't deleted or a message whose visibility isn't extended
-/// before the visibility timeout expires counts as a failed receive. Depending on
-/// the configuration of the queue, the message might be sent to the dead-letter
-/// queue.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html&quot;&gt;Visibility Timeout&lt;/a&gt; in the &lt;i&gt;Amazon SQS Developer
-/// Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The duration (in seconds) that the received messages are hidden from subsequent retrieve requests
+/// after being retrieved by a <c>ReceiveMessage</c> request. If not specified, the default visibility
+/// timeout for the queue is used, which is 30 seconds.
+/// </para>
+/// <para>
+/// Understanding <c>VisibilityTimeout</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// When a message is received from a queue, it becomes temporarily invisible to other consumers for the
+/// duration of the visibility timeout. This prevents multiple consumers from processing the same
+/// message simultaneously. If the message is not deleted or its visibility timeout is not extended
+/// before the timeout expires, it becomes visible again and can be retrieved by other consumers.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Setting an appropriate visibility timeout is crucial. If it's too short, the message might become
+/// visible again before processing is complete, leading to duplicate processing. If it's too long, it
+/// delays the reprocessing of messages if the initial processing fails.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// You can adjust the visibility timeout using the <c>--visibility-timeout</c> parameter in the
+/// <c>receive-message</c> command to match the processing time required by your application.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// A message that isn't deleted or a message whose visibility isn't extended before the visibility
+/// timeout expires counts as a failed receive. Depending on the configuration of the queue, the message
+/// might be sent to the dead-letter queue.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Visibility
+/// Timeout</see> in the <i>Amazon SQS Developer Guide</i>.
+/// </para>
 /// </param>
 /// <param name="WaitTimeSeconds">
-/// &lt;p&gt;The duration (in seconds) for which the call waits for a message to arrive in the
-/// queue before returning. If a message is available, the call returns sooner than
-/// &lt;code&gt;WaitTimeSeconds&lt;/code&gt;. If no messages are available and the wait time
-/// expires, the call does not return a message list. If you are using the Java SDK, it
-/// returns a &lt;code&gt;ReceiveMessageResponse&lt;/code&gt; object, which has a empty list instead of
-/// a Null object.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;To avoid HTTP errors, ensure that the HTTP response timeout for
-/// &lt;code&gt;ReceiveMessage&lt;/code&gt; requests is longer than the
-/// &lt;code&gt;WaitTimeSeconds&lt;/code&gt; parameter. For example, with the Java SDK, you can
-/// set HTTP transport settings using the &lt;a href=&quot;https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/nio/netty/NettyNioAsyncHttpClient.html&quot;&gt; NettyNioAsyncHttpClient&lt;/a&gt; for asynchronous clients, or the &lt;a href=&quot;https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.html&quot;&gt; ApacheHttpClient&lt;/a&gt; for synchronous clients. &lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// The duration (in seconds) for which the call waits for a message to arrive in the queue before
+/// returning. If a message is available, the call returns sooner than <c>WaitTimeSeconds</c>. If no
+/// messages are available and the wait time expires, the call does not return a message list. If you
+/// are using the Java SDK, it returns a <c>ReceiveMessageResponse</c> object, which has a empty list
+/// instead of a Null object.
+/// </para>
+/// <para>
+/// <b>Important:</b> To avoid HTTP errors, ensure that the HTTP response timeout for
+/// <c>ReceiveMessage</c> requests is longer than the <c>WaitTimeSeconds</c> parameter. For example,
+/// with the Java SDK, you can set HTTP transport settings using the
+/// <see href="https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/nio/netty/NettyNioAsyncHttpClient.html">NettyNioAsyncHttpClient</see>
+/// for asynchronous clients, or the
+/// <see href="https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/http/apache/ApacheHttpClient.html">ApacheHttpClient</see>
+/// for synchronous clients.
+/// </para>
 /// </param>
 public sealed record class ReceiveMessageInput(
     string QueueUrl,

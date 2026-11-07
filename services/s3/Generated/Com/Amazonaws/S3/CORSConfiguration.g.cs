@@ -7,12 +7,12 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information,
-/// see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html&quot;&gt;Enabling Cross-Origin Resource
-/// Sharing&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more
+/// information, see <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html">Enabling
+/// Cross-Origin Resource Sharing</see> in the <i>Amazon S3 User Guide</i>.
 /// </summary>
 /// <param name="CORSRules">
-/// &lt;p&gt;A set of origins and methods (cross-origin access that you want to allow). You can add up to 100
-/// rules to the configuration.&lt;/p&gt;
+/// A set of origins and methods (cross-origin access that you want to allow). You can add up to 100
+/// rules to the configuration.
 /// </param>
 public sealed record class CORSConfiguration(IReadOnlyList<CORSRule> CORSRules);

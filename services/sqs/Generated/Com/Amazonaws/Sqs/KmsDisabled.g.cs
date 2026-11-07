@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The request was denied due to request throttling.&lt;/p&gt;
+/// The request was denied due to request throttling.
 /// </summary>
 public sealed partial class KmsDisabled : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was denied due to request throttling.&lt;/p&gt;
+    /// The request was denied due to request throttling.
     /// </summary>
     public KmsDisabled(string? message = null)
         : base(message) { }

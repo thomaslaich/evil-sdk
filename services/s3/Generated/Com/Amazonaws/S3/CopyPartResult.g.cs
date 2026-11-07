@@ -7,73 +7,82 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for all response elements.&lt;/p&gt;
+/// Container for all response elements.
 /// </summary>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32&lt;/code&gt; checksum of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;CRC32&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32</c> checksum of the part. This checksum is present if the
+/// multipart upload request was created with the <c>CRC32</c> checksum algorithm. For more information,
+/// see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32C&lt;/code&gt; checksum of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;CRC32C&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32C</c> checksum of the part. This checksum is present if the
+/// multipart upload request was created with the <c>CRC32C</c> checksum algorithm. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;CRC64NVME&lt;/code&gt; checksum of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;CRC64NVME&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>CRC64NVME</c> checksum of the part. This checksum is present if the
+/// multipart upload request was created with the <c>CRC64NVME</c> checksum algorithm. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;MD5&lt;/code&gt; digest of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;MD5&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>MD5</c> digest of the part. This checksum is present if the multipart
+/// upload request was created with the <c>MD5</c> checksum algorithm. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;The Base64 encoded, 160-bit &lt;code&gt;SHA1&lt;/code&gt; digest of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;SHA1&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 160-bit <c>SHA1</c> digest of the part. This checksum is present if the
+/// multipart upload request was created with the <c>SHA1</c> checksum algorithm. For more information,
+/// see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;The Base64 encoded, 256-bit &lt;code&gt;SHA256&lt;/code&gt; digest of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;SHA256&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 256-bit <c>SHA256</c> digest of the part. This checksum is present if the
+/// multipart upload request was created with the <c>SHA256</c> checksum algorithm. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;The Base64 encoded, 512-bit &lt;code&gt;SHA512&lt;/code&gt; digest of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;SHA512&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 512-bit <c>SHA512</c> digest of the part. This checksum is present if the
+/// multipart upload request was created with the <c>SHA512</c> checksum algorithm. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;XXHASH128&lt;/code&gt; checksum of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;XXHASH128&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>XXHASH128</c> checksum of the part. This checksum is present if the
+/// multipart upload request was created with the <c>XXHASH128</c> checksum algorithm. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH3&lt;/code&gt; checksum of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;XXHASH3&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH3</c> checksum of the part. This checksum is present if the
+/// multipart upload request was created with the <c>XXHASH3</c> checksum algorithm. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH64&lt;/code&gt; checksum of the part. This checksum is present if
-/// the multipart upload request was created with the &lt;code&gt;XXHASH64&lt;/code&gt; checksum algorithm. For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH64</c> checksum of the part. This checksum is present if the
+/// multipart upload request was created with the <c>XXHASH64</c> checksum algorithm. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;Entity tag of the object.&lt;/p&gt;
+/// Entity tag of the object.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;Date and time at which the object was uploaded.&lt;/p&gt;
+/// Date and time at which the object was uploaded.
 /// </param>
 public sealed record class CopyPartResult(
     string? ChecksumCRC32 = null,

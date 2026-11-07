@@ -7,14 +7,16 @@ using System;
 namespace Com.Amazonaws.Sts;
 
 /// <summary>
-/// &lt;p&gt;The requested token duration would extend the session beyond its original expiration time.
-/// You cannot use this operation to extend the lifetime of a session beyond what was granted when the session was originally created.&lt;/p&gt;
+/// The requested token duration would extend the session beyond its original expiration time. You
+/// cannot use this operation to extend the lifetime of a session beyond what was granted when the
+/// session was originally created.
 /// </summary>
 public sealed partial class SessionDurationEscalationException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The requested token duration would extend the session beyond its original expiration time.
-    /// You cannot use this operation to extend the lifetime of a session beyond what was granted when the session was originally created.&lt;/p&gt;
+    /// The requested token duration would extend the session beyond its original expiration time. You
+    /// cannot use this operation to extend the lifetime of a session beyond what was granted when the
+    /// session was originally created.
     /// </summary>
     public SessionDurationEscalationException(string? message = null)
         : base(message) { }

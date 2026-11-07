@@ -5,56 +5,82 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the default server-side encryption configuration.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - If you're specifying a customer
-/// managed KMS key, we recommend using a fully qualified KMS key ARN. If you use a KMS key
-/// alias instead, then KMS resolves the key within the requester’s account. This behavior can
-/// result in data that's encrypted with a KMS key that belongs to the requester, and not the bucket
-/// owner.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; -
-/// When you specify an &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk&quot;&gt;KMS customer managed key&lt;/a&gt; for encryption in your directory bucket, only use the key ID or key ARN. The key alias format of the KMS key isn't supported.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies the default server-side encryption configuration.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>General purpose buckets</b> - If you're specifying a customer managed KMS key, we recommend using
+/// a fully qualified KMS key ARN. If you use a KMS key alias instead, then KMS resolves the key within
+/// the requester’s account. This behavior can result in data that's encrypted with a KMS key that
+/// belongs to the requester, and not the bucket owner.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Directory buckets</b> - When you specify an
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk">KMS
+/// customer managed key</see> for encryption in your directory bucket, only use the key ID or key ARN.
+/// The key alias format of the KMS key isn't supported.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="ApplyServerSideEncryptionByDefault">
-/// &lt;p&gt;Specifies the default server-side encryption to apply to new objects in the bucket. If a PUT Object
-/// request doesn't specify any server-side encryption, this default encryption will be applied.&lt;/p&gt;
+/// Specifies the default server-side encryption to apply to new objects in the bucket. If a PUT Object
+/// request doesn't specify any server-side encryption, this default encryption will be applied.
 /// </param>
 /// <param name="BlockedEncryptionTypes">
-/// &lt;p&gt;A bucket-level setting for Amazon S3 general purpose buckets used to prevent the upload of new objects encrypted with the specified server-side encryption type. For example, blocking an encryption type will block &lt;code&gt;PutObject&lt;/code&gt;, &lt;code&gt;CopyObject&lt;/code&gt;, &lt;code&gt;PostObject&lt;/code&gt;, multipart upload, and replication requests to the bucket for objects with the specified encryption type. However, you can continue to read and list any pre-existing objects already encrypted with the specified encryption type. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/blocking-unblocking-s3-c-encryption-gpb.html&quot;&gt;Blocking or unblocking SSE-C for a general purpose bucket&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Currently, this parameter only supports blocking or unblocking server-side encryption with customer-provided keys (SSE-C). For more information about SSE-C, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html&quot;&gt;Using server-side encryption with customer-provided keys (SSE-C)&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// A bucket-level setting for Amazon S3 general purpose buckets used to prevent the upload of new
+/// objects encrypted with the specified server-side encryption type. For example, blocking an
+/// encryption type will block <c>PutObject</c>, <c>CopyObject</c>, <c>PostObject</c>, multipart upload,
+/// and replication requests to the bucket for objects with the specified encryption type. However, you
+/// can continue to read and list any pre-existing objects already encrypted with the specified
+/// encryption type. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/blocking-unblocking-s3-c-encryption-gpb.html">Blocking
+/// or unblocking SSE-C for a general purpose bucket</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Currently, this parameter only supports blocking or unblocking server-side encryption
+/// with customer-provided keys (SSE-C). For more information about SSE-C, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html">Using
+/// server-side encryption with customer-provided keys (SSE-C)</see>.
+/// </para>
 /// </param>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-KMS)
-/// for new objects in the bucket. Existing objects are not affected. Setting the
-/// &lt;code&gt;BucketKeyEnabled&lt;/code&gt; element to &lt;code&gt;true&lt;/code&gt; causes Amazon S3 to use an S3 Bucket Key. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;General purpose buckets&lt;/b&gt; - By default, S3 Bucket Key is not
-/// enabled. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html&quot;&gt;Amazon S3 Bucket Keys&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; -
-/// S3 Bucket Keys are always enabled for &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;PUT&lt;/code&gt; operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you copy SSE-KMS encrypted objects from general purpose buckets
-/// to directory buckets, from directory buckets to general purpose buckets, or between directory buckets, through &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html&quot;&gt;CopyObject&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html&quot;&gt;UploadPartCopy&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops&quot;&gt;the Copy operation in Batch Operations&lt;/a&gt;, or
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job&quot;&gt;the import jobs&lt;/a&gt;. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a KMS-encrypted object.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS
+/// (SSE-KMS) for new objects in the bucket. Existing objects are not affected. Setting the
+/// <c>BucketKeyEnabled</c> element to <c>true</c> causes Amazon S3 to use an S3 Bucket Key.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>General purpose buckets</b> - By default, S3 Bucket Key is not enabled. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html">Amazon S3 Bucket
+/// Keys</see> in the <i>Amazon S3 User Guide</i>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Directory buckets</b> - S3 Bucket Keys are always enabled for <c>GET</c> and <c>PUT</c>
+/// operations in a directory bucket and can’t be disabled. S3 Bucket Keys aren't supported, when you
+/// copy SSE-KMS encrypted objects from general purpose buckets to directory buckets, from directory
+/// buckets to general purpose buckets, or between directory buckets, through
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html">CopyObject</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html">UploadPartCopy</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops">the
+/// Copy operation in Batch Operations</see>, or
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-import-job">the import
+/// jobs</see>. In this case, Amazon S3 makes a call to KMS every time a copy request is made for a
+/// KMS-encrypted object.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class ServerSideEncryptionRule(
     ServerSideEncryptionByDefault? ApplyServerSideEncryptionByDefault = null,

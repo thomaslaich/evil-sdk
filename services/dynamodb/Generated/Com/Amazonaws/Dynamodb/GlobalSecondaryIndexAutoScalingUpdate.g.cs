@@ -5,11 +5,11 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the auto scaling settings of a global secondary index for a global table
-/// that will be modified.&lt;/p&gt;
+/// Represents the auto scaling settings of a global secondary index for a global table that will be
+/// modified.
 /// </summary>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index.&lt;/p&gt;
+/// The name of the global secondary index.
 /// </param>
 public sealed record class GlobalSecondaryIndexAutoScalingUpdate(
     string? IndexName = null,

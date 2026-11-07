@@ -7,14 +7,13 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the auto scaling settings of a replica that will be modified.&lt;/p&gt;
+/// Represents the auto scaling settings of a replica that will be modified.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The Region where the replica exists.&lt;/p&gt;
+/// The Region where the replica exists.
 /// </param>
 /// <param name="ReplicaGlobalSecondaryIndexUpdates">
-/// &lt;p&gt;Represents the auto scaling settings of global secondary indexes that will be
-/// modified.&lt;/p&gt;
+/// Represents the auto scaling settings of global secondary indexes that will be modified.
 /// </param>
 public sealed record class ReplicaAutoScalingUpdate(
     string RegionName,

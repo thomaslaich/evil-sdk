@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The specified global table already exists.&lt;/p&gt;
+/// The specified global table already exists.
 /// </summary>
 public sealed partial class GlobalTableAlreadyExistsException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified global table already exists.&lt;/p&gt;
+    /// The specified global table already exists.
     /// </summary>
     public GlobalTableAlreadyExistsException(string? message = null)
         : base(message) { }

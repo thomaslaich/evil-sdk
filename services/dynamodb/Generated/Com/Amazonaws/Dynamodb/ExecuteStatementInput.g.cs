@@ -10,35 +10,36 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#ExecuteStatementInput.
 /// </summary>
 /// <param name="Statement">
-/// &lt;p&gt;The PartiQL statement representing the operation to run.&lt;/p&gt;
+/// The PartiQL statement representing the operation to run.
 /// </param>
 /// <param name="ConsistentRead">
-/// &lt;p&gt;The consistency of a read operation. If set to &lt;code&gt;true&lt;/code&gt;, then a strongly
-/// consistent read is used; otherwise, an eventually consistent read is used.&lt;/p&gt;
+/// The consistency of a read operation. If set to <c>true</c>, then a strongly consistent read is used;
+/// otherwise, an eventually consistent read is used.
 /// </param>
 /// <param name="Limit">
-/// &lt;p&gt;The maximum number of items to evaluate (not necessarily the number of matching
-/// items). If DynamoDB processes the number of items up to the limit while processing the
-/// results, it stops the operation and returns the matching values up to that point, along
-/// with a key in &lt;code&gt;LastEvaluatedKey&lt;/code&gt; to apply in a subsequent operation so you
-/// can pick up where you left off. Also, if the processed dataset size exceeds 1 MB before
-/// DynamoDB reaches this limit, it stops the operation and returns the matching values up
-/// to the limit, and a key in &lt;code&gt;LastEvaluatedKey&lt;/code&gt; to apply in a subsequent
-/// operation to continue the operation. &lt;/p&gt;
+/// The maximum number of items to evaluate (not necessarily the number of matching items). If DynamoDB
+/// processes the number of items up to the limit while processing the results, it stops the operation
+/// and returns the matching values up to that point, along with a key in <c>LastEvaluatedKey</c> to
+/// apply in a subsequent operation so you can pick up where you left off. Also, if the processed
+/// dataset size exceeds 1 MB before DynamoDB reaches this limit, it stops the operation and returns the
+/// matching values up to the limit, and a key in <c>LastEvaluatedKey</c> to apply in a subsequent
+/// operation to continue the operation.
 /// </param>
 /// <param name="NextToken">
-/// &lt;p&gt;Set this value to get remaining results, if &lt;code&gt;NextToken&lt;/code&gt; was returned in the
-/// statement response.&lt;/p&gt;
+/// Set this value to get remaining results, if <c>NextToken</c> was returned in the statement response.
 /// </param>
 /// <param name="Parameters">
-/// &lt;p&gt;The parameters for the PartiQL statement, if any.&lt;/p&gt;
+/// The parameters for the PartiQL statement, if any.
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;An optional parameter that returns the item attributes for an
-/// &lt;code&gt;ExecuteStatement&lt;/code&gt; operation that failed a condition check.&lt;/p&gt;
-/// &lt;p&gt;There is no additional cost associated with requesting a return value aside from the
-/// small network and processing overhead of receiving a larger response. No read capacity
-/// units are consumed.&lt;/p&gt;
+/// <para>
+/// An optional parameter that returns the item attributes for an <c>ExecuteStatement</c> operation that
+/// failed a condition check.
+/// </para>
+/// <para>
+/// There is no additional cost associated with requesting a return value aside from the small network
+/// and processing overhead of receiving a larger response. No read capacity units are consumed.
+/// </para>
 /// </param>
 public sealed record class ExecuteStatementInput(
     string Statement,

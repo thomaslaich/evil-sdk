@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A metadata key-value pair to store with an object.&lt;/p&gt;
+/// A metadata key-value pair to store with an object.
 /// </summary>
 /// <param name="Name">
-/// &lt;p&gt;Name of the object.&lt;/p&gt;
+/// Name of the object.
 /// </param>
 /// <param name="Value">
-/// &lt;p&gt;Value of the object.&lt;/p&gt;
+/// Value of the object.
 /// </param>
 public sealed record class MetadataEntry(string? Name = null, string? Value = null);

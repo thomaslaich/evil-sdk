@@ -10,6 +10,6 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#ListQueueTagsOutput.
 /// </summary>
 /// <param name="Tags">
-/// &lt;p&gt;The list of all tags added to the specified queue.&lt;/p&gt;
+/// The list of all tags added to the specified queue.
 /// </param>
 public sealed record class ListQueueTagsOutput(IReadOnlyDictionary<string, string>? Tags = null);

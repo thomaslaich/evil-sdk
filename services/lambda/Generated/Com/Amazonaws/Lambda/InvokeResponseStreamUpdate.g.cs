@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A chunk of the streamed response payload.&lt;/p&gt;
+/// A chunk of the streamed response payload.
 /// </summary>
 /// <param name="Payload">
-/// &lt;p&gt;Data returned by your Lambda function.&lt;/p&gt;
+/// Data returned by your Lambda function.
 /// </param>
 public sealed record class InvokeResponseStreamUpdate(byte[]? Payload = null);

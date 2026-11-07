@@ -7,25 +7,23 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;An item collection is too large. This exception is only returned for tables that
-/// have one or more local secondary indexes.&lt;/p&gt;
+/// An item collection is too large. This exception is only returned for tables that have one or more
+/// local secondary indexes.
 /// </summary>
 public sealed partial class ItemCollectionSizeLimitExceededException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;An item collection is too large. This exception is only returned for tables that
-    /// have one or more local secondary indexes.&lt;/p&gt;
+    /// An item collection is too large. This exception is only returned for tables that have one or more
+    /// local secondary indexes.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The total size of an item collection has exceeded the maximum limit of 10
-    /// gigabytes.&lt;/p&gt;
+    /// The total size of an item collection has exceeded the maximum limit of 10 gigabytes.
     /// </param>
     public ItemCollectionSizeLimitExceededException(string? message = null)
         : base(message) { }
 
     /// <summary>
-    /// &lt;p&gt;The total size of an item collection has exceeded the maximum limit of 10
-    /// gigabytes.&lt;/p&gt;
+    /// The total size of an item collection has exceeded the maximum limit of 10 gigabytes.
     /// </summary>
     public override string Message => base.Message!;
 }

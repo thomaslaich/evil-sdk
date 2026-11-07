@@ -5,34 +5,41 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Information about the deleted object.&lt;/p&gt;
+/// Information about the deleted object.
 /// </summary>
 /// <param name="DeleteMarker">
-/// &lt;p&gt;Indicates whether the specified object version that was permanently deleted was (true) or was not
-/// (false) a delete marker before deletion. In a simple DELETE, this header indicates whether (true) or not
-/// (false) the current version of the object is a delete marker. To learn more about delete markers, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html&quot;&gt;Working with delete
-/// markers&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Indicates whether the specified object version that was permanently deleted was (true) or was not
+/// (false) a delete marker before deletion. In a simple DELETE, this header indicates whether (true) or
+/// not (false) the current version of the object is a delete marker. To learn more about delete
+/// markers, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html">Working with
+/// delete markers</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="DeleteMarkerVersionId">
-/// &lt;p&gt;The version ID of the delete marker created as a result of the DELETE operation. If you delete a
+/// <para>
+/// The version ID of the delete marker created as a result of the DELETE operation. If you delete a
 /// specific object version, the value returned by this header is the version ID of the object version
-/// deleted.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// deleted.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The name of the deleted object.&lt;/p&gt;
+/// The name of the deleted object.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID of the deleted object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The version ID of the deleted object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class DeletedObject(
     bool? DeleteMarker = null,

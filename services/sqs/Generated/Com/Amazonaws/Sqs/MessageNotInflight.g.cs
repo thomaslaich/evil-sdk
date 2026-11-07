@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The specified message isn't in flight.&lt;/p&gt;
+/// The specified message isn't in flight.
 /// </summary>
 public sealed partial class MessageNotInflight : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified message isn't in flight.&lt;/p&gt;
+    /// The specified message isn't in flight.
     /// </summary>
     public MessageNotInflight(string? message = null)
         : base(message) { }

@@ -7,13 +7,13 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Contains the elements that set the ACL permissions for an object per grantee.&lt;/p&gt;
+/// Contains the elements that set the ACL permissions for an object per grantee.
 /// </summary>
 /// <param name="Grants">
-/// &lt;p&gt;A list of grants.&lt;/p&gt;
+/// A list of grants.
 /// </param>
 /// <param name="Owner">
-/// &lt;p&gt;Container for the bucket owner's display name and ID.&lt;/p&gt;
+/// Container for the bucket owner's display name and ID.
 /// </param>
 public sealed record class AccessControlPolicy(
     IReadOnlyList<Grant>? Grants = null,

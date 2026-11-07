@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a context that failed.&lt;/p&gt;
+/// Details about a context that failed.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the context failure.&lt;/p&gt;
+/// Details about the context failure.
 /// </param>
 public sealed record class ContextFailedDetails(EventError Error);

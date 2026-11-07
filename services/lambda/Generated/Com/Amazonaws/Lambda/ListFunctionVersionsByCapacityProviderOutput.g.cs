@@ -10,13 +10,13 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListFunctionVersionsByCapacityProviderOutput.
 /// </summary>
 /// <param name="CapacityProviderArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the capacity provider.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the capacity provider.
 /// </param>
 /// <param name="FunctionVersions">
-/// &lt;p&gt;A list of function versions that use the specified capacity provider.&lt;/p&gt;
+/// A list of function versions that use the specified capacity provider.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListFunctionVersionsByCapacityProviderOutput(
     string CapacityProviderArn,

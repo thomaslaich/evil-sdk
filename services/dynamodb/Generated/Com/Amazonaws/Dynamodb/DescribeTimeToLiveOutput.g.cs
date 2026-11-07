@@ -8,7 +8,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeTimeToLiveOutput.
 /// </summary>
 /// <param name="TimeToLiveDescription">
-/// &lt;p&gt;&lt;/p&gt;
 /// </param>
 public sealed record class DescribeTimeToLiveOutput(
     global::Com.Amazonaws.Dynamodb.TimeToLiveDescription? TimeToLiveDescription = null

@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; The specified import was not found. &lt;/p&gt;
+/// The specified import was not found.
 /// </summary>
 public sealed partial class ImportNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt; The specified import was not found. &lt;/p&gt;
+    /// The specified import was not found.
     /// </summary>
     public ImportNotFoundException(string? message = null)
         : base(message) { }

@@ -7,35 +7,47 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the restoration status of an object. Objects in certain storage classes must be restored
+/// <para>
+/// Specifies the restoration status of an object. Objects in certain storage classes must be restored
 /// before they can be retrieved. For more information about these storage classes and how to work with
-/// archived objects, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html&quot;&gt;
-/// Working with archived objects&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets. Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// archived objects, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html">Working with
+/// archived objects</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets. Directory buckets only
+/// support <c>EXPRESS_ONEZONE</c> (the S3 Express One Zone storage class) in Availability Zones and
+/// <c>ONEZONE_IA</c> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </summary>
 /// <param name="IsRestoreInProgress">
-/// &lt;p&gt;Specifies whether the object is currently being restored. If the object restoration is in progress,
-/// the header returns the value &lt;code&gt;TRUE&lt;/code&gt;. For example:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-optional-object-attributes: IsRestoreInProgress=&quot;true&quot;&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;If the object restoration has completed, the header returns the value &lt;code&gt;FALSE&lt;/code&gt;. For
-/// example:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-optional-object-attributes: IsRestoreInProgress=&quot;false&quot;,
-/// RestoreExpiryDate=&quot;2012-12-21T00:00:00.000Z&quot;&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;If the object hasn't been restored, there is no header response.&lt;/p&gt;
+/// <para>
+/// Specifies whether the object is currently being restored. If the object restoration is in progress,
+/// the header returns the value <c>TRUE</c>. For example:
+/// </para>
+/// <para>
+/// <c>x-amz-optional-object-attributes: IsRestoreInProgress="true"</c>
+/// </para>
+/// <para>
+/// If the object restoration has completed, the header returns the value <c>FALSE</c>. For example:
+/// </para>
+/// <para>
+/// <c>x-amz-optional-object-attributes: IsRestoreInProgress="false",
+/// RestoreExpiryDate="2012-12-21T00:00:00.000Z"</c>
+/// </para>
+/// <para>
+/// If the object hasn't been restored, there is no header response.
+/// </para>
 /// </param>
 /// <param name="RestoreExpiryDate">
-/// &lt;p&gt;Indicates when the restored copy will expire. This value is populated only if the object has already
-/// been restored. For example:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-optional-object-attributes: IsRestoreInProgress=&quot;false&quot;,
-/// RestoreExpiryDate=&quot;2012-12-21T00:00:00.000Z&quot;&lt;/code&gt;
-/// &lt;/p&gt;
+/// <para>
+/// Indicates when the restored copy will expire. This value is populated only if the object has already
+/// been restored. For example:
+/// </para>
+/// <para>
+/// <c>x-amz-optional-object-attributes: IsRestoreInProgress="false",
+/// RestoreExpiryDate="2012-12-21T00:00:00.000Z"</c>
+/// </para>
 /// </param>
 public sealed record class RestoreStatus(
     bool? IsRestoreInProgress = null,

@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;An invalid restore time was specified. RestoreDateTime must be between
-/// EarliestRestorableDateTime and LatestRestorableDateTime.&lt;/p&gt;
+/// An invalid restore time was specified. RestoreDateTime must be between EarliestRestorableDateTime
+/// and LatestRestorableDateTime.
 /// </summary>
 public sealed partial class InvalidRestoreTimeException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;An invalid restore time was specified. RestoreDateTime must be between
-    /// EarliestRestorableDateTime and LatestRestorableDateTime.&lt;/p&gt;
+    /// An invalid restore time was specified. RestoreDateTime must be between EarliestRestorableDateTime
+    /// and LatestRestorableDateTime.
     /// </summary>
     public InvalidRestoreTimeException(string? message = null)
         : base(message) { }

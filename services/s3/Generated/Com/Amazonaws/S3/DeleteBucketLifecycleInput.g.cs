@@ -8,14 +8,18 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteBucketLifecycleInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name of the lifecycle to delete.&lt;/p&gt;
+/// The bucket name of the lifecycle to delete.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter applies to general purpose buckets only. It is not supported for directory bucket
-/// lifecycle configurations.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter applies to general purpose buckets only. It is not supported for
+/// directory bucket lifecycle configurations.
+/// </para>
 /// </param>
 public sealed record class DeleteBucketLifecycleInput(
     string Bucket,

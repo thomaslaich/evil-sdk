@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The resource specified in the request does not exist.&lt;/p&gt;
+/// The resource specified in the request does not exist.
 /// </summary>
 public sealed partial class ResourceNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The resource specified in the request does not exist.&lt;/p&gt;
+    /// The resource specified in the request does not exist.
     /// </summary>
     public ResourceNotFoundException(string? message = null, string? type = null)
         : base(message)

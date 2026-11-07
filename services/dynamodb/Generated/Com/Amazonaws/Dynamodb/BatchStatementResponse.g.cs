@@ -7,16 +7,16 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; A PartiQL batch statement response.. &lt;/p&gt;
+/// A PartiQL batch statement response..
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt; The error associated with a failed PartiQL batch statement. &lt;/p&gt;
+/// The error associated with a failed PartiQL batch statement.
 /// </param>
 /// <param name="Item">
-/// &lt;p&gt; A DynamoDB item associated with a BatchStatementResponse &lt;/p&gt;
+/// A DynamoDB item associated with a BatchStatementResponse
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt; The table name associated with a failed PartiQL batch statement. &lt;/p&gt;
+/// The table name associated with a failed PartiQL batch statement.
 /// </param>
 public sealed record class BatchStatementResponse(
     BatchStatementError? Error = null,

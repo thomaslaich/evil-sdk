@@ -7,15 +7,17 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="Entries">
-/// &lt;p&gt;Lists the receipt handles of the messages for which the visibility timeout must be
-/// changed.&lt;/p&gt;
+/// Lists the receipt handles of the messages for which the visibility timeout must be changed.
 /// </param>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue whose messages' visibility is changed.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue whose messages' visibility is changed.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 public sealed record class ChangeMessageVisibilityBatchInput(
     IReadOnlyList<ChangeMessageVisibilityBatchRequestEntry> Entries,

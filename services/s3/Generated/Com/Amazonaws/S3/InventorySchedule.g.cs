@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies the schedule for generating S3 Inventory results.&lt;/p&gt;
+/// Specifies the schedule for generating S3 Inventory results.
 /// </summary>
 /// <param name="Frequency">
-/// &lt;p&gt;Specifies how frequently inventory results are produced.&lt;/p&gt;
+/// Specifies how frequently inventory results are produced.
 /// </param>
 public sealed record class InventorySchedule(InventoryFrequency Frequency);

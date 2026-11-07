@@ -5,58 +5,65 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents one of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A new global secondary index to be added to an existing table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;New provisioned throughput parameters for an existing global secondary
-/// index.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;An existing global secondary index to be removed from an existing
-/// table.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// Represents one of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// A new global secondary index to be added to an existing table.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// New provisioned throughput parameters for an existing global secondary index.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// An existing global secondary index to be removed from an existing table.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="Create">
-/// &lt;p&gt;The parameters required for creating a global secondary index on an existing
-/// table:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;IndexName &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;KeySchema &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributeDefinitions &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Projection &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProvisionedThroughput &lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The parameters required for creating a global secondary index on an existing table:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>IndexName </c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>KeySchema </c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>AttributeDefinitions </c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Projection </c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ProvisionedThroughput </c>
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Delete">
-/// &lt;p&gt;The name of an existing global secondary index to be removed.&lt;/p&gt;
+/// The name of an existing global secondary index to be removed.
 /// </param>
 /// <param name="Update">
-/// &lt;p&gt;The name of an existing global secondary index, along with new provisioned throughput
-/// settings to be applied to that index.&lt;/p&gt;
+/// The name of an existing global secondary index, along with new provisioned throughput settings to be
+/// applied to that index.
 /// </param>
 public sealed record class GlobalSecondaryIndexUpdate(
     CreateGlobalSecondaryIndexAction? Create = null,

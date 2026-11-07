@@ -8,7 +8,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DeleteBackupOutput.
 /// </summary>
 /// <param name="BackupDescription">
-/// &lt;p&gt;Contains the description of the backup created for the table.&lt;/p&gt;
+/// Contains the description of the backup created for the table.
 /// </param>
 public sealed record class DeleteBackupOutput(
     global::Com.Amazonaws.Dynamodb.BackupDescription? BackupDescription = null

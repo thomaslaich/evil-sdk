@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetFunctionConcurrencyOutput.
 /// </summary>
 /// <param name="ReservedConcurrentExecutions">
-/// &lt;p&gt;The number of simultaneous executions that are reserved for the function.&lt;/p&gt;
+/// The number of simultaneous executions that are reserved for the function.
 /// </param>
 public sealed record class GetFunctionConcurrencyOutput(int? ReservedConcurrentExecutions = null);

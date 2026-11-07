@@ -5,45 +5,43 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Contains the details of a message movement task. &lt;/p&gt;
+/// Contains the details of a message movement task.
 /// </summary>
 /// <param name="ApproximateNumberOfMessagesMoved">
-/// &lt;p&gt;The approximate number of messages already moved to the destination queue.&lt;/p&gt;
+/// The approximate number of messages already moved to the destination queue.
 /// </param>
 /// <param name="ApproximateNumberOfMessagesToMove">
-/// &lt;p&gt;The number of messages to be moved from the source queue. This number is obtained at
-/// the time of starting the message movement task and is only included after the message
-/// movement task is selected to start.&lt;/p&gt;
+/// The number of messages to be moved from the source queue. This number is obtained at the time of
+/// starting the message movement task and is only included after the message movement task is selected
+/// to start.
 /// </param>
 /// <param name="DestinationArn">
-/// &lt;p&gt;The ARN of the destination queue if it has been specified in the
-/// &lt;code&gt;StartMessageMoveTask&lt;/code&gt; request. If a &lt;code&gt;DestinationArn&lt;/code&gt; has not
-/// been specified in the &lt;code&gt;StartMessageMoveTask&lt;/code&gt; request, this field value will
-/// be NULL.&lt;/p&gt;
+/// The ARN of the destination queue if it has been specified in the <c>StartMessageMoveTask</c>
+/// request. If a <c>DestinationArn</c> has not been specified in the <c>StartMessageMoveTask</c>
+/// request, this field value will be NULL.
 /// </param>
 /// <param name="FailureReason">
-/// &lt;p&gt;The task failure reason (only included if the task status is FAILED).&lt;/p&gt;
+/// The task failure reason (only included if the task status is FAILED).
 /// </param>
 /// <param name="MaxNumberOfMessagesPerSecond">
-/// &lt;p&gt;The number of messages to be moved per second (the message movement rate), if it has
-/// been specified in the &lt;code&gt;StartMessageMoveTask&lt;/code&gt; request. If a
-/// &lt;code&gt;MaxNumberOfMessagesPerSecond&lt;/code&gt; has not been specified in the
-/// &lt;code&gt;StartMessageMoveTask&lt;/code&gt; request, this field value will be NULL.&lt;/p&gt;
+/// The number of messages to be moved per second (the message movement rate), if it has been specified
+/// in the <c>StartMessageMoveTask</c> request. If a <c>MaxNumberOfMessagesPerSecond</c> has not been
+/// specified in the <c>StartMessageMoveTask</c> request, this field value will be NULL.
 /// </param>
 /// <param name="SourceArn">
-/// &lt;p&gt;The ARN of the queue that contains the messages to be moved to another queue.&lt;/p&gt;
+/// The ARN of the queue that contains the messages to be moved to another queue.
 /// </param>
 /// <param name="StartedTimestamp">
-/// &lt;p&gt;The timestamp of starting the message movement task.&lt;/p&gt;
+/// The timestamp of starting the message movement task.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;The status of the message movement task. Possible values are: RUNNING, COMPLETED,
-/// CANCELLING, CANCELLED, and FAILED.&lt;/p&gt;
+/// The status of the message movement task. Possible values are: RUNNING, COMPLETED, CANCELLING,
+/// CANCELLED, and FAILED.
 /// </param>
 /// <param name="TaskHandle">
-/// &lt;p&gt;An identifier associated with a message movement task. When this field is returned in
-/// the response of the &lt;code&gt;ListMessageMoveTasks&lt;/code&gt; action, it is only populated for
-/// tasks that are in RUNNING status.&lt;/p&gt;
+/// An identifier associated with a message movement task. When this field is returned in the response
+/// of the <c>ListMessageMoveTasks</c> action, it is only populated for tasks that are in RUNNING
+/// status.
 /// </param>
 public sealed record class ListMessageMoveTasksResultEntry(
     long? ApproximateNumberOfMessagesMoved = null,

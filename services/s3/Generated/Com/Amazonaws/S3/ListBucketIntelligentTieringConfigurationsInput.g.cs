@@ -8,14 +8,15 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListBucketIntelligentTieringConfigurationsInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.&lt;/p&gt;
+/// The name of the Amazon S3 bucket whose configuration you want to modify or retrieve.
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;The &lt;code&gt;ContinuationToken&lt;/code&gt; that represents a placeholder from where this request should
-/// begin.&lt;/p&gt;
+/// The <c>ContinuationToken</c> that represents a placeholder from where this request should begin.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 public sealed record class ListBucketIntelligentTieringConfigurationsInput(
     string Bucket,

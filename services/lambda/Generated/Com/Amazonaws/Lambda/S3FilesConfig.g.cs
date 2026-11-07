@@ -5,10 +5,37 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Setting controls how your function accesses data from an Amazon S3 file system.&lt;/p&gt;
+/// Setting controls how your function accesses data from an Amazon S3 file system.
 /// </summary>
 /// <param name="DirectS3Read">
-/// &lt;p&gt;Specifies if a function reads from the file system for the lowest latency, or through Amazon S3 Files feature &quot;direct Amazon S3 bucket reads&quot; for the highest throughput. Valid values:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;AUTO&lt;/code&gt; (default) – Direct reads are active for functions you configure with 512 MB or more of memory.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;ENABLED&lt;/code&gt; – Enforces all reads are directly from the Amazon S3 bucket, regardless of available memory (less than 512 MB).&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;DISABLED&lt;/code&gt; – Routes all reads through the file system, regardless of memory configuration.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;To use direct reads, you must grant the execution role the &lt;code&gt;s3:GetObject&lt;/code&gt; and &lt;code&gt;s3:GetObjectVersion&lt;/code&gt; permissions. If a direct read fails, Lambda automatically falls back to reading through the file system.&lt;/p&gt;
+/// <para>
+/// Specifies if a function reads from the file system for the lowest latency, or through Amazon S3
+/// Files feature "direct Amazon S3 bucket reads" for the highest throughput. Valid values:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>AUTO</c> (default) – Direct reads are active for functions you configure with 512 MB or more of
+/// memory.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ENABLED</c> – Enforces all reads are directly from the Amazon S3 bucket, regardless of available
+/// memory (less than 512 MB).
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DISABLED</c> – Routes all reads through the file system, regardless of memory configuration.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// To use direct reads, you must grant the execution role the <c>s3:GetObject</c> and
+/// <c>s3:GetObjectVersion</c> permissions. If a direct read fails, Lambda automatically falls back to
+/// reading through the file system.
+/// </para>
 /// </param>
 public sealed record class S3FilesConfig(
     global::Com.Amazonaws.Lambda.DirectS3Read? DirectS3Read = null

@@ -10,76 +10,90 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListMultipartUploadsOutput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket to which the multipart upload was initiated. Does not return the access point ARN or
-/// access point alias if used.&lt;/p&gt;
+/// The name of the bucket to which the multipart upload was initiated. Does not return the access point
+/// ARN or access point alias if used.
 /// </param>
 /// <param name="CommonPrefixes">
-/// &lt;p&gt;If you specify a delimiter in the request, then the result returns each distinct key prefix
-/// containing the delimiter in a &lt;code&gt;CommonPrefixes&lt;/code&gt; element. The distinct key prefixes are
-/// returned in the &lt;code&gt;Prefix&lt;/code&gt; child element.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, only prefixes that end in a delimiter (&lt;code&gt;/&lt;/code&gt;) are supported.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If you specify a delimiter in the request, then the result returns each distinct key prefix
+/// containing the delimiter in a <c>CommonPrefixes</c> element. The distinct key prefixes are returned
+/// in the <c>Prefix</c> child element.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter
+/// (<c>/</c>) are supported.
+/// </para>
 /// </param>
 /// <param name="Delimiter">
-/// &lt;p&gt;Contains the delimiter you specified in the request. If you don't specify a delimiter in your
-/// request, this element is absent from the response.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, &lt;code&gt;/&lt;/code&gt; is the only supported delimiter.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Contains the delimiter you specified in the request. If you don't specify a delimiter in your
+/// request, this element is absent from the response.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, <c>/</c> is the only supported
+/// delimiter.
+/// </para>
 /// </param>
 /// <param name="EncodingType">
-/// &lt;p&gt;Encoding type used by Amazon S3 to encode object keys in the response.&lt;/p&gt;
-/// &lt;p&gt;If you specify the &lt;code&gt;encoding-type&lt;/code&gt; request parameter, Amazon S3 includes this element in the
-/// response, and returns encoded key name values in the following response elements:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Delimiter&lt;/code&gt;, &lt;code&gt;KeyMarker&lt;/code&gt;, &lt;code&gt;Prefix&lt;/code&gt;, &lt;code&gt;NextKeyMarker&lt;/code&gt;,
-/// &lt;code&gt;Key&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// Encoding type used by Amazon S3 to encode object keys in the response.
+/// </para>
+/// <para>
+/// If you specify the <c>encoding-type</c> request parameter, Amazon S3 includes this element in the
+/// response, and returns encoded key name values in the following response elements:
+/// </para>
+/// <para>
+/// <c>Delimiter</c>, <c>KeyMarker</c>, <c>Prefix</c>, <c>NextKeyMarker</c>, <c>Key</c>.
+/// </para>
 /// </param>
 /// <param name="IsTruncated">
-/// &lt;p&gt;Indicates whether the returned list of multipart uploads is truncated. A value of true indicates
-/// that the list was truncated. The list can be truncated if the number of multipart uploads exceeds the
-/// limit allowed or specified by max uploads.&lt;/p&gt;
+/// Indicates whether the returned list of multipart uploads is truncated. A value of true indicates
+/// that the list was truncated. The list can be truncated if the number of multipart uploads exceeds
+/// the limit allowed or specified by max uploads.
 /// </param>
 /// <param name="KeyMarker">
-/// &lt;p&gt;The key at or after which the listing began.&lt;/p&gt;
+/// The key at or after which the listing began.
 /// </param>
 /// <param name="MaxUploads">
-/// &lt;p&gt;Maximum number of multipart uploads that could have been included in the response.&lt;/p&gt;
+/// Maximum number of multipart uploads that could have been included in the response.
 /// </param>
 /// <param name="NextKeyMarker">
-/// &lt;p&gt;When a list is truncated, this element specifies the value that should be used for the key-marker
-/// request parameter in a subsequent request.&lt;/p&gt;
+/// When a list is truncated, this element specifies the value that should be used for the key-marker
+/// request parameter in a subsequent request.
 /// </param>
 /// <param name="NextUploadIdMarker">
-/// &lt;p&gt;When a list is truncated, this element specifies the value that should be used for the
-/// &lt;code&gt;upload-id-marker&lt;/code&gt; request parameter in a subsequent request.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// When a list is truncated, this element specifies the value that should be used for the
+/// <c>upload-id-marker</c> request parameter in a subsequent request.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;When a prefix is provided in the request, this field contains the specified prefix. The result
-/// contains only keys starting with the specified prefix.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - For directory buckets, only prefixes that end in a delimiter (&lt;code&gt;/&lt;/code&gt;) are supported.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// When a prefix is provided in the request, this field contains the specified prefix. The result
+/// contains only keys starting with the specified prefix.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter
+/// (<c>/</c>) are supported.
+/// </para>
 /// </param>
 /// <param name="UploadIdMarker">
-/// &lt;p&gt;Together with key-marker, specifies the multipart upload after which listing should begin. If
-/// key-marker is not specified, the upload-id-marker parameter is ignored. Otherwise, any multipart uploads
-/// for a key equal to the key-marker might be included in the list only if they have an upload ID
-/// lexicographically greater than the specified &lt;code&gt;upload-id-marker&lt;/code&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Together with key-marker, specifies the multipart upload after which listing should begin. If
+/// key-marker is not specified, the upload-id-marker parameter is ignored. Otherwise, any multipart
+/// uploads for a key equal to the key-marker might be included in the list only if they have an upload
+/// ID lexicographically greater than the specified <c>upload-id-marker</c>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Uploads">
-/// &lt;p&gt;Container for elements related to a particular multipart upload. A response can contain zero or more
-/// &lt;code&gt;Upload&lt;/code&gt; elements.&lt;/p&gt;
+/// Container for elements related to a particular multipart upload. A response can contain zero or more
+/// <c>Upload</c> elements.
 /// </param>
 public sealed record class ListMultipartUploadsOutput(
     string? Bucket = null,

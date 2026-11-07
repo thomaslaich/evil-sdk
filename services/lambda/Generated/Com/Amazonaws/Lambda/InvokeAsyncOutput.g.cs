@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;A success response (&lt;code&gt;202 Accepted&lt;/code&gt;) indicates that the request is queued for invocation.&lt;/p&gt;
+/// A success response (<c>202 Accepted</c>) indicates that the request is queued for invocation.
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;The status code.&lt;/p&gt;
+/// The status code.
 /// </param>
 public sealed record class InvokeAsyncOutput(int? Status = null);

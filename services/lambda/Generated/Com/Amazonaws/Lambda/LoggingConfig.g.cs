@@ -5,19 +5,26 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The function's Amazon CloudWatch Logs configuration settings.&lt;/p&gt;
+/// The function's Amazon CloudWatch Logs configuration settings.
 /// </summary>
 /// <param name="ApplicationLogLevel">
-/// &lt;p&gt;Set this property to filter the application logs for your function that Lambda sends to CloudWatch. Lambda only sends application logs at the selected level of detail and lower, where &lt;code&gt;TRACE&lt;/code&gt; is the highest level and &lt;code&gt;FATAL&lt;/code&gt; is the lowest.&lt;/p&gt;
+/// Set this property to filter the application logs for your function that Lambda sends to CloudWatch.
+/// Lambda only sends application logs at the selected level of detail and lower, where <c>TRACE</c> is
+/// the highest level and <c>FATAL</c> is the lowest.
 /// </param>
 /// <param name="LogFormat">
-/// &lt;p&gt;The format in which Lambda sends your function's application and system logs to CloudWatch. Select between plain text and structured JSON.&lt;/p&gt;
+/// The format in which Lambda sends your function's application and system logs to CloudWatch. Select
+/// between plain text and structured JSON.
 /// </param>
 /// <param name="LogGroup">
-/// &lt;p&gt;The name of the Amazon CloudWatch log group the function sends logs to. By default, Lambda functions send logs to a default log group named &lt;code&gt;/aws/lambda/&amp;lt;function name&amp;gt;&lt;/code&gt;. To use a different log group, enter an existing log group or enter a new log group name.&lt;/p&gt;
+/// The name of the Amazon CloudWatch log group the function sends logs to. By default, Lambda functions
+/// send logs to a default log group named <c>/aws/lambda/&lt;function name&gt;</c>. To use a different
+/// log group, enter an existing log group or enter a new log group name.
 /// </param>
 /// <param name="SystemLogLevel">
-/// &lt;p&gt;Set this property to filter the system logs for your function that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where &lt;code&gt;DEBUG&lt;/code&gt; is the highest level and &lt;code&gt;WARN&lt;/code&gt; is the lowest.&lt;/p&gt;
+/// Set this property to filter the system logs for your function that Lambda sends to CloudWatch.
+/// Lambda only sends system logs at the selected level of detail and lower, where <c>DEBUG</c> is the
+/// highest level and <c>WARN</c> is the lowest.
 /// </param>
 public sealed record class LoggingConfig(
     global::Com.Amazonaws.Lambda.ApplicationLogLevel? ApplicationLogLevel = null,

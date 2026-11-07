@@ -8,23 +8,28 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetObjectAnnotationInput.
 /// </summary>
 /// <param name="AnnotationName">
-/// &lt;p&gt;The name of the annotation to retrieve.&lt;/p&gt;
-/// &lt;p&gt;Length Constraints: Minimum length of 1. Maximum length of 512 bytes.&lt;/p&gt;
+/// <para>
+/// The name of the annotation to retrieve.
+/// </para>
+/// <para>
+/// Length Constraints: Minimum length of 1. Maximum length of 512 bytes.
+/// </para>
 /// </param>
 /// <param name="Bucket">
-/// &lt;p&gt;The name of the bucket that contains the object.&lt;/p&gt;
+/// The name of the bucket that contains the object.
 /// </param>
 /// <param name="Key">
-/// &lt;p&gt;The object key.&lt;/p&gt;
+/// The object key.
 /// </param>
 /// <param name="ChecksumMode">
-/// &lt;p&gt;Set to &lt;code&gt;ENABLED&lt;/code&gt; to validate the checksum of the annotation payload on retrieval.&lt;/p&gt;
+/// Set to <c>ENABLED</c> to validate the checksum of the annotation payload on retrieval.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the bucket is owned by a different account, the request fails with an HTTP 403 (Access Denied) error.&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the bucket is owned by a different account, the
+/// request fails with an HTTP 403 (Access Denied) error.
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;The version ID of the object.&lt;/p&gt;
+/// The version ID of the object.
 /// </param>
 public sealed record class GetObjectAnnotationInput(
     string AnnotationName,

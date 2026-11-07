@@ -8,120 +8,159 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteObjectsInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt;The bucket name containing the objects to delete. &lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets&lt;/b&gt; - When you use this operation with a directory bucket, you must use virtual-hosted-style requests in the format &lt;code&gt;
-/// &lt;i&gt;Bucket-name&lt;/i&gt;.s3express-&lt;i&gt;zone-id&lt;/i&gt;.&lt;i&gt;region-code&lt;/i&gt;.amazonaws.com&lt;/code&gt;. Path-style requests are not supported.  Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must follow the format &lt;code&gt;
-/// &lt;i&gt;bucket-base-name&lt;/i&gt;--&lt;i&gt;zone-id&lt;/i&gt;--x-s3&lt;/code&gt; (for example, &lt;code&gt;
-/// &lt;i&gt;amzn-s3-demo-bucket&lt;/i&gt;--&lt;i&gt;usw2-az1&lt;/i&gt;--x-s3&lt;/code&gt;). For information about bucket naming
-/// restrictions, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html&quot;&gt;Directory bucket naming
-/// rules&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Access points&lt;/b&gt; - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.s3-accesspoint.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html&quot;&gt;Using access points&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object Lambda access points are not supported by directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;S3 on Outposts&lt;/b&gt; - When you use this action with S3 on Outposts, you must direct requests to the S3 on Outposts hostname. The S3 on Outposts hostname takes the
-/// form &lt;code&gt;
-/// &lt;i&gt;AccessPointName&lt;/i&gt;-&lt;i&gt;AccountId&lt;/i&gt;.&lt;i&gt;outpostID&lt;/i&gt;.s3-outposts.&lt;i&gt;Region&lt;/i&gt;.amazonaws.com&lt;/code&gt;. When you use this action with S3 on Outposts, the destination bucket must be the Outposts access point ARN or the access point alias. For more information about S3 on Outposts, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html&quot;&gt;What is S3 on Outposts?&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// <para>
+/// The bucket name containing the objects to delete.
+/// </para>
+/// <para>
+/// <b>Directory buckets</b> - When you use this operation with a directory bucket, you must use
+/// virtual-hosted-style requests in the format <c>
+/// <i>Bucket-name</i>.s3express-<i>zone-id</i>.<i>region-code</i>.amazonaws.com</c>. Path-style
+/// requests are not supported. Directory bucket names must be unique in the chosen Zone (Availability
+/// Zone or Local Zone). Bucket names must follow the format <c>
+/// <i>bucket-base-name</i>--<i>zone-id</i>--x-s3</c> (for example, <c>
+/// <i>amzn-s3-demo-bucket</i>--<i>usw2-az1</i>--x-s3</c>). For information about bucket naming
+/// restrictions, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-naming-rules.html">Directory
+/// bucket naming rules</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Access points</b> - When you use this action with an access point for general purpose buckets,
+/// you must provide the alias of the access point in place of the bucket name or specify the access
+/// point ARN. When you use this action with an access point for directory buckets, you must provide the
+/// access point name in place of the bucket name. When using the access point ARN, you must direct
+/// requests to the access point hostname. The access point hostname takes the form
+/// <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+/// action with an access point through the Amazon Web Services SDKs, you provide the access point ARN
+/// in place of the bucket name. For more information about access point ARNs, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html">Using
+/// access points</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object Lambda access points are not supported by directory buckets.
+/// </para>
+/// <para>
+/// <b>S3 on Outposts</b> - When you use this action with S3 on Outposts, you must direct requests to
+/// the S3 on Outposts hostname. The S3 on Outposts hostname takes the form <c>
+/// <i>AccessPointName</i>-<i>AccountId</i>.<i>outpostID</i>.s3-outposts.<i>Region</i>.amazonaws.com</c>.
+/// When you use this action with S3 on Outposts, the destination bucket must be the Outposts access
+/// point ARN or the access point alias. For more information about S3 on Outposts, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html">What is S3 on
+/// Outposts?</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </param>
 /// <param name="Delete">
-/// &lt;p&gt;Container for the request.&lt;/p&gt;
+/// Container for the request.
 /// </param>
 /// <param name="BypassGovernanceRetention">
-/// &lt;p&gt;Specifies whether you want to delete this object even if it has a Governance-type Object Lock in
-/// place. To use this header, you must have the &lt;code&gt;s3:BypassGovernanceRetention&lt;/code&gt;
-/// permission.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether you want to delete this object even if it has a Governance-type Object Lock in
+/// place. To use this header, you must have the <c>s3:BypassGovernanceRetention</c> permission.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ChecksumAlgorithm">
-/// &lt;p&gt;Indicates the algorithm used to create the checksum for the object when you use the SDK. This header will not provide any
-/// additional functionality if you don't use the SDK. When you send this header, there must be a corresponding &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; or
-/// &lt;code&gt;x-amz-trailer&lt;/code&gt; header sent. Otherwise, Amazon S3 fails the request with the HTTP status code &lt;code&gt;400 Bad Request&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For the &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; header, replace &lt;code&gt;
-/// &lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; with the supported algorithm from the following list: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC32&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC32C&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CRC64NVME&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;MD5&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA1&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA256&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;SHA512&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH3&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH64&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;XXHASH128&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more
-/// information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity&lt;/a&gt; in
-/// the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;p&gt;If the individual checksum value you provide through &lt;code&gt;x-amz-checksum-&lt;i&gt;algorithm&lt;/i&gt;
-/// &lt;/code&gt; doesn't match the checksum algorithm you set through &lt;code&gt;x-amz-sdk-checksum-algorithm&lt;/code&gt;, Amazon S3 fails the request with a &lt;code&gt;BadDigest&lt;/code&gt; error.&lt;/p&gt;
-/// &lt;p&gt;If you provide an individual checksum, Amazon S3 ignores any provided &lt;code&gt;ChecksumAlgorithm&lt;/code&gt;
-/// parameter.&lt;/p&gt;
+/// <para>
+/// Indicates the algorithm used to create the checksum for the object when you use the SDK. This header
+/// will not provide any additional functionality if you don't use the SDK. When you send this header,
+/// there must be a corresponding <c>x-amz-checksum-<i>algorithm</i> </c> or <c>x-amz-trailer</c> header
+/// sent. Otherwise, Amazon S3 fails the request with the HTTP status code <c>400 Bad Request</c>.
+/// </para>
+/// <para>
+/// For the <c>x-amz-checksum-<i>algorithm</i> </c> header, replace <c> <i>algorithm</i> </c> with the
+/// supported algorithm from the following list:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CRC32</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CRC32C</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CRC64NVME</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>MD5</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA1</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA256</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SHA512</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH3</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH64</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>XXHASH128</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// If the individual checksum value you provide through <c>x-amz-checksum-<i>algorithm</i> </c> doesn't
+/// match the checksum algorithm you set through <c>x-amz-sdk-checksum-algorithm</c>, Amazon S3 fails
+/// the request with a <c>BadDigest</c> error.
+/// </para>
+/// <para>
+/// If you provide an individual checksum, Amazon S3 ignores any provided <c>ChecksumAlgorithm</c>
+/// parameter.
+/// </para>
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt;The account ID of the expected bucket owner. If the account ID that you provide does not match the actual owner of the bucket, the request fails with the HTTP status code &lt;code&gt;403 Forbidden&lt;/code&gt; (access denied).&lt;/p&gt;
+/// The account ID of the expected bucket owner. If the account ID that you provide does not match the
+/// actual owner of the bucket, the request fails with the HTTP status code <c>403 Forbidden</c> (access
+/// denied).
 /// </param>
 /// <param name="MFA">
-/// &lt;p&gt;The concatenation of the authentication device's serial number, a space, and the value that is
-/// displayed on your authentication device. Required to permanently delete a versioned object if versioning
-/// is configured with MFA delete enabled.&lt;/p&gt;
-/// &lt;p&gt;When performing the &lt;code&gt;DeleteObjects&lt;/code&gt; operation on an MFA delete enabled bucket, which
-/// attempts to delete the specified versioned objects, you must include an MFA token. If you don't provide
-/// an MFA token, the entire request will fail, even if there are non-versioned objects that you are trying
-/// to delete. If you provide an invalid token, whether there are versioned object keys in the request or
-/// not, the entire Multi-Object Delete request will fail. For information about MFA Delete, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html#MultiFactorAuthenticationDelete&quot;&gt; MFA
-/// Delete&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The concatenation of the authentication device's serial number, a space, and the value that is
+/// displayed on your authentication device. Required to permanently delete a versioned object if
+/// versioning is configured with MFA delete enabled.
+/// </para>
+/// <para>
+/// When performing the <c>DeleteObjects</c> operation on an MFA delete enabled bucket, which attempts
+/// to delete the specified versioned objects, you must include an MFA token. If you don't provide an
+/// MFA token, the entire request will fail, even if there are non-versioned objects that you are trying
+/// to delete. If you provide an invalid token, whether there are versioned object keys in the request
+/// or not, the entire Multi-Object Delete request will fail. For information about MFA Delete, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html#MultiFactorAuthenticationDelete">MFA
+/// Delete</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class DeleteObjectsInput(
     string Bucket,

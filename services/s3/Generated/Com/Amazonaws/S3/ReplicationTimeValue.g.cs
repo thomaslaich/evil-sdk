@@ -5,11 +5,15 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt; A container specifying the time value for S3 Replication Time Control (S3 RTC) and replication metrics
-/// &lt;code&gt;EventThreshold&lt;/code&gt;. &lt;/p&gt;
+/// A container specifying the time value for S3 Replication Time Control (S3 RTC) and replication
+/// metrics <c>EventThreshold</c>.
 /// </summary>
 /// <param name="Minutes">
-/// &lt;p&gt; Contains an integer specifying time in minutes. &lt;/p&gt;
-/// &lt;p&gt; Valid value: 15&lt;/p&gt;
+/// <para>
+/// Contains an integer specifying time in minutes.
+/// </para>
+/// <para>
+/// Valid value: 15
+/// </para>
 /// </param>
 public sealed record class ReplicationTimeValue(int? Minutes = null);

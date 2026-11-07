@@ -5,11 +5,11 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Enables setting the configuration for Kinesis Streaming.&lt;/p&gt;
+/// Enables setting the configuration for Kinesis Streaming.
 /// </summary>
 /// <param name="ApproximateCreationDateTimePrecision">
-/// &lt;p&gt;Toggle for the precision of Kinesis data stream timestamp. The values are either
-/// &lt;code&gt;MILLISECOND&lt;/code&gt; or &lt;code&gt;MICROSECOND&lt;/code&gt;.&lt;/p&gt;
+/// Toggle for the precision of Kinesis data stream timestamp. The values are either <c>MILLISECOND</c>
+/// or <c>MICROSECOND</c>.
 /// </param>
 public sealed record class EnableKinesisStreamingConfiguration(
     global::Com.Amazonaws.Dynamodb.ApproximateCreationDateTimePrecision? ApproximateCreationDateTimePrecision =

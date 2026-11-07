@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Information about retry attempts for an operation.&lt;/p&gt;
+/// Information about retry attempts for an operation.
 /// </summary>
 /// <param name="CurrentAttempt">
-/// &lt;p&gt;The current attempt number for this operation.&lt;/p&gt;
+/// The current attempt number for this operation.
 /// </param>
 /// <param name="NextAttemptDelaySeconds">
-/// &lt;p&gt;The delay before the next retry attempt, in seconds.&lt;/p&gt;
+/// The delay before the next retry attempt, in seconds.
 /// </param>
 public sealed record class RetryDetails(
     int? CurrentAttempt = null,

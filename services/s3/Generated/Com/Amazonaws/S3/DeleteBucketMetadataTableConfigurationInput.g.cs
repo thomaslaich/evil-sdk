@@ -8,11 +8,11 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#DeleteBucketMetadataTableConfigurationInput.
 /// </summary>
 /// <param name="Bucket">
-/// &lt;p&gt; The general purpose bucket that you want to remove the metadata table configuration from. &lt;/p&gt;
+/// The general purpose bucket that you want to remove the metadata table configuration from.
 /// </param>
 /// <param name="ExpectedBucketOwner">
-/// &lt;p&gt; The expected bucket owner of the general purpose bucket that you want to remove the metadata table
-/// configuration from. &lt;/p&gt;
+/// The expected bucket owner of the general purpose bucket that you want to remove the metadata table
+/// configuration from.
 /// </param>
 public sealed record class DeleteBucketMetadataTableConfigurationInput(
     string Bucket,

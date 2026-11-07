@@ -7,34 +7,46 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The request was denied due to request throttling.&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Exceeds the permitted request rate for the queue or for the recipient of the
-/// request.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Ensure that the request rate is within the Amazon SQS limits for
-/// sending messages. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html#quotas-requests&quot;&gt;Amazon SQS quotas&lt;/a&gt; in the &lt;i&gt;Amazon SQS
-/// Developer Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The request was denied due to request throttling.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Exceeds the permitted request rate for the queue or for the recipient of the request.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Ensure that the request rate is within the Amazon SQS limits for sending messages. For more
+/// information, see
+/// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html#quotas-requests">Amazon
+/// SQS quotas</see> in the <i>Amazon SQS Developer Guide</i>.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 public sealed partial class RequestThrottled : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was denied due to request throttling.&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Exceeds the permitted request rate for the queue or for the recipient of the
-    /// request.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Ensure that the request rate is within the Amazon SQS limits for
-    /// sending messages. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html#quotas-requests&quot;&gt;Amazon SQS quotas&lt;/a&gt; in the &lt;i&gt;Amazon SQS
-    /// Developer Guide&lt;/i&gt;.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
+    /// <para>
+    /// The request was denied due to request throttling.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Exceeds the permitted request rate for the queue or for the recipient of the request.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Ensure that the request rate is within the Amazon SQS limits for sending messages. For more
+    /// information, see
+    /// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-quotas.html#quotas-requests">Amazon
+    /// SQS quotas</see> in the <i>Amazon SQS Developer Guide</i>.
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     public RequestThrottled(string? message = null)
         : base(message) { }

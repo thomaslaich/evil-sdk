@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for &lt;code&gt;TagSet&lt;/code&gt; elements.&lt;/p&gt;
+/// Container for <c>TagSet</c> elements.
 /// </summary>
 /// <param name="TagSet">
-/// &lt;p&gt;A collection for a set of tags&lt;/p&gt;
+/// A collection for a set of tags
 /// </param>
 public sealed record class Tagging(IReadOnlyList<global::Com.Amazonaws.S3.Tag> TagSet);

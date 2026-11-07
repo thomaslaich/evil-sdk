@@ -7,35 +7,33 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents a request to perform an &lt;code&gt;UpdateItem&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents a request to perform an <c>UpdateItem</c> operation.
 /// </summary>
 /// <param name="Key">
-/// &lt;p&gt;The primary key of the item to be updated. Each element consists of an attribute name
-/// and a value for that attribute.&lt;/p&gt;
+/// The primary key of the item to be updated. Each element consists of an attribute name and a value
+/// for that attribute.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;Name of the table for the &lt;code&gt;UpdateItem&lt;/code&gt; request. You can also provide the
-/// Amazon Resource Name (ARN) of the table in this parameter.&lt;/p&gt;
+/// Name of the table for the <c>UpdateItem</c> request. You can also provide the Amazon Resource Name
+/// (ARN) of the table in this parameter.
 /// </param>
 /// <param name="UpdateExpression">
-/// &lt;p&gt;An expression that defines one or more attributes to be updated, the action to be
-/// performed on them, and new value(s) for them.&lt;/p&gt;
+/// An expression that defines one or more attributes to be updated, the action to be performed on them,
+/// and new value(s) for them.
 /// </param>
 /// <param name="ConditionExpression">
-/// &lt;p&gt;A condition that must be satisfied in order for a conditional update to
-/// succeed.&lt;/p&gt;
+/// A condition that must be satisfied in order for a conditional update to succeed.
 /// </param>
 /// <param name="ExpressionAttributeNames">
-/// &lt;p&gt;One or more substitution tokens for attribute names in an expression.&lt;/p&gt;
+/// One or more substitution tokens for attribute names in an expression.
 /// </param>
 /// <param name="ExpressionAttributeValues">
-/// &lt;p&gt;One or more values that can be substituted in an expression.&lt;/p&gt;
+/// One or more values that can be substituted in an expression.
 /// </param>
 /// <param name="ReturnValuesOnConditionCheckFailure">
-/// &lt;p&gt;Use &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt; to get the item attributes if the
-/// &lt;code&gt;Update&lt;/code&gt; condition fails. For
-/// &lt;code&gt;ReturnValuesOnConditionCheckFailure&lt;/code&gt;, the valid values are: NONE and
-/// ALL_OLD.&lt;/p&gt;
+/// Use <c>ReturnValuesOnConditionCheckFailure</c> to get the item attributes if the <c>Update</c>
+/// condition fails. For <c>ReturnValuesOnConditionCheckFailure</c>, the valid values are: NONE and
+/// ALL_OLD.
 /// </param>
 public sealed record class Update(
     IReadOnlyDictionary<string, AttributeValue> Key,

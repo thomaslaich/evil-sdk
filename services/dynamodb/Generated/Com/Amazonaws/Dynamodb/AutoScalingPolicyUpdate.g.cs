@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the auto scaling policy to be modified.&lt;/p&gt;
+/// Represents the auto scaling policy to be modified.
 /// </summary>
 /// <param name="TargetTrackingScalingPolicyConfiguration">
-/// &lt;p&gt;Represents a target tracking scaling policy configuration.&lt;/p&gt;
+/// Represents a target tracking scaling policy configuration.
 /// </param>
 /// <param name="PolicyName">
-/// &lt;p&gt;The name of the scaling policy.&lt;/p&gt;
+/// The name of the scaling policy.
 /// </param>
 public sealed record class AutoScalingPolicyUpdate(
     AutoScalingTargetTrackingScalingPolicyConfigurationUpdate TargetTrackingScalingPolicyConfiguration,

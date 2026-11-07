@@ -5,32 +5,43 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;important&gt;
-/// &lt;p&gt;Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can
-/// continue to use the feature as usual. &lt;a href=&quot;http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/&quot;&gt;Learn more&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;p&gt;Describes the parameters for Select job types.&lt;/p&gt;
-/// &lt;p&gt;Learn &lt;a href=&quot;http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/&quot;&gt;How to
-/// optimize querying your data in Amazon S3&lt;/a&gt; using &lt;a href=&quot;https://docs.aws.amazon.com/athena/latest/ug/what-is.html&quot;&gt;Amazon Athena&lt;/a&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html&quot;&gt;S3 Object Lambda&lt;/a&gt;, or client-side
-/// filtering.&lt;/p&gt;
+/// <para>
+/// <b>Important:</b> Amazon S3 Select is no longer available to new customers. Existing customers of
+/// Amazon S3 Select can continue to use the feature as usual.
+/// <see href="http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/">Learn
+/// more</see>
+/// </para>
+/// <para>
+/// Describes the parameters for Select job types.
+/// </para>
+/// <para>
+/// Learn
+/// <see href="http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/">How
+/// to optimize querying your data in Amazon S3</see> using
+/// <see href="https://docs.aws.amazon.com/athena/latest/ug/what-is.html">Amazon Athena</see>,
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html">S3
+/// Object Lambda</see>, or client-side filtering.
+/// </para>
 /// </summary>
 /// <param name="Expression">
-/// &lt;important&gt;
-/// &lt;p&gt;Amazon S3 Select is no longer available to new customers. Existing customers of Amazon S3 Select can
-/// continue to use the feature as usual. &lt;a href=&quot;http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/&quot;&gt;Learn more&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/important&gt;
-/// &lt;p&gt;The expression that is used to query the object.&lt;/p&gt;
+/// <para>
+/// <b>Important:</b> Amazon S3 Select is no longer available to new customers. Existing customers of
+/// Amazon S3 Select can continue to use the feature as usual.
+/// <see href="http://aws.amazon.com/blogs/storage/how-to-optimize-querying-your-data-in-amazon-s3/">Learn
+/// more</see>
+/// </para>
+/// <para>
+/// The expression that is used to query the object.
+/// </para>
 /// </param>
 /// <param name="ExpressionType">
-/// &lt;p&gt;The type of the provided expression (for example, SQL).&lt;/p&gt;
+/// The type of the provided expression (for example, SQL).
 /// </param>
 /// <param name="InputSerialization">
-/// &lt;p&gt;Describes the serialization format of the object.&lt;/p&gt;
+/// Describes the serialization format of the object.
 /// </param>
 /// <param name="OutputSerialization">
-/// &lt;p&gt;Describes how the results of the Select job are serialized.&lt;/p&gt;
+/// Describes how the results of the Select job are serialized.
 /// </param>
 public sealed record class SelectParameters(
     string Expression,

@@ -8,25 +8,76 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#InvokeWithResponseStreamInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; – &lt;code&gt;my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; – &lt;code&gt;123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="ClientContext">
-/// &lt;p&gt;Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the context object.&lt;/p&gt;
+/// Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the
+/// context object.
 /// </param>
 /// <param name="InvocationType">
-/// &lt;p&gt;Use one of the following options:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;RequestResponse&lt;/code&gt; (default) – Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API operation response includes the function response and additional data.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;DryRun&lt;/code&gt; – Validate parameter values and verify that the IAM user or role has permission to invoke the function.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// Use one of the following options:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>RequestResponse</c> (default) – Invoke the function synchronously. Keep the connection open until
+/// the function returns a response or times out. The API operation response includes the function
+/// response and additional data.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DryRun</c> – Validate parameter values and verify that the IAM user or role has permission to
+/// invoke the function.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="LogType">
-/// &lt;p&gt;Set to &lt;code&gt;Tail&lt;/code&gt; to include the execution log in the response. Applies to synchronously invoked functions only.&lt;/p&gt;
+/// Set to <c>Tail</c> to include the execution log in the response. Applies to synchronously invoked
+/// functions only.
 /// </param>
 /// <param name="Payload">
-/// &lt;p&gt;The JSON that you want to provide to your Lambda function as input.&lt;/p&gt; &lt;p&gt;You can enter the JSON directly. For example, &lt;code&gt;--payload '{ &quot;key&quot;: &quot;value&quot; }'&lt;/code&gt;. You can also specify a file path. For example, &lt;code&gt;--payload file://payload.json&lt;/code&gt;.&lt;/p&gt;
+/// <para>
+/// The JSON that you want to provide to your Lambda function as input.
+/// </para>
+/// <para>
+/// You can enter the JSON directly. For example, <c>--payload '{ "key": "value" }'</c>. You can also
+/// specify a file path. For example, <c>--payload file://payload.json</c>.
+/// </para>
 /// </param>
 /// <param name="Qualifier">
-/// &lt;p&gt;The alias name.&lt;/p&gt;
+/// The alias name.
 /// </param>
 /// <param name="TenantId">
-/// &lt;p&gt;The identifier of the tenant in a multi-tenant Lambda function.&lt;/p&gt;
+/// The identifier of the tenant in a multi-tenant Lambda function.
 /// </param>
 public sealed record class InvokeWithResponseStreamInput(
     string FunctionName,

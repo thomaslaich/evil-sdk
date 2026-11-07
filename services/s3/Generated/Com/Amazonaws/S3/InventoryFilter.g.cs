@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies an S3 Inventory filter. The inventory only includes objects that meet the filter's
-/// criteria.&lt;/p&gt;
+/// Specifies an S3 Inventory filter. The inventory only includes objects that meet the filter's
+/// criteria.
 /// </summary>
 /// <param name="Prefix">
-/// &lt;p&gt;The prefix that an object must have to be included in the inventory results.&lt;/p&gt;
+/// The prefix that an object must have to be included in the inventory results.
 /// </param>
 public sealed record class InventoryFilter(string Prefix);

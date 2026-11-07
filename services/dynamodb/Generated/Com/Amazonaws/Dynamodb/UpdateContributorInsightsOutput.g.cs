@@ -8,17 +8,17 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#UpdateContributorInsightsOutput.
 /// </summary>
 /// <param name="ContributorInsightsMode">
-/// &lt;p&gt;The updated mode of CloudWatch Contributor Insights that determines whether to monitor
-/// all access and throttled events or to track throttled events exclusively.&lt;/p&gt;
+/// The updated mode of CloudWatch Contributor Insights that determines whether to monitor all access
+/// and throttled events or to track throttled events exclusively.
 /// </param>
 /// <param name="ContributorInsightsStatus">
-/// &lt;p&gt;The status of contributor insights&lt;/p&gt;
+/// The status of contributor insights
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the global secondary index, if applicable.&lt;/p&gt;
+/// The name of the global secondary index, if applicable.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table.&lt;/p&gt;
+/// The name of the table.
 /// </param>
 public sealed record class UpdateContributorInsightsOutput(
     global::Com.Amazonaws.Dynamodb.ContributorInsightsMode? ContributorInsightsMode = null,

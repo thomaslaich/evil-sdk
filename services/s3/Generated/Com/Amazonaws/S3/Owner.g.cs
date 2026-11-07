@@ -5,12 +5,11 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for the owner's display name and ID.&lt;/p&gt;
+/// Container for the owner's display name and ID.
 /// </summary>
 /// <param name="DisplayName">
-/// &lt;p&gt;&lt;/p&gt;
 /// </param>
 /// <param name="ID">
-/// &lt;p&gt;Container for the ID of the owner.&lt;/p&gt;
+/// Container for the ID of the owner.
 /// </param>
 public sealed record class Owner(string? DisplayName = null, string? ID = null);

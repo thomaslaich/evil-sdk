@@ -7,38 +7,63 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A bucket-level setting for Amazon S3 general purpose buckets used to prevent the upload of new objects encrypted with the specified server-side encryption type. For example, blocking an encryption type will block &lt;code&gt;PutObject&lt;/code&gt;, &lt;code&gt;CopyObject&lt;/code&gt;, &lt;code&gt;PostObject&lt;/code&gt;, multipart upload, and replication requests to the bucket for objects with the specified encryption type. However, you can continue to read and list any pre-existing objects already encrypted with the specified encryption type. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/blocking-unblocking-s3-c-encryption-gpb.html&quot;&gt;Blocking or unblocking SSE-C for a general purpose bucket&lt;/a&gt;.&lt;/p&gt;
-/// &lt;p&gt;This data type is used with the following actions:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html&quot;&gt;PutBucketEncryption&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html&quot;&gt;GetBucketEncryption&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html&quot;&gt;DeleteBucketEncryption&lt;/a&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;dl&gt;
-/// &lt;dt&gt;Permissions&lt;/dt&gt;
-/// &lt;dd&gt;
-/// &lt;p&gt;You must have the &lt;code&gt;s3:PutEncryptionConfiguration&lt;/code&gt; permission to block or unblock an encryption type for a bucket. &lt;/p&gt;
-/// &lt;p&gt;You must have the &lt;code&gt;s3:GetEncryptionConfiguration&lt;/code&gt; permission to view a bucket's encryption type. &lt;/p&gt;
-/// &lt;/dd&gt;
-/// &lt;/dl&gt;
+/// <para>
+/// A bucket-level setting for Amazon S3 general purpose buckets used to prevent the upload of new
+/// objects encrypted with the specified server-side encryption type. For example, blocking an
+/// encryption type will block <c>PutObject</c>, <c>CopyObject</c>, <c>PostObject</c>, multipart upload,
+/// and replication requests to the bucket for objects with the specified encryption type. However, you
+/// can continue to read and list any pre-existing objects already encrypted with the specified
+/// encryption type. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/blocking-unblocking-s3-c-encryption-gpb.html">Blocking
+/// or unblocking SSE-C for a general purpose bucket</see>.
+/// </para>
+/// <para>
+/// This data type is used with the following actions:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html">PutBucketEncryption</see>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html">GetBucketEncryption</see>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html">DeleteBucketEncryption</see>
+/// </description>
+/// </item>
+/// </list>
+/// <list type="bullet">
+/// <item>
+/// <term>Permissions</term>
+/// <description>
+/// <para>
+/// You must have the <c>s3:PutEncryptionConfiguration</c> permission to block or unblock an encryption
+/// type for a bucket.
+/// </para>
+/// <para>
+/// You must have the <c>s3:GetEncryptionConfiguration</c> permission to view a bucket's encryption
+/// type.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="EncryptionType">
-/// &lt;p&gt;The object encryption type that you want to block or unblock for an Amazon S3 general purpose bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Currently, this parameter only supports blocking or unblocking server side encryption with customer-provided keys (SSE-C). For more information about SSE-C, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html&quot;&gt;Using server-side encryption with customer-provided keys (SSE-C)&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The object encryption type that you want to block or unblock for an Amazon S3 general purpose
+/// bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> Currently, this parameter only supports blocking or unblocking server side encryption
+/// with customer-provided keys (SSE-C). For more information about SSE-C, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html">Using
+/// server-side encryption with customer-provided keys (SSE-C)</see>.
+/// </para>
 /// </param>
 public sealed record class BlockedEncryptionTypes(
     IReadOnlyList<global::Com.Amazonaws.S3.EncryptionType>? EncryptionType = null

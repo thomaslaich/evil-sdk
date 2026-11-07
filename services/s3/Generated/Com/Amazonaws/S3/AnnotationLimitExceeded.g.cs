@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The request would exceed the maximum number of annotations allowed per object.&lt;/p&gt;
+/// The request would exceed the maximum number of annotations allowed per object.
 /// </summary>
 public sealed partial class AnnotationLimitExceeded : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request would exceed the maximum number of annotations allowed per object.&lt;/p&gt;
+    /// The request would exceed the maximum number of annotations allowed per object.
     /// </summary>
     public AnnotationLimitExceeded(string? message = null)
         : base(message) { }

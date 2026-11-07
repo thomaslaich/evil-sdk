@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#BatchExecuteStatementInput.
 /// </summary>
 /// <param name="Statements">
-/// &lt;p&gt;The list of PartiQL statements representing the batch to run.&lt;/p&gt;
+/// The list of PartiQL statements representing the batch to run.
 /// </param>
 public sealed record class BatchExecuteStatementInput(
     IReadOnlyList<BatchStatementRequest> Statements,

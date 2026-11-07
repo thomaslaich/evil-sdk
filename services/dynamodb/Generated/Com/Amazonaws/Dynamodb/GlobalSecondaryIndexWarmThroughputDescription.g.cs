@@ -5,19 +5,17 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The description of the warm throughput value on a global secondary index.&lt;/p&gt;
+/// The description of the warm throughput value on a global secondary index.
 /// </summary>
 /// <param name="ReadUnitsPerSecond">
-/// &lt;p&gt;Represents warm throughput read units per second value for a global secondary
-/// index.&lt;/p&gt;
+/// Represents warm throughput read units per second value for a global secondary index.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;Represents the warm throughput status being created or updated on a global secondary
-/// index. The status can only be &lt;code&gt;UPDATING&lt;/code&gt; or &lt;code&gt;ACTIVE&lt;/code&gt;.&lt;/p&gt;
+/// Represents the warm throughput status being created or updated on a global secondary index. The
+/// status can only be <c>UPDATING</c> or <c>ACTIVE</c>.
 /// </param>
 /// <param name="WriteUnitsPerSecond">
-/// &lt;p&gt;Represents warm throughput write units per second value for a global secondary
-/// index.&lt;/p&gt;
+/// Represents warm throughput write units per second value for a global secondary index.
 /// </param>
 public sealed record class GlobalSecondaryIndexWarmThroughputDescription(
     long? ReadUnitsPerSecond = null,

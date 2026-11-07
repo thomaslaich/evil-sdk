@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Need additional permissions to configure VPC settings.&lt;/p&gt;
+/// Need additional permissions to configure VPC settings.
 /// </summary>
 public sealed partial class EC2AccessDeniedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Need additional permissions to configure VPC settings.&lt;/p&gt;
+    /// Need additional permissions to configure VPC settings.
     /// </summary>
     public EC2AccessDeniedException(string? message = null, string? type = null)
         : base(message)

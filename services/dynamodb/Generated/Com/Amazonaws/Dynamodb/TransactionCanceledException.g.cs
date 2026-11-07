@@ -8,491 +8,675 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The entire transaction request was canceled.&lt;/p&gt;
-/// &lt;p&gt;DynamoDB cancels a &lt;code&gt;TransactWriteItems&lt;/code&gt; request under the following
-/// circumstances:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A condition in one of the condition expressions is not met.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A table in the &lt;code&gt;TransactWriteItems&lt;/code&gt; request is in a different
-/// account or region.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;More than one action in the &lt;code&gt;TransactWriteItems&lt;/code&gt; operation
-/// targets the same item.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;There is insufficient provisioned capacity for the transaction to be
-/// completed.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;An item size becomes too large (larger than 400 KB), or a local secondary
-/// index (LSI) becomes too large, or a similar validation error occurs because of
-/// changes made by the transaction.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;There is a user error, such as an invalid data format.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt; There is an ongoing &lt;code&gt;TransactWriteItems&lt;/code&gt; operation that
-/// conflicts with a concurrent &lt;code&gt;TransactWriteItems&lt;/code&gt; request. In this
-/// case the &lt;code&gt;TransactWriteItems&lt;/code&gt; operation fails with a
-/// &lt;code&gt;TransactionCanceledException&lt;/code&gt;. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;DynamoDB cancels a &lt;code&gt;TransactGetItems&lt;/code&gt; request under the
-/// following circumstances:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;There is an ongoing &lt;code&gt;TransactGetItems&lt;/code&gt; operation that conflicts
-/// with a concurrent &lt;code&gt;PutItem&lt;/code&gt;, &lt;code&gt;UpdateItem&lt;/code&gt;,
-/// &lt;code&gt;DeleteItem&lt;/code&gt; or &lt;code&gt;TransactWriteItems&lt;/code&gt; request. In this
-/// case the &lt;code&gt;TransactGetItems&lt;/code&gt; operation fails with a
-/// &lt;code&gt;TransactionCanceledException&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;A table in the &lt;code&gt;TransactGetItems&lt;/code&gt; request is in a different
-/// account or region.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;There is insufficient provisioned capacity for the transaction to be
-/// completed.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;There is a user error, such as an invalid data format.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;DynamoDB lists the cancellation reasons on the
-/// &lt;code&gt;CancellationReasons&lt;/code&gt; property. Transaction cancellation reasons are ordered in the order of requested
-/// items, if an item has no error it will have &lt;code&gt;None&lt;/code&gt; code and
-/// &lt;code&gt;Null&lt;/code&gt; message. The &lt;code&gt;None&lt;/code&gt; code is returned as the literal
-/// string &lt;code&gt;&quot;None&quot;&lt;/code&gt;, not a null or absent value; the message field is omitted
-/// entirely for an item that has no error. This is important to note when using an SDK
-/// that surfaces the code as an optional or nullable type.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;Cancellation reason codes and possible error messages:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;No Errors:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Code: &lt;code&gt;None&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Message: &lt;code&gt;null&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Conditional Check Failed:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Code: &lt;code&gt;ConditionalCheckFailed&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Message: The conditional request failed. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Item Collection Size Limit Exceeded:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Code: &lt;code&gt;ItemCollectionSizeLimitExceeded&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Message: Collection size exceeded.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Transaction Conflict:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Code: &lt;code&gt;TransactionConflict&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Message: Transaction is ongoing for the item.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Provisioned Throughput Exceeded:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Code: &lt;code&gt;ProvisionedThroughputExceeded&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Messages:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The level of configured provisioned throughput for the
-/// table was exceeded. Consider increasing your provisioning level
-/// with the UpdateTable API.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This Message is received when provisioned throughput is
-/// exceeded is on a provisioned DynamoDB
-/// table.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The level of configured provisioned throughput for one or
-/// more global secondary indexes of the table was exceeded.
-/// Consider increasing your provisioning level for the
-/// under-provisioned global secondary indexes with the UpdateTable
-/// API.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This message is returned when provisioned throughput is
-/// exceeded is on a provisioned GSI.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Throttling Error:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Code: &lt;code&gt;ThrottlingError&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Messages: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Throughput exceeds the current capacity of your table or
-/// index. DynamoDB is automatically scaling your table or
-/// index so please try again shortly. If exceptions persist, check
-/// if you have a hot key:
-/// https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This message is returned when writes get throttled on an
-/// On-Demand table as DynamoDB is automatically
-/// scaling the table.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Throughput exceeds the current capacity for one or more
-/// global secondary indexes. DynamoDB is automatically
-/// scaling your index so please try again shortly.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This message is returned when writes get throttled on an
-/// On-Demand GSI as DynamoDB is automatically scaling
-/// the GSI.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Validation Error:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Code: &lt;code&gt;ValidationError&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Messages: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;One or more parameter values were invalid.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The update expression attempted to update the secondary
-/// index key beyond allowed size limits.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The update expression attempted to update the secondary
-/// index key to unsupported type.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;An operand in the update expression has an incorrect data
-/// type.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Item size to update has exceeded the maximum allowed
-/// size.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Number overflow. Attempting to store a number with
-/// magnitude larger than supported range.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Type mismatch for attribute to update.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;Nesting Levels have exceeded supported limits.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The document path provided in the update expression is
-/// invalid for update.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The provided expression refers to an attribute that does
-/// not exist in the item.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The entire transaction request was canceled.
+/// </para>
+/// <para>
+/// DynamoDB cancels a <c>TransactWriteItems</c> request under the following circumstances:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// A condition in one of the condition expressions is not met.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// A table in the <c>TransactWriteItems</c> request is in a different account or region.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// More than one action in the <c>TransactWriteItems</c> operation targets the same item.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// There is insufficient provisioned capacity for the transaction to be completed.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// An item size becomes too large (larger than 400 KB), or a local secondary index (LSI) becomes too
+/// large, or a similar validation error occurs because of changes made by the transaction.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// There is a user error, such as an invalid data format.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// There is an ongoing <c>TransactWriteItems</c> operation that conflicts with a concurrent
+/// <c>TransactWriteItems</c> request. In this case the <c>TransactWriteItems</c> operation fails with a
+/// <c>TransactionCanceledException</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// DynamoDB cancels a <c>TransactGetItems</c> request under the following circumstances:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// There is an ongoing <c>TransactGetItems</c> operation that conflicts with a concurrent
+/// <c>PutItem</c>, <c>UpdateItem</c>, <c>DeleteItem</c> or <c>TransactWriteItems</c> request. In this
+/// case the <c>TransactGetItems</c> operation fails with a <c>TransactionCanceledException</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// A table in the <c>TransactGetItems</c> request is in a different account or region.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// There is insufficient provisioned capacity for the transaction to be completed.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// There is a user error, such as an invalid data format.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> DynamoDB lists the cancellation reasons on the <c>CancellationReasons</c> property.
+/// Transaction cancellation reasons are ordered in the order of requested items, if an item has no
+/// error it will have <c>None</c> code and <c>Null</c> message. The <c>None</c> code is returned as the
+/// literal string <c>"None"</c>, not a null or absent value; the message field is omitted entirely for
+/// an item that has no error. This is important to note when using an SDK that surfaces the code as an
+/// optional or nullable type.
+/// </para>
+/// <para>
+/// Cancellation reason codes and possible error messages:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// No Errors:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Code: <c>None</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Message: <c>null</c>
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Conditional Check Failed:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Code: <c>ConditionalCheckFailed</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Message: The conditional request failed.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Item Collection Size Limit Exceeded:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Code: <c>ItemCollectionSizeLimitExceeded</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Message: Collection size exceeded.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Transaction Conflict:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Code: <c>TransactionConflict</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Message: Transaction is ongoing for the item.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Provisioned Throughput Exceeded:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Code: <c>ProvisionedThroughputExceeded</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Messages:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// The level of configured provisioned throughput for the table was exceeded. Consider increasing your
+/// provisioning level with the UpdateTable API.
+/// </para>
+/// <para>
+/// <b>Note:</b> This Message is received when provisioned throughput is exceeded is on a provisioned
+/// DynamoDB table.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// The level of configured provisioned throughput for one or more global secondary indexes of the table
+/// was exceeded. Consider increasing your provisioning level for the under-provisioned global secondary
+/// indexes with the UpdateTable API.
+/// </para>
+/// <para>
+/// <b>Note:</b> This message is returned when provisioned throughput is exceeded is on a provisioned
+/// GSI.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Throttling Error:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Code: <c>ThrottlingError</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Messages:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// Throughput exceeds the current capacity of your table or index. DynamoDB is automatically scaling
+/// your table or index so please try again shortly. If exceptions persist, check if you have a hot key:
+/// https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html.
+/// </para>
+/// <para>
+/// <b>Note:</b> This message is returned when writes get throttled on an On-Demand table as DynamoDB is
+/// automatically scaling the table.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Throughput exceeds the current capacity for one or more global secondary indexes. DynamoDB is
+/// automatically scaling your index so please try again shortly.
+/// </para>
+/// <para>
+/// <b>Note:</b> This message is returned when writes get throttled on an On-Demand GSI as DynamoDB is
+/// automatically scaling the GSI.
+/// </para>
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Validation Error:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// Code: <c>ValidationError</c>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// Messages:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// One or more parameter values were invalid.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The update expression attempted to update the secondary index key beyond allowed size limits.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The update expression attempted to update the secondary index key to unsupported type.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// An operand in the update expression has an incorrect data type.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Item size to update has exceeded the maximum allowed size.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Number overflow. Attempting to store a number with magnitude larger than supported range.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Type mismatch for attribute to update.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// Nesting Levels have exceeded supported limits.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The document path provided in the update expression is invalid for update.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The provided expression refers to an attribute that does not exist in the item.
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 public sealed partial class TransactionCanceledException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The entire transaction request was canceled.&lt;/p&gt;
-    /// &lt;p&gt;DynamoDB cancels a &lt;code&gt;TransactWriteItems&lt;/code&gt; request under the following
-    /// circumstances:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;A condition in one of the condition expressions is not met.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;A table in the &lt;code&gt;TransactWriteItems&lt;/code&gt; request is in a different
-    /// account or region.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;More than one action in the &lt;code&gt;TransactWriteItems&lt;/code&gt; operation
-    /// targets the same item.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;There is insufficient provisioned capacity for the transaction to be
-    /// completed.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;An item size becomes too large (larger than 400 KB), or a local secondary
-    /// index (LSI) becomes too large, or a similar validation error occurs because of
-    /// changes made by the transaction.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;There is a user error, such as an invalid data format.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt; There is an ongoing &lt;code&gt;TransactWriteItems&lt;/code&gt; operation that
-    /// conflicts with a concurrent &lt;code&gt;TransactWriteItems&lt;/code&gt; request. In this
-    /// case the &lt;code&gt;TransactWriteItems&lt;/code&gt; operation fails with a
-    /// &lt;code&gt;TransactionCanceledException&lt;/code&gt;. &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;p&gt;DynamoDB cancels a &lt;code&gt;TransactGetItems&lt;/code&gt; request under the
-    /// following circumstances:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;There is an ongoing &lt;code&gt;TransactGetItems&lt;/code&gt; operation that conflicts
-    /// with a concurrent &lt;code&gt;PutItem&lt;/code&gt;, &lt;code&gt;UpdateItem&lt;/code&gt;,
-    /// &lt;code&gt;DeleteItem&lt;/code&gt; or &lt;code&gt;TransactWriteItems&lt;/code&gt; request. In this
-    /// case the &lt;code&gt;TransactGetItems&lt;/code&gt; operation fails with a
-    /// &lt;code&gt;TransactionCanceledException&lt;/code&gt;.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;A table in the &lt;code&gt;TransactGetItems&lt;/code&gt; request is in a different
-    /// account or region.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;There is insufficient provisioned capacity for the transaction to be
-    /// completed.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;There is a user error, such as an invalid data format.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;note&gt;
-    /// &lt;p&gt;DynamoDB lists the cancellation reasons on the
-    /// &lt;code&gt;CancellationReasons&lt;/code&gt; property. Transaction cancellation reasons are ordered in the order of requested
-    /// items, if an item has no error it will have &lt;code&gt;None&lt;/code&gt; code and
-    /// &lt;code&gt;Null&lt;/code&gt; message. The &lt;code&gt;None&lt;/code&gt; code is returned as the literal
-    /// string &lt;code&gt;&quot;None&quot;&lt;/code&gt;, not a null or absent value; the message field is omitted
-    /// entirely for an item that has no error. This is important to note when using an SDK
-    /// that surfaces the code as an optional or nullable type.&lt;/p&gt;
-    /// &lt;/note&gt;
-    /// &lt;p&gt;Cancellation reason codes and possible error messages:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;No Errors:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Code: &lt;code&gt;None&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Message: &lt;code&gt;null&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Conditional Check Failed:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Code: &lt;code&gt;ConditionalCheckFailed&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Message: The conditional request failed. &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Item Collection Size Limit Exceeded:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Code: &lt;code&gt;ItemCollectionSizeLimitExceeded&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Message: Collection size exceeded.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Transaction Conflict:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Code: &lt;code&gt;TransactionConflict&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Message: Transaction is ongoing for the item.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Provisioned Throughput Exceeded:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Code: &lt;code&gt;ProvisionedThroughputExceeded&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Messages:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The level of configured provisioned throughput for the
-    /// table was exceeded. Consider increasing your provisioning level
-    /// with the UpdateTable API.&lt;/p&gt;
-    /// &lt;note&gt;
-    /// &lt;p&gt;This Message is received when provisioned throughput is
-    /// exceeded is on a provisioned DynamoDB
-    /// table.&lt;/p&gt;
-    /// &lt;/note&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The level of configured provisioned throughput for one or
-    /// more global secondary indexes of the table was exceeded.
-    /// Consider increasing your provisioning level for the
-    /// under-provisioned global secondary indexes with the UpdateTable
-    /// API.&lt;/p&gt;
-    /// &lt;note&gt;
-    /// &lt;p&gt;This message is returned when provisioned throughput is
-    /// exceeded is on a provisioned GSI.&lt;/p&gt;
-    /// &lt;/note&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Throttling Error:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Code: &lt;code&gt;ThrottlingError&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Messages: &lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Throughput exceeds the current capacity of your table or
-    /// index. DynamoDB is automatically scaling your table or
-    /// index so please try again shortly. If exceptions persist, check
-    /// if you have a hot key:
-    /// https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html.&lt;/p&gt;
-    /// &lt;note&gt;
-    /// &lt;p&gt;This message is returned when writes get throttled on an
-    /// On-Demand table as DynamoDB is automatically
-    /// scaling the table.&lt;/p&gt;
-    /// &lt;/note&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Throughput exceeds the current capacity for one or more
-    /// global secondary indexes. DynamoDB is automatically
-    /// scaling your index so please try again shortly.&lt;/p&gt;
-    /// &lt;note&gt;
-    /// &lt;p&gt;This message is returned when writes get throttled on an
-    /// On-Demand GSI as DynamoDB is automatically scaling
-    /// the GSI.&lt;/p&gt;
-    /// &lt;/note&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Validation Error:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Code: &lt;code&gt;ValidationError&lt;/code&gt;
-    /// &lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Messages: &lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;One or more parameter values were invalid.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The update expression attempted to update the secondary
-    /// index key beyond allowed size limits.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The update expression attempted to update the secondary
-    /// index key to unsupported type.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;An operand in the update expression has an incorrect data
-    /// type.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Item size to update has exceeded the maximum allowed
-    /// size.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Number overflow. Attempting to store a number with
-    /// magnitude larger than supported range.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Type mismatch for attribute to update.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;Nesting Levels have exceeded supported limits.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The document path provided in the update expression is
-    /// invalid for update.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The provided expression refers to an attribute that does
-    /// not exist in the item.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
+    /// <para>
+    /// The entire transaction request was canceled.
+    /// </para>
+    /// <para>
+    /// DynamoDB cancels a <c>TransactWriteItems</c> request under the following circumstances:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// A condition in one of the condition expressions is not met.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A table in the <c>TransactWriteItems</c> request is in a different account or region.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// More than one action in the <c>TransactWriteItems</c> operation targets the same item.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is insufficient provisioned capacity for the transaction to be completed.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An item size becomes too large (larger than 400 KB), or a local secondary index (LSI) becomes too
+    /// large, or a similar validation error occurs because of changes made by the transaction.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is a user error, such as an invalid data format.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is an ongoing <c>TransactWriteItems</c> operation that conflicts with a concurrent
+    /// <c>TransactWriteItems</c> request. In this case the <c>TransactWriteItems</c> operation fails with a
+    /// <c>TransactionCanceledException</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// DynamoDB cancels a <c>TransactGetItems</c> request under the following circumstances:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// There is an ongoing <c>TransactGetItems</c> operation that conflicts with a concurrent
+    /// <c>PutItem</c>, <c>UpdateItem</c>, <c>DeleteItem</c> or <c>TransactWriteItems</c> request. In this
+    /// case the <c>TransactGetItems</c> operation fails with a <c>TransactionCanceledException</c>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// A table in the <c>TransactGetItems</c> request is in a different account or region.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is insufficient provisioned capacity for the transaction to be completed.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// There is a user error, such as an invalid data format.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Note:</b> DynamoDB lists the cancellation reasons on the <c>CancellationReasons</c> property.
+    /// Transaction cancellation reasons are ordered in the order of requested items, if an item has no
+    /// error it will have <c>None</c> code and <c>Null</c> message. The <c>None</c> code is returned as the
+    /// literal string <c>"None"</c>, not a null or absent value; the message field is omitted entirely for
+    /// an item that has no error. This is important to note when using an SDK that surfaces the code as an
+    /// optional or nullable type.
+    /// </para>
+    /// <para>
+    /// Cancellation reason codes and possible error messages:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <para>
+    /// No Errors:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Code: <c>None</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Message: <c>null</c>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Conditional Check Failed:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Code: <c>ConditionalCheckFailed</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Message: The conditional request failed.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Item Collection Size Limit Exceeded:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Code: <c>ItemCollectionSizeLimitExceeded</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Message: Collection size exceeded.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Transaction Conflict:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Code: <c>TransactionConflict</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Message: Transaction is ongoing for the item.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Provisioned Throughput Exceeded:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Code: <c>ProvisionedThroughputExceeded</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Messages:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <para>
+    /// The level of configured provisioned throughput for the table was exceeded. Consider increasing your
+    /// provisioning level with the UpdateTable API.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This Message is received when provisioned throughput is exceeded is on a provisioned
+    /// DynamoDB table.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// The level of configured provisioned throughput for one or more global secondary indexes of the table
+    /// was exceeded. Consider increasing your provisioning level for the under-provisioned global secondary
+    /// indexes with the UpdateTable API.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This message is returned when provisioned throughput is exceeded is on a provisioned
+    /// GSI.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Throttling Error:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Code: <c>ThrottlingError</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Messages:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Throughput exceeds the current capacity of your table or index. DynamoDB is automatically scaling
+    /// your table or index so please try again shortly. If exceptions persist, check if you have a hot key:
+    /// https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This message is returned when writes get throttled on an On-Demand table as DynamoDB is
+    /// automatically scaling the table.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Throughput exceeds the current capacity for one or more global secondary indexes. DynamoDB is
+    /// automatically scaling your index so please try again shortly.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> This message is returned when writes get throttled on an On-Demand GSI as DynamoDB is
+    /// automatically scaling the GSI.
+    /// </para>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Validation Error:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Code: <c>ValidationError</c>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// Messages:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// One or more parameter values were invalid.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The update expression attempted to update the secondary index key beyond allowed size limits.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The update expression attempted to update the secondary index key to unsupported type.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// An operand in the update expression has an incorrect data type.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Item size to update has exceeded the maximum allowed size.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Number overflow. Attempting to store a number with magnitude larger than supported range.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Type mismatch for attribute to update.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Nesting Levels have exceeded supported limits.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The document path provided in the update expression is invalid for update.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The provided expression refers to an attribute that does not exist in the item.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     /// <param name="cancellationReasons">
-    /// &lt;p&gt;A list of cancellation reasons.&lt;/p&gt;
+    /// A list of cancellation reasons.
     /// </param>
     public TransactionCanceledException(
         string? message = null,
@@ -506,7 +690,7 @@ public sealed partial class TransactionCanceledException : Exception
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;A list of cancellation reasons.&lt;/p&gt;
+    /// A list of cancellation reasons.
     /// </summary>
     public IReadOnlyList<CancellationReason>? CancellationReasons { get; }
 }

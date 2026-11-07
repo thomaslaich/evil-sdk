@@ -5,9 +5,10 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;(Amazon SQS only) The scaling configuration for the event source. To remove the configuration, pass an empty value.&lt;/p&gt;
+/// (Amazon SQS only) The scaling configuration for the event source. To remove the configuration, pass
+/// an empty value.
 /// </summary>
 /// <param name="MaximumConcurrency">
-/// &lt;p&gt;Limits the number of concurrent instances that the Amazon SQS event source can invoke.&lt;/p&gt;
+/// Limits the number of concurrent instances that the Amazon SQS event source can invoke.
 /// </param>
 public sealed record class ScalingConfig(int? MaximumConcurrency = null);

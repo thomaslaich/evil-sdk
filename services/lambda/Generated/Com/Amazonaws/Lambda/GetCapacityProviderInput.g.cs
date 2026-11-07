@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetCapacityProviderInput.
 /// </summary>
 /// <param name="CapacityProviderName">
-/// &lt;p&gt;The name of the capacity provider to retrieve.&lt;/p&gt;
+/// The name of the capacity provider to retrieve.
 /// </param>
 public sealed record class GetCapacityProviderInput(string CapacityProviderName);

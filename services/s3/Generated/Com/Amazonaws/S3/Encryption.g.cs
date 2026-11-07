@@ -5,21 +5,22 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Contains the type of server-side encryption used.&lt;/p&gt;
+/// Contains the type of server-side encryption used.
 /// </summary>
 /// <param name="EncryptionType">
-/// &lt;p&gt;The server-side encryption algorithm used when storing job results in Amazon S3 (for example, AES256,
-/// &lt;code&gt;aws:kms&lt;/code&gt;).&lt;/p&gt;
+/// The server-side encryption algorithm used when storing job results in Amazon S3 (for example,
+/// AES256, <c>aws:kms</c>).
 /// </param>
 /// <param name="KMSContext">
-/// &lt;p&gt;If the encryption type is &lt;code&gt;aws:kms&lt;/code&gt;, this optional value can be used to specify the
-/// encryption context for the restore results.&lt;/p&gt;
+/// If the encryption type is <c>aws:kms</c>, this optional value can be used to specify the encryption
+/// context for the restore results.
 /// </param>
 /// <param name="KMSKeyId">
-/// &lt;p&gt;If the encryption type is &lt;code&gt;aws:kms&lt;/code&gt;, this optional value specifies the ID of the
-/// symmetric encryption customer managed key to use for encryption of job results. Amazon S3 only supports symmetric
-/// encryption KMS keys. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html&quot;&gt;Asymmetric keys in KMS&lt;/a&gt; in the
-/// &lt;i&gt;Amazon Web Services Key Management Service Developer Guide&lt;/i&gt;.&lt;/p&gt;
+/// If the encryption type is <c>aws:kms</c>, this optional value specifies the ID of the symmetric
+/// encryption customer managed key to use for encryption of job results. Amazon S3 only supports
+/// symmetric encryption KMS keys. For more information, see
+/// <see href="https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html">Asymmetric
+/// keys in KMS</see> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.
 /// </param>
 public sealed record class Encryption(
     ServerSideEncryption EncryptionType,

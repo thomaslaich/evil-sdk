@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListFunctionUrlConfigsOutput.
 /// </summary>
 /// <param name="FunctionUrlConfigs">
-/// &lt;p&gt;A list of function URL configurations.&lt;/p&gt;
+/// A list of function URL configurations.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListFunctionUrlConfigsOutput(
     IReadOnlyList<FunctionUrlConfig> FunctionUrlConfigs,

@@ -8,9 +8,9 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetLayerVersionPolicyInput.
 /// </summary>
 /// <param name="LayerName">
-/// &lt;p&gt;The name or Amazon Resource Name (ARN) of the layer.&lt;/p&gt;
+/// The name or Amazon Resource Name (ARN) of the layer.
 /// </param>
 /// <param name="VersionNumber">
-/// &lt;p&gt;The version number.&lt;/p&gt;
+/// The version number.
 /// </param>
 public sealed record class GetLayerVersionPolicyInput(string LayerName, long? VersionNumber = null);

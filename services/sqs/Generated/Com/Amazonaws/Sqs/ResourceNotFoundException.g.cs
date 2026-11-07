@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;One or more specified resources don't exist.&lt;/p&gt;
+/// One or more specified resources don't exist.
 /// </summary>
 public sealed partial class ResourceNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;One or more specified resources don't exist.&lt;/p&gt;
+    /// One or more specified resources don't exist.
     /// </summary>
     public ResourceNotFoundException(string? message = null)
         : base(message) { }

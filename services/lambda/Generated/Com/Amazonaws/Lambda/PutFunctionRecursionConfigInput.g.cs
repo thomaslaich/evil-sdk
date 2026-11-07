@@ -8,10 +8,57 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutFunctionRecursionConfigInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; – &lt;code&gt;my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; – &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; – &lt;code&gt;123456789012:function:my-function&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> – <c>my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="RecursiveLoop">
-/// &lt;p&gt;If you set your function's recursive loop detection configuration to &lt;code&gt;Allow&lt;/code&gt;, Lambda doesn't take any action when it detects your function being invoked as part of a recursive loop. We recommend that you only use this setting if your design intentionally uses a Lambda function to write data back to the same Amazon Web Services resource that invokes it.&lt;/p&gt; &lt;p&gt;If you set your function's recursive loop detection configuration to &lt;code&gt;Terminate&lt;/code&gt;, Lambda stops your function being invoked and notifies you when it detects your function being invoked as part of a recursive loop.&lt;/p&gt; &lt;p&gt;By default, Lambda sets your function's configuration to &lt;code&gt;Terminate&lt;/code&gt;.&lt;/p&gt; &lt;important&gt; &lt;p&gt;If your design intentionally uses a Lambda function to write data back to the same Amazon Web Services resource that invokes the function, then use caution and implement suitable guard rails to prevent unexpected charges being billed to your Amazon Web Services account. To learn more about best practices for using recursive invocation patterns, see &lt;a href=&quot;https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/recursive-runaway&quot;&gt;Recursive patterns that cause run-away Lambda functions&lt;/a&gt; in Serverless Land.&lt;/p&gt; &lt;/important&gt;
+/// <para>
+/// If you set your function's recursive loop detection configuration to <c>Allow</c>, Lambda doesn't
+/// take any action when it detects your function being invoked as part of a recursive loop. We
+/// recommend that you only use this setting if your design intentionally uses a Lambda function to
+/// write data back to the same Amazon Web Services resource that invokes it.
+/// </para>
+/// <para>
+/// If you set your function's recursive loop detection configuration to <c>Terminate</c>, Lambda stops
+/// your function being invoked and notifies you when it detects your function being invoked as part of
+/// a recursive loop.
+/// </para>
+/// <para>
+/// By default, Lambda sets your function's configuration to <c>Terminate</c>.
+/// </para>
+/// <para>
+/// <b>Important:</b> If your design intentionally uses a Lambda function to write data back to the same
+/// Amazon Web Services resource that invokes the function, then use caution and implement suitable
+/// guard rails to prevent unexpected charges being billed to your Amazon Web Services account. To learn
+/// more about best practices for using recursive invocation patterns, see
+/// <see href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/recursive-runaway">Recursive
+/// patterns that cause run-away Lambda functions</see> in Serverless Land.
+/// </para>
 /// </param>
 public sealed record class PutFunctionRecursionConfigInput(
     string FunctionName,

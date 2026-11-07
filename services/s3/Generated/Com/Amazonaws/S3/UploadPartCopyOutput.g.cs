@@ -8,43 +8,51 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#UploadPartCopyOutput.
 /// </summary>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with
-/// Key Management Service (KMS) keys (SSE-KMS).&lt;/p&gt;
+/// Indicates whether the multipart upload uses an S3 Bucket Key for server-side encryption with Key
+/// Management Service (KMS) keys (SSE-KMS).
 /// </param>
 /// <param name="CopyPartResult">
-/// &lt;p&gt;Container for all response elements.&lt;/p&gt;
+/// Container for all response elements.
 /// </param>
 /// <param name="CopySourceVersionId">
-/// &lt;p&gt;The version of the source object that was copied, if you have enabled versioning on the source
-/// bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported when the source object is in a directory bucket.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The version of the source object that was copied, if you have enabled versioning on the source
+/// bucket.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported when the source object is in a directory bucket.
+/// </para>
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to confirm the encryption algorithm that's used.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to confirm the encryption algorithm that's used.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to provide the round-trip message integrity verification of the customer-provided
-/// encryption key.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to provide the round-trip message integrity verification of the
+/// customer-provided encryption key.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;If present, indicates the ID of the KMS key that was used for object encryption.&lt;/p&gt;
+/// If present, indicates the ID of the KMS key that was used for object encryption.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side
-/// encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <para>
+/// <b>Note:</b> When accessing data stored in Amazon FSx file systems using S3 access points, the only
+/// valid server side encryption option is <c>aws:fsx</c>.
+/// </para>
 /// </param>
 public sealed record class UploadPartCopyOutput(
     bool? BucketKeyEnabled = null,

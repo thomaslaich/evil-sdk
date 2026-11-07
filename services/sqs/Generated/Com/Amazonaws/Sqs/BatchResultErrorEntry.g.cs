@@ -5,20 +5,19 @@
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;Gives a detailed description of the result of an action on each entry in the
-/// request.&lt;/p&gt;
+/// Gives a detailed description of the result of an action on each entry in the request.
 /// </summary>
 /// <param name="Code">
-/// &lt;p&gt;An error code representing why the action failed on this entry.&lt;/p&gt;
+/// An error code representing why the action failed on this entry.
 /// </param>
 /// <param name="Id">
-/// &lt;p&gt;The &lt;code&gt;Id&lt;/code&gt; of an entry in a batch request.&lt;/p&gt;
+/// The <c>Id</c> of an entry in a batch request.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;A message explaining why the action failed on this entry.&lt;/p&gt;
+/// A message explaining why the action failed on this entry.
 /// </param>
 /// <param name="SenderFault">
-/// &lt;p&gt;Specifies whether the error happened due to the caller of the batch API action.&lt;/p&gt;
+/// Specifies whether the error happened due to the caller of the batch API action.
 /// </param>
 public sealed record class BatchResultErrorEntry(
     string Code,

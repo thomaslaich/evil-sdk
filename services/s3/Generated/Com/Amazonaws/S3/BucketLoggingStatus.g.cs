@@ -5,7 +5,7 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for logging status information.&lt;/p&gt;
+/// Container for logging status information.
 /// </summary>
 public sealed record class BucketLoggingStatus(
     global::Com.Amazonaws.S3.LoggingEnabled? LoggingEnabled = null

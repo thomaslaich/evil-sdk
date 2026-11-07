@@ -7,14 +7,17 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 /// <param name="Entries">
-/// &lt;p&gt;Lists the receipt handles for the messages to be deleted.&lt;/p&gt;
+/// Lists the receipt handles for the messages to be deleted.
 /// </param>
 /// <param name="QueueUrl">
-/// &lt;p&gt;The URL of the Amazon SQS queue from which messages are deleted.&lt;/p&gt;
-/// &lt;p&gt;Queue URLs and names are case-sensitive.&lt;/p&gt;
+/// <para>
+/// The URL of the Amazon SQS queue from which messages are deleted.
+/// </para>
+/// <para>
+/// Queue URLs and names are case-sensitive.
+/// </para>
 /// </param>
 public sealed record class DeleteMessageBatchInput(
     IReadOnlyList<DeleteMessageBatchRequestEntry> Entries,

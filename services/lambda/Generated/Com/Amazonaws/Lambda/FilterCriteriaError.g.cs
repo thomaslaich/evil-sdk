@@ -5,12 +5,12 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;An object that contains details about an error related to filter criteria encryption.&lt;/p&gt;
+/// An object that contains details about an error related to filter criteria encryption.
 /// </summary>
 /// <param name="ErrorCode">
-/// &lt;p&gt;The KMS exception that resulted from filter criteria encryption or decryption.&lt;/p&gt;
+/// The KMS exception that resulted from filter criteria encryption or decryption.
 /// </param>
 /// <param name="Message">
-/// &lt;p&gt;The error message.&lt;/p&gt;
+/// The error message.
 /// </param>
 public sealed record class FilterCriteriaError(string? ErrorCode = null, string? Message = null);

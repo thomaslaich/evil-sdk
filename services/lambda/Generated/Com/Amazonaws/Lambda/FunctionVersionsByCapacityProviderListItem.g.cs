@@ -5,13 +5,14 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Information about a function version that uses a specific capacity provider, including its ARN and current state.&lt;/p&gt;
+/// Information about a function version that uses a specific capacity provider, including its ARN and
+/// current state.
 /// </summary>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the function version.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the function version.
 /// </param>
 /// <param name="State">
-/// &lt;p&gt;The current state of the function version.&lt;/p&gt;
+/// The current state of the function version.
 /// </param>
 public sealed record class FunctionVersionsByCapacityProviderListItem(
     string FunctionArn,

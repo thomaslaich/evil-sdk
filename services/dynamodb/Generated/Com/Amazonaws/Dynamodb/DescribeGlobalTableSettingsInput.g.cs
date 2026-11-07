@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Dynamodb;
 /// Represents the Smithy structure com.amazonaws.dynamodb#DescribeGlobalTableSettingsInput.
 /// </summary>
 /// <param name="GlobalTableName">
-/// &lt;p&gt;The name of the global table to describe.&lt;/p&gt;
+/// The name of the global table to describe.
 /// </param>
 public sealed record class DescribeGlobalTableSettingsInput(string GlobalTableName);

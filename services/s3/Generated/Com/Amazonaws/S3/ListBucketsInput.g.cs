@@ -8,36 +8,45 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#ListBucketsInput.
 /// </summary>
 /// <param name="BucketRegion">
-/// &lt;p&gt;Limits the response to buckets that are located in the specified Amazon Web Services Region. The Amazon Web Services Region must
-/// be expressed according to the Amazon Web Services Region code, such as &lt;code&gt;us-west-2&lt;/code&gt; for the US West (Oregon)
-/// Region. For a list of the valid values for all of the Amazon Web Services Regions, see &lt;a href=&quot;https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region&quot;&gt;Regions and Endpoints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Requests made to a Regional endpoint that is different from the &lt;code&gt;bucket-region&lt;/code&gt;
-/// parameter are not supported. For example, if you want to limit the response to your buckets in Region
-/// &lt;code&gt;us-west-2&lt;/code&gt;, the request must be made to an endpoint in Region
-/// &lt;code&gt;us-west-2&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Limits the response to buckets that are located in the specified Amazon Web Services Region. The
+/// Amazon Web Services Region must be expressed according to the Amazon Web Services Region code, such
+/// as <c>us-west-2</c> for the US West (Oregon) Region. For a list of the valid values for all of the
+/// Amazon Web Services Regions, see
+/// <see href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">Regions and
+/// Endpoints</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> Requests made to a Regional endpoint that is different from the <c>bucket-region</c>
+/// parameter are not supported. For example, if you want to limit the response to your buckets in
+/// Region <c>us-west-2</c>, the request must be made to an endpoint in Region <c>us-west-2</c>.
+/// </para>
 /// </param>
 /// <param name="ContinuationToken">
-/// &lt;p&gt;
-/// &lt;code&gt;ContinuationToken&lt;/code&gt; indicates to Amazon S3 that the list is being continued on this bucket
-/// with a token. &lt;code&gt;ContinuationToken&lt;/code&gt; is obfuscated and is not a real key. You can use this
-/// &lt;code&gt;ContinuationToken&lt;/code&gt; for pagination of the list results. &lt;/p&gt;
-/// &lt;p&gt;Length Constraints: Minimum length of 0. Maximum length of 1024.&lt;/p&gt;
-/// &lt;p&gt;Required: No.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;If you specify the &lt;code&gt;bucket-region&lt;/code&gt;, &lt;code&gt;prefix&lt;/code&gt;, or
-/// &lt;code&gt;continuation-token&lt;/code&gt; query parameters without using &lt;code&gt;max-buckets&lt;/code&gt; to set the
-/// maximum number of buckets returned in the response, Amazon S3 applies a default page size of 10,000 and
-/// provides a continuation token if there are more buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// <c>ContinuationToken</c> indicates to Amazon S3 that the list is being continued on this bucket with
+/// a token. <c>ContinuationToken</c> is obfuscated and is not a real key. You can use this
+/// <c>ContinuationToken</c> for pagination of the list results.
+/// </para>
+/// <para>
+/// Length Constraints: Minimum length of 0. Maximum length of 1024.
+/// </para>
+/// <para>
+/// Required: No.
+/// </para>
+/// <para>
+/// <b>Note:</b> If you specify the <c>bucket-region</c>, <c>prefix</c>, or <c>continuation-token</c>
+/// query parameters without using <c>max-buckets</c> to set the maximum number of buckets returned in
+/// the response, Amazon S3 applies a default page size of 10,000 and provides a continuation token if
+/// there are more buckets.
+/// </para>
 /// </param>
 /// <param name="MaxBuckets">
-/// &lt;p&gt;Maximum number of buckets to be returned in response. When the number is more than the count of
-/// buckets that are owned by an Amazon Web Services account, return all the buckets in response.&lt;/p&gt;
+/// Maximum number of buckets to be returned in response. When the number is more than the count of
+/// buckets that are owned by an Amazon Web Services account, return all the buckets in response.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;Limits the response to bucket names that begin with the specified bucket name prefix.&lt;/p&gt;
+/// Limits the response to bucket names that begin with the specified bucket name prefix.
 /// </param>
 public sealed record class ListBucketsInput(
     string? BucketRegion = null,

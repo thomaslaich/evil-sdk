@@ -8,22 +8,46 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#CreateFunctionUrlConfigOutput.
 /// </summary>
 /// <param name="AuthType">
-/// &lt;p&gt;The type of authentication that your function URL uses. Set to &lt;code&gt;AWS_IAM&lt;/code&gt; if you want to restrict access to authenticated users only. Set to &lt;code&gt;NONE&lt;/code&gt; if you want to bypass IAM authentication to create a public endpoint. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html&quot;&gt;Control access to Lambda function URLs&lt;/a&gt;.&lt;/p&gt;
+/// The type of authentication that your function URL uses. Set to <c>AWS_IAM</c> if you want to
+/// restrict access to authenticated users only. Set to <c>NONE</c> if you want to bypass IAM
+/// authentication to create a public endpoint. For more information, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html">Control access to Lambda
+/// function URLs</see>.
 /// </param>
 /// <param name="CreationTime">
-/// &lt;p&gt;When the function URL was created, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// When the function URL was created, in <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601
+/// format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of your function.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of your function.
 /// </param>
 /// <param name="FunctionUrl">
-/// &lt;p&gt;The HTTP URL endpoint for your function.&lt;/p&gt;
+/// The HTTP URL endpoint for your function.
 /// </param>
 /// <param name="Cors">
-/// &lt;p&gt;The &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS&quot;&gt;cross-origin resource sharing (CORS)&lt;/a&gt; settings for your function URL.&lt;/p&gt;
+/// The <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing
+/// (CORS)</see> settings for your function URL.
 /// </param>
 /// <param name="InvokeMode">
-/// &lt;p&gt;Use one of the following options:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BUFFERED&lt;/code&gt; – This is the default option. Lambda invokes your function using the &lt;code&gt;Invoke&lt;/code&gt; API operation. Invocation results are available when the payload is complete. The maximum payload size is 6 MB.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;RESPONSE_STREAM&lt;/code&gt; – Your function streams payload results as they become available. Lambda invokes your function using the &lt;code&gt;InvokeWithResponseStream&lt;/code&gt; API operation. The maximum response payload size is 200 MB.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// Use one of the following options:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>BUFFERED</c> – This is the default option. Lambda invokes your function using the <c>Invoke</c>
+/// API operation. Invocation results are available when the payload is complete. The maximum payload
+/// size is 6 MB.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>RESPONSE_STREAM</c> – Your function streams payload results as they become available. Lambda
+/// invokes your function using the <c>InvokeWithResponseStream</c> API operation. The maximum response
+/// payload size is 200 MB.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class CreateFunctionUrlConfigOutput(
     FunctionUrlAuthType AuthType,

@@ -5,36 +5,40 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The container element for optionally specifying the default Object Lock retention settings for new
-/// objects placed in the specified bucket.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The &lt;code&gt;DefaultRetention&lt;/code&gt; settings require both a mode and a period.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The &lt;code&gt;DefaultRetention&lt;/code&gt; period can be either &lt;code&gt;Days&lt;/code&gt; or &lt;code&gt;Years&lt;/code&gt;
-/// but you must select one. You cannot specify &lt;code&gt;Days&lt;/code&gt; and &lt;code&gt;Years&lt;/code&gt; at the same
-/// time.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The container element for optionally specifying the default Object Lock retention settings for new
+/// objects placed in the specified bucket.
+/// </para>
+/// <para><b>Note:</b></para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// The <c>DefaultRetention</c> settings require both a mode and a period.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The <c>DefaultRetention</c> period can be either <c>Days</c> or <c>Years</c> but you must select
+/// one. You cannot specify <c>Days</c> and <c>Years</c> at the same time.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="Days">
-/// &lt;p&gt;The number of days that you want to specify for the default retention period. Must be used with
-/// &lt;code&gt;Mode&lt;/code&gt;.&lt;/p&gt;
+/// The number of days that you want to specify for the default retention period. Must be used with
+/// <c>Mode</c>.
 /// </param>
 /// <param name="DefaultEventHold">
-/// &lt;p&gt;The default event hold duration to be applied to new objects placed in the specified bucket. When
-/// configured, new objects will automatically have an event hold enabled with this duration.&lt;/p&gt;
+/// The default event hold duration to be applied to new objects placed in the specified bucket. When
+/// configured, new objects will automatically have an event hold enabled with this duration.
 /// </param>
 /// <param name="Mode">
-/// &lt;p&gt;The default Object Lock retention mode you want to apply to new objects placed in the specified
-/// bucket. Must be used with either &lt;code&gt;Days&lt;/code&gt; or &lt;code&gt;Years&lt;/code&gt;.&lt;/p&gt;
+/// The default Object Lock retention mode you want to apply to new objects placed in the specified
+/// bucket. Must be used with either <c>Days</c> or <c>Years</c>.
 /// </param>
 /// <param name="Years">
-/// &lt;p&gt;The number of years that you want to specify for the default retention period. Must be used with
-/// &lt;code&gt;Mode&lt;/code&gt;.&lt;/p&gt;
+/// The number of years that you want to specify for the default retention period. Must be used with
+/// <c>Mode</c>.
 /// </param>
 public sealed record class DefaultRetention(
     int? Days = null,

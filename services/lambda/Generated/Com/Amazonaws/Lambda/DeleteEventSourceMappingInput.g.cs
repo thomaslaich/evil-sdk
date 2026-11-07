@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#DeleteEventSourceMappingInput.
 /// </summary>
 /// <param name="UUID">
-/// &lt;p&gt;The identifier of the event source mapping.&lt;/p&gt;
+/// The identifier of the event source mapping.
 /// </param>
 public sealed record class DeleteEventSourceMappingInput(string UUID);

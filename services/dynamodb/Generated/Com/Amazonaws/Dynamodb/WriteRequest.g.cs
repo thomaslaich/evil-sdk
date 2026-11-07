@@ -5,16 +5,15 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents an operation to perform - either &lt;code&gt;DeleteItem&lt;/code&gt; or
-/// &lt;code&gt;PutItem&lt;/code&gt;. You can only request one of these operations, not both, in a
-/// single &lt;code&gt;WriteRequest&lt;/code&gt;. If you do need to perform both of these operations,
-/// you need to provide two separate &lt;code&gt;WriteRequest&lt;/code&gt; objects.&lt;/p&gt;
+/// Represents an operation to perform - either <c>DeleteItem</c> or <c>PutItem</c>. You can only
+/// request one of these operations, not both, in a single <c>WriteRequest</c>. If you do need to
+/// perform both of these operations, you need to provide two separate <c>WriteRequest</c> objects.
 /// </summary>
 /// <param name="DeleteRequest">
-/// &lt;p&gt;A request to perform a &lt;code&gt;DeleteItem&lt;/code&gt; operation.&lt;/p&gt;
+/// A request to perform a <c>DeleteItem</c> operation.
 /// </param>
 /// <param name="PutRequest">
-/// &lt;p&gt;A request to perform a &lt;code&gt;PutItem&lt;/code&gt; operation.&lt;/p&gt;
+/// A request to perform a <c>PutItem</c> operation.
 /// </param>
 public sealed record class WriteRequest(
     global::Com.Amazonaws.Dynamodb.DeleteRequest? DeleteRequest = null,

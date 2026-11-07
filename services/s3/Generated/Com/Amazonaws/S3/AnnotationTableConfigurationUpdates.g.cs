@@ -5,14 +5,14 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Specifies updates to apply to the annotation table configuration. Used as the request body for
-/// &lt;code&gt;UpdateBucketMetadataAnnotationTableConfiguration&lt;/code&gt;.&lt;/p&gt;
+/// Specifies updates to apply to the annotation table configuration. Used as the request body for
+/// <c>UpdateBucketMetadataAnnotationTableConfiguration</c>.
 /// </summary>
 /// <param name="ConfigurationState">
-/// &lt;p&gt;The new configuration state to apply.&lt;/p&gt;
+/// The new configuration state to apply.
 /// </param>
 /// <param name="Role">
-/// &lt;p&gt;The new IAM role ARN to apply.&lt;/p&gt;
+/// The new IAM role ARN to apply.
 /// </param>
 public sealed record class AnnotationTableConfigurationUpdates(
     AnnotationConfigurationState ConfigurationState,

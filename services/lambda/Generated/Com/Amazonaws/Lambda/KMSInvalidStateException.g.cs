@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Lambda couldn't decrypt the environment variables because the state of the KMS key used is not valid for Decrypt. Check the function's KMS key settings.&lt;/p&gt;
+/// Lambda couldn't decrypt the environment variables because the state of the KMS key used is not valid
+/// for Decrypt. Check the function's KMS key settings.
 /// </summary>
 public sealed partial class KMSInvalidStateException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;Lambda couldn't decrypt the environment variables because the state of the KMS key used is not valid for Decrypt. Check the function's KMS key settings.&lt;/p&gt;
+    /// Lambda couldn't decrypt the environment variables because the state of the KMS key used is not valid
+    /// for Decrypt. Check the function's KMS key settings.
     /// </summary>
     public KMSInvalidStateException(string? message = null, string? type = null)
         : base(message)

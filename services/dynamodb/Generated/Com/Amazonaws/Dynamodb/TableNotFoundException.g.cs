@@ -7,16 +7,14 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A source table with the name &lt;code&gt;TableName&lt;/code&gt; does not currently exist within
-/// the subscriber's account or the subscriber is operating in the wrong Amazon Web Services
-/// Region.&lt;/p&gt;
+/// A source table with the name <c>TableName</c> does not currently exist within the subscriber's
+/// account or the subscriber is operating in the wrong Amazon Web Services Region.
 /// </summary>
 public sealed partial class TableNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;A source table with the name &lt;code&gt;TableName&lt;/code&gt; does not currently exist within
-    /// the subscriber's account or the subscriber is operating in the wrong Amazon Web Services
-    /// Region.&lt;/p&gt;
+    /// A source table with the name <c>TableName</c> does not currently exist within the subscriber's
+    /// account or the subscriber is operating in the wrong Amazon Web Services Region.
     /// </summary>
     public TableNotFoundException(string? message = null)
         : base(message) { }

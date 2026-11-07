@@ -5,25 +5,28 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Provides configuration information about a Lambda function &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html&quot;&gt;alias&lt;/a&gt;.&lt;/p&gt;
+/// Provides configuration information about a Lambda function
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</see>.
 /// </summary>
 /// <param name="AliasArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the alias.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the alias.
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;A description of the alias.&lt;/p&gt;
+/// A description of the alias.
 /// </param>
 /// <param name="FunctionVersion">
-/// &lt;p&gt;The function version that the alias invokes.&lt;/p&gt;
+/// The function version that the alias invokes.
 /// </param>
 /// <param name="Name">
-/// &lt;p&gt;The name of the alias.&lt;/p&gt;
+/// The name of the alias.
 /// </param>
 /// <param name="RevisionId">
-/// &lt;p&gt;A unique identifier that changes when you update the alias.&lt;/p&gt;
+/// A unique identifier that changes when you update the alias.
 /// </param>
 /// <param name="RoutingConfig">
-/// &lt;p&gt;The &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html&quot;&gt;routing configuration&lt;/a&gt; of the alias.&lt;/p&gt;
+/// The
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html">routing
+/// configuration</see> of the alias.
 /// </param>
 public sealed record class AliasConfiguration(
     string? AliasArn = null,

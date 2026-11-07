@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The subnet ID provided in the Lambda function VPC configuration is not valid.&lt;/p&gt;
+/// The subnet ID provided in the Lambda function VPC configuration is not valid.
 /// </summary>
 public sealed partial class InvalidSubnetIDException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The subnet ID provided in the Lambda function VPC configuration is not valid.&lt;/p&gt;
+    /// The subnet ID provided in the Lambda function VPC configuration is not valid.
     /// </summary>
     public InvalidSubnetIDException(string? message = null, string? type = null)
         : base(message)

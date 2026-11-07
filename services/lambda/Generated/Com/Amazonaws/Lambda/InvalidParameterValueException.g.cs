@@ -7,18 +7,18 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;One of the parameters in the request is not valid.&lt;/p&gt;
+/// One of the parameters in the request is not valid.
 /// </summary>
 public sealed partial class InvalidParameterValueException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;One of the parameters in the request is not valid.&lt;/p&gt;
+    /// One of the parameters in the request is not valid.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public InvalidParameterValueException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +27,12 @@ public sealed partial class InvalidParameterValueException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

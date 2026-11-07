@@ -5,14 +5,16 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Optional configuration to replicate existing source bucket objects. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This parameter is no longer supported. To replicate existing objects, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html&quot;&gt;Replicating
-/// existing objects with S3 Batch Replication&lt;/a&gt; in the
-/// &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Optional configuration to replicate existing source bucket objects.
+/// </para>
+/// <para>
+/// <b>Note:</b> This parameter is no longer supported. To replicate existing objects, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html">Replicating
+/// existing objects with S3 Batch Replication</see> in the <i>Amazon S3 User Guide</i>.
+/// </para>
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;Specifies whether Amazon S3 replicates existing source bucket objects. &lt;/p&gt;
+/// Specifies whether Amazon S3 replicates existing source bucket objects.
 /// </param>
 public sealed record class ExistingObjectReplication(ExistingObjectReplicationStatus Status);

@@ -5,16 +5,16 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about the resolved Amazon S3 object that contains a function's deployment package.&lt;/p&gt;
+/// Details about the resolved Amazon S3 object that contains a function's deployment package.
 /// </summary>
 /// <param name="S3Bucket">
-/// &lt;p&gt;The Amazon S3 bucket that contains the deployment package.&lt;/p&gt;
+/// The Amazon S3 bucket that contains the deployment package.
 /// </param>
 /// <param name="S3Key">
-/// &lt;p&gt;The Amazon S3 key of the deployment package.&lt;/p&gt;
+/// The Amazon S3 key of the deployment package.
 /// </param>
 /// <param name="S3ObjectVersion">
-/// &lt;p&gt;The version of the deployment package object.&lt;/p&gt;
+/// The version of the deployment package object.
 /// </param>
 public sealed record class ResolvedS3Object(
     string? S3Bucket = null,

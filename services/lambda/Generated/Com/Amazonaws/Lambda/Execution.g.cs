@@ -7,28 +7,33 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Information about a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;.&lt;/p&gt;
+/// Information about a
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+/// execution</see>.
 /// </summary>
 /// <param name="DurableExecutionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the durable execution, if this execution is a durable execution.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the durable execution, if this execution is a durable execution.
 /// </param>
 /// <param name="DurableExecutionName">
-/// &lt;p&gt;The unique name of the durable execution, if one was provided when the execution was started.&lt;/p&gt;
+/// The unique name of the durable execution, if one was provided when the execution was started.
 /// </param>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Lambda function.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Lambda function.
 /// </param>
 /// <param name="StartTimestamp">
-/// &lt;p&gt;The date and time when the durable execution started, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when the durable execution started, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;The current status of the durable execution.&lt;/p&gt;
+/// The current status of the durable execution.
 /// </param>
 /// <param name="EndTimestamp">
-/// &lt;p&gt;The date and time when the durable execution ended, in &lt;a href=&quot;https://www.w3.org/TR/NOTE-datetime&quot;&gt;ISO-8601 format&lt;/a&gt; (YYYY-MM-DDThh:mm:ss.sTZD).&lt;/p&gt;
+/// The date and time when the durable execution ended, in
+/// <see href="https://www.w3.org/TR/NOTE-datetime">ISO-8601 format</see> (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="KMSKeyArn">
-/// &lt;p&gt;The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.&lt;/p&gt;
+/// The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your
+/// durable execution's payload data, including input, output, and error payloads.
 /// </param>
 public sealed record class Execution(
     string DurableExecutionArn,

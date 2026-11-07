@@ -7,16 +7,24 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The operation tried to access a nonexistent resource-based policy.&lt;/p&gt;
-/// &lt;p&gt;If you specified an &lt;code&gt;ExpectedRevisionId&lt;/code&gt;, it's possible that a policy is
-/// present for the resource but its revision ID didn't match the expected value.&lt;/p&gt;
+/// <para>
+/// The operation tried to access a nonexistent resource-based policy.
+/// </para>
+/// <para>
+/// If you specified an <c>ExpectedRevisionId</c>, it's possible that a policy is present for the
+/// resource but its revision ID didn't match the expected value.
+/// </para>
 /// </summary>
 public sealed partial class PolicyNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The operation tried to access a nonexistent resource-based policy.&lt;/p&gt;
-    /// &lt;p&gt;If you specified an &lt;code&gt;ExpectedRevisionId&lt;/code&gt;, it's possible that a policy is
-    /// present for the resource but its revision ID didn't match the expected value.&lt;/p&gt;
+    /// <para>
+    /// The operation tried to access a nonexistent resource-based policy.
+    /// </para>
+    /// <para>
+    /// If you specified an <c>ExpectedRevisionId</c>, it's possible that a policy is present for the
+    /// resource but its revision ID didn't match the expected value.
+    /// </para>
     /// </summary>
     public PolicyNotFoundException(string? message = null)
         : base(message) { }

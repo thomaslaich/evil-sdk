@@ -7,14 +7,14 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The source object of the COPY action is not in the active tier and is only stored in Amazon S3
-/// Glacier.&lt;/p&gt;
+/// The source object of the COPY action is not in the active tier and is only stored in Amazon S3
+/// Glacier.
 /// </summary>
 public sealed partial class ObjectNotInActiveTierError : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The source object of the COPY action is not in the active tier and is only stored in Amazon S3
-    /// Glacier.&lt;/p&gt;
+    /// The source object of the COPY action is not in the active tier and is only stored in Amazon S3
+    /// Glacier.
     /// </summary>
     public ObjectNotInActiveTierError(string? message = null)
         : base(message) { }

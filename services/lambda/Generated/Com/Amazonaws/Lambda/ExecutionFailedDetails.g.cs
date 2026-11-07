@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a failed &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt;.&lt;/p&gt;
+/// Details about a failed
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+/// execution</see>.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about the execution failure.&lt;/p&gt;
+/// Details about the execution failure.
 /// </param>
 public sealed record class ExecutionFailedDetails(EventError Error);

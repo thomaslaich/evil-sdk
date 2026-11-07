@@ -8,16 +8,43 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListAliasesInput.
 /// </summary>
 /// <param name="FunctionName">
-/// &lt;p&gt;The name or ARN of the Lambda function.&lt;/p&gt; &lt;p class=&quot;title&quot;&gt; &lt;b&gt;Name formats&lt;/b&gt; &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function name&lt;/b&gt; - &lt;code&gt;MyFunction&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Function ARN&lt;/b&gt; - &lt;code&gt;arn:aws:lambda:us-west-2:123456789012:function:MyFunction&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;Partial ARN&lt;/b&gt; - &lt;code&gt;123456789012:function:MyFunction&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; &lt;p&gt;The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.&lt;/p&gt;
+/// <para>
+/// The name or ARN of the Lambda function.
+/// </para>
+/// <para>
+/// <b>Name formats</b>
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>Function name</b> - <c>MyFunction</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Function ARN</b> - <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</c>.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>Partial ARN</b> - <c>123456789012:function:MyFunction</c>.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The length constraint applies only to the full ARN. If you specify only the function name, it is
+/// limited to 64 characters in length.
+/// </para>
 /// </param>
 /// <param name="FunctionVersion">
-/// &lt;p&gt;Specify a function version to only list aliases that invoke that version.&lt;/p&gt;
+/// Specify a function version to only list aliases that invoke that version.
 /// </param>
 /// <param name="Marker">
-/// &lt;p&gt;Specify the pagination token that's returned by a previous request to retrieve the next page of results.&lt;/p&gt;
+/// Specify the pagination token that's returned by a previous request to retrieve the next page of
+/// results.
 /// </param>
 /// <param name="MaxItems">
-/// &lt;p&gt;Limit the number of aliases returned.&lt;/p&gt;
+/// Limit the number of aliases returned.
 /// </param>
 public sealed record class ListAliasesInput(
     string FunctionName,

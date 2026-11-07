@@ -5,9 +5,11 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html&quot;&gt;durable execution&lt;/a&gt; that succeeded.&lt;/p&gt;
+/// Details about a
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html">durable
+/// execution</see> that succeeded.
 /// </summary>
 /// <param name="Result">
-/// &lt;p&gt;The response payload from the successful operation.&lt;/p&gt;
+/// The response payload from the successful operation.
 /// </param>
 public sealed record class ExecutionSucceededDetails(EventResult Result);

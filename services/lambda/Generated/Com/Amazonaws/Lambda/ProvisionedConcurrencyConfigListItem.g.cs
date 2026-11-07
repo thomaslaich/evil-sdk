@@ -5,28 +5,31 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about the provisioned concurrency configuration for a function alias or version.&lt;/p&gt;
+/// Details about the provisioned concurrency configuration for a function alias or version.
 /// </summary>
 /// <param name="AllocatedProvisionedConcurrentExecutions">
-/// &lt;p&gt;The amount of provisioned concurrency allocated. When a weighted alias is used during linear and canary deployments, this value fluctuates depending on the amount of concurrency that is provisioned for the function versions.&lt;/p&gt;
+/// The amount of provisioned concurrency allocated. When a weighted alias is used during linear and
+/// canary deployments, this value fluctuates depending on the amount of concurrency that is provisioned
+/// for the function versions.
 /// </param>
 /// <param name="AvailableProvisionedConcurrentExecutions">
-/// &lt;p&gt;The amount of provisioned concurrency available.&lt;/p&gt;
+/// The amount of provisioned concurrency available.
 /// </param>
 /// <param name="FunctionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the alias or version.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the alias or version.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date and time that a user last updated the configuration, in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot;&gt;ISO 8601 format&lt;/a&gt;.&lt;/p&gt;
+/// The date and time that a user last updated the configuration, in
+/// <see href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601 format</see>.
 /// </param>
 /// <param name="RequestedProvisionedConcurrentExecutions">
-/// &lt;p&gt;The amount of provisioned concurrency requested.&lt;/p&gt;
+/// The amount of provisioned concurrency requested.
 /// </param>
 /// <param name="Status">
-/// &lt;p&gt;The status of the allocation process.&lt;/p&gt;
+/// The status of the allocation process.
 /// </param>
 /// <param name="StatusReason">
-/// &lt;p&gt;For failed allocations, the reason that provisioned concurrency could not be allocated.&lt;/p&gt;
+/// For failed allocations, the reason that provisioned concurrency could not be allocated.
 /// </param>
 public sealed record class ProvisionedConcurrencyConfigListItem(
     int? AllocatedProvisionedConcurrentExecutions = null,

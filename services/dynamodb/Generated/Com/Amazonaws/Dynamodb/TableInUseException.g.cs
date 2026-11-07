@@ -7,14 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;A target table with the specified name is either being created or deleted.
-/// &lt;/p&gt;
+/// A target table with the specified name is either being created or deleted.
 /// </summary>
 public sealed partial class TableInUseException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;A target table with the specified name is either being created or deleted.
-    /// &lt;/p&gt;
+    /// A target table with the specified name is either being created or deleted.
     /// </summary>
     public TableInUseException(string? message = null)
         : base(message) { }

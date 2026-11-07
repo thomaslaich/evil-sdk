@@ -7,12 +7,14 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function couldn't mount the configured file system due to a permission or configuration issue.&lt;/p&gt;
+/// The Lambda function couldn't mount the configured file system due to a permission or configuration
+/// issue.
 /// </summary>
 public sealed partial class EFSMountFailureException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function couldn't mount the configured file system due to a permission or configuration issue.&lt;/p&gt;
+    /// The Lambda function couldn't mount the configured file system due to a permission or configuration
+    /// issue.
     /// </summary>
     public EFSMountFailureException(string? message = null, string? type = null)
         : base(message)

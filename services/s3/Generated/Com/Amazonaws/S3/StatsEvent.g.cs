@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for the Stats Event.&lt;/p&gt;
+/// Container for the Stats Event.
 /// </summary>
 /// <param name="Details">
-/// &lt;p&gt;The Stats event details.&lt;/p&gt;
+/// The Stats event details.
 /// </param>
 public sealed record class StatsEvent(Stats? Details = null);

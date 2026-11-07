@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the properties of a replica.&lt;/p&gt;
+/// Represents the properties of a replica.
 /// </summary>
 /// <param name="RegionName">
-/// &lt;p&gt;The Region where the replica needs to be created.&lt;/p&gt;
+/// The Region where the replica needs to be created.
 /// </param>
 public sealed record class Replica(string? RegionName = null);

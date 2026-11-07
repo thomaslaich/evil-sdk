@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a chained invocation that was stopped.&lt;/p&gt;
+/// Details about a chained invocation that was stopped.
 /// </summary>
 /// <param name="Error">
-/// &lt;p&gt;Details about why the chained invocation stopped.&lt;/p&gt;
+/// Details about why the chained invocation stopped.
 /// </param>
 public sealed record class ChainedInvokeStoppedDetails(EventError Error);

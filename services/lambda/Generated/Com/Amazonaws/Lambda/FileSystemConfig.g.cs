@@ -5,16 +5,24 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about the connection between a Lambda function and an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html&quot;&gt;Amazon EFS file system&lt;/a&gt; or an &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html&quot;&gt;Amazon S3 file system&lt;/a&gt;.&lt;/p&gt;
+/// Details about the connection between a Lambda function and an
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html">Amazon EFS
+/// file system</see> or an
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html">Amazon S3
+/// file system</see>.
 /// </summary>
 /// <param name="Arn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Amazon EFS or Amazon S3 Files access point that provides access to the file system.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Amazon EFS or Amazon S3 Files access point that provides
+/// access to the file system.
 /// </param>
 /// <param name="LocalMountPath">
-/// &lt;p&gt;The path where the function can access the file system, starting with &lt;code&gt;/mnt/&lt;/code&gt;.&lt;/p&gt;
+/// The path where the function can access the file system, starting with <c>/mnt/</c>.
 /// </param>
 /// <param name="S3FilesConfig">
-/// &lt;p&gt;The configuration for how your function accesses data on an Amazon S3 file system. Valid only when the file system access point ARN is an Amazon S3 Files access point. If you specify a different access point type (for example, Amazon Elastic File System), the operation returns an &lt;code&gt;InvalidParameterException&lt;/code&gt;.&lt;/p&gt;
+/// The configuration for how your function accesses data on an Amazon S3 file system. Valid only when
+/// the file system access point ARN is an Amazon S3 Files access point. If you specify a different
+/// access point type (for example, Amazon Elastic File System), the operation returns an
+/// <c>InvalidParameterException</c>.
 /// </param>
 public sealed record class FileSystemConfig(
     string Arn,

@@ -5,23 +5,24 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Contains the current state of the annotation table associated with a bucket's Amazon S3 Metadata
-/// configuration, including its provisioning status and identifiers.&lt;/p&gt;
+/// Contains the current state of the annotation table associated with a bucket's Amazon S3 Metadata
+/// configuration, including its provisioning status and identifiers.
 /// </summary>
 /// <param name="ConfigurationState">
-/// &lt;p&gt;The current configuration state of the annotation table.&lt;/p&gt;
+/// The current configuration state of the annotation table.
 /// </param>
 /// <param name="Role">
-/// &lt;p&gt;The ARN of the IAM role associated with the annotation table.&lt;/p&gt;
+/// The ARN of the IAM role associated with the annotation table.
 /// </param>
 /// <param name="TableArn">
-/// &lt;p&gt;The ARN of the annotation table.&lt;/p&gt;
+/// The ARN of the annotation table.
 /// </param>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the annotation table.&lt;/p&gt;
+/// The name of the annotation table.
 /// </param>
 /// <param name="TableStatus">
-/// &lt;p&gt;The provisioning status of the annotation table. Possible values: &lt;code&gt;CREATING&lt;/code&gt;, &lt;code&gt;BACKFILLING&lt;/code&gt;, &lt;code&gt;ACTIVE&lt;/code&gt;, &lt;code&gt;FAILED&lt;/code&gt;.&lt;/p&gt;
+/// The provisioning status of the annotation table. Possible values: <c>CREATING</c>,
+/// <c>BACKFILLING</c>, <c>ACTIVE</c>, <c>FAILED</c>.
 /// </param>
 public sealed record class AnnotationTableConfigurationResult(
     AnnotationConfigurationState ConfigurationState,

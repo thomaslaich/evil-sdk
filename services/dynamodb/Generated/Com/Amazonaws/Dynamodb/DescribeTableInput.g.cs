@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of a &lt;code&gt;DescribeTable&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of a <c>DescribeTable</c> operation.
 /// </summary>
 /// <param name="TableName">
-/// &lt;p&gt;The name of the table to describe. You can also provide the Amazon Resource Name (ARN) of the table in
-/// this parameter.&lt;/p&gt;
+/// The name of the table to describe. You can also provide the Amazon Resource Name (ARN) of the table
+/// in this parameter.
 /// </param>
 public sealed record class DescribeTableInput(string TableName);

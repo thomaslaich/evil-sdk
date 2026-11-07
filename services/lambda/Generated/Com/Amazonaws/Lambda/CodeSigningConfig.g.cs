@@ -5,25 +5,28 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Details about a &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html&quot;&gt;Code signing configuration&lt;/a&gt;. &lt;/p&gt;
+/// Details about a
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html">Code signing
+/// configuration</see>.
 /// </summary>
 /// <param name="AllowedPublishers">
-/// &lt;p&gt;List of allowed publishers.&lt;/p&gt;
+/// List of allowed publishers.
 /// </param>
 /// <param name="CodeSigningConfigArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the Code signing configuration.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the Code signing configuration.
 /// </param>
 /// <param name="CodeSigningConfigId">
-/// &lt;p&gt;Unique identifer for the Code signing configuration.&lt;/p&gt;
+/// Unique identifer for the Code signing configuration.
 /// </param>
 /// <param name="CodeSigningPolicies">
-/// &lt;p&gt;The code signing policy controls the validation failure action for signature mismatch or expiry.&lt;/p&gt;
+/// The code signing policy controls the validation failure action for signature mismatch or expiry.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;The date and time that the Code signing configuration was last modified, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD). &lt;/p&gt;
+/// The date and time that the Code signing configuration was last modified, in ISO-8601 format
+/// (YYYY-MM-DDThh:mm:ss.sTZD).
 /// </param>
 /// <param name="Description">
-/// &lt;p&gt;Code signing configuration description.&lt;/p&gt;
+/// Code signing configuration description.
 /// </param>
 public sealed record class CodeSigningConfig(
     global::Com.Amazonaws.Lambda.AllowedPublishers AllowedPublishers,

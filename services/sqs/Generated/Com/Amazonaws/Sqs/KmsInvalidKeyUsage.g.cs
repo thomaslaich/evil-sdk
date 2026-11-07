@@ -7,32 +7,42 @@ using System;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;The request was rejected for one of the following reasons:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The KeyUsage value of the KMS key is incompatible with the API
-/// operation.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;The encryption algorithm or signing algorithm specified for the operation is
-/// incompatible with the type of key material in the KMS key (KeySpec).&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The request was rejected for one of the following reasons:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// The KeyUsage value of the KMS key is incompatible with the API operation.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// The encryption algorithm or signing algorithm specified for the operation is incompatible with the
+/// type of key material in the KMS key (KeySpec).
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 public sealed partial class KmsInvalidKeyUsage : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The request was rejected for one of the following reasons:&lt;/p&gt;
-    /// &lt;ul&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The KeyUsage value of the KMS key is incompatible with the API
-    /// operation.&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;li&gt;
-    /// &lt;p&gt;The encryption algorithm or signing algorithm specified for the operation is
-    /// incompatible with the type of key material in the KMS key (KeySpec).&lt;/p&gt;
-    /// &lt;/li&gt;
-    /// &lt;/ul&gt;
+    /// <para>
+    /// The request was rejected for one of the following reasons:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// The KeyUsage value of the KMS key is incompatible with the API operation.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// The encryption algorithm or signing algorithm specified for the operation is incompatible with the
+    /// type of key material in the KMS key (KeySpec).
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     public KmsInvalidKeyUsage(string? message = null)
         : base(message) { }

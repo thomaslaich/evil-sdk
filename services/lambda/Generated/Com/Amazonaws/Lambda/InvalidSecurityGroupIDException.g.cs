@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The security group ID provided in the Lambda function VPC configuration is not valid.&lt;/p&gt;
+/// The security group ID provided in the Lambda function VPC configuration is not valid.
 /// </summary>
 public sealed partial class InvalidSecurityGroupIDException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The security group ID provided in the Lambda function VPC configuration is not valid.&lt;/p&gt;
+    /// The security group ID provided in the Lambda function VPC configuration is not valid.
     /// </summary>
     public InvalidSecurityGroupIDException(string? message = null, string? type = null)
         : base(message)

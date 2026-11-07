@@ -11,305 +11,381 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#HeadObjectOutput.
 /// </summary>
 /// <param name="AcceptRanges">
-/// &lt;p&gt;Indicates that a range of bytes was specified.&lt;/p&gt;
+/// Indicates that a range of bytes was specified.
 /// </param>
 /// <param name="ArchiveStatus">
-/// &lt;p&gt;The archive state of the head object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The archive state of the head object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="BucketKeyEnabled">
-/// &lt;p&gt;Indicates whether the object uses an S3 Bucket Key for server-side encryption with Key Management Service (KMS)
-/// keys (SSE-KMS).&lt;/p&gt;
+/// Indicates whether the object uses an S3 Bucket Key for server-side encryption with Key Management
+/// Service (KMS) keys (SSE-KMS).
 /// </param>
 /// <param name="CacheControl">
-/// &lt;p&gt;Specifies caching behavior along the request/reply chain.&lt;/p&gt;
+/// Specifies caching behavior along the request/reply chain.
 /// </param>
 /// <param name="ChecksumCRC32">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32 checksum&lt;/code&gt; of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32 checksum</c> of the object. This checksum is only present if the
+/// checksum was uploaded with the object. When you use an API operation on an object that was uploaded
+/// using multipart uploads, this value may not be a direct checksum value of the full object. Instead,
+/// it's a calculation based on the checksum values of each individual part. For more information about
+/// how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC32C">
-/// &lt;p&gt;The Base64 encoded, 32-bit &lt;code&gt;CRC32C&lt;/code&gt; checksum of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 32-bit <c>CRC32C</c> checksum of the object. This checksum is only present if
+/// the checksum was uploaded with the object. When you use an API operation on an object that was
+/// uploaded using multipart uploads, this value may not be a direct checksum value of the full object.
+/// Instead, it's a calculation based on the checksum values of each individual part. For more
+/// information about how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumCRC64NVME">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;CRC64NVME&lt;/code&gt; checksum of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>CRC64NVME</c> checksum of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumMD5">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;MD5&lt;/code&gt; digest of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>MD5</c> digest of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumSHA1">
-/// &lt;p&gt;The Base64 encoded, 160-bit &lt;code&gt;SHA1&lt;/code&gt; digest of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use the API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 160-bit <c>SHA1</c> digest of the object. This checksum is only present if the
+/// checksum was uploaded with the object. When you use the API operation on an object that was uploaded
+/// using multipart uploads, this value may not be a direct checksum value of the full object. Instead,
+/// it's a calculation based on the checksum values of each individual part. For more information about
+/// how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA256">
-/// &lt;p&gt;The Base64 encoded, 256-bit &lt;code&gt;SHA256&lt;/code&gt; digest of the object. This checksum is only present if the checksum was uploaded
-/// with the object. When you use an API operation on an object that was uploaded using multipart uploads, this value may not be a direct checksum value of the full object. Instead, it's a calculation based on the checksum values of each individual part. For more information about how checksums are calculated
-/// with multipart uploads, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums&quot;&gt;
-/// Checking object integrity&lt;/a&gt; in the &lt;i&gt;Amazon S3 User Guide&lt;/i&gt;.&lt;/p&gt;
+/// The Base64 encoded, 256-bit <c>SHA256</c> digest of the object. This checksum is only present if the
+/// checksum was uploaded with the object. When you use an API operation on an object that was uploaded
+/// using multipart uploads, this value may not be a direct checksum value of the full object. Instead,
+/// it's a calculation based on the checksum values of each individual part. For more information about
+/// how checksums are calculated with multipart uploads, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">Checking
+/// object integrity</see> in the <i>Amazon S3 User Guide</i>.
 /// </param>
 /// <param name="ChecksumSHA512">
-/// &lt;p&gt;The Base64 encoded, 512-bit &lt;code&gt;SHA512&lt;/code&gt; digest of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 512-bit <c>SHA512</c> digest of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumType">
-/// &lt;p&gt;The checksum type, which determines how part-level checksums are combined to create an object-level
-/// checksum for multipart objects. You can use this header response to verify that the checksum type that
-/// is received is the same checksum type that was specified in &lt;code&gt;CreateMultipartUpload&lt;/code&gt; request.
-/// For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking object integrity in the Amazon S3
-/// User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The checksum type, which determines how part-level checksums are combined to create an object-level
+/// checksum for multipart objects. You can use this header response to verify that the checksum type
+/// that is received is the same checksum type that was specified in <c>CreateMultipartUpload</c>
+/// request. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH128">
-/// &lt;p&gt;The Base64 encoded, 128-bit &lt;code&gt;XXHASH128&lt;/code&gt; checksum of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 128-bit <c>XXHASH128</c> checksum of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH3">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH3&lt;/code&gt; checksum of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH3</c> checksum of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ChecksumXXHASH64">
-/// &lt;p&gt;The Base64 encoded, 64-bit &lt;code&gt;XXHASH64&lt;/code&gt; checksum of the object. For more information, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html&quot;&gt;Checking
-/// object integrity in the Amazon S3 User Guide&lt;/a&gt;.&lt;/p&gt;
+/// The Base64 encoded, 64-bit <c>XXHASH64</c> checksum of the object. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">Checking
+/// object integrity in the Amazon S3 User Guide</see>.
 /// </param>
 /// <param name="ContentDisposition">
-/// &lt;p&gt;Specifies presentational information for the object.&lt;/p&gt;
+/// Specifies presentational information for the object.
 /// </param>
 /// <param name="ContentEncoding">
-/// &lt;p&gt;Indicates what content encodings have been applied to the object and thus what decoding mechanisms
-/// must be applied to obtain the media-type referenced by the Content-Type header field.&lt;/p&gt;
+/// Indicates what content encodings have been applied to the object and thus what decoding mechanisms
+/// must be applied to obtain the media-type referenced by the Content-Type header field.
 /// </param>
 /// <param name="ContentLanguage">
-/// &lt;p&gt;The language the content is in.&lt;/p&gt;
+/// The language the content is in.
 /// </param>
 /// <param name="ContentLength">
-/// &lt;p&gt;Size of the body in bytes.&lt;/p&gt;
+/// Size of the body in bytes.
 /// </param>
 /// <param name="ContentRange">
-/// &lt;p&gt;The portion of the object returned in the response for a &lt;code&gt;GET&lt;/code&gt; request.&lt;/p&gt;
+/// The portion of the object returned in the response for a <c>GET</c> request.
 /// </param>
 /// <param name="ContentType">
-/// &lt;p&gt;A standard MIME type describing the format of the object data.&lt;/p&gt;
+/// A standard MIME type describing the format of the object data.
 /// </param>
 /// <param name="DeleteMarker">
-/// &lt;p&gt;Specifies whether the object retrieved was (true) or was not (false) a Delete Marker. If false, this
-/// response header does not appear in the response.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Specifies whether the object retrieved was (true) or was not (false) a Delete Marker. If false, this
+/// response header does not appear in the response.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ETag">
-/// &lt;p&gt;An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a
-/// resource found at a URL.&lt;/p&gt;
+/// An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a
+/// resource found at a URL.
 /// </param>
 /// <param name="Expiration">
-/// &lt;p&gt;If the object expiration is configured (see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html&quot;&gt;
-/// &lt;code&gt;PutBucketLifecycleConfiguration&lt;/code&gt;
-/// &lt;/a&gt;), the response includes this header. It
-/// includes the &lt;code&gt;expiry-date&lt;/code&gt; and &lt;code&gt;rule-id&lt;/code&gt; key-value pairs providing object
-/// expiration information. The value of the &lt;code&gt;rule-id&lt;/code&gt; is URL-encoded.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Object expiration information is not returned in directory buckets and this header returns the
-/// value &quot;&lt;code&gt;NotImplemented&lt;/code&gt;&quot; in all responses for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the object expiration is configured (see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html"><c>PutBucketLifecycleConfiguration</c></see>),
+/// the response includes this header. It includes the <c>expiry-date</c> and <c>rule-id</c> key-value
+/// pairs providing object expiration information. The value of the <c>rule-id</c> is URL-encoded.
+/// </para>
+/// <para>
+/// <b>Note:</b> Object expiration information is not returned in directory buckets and this header
+/// returns the value "<c>NotImplemented</c>" in all responses for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Expires">
-/// &lt;p&gt;The date and time at which the object is no longer cacheable.&lt;/p&gt;
+/// The date and time at which the object is no longer cacheable.
 /// </param>
 /// <param name="LastModified">
-/// &lt;p&gt;Date and time when the object was last modified.&lt;/p&gt;
+/// Date and time when the object was last modified.
 /// </param>
 /// <param name="Metadata">
-/// &lt;p&gt;A map of metadata to store with the object in S3.&lt;/p&gt;
+/// A map of metadata to store with the object in S3.
 /// </param>
 /// <param name="MissingMeta">
-/// &lt;p&gt;This is set to the number of metadata entries not returned in &lt;code&gt;x-amz-meta&lt;/code&gt; headers. This
-/// can happen if you create metadata using an API like SOAP that supports more flexible metadata than the
-/// REST API. For example, using SOAP, you can create metadata whose values are not legal HTTP
-/// headers.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// This is set to the number of metadata entries not returned in <c>x-amz-meta</c> headers. This can
+/// happen if you create metadata using an API like SOAP that supports more flexible metadata than the
+/// REST API. For example, using SOAP, you can create metadata whose values are not legal HTTP headers.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEventHold">
-/// &lt;p&gt;The event hold status for this object. This header is only returned if the requester has the
-/// &lt;code&gt;s3:GetObjectRetention&lt;/code&gt; permission.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The event hold status for this object. This header is only returned if the requester has the
+/// <c>s3:GetObjectRetention</c> permission.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEventHoldDurationDays">
-/// &lt;p&gt;The event hold duration in days for this object. Only returned when the event hold is
-/// enabled.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The event hold duration in days for this object. Only returned when the event hold is enabled.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockEventHoldDurationYears">
-/// &lt;p&gt;The event hold duration in years for this object. Only returned when the event hold is
-/// enabled.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The event hold duration in years for this object. Only returned when the event hold is enabled.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockLegalHoldStatus">
-/// &lt;p&gt;Specifies whether a legal hold is in effect for this object. This header is only returned if the
-/// requester has the &lt;code&gt;s3:GetObjectLegalHold&lt;/code&gt; permission. This header is not returned if the
+/// <para>
+/// Specifies whether a legal hold is in effect for this object. This header is only returned if the
+/// requester has the <c>s3:GetObjectLegalHold</c> permission. This header is not returned if the
 /// specified version of this object has never had a legal hold applied. For more information about S3
-/// Object Lock, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html&quot;&gt;Object
-/// Lock&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// Object Lock, see <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Object
+/// Lock</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockMode">
-/// &lt;p&gt;The Object Lock mode, if any, that's in effect for this object. This header is only returned if the
-/// requester has the &lt;code&gt;s3:GetObjectRetention&lt;/code&gt; permission. For more information about S3 Object
-/// Lock, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html&quot;&gt;Object Lock&lt;/a&gt;. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The Object Lock mode, if any, that's in effect for this object. This header is only returned if the
+/// requester has the <c>s3:GetObjectRetention</c> permission. For more information about S3 Object
+/// Lock, see <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Object
+/// Lock</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="ObjectLockRetainUntilDate">
-/// &lt;p&gt;The date and time when the Object Lock retention period expires. This header is only returned if the
-/// requester has the &lt;code&gt;s3:GetObjectRetention&lt;/code&gt; permission.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The date and time when the Object Lock retention period expires. This header is only returned if the
+/// requester has the <c>s3:GetObjectRetention</c> permission.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="PartsCount">
-/// &lt;p&gt;The count of parts this object has. This value is only returned if you specify
-/// &lt;code&gt;partNumber&lt;/code&gt; in your request and the object was uploaded as a multipart upload.&lt;/p&gt;
+/// The count of parts this object has. This value is only returned if you specify <c>partNumber</c> in
+/// your request and the object was uploaded as a multipart upload.
 /// </param>
 /// <param name="ReplicationStatus">
-/// &lt;p&gt;Amazon S3 can return this header if your request involves a bucket that is either a source or a
-/// destination in a replication rule.&lt;/p&gt;
-/// &lt;p&gt;In replication, you have a source bucket on which you configure replication and destination bucket
-/// or buckets where Amazon S3 stores object replicas. When you request an object (&lt;code&gt;GetObject&lt;/code&gt;) or
-/// object metadata (&lt;code&gt;HeadObject&lt;/code&gt;) from these buckets, Amazon S3 will return the
-/// &lt;code&gt;x-amz-replication-status&lt;/code&gt; header in the response as follows:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;If requesting an object from the source bucket&lt;/b&gt;, Amazon S3 will
-/// return the &lt;code&gt;x-amz-replication-status&lt;/code&gt; header if the object in your request is eligible
-/// for replication.&lt;/p&gt;
-/// &lt;p&gt; For example, suppose that in your replication configuration, you specify object prefix
-/// &lt;code&gt;TaxDocs&lt;/code&gt; requesting Amazon S3 to replicate objects with key prefix &lt;code&gt;TaxDocs&lt;/code&gt;.
-/// Any objects you upload with this key name prefix, for example &lt;code&gt;TaxDocs/document1.pdf&lt;/code&gt;,
-/// are eligible for replication. For any object request with this key name prefix, Amazon S3 will return the
-/// &lt;code&gt;x-amz-replication-status&lt;/code&gt; header with value PENDING, COMPLETED or FAILED indicating
-/// object replication status.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;If requesting an object from a destination bucket&lt;/b&gt;, Amazon S3 will
-/// return the &lt;code&gt;x-amz-replication-status&lt;/code&gt; header with value REPLICA if the object in your
-/// request is a replica that Amazon S3 created and there is no replica modification replication in
-/// progress.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;When replicating objects to multiple destination buckets&lt;/b&gt;, the
-/// &lt;code&gt;x-amz-replication-status&lt;/code&gt; header acts differently. The header of the source object
-/// will only return a value of COMPLETED when replication is successful to all destinations. The header
-/// will remain at value PENDING until replication has completed for all destinations. If one or more
-/// destinations fails replication the header will return FAILED. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html&quot;&gt;Replication&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Amazon S3 can return this header if your request involves a bucket that is either a source or a
+/// destination in a replication rule.
+/// </para>
+/// <para>
+/// In replication, you have a source bucket on which you configure replication and destination bucket
+/// or buckets where Amazon S3 stores object replicas. When you request an object (<c>GetObject</c>) or
+/// object metadata (<c>HeadObject</c>) from these buckets, Amazon S3 will return the
+/// <c>x-amz-replication-status</c> header in the response as follows:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <para>
+/// <b>If requesting an object from the source bucket</b>, Amazon S3 will return the
+/// <c>x-amz-replication-status</c> header if the object in your request is eligible for replication.
+/// </para>
+/// <para>
+/// For example, suppose that in your replication configuration, you specify object prefix
+/// <c>TaxDocs</c> requesting Amazon S3 to replicate objects with key prefix <c>TaxDocs</c>. Any objects
+/// you upload with this key name prefix, for example <c>TaxDocs/document1.pdf</c>, are eligible for
+/// replication. For any object request with this key name prefix, Amazon S3 will return the
+/// <c>x-amz-replication-status</c> header with value PENDING, COMPLETED or FAILED indicating object
+/// replication status.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>If requesting an object from a destination bucket</b>, Amazon S3 will return the
+/// <c>x-amz-replication-status</c> header with value REPLICA if the object in your request is a replica
+/// that Amazon S3 created and there is no replica modification replication in progress.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>When replicating objects to multiple destination buckets</b>, the <c>x-amz-replication-status</c>
+/// header acts differently. The header of the source object will only return a value of COMPLETED when
+/// replication is successful to all destinations. The header will remain at value PENDING until
+/// replication has completed for all destinations. If one or more destinations fails replication the
+/// header will return FAILED.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html">Replication</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="Restore">
-/// &lt;p&gt;If the object is an archived object (an object whose storage class is GLACIER), the response
-/// includes this header if either the archive restoration is in progress (see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html&quot;&gt;RestoreObject&lt;/a&gt; or an archive copy is already
-/// restored.&lt;/p&gt;
-/// &lt;p&gt; If an archive copy is already restored, the header value indicates when Amazon S3 is scheduled to delete
-/// the object copy. For example:&lt;/p&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;x-amz-restore: ongoing-request=&quot;false&quot;, expiry-date=&quot;Fri, 21 Dec 2012 00:00:00
-/// GMT&quot;&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;p&gt;If the object restoration is in progress, the header returns the value
-/// &lt;code&gt;ongoing-request=&quot;true&quot;&lt;/code&gt;.&lt;/p&gt;
-/// &lt;p&gt;For more information about archiving objects, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html#lifecycle-transition-general-considerations&quot;&gt;Transitioning Objects: General Considerations&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets. Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If the object is an archived object (an object whose storage class is GLACIER), the response
+/// includes this header if either the archive restoration is in progress (see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html">RestoreObject</see>
+/// or an archive copy is already restored.
+/// </para>
+/// <para>
+/// If an archive copy is already restored, the header value indicates when Amazon S3 is scheduled to
+/// delete the object copy. For example:
+/// </para>
+/// <para>
+/// <c>x-amz-restore: ongoing-request="false", expiry-date="Fri, 21 Dec 2012 00:00:00 GMT"</c>
+/// </para>
+/// <para>
+/// If the object restoration is in progress, the header returns the value
+/// <c>ongoing-request="true"</c>.
+/// </para>
+/// <para>
+/// For more information about archiving objects, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html#lifecycle-transition-general-considerations">Transitioning
+/// Objects: General Considerations</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets. Directory buckets only
+/// support <c>EXPRESS_ONEZONE</c> (the S3 Express One Zone storage class) in Availability Zones and
+/// <c>ONEZONE_IA</c> (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </param>
 /// <param name="SSECustomerAlgorithm">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to confirm the encryption algorithm that's used.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to confirm the encryption algorithm that's used.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSECustomerKeyMD5">
-/// &lt;p&gt;If server-side encryption with a customer-provided encryption key was requested, the response will
-/// include this header to provide the round-trip message integrity verification of the customer-provided
-/// encryption key.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// If server-side encryption with a customer-provided encryption key was requested, the response will
+/// include this header to provide the round-trip message integrity verification of the
+/// customer-provided encryption key.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="SSEKMSKeyId">
-/// &lt;p&gt;If present, indicates the ID of the KMS key that was used for object encryption.&lt;/p&gt;
+/// If present, indicates the ID of the KMS key that was used for object encryption.
 /// </param>
 /// <param name="ServerSideEncryption">
-/// &lt;p&gt;The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;When accessing data stored in Amazon FSx file systems using S3 access points, the only valid server side
-/// encryption option is &lt;code&gt;aws:fsx&lt;/code&gt;.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The server-side encryption algorithm used when you store this object in Amazon S3 or Amazon FSx.
+/// </para>
+/// <para>
+/// <b>Note:</b> When accessing data stored in Amazon FSx file systems using S3 access points, the only
+/// valid server side encryption option is <c>aws:fsx</c>.
+/// </para>
 /// </param>
 /// <param name="StorageClass">
-/// &lt;p&gt;Provides storage class information of the object. Amazon S3 returns this header for all objects except
-/// for S3 Standard storage class objects.&lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html&quot;&gt;Storage Classes&lt;/a&gt;.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;b&gt;Directory buckets &lt;/b&gt; -
-/// Directory buckets only support &lt;code&gt;EXPRESS_ONEZONE&lt;/code&gt; (the S3 Express One Zone storage class) in Availability Zones and &lt;code&gt;ONEZONE_IA&lt;/code&gt; (the S3 One Zone-Infrequent Access storage class) in Dedicated Local Zones.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Provides storage class information of the object. Amazon S3 returns this header for all objects
+/// except for S3 Standard storage class objects.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html">Storage
+/// Classes</see>.
+/// </para>
+/// <para>
+/// <b>Note:</b> <b>Directory buckets </b> - Directory buckets only support <c>EXPRESS_ONEZONE</c> (the
+/// S3 Express One Zone storage class) in Availability Zones and <c>ONEZONE_IA</c> (the S3 One
+/// Zone-Infrequent Access storage class) in Dedicated Local Zones.
+/// </para>
 /// </param>
 /// <param name="TagCount">
-/// &lt;p&gt;The number of tags, if any, on the object, when you have the relevant permission to read object
-/// tags.&lt;/p&gt;
-/// &lt;p&gt;You can use &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html&quot;&gt;GetObjectTagging&lt;/a&gt; to retrieve the tag set associated with an object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The number of tags, if any, on the object, when you have the relevant permission to read object
+/// tags.
+/// </para>
+/// <para>
+/// You can use
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html">GetObjectTagging</see>
+/// to retrieve the tag set associated with an object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="VersionId">
-/// &lt;p&gt;Version ID of the object.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// Version ID of the object.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 /// <param name="WebsiteRedirectLocation">
-/// &lt;p&gt;If the bucket is configured as a website, redirects requests for this object to another object in
+/// <para>
+/// If the bucket is configured as a website, redirects requests for this object to another object in
 /// the same bucket or to an external URL. Amazon S3 stores the value of this header in the object
-/// metadata.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;This functionality is not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// metadata.
+/// </para>
+/// <para>
+/// <b>Note:</b> This functionality is not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class HeadObjectOutput(
     string? AcceptRanges = null,

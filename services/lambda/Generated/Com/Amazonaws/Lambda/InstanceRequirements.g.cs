@@ -7,16 +7,20 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Specifications that define the characteristics and constraints for compute instances used by the capacity provider.&lt;/p&gt;
+/// Specifications that define the characteristics and constraints for compute instances used by the
+/// capacity provider.
 /// </summary>
 /// <param name="AllowedInstanceTypes">
-/// &lt;p&gt;A list of EC2 instance types that the capacity provider is allowed to use. If not specified, all compatible instance types are allowed.&lt;/p&gt;
+/// A list of EC2 instance types that the capacity provider is allowed to use. If not specified, all
+/// compatible instance types are allowed.
 /// </param>
 /// <param name="Architectures">
-/// &lt;p&gt;A list of supported CPU architectures for compute instances. Valid values include &lt;code&gt;x86_64&lt;/code&gt; and &lt;code&gt;arm64&lt;/code&gt;.&lt;/p&gt;
+/// A list of supported CPU architectures for compute instances. Valid values include <c>x86_64</c> and
+/// <c>arm64</c>.
 /// </param>
 /// <param name="ExcludedInstanceTypes">
-/// &lt;p&gt;A list of EC2 instance types that the capacity provider should not use, even if they meet other requirements.&lt;/p&gt;
+/// A list of EC2 instance types that the capacity provider should not use, even if they meet other
+/// requirements.
 /// </param>
 public sealed record class InstanceRequirements(
     IReadOnlyList<string>? AllowedInstanceTypes = null,

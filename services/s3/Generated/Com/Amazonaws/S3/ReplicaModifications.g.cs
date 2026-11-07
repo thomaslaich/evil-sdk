@@ -5,16 +5,18 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A filter that you can specify for selection for modifications on replicas. Amazon S3 doesn't replicate
-/// replica modifications by default. In the latest version of replication configuration (when
-/// &lt;code&gt;Filter&lt;/code&gt; is specified), you can specify this element and set the status to
-/// &lt;code&gt;Enabled&lt;/code&gt; to replicate modifications on replicas. &lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt; If you don't specify the &lt;code&gt;Filter&lt;/code&gt; element, Amazon S3 assumes that the replication
-/// configuration is the earlier version, V1. In the earlier version, this element is not allowed.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// A filter that you can specify for selection for modifications on replicas. Amazon S3 doesn't
+/// replicate replica modifications by default. In the latest version of replication configuration (when
+/// <c>Filter</c> is specified), you can specify this element and set the status to <c>Enabled</c> to
+/// replicate modifications on replicas.
+/// </para>
+/// <para>
+/// <b>Note:</b> If you don't specify the <c>Filter</c> element, Amazon S3 assumes that the replication
+/// configuration is the earlier version, V1. In the earlier version, this element is not allowed.
+/// </para>
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;Specifies whether Amazon S3 replicates modifications on replicas.&lt;/p&gt;
+/// Specifies whether Amazon S3 replicates modifications on replicas.
 /// </param>
 public sealed record class ReplicaModifications(ReplicaModificationsStatus Status);

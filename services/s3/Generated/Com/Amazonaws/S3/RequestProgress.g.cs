@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;Container for specifying if periodic &lt;code&gt;QueryProgress&lt;/code&gt; messages should be sent.&lt;/p&gt;
+/// Container for specifying if periodic <c>QueryProgress</c> messages should be sent.
 /// </summary>
 /// <param name="Enabled">
-/// &lt;p&gt;Specifies whether periodic QueryProgress frames should be sent. Valid values: TRUE, FALSE. Default
-/// value: FALSE.&lt;/p&gt;
+/// Specifies whether periodic QueryProgress frames should be sent. Valid values: TRUE, FALSE. Default
+/// value: FALSE.
 /// </param>
 public sealed record class RequestProgress(bool? Enabled = null);

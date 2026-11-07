@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListCapacityProvidersOutput.
 /// </summary>
 /// <param name="CapacityProviders">
-/// &lt;p&gt;A list of capacity providers in your account.&lt;/p&gt;
+/// A list of capacity providers in your account.
 /// </param>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 public sealed record class ListCapacityProvidersOutput(
     IReadOnlyList<CapacityProvider> CapacityProviders,

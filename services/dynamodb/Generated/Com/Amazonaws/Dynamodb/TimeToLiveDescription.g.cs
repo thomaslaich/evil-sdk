@@ -5,13 +5,13 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The description of the Time to Live (TTL) status on the specified table. &lt;/p&gt;
+/// The description of the Time to Live (TTL) status on the specified table.
 /// </summary>
 /// <param name="AttributeName">
-/// &lt;p&gt; The name of the TTL attribute for items in the table.&lt;/p&gt;
+/// The name of the TTL attribute for items in the table.
 /// </param>
 /// <param name="TimeToLiveStatus">
-/// &lt;p&gt; The TTL status for the table.&lt;/p&gt;
+/// The TTL status for the table.
 /// </param>
 public sealed record class TimeToLiveDescription(
     string? AttributeName = null,

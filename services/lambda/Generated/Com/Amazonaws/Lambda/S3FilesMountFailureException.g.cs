@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The Lambda function couldn't mount the configured S3 Files access point due to a permission or configuration issue.&lt;/p&gt;
+/// The Lambda function couldn't mount the configured S3 Files access point due to a permission or
+/// configuration issue.
 /// </summary>
 public sealed partial class S3FilesMountFailureException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The Lambda function couldn't mount the configured S3 Files access point due to a permission or configuration issue.&lt;/p&gt;
+    /// The Lambda function couldn't mount the configured S3 Files access point due to a permission or
+    /// configuration issue.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public S3FilesMountFailureException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +29,12 @@ public sealed partial class S3FilesMountFailureException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

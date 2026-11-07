@@ -5,6 +5,6 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A container for specifying the configuration for Amazon EventBridge.&lt;/p&gt;
+/// A container for specifying the configuration for Amazon EventBridge.
 /// </summary>
 public sealed record class EventBridgeConfiguration;

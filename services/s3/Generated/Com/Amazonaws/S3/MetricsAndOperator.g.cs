@@ -7,22 +7,23 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The
-/// operator must have at least two predicates, and an object must match all of the predicates in order for
-/// the filter to apply.&lt;/p&gt;
+/// A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The
+/// operator must have at least two predicates, and an object must match all of the predicates in order
+/// for the filter to apply.
 /// </summary>
 /// <param name="AccessPointArn">
-/// &lt;p&gt;The access point ARN used when evaluating an &lt;code&gt;AND&lt;/code&gt; predicate.&lt;/p&gt;
+/// The access point ARN used when evaluating an <c>AND</c> predicate.
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;The prefix used when evaluating an AND predicate.&lt;/p&gt;
+/// The prefix used when evaluating an AND predicate.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;The list of tags used when evaluating an AND predicate.&lt;/p&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Tag&lt;/code&gt; filters are not supported for directory buckets.&lt;/p&gt;
-/// &lt;/note&gt;
+/// <para>
+/// The list of tags used when evaluating an AND predicate.
+/// </para>
+/// <para>
+/// <b>Note:</b> <c>Tag</c> filters are not supported for directory buckets.
+/// </para>
 /// </param>
 public sealed record class MetricsAndOperator(
     string? AccessPointArn = null,

@@ -5,17 +5,17 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt; The S3 bucket that is being imported from. &lt;/p&gt;
+/// The S3 bucket that is being imported from.
 /// </summary>
 /// <param name="S3Bucket">
-/// &lt;p&gt; The S3 bucket that is being imported from. &lt;/p&gt;
+/// The S3 bucket that is being imported from.
 /// </param>
 /// <param name="S3BucketOwner">
-/// &lt;p&gt; The account number of the S3 bucket that is being imported from. If the bucket is
-/// owned by the requester this is optional. &lt;/p&gt;
+/// The account number of the S3 bucket that is being imported from. If the bucket is owned by the
+/// requester this is optional.
 /// </param>
 /// <param name="S3KeyPrefix">
-/// &lt;p&gt; The key prefix shared by all S3 Objects that are being imported. &lt;/p&gt;
+/// The key prefix shared by all S3 Objects that are being imported.
 /// </param>
 public sealed record class S3BucketSource(
     string S3Bucket,

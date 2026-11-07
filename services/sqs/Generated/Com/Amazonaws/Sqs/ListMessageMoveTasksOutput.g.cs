@@ -10,7 +10,7 @@ namespace Com.Amazonaws.Sqs;
 /// Represents the Smithy structure com.amazonaws.sqs#ListMessageMoveTasksOutput.
 /// </summary>
 /// <param name="Results">
-/// &lt;p&gt;A list of message movement tasks and their attributes.&lt;/p&gt;
+/// A list of message movement tasks and their attributes.
 /// </param>
 public sealed record class ListMessageMoveTasksOutput(
     IReadOnlyList<ListMessageMoveTasksResultEntry>? Results = null

@@ -7,63 +7,63 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Contains the current state and configuration of a vector index, including its
-/// status, size, item count, and the settings specified when the index was
-/// created.&lt;/p&gt;
+/// Contains the current state and configuration of a vector index, including its status, size, item
+/// count, and the settings specified when the index was created.
 /// </summary>
 /// <param name="Backfilling">
-/// &lt;p&gt;Specifies whether the index is currently backfilling. During backfill,
-/// &lt;code&gt;SearchVectors&lt;/code&gt; operations might return incomplete results.&lt;/p&gt;
+/// Specifies whether the index is currently backfilling. During backfill, <c>SearchVectors</c>
+/// operations might return incomplete results.
 /// </param>
 /// <param name="Dimensions">
-/// &lt;p&gt;The number of dimensions in each vector.&lt;/p&gt;
+/// The number of dimensions in each vector.
 /// </param>
 /// <param name="DistanceFunction">
-/// &lt;p&gt;The distance function used to calculate similarity between vectors.&lt;/p&gt;
+/// The distance function used to calculate similarity between vectors.
 /// </param>
 /// <param name="IndexArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the vector index.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) that uniquely identifies the vector index.
 /// </param>
 /// <param name="IndexName">
-/// &lt;p&gt;The name of the vector index.&lt;/p&gt;
+/// The name of the vector index.
 /// </param>
 /// <param name="IndexSizeBytes">
-/// &lt;p&gt;The total size of the vector index, in bytes. Amazon DynamoDB updates this value
-/// approximately every six hours. Recent changes might not be reflected in this
-/// value.&lt;/p&gt;
+/// The total size of the vector index, in bytes. Amazon DynamoDB updates this value approximately every
+/// six hours. Recent changes might not be reflected in this value.
 /// </param>
 /// <param name="IndexStatus">
-/// &lt;p&gt;The current state of the vector index:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;CREATING&lt;/code&gt; - The index is being created.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ACTIVE&lt;/code&gt; - The index is ready for use.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DELETING&lt;/code&gt; - The index is being deleted.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of the vector index:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>CREATING</c> - The index is being created.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>ACTIVE</c> - The index is ready for use.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DELETING</c> - The index is being deleted.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="ItemCount">
-/// &lt;p&gt;The number of items indexed in the vector index. Amazon DynamoDB updates this
-/// value approximately every six hours. Recent changes might not be reflected in
-/// this value.&lt;/p&gt;
+/// The number of items indexed in the vector index. Amazon DynamoDB updates this value approximately
+/// every six hours. Recent changes might not be reflected in this value.
 /// </param>
 /// <param name="Projection">
-/// &lt;p&gt;Specifies attributes that are copied (projected) from the table into the vector
-/// index.&lt;/p&gt;
+/// Specifies attributes that are copied (projected) from the table into the vector index.
 /// </param>
 /// <param name="SearchSchema">
-/// &lt;p&gt;The search schema that defines partition key and inline filter attributes for
-/// the vector index.&lt;/p&gt;
+/// The search schema that defines partition key and inline filter attributes for the vector index.
 /// </param>
 /// <param name="VectorAttribute">
-/// &lt;p&gt;The vector attribute configuration for the index.&lt;/p&gt;
+/// The vector attribute configuration for the index.
 /// </param>
 public sealed record class VectorIndexDescription(
     bool? Backfilling = null,

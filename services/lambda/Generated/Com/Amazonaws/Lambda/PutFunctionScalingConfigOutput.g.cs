@@ -8,6 +8,6 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#PutFunctionScalingConfigOutput.
 /// </summary>
 /// <param name="FunctionState">
-/// &lt;p&gt;The current state of the function after applying the scaling configuration.&lt;/p&gt;
+/// The current state of the function after applying the scaling configuration.
 /// </param>
 public sealed record class PutFunctionScalingConfigOutput(State? FunctionState = null);

@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The definition of a vector attribute for a vector index.&lt;/p&gt;
+/// The definition of a vector attribute for a vector index.
 /// </summary>
 /// <param name="AttributeName">
-/// &lt;p&gt;The name of the vector attribute.&lt;/p&gt;
+/// The name of the vector attribute.
 /// </param>
 public sealed record class VectorAttributeDefinition(string AttributeName);

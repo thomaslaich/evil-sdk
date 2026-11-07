@@ -5,35 +5,46 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;A filter that identifies the subset of objects to which the replication rule applies. A
-/// &lt;code&gt;Filter&lt;/code&gt; must specify exactly one &lt;code&gt;Prefix&lt;/code&gt;, &lt;code&gt;Tag&lt;/code&gt;, or an
-/// &lt;code&gt;And&lt;/code&gt; child element.&lt;/p&gt;
+/// A filter that identifies the subset of objects to which the replication rule applies. A
+/// <c>Filter</c> must specify exactly one <c>Prefix</c>, <c>Tag</c>, or an <c>And</c> child element.
 /// </summary>
 /// <param name="And">
-/// &lt;p&gt;A container for specifying rule filters. The filters determine the subset of objects to which the
-/// rule applies. This element is required only if you specify more than one filter. For example: &lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If you specify both a &lt;code&gt;Prefix&lt;/code&gt; and a &lt;code&gt;Tag&lt;/code&gt; filter, wrap these filters in
-/// an &lt;code&gt;And&lt;/code&gt; tag.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;If you specify a filter based on multiple tags, wrap the &lt;code&gt;Tag&lt;/code&gt; elements in an
-/// &lt;code&gt;And&lt;/code&gt; tag.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// A container for specifying rule filters. The filters determine the subset of objects to which the
+/// rule applies. This element is required only if you specify more than one filter. For example:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// If you specify both a <c>Prefix</c> and a <c>Tag</c> filter, wrap these filters in an <c>And</c>
+/// tag.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// If you specify a filter based on multiple tags, wrap the <c>Tag</c> elements in an <c>And</c> tag.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="Prefix">
-/// &lt;p&gt;An object key name prefix that identifies the subset of objects to which the rule applies.&lt;/p&gt;
-/// &lt;important&gt;
-/// &lt;p&gt;Replacement must be made for object keys containing special characters (such as carriage returns) when using
-/// XML requests. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints&quot;&gt;
-/// XML related object key constraints&lt;/a&gt;.&lt;/p&gt;
-/// &lt;/important&gt;
+/// <para>
+/// An object key name prefix that identifies the subset of objects to which the rule applies.
+/// </para>
+/// <para>
+/// <b>Important:</b> Replacement must be made for object keys containing special characters (such as
+/// carriage returns) when using XML requests. For more information, see
+/// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML
+/// related object key constraints</see>.
+/// </para>
 /// </param>
 /// <param name="Tag">
-/// &lt;p&gt;A container for specifying a tag key and value. &lt;/p&gt;
-/// &lt;p&gt;The rule applies only to objects that have the tag in their tag set.&lt;/p&gt;
+/// <para>
+/// A container for specifying a tag key and value.
+/// </para>
+/// <para>
+/// The rule applies only to objects that have the tag in their tag set.
+/// </para>
 /// </param>
 public sealed record class ReplicationRuleFilter(
     ReplicationRuleAndOperator? And = null,

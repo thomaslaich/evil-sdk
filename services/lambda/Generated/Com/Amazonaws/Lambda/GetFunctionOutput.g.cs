@@ -10,19 +10,23 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#GetFunctionOutput.
 /// </summary>
 /// <param name="Code">
-/// &lt;p&gt;The deployment package of the function or version.&lt;/p&gt;
+/// The deployment package of the function or version.
 /// </param>
 /// <param name="Concurrency">
-/// &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html&quot;&gt;reserved concurrency&lt;/a&gt;.&lt;/p&gt;
+/// The function's
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html">reserved
+/// concurrency</see>.
 /// </param>
 /// <param name="Configuration">
-/// &lt;p&gt;The configuration of the function or version.&lt;/p&gt;
+/// The configuration of the function or version.
 /// </param>
 /// <param name="Tags">
-/// &lt;p&gt;The function's &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/tagging.html&quot;&gt;tags&lt;/a&gt;. Lambda returns tag data only if you have explicit allow permissions for &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/api/API_ListTags.html&quot;&gt;lambda:ListTags&lt;/a&gt;.&lt;/p&gt;
+/// The function's <see href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</see>.
+/// Lambda returns tag data only if you have explicit allow permissions for
+/// <see href="https://docs.aws.amazon.com/lambda/latest/api/API_ListTags.html">lambda:ListTags</see>.
 /// </param>
 /// <param name="TagsError">
-/// &lt;p&gt;An object that contains details about an error related to retrieving tags.&lt;/p&gt;
+/// An object that contains details about an error related to retrieving tags.
 /// </param>
 public sealed record class GetFunctionOutput(
     FunctionCodeLocation? Code = null,

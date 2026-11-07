@@ -7,108 +7,129 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the input of a &lt;code&gt;BatchGetItem&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the input of a <c>BatchGetItem</c> operation.
 /// </summary>
 /// <param name="RequestItems">
-/// &lt;p&gt;A map of one or more table names or table ARNs and, for each table, a map that
-/// describes one or more items to retrieve from that table. Each table name or ARN can be
-/// used only once per &lt;code&gt;BatchGetItem&lt;/code&gt; request.&lt;/p&gt;
-/// &lt;p&gt;Each element in the map of items to retrieve consists of the following:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ConsistentRead&lt;/code&gt; - If &lt;code&gt;true&lt;/code&gt;, a strongly consistent read
-/// is used; if &lt;code&gt;false&lt;/code&gt; (the default), an eventually consistent read is
-/// used.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ExpressionAttributeNames&lt;/code&gt; - One or more substitution tokens for
-/// attribute names in the &lt;code&gt;ProjectionExpression&lt;/code&gt; parameter. The
-/// following are some use cases for using
-/// &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To access an attribute whose name conflicts with a DynamoDB reserved
-/// word.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To create a placeholder for repeating occurrences of an attribute name
-/// in an expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;To prevent special characters in an attribute name from being
-/// misinterpreted in an expression.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;Use the &lt;b&gt;#&lt;/b&gt; character in an expression to
-/// dereference an attribute name. For example, consider the following attribute
-/// name:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Percentile&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;The name of this attribute conflicts with a reserved word, so it cannot be
-/// used directly in an expression. (For the complete list of reserved words, see
-/// &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html&quot;&gt;Reserved
-/// Words&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer Guide&lt;/i&gt;).
-/// To work around this, you could specify the following for
-/// &lt;code&gt;ExpressionAttributeNames&lt;/code&gt;:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;{&quot;#P&quot;:&quot;Percentile&quot;}&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;p&gt;You could then use this substitution in an expression, as in this
-/// example:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;#P = :val&lt;/code&gt;
-/// &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
-/// &lt;note&gt;
-/// &lt;p&gt;Tokens that begin with the &lt;b&gt;:&lt;/b&gt; character
-/// are &lt;i&gt;expression attribute values&lt;/i&gt;, which are placeholders
-/// for the actual value at runtime.&lt;/p&gt;
-/// &lt;/note&gt;
-/// &lt;p&gt;For more information about expression attribute names, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html&quot;&gt;Accessing Item Attributes&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB
-/// Developer Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;Keys&lt;/code&gt; - An array of primary key attribute values that define
-/// specific items in the table. For each primary key, you must provide
-/// &lt;i&gt;all&lt;/i&gt; of the key attributes. For example, with a simple
-/// primary key, you only need to provide the partition key value. For a composite
-/// key, you must provide &lt;i&gt;both&lt;/i&gt; the partition key value and the
-/// sort key value.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ProjectionExpression&lt;/code&gt; - A string that identifies one or more
-/// attributes to retrieve from the table. These attributes can include scalars,
-/// sets, or elements of a JSON document. The attributes in the expression must be
-/// separated by commas.&lt;/p&gt;
-/// &lt;p&gt;If no attribute names are specified, then all attributes are returned. If any
-/// of the requested attributes are not found, they do not appear in the
-/// result.&lt;/p&gt;
-/// &lt;p&gt;For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html&quot;&gt;Accessing Item Attributes&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB
-/// Developer Guide&lt;/i&gt;.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;AttributesToGet&lt;/code&gt; - This is a legacy parameter. Use
-/// &lt;code&gt;ProjectionExpression&lt;/code&gt; instead. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html&quot;&gt;AttributesToGet&lt;/a&gt; in the &lt;i&gt;Amazon DynamoDB Developer
-/// Guide&lt;/i&gt;. &lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// A map of one or more table names or table ARNs and, for each table, a map that describes one or more
+/// items to retrieve from that table. Each table name or ARN can be used only once per
+/// <c>BatchGetItem</c> request.
+/// </para>
+/// <para>
+/// Each element in the map of items to retrieve consists of the following:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ConsistentRead</c> - If <c>true</c>, a strongly consistent read is used; if <c>false</c> (the
+/// default), an eventually consistent read is used.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>ExpressionAttributeNames</c> - One or more substitution tokens for attribute names in the
+/// <c>ProjectionExpression</c> parameter. The following are some use cases for using
+/// <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// To access an attribute whose name conflicts with a DynamoDB reserved word.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To create a placeholder for repeating occurrences of an attribute name in an expression.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// To prevent special characters in an attribute name from being misinterpreted in an expression.
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// Use the <b>#</b> character in an expression to dereference an attribute name. For example, consider
+/// the following attribute name:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>Percentile</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// The name of this attribute conflicts with a reserved word, so it cannot be used directly in an
+/// expression. (For the complete list of reserved words, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
+/// Words</see> in the <i>Amazon DynamoDB Developer Guide</i>). To work around this, you could specify
+/// the following for <c>ExpressionAttributeNames</c>:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>{"#P":"Percentile"}</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// You could then use this substitution in an expression, as in this example:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>#P = :val</c>
+/// </description>
+/// </item>
+/// </list>
+/// <para>
+/// <b>Note:</b> Tokens that begin with the <b>:</b> character are <i>expression attribute values</i>,
+/// which are placeholders for the actual value at runtime.
+/// </para>
+/// <para>
+/// For more information about expression attribute names, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+/// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>Keys</c> - An array of primary key attribute values that define specific items in the table. For
+/// each primary key, you must provide <i>all</i> of the key attributes. For example, with a simple
+/// primary key, you only need to provide the partition key value. For a composite key, you must provide
+/// <i>both</i> the partition key value and the sort key value.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <para>
+/// <c>ProjectionExpression</c> - A string that identifies one or more attributes to retrieve from the
+/// table. These attributes can include scalars, sets, or elements of a JSON document. The attributes in
+/// the expression must be separated by commas.
+/// </para>
+/// <para>
+/// If no attribute names are specified, then all attributes are returned. If any of the requested
+/// attributes are not found, they do not appear in the result.
+/// </para>
+/// <para>
+/// For more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
+/// Item Attributes</see> in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </para>
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>AttributesToGet</c> - This is a legacy parameter. Use <c>ProjectionExpression</c> instead. For
+/// more information, see
+/// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</see>
+/// in the <i>Amazon DynamoDB Developer Guide</i>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 public sealed record class BatchGetItemInput(
     IReadOnlyDictionary<string, KeysAndAttributes> RequestItems,

@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The specified global table does not exist.&lt;/p&gt;
+/// The specified global table does not exist.
 /// </summary>
 public sealed partial class GlobalTableNotFoundException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified global table does not exist.&lt;/p&gt;
+    /// The specified global table does not exist.
     /// </summary>
     public GlobalTableNotFoundException(string? message = null)
         : base(message) { }

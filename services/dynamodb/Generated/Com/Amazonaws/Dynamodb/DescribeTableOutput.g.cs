@@ -5,9 +5,9 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of a &lt;code&gt;DescribeTable&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of a <c>DescribeTable</c> operation.
 /// </summary>
 /// <param name="Table">
-/// &lt;p&gt;The properties of the table.&lt;/p&gt;
+/// The properties of the table.
 /// </param>
 public sealed record class DescribeTableOutput(TableDescription? Table = null);

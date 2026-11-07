@@ -7,12 +7,12 @@ using System;
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;The specified multipart upload does not exist.&lt;/p&gt;
+/// The specified multipart upload does not exist.
 /// </summary>
 public sealed partial class NoSuchUpload : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The specified multipart upload does not exist.&lt;/p&gt;
+    /// The specified multipart upload does not exist.
     /// </summary>
     public NoSuchUpload(string? message = null)
         : base(message) { }

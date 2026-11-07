@@ -7,10 +7,10 @@ using System.Collections.Generic;
 namespace Com.Amazonaws.Sqs;
 
 /// <summary>
-/// &lt;p&gt;A list of returned queue attributes.&lt;/p&gt;
+/// A list of returned queue attributes.
 /// </summary>
 /// <param name="Attributes">
-/// &lt;p&gt;A map of attributes to their respective values.&lt;/p&gt;
+/// A map of attributes to their respective values.
 /// </param>
 public sealed record class GetQueueAttributesOutput(
     IReadOnlyDictionary<string, string>? Attributes = null

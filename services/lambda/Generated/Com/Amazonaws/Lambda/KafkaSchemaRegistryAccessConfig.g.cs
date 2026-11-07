@@ -5,13 +5,57 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;Specific access configuration settings that tell Lambda how to authenticate with your schema registry.&lt;/p&gt; &lt;p&gt;If you're working with an Glue schema registry, don't provide authentication details in this object. Instead, ensure that your execution role has the required permissions for Lambda to access your cluster.&lt;/p&gt; &lt;p&gt;If you're working with a Confluent schema registry, choose the authentication method in the &lt;code&gt;Type&lt;/code&gt; field, and provide the Secrets Manager secret ARN in the &lt;code&gt;URI&lt;/code&gt; field.&lt;/p&gt;
+/// <para>
+/// Specific access configuration settings that tell Lambda how to authenticate with your schema
+/// registry.
+/// </para>
+/// <para>
+/// If you're working with an Glue schema registry, don't provide authentication details in this object.
+/// Instead, ensure that your execution role has the required permissions for Lambda to access your
+/// cluster.
+/// </para>
+/// <para>
+/// If you're working with a Confluent schema registry, choose the authentication method in the
+/// <c>Type</c> field, and provide the Secrets Manager secret ARN in the <c>URI</c> field.
+/// </para>
 /// </summary>
 /// <param name="Type">
-/// &lt;p&gt; The type of authentication Lambda uses to access your schema registry. &lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;BASIC_AUTH&lt;/code&gt; – The Secrets Manager ARN of your secret key used for basic authentication with your Confluent schema registry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;CLIENT_CERTIFICATE_TLS_AUTH&lt;/code&gt; – The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication with your Confluent schema registry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;SERVER_ROOT_CA_CERTIFICATE&lt;/code&gt; – The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption with your Confluent schema registry.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;code&gt;OAUTHBEARER_AUTH&lt;/code&gt; – The Secrets Manager ARN of your secret key containing the OAuth 2.0 credentials that Lambda uses to acquire an access token for your Confluent schema registry. For the contents of the secret, see &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret&quot;&gt;Configuring the OAuth secret&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// The type of authentication Lambda uses to access your schema registry.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>BASIC_AUTH</c> – The Secrets Manager ARN of your secret key used for basic authentication with
+/// your Confluent schema registry.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>CLIENT_CERTIFICATE_TLS_AUTH</c> – The Secrets Manager ARN of your secret key containing the
+/// certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used
+/// for mutual TLS authentication with your Confluent schema registry.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>SERVER_ROOT_CA_CERTIFICATE</c> – The Secrets Manager ARN of your secret key containing the root
+/// CA certificate (X.509 PEM) used for TLS encryption with your Confluent schema registry.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>OAUTHBEARER_AUTH</c> – The Secrets Manager ARN of your secret key containing the OAuth 2.0
+/// credentials that Lambda uses to acquire an access token for your Confluent schema registry. For the
+/// contents of the secret, see
+/// <see href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-cluster-auth.html#smaa-auth-oauth-secret">Configuring
+/// the OAuth secret</see>.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="URI">
-/// &lt;p&gt; The URI of the secret (Secrets Manager secret ARN) to authenticate with your schema registry. &lt;/p&gt;
+/// The URI of the secret (Secrets Manager secret ARN) to authenticate with your schema registry.
 /// </param>
 public sealed record class KafkaSchemaRegistryAccessConfig(
     KafkaSchemaRegistryAuthType? Type = null,

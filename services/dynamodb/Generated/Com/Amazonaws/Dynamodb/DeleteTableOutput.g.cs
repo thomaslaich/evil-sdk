@@ -5,10 +5,10 @@
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;Represents the output of a &lt;code&gt;DeleteTable&lt;/code&gt; operation.&lt;/p&gt;
+/// Represents the output of a <c>DeleteTable</c> operation.
 /// </summary>
 /// <param name="TableDescription">
-/// &lt;p&gt;Represents the properties of a table.&lt;/p&gt;
+/// Represents the properties of a table.
 /// </param>
 public sealed record class DeleteTableOutput(
     global::Com.Amazonaws.Dynamodb.TableDescription? TableDescription = null

@@ -15,12 +15,12 @@ public readonly partial record struct PropagateTagsMode(string Value)
     }
 
     /// <summary>
-    /// &lt;p&gt;Tags specified in &lt;code&gt;ExplicitTags&lt;/code&gt; are applied to managed resources at launch.&lt;/p&gt;
+    /// Tags specified in <c>ExplicitTags</c> are applied to managed resources at launch.
     /// </summary>
     public static PropagateTagsMode Explicit { get; } = new("Explicit");
 
     /// <summary>
-    /// &lt;p&gt;Tag propagation is disabled. No tags are applied to managed resources.&lt;/p&gt;
+    /// Tag propagation is disabled. No tags are applied to managed resources.
     /// </summary>
     public static PropagateTagsMode None { get; } = new("None");
 

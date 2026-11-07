@@ -7,34 +7,36 @@ using System;
 namespace Com.Amazonaws.Dynamodb;
 
 /// <summary>
-/// &lt;p&gt;The description of the point in time settings applied to the table.&lt;/p&gt;
+/// The description of the point in time settings applied to the table.
 /// </summary>
 /// <param name="EarliestRestorableDateTime">
-/// &lt;p&gt;Specifies the earliest point in time you can restore your table to. You can restore
-/// your table to any point in time during the last 35 days. &lt;/p&gt;
+/// Specifies the earliest point in time you can restore your table to. You can restore your table to
+/// any point in time during the last 35 days.
 /// </param>
 /// <param name="LatestRestorableDateTime">
-/// &lt;p&gt;
-/// &lt;code&gt;LatestRestorableDateTime&lt;/code&gt; is typically 5 minutes before the current time.
-/// &lt;/p&gt;
+/// <c>LatestRestorableDateTime</c> is typically 5 minutes before the current time.
 /// </param>
 /// <param name="PointInTimeRecoveryStatus">
-/// &lt;p&gt;The current state of point in time recovery:&lt;/p&gt;
-/// &lt;ul&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;ENABLED&lt;/code&gt; - Point in time recovery is enabled.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;li&gt;
-/// &lt;p&gt;
-/// &lt;code&gt;DISABLED&lt;/code&gt; - Point in time recovery is disabled.&lt;/p&gt;
-/// &lt;/li&gt;
-/// &lt;/ul&gt;
+/// <para>
+/// The current state of point in time recovery:
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <c>ENABLED</c> - Point in time recovery is enabled.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <c>DISABLED</c> - Point in time recovery is disabled.
+/// </description>
+/// </item>
+/// </list>
 /// </param>
 /// <param name="RecoveryPeriodInDays">
-/// &lt;p&gt;The number of preceding days for which continuous backups are taken and maintained.
-/// Your table data is only recoverable to any point-in-time from within the configured
-/// recovery period. This parameter is optional.&lt;/p&gt;
+/// The number of preceding days for which continuous backups are taken and maintained. Your table data
+/// is only recoverable to any point-in-time from within the configured recovery period. This parameter
+/// is optional.
 /// </param>
 public sealed record class PointInTimeRecoveryDescription(
     DateTimeOffset? EarliestRestorableDateTime = null,

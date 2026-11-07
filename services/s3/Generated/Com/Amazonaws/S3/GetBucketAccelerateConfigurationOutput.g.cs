@@ -8,7 +8,7 @@ namespace Com.Amazonaws.S3;
 /// Represents the Smithy structure com.amazonaws.s3#GetBucketAccelerateConfigurationOutput.
 /// </summary>
 /// <param name="Status">
-/// &lt;p&gt;The accelerate configuration of the bucket.&lt;/p&gt;
+/// The accelerate configuration of the bucket.
 /// </param>
 public sealed record class GetBucketAccelerateConfigurationOutput(
     global::Com.Amazonaws.S3.RequestCharged? RequestCharged = null,

@@ -5,6 +5,5 @@
 namespace Com.Amazonaws.S3;
 
 /// <summary>
-/// &lt;p&gt;&lt;/p&gt;
 /// </summary>
 public sealed record class ContinuationEvent;

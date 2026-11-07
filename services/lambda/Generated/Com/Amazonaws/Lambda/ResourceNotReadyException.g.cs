@@ -7,18 +7,20 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The function is inactive and its VPC connection is no longer available. Wait for the VPC connection to reestablish and try again.&lt;/p&gt;
+/// The function is inactive and its VPC connection is no longer available. Wait for the VPC connection
+/// to reestablish and try again.
 /// </summary>
 public sealed partial class ResourceNotReadyException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The function is inactive and its VPC connection is no longer available. Wait for the VPC connection to reestablish and try again.&lt;/p&gt;
+    /// The function is inactive and its VPC connection is no longer available. Wait for the VPC connection
+    /// to reestablish and try again.
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public ResourceNotReadyException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +29,12 @@ public sealed partial class ResourceNotReadyException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

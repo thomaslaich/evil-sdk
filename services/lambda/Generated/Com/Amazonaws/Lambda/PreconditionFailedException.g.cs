@@ -7,18 +7,50 @@ using System;
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;For AddPermission and RemovePermission API operations:&lt;/b&gt; Call &lt;code&gt;GetPolicy&lt;/code&gt; to retrieve the latest RevisionId for your resource.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;For all other API operations:&lt;/b&gt; Call &lt;code&gt;GetFunction&lt;/code&gt; or &lt;code&gt;GetAlias&lt;/code&gt; to retrieve the latest RevisionId for your resource.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+/// <para>
+/// The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.
+/// </para>
+/// <list type="bullet">
+/// <item>
+/// <description>
+/// <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c> to retrieve the
+/// latest RevisionId for your resource.
+/// </description>
+/// </item>
+/// <item>
+/// <description>
+/// <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to retrieve the
+/// latest RevisionId for your resource.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 public sealed partial class PreconditionFailedException : Exception
 {
     /// <summary>
-    /// &lt;p&gt;The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;For AddPermission and RemovePermission API operations:&lt;/b&gt; Call &lt;code&gt;GetPolicy&lt;/code&gt; to retrieve the latest RevisionId for your resource.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt; &lt;b&gt;For all other API operations:&lt;/b&gt; Call &lt;code&gt;GetFunction&lt;/code&gt; or &lt;code&gt;GetAlias&lt;/code&gt; to retrieve the latest RevisionId for your resource.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
+    /// <para>
+    /// The RevisionId provided does not match the latest RevisionId for the Lambda function or alias.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c> to retrieve the
+    /// latest RevisionId for your resource.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to retrieve the
+    /// latest RevisionId for your resource.
+    /// </description>
+    /// </item>
+    /// </list>
     /// </summary>
     /// <param name="message">
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </param>
     /// <param name="type">
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </param>
     public PreconditionFailedException(string? message = null, string? type = null)
         : base(message)
@@ -27,12 +59,12 @@ public sealed partial class PreconditionFailedException : Exception
     }
 
     /// <summary>
-    /// &lt;p&gt;The exception message.&lt;/p&gt;
+    /// The exception message.
     /// </summary>
     public override string Message => base.Message!;
 
     /// <summary>
-    /// &lt;p&gt;The exception type.&lt;/p&gt;
+    /// The exception type.
     /// </summary>
     public string? Type { get; }
 }

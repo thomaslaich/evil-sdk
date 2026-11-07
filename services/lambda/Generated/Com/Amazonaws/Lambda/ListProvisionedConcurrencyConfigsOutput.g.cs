@@ -10,10 +10,10 @@ namespace Com.Amazonaws.Lambda;
 /// Represents the Smithy structure com.amazonaws.lambda#ListProvisionedConcurrencyConfigsOutput.
 /// </summary>
 /// <param name="NextMarker">
-/// &lt;p&gt;The pagination token that's included if more results are available.&lt;/p&gt;
+/// The pagination token that's included if more results are available.
 /// </param>
 /// <param name="ProvisionedConcurrencyConfigs">
-/// &lt;p&gt;A list of provisioned concurrency configurations.&lt;/p&gt;
+/// A list of provisioned concurrency configurations.
 /// </param>
 public sealed record class ListProvisionedConcurrencyConfigsOutput(
     string? NextMarker = null,

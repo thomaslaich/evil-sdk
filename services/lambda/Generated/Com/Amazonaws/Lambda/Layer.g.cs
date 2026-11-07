@@ -5,19 +5,20 @@
 namespace Com.Amazonaws.Lambda;
 
 /// <summary>
-/// &lt;p&gt;An &lt;a href=&quot;https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html&quot;&gt;Lambda layer&lt;/a&gt;.&lt;/p&gt;
+/// An <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</see>.
 /// </summary>
 /// <param name="Arn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of the function layer.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of the function layer.
 /// </param>
 /// <param name="CodeSize">
-/// &lt;p&gt;The size of the layer archive in bytes.&lt;/p&gt;
+/// The size of the layer archive in bytes.
 /// </param>
 /// <param name="SigningJobArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) of a signing job.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) of a signing job.
 /// </param>
 /// <param name="SigningProfileVersionArn">
-/// &lt;p&gt;The Amazon Resource Name (ARN) for a signing profile version.&lt;/p&gt;
+/// The Amazon Resource Name (ARN) for a signing profile version.
 /// </param>
 public sealed record class Layer(
     string? Arn = null,
