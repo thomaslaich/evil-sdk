@@ -1,19 +1,18 @@
 # Sweep report
 
-NSmithy `0.18.1`, Smithy `1.74.1`, 436 services.
+NSmithy `0.18.2`, Smithy `1.74.1`, 436 services.
 
 | Stage | Services |
 | --- | --- |
-| compile | 5 |
-| ok | 431 |
+| ok | 436 |
 
 | Protocol | Compiling |
 | --- | --- |
 | awsJson1_0 | 51/51 |
-| awsJson1_1 | 99/102 |
+| awsJson1_1 | 102/102 |
 | awsQuery | 16/16 |
-| ec2Query | 0/1 |
-| restJson1 | 259/260 |
+| ec2Query | 1/1 |
+| restJson1 | 260/260 |
 | restXml | 4/4 |
 | rpcv2Cbor | 25/25 |
 
@@ -21,14 +20,6 @@ NSmithy `0.18.1`, Smithy `1.74.1`, 436 services.
 
 | Code | Count |
 | --- | --- |
-| CS1003 | 32 |
-| CS1002 | 18 |
-| CS1001 | 16 |
-| CS1022 | 10 |
-| CS0116 | 6 |
-| CS1026 | 3 |
-| CS1585 | 1 |
-| CS1031 | 1 |
 
 ## Services
 
@@ -160,7 +151,7 @@ NSmithy `0.18.1`, Smithy `1.74.1`, 436 services.
 | detective | restJson1 | ok | 0 | 0 |  |
 | device-farm | awsJson1_1 | ok | 0 | 0 |  |
 | devops-agent | restJson1 | ok | 0 | 0 |  |
-| devops-guru | restJson1 | compile | 3 | 0 | CS1002: ; expected |
+| devops-guru | restJson1 | ok | 0 | 0 |  |
 | direct-connect | awsJson1_1 | ok | 0 | 0 |  |
 | directory-service | awsJson1_1 | ok | 0 | 0 |  |
 | directory-service-data | restJson1 | ok | 0 | 0 |  |
@@ -172,9 +163,9 @@ NSmithy `0.18.1`, Smithy `1.74.1`, 436 services.
 | dynamodb | awsJson1_0 | ok | 0 | 0 |  |
 | dynamodb-streams | awsJson1_0 | ok | 0 | 0 |  |
 | ebs | restJson1 | ok | 0 | 0 |  |
-| ec2 | ec2Query | compile | 26 | 0 | CS1001: Identifier expected |
+| ec2 | ec2Query | ok | 0 | 0 |  |
 | ec2-instance-connect | awsJson1_1 | ok | 0 | 0 |  |
-| ecr | awsJson1_1 | compile | 36 | 0 | CS1003: Syntax error, '(' expected |
+| ecr | awsJson1_1 | ok | 0 | 0 |  |
 | ecr-public | awsJson1_1 | ok | 0 | 0 |  |
 | ecs | awsJson1_1 | ok | 0 | 0 |  |
 | efs | restJson1 | ok | 0 | 0 |  |
@@ -199,11 +190,11 @@ NSmithy `0.18.1`, Smithy `1.74.1`, 436 services.
 | firehose | awsJson1_1 | ok | 0 | 0 |  |
 | fis | restJson1 | ok | 0 | 0 |  |
 | fms | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
-| forecast | awsJson1_1 | compile | 12 | 0 | CS1002: ; expected |
+| forecast | awsJson1_1 | ok | 0 | 0 |  |
 | forecastquery | awsJson1_1 | ok | 0 | 0 |  |
 | frauddetector | awsJson1_1 | ok | 0 | 0 |  |
 | freetier | awsJson1_0 | ok | 0 | 0 |  |
-| fsx | awsJson1_1 | compile | 10 | 0 | CS0116: A namespace cannot directly contain members such as fields, methods or statements |
+| fsx | awsJson1_1 | ok | 0 | 0 |  |
 | gamelift | awsJson1_1, rpcv2Cbor | ok | 0 | 0 |  |
 | gameliftstreams | restJson1 | ok | 0 | 0 |  |
 | geo-maps | restJson1 | ok | 0 | 0 |  |
