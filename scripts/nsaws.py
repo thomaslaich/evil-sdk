@@ -6,6 +6,9 @@ Commands:
   generate [ids...] [--all] Regenerate checked-in services (default: services.txt).
   sweep [ids...]            Generate and compile services into .sweep/ and write reports/.
 
+Codegen enables generateSmokeTests, so services with @smokeTests get a {Service}SmokeTests class;
+smoke/ runs them (see `just smoke`).
+
 Codegen runs through the plain Smithy CLI with NSmithy's csharp-codegen plugin.
 Pass --local <smithy-dotnet checkout> to use its staged 0.0.0-SNAPSHOT codegen JAR
 and packed NuGet packages instead of the published version.
@@ -146,6 +149,7 @@ def smithy_build_config(service: Service, tools: Toolchain) -> dict:
             "csharp-codegen": {
                 "service": service.shape_id,
                 "generateServer": False,
+                "generateSmokeTests": True,
                 "packageVersion": tools.nsmithy_version,
             }
         },
@@ -319,7 +323,9 @@ def cmd_generate(args: argparse.Namespace) -> None:
         "<Solution>\n"
         '  <Folder Name="/services/">\n'
         + "".join(f'    <Project Path="{p}" />\n' for p in projects)
-        + "  </Folder>\n</Solution>\n"
+        + "  </Folder>\n"
+        '  <Project Path="smoke/NSmithy.Aws.Smoke.csproj" />\n'
+        "</Solution>\n"
     )
     if failed:
         sys.exit(f"codegen failed for: {', '.join(failed)}")

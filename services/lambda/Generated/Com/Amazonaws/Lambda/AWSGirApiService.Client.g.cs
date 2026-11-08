@@ -2936,6 +2936,302 @@ public interface IAWSGirApiServiceClient : IDisposable
 }
 
 /// <summary>
+/// Overloads of IAWSGirApiServiceClient for the operations whose input may be left out.
+/// </summary>
+public static class AWSGirApiServiceClientExtensions
+{
+    /// <summary>
+    /// Retrieves details about your account's
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limits</see> and usage in an
+    /// Amazon Web Services Region.
+    /// </summary>
+    public static Task<GetAccountSettingsOutput> GetAccountSettingsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetAccountSettingsAsync(new GetAccountSettingsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a list of capacity providers in your account.
+    /// </summary>
+    public static Task<ListCapacityProvidersOutput> ListCapacityProvidersAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCapacityProvidersAsync(
+            new ListCapacityProvidersInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of capacity providers in your account.
+    /// </summary>
+    public static IAsyncEnumerable<ListCapacityProvidersOutput> ListCapacityProvidersPagesAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCapacityProvidersPagesAsync(
+            new ListCapacityProvidersInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of capacity providers in your account.
+    /// </summary>
+    public static IAsyncEnumerable<CapacityProvider> ListCapacityProvidersItemsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCapacityProvidersItemsAsync(
+            new ListCapacityProvidersInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
+    /// </summary>
+    public static Task<ListCodeSigningConfigsOutput> ListCodeSigningConfigsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCodeSigningConfigsAsync(
+            new ListCodeSigningConfigsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
+    /// </summary>
+    public static IAsyncEnumerable<ListCodeSigningConfigsOutput> ListCodeSigningConfigsPagesAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCodeSigningConfigsPagesAsync(
+            new ListCodeSigningConfigsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code signing
+    /// configurations</see>. A request returns up to 10,000 configurations per call. You can use the
+    /// <c>MaxItems</c> parameter to return fewer configurations per call.
+    /// </summary>
+    public static IAsyncEnumerable<CodeSigningConfig> ListCodeSigningConfigsItemsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListCodeSigningConfigsItemsAsync(
+            new ListCodeSigningConfigsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
+    /// </summary>
+    public static Task<ListEventSourceMappingsOutput> ListEventSourceMappingsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEventSourceMappingsAsync(
+            new ListEventSourceMappingsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
+    /// </summary>
+    public static IAsyncEnumerable<ListEventSourceMappingsOutput> ListEventSourceMappingsPagesAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEventSourceMappingsPagesAsync(
+            new ListEventSourceMappingsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source mappings for
+    /// a single event source.
+    /// </summary>
+    public static IAsyncEnumerable<EventSourceMappingConfiguration> ListEventSourceMappingsItemsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListEventSourceMappingsItemsAsync(
+            new ListEventSourceMappingsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
+    /// </summary>
+    public static Task<ListFunctionsOutput> ListFunctionsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListFunctionsAsync(new ListFunctionsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListFunctionsOutput> ListFunctionsPagesAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListFunctionsPagesAsync(new ListFunctionsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns
+    /// up to 50 functions per call.
+    /// </para>
+    /// <para>
+    /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each function in
+    /// addition to the unpublished version.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> The <c>ListFunctions</c> operation returns a subset of the FunctionConfiguration
+    /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+    /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function or version,
+    /// use GetFunction.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<FunctionConfiguration> ListFunctionsItemsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListFunctionsItemsAsync(new ListFunctionsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
+    /// </summary>
+    public static Task<ListLayersOutput> ListLayersAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListLayersAsync(new ListLayersInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
+    /// </summary>
+    public static IAsyncEnumerable<ListLayersOutput> ListLayersPagesAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListLayersPagesAsync(new ListLayersInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists <see href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html">Lambda
+    /// layers</see> and shows information about the latest version of each. Specify a
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
+    /// identifier</see> to list only layers that indicate that they're compatible with that runtime.
+    /// Specify a compatible architecture to include only layers that are compatible with that
+    /// <see href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set
+    /// architecture</see>.
+    /// </summary>
+    public static IAsyncEnumerable<LayersListItem> ListLayersItemsAsync(
+        this IAWSGirApiServiceClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListLayersItemsAsync(new ListLayersInput(), cancellationToken);
+    }
+}
+
+/// <summary>
 /// <para>
 /// <b>Lambda</b>
 /// </para>

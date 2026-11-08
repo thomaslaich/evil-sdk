@@ -1047,6 +1047,99 @@ public interface IAmazonSQSClient : IDisposable
 }
 
 /// <summary>
+/// Overloads of IAmazonSQSClient for the operations whose input may be left out.
+/// </summary>
+public static class AmazonSQSClientExtensions
+{
+    /// <summary>
+    /// <para>
+    /// Returns a list of your queues in the current region. The response includes a maximum of 1,000
+    /// results. If you specify a value for the optional <c>QueueNamePrefix</c> parameter, only queues with
+    /// a name that begins with the specified value are returned.
+    /// </para>
+    /// <para>
+    /// The <c>listQueues</c> methods supports pagination. Set parameter <c>MaxResults</c> in the request to
+    /// specify the maximum number of results to be returned in the response. If you do not set
+    /// <c>MaxResults</c>, the response includes a maximum of 1,000 results. If you set <c>MaxResults</c>
+    /// and there are additional results to display, the response includes a value for <c>NextToken</c>. Use
+    /// <c>NextToken</c> as a parameter in your next request to <c>listQueues</c> to receive the next page
+    /// of results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Cross-account permissions don't apply to this action. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name">Grant
+    /// cross-account permissions to a role and a username</see> in the <i>Amazon SQS Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<ListQueuesOutput> ListQueuesAsync(
+        this IAmazonSQSClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListQueuesAsync(new ListQueuesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of your queues in the current region. The response includes a maximum of 1,000
+    /// results. If you specify a value for the optional <c>QueueNamePrefix</c> parameter, only queues with
+    /// a name that begins with the specified value are returned.
+    /// </para>
+    /// <para>
+    /// The <c>listQueues</c> methods supports pagination. Set parameter <c>MaxResults</c> in the request to
+    /// specify the maximum number of results to be returned in the response. If you do not set
+    /// <c>MaxResults</c>, the response includes a maximum of 1,000 results. If you set <c>MaxResults</c>
+    /// and there are additional results to display, the response includes a value for <c>NextToken</c>. Use
+    /// <c>NextToken</c> as a parameter in your next request to <c>listQueues</c> to receive the next page
+    /// of results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Cross-account permissions don't apply to this action. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name">Grant
+    /// cross-account permissions to a role and a username</see> in the <i>Amazon SQS Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListQueuesOutput> ListQueuesPagesAsync(
+        this IAmazonSQSClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListQueuesPagesAsync(new ListQueuesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of your queues in the current region. The response includes a maximum of 1,000
+    /// results. If you specify a value for the optional <c>QueueNamePrefix</c> parameter, only queues with
+    /// a name that begins with the specified value are returned.
+    /// </para>
+    /// <para>
+    /// The <c>listQueues</c> methods supports pagination. Set parameter <c>MaxResults</c> in the request to
+    /// specify the maximum number of results to be returned in the response. If you do not set
+    /// <c>MaxResults</c>, the response includes a maximum of 1,000 results. If you set <c>MaxResults</c>
+    /// and there are additional results to display, the response includes a value for <c>NextToken</c>. Use
+    /// <c>NextToken</c> as a parameter in your next request to <c>listQueues</c> to receive the next page
+    /// of results.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Cross-account permissions don't apply to this action. For more information, see
+    /// <see href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name">Grant
+    /// cross-account permissions to a role and a username</see> in the <i>Amazon SQS Developer Guide</i>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<string> ListQueuesItemsAsync(
+        this IAmazonSQSClient client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListQueuesItemsAsync(new ListQueuesInput(), cancellationToken);
+    }
+}
+
+/// <summary>
 /// <para>
 /// Welcome to the <i>Amazon SQS API Reference</i>.
 /// </para>

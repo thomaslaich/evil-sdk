@@ -5,3 +5,11 @@ lambda
 s3
 sqs
 sts
+# LocalStack-supported services with @smokeTests, for `just smoke`.
+cloudwatch-logs
+eventbridge
+iam
+kinesis
+route-53
+secrets-manager
+sns

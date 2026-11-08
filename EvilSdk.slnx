@@ -1,9 +1,17 @@
 <Solution>
   <Folder Name="/services/">
+    <Project Path="services/cloudwatch-logs/NSmithy.Aws.CloudwatchLogs.csproj" />
     <Project Path="services/dynamodb/NSmithy.Aws.Dynamodb.csproj" />
+    <Project Path="services/eventbridge/NSmithy.Aws.Eventbridge.csproj" />
+    <Project Path="services/iam/NSmithy.Aws.Iam.csproj" />
+    <Project Path="services/kinesis/NSmithy.Aws.Kinesis.csproj" />
     <Project Path="services/lambda/NSmithy.Aws.Lambda.csproj" />
+    <Project Path="services/route-53/NSmithy.Aws.Route53.csproj" />
     <Project Path="services/s3/NSmithy.Aws.S3.csproj" />
+    <Project Path="services/secrets-manager/NSmithy.Aws.SecretsManager.csproj" />
+    <Project Path="services/sns/NSmithy.Aws.Sns.csproj" />
     <Project Path="services/sqs/NSmithy.Aws.Sqs.csproj" />
     <Project Path="services/sts/NSmithy.Aws.Sts.csproj" />
   </Folder>
+  <Project Path="smoke/NSmithy.Aws.Smoke.csproj" />
 </Solution>

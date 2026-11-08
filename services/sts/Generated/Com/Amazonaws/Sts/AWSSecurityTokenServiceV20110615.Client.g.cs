@@ -1038,6 +1038,118 @@ public interface IAWSSecurityTokenServiceV20110615Client : IDisposable
 }
 
 /// <summary>
+/// Overloads of IAWSSecurityTokenServiceV20110615Client for the operations whose input may be left out.
+/// </summary>
+public static class AWSSecurityTokenServiceV20110615ClientExtensions
+{
+    /// <summary>
+    /// <para>
+    /// Returns details about the IAM user or role whose credentials are used to call the operation.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> No permissions are required to perform this operation. If an administrator attaches a
+    /// policy to your identity that explicitly denies access to the <c>sts:GetCallerIdentity</c> action,
+    /// you can still perform this operation. Permissions are not required because the same information is
+    /// returned when access is denied. To view an example response, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_access-denied-delete-mfa">I
+    /// Am Not Authorized to Perform: iam:DeleteVirtualMFADevice</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetCallerIdentityOutput> GetCallerIdentityAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetCallerIdentityAsync(new GetCallerIdentityInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a set of temporary credentials for an Amazon Web Services account or IAM user. The
+    /// credentials consist of an access key ID, a secret access key, and a security token. Typically, you
+    /// use <c>GetSessionToken</c> if you want to use MFA to protect programmatic calls to specific Amazon
+    /// Web Services API operations like Amazon EC2 <c>StopInstances</c>.
+    /// </para>
+    /// <para>
+    /// MFA-enabled IAM users must call <c>GetSessionToken</c> and submit an MFA code that is associated
+    /// with their MFA device. Using the temporary security credentials that the call returns, IAM users can
+    /// then make programmatic calls to API operations that require MFA authentication. An incorrect MFA
+    /// code causes the API to return an access denied error. For a comparison of <c>GetSessionToken</c>
+    /// with the other API operations that produce temporary credentials, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">Requesting
+    /// Temporary Security Credentials</see> and
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_sts-comparison.html">Compare
+    /// STS credentials</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> No permissions are required for users to perform this operation. The purpose of the
+    /// <c>sts:GetSessionToken</c> operation is to authenticate the user using MFA. You cannot use policies
+    /// to control authentication operations. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getsessiontoken.html">Permissions
+    /// for GetSessionToken</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Session Duration</b>
+    /// </para>
+    /// <para>
+    /// The <c>GetSessionToken</c> operation must be called by using the long-term Amazon Web Services
+    /// security credentials of an IAM user. Credentials that are created by IAM users are valid for the
+    /// duration that you specify. This duration can range from 900 seconds (15 minutes) up to a maximum of
+    /// 129,600 seconds (36 hours), with a default of 43,200 seconds (12 hours). Credentials based on
+    /// account credentials can range from 900 seconds (15 minutes) up to 3,600 seconds (1 hour), with a
+    /// default of 1 hour.
+    /// </para>
+    /// <para>
+    /// <b>Permissions</b>
+    /// </para>
+    /// <para>
+    /// The temporary security credentials created by <c>GetSessionToken</c> can be used to make API calls
+    /// to any Amazon Web Services service with the following exceptions:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// You cannot call any IAM API operations unless MFA authentication information is included in the
+    /// request.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// You cannot call any STS API <i>except</i> <c>AssumeRole</c> or <c>GetCallerIdentity</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// The credentials that <c>GetSessionToken</c> returns are based on permissions associated with the IAM
+    /// user whose credentials were used to call the operation. The temporary credentials have the same
+    /// permissions as the IAM user.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> Although it is possible to call <c>GetSessionToken</c> using the security credentials
+    /// of an Amazon Web Services account root user rather than an IAM user, we do not recommend it. If
+    /// <c>GetSessionToken</c> is called using root user credentials, the temporary credentials have root
+    /// user permissions. For more information, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#lock-away-credentials">Safeguard
+    /// your root user credentials and don't use them for everyday tasks</see> in the <i>IAM User Guide</i>
+    /// </para>
+    /// <para>
+    /// For more information about using <c>GetSessionToken</c> to create temporary credentials, see
+    /// <see href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_getsessiontoken">Temporary
+    /// Credentials for Users in Untrusted Environments</see> in the <i>IAM User Guide</i>.
+    /// </para>
+    /// </summary>
+    public static Task<GetSessionTokenOutput> GetSessionTokenAsync(
+        this IAWSSecurityTokenServiceV20110615Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.GetSessionTokenAsync(new GetSessionTokenInput(), cancellationToken);
+    }
+}
+
+/// <summary>
 /// <para>
 /// <b>Security Token Service</b>
 /// </para>

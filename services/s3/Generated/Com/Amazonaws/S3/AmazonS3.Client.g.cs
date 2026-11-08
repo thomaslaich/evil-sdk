@@ -12666,6 +12666,280 @@ public interface IAmazonS3Client : IDisposable
 }
 
 /// <summary>
+/// Overloads of IAmazonS3Client for the operations whose input may be left out.
+/// </summary>
+public static class AmazonS3ClientExtensions
+{
+    /// <summary>
+    /// <para>
+    /// <b>Note:</b> This operation is not supported for directory buckets.
+    /// </para>
+    /// <para>
+    /// Returns a list of all buckets owned by the authenticated sender of the request. To grant IAM
+    /// permission to use this operation, you must add the <c>s3:ListAllMyBuckets</c> policy action.
+    /// </para>
+    /// <para>
+    /// For information about Amazon S3 buckets, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">Creating,
+    /// configuring, and working with Amazon S3 buckets</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> We strongly recommend using only paginated <c>ListBuckets</c> requests.
+    /// Unpaginated <c>ListBuckets</c> requests are only supported for Amazon Web Services accounts set to
+    /// the default general purpose bucket quota of 10,000. If you have an approved general purpose bucket
+    /// quota above 10,000, you must send paginated <c>ListBuckets</c> requests to list your account’s
+    /// buckets. All unpaginated <c>ListBuckets</c> requests will be rejected for Amazon Web Services
+    /// accounts with a general purpose bucket quota greater than 10,000.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You must URL encode any signed header values that contain spaces. For example, if
+    /// your header value is <c>my file.txt</c>, containing two spaces after <c>my</c>, you must URL encode
+    /// this value to <c>my%20%20file.txt</c>.
+    /// </para>
+    /// </summary>
+    public static Task<ListBucketsOutput> ListBucketsAsync(this IAmazonS3Client client, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListBucketsAsync(new ListBucketsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Note:</b> This operation is not supported for directory buckets.
+    /// </para>
+    /// <para>
+    /// Returns a list of all buckets owned by the authenticated sender of the request. To grant IAM
+    /// permission to use this operation, you must add the <c>s3:ListAllMyBuckets</c> policy action.
+    /// </para>
+    /// <para>
+    /// For information about Amazon S3 buckets, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">Creating,
+    /// configuring, and working with Amazon S3 buckets</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> We strongly recommend using only paginated <c>ListBuckets</c> requests.
+    /// Unpaginated <c>ListBuckets</c> requests are only supported for Amazon Web Services accounts set to
+    /// the default general purpose bucket quota of 10,000. If you have an approved general purpose bucket
+    /// quota above 10,000, you must send paginated <c>ListBuckets</c> requests to list your account’s
+    /// buckets. All unpaginated <c>ListBuckets</c> requests will be rejected for Amazon Web Services
+    /// accounts with a general purpose bucket quota greater than 10,000.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You must URL encode any signed header values that contain spaces. For example, if
+    /// your header value is <c>my file.txt</c>, containing two spaces after <c>my</c>, you must URL encode
+    /// this value to <c>my%20%20file.txt</c>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListBucketsOutput> ListBucketsPagesAsync(this IAmazonS3Client client, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListBucketsPagesAsync(new ListBucketsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// <b>Note:</b> This operation is not supported for directory buckets.
+    /// </para>
+    /// <para>
+    /// Returns a list of all buckets owned by the authenticated sender of the request. To grant IAM
+    /// permission to use this operation, you must add the <c>s3:ListAllMyBuckets</c> policy action.
+    /// </para>
+    /// <para>
+    /// For information about Amazon S3 buckets, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-buckets-s3.html">Creating,
+    /// configuring, and working with Amazon S3 buckets</see>.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> We strongly recommend using only paginated <c>ListBuckets</c> requests.
+    /// Unpaginated <c>ListBuckets</c> requests are only supported for Amazon Web Services accounts set to
+    /// the default general purpose bucket quota of 10,000. If you have an approved general purpose bucket
+    /// quota above 10,000, you must send paginated <c>ListBuckets</c> requests to list your account’s
+    /// buckets. All unpaginated <c>ListBuckets</c> requests will be rejected for Amazon Web Services
+    /// accounts with a general purpose bucket quota greater than 10,000.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You must URL encode any signed header values that contain spaces. For example, if
+    /// your header value is <c>my file.txt</c>, containing two spaces after <c>my</c>, you must URL encode
+    /// this value to <c>my%20%20file.txt</c>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<Bucket> ListBucketsItemsAsync(this IAmazonS3Client client, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListBucketsItemsAsync(new ListBucketsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of all Amazon S3 directory buckets owned by the authenticated sender of the request.
+    /// For more information about directory buckets, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html">Directory
+    /// buckets</see> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <b>Directory buckets </b> - For directory buckets, you must make requests for this API
+    /// operation to the Regional endpoint. These endpoints support path-style requests in the format
+    /// <c>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i> </c>.
+    /// Virtual-hosted-style requests aren't supported. For more information about endpoints in Availability
+    /// Zones, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html">Regional
+    /// and Zonal endpoints for directory buckets in Availability Zones</see> in the <i>Amazon S3 User
+    /// Guide</i>. For more information about endpoints in Local Zones, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html">Concepts
+    /// for directory buckets in Local Zones</see> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Permissions</term>
+    /// <description>
+    /// You must have the <c>s3express:ListAllMyDirectoryBuckets</c> permission in an IAM identity-based
+    /// policy instead of a bucket policy. Cross-account access to this API operation isn't supported. This
+    /// operation can only be performed by the Amazon Web Services account that owns the resource. For more
+    /// information about directory bucket policies and permissions, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html">Amazon
+    /// Web Services Identity and Access Management (IAM) for S3 Express One Zone</see> in the <i>Amazon S3
+    /// User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>HTTP Host header syntax</term>
+    /// <description>
+    /// <b>Directory buckets </b> - The HTTP Host header syntax is
+    /// <c>s3express-control.<i>region</i>.amazonaws.com</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Note:</b> The <c>BucketRegion</c> response element is not part of the <c>ListDirectoryBuckets</c>
+    /// Response Syntax.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You must URL encode any signed header values that contain spaces. For example, if
+    /// your header value is <c>my file.txt</c>, containing two spaces after <c>my</c>, you must URL encode
+    /// this value to <c>my%20%20file.txt</c>.
+    /// </para>
+    /// </summary>
+    public static Task<ListDirectoryBucketsOutput> ListDirectoryBucketsAsync(this IAmazonS3Client client, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListDirectoryBucketsAsync(new ListDirectoryBucketsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of all Amazon S3 directory buckets owned by the authenticated sender of the request.
+    /// For more information about directory buckets, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html">Directory
+    /// buckets</see> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <b>Directory buckets </b> - For directory buckets, you must make requests for this API
+    /// operation to the Regional endpoint. These endpoints support path-style requests in the format
+    /// <c>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i> </c>.
+    /// Virtual-hosted-style requests aren't supported. For more information about endpoints in Availability
+    /// Zones, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html">Regional
+    /// and Zonal endpoints for directory buckets in Availability Zones</see> in the <i>Amazon S3 User
+    /// Guide</i>. For more information about endpoints in Local Zones, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html">Concepts
+    /// for directory buckets in Local Zones</see> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Permissions</term>
+    /// <description>
+    /// You must have the <c>s3express:ListAllMyDirectoryBuckets</c> permission in an IAM identity-based
+    /// policy instead of a bucket policy. Cross-account access to this API operation isn't supported. This
+    /// operation can only be performed by the Amazon Web Services account that owns the resource. For more
+    /// information about directory bucket policies and permissions, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html">Amazon
+    /// Web Services Identity and Access Management (IAM) for S3 Express One Zone</see> in the <i>Amazon S3
+    /// User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>HTTP Host header syntax</term>
+    /// <description>
+    /// <b>Directory buckets </b> - The HTTP Host header syntax is
+    /// <c>s3express-control.<i>region</i>.amazonaws.com</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Note:</b> The <c>BucketRegion</c> response element is not part of the <c>ListDirectoryBuckets</c>
+    /// Response Syntax.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You must URL encode any signed header values that contain spaces. For example, if
+    /// your header value is <c>my file.txt</c>, containing two spaces after <c>my</c>, you must URL encode
+    /// this value to <c>my%20%20file.txt</c>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<ListDirectoryBucketsOutput> ListDirectoryBucketsPagesAsync(this IAmazonS3Client client, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListDirectoryBucketsPagesAsync(new ListDirectoryBucketsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns a list of all Amazon S3 directory buckets owned by the authenticated sender of the request.
+    /// For more information about directory buckets, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-overview.html">Directory
+    /// buckets</see> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <b>Directory buckets </b> - For directory buckets, you must make requests for this API
+    /// operation to the Regional endpoint. These endpoints support path-style requests in the format
+    /// <c>https://s3express-control.<i>region-code</i>.amazonaws.com/<i>bucket-name</i> </c>.
+    /// Virtual-hosted-style requests aren't supported. For more information about endpoints in Availability
+    /// Zones, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/endpoint-directory-buckets-AZ.html">Regional
+    /// and Zonal endpoints for directory buckets in Availability Zones</see> in the <i>Amazon S3 User
+    /// Guide</i>. For more information about endpoints in Local Zones, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-lzs-for-directory-buckets.html">Concepts
+    /// for directory buckets in Local Zones</see> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <term>Permissions</term>
+    /// <description>
+    /// You must have the <c>s3express:ListAllMyDirectoryBuckets</c> permission in an IAM identity-based
+    /// policy instead of a bucket policy. Cross-account access to this API operation isn't supported. This
+    /// operation can only be performed by the Amazon Web Services account that owns the resource. For more
+    /// information about directory bucket policies and permissions, see
+    /// <see href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-security-iam.html">Amazon
+    /// Web Services Identity and Access Management (IAM) for S3 Express One Zone</see> in the <i>Amazon S3
+    /// User Guide</i>.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <term>HTTP Host header syntax</term>
+    /// <description>
+    /// <b>Directory buckets </b> - The HTTP Host header syntax is
+    /// <c>s3express-control.<i>region</i>.amazonaws.com</c>.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// <b>Note:</b> The <c>BucketRegion</c> response element is not part of the <c>ListDirectoryBuckets</c>
+    /// Response Syntax.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> You must URL encode any signed header values that contain spaces. For example, if
+    /// your header value is <c>my file.txt</c>, containing two spaces after <c>my</c>, you must URL encode
+    /// this value to <c>my%20%20file.txt</c>.
+    /// </para>
+    /// </summary>
+    public static IAsyncEnumerable<Bucket> ListDirectoryBucketsItemsAsync(this IAmazonS3Client client, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListDirectoryBucketsItemsAsync(new ListDirectoryBucketsInput(), cancellationToken);
+    }
+
+}
+
+/// <summary>
 /// <para>
 /// <b>Note:</b> For information about using the Amazon S3 API—including authentication, signing
 /// requests, code examples, and error handling—see the

@@ -8,5 +8,8 @@ Generated AWS clients from NSmithy; see `README.md` for commands.
   as a regression test in smithy-dotnet, not here.
 - Generic Smithy features (endpoint rules, waiters) belong in NSmithy. Only
   AWS service customizations belong in this repo.
-- `reports/` is overwritten by `just sweep`; commit it when it changes.
+- `smoke/` is hand-written and finds `{Service}SmokeTests.All` by reflection;
+  it needs no change when `services.txt` changes.
+- `reports/` is overwritten by `just sweep` and `just smoke`; commit it when it
+  changes.
 - `generate` and `sweep` share `.sweep/work/`; do not run them concurrently.

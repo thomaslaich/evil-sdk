@@ -2527,6 +2527,304 @@ public interface IDynamoDB20120810Client : IDisposable
 }
 
 /// <summary>
+/// Overloads of IDynamoDB20120810Client for the operations whose input may be left out.
+/// </summary>
+public static class DynamoDB20120810ClientExtensions
+{
+    /// <summary>
+    /// Returns the regional endpoint information. For more information on policy permissions, please see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/inter-network-traffic-privacy.html#inter-network-traffic-DescribeEndpoints">Internetwork
+    /// traffic privacy</see>.
+    /// </summary>
+    public static Task<DescribeEndpointsOutput> DescribeEndpointsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeEndpointsAsync(new DescribeEndpointsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Returns the current provisioned-capacity quotas for your Amazon Web Services account in a Region,
+    /// both for the Region as a whole and for any one DynamoDB table that you create there.
+    /// </para>
+    /// <para>
+    /// When you establish an Amazon Web Services account, the account has initial quotas on the maximum
+    /// read capacity units and write capacity units that you can provision across all of your DynamoDB
+    /// tables in a given Region. Also, there are per-table quotas that apply when you create a table there.
+    /// For more information, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Service,
+    /// Account, and Table Quotas</see> page in the <i>Amazon DynamoDB Developer Guide</i>.
+    /// </para>
+    /// <para>
+    /// Although you can increase these quotas by filing a case at
+    /// <see href="https://console.aws.amazon.com/support/home#/">Amazon Web Services Support Center</see>,
+    /// obtaining the increase is not instantaneous. The <c>DescribeLimits</c> action lets you write code to
+    /// compare the capacity you are currently using to those quotas imposed by your account so that you
+    /// have enough time to apply for an increase before you hit a quota.
+    /// </para>
+    /// <para>
+    /// For example, you could use one of the Amazon Web Services SDKs to do the following:
+    /// </para>
+    /// <list type="number">
+    /// <item>
+    /// <description>
+    /// Call <c>DescribeLimits</c> for a particular Region to obtain your current account quotas on
+    /// provisioned capacity there.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Create a variable to hold the aggregate read capacity units provisioned for all your tables in that
+    /// Region, and one to hold the aggregate write capacity units. Zero them both.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Call <c>ListTables</c> to obtain a list of all your DynamoDB tables.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// <para>
+    /// For each table name listed by <c>ListTables</c>, do the following:
+    /// </para>
+    /// <list type="bullet">
+    /// <item>
+    /// <description>
+    /// Call <c>DescribeTable</c> with the table name.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Use the data returned by <c>DescribeTable</c> to add the read capacity units and write capacity
+    /// units provisioned for the table itself to your variables.
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// If the table has one or more global secondary indexes (GSIs), loop over these GSIs and add their
+    /// provisioned capacity values to your variables as well.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// </description>
+    /// </item>
+    /// <item>
+    /// <description>
+    /// Report the account quotas for that Region returned by <c>DescribeLimits</c>, along with the total
+    /// current provisioned capacity levels you have calculated.
+    /// </description>
+    /// </item>
+    /// </list>
+    /// <para>
+    /// This will let you see whether you are getting close to your account-level quotas.
+    /// </para>
+    /// <para>
+    /// The per-table quotas apply only when you are creating a new table. They restrict the sum of the
+    /// provisioned capacity of the new table itself and all its global secondary indexes.
+    /// </para>
+    /// <para>
+    /// For existing tables and their GSIs, DynamoDB doesn't let you increase provisioned capacity extremely
+    /// rapidly, but the only quota that applies is that the aggregate provisioned capacity over all your
+    /// tables and GSIs cannot exceed either of the per-account quotas.
+    /// </para>
+    /// <para>
+    /// <b>Note:</b> <c>DescribeLimits</c> should only be called periodically. You can expect throttling
+    /// errors if you call it more than once in a minute.
+    /// </para>
+    /// <para>
+    /// The <c>DescribeLimits</c> Request element has no content.
+    /// </para>
+    /// </summary>
+    public static Task<DescribeLimitsOutput> DescribeLimitsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.DescribeLimitsAsync(new DescribeLimitsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// List DynamoDB backups that are associated with an Amazon Web Services account and weren't made with
+    /// Amazon Web Services Backup. To list these backups for a given table, specify <c>TableName</c>.
+    /// <c>ListBackups</c> returns a paginated list of results with at most 1 MB worth of items in a page.
+    /// You can also specify a maximum number of entries to be returned in a page.
+    /// </para>
+    /// <para>
+    /// In the request, start time is inclusive, but end time is exclusive. Note that these boundaries are
+    /// for the time at which the original backup was requested.
+    /// </para>
+    /// <para>
+    /// You can call <c>ListBackups</c> a maximum of five times per second.
+    /// </para>
+    /// <para>
+    /// If you want to retrieve the complete list of backups made with Amazon Web Services Backup, use the
+    /// <see href="https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupJobs.html">Amazon
+    /// Web Services Backup list API.</see>
+    /// </para>
+    /// </summary>
+    public static Task<ListBackupsOutput> ListBackupsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListBackupsAsync(new ListBackupsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns a list of ContributorInsightsSummary for a table and all its global secondary indexes.
+    /// </summary>
+    public static Task<ListContributorInsightsOutput> ListContributorInsightsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListContributorInsightsAsync(
+            new ListContributorInsightsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of ContributorInsightsSummary for a table and all its global secondary indexes.
+    /// </summary>
+    public static IAsyncEnumerable<ListContributorInsightsOutput> ListContributorInsightsPagesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListContributorInsightsPagesAsync(
+            new ListContributorInsightsInput(),
+            cancellationToken
+        );
+    }
+
+    /// <summary>
+    /// Lists completed exports within the past 90 days, in reverse alphanumeric order of <c>ExportArn</c>.
+    /// </summary>
+    public static Task<ListExportsOutput> ListExportsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListExportsAsync(new ListExportsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists completed exports within the past 90 days, in reverse alphanumeric order of <c>ExportArn</c>.
+    /// </summary>
+    public static IAsyncEnumerable<ListExportsOutput> ListExportsPagesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListExportsPagesAsync(new ListExportsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// <para>
+    /// Lists all global tables that have a replica in the specified Region.
+    /// </para>
+    /// <para>
+    /// <b>Important:</b> This documentation is for version 2017.11.29 (Legacy) of global tables, which
+    /// should be avoided for new global tables. Customers should use
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global
+    /// Tables version 2019.11.21 (Current)</see> when possible, because it provides greater flexibility,
+    /// higher efficiency, and consumes less write capacity than 2017.11.29 (Legacy).
+    /// </para>
+    /// <para>
+    /// To determine which version you're using, see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.DetermineVersion.html">Determining
+    /// the global table version you are using</see>. To update existing global tables from version
+    /// 2017.11.29 (Legacy) to version 2019.11.21 (Current), see
+    /// <see href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_upgrade.html">Upgrading
+    /// global tables</see>.
+    /// </para>
+    /// </summary>
+    public static Task<ListGlobalTablesOutput> ListGlobalTablesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListGlobalTablesAsync(new ListGlobalTablesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists completed imports within the past 90 days.
+    /// </summary>
+    public static Task<ListImportsOutput> ListImportsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListImportsAsync(new ListImportsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Lists completed imports within the past 90 days.
+    /// </summary>
+    public static IAsyncEnumerable<ListImportsOutput> ListImportsPagesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListImportsPagesAsync(new ListImportsInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns an array of table names associated with the current account and endpoint. The output from
+    /// <c>ListTables</c> is paginated, with each page returning a maximum of 100 table names.
+    /// </summary>
+    public static Task<ListTablesOutput> ListTablesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTablesAsync(new ListTablesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns an array of table names associated with the current account and endpoint. The output from
+    /// <c>ListTables</c> is paginated, with each page returning a maximum of 100 table names.
+    /// </summary>
+    public static IAsyncEnumerable<ListTablesOutput> ListTablesPagesAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTablesPagesAsync(new ListTablesInput(), cancellationToken);
+    }
+
+    /// <summary>
+    /// Returns an array of table names associated with the current account and endpoint. The output from
+    /// <c>ListTables</c> is paginated, with each page returning a maximum of 100 table names.
+    /// </summary>
+    public static IAsyncEnumerable<string> ListTablesItemsAsync(
+        this IDynamoDB20120810Client client,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ArgumentNullException.ThrowIfNull(client);
+        return client.ListTablesItemsAsync(new ListTablesInput(), cancellationToken);
+    }
+}
+
+/// <summary>
 /// <para>
 /// <b>Amazon DynamoDB</b>
 /// </para>

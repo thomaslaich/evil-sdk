@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Runs the generated @smokeTests of every checked-in service against LocalStack or AWS. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>NSmithy.Aws.Smoke</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../services/*/*.csproj" />
+    <PackageReference Include="NSmithy.Aws" />
+  </ItemGroup>
+</Project>

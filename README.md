@@ -16,7 +16,10 @@ is not affiliated with or supported by AWS; for production use, see the
   runtime packages; consumers need no Java or Smithy CLI.
 - `scripts/nsaws.py`: runs the Smithy CLI with NSmithy's `csharp-codegen`
   plugin, writes each service project, and sweeps the catalog.
-- `reports/`: the latest sweep result (`sweep.md`, `sweep.json`).
+- `smoke/`: a console runner for the smoke tests NSmithy generates from the
+  models' `@smokeTests` traits, against LocalStack or AWS.
+- `reports/`: the latest sweep result (`sweep.md`, `sweep.json`) and smoke
+  test results (`smoke-<target>.md`).
 
 ## Usage
 
@@ -30,7 +33,21 @@ just generate s3 ec2   # regenerate specific services
 just build             # compile the checked-in services
 just sweep             # generate and compile all ~436 services into .sweep/
 just sweep dynamodb    # sweep specific services
+just localstack        # start LocalStack 4.x in Docker
+just smoke             # run the generated smoke tests against LocalStack
+just smoke aws         # ...against AWS, with the default credentials chain
+just smoke aws iam sns # ...for specific services
 ```
+
+Codegen runs with `generateSmokeTests`, so a service whose operations carry
+`@smokeTests` gets a `{Service}SmokeTests.All` list. `just smoke` finds those
+lists in the checked-in services by reflection, so adding a service to
+`services.txt` is enough; the LocalStack target points every client at
+`http://localhost:4566` (or `LOCALSTACK_ENDPOINT`) with the static `test`
+credentials. The AWS target needs credentials the default chain can find and
+calls the live services in the regions the test cases name (`us-west-2`
+unless set); the cases only list resources or ask for ones that do not exist,
+but the calls are real.
 
 The NSmithy version is set by `NSmithyVersion` in `Directory.Build.props` and
 is used for both the codegen JAR (Maven Central) and the runtime packages
@@ -51,5 +68,6 @@ NSMITHY_LOCAL=../smithy-dotnet just sweep
 | `compile` | the generated project does not compile |
 | `ok` | the generated project compiles |
 
-Compiling is the first gate only. Endpoint rules, waiters, SigV4a, and
-service customizations are not covered yet.
+Compiling is the first gate only. The smoke tests exercise endpoint rules,
+SigV4, and the protocols end to end for the checked-in services; waiters,
+SigV4a, and service customizations are not covered yet.
