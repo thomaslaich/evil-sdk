@@ -171,7 +171,7 @@ static string Report(List<Row> rows, string target, Uri? endpoint)
     sb.AppendLine("| --- | --- | --- | --- | --- | --- | --- |");
     foreach (var r in rows)
     {
-        var detail = r.Detail.Replace("\r", " ").Replace("\n", " ").Replace("|", "\\|");
+        var detail = Mask(r.Detail).Replace("\r", " ").Replace("\n", " ").Replace("|", "\\|");
         if (detail.Length > 200)
         {
             detail = detail[..200] + "…";
@@ -181,6 +181,20 @@ static string Report(List<Row> rows, string target, Uri? endpoint)
         );
     }
     return sb.ToString();
+}
+
+partial class Program
+{
+    // Reports are committed, so they must not carry the account they ran against: AWS error
+    // messages name account IDs (in ARNs and plain text) and, for signature errors, access key IDs.
+    public static string Mask(string text) =>
+        AccessKeyId().Replace(AccountId().Replace(text, "<account-id>"), "<access-key-id>");
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"(?<![0-9])[0-9]{12}(?![0-9])")]
+    private static partial System.Text.RegularExpressions.Regex AccountId();
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"\b(?:AKIA|ASIA)[A-Z0-9]{16}\b")]
+    private static partial System.Text.RegularExpressions.Regex AccessKeyId();
 }
 
 partial class Program
